@@ -28,7 +28,5 @@ def main():
     args = parser.parse_args()
     pdf_to_txt(args.output_dir)
 
-# cyzz submit test
-
 if __name__ == "__main__":
     main()
