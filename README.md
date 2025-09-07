@@ -212,6 +212,14 @@ misses_XML: 25 dataset_ids
 
 `python getid.py`  # 从解析后的文本中提取数据集标识符以及context with window=100
 
+格式说明： [TP/FP/FN] 其中：
+
+TP (True Positive): 正确识别的数量
+
+FP (False Positive): 错误识别的数量
+
+FN (False Negative): 遗漏的数量
+
 **XML**
 
 ---
@@ -259,9 +267,10 @@ assum_type function: A vs B
 ## 改进方向
 
 1. [X] xml to txt, parse_xml.py
-2. [X] txt result check, check_parse_xml.py 
-3. [ ] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`, 写在 getid_xml.py 文件
-4. [ ] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter 的逻辑，写在 getid_xml.py 文件
+2. [X] txt result check, check_parse_xml.py
+3. [ ] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`, 写在 getid_xml.py 文件，增大TP，减小FN
+4. [ ] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter.py , helpers.py 的逻辑，写在 getid_xml.py 文件，减小FP. 如果dataset_id,
 5. [ ] getid.py 目前拆分正文和附录的逻辑是根据PDF文件写的，需要修改成对应的xml文件
-6. [ ] saperate data and paper
-7. [ ] saperate primary and second
+6. [ ] 把目前的内容放到kaggle上面运行一遍
+7. [ ] saperate data and paper
+8. [ ] saperate primary and second
