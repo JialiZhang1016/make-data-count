@@ -178,16 +178,16 @@ def get_window_df(text_df, ids_df):
         windows.append(get_context_window(text, match_ids[0]))
     return df.with_columns(pl.Series('window', windows)).select('article_id', 'dataset_id', 'window')
 
-def main():
-    # text_df = get_df('./temp/train_parse')
-    text_df = get_df('./temp/parse_xml')
+def main(input_dir: str, parquet_dir: str, output_dir: str) -> None:
+
+    text_df = get_df(input_dir)
     df = get_splits(text_df)
     df = tidy_extraction(df)
     df = get_window_df(text_df, df)
-    # df.write_parquet('./temp/extracted.parquet')
-    df.write_parquet('./temp/extracted.parquet_xml')
+    df.write_parquet(parquet_dir)
+    # df.write_parquet('./temp/extracted.parquet_xml')
     df = assume_type(df)
-    df.select(['article_id', 'dataset_id', 'type']).with_row_index(name='row_id').write_csv('./temp/submission.csv')
+    df.select(['article_id', 'dataset_id', 'type']).with_row_index(name='row_id').write_csv(output_dir)
     if not IS_KAGGLE_SUBMISSION:
         print("*"*10)
         results = evaluate(df)
@@ -196,7 +196,14 @@ def main():
         results = evaluate(df, on=['article_id', 'dataset_id', 'type'])
         for r in results: l.info(r)
 
-if __name__=='__main__': main()
+
+if __name__=='__main__': 
+
+    input_dir = './temp/parse_xml'
+    parquet_dir = './temp/extracted.parquet_xml'
+    output_dir = './temp/submission_xml.csv'
+
+    main(input_dir, parquet_dir, output_dir)
 
 """
 格式说明： [TP/FP/FN] 其中：

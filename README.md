@@ -259,9 +259,9 @@ assum_type function: A vs B
 ## 改进方向
 
 1. [X] xml to txt, parse_xml.py
-2. [X] txt result check, check_parse_xml.py
-3. [ ] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`
-4. [ ] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter 的逻辑
+2. [X] txt result check, check_parse_xml.py 
+3. [ ] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`, 写在 getid_xml.py 文件
+4. [ ] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter 的逻辑，写在 getid_xml.py 文件
 5. [ ] getid.py 目前拆分正文和附录的逻辑是根据PDF文件写的，需要修改成对应的xml文件
 6. [ ] saperate data and paper
 7. [ ] saperate primary and second

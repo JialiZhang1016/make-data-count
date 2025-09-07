@@ -203,10 +203,6 @@ if __name__=='__main__':
     parquet_dir = './temp/extracted.parquet'
     output_dir = './temp/submission.csv'
 
-    # input_dir = './temp/parse_xml'
-    # parquet_dir = './temp/extracted.parquet_xml'
-    # output_dir = './temp/submission_xml.csv'
-
     main(input_dir, parquet_dir, output_dir)
 
 """
