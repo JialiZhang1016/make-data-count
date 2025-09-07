@@ -1,0 +1,4058 @@
+Journal of Business & Economic Statistics
+ISSN: (Print) (Online) Journal homepage: www.tandfonline.com/journals/ubes20
+A Linear Eﬆimator for Factor-Augmented Fixed-T
+Panels With Endogenous Regressors
+Artūras Juodis & Vasilis Saraﬁdis
+To cite this article: Artūras Juodis & Vasilis Saraﬁdis (2022) A Linear Estimator for Factor-
+Augmented Fixed-T Panels With Endogenous Regressors, Journal of Business & Economic
+Statistics, 40:1, 1-15, DOI: 10.1080/07350015.2020.1766469
+To link to this article:  https://doi.org/10.1080/07350015.2020.1766469
+© 2020 The Authors. Published with license
+by Taylor & Francis Group, LLC.
+View supplementary material 
+Published online: 01 Jul 2020.
+Submit your article to this journal 
+Article views: 4222
+View related articles 
+View Crossmark data
+Citing articles: 9 View citing articles 
+Full Terms & Conditions of access and use can be found at
+https://www.tandfonline.com/action/journalInformation?journalCode=ubes20
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+2022, VOL. 40, NO. 1, 1–15
+https://doi.org/10.1080/07350015.2020.1766469
+A Linear Estimator for Factor-Augmented Fixed-T Panels With Endogenous Regressors
+Art¯uras Juodisa and Vasilis Sarafidisb,c
+aFaculty of Economics and Business, University of Groningen, Groningen, Netherlands; bDepartment of Econometrics and Business Statistics,
+Monash University, Caulfield East, Victoria, Australia; cDepartment of Economics, BI Norwegian Business School, Oslo, Norway
+ABSTRACT
+A novel method-of-moments approach is proposed for the estimation of factor-augmented panel data
+models with endogenous regressors when T is fixed. The underlying methodology involves approximating
+the unobserved common factors using observed factor proxies. The resulting moment conditions are linear
+in the parameters. The proposed approach addresses several issues which arise with existing nonlinear
+estimators that are available in fixed T panels, such as local minima-related problems, a sensitivity to
+particular normalization schemes, and a potential lack of global identification. We apply our approach to
+a large panel of households and estimate the price elasticity of urban water demand. A simulation study
+confirms that our approach performs well in finite samples.
+ARTICLE HISTORY
+Received January 2019
+Accepted April 2020
+KEYWORDS
+Common factors; Fixed T
+consistency; Moment
+conditions; Panel data; Urban
+water management
+1. Introduction
+The common factor approach has attracted considerable interest
+within panel data analysis because it offers a wide scope for
+controlling for unobservables, including situations where there
+is cross-sectional dependence (see, e.g., Sarafidis and Wansbeek
+2012, 2020).
+Holtz-Eakin, Newey, and Rosen (1988), Ahn, Lee, and
+Schmidt (2013), Robertson and Sarafidis (2015), Robertson,
+Sarafidis, and Westerlund (2018), and Juodis (2018), among
+others, have proposed various estimators for panels with
+endogenous covariates and “fixed T,” where T denotes the
+number of time series observations. A common feature of these
+approaches is that identification relies on nonlinear moment
+conditions. For panels with “large T,” popular (least-squares
+type) methods include those developed by Pesaran (2006) and
+Bai (2009), known in the literature as common correlated effects
+(CCE) and principal components (PC), respectively.
+Given the computational simplicity inherent in CCE and PC,
+these approaches have been highly popular, both in terms of
+extending them to several additional theoretical settings (see,
+e.g., Kapetanios, Serlenga, and Shin 2020; Norkute et al. 2020 for
+recent developments), as well as in terms of applying these pro-
+cedures to a large range of empirical areas. In contrast, it is fair to
+say that the literature on fixed-T panels remains largely unused
+by empirical researchers, despite its aforementioned volume.
+There are several factors that might help to explain this obser-
+vation. First, there is usually no underlying theory to guide the
+selection of good starting values for a potentially large number
+of nuisance parameters, such as the unobserved common fac-
+tors. This can potentially lead to local minima-related problems,
+frequently arising in estimation of factor models using iterative
+algorithms (see, e.g., Jiang et al. 2017). Second, identification of
+CONTACT Arturas Juodis
+arturas.juodis@economists.lt
+Faculty of Economics and Business, University of Groningen, Nettelbosje 2, 9747 AE, Groningen, The
+Netherlands.
+Supplementary materials for this article are available online. Please go to www.tandfonline.com/UBES.
+the parameters of interest typically requires imposing certain
+normalization restrictions. However, as was discussed in Kru-
+iniger (2008) and Juodis and Sarafidis (2018), the choice of the
+normalization scheme can be crucial for the properties of esti-
+mators that rely on some form of quasi-differencing, depending
+on the underlying data generating process for the unknown
+factors. For example, the approach proposed by Holtz-Eakin,
+Newey, and Rosen (1988) requires that all factors take nonzero
+values in all time periods. Finally, as shown by Hayakawa (2016),
+the nonlinear moment conditions proposed in the literature do
+not always satisfy the global identification assumption, which is
+a necessary condition for consistency of GMM estimation.
+The present article develops a novel GMM approach; the
+main idea is to replace the unobserved factors with proxies con-
+structed from observables. We put forward two distinct meth-
+ods for constructing factor proxies. The first one involves the use
+of a multiple weighting scheme applied on a single observable,
+which can be either an external variable or a regressor. The
+second method employs a single weighting scheme applied to
+multiple variables. We show that these two methods can also be
+combined. In both cases, the underlying assumption is that the
+variables employed to construct the factor proxies are driven
+by the common shocks that are relevant for the main variable
+of interest. The resulting method of moments estimator has
+a closed form solution, and avoids the aforementioned issues
+associated with nonlinear estimators. Under suitable regularity
+conditions (discussed in the article), the proposed estimator is
+consistent and asymptotically mixed-normal.
+In response to issues associated with nonlinear method of
+moments estimators, Westerlund, Petrova, and Norkute (2019)
+recently advocated the use of pooled CCE in fixed-T pan-
+els. However, the computational simplicity of CCE comes with
+© 2020 The Authors. Published with license by Taylor & Francis Group, LLC.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution-NonCommercial-NoDerivatives License (http://creativecommons.org/licenses/by-nc-nd/4.0/), which
+permits non-commercial re-use, distribution, and reproduction in any medium, provided the original work is properly cited, and is not altered, transformed, or built upon in any way.
+2
+A. JUODIS AND V. SARAFIDIS
+a price, as the method requires all regressors to be strictly
+exogenous and to exhibit a common factor structure. The latter
+restriction prohibits, for example, nonlinear partial effects, such
+as in regressions with quadratic terms. Recently, De Vos and
+Everaert (2019) extended CCE in fixed-T panels to the case of
+a lagged dependent variable, assuming that all other covariates
+are strictly exogenous. However, the proposed procedure is
+no longer linear and requires bias correction. In contrast, the
+approach presented in this article does not need bias correc-
+tion of any sort, and accommodates regressors with different
+degrees of exogeneity, without imposing the requirement that
+all covariates (and/or instruments) have as many factors as the
+main variable on interest. At the same time, the resulting GMM
+estimator possesses the appealing linearity property of the CCE
+estimator.
+We use our approach to estimate the price elasticity of res-
+idential water usage demand. This topic is of large interest,
+not only among economists but also across international envi-
+ronmental agencies, regulators, water utilities, and the general
+public. We find that urban water demand is more elastic in
+the long-run than in the short-run, which may be attributed to
+habit formation and technological constraints of water appliance
+efficiency. This result casts doubt on the potential effectiveness
+of scarcity pricing to balance demand and supply of water in
+periods of transitory droughts.
+The remainder of this article is organized as follows. Sec-
+tion 2 introduces a linear panel model with common shocks.
+Section 3 develops the proposed approach. Section 4 reports
+a Monte Carlo study to assess the finite sample performance
+of the estimator. Section 5 presents the empirical application.
+Finally, Section 7 concludes. A supplementary appendix to this
+article discusses extensions to unbalanced panels and models
+with observed factors. In addition, it provides further finite
+sample evidence and contains proofs of our theoretical results.
+1.1. Notation
+The generic constants δ and M are used to denote a small and
+a large positive real number, respectively. For a generic matrix
+A, vec(A) denotes the vertical column stacking operator, and
+Col(A) denotes the column space of A. Moreover, ⊗denotes
+the Kronecker product. li,s:q, s
+≤
+q, is defined as li,s:q
+=
+(li,s, . . . , li,q)′. Finally, all random variables are defined on a
+common probability space (, A, P).
+2. Model
+We consider the following panel data model with a multifactor
+error structure:
+yi,t = x′
+i,tβ + λ′
+if t + εi,t;
+i = 1, . . . , N;
+t = 1, . . . , T, (1)
+where xi,t = (x(1)
+i,t , . . . , x(K)
+i,t )′ denotes the vector of explanatory
+variables and β = (β1, . . . , βK)′ is the vector of the parameters
+of interest. f t denotes the [L×1] vector of unobserved common
+factors, λi denotes the associated factor loadings for individual
+i, and εi,t is the remaining error term.
+The multifactor error structure is appealing because it allows
+for multiple sources of multiplicative unobserved heterogeneity,
+as opposed to the one-way (or two-way) error components
+structure, which represents additive heterogeneity. For example,
+in a partial adjustment model of factor input prices, the factor
+component may capture common shocks that hit all producers,
+albeit with different intensities. In the estimation of production
+functions, the factor component may absorb different sources
+of technical inefficiency, which vary over time in an arbitrary
+way. In an empirical model of household water usage demand,
+the factor component may capture nonlinear effects of house-
+hold size (typically unobserved) that depend on time-varying
+weather conditions.
+Stacking the observations over time for each i, the model can
+be rewritten in vector form as
+yi = Xiβ + Fλi + εi;
+i = 1, . . . , N,
+(2)
+where yi
+=
+(yi,1, . . . , yi,T)′, Xi
+=
+(xi,1, . . . , xi,T)′, εi
+=
+(εi,1, . . . , εi,T)′, while F = (f 1, . . . , f T)′ is of dimension [T × L].
+Denote by F the σ-field generated by all common shocks
+driving the individual-specific variables in the system. As such,
+F contains all factors F, but we also allow variables {(xi,t, λi)}T
+t=1
+to be a function of other common shocks (not necessarily of
+linear factor structure), resulting in additional sources of depen-
+dence across cross-sectional units. For example, one can allow
+xi,t = b
+
+ψi, gt, ζi,t
+
+, where b (·) is a linear/nonlinear function in
+all arguments.
+Assumption 2.1. The DGP for all i and t satisfies the following
+restrictions:
+1.
+(Xi, εi, λi) are identically distributed and independent
+across i, conditional on F.
+2.
+Each time-varying element p(·)
+i,t in pi,t =
+
+p(1)
+i,t , . . . , p(K+1)
+i,t
+′
+≡(x′
+i,t, εi,t)′ satisfies E
+p(·)
+i,t
+
+4+δ
+< ∞for all t.
+3.
+Each time-invariant element λ(·)
+i
+in λi = (λ(1)
+i , . . . , λ(L)
+i
+)′
+satisfies E
+λ(·)
+i
+
+4+δ
+< ∞.
+4.
+EF[εi,t|λi, x(1)
+i,1:τ1(t), . . . , x(K)
+i,1:τK(t)] = 0 ∀t, for some positive
+integers τ1(t), . . . , τK(t).
+Besides the fact that F is assumed to be random, the above
+assumptions are standard in the literature (see, e.g., Ahn, Lee,
+and Schmidt 2013, Assumption BA.1). Given the conditional
+independence assumption, all stochastic convergence modes
+in this article are conditional on F. We will emphasize this
+technicality further inSection 3, when we discuss the asymptotic
+distribution of the proposed estimator. These assumptions are
+general enough to allow for conditional heteroscedasticity in
+both dimensions, for example, εi,t
+= σiξtηi,t, where ηi,t is
+iid over i and t with unit variance, ξt is a sequence of con-
+stants, while σi is an iid sequence over i. Subject to some addi-
+tional summability restrictions, the conditional iid restriction
+can be further relaxed to conditional independence with hetero-
+geneous population moments, without affecting the consistency
+of the estimator. The supplementary appendix provides one
+such example. For instance, σi and λi could be treated as a
+sequence of fixed constants, as was advocated in Hsiao, Pesaran,
+and Tahmiscioglu (2002). However, such setup would require
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+3
+additional technical restrictions for the limits to be well defined
+(see, e.g., Gagliardini, Ossola, and Scaillet 2016, p. 996, for a
+related discussion).
+Assumption 2.1.4 characterizes the exogeneity properties of
+the covariates. In particular, covariates that satisfy τk(t) = T
+(τk(t) = t) are strictly (weakly) exogenous with respect to
+the idiosyncratic error component, and endogenous otherwise.
+The estimator proposed in this article allows for strictly/weakly
+exogenous regressors, such as lagged dependent variables and
+endogenous regressors.
+Let zi be a [d × 1] vector containing all internal instruments
+that are available by Assumption 2.1.4, as well as external instru-
+ments satisfying the corresponding assumption. Also, let S =
+diag (S1, . . . , ST) denote a block-diagonal matrix with a typical
+block-diagonal entry equal to St, where St is a [ζt × d] selection
+matrix of zeros and ones that picks ζt valid instruments at time
+t from zi.
+Under Assumption 2.1, the following set of ζ ≡	T
+t=1 ζt
+population moment conditions is valid by construction:
+EF
+
+Z′
+i
+
+yi −Xiβ0 −Fλi
+
+= S
+
+vec
+
+EF
+
+zi
+
+yi −Xiβ0
+′
+−Gz,λF′
+= 0ζ,
+(3)
+where Z′
+i ≡S (IT ⊗zi) and Gz,λ ≡EF
+
+ziλ′
+i
+
+is a [d × L]
+unknown population matrix that absorbs the unobserved
+covariances between instruments and factor loadings. The
+moment conditions in Equation (3) give rise to the estimators
+proposed by Robertson and Sarafidis (2015) (with Gz,λ
+estimated) and Ahn, Lee, and Schmidt (2013) (with Gz,λ quasi-
+differenced). Either way, the resulting moment conditions
+are nonlinear and, hence, potentially subject to the issues
+discussed in Section 1. In what follows, we put forward a
+strategy that circumvents the nonlinearity of the moment
+conditions in Equation (3). For future reference, notice that the
+last term in Equation (3) can be rewritten as S
+
+vec
+
+Gz,λF′
+=
+S (F ⊗Id) gz,λ, where gz,λ = vec
+
+Gz,λ
+
+.
+3. A New Approach for Dealing With Unobserved
+Factors in Fixed-T Panels
+Let Fe denote a [T × Le] dimensional matrix with Le ≥L,
+such that F ∈Col(Fe). Furthermore, let Fe be a consistent
+estimator of the column space of Fe. In Section 3.1, we derive the
+asymptotic properties of the proposed GMM estimator based
+on Fe, assuming that the model is identified from Equation
+(3). In Sections 3.2 and 3.3, we discuss different methods for
+constructing Fe, depending on the model at hand. Finally, in
+Sections 3.4 and 3.5, we analyze identification, and we put for-
+ward two alternative procedures for implementing our approach
+in practice.
+3.1. The Estimator
+Assumption 3.1 ensures thatFe is an appropriate plug-in estima-
+tor of Fe. Our setup is sufficiently general in that it allows for two
+important cases, namely: (i) the number of estimated factors is
+larger than the true number of factors that enter into the error
+term of the equation for y; (ii) the number of factor proxies in
+Fe that is required to identify F is larger than L. These cases are
+illustrated in Examples 1 (or 3), and 2, respectively.
+Assumption 3.1.
+Factor proxies are asymptotically linear such
+that
+√
+N
+Fe −FeAN
+
+=
+
+N−1/2 	N
+i=1 Ψ i
+
++ oP(1) and Ψ i =
+(IT ⊗ψ′
+i)B′
+N. Here AN is an [Le×Le] rotation matrix, ψi is a [q×
+1] vector, and BN is a [Le × Tq] selection matrix. Furthermore,
+1.
+ψi is identically distributed and independent across i, con-
+ditional on F. Moreover, ψ(·)
+i
+in ψi = (ψ(1)
+i
+, . . . , ψ(q)
+i
+)′
+satisfies E
+ψ(·)
+i
+
+4+δ
+< ∞, with EF[ψi] = 0q.
+2.
+AN and BN are such that AN
+p
+−→A and BN
+p
+−→B. Here
+A, B are F-measurable.
+3.
+For any value of N, including N →∞: rk(AN) = Le a.s.
+4.
+F ∈Col(Fe) and rk(Fe) = Le a.s.
+Assumption 3.1 is fairly intuitive. In particular, Assump-
+tions 3.1.1 and Assumption 3.1.2 are employed so as to enable
+the application of a standard central limit theorem. Notice that,
+similarly to Z′
+i, Ψ ′
+i has a Kronecker product form. Thus, BN
+is a selection matrix which, for each point t (i.e., for each
+f t,e), selects those elements of ψi that are of first-order (
+√
+N)
+importance. Therefore, the length of ψi need not be equal to
+TLe, the number of elements in Fe. Section 3.3 provides more
+details. Assumptions 3.1.3 and Assumption 3.1.4 ensure that the
+factor proxies in Fe asymptotically identify the Le-dimensional
+column space of Fe a.s. Finally, if Assumption 3.1.4 is violated
+such that F ̸∈Col(Fe), then in the limitFe will not approximate
+F in the model equation.
+Let β0 denote the true value of β, and g0 ≡vec(Gz,λe(A−1
+N )′),
+which is of dimension [dLe × 1]. That is, we define Gz,λe with
+respect to the extended [Le × 1] vector of factor loadings λi,e,
+where λi,e ≡Rλi, with R being the selection matrix of the
+form F = FeR (the existence of R is guaranteed by part (d)).
+Moreover, denote by θ =
+
+β′, g′′ the full parameter vector,
+and the corresponding true parameter vector by θ0. It is worth
+mentioning that Gz,λe and AN cannot be separately identified
+due to the usual rotation problem in factor models.
+Using the plug-in principle and replacing F byFe in Equation
+(3), we define the following set of ζ estimating equations for θ:
+μN (θ) ≡1
+N
+N
+
+i=1
+Z′
+i
+
+yi −Xiβ
+
+−S
+Fe ⊗Id
+
+g.
+(4)
+The GMM estimator is defined as the minimizer of the following
+objection function:
+θ = arg min
+θ
+μN (θ)′ ΩNμN (θ) ,
+(5)
+where ΩN is some prespecified positive definite matrix. Notice
+that μN (θ) is linear in θ, and thus the estimatorθ has a closed
+form solution.
+The asymptotic distribution of the GMM estimator is deter-
+mined primarily by the leading term in Equation (4). In partic-
+ular, μN(θ) can be expanded as follows:
+μN(θ) = 1
+N
+N
+
+i=1
+μi(θ) + oP(N−1/2),
+(6)
+4
+A. JUODIS AND V. SARAFIDIS
+where
+μi(θ) = Z′
+i
+
+yi −Xiβ
+
+−S ((FeAN + Ψ i) ⊗Id) g.
+(7)
+The following assumption imposes appropriate regularity
+conditions on μN(θ).
+Assumption 3.2.
+1.
+Γ β ≡plimN→∞−
+
+∂μN (θ) /∂β′
+= EF
+
+Z′
+iXi
+
+is F-
+measurable and has full column rank a.s.
+2.
+Γ g ≡plimN→∞−
+
+∂μN (θ) /∂g′
+= S (FeA ⊗Id) is F-
+measurable and has full column rank a.s.
+3.
+The full-parameter Jacobian matrix Γ ≡
+
+Γ β, Γ g
+
+has full
+column rank a.s.
+4.
+Δ ≡plimN→∞N−1 	N
+i=1 μi(θ0)μi(θ0)′ is F-measurable
+and has full column rank a.s.
+It is worth noting that Assumptions 2.1 and 3.1 are suf-
+ficient to ensure convergence in probability of the matrices
+defined in Assumption 3.2. Thus, the only nontrivial restrictions
+imposed in Assumption 3.2 are the rank restrictions. Assump-
+tion 3.2.1 is a standard identification condition in IV estimation
+and requires the instruments to be correlated with the regres-
+sors. Assumption 3.2.2 requires that FeAN has full column rank,
+which is already implied by Assumption 3.1.2. Violations of
+this restriction are examined in Section 3.4. Assumption 3.2.3
+assumes that Γ β and Γ g are linearly independent. That is,
+EF
+
+Z′
+iXi
+
+cannot lie in the column space of Fe. As an example,
+Assumption 3.2.3 excludes situations where Zi and/or Xi have
+degenerate idiosyncratic components with variance that is local-
+to-zero. Essentially, Assumption 3.2.3 is the GMM analogue
+of the generalized non-collinearity condition of least-squares
+based factor estimates, as per Bai (2009) and Moon and Weidner
+(2015). Lastly, Assumption 3.2.4 is also a standard condition and
+ensures that point-identified inference is asymptotically valid.
+Remark 1. The Jacobian matrix Γ has ζ rows and K + dLe
+columns. Therefore, Assumption 3.2 requires that ζ ≥K +
+dLe. To illustrate the meaning of this requirement, suppose that
+all elements of zi are strictly exogenous, such that the largest
+possible set of (internal) instruments is given by ζ = dT. A
+necessary condition for identification is that d(T −Le) ≥K,
+which means that the number of factor proxies, Le, should be
+strictly smaller than the number of time periods, T. Similar
+conclusions apply when some of the elements in zi are weakly
+exogenous or endogenous, except in this case g is not identifiable
+without additional normalizations, see Section 3.3 in Juodis and
+Sarafidis (2018) for details.
+The following theorem summarizes the properties of the
+proposed estimator.
+Theorem 1. Suppose that Assumptions 2.1, 3.1, and 3.2 hold
+true. Then for N →∞,
+√
+N
+θ −θ0
+
+d
+−→
+
+Γ ′ΩΓ
+−1 Γ ′Ω
+
+Δ1/2π
+(F-stably),
+(8)
+where Ω is some F-measurable matrix such that plimN→∞
+ΩN = Ω, while Γ , Ω, and Δ are independent of π ∼N(0ζ, Iζ).
+Proof. See the supplementary appendix.
+Theorem 1 adopts the notion of C-stable convergence, intro-
+duced by Kuersteiner and Prucha (2013), and characterizes con-
+vergence as F-stable. Hence, the GMM estimatorθ is consistent,
+and asymptotically mixed-normal. While this is an important
+distinction between the properties of the proposed estimator
+and those of Robertson and Sarafidis (2015) (who treated factors
+as fixed), it plays no role for inference procedures based on
+standardized statistics, as long as Γ and Δ can be consistently
+estimated from their sample analogues. The result of Theorem 1
+is general enough to establish general stable convergence, but
+we present the result as F-stable because we wish to emphasize
+measurability of all random matrices with respect to F.
+As our focus lies on asymptotically linear estimators of Fe,
+consistent estimation of Δ requires a plug-in estimator of Ψ i. In
+particular, if such estimator Ψ i is available, Δ can be estimated
+consistently using the conventional formula
+Δ = 1
+N
+N
+
+i=1
+μi
+θ
+μi
+θ
+′ ,
+(9)
+where μi(θ) is the feasible plug-in estimate of μi(θ), that is,
+μi(θ) = Z′
+i
+
+yi −Xiβ
+
+−S
+
+(Fe + Ψ i) ⊗Id
+
+g.
+(10)
+Finally, the usual two-step GMM estimator can be obtained by
+setting ΩN = Δ
+−1.
+3.2. Construction of Factor Proxies,Fe
+This section puts forward two specific methods for constructing
+Fe. These methods are motivated by our empirical application as
+well as common practice in the large-T panel data literature.
+3.2.1. Method I: One Variable and Multiple Weights
+Suppose there exists a single variable vi =
+
+vi,1, . . . , vi,T
+′ driven
+by F, as well as possibly additional factors. That is, vi satisfies
+vi = Feγ i + ui,
+(11)
+where Fe is [T × Le] with Le ≥L, such that F ∈Col(Fe). vi
+can be either internal, that is, one of the regressors, or exter-
+nal, in the spirit of Pesaran, Smith, and Yamagata (2013). The
+existence of such variable is quite plausible in panel data mod-
+els (see, e.g., Hansen and Liao 2019; Karabıyık, Urbain, and
+Westerlund 2019) because economic agents inhabit common
+economic environments and therefore many variables are often
+subject to common shocks, such as changes in technology and
+productivity, changes in preferences and tastes, and so on.
+Let wi denote an [Le×1] vector of individual-specific weights,
+such that EF
+
+uiw′
+i
+
+= OT×Le and EF
+
+γ iw′
+i
+
+= Gγ ,w a.s. In
+terms of the general notation employed in Assumption 3.1, this
+setup corresponds to setting A = Gγ ,w and Ψ i = uiw′
+i +
+Fe(γ iw′
+i −Gγ ,w). Thus, Assumption 3.1 translates into the
+requirement that rk
+
+Gγ ,w
+
+= Le. In this case,
+Fe = 1
+N
+N
+
+i=1
+viw′
+i,
+(12)
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+5
+is a suitable estimator of Fe. Furthermore, the corresponding
+plug-in estimator of Ψ i is simply given by
+Ψ i = viw′
+i −Fe.
+(13)
+It is apparent that Method I permits cases where the Le factor
+proxies in Fe identify more factors than those entering into the
+error term of the equation for y. Such generality is appealing
+because vi may contain more factors than those that already
+drive yi,t.
+Example 1. Suppose that L = 1, such that the factor component
+in Equation (2)reduces to f (1)λ(1)
+i , but vi is driven by two factors,
+that is, Fe = (f (1), f (2)) and wi is a [2 × 1] vector. Then,
+Fe = 1
+N
+N
+
+i=1
+viw′
+i
+p
+−→FeA,
+(14)
+where A = EF[γ iw′
+i]. Consistent estimability of β requires that
+rk(A) = 2. Notice that if one makes use of one weight only, wi,
+A = EF[γ iwi] has at most rank 1. Thus, in this case Fe cannot
+estimate f (1) consistently, unless EF[γ (2)
+i
+wi] = 0, where γ (2)
+i
+denotes the bottom entry in γ i. Section 3.4 discusses in detail
+the situation where the full rank restriction on A is violated.
+The aforedescribed method requires two distinct ingredients:
+vi and wi. There are several potential choices for wi. Consider
+initially the case Le = L = 1 and suppose that the factor
+component in Equation (11) reduces to f (1)γ (1)
+i
+. One simple
+choice is to set the value of the weight across all individuals equal
+to a fixed constant, that is, wi = 1. In this case, Equation (12)
+becomes the cross-sectional average of vi, whereas Gγ ,w reduces
+to μγ ≡EF
+
+γ (1)
+i
+
+. Thus, Assumption 3.1 implies that μγ ̸= 0
+and EF[ui] = 0T. An alternative choice, and one which is
+especially appealing in autoregressive models, is to use random
+weights that are independent across i conditional on F, such as
+lagged values of the observed data. For instance, in ARDL(p, q)
+models a natural choice is to set wi = yi,0 (or wi = x(k)
+i,0 ), which
+requires EF[γ (1)
+i
+yi,0] ̸= 0 (or EF[γ (1)
+i
+x(k)
+i,0 ] ̸= 0), as in the
+“correlated random effects” framework.
+When Le > 1, the use of a single weight would violate
+Assumption 3.1, as was pointed out in Example 1. Thus, a pos-
+sible “automated” strategy for constructing the [Le × 1] dimen-
+sional vector wi is to pick the first Le −1 observations of a single
+regressor, such that wi =
+
+1, x(k)
+i,1:L−1
+
+for some k. Alterna-
+tively, one can rely upon the initial condition of dependent and
+independent variables, that is, wi =
+
+1, yi,0, x(1)
+i,0 , . . . , x(Le−2)
+i,0
+′
+.
+Lastly, one can use powers of yi,0 or x(k)
+i,0 , such as y2
+i,0 and so
+on. This option does not require the distribution of yi,t to be
+symmetric because noncentral moments are used. To illustrate
+the aforementioned strategies, let K = 2, L = 3, x(1)
+i,t ≡yi,t−1,
+and let x(2)
+i,t ≡xi,t be treated as weakly exogenous. For this spec-
+ification, one could set wi = (1, yi,0, yi,1)′, wi = (1, yi,0, xi,0)′, or
+wi = (1, yi,0, y2
+i,0)′.
+Since the parameters of interest can be estimated based on
+different weighting schemes, the approach proposed in this
+article provides a more flexible way of dealing with unobserved
+factors compared to other methods that are available in the
+literature. The practical question of how to actually select
+among different values of wi (and/or different v’s) is discussed in
+Section 3.5.
+Remark 2. Independently from this research, Gagliardini and
+Gouriéroux (2017) and Fan and Liao (2019) have recently advo-
+cated a similar construction of factor proxies, which involves
+prespecified (potentially arbitrary) weights wi. Unlike our study,
+the prime focus of those studies lies on the asymptotic properties
+of factor estimates when both N and T are large.
+3.2.2. Method II: Multiple Variables, Single Weight
+The second approach involves the construction of factor proxies
+based on a prespecified single weighting scheme, wi, and
+Le distinct time-varying variables. As before, these variables
+can be either internal or external. In particular, let Vi
+=
+(v(1)
+i , . . . , v(Le)
+i
+) be a [T × Le] matrix, such that
+Vi = FeΥ i + Ui,
+(15)
+where Υ i =
+
+γ (1)
+i , . . . , γ (Le)
+i
+
+and Ui =
+
+u(1)
+i , . . . , u(Le)
+i
+
+. In
+this case, Fe is defined as
+Fe = 1
+N
+N
+
+i=1
+Viwi = 1
+N
+N
+
+i=1
+(FeΥ iwi + Uiwi).
+(16)
+Notice that the use of a single weight requires that such weight is
+valid for each column of Vi, that is, EF [Uiwi] = OT×Le. How-
+ever, the above formulation does not imply that each column in
+Vi must be driven by the full set of columns in Fe. For instance,
+let L = Le = 2, F = Fe = (f (1), f (2)) with v(1)
+i
+= f (1)γ (1)
+i
++ u(1)
+i
+and v(2)
+i
+= f (2)γ (2)
+i
++ u(2)
+i . This structure can be represented by
+Equation (15) using a diagonal Υ i matrix.
+We note that the setup in Method II is sufficiently general in
+that it accommodates cases where the number of factor proxies
+required to approximate F is larger than L itself. The following
+example illustrates this point.
+Example 2.
+Consider an autoregressive, AR(1), model with
+L = 1:
+yi,t = αyi,t−1 + λift + εi,t;
+t = 1, . . . , T,
+(17)
+or, in vector form,
+yi = αyi,−1 + f λi + εi,
+(18)
+where yi,−1 = (yi,0, . . . , yi,T−1)′, f
+= (f1, . . . , fT)′ and yi is
+defined in Equation (2). As it is shown in Everaert and De
+Groote (2016) and Juodis, Karabıyık, and Westerlund (2020),
+the CCE-style factor proxies, Fe = (y, y−1), which arise in
+our context by setting Vi = (yi, yi,−1) and wi = 1, satisfy
+Assumption 3.1 provided that EF[λi] ̸= 0. In this setup, none
+of the two factor proxies inFe alone is able to estimate f consis-
+tently; instead only a linear combination of both columns can be
+estimated consistently. In particular, if we define Fe ≡EF[Vi],
+then Fe = (f (1)
+e , f (2)
+e ) with f (1)
+e
+= αf (2)
+e
++ EF[λi]f , while f (2)
+e
+is
+a cumulative function of the lags of f and the initial condition,
+that is, f (2)
+1,e
+= EF[yi,0], and f (2)
+t,e
+= EF[λi]ft−1 + αf (2)
+t−1,e for
+6
+A. JUODIS AND V. SARAFIDIS
+t = 2, . . . , T. Notice that in this case R = (1, −α)′/ EF[λi], and
+the extended vector of factor loadings λi,e is defined accordingly.
+As has been discussed, alternative choices for wi = 1 do exist.
+For instance, when EF[λi] = 0, a plausible strategy is to set
+wi = yi,0 and drop the first observation from estimation of the
+AR(1) model in Equation (17).
+Remark 3. Method II is motivated by, although it is not nested
+within, the seminal CCE approach of Pesaran (2006). In par-
+ticular, CCE considers deterministic weights (mostly wi = 1),
+and assumes that all K regressors, Xi, are strictly exogenous
+with respect to εi. In contrast, here wi can be stochastic, as
+Example 2 points out. Moreover, not all regressors need to be
+strictly exogenous. Finally, the restriction EF[λi] ̸= 0 is testable
+within our framework, see Section 3.4. In the supplementary
+appendix, we study a stylized setup in which both the proposed
+linear GMM approach and CCE are consistent for T fixed;
+specifically, we focus on a model with one strictly exogenous
+regressor, which is driven by the same (single) factor that enters
+into the error term of the equation for y, such that EF[γi] ̸= 0.
+We demonstrate that under spherical error components, the
+CCE estimator and the linear GMM estimator based on wi = 1
+have the same asymptotic variance.
+Remark 4. Depending on the model at hand, one can also com-
+bine multiple time-varying variables, Vi, with multiple time-
+invariant weights, wi, to construct Fe. As an example, let Vi =
+(v(1)
+i , v(2)
+i ) and wi =
+
+w(1)
+i , w(2)
+i
+′
+, in which case potential factor
+proxies can be constructed by using all possible combinations of
+Vi and wi, that is,
+Fe = 1
+N
+N
+
+i=1
+Vi ⊗w′
+i.
+(19)
+Alternatively, one can consider only a subset of available proxies.
+For instance,
+Fe = 1
+N
+N
+
+i=1
+(v(1)
+i w(1)
+i , v(2)
+i w(2)
+i ).
+(20)
+This flexibility provides a further advantage of the factor-proxies
+formulation used in this article over that of Pesaran (2006).
+The practical question of how to actually select among differ-
+ent values of wi (and/or different values of vi) is discussed in
+Section 3.5.
+Irrespective of the method that is considered to construct
+factor proxies, notice that Fe can be expressed as
+Fe = FeA + Ψ ;
+Ψ = 1
+N
+N
+
+i=1
+Ψ i,
+(21)
+where here Ψ i is defined as
+Ψ i = (Fe(Ai −A) + Ei) ,
+(22)
+for some Ai. Thus, Fe is a linear estimator of the column space
+of Fe. In what follows we put forward an estimator that is only
+asymptotically linear, but not linear for fixed N and T.
+3.3. Regularized Factor Proxies
+This section analyzes the important case where the model is
+“fundamentally identified,” but the practitioner includes more
+weights, or more variables than necessary in the approxima-
+tion of Fe. In the context of Assumption 3.1, this implies that
+Assumption 3.1.3 is violated but Assumption 3.1.4 is not.
+To formalize this idea, let R ≥Le be the total number of
+factor proxies and FR denote the corresponding factor proxies
+with dimension [T × R]. Following Equation (21), irrespective
+of the method considered to construct factor proxies,FR can be
+decomposed as
+FR = FeAR + Ψ (R);
+Ψ (R) = 1
+N
+N
+
+i=1
+Ψ (R)
+i
+,
+(23)
+where Ψ = (ψ
+(R)
+1 , . . . , ψ
+(R)
+T )′ is [T × R], and AR is [Le × R]
+with rank Le. As a result, rk(EF[FR]) = Le and Γ g, defined in
+Assumption 3.2, is of reduced rank.
+Example 3. Consider the following model in vector form:
+yi = β1x(1)
+i
++ β2x(2)
+i
++ f (1)λ(1)
+i
++ εi,
+(24)
+where f (1) is [T × 1]. Thus, K = 2 and L = 1. Let
+x(1)
+i
+= f (1)πi + u(1)
+i ,
+(25)
+and Le = 2, such that
+x(2)
+i
+= Feξi + u(2)
+i ,
+(26)
+where Fe =
+
+f (1), f (2)
+is of order [T × 2], and ξi is a vector
+of order [2 × 1]. One possible strategy is to proxy Fe using
+the full set of observables, by setting Vi =
+
+x(1)
+i , x(2)
+i , yi
+
+and
+wi = 1. This is standard practice in CCE estimation, with the
+aim to avoid the need for estimating the number of factors in
+the model. In terms of the notation used in Equation (15), we
+have Υ i =
+
+γ (1)
+i , γ (2)
+i , γ (3)
+i
+
+, which is a [2 × 3] matrix with
+γ (1)
+i
+= (πi, 0)′, γ (2)
+i
+= ξi and γ (3)
+i
+= λi + β1γ (1)
+i
++ β2ξi, where
+λi = (λ(1)
+i , 0)′. In this case, EF [Υ iwi] does not have full column
+rank. Essentially, too many variables are used for approximating
+Fe. In this section, we put forward a method that overcomes this
+problem within our GMM approach.
+Under these circumstances, it is straightforward to show that
+the GMM estimator considered thus far remains consistent.
+However, it turns out that the asymptotic distribution of β can
+be highly nonstandard, due to a degeneracy of the g estimates.
+For this reason, it is essential to use factor proxies that are non-
+degenerate, that is, none of the columns ofFe are asymptotically
+collinear.
+In what follows, we put forward a regularization approach for
+constructingFe such that Assumptions 3.1.1–Assumption 3.1.3
+of Assumption 3.1 are satisfied. Our regularization method uses
+the singular value decomposition of FR, or, equivalently, the
+principal components of FRF′
+R.
+To begin with, let ΛN be a [Le ×Le] diagonal matrix contain-
+ing the Le largest eigenvalues of T−1FRF′
+R in descending order.
+The following assumption ensures that the asymptotic distribu-
+tion of the proposed regularized estimator is well defined (see,
+e.g., Bai 2003 for a similar condition):
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+7
+Assumption 3.3.
+The eigenvalues of the [Le × Le] matrix
+(ARA′
+R)
+
+F′
+eFe
+
+are distinct a.s.
+Let F =
+√
+TULe denote the scaled regularized, principal com-
+ponents (PC) estimator for Fe, where ULe denotes the associ-
+ated eigenvectors (left singular vectors) corresponding to the Le
+largest eigenvalues of T−1FRF′
+R. The fixed T consistency of the
+PC factor estimator F, which is of dimension [T × Le], follows
+intuitively from the results in Connor and Korajczyk (1986) and
+Bai (2003). As it is emphasized in Bai (2003), a necessary and
+sufficient condition for fixed T consistency is that FRF′
+R
+p
+−→
+FeMF′
+e + κIT, for some matrix M and some scalar κ ≥0.
+In our case, this necessary condition is satisfied trivially with
+κ = 0. However, a new proof for the asymptotic distribution of
+F = (˜f 1, . . . , ˜f T)′ is required when T is fixed. This is achieved
+by Theorem 2.
+Theorem 2. Suppose that Assumption 3.3 holds true, and FR
+satisfies Equation (21) together with Assumption 3.1, except that
+rk(AR) = Le < R. Then the regularized factor estimator F
+satisfies Assumption 3.1, with
+AN = (ARA′
+R)
+F′Fe
+T
+
+Λ−1
+N .
+(27)
+Furthermore, each row Ψ (t)
+i
+in Ψ i is of the following form:
+Ψ (t)
+i
+= Λ−1
+N
+1
+T
+ T
+
+s=1
+˜f s
+
+f ′
+s,eARψ(R)
+i,t + f ′
+t,eARψ(R)
+i,s
+
+;
+t = 1, . . . , T.
+(28)
+Proof. See the supplementary appendix.
+It is straightforward to see from the expression in Equa-
+tion (28) that the leading variance term of ˜F is affine in each
+{ARψi,t}T
+t=1. This implies that the inclusion of uninformative
+factor proxies, that is, proxies that do not identify Fe, has no
+impact on the first-order asymptotic properties ofF. Essentially,
+the PC estimator of factors performs estimation of the factor
+space and factor proxy selection at the same time.
+Since F satisfies Assumption 3.1, it can be used as a plug-
+in estimator in the GMM objective function. Consistent esti-
+mation of the variance-covariance matrix Δ, requires replacing
+unknown quantities in Ψ i with their plug-in counterparts. In
+particular, the f ′
+s,eAR terms in Equation (28) can be consistently
+estimated by (f
+(R)
+s
+)′. Furthermore, depending on the method
+used to construct the factor proxies, the plug-in counterparts
+of ψ(R)
+i,t are given by either
+ψ
+(R)
+i,t = wivi,t −f
+(R)
+t
+,
+(29)
+or
+ψ
+(R)
+i,t = vi,twi −f
+(R)
+t
+,
+(30)
+where vi,t = (v(1)
+i,t , . . . , v(Le)
+i,t )′.
+Remark 5. The above strategy for selection of factor proxies
+is not optimal from the point of view of obtaining a GMM
+estimator for β0 with minimal asymptotic variance. Specifically,
+the PC estimator is a weighted average of all individual factor
+proxies, with corresponding weights being determined outside
+the GMM objective function. One could proxy Fe by combin-
+ing factor proxies optimally. However, such an approach has a
+major drawback, in that the resulting moment conditions are
+nonlinear. To illustrate this, consider a linear combination of
+wi = (w(1)
+i , w(2)
+i )′ that takes the form ˜wi = aw(1)
+i
++ (1 −a)w(2)
+i .
+It is clear that in the absence of knowledge of a, the resulting
+moment conditions involve products of unknown parameters,
+namely AR and a. Hence, the appealing linearity of the proposed
+approach no longer holds, and instead one may use, for exam-
+ple, the FIVU and FIVR estimators of Robertson and Sarafidis
+(2015), which are asymptotically more efficient because they
+involve joint estimation of β and F using the full set of moment
+conditions.
+3.4. Identification
+Assumption 3.1 plays a major role in characterizing the large
+sample properties of the proposed GMM estimator. In this sec-
+tion, we discuss several departures from Assumption 3.1, as well
+as diagnostic checks that can be used to detect these departures.
+To save space, we focus on factor proxies constructed using
+multiple wi, as in Equation (12).
+At first, consider the case where F ̸∈Col(Fe) but otherwise
+all remaining parts of Assumption 3.1 are satisfied. For instance,
+suppose that some of the factors in yi are entirely different
+from those that drive vi, or alternatively Le < L. In neither
+case can the factor proxies approximate the column space of F
+asymptotically. As a result, it is straightforward to show that the
+GMM estimator for β0 is inconsistent. That is,
+β −β0
+p
+−→
+
+Γ ′
+βΓ β −Γ ′
+βΓ g
+
+Γ ′
+gΓ g
+−1
+Γ ′
+gΓ β
+−1
+×
+
+Γ ′
+β −Γ ′
+βΓ g
+
+Γ ′
+gΓ g
+−1
+Γ ′
+g
+
+S vec
+
+Gz,λF′
+,
+(31)
+where Γ β and Γ g denote the two constituent blocks of the Jaco-
+bian matrix of the moment conditions, as defined in Assump-
+tion 3.2. Such identification failure can be detected using the
+usual overidentifying restrictions test, commonly referred to as
+J-statistic.
+Next, consider the case where Gγ ,w is not of full rank, such
+that F ̸∈Col(FeGγ ,w). As an example, let Le = L = 1 and
+wi = 1, such that EF (γiwi) = μγ . The full rank condition
+on Gγ ,w is violated when μγ = 0. More generally, suppose that
+rk(Gγ ,w) = Q < Le ≤L a.s. Let Gγ ,w = CD′, where both C and
+D are [Le×Q] matrices of rank Q a.s. Furthermore, let D⊥denote
+the orthogonal complement of D, that is, D⊥satisfies rk(D⊥) =
+Le −Q and D′D⊥= OQ×(Le−Q). Theorem 3 summarizes the
+asymptotic distribution of β when Gγ ,w is rank-deficient.
+Theorem 3. Suppose that Assumption 2.1 is satisfied, and con-
+sider factor proxies with AN = Gγ ,w with rk(Gγ ,w) = Q <
+8
+A. JUODIS AND V. SARAFIDIS
+Le ≤L. Then for ΩN = I, as N →∞:
+β −β0
+d
+−→
+
+Γ ′
+βΓ β −Γ ′
+βΞ
+
+Ξ′Ξ
+−1 Ξ′Γ β
+−1
+×
+
+Γ ′
+β −Γ ′
+βΞ
+
+Ξ′Ξ
+−1 Ξ′
+S vec
+
+Gz,λF′
+,
+(32)
+F-stably, where Ξ = S((Ξd, Ξs) ⊗Id), Ξd = FeC(D′D),
+and Ξs is such that vec(Ξs)
+∼
+Δ1/2
+F πF with ΔF
+=
+EF[vec(viw′
+iD⊥) vec(viw′
+iD⊥)′], and πF
+∼
+N(0(Le−Q)T,
+I(Le−Q)T).
+Proof. See the supplementary appendix.
+It is clear that the GMM estimator converges to a random
+limit because the Ξs matrix is stochastic. This result is in line
+with existing weak instruments results for IV/GMM estimators
+(see, e.g., Staiger and Stock 1997). However, a major difference
+between Theorem 3 and existing literature is that in the usual
+weak-IV setup, the limit remains random even after condi-
+tioning on the (random) Jacobian matrix. In contrast, in the
+present case, the right-hand side of Equation (32) is a nonzero
+constant vector, conditional on F and πF. As a result, failure
+of identification associated with rk(Gγ ,w) = Q < Le ≤L a.s.
+implies model mis-specification. This can be detected using the
+usual J-statistic again.
+Remark 6. The stochastic nature of the identification failure in
+Theorem 3 can be easily avoided using regularized factor proxies
+as in Section 3.3, obtained using a consistent estimate of Le.
+3.5. Implementation
+We take it as given in the section that a set of potential factor
+proxies has been collected into a [T ×R] matrixFR, using either
+Method I, Method II, or a combination of both. For example,
+under Method II one could construct FR based on all available
+observables, that is, the dependent variable, the regressors, as
+well as possible external variables. Unfortunately, as we dis-
+cussed in Section 3.3, it turns out that including more variables
+(or, equivalently for Method I, more weights) than necessary in
+the approximation of Fe, can render the asymptotic distribution
+of the GMM estimator highly nonstandard. To circumvent this
+potential issue, in what follows we put forward two distinct
+methods that practitioners may use to implement the plug-in
+principle embedded in our approach. Firstly, a “regularization”
+method, then a “best-subset selection” method. Both methods
+are illustrated in the empirical section.
+3.5.1. Regularization
+This approach builds upon the regularized factor proxies ana-
+lyzed in Section 3.3 and consists of the following steps:
+1.
+Obtain a consistent estimate of the underlying number of
+factors in FR, given by Le, using either a sequential pivotal
+rank testing as proposed by Kleibergen and Paap (2006), or
+the eigenvalue ratio (ER) and the growth ratio (GR) statistics
+as in Ahn and Horenstein (2013).
+2.
+Use the regularized estimator ˜F as the plug-in estimator for
+the GMM objective function to estimate θ. If the model is
+not rejected by the J-statistic, no further steps are required.
+Assuming thatLe is not large relative toL, the only disadvantage
+of this approach is ultimately some loss in terms of efficiency
+due to the fact that for Le > L one estimates the extended Gz,λe,
+as for example in Example 2.
+Remark 7. Let rmax = min(T, R)−1. The estimator for Le based
+on the ER-statistic is defined as
+Le = arg max
+r∈{1,...,rmax}
+ER(r);
+ER(r) =
+λr(T−1FRF′
+R)
+λr+1(T−1FRF′
+R)
+,
+(33)
+where λr(T−1FRF′
+R) is the rth largest eigenvalue of T−1FRF′
+R.
+This procedure yields a consistent estimate of Le because for
+r < Le ER(r) remains bounded a.s., whereas for r = Le
+ER(r) →∞as λr+1(T−1FRF′
+R)
+p
+−→0 by the continuity of
+the eigenvalues. However, as it currently stands, the ER proce-
+dure excludes the possibility that Le = R < T, that is, the
+dimension of the column space of FR is exactly R. We fix this
+shortcoming by borrowing the mock-eigenvalue idea of Ahn
+and Horenstein (2013) and suggesting that a single, redundant
+column in FR always be included. For example, one can easily
+construct a redundant factor proxy as N−1 	N
+i=1 viw+
+i , where
+w+
+i is randomly drawn from any zero mean distribution (e.g.,
+the Rademacher {−1; 1} distribution) and vi is either defined in
+Equation (11), or it is one of the columns of Vi in Equation (15).
+In this way, we extend the definition of R to R+1 manually, thus
+avoiding the boundary problem of the original ER-statistic. The
+GR-statistic is discussed in greater detail in the supplementary
+appendix.
+3.5.2. Best-Subset Selection
+The best-subset selection method is a model selection approach
+that is motivated by the machine learning literature (see, e.g.,
+Hastie, Tibshirani, and Friedman 2017, sec. 3.3). In the present
+context, the method aims to determine the combination of
+factor proxies that yields the smallest BIC value. In particular, let
+R be the number of factor proxies at hand, FR, and Lmax (≥Le)
+be the maximum number of unobserved factors considered in
+estimation. In practice, Lmax could be set as the largest possi-
+ble value of L that is feasible to allow in estimation. Further-
+more, let B(Lmax) denote the set of different combinations of
+columns in FR of sizes P = 1, . . . , Lmax. To illustrate, consider
+Example 3 with Lmax
+= 2. Therein, R = 3 since FR
+=
+N−1 	N
+i=1
+
+x(1)
+i , x(2)
+i , yi
+
+wi ≡
+
+f
+(1)
+R ,f
+(2)
+R ,f
+(3)
+R
+
+. For P = 1, one
+can use either one of f
+(1)
+R , f
+(2)
+R
+and f
+(3)
+R . For P = 2, possible
+combinations of factor proxies are
+
+f
+(1)
+R ,f
+(2)
+R
+
+,
+
+f
+(1)
+R ,f
+(3)
+R
+
+, and
+
+f
+(2)
+R ,f
+(3)
+R
+
+. In total, the cardinality of the set B(Lmax) is at most
+|B(Lmax)| =
+3
+1
+
++
+3
+2
+
+= 6.
+Within our framework, a consistent estimate of the number
+of factors and the selected combination of factor proxies can
+be determined using a Schwartz/Bayesian model information
+criterion (BIC), as proposed originally by Cragg and Donald
+(1997) and Ahn, Lee, and Schmidt (2013). This is formalized
+right below.
+Proposition 1. Let p = 1, . . . , |B(Lmax)| and QN,p
+
+θ (ΩN) |F(p)
+be the value of the objective function evaluated at θ given ΩN
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+9
+and some F(p) ∈B(Lmax):
+QN,p
+
+θ (ΩN) |F(p)
+= μN
+θ
+ ′ΩNμN
+θ
+
+.
+Consider the following BIC:
+SN,p = N × QN,p
+
+θ (ΩN) |F(p)
+−ln (N) × h
+
+p
+
+,
+(34)
+where h
+
+p
+
+= ρ ×
+
+ζ −dim
+θ|p(P)
+
+= O(1), a strictly
+decreasing function of P with 0 < ρ < ∞. Under the set of
+our assumptions, we have
+P =
+arg min
+F(p)∈B(Lmax)
+SN,p
+p
+−→L as N →∞.
+Proof. The proof follows directly from Cragg and Donald
+(1997). The only difference is that for every value of L several
+weights are potentially available, that is, one needs to consider
+minimum BIC for each value of P = 1, . . . , Lmax first.
+Proposition 1 implies that practitioners can estimate mod-
+els for all choices of B(Lmax) and pick P (together with the
+associated combination of factor proxies) as the value of L that
+corresponds to the smallest BIC value. The above result holds
+as long as for P = L there exists an element in B(Lmax) that
+ensures that the GMM estimator is consistent. For instance,
+in the context of Example 3 where L = 1, one such element
+in B(Lmax) is given by N−1 	N
+i x(2)
+i
+= f
+(2)
+R . Notice that in
+this case, the GMM estimator based on best-subset selection is
+more efficient than the GMM estimator based on regularization
+because asymptotically the former employs 1 factor proxy and
+the latter employs 2 factor proxies. On the other hand, if no such
+element exists (as, e.g., in Example 2), but there exists at least one
+F(p) that satisfies Assumption 3.1 with Le > L, then BIC will
+consistently estimate Le instead. Finally, if no such F(p) exists,
+then BIC will not consistently estimate L or Le due to lack of
+identification, as discussed in Section 3.4. Note that the selected
+model will be rejected with high probability by the J-statistic in
+this case.
+4. Finite Sample Evidence
+4.1. Setup
+We consider the following dynamic model with one or two
+factors:
+yi,t = αyi,t−1 + βxi,t +
+2
+
+r=1
+λy
+r,ifr,t + εy
+i,t;
+xi,t = δyi,t−1 + αxxi,t−1 + λx
+1,if1,t + εx
+i,t,
+for t > 0, while for t = 0 we set:
+yi,0 =
+2
+
+r=1
+λr,ifr,0 + εy
+i,0;
+xi,0 = λx
+1,if1,0 + εx
+i,0.
+Additional covariates to be used in the construction of factor
+proxies are generated as
+v(1)
+i,t = λv1
+1,if1,t + εv1
+i,t ;
+v(2)
+i,t =
+2
+
+r=1
+λv2
+r,ifr,t + εv
+i,t.
+The factor loadings for the first factor are normally dis-
+tributed with mean equal to μλ and unit variance, such that
+λψ
+1,i = μλ + ρ(λy
+1,i −μλ) +
+
+1 −ρ2υψ
+1,i;
+υψ
+1,i ∼N(0, 1),
+where ψ ∈{x, v1, v2}, and λy
+1,i ∼N(μλ, 1). ρ denotes the
+correlation coefficient between the factor loadings of the yi,t and
+xi,t, and yi,t and v(1)
+i,t , v(2)
+i,t processes.
+The properties of the factor loadings that correspond to f2,t
+depend on the setup we consider. In particular, in the case where
+L = Le = 1 we simply set λy
+2,i = λv2
+2,i = 0 for all i. In the case
+where L = Le = 2 the corresponding factor loadings are drawn
+independently of other factors loadings, that is,
+λy
+2,i ∼N(μλ, 1);
+λv2
+2,i ∼N(μv2
+λ , 1).
+(35)
+Such a setup facilitates the interpretability of the simulation
+results, without overly parameterizing what is already a large set
+of nuisance parameters. In what follows, we fix μv2
+λ = 1. Finally,
+all factors are drawn as fr,t ∼N (0, 1).
+The idiosyncratic errors are generated as
+εy
+i,t ∼N (0, 1) ;
+εx
+i,t ∼N
+
+0, σ 2
+x
+
+;
+εv1
+i,t ∼N (0, 1) ;
+εv2
+i,t ∼N (0, 1) ;
+t ≥0.
+In all designs the value of σ 2
+x is fixed to ensure that the signal-
+to-noise ratio of the model
+SNR ≡1
+T
+T
+
+t=1
+var
+
+yi,t|λy
+1,i, λy
+2,i, λx
+1,i, λx
+2,i,
+
+f1,s
+t
+s=0 ,
+
+f2,s
+t
+s=0
+
+var(εy
+i,t)
+−1,
+equals 5. The chosen SNR value lies within the range of values
+considered in the literature, for example, Bun and Kiviet (2006)
+specifies SNR ∈{3; 9}.
+We consider N ∈{200; 800}, T ∈{4; 8}, α ∈{0.4; 0.8},
+and we set β = 1 −α, such that the “long-run” parameter
+equals 1. The values of the remaining parameters are as follows:
+δ ∈{0; 0.3}, μλ = 1, ρ = 0.6, and αx = 0.6. The number
+of replications performed equals 2000 for each design and the
+factors are drawn in each replication.
+Remark 8. The supplementary appendix to the present article
+provides further finite sample results that correspond to alter-
+native designs. In particular, among other setups, we examine
+the case where vi contains more factors than those that already
+drive y (i.e., Le > L); moreover, we examine the effect of lack
+of identification by setting μλ = 0, and we also specify a model
+with an additional covariate. In addition, we report results with
+respect to the nonlinear GMM estimators of Ahn, Lee, and
+Schmidt (2013) and Robertson and Sarafidis (2015) for the one-
+factor design.
+4.2. Results
+We investigate the finite sample properties of the following
+four estimators: “F1” denotes the GMM estimator that uses v(1)
+i
+and wi = 1; “F2” is the GMM estimator that uses (v(1)
+i , v(2)
+i )
+and wi
+= 1; “Fr” denotes the regularized GMM estimator
+that uses (v(1)
+i , v(2)
+i ) and wi = (1, yi,0)′, as described in the
+regularization approach outlined in Section 3.5. To isolate the
+10
+A. JUODIS AND V. SARAFIDIS
+effect of regularization on the construction of factor proxies,
+we take Le as given. Results corresponding to Fr based on an
+estimate of Le are reported in the supplementary appendix of the
+article; finally, “Fbic” denotes the estimator that employs differ-
+ent combinations of factor proxies based on the choices above,
+and picks up the proxies corresponding to the minimum BIC
+value. Thus, Fbic represents the best-subset selection approach
+outlined in Section 3.5. The value of ρ in the BIC function is set
+equal to 0.75, following BIC1 in Ahn, Lee, and Schmidt (2013),
+and Zhu, Sarafidis, and Silvapulle (2020).
+All estimators use the maximum number of moment condi-
+tions with respect to lagged values of yi,t and xi,t, although for
+comparison purposes xi,t is always treated as weakly exogenous
+regardless of the value of δ. Notice that, for reasons explained in
+the supplementary appendix, setting wi = 1 leads to slightly
+better results compared to wi = yi,0 in the present design.
+Therefore for L = Le = 1, F1 can be viewed as an “oracle”
+estimator because it makes use of the true number of factors,
+as well as the “right” choice of vi and wi. Likewise, F2 can be
+viewed as an oracle estimator for L = Le = 2. Therefore, the
+performances of F1 and F2 may serve as good benchmarks for
+the performance of Fr and Fbic.
+Tables A1 and A2 report results in terms of bias, RMSE,
+standard deviation and empirical size of the t-test for L = Le =
+1 and L = Le = 2, respectively. Nominal size is set equal to 5%.
+We make use of corrected standard errors, which are computed
+based on Windmeijer (2005). This is important because, as is
+well known in the dynamic panel data literature, the two-step
+GMM estimator may exhibit substantial size distortions, espe-
+cially when the number of moment conditions is large relative
+to N.
+As can be seen from Table A1, all four estimators show
+negligible bias under all combinations of N, T, α, and δ. In
+addition, the RMSE values of all estimators are small and fall
+roughly at the rate of
+√
+N, as predicted by our theory. Fr per-
+forms very similar to F1 in terms of RMSE, which indicates that
+the proposed regularization approach works very well. On the
+other hand, RMSE is slightly higher for Fbic (especially when
+N = 200), which mostly reflects the fact that L is treated as
+unknown. Finally, the empirical size of all estimators is close
+to the nominal value for both α and β in most cases, unless N
+is relatively small and T is relatively large, in which case there
+appear to be upward size distortions. This outcome implies that
+using too many moment conditions when the cross-sectional
+dimension is small can result in size distortions, despite the
+standard error correction. However, it is worth emphasizing that
+in practice this problem can be mitigated substantially by using
+only a subset of the moment conditions available. Since this
+has already been demonstrated by Juodis and Sarafidis (2018)
+using simulated data for the factor-augmented model, we do not
+explore this possibility here.
+Similar conclusions can be drawn from Table A2 where L =
+Le = 2, focusing upon the performance of Fr and Fbic vis-a-
+vis F2. It is worth noting that F1 is not consistent in this case
+because it estimates one factor only. Thus, it is not surprising
+that in most cases F1 exhibits large RMSE and substantial size
+distortions.
+Table A3 reports results on the overidentifying restrictions
+(J) test statistic (nominal size equals 5%) for F1, F2, and Fr. In
+addition, this table reports selection frequencies of L based on
+BIC, and Le using the ER-statistic, as outlined in Section 3.5.
+Notice that since L = Le, P = L and therefore we do not
+distinguish between P and L. As we can see, for L = Le =
+1, the size of the J-statistic corresponding to both F1 and Fr
+is close to the 5% level in most circumstances, unless N is
+relatively small and T is relatively large, in which case there
+is a small downward size distortion, especially for F2. As has
+been mentioned, such small-sample distortions can be mitigated
+in practice by using a smaller number of moment conditions.
+Similar conclusions hold in regards to the performance of the
+J-statistic corresponding to F2 and Fr for L = Le = 2. Note that
+since F1 is not consistent in the two-factor case, the results of
+the J-statistic corresponding to F1 reflect power, which appears
+to be high under all circumstances.
+In regards to model selection, for L = Le = 1 all methods
+appear to perform well and select the true number of factors
+with high frequency. As expected, model selection becomes less
+straightforward for L = Le = 2, especially when both N and
+T are small. Partially, this may attributed to the fact that for
+small values of T the two factors can be highly collinear in
+some simulated samples, even if they are drawn independently.
+However, it is clear that the frequency of selecting L = 2 and
+Le = 2 rises substantially with larger values of either N or T.
+Finally, the corresponding rows of ER-statistic in Table A3 need
+not sum to 1, due to rounding.
+5. Application: Estimation of the Price Elasticity of
+Urban Water Demand
+A large number of studies have focused on the estimation of the
+price elasticity of water usage demand (see, e.g., House-Peters
+and Chang 2011; Araral and Wang 2013 for excellent surveys).
+The vast majority of the literature assumes that the effect of
+weather is linear. However, as Maidment and Miaou (1986) and
+Gato, Jayasuriya, and Roberts (2007) pointed out, water usage
+is most likely to respond to changes in weather conditions in
+a nonlinear fashion. We address this concern in what follows
+by allowing for nonlinear effects of weather conditions, depend-
+ing on household/property-specific unobserved characteristics,
+such as household size, garden size, and others. This setup is
+represented by a common factor structure.
+5.1. Data and Methodology
+We make use of publicly available multi-household level data
+from New South Wales, Australia, provided by the Sydney Water
+Corporation (SWC), see also Abrams et al. (2012). SWC is the
+largest water utility in Australia, serving more than 4 million
+people, while its area of operations covers around 12,700 km2.
+Our sample contains 4500 multi-household units, each one
+being observed over a period of 5 years, 2004–2008. Each unit
+represents an average of four to six households, to preserve
+privacy. Additional descriptive statistics of the data are reported
+in the supplementary appendix to this article. The model that
+we consider for studying the price elasticity of water demand is
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+11
+as follows:
+yi,t = αyi,t−1 + β1pricei,t + β2raini,t + β3tempi,t + ϵi,t;
+ϵi,t = λ′
+if t + εi,t,
+(36)
+for i = 1, . . . , N(= 4500) and t = 1, . . . , T(= 4), where
+yi,t denotes the natural logarithm of the average daily water
+consumption for household i at year t, expressed in thousands
+of liters of water (kL); pricei,t is the average real price paid
+per kiloliter of water used by household i at time t; and raini,t
+and tempi,t denote the average amounts of daily rainfall (mm)
+and temperature (◦C) during year t. The dynamic specifica-
+tion accommodates partial adjustment mechanisms in water
+demand. This is due to both habit formation in water con-
+sumption and energy efficiency constraints associated with the
+existing stock of durable goods within households. The log-
+linear functional form implies that price elasticity depends on
+the level of price itself. That is, the higher the level of the
+price, the more sensitive consumers become to changes in price.
+This is consistent with utility theory (see, e.g., Al-Qunaibet and
+Johnston 1985). The weather variables are unit-specific because
+they are determined by the physical proximity of each property
+to a total of thirteen weather stations that exist across Sydney,
+operated by the Australian Bureau of Meteorology. This reflects
+the fact that weather patterns can vary substantially across NSW
+and, more specifically, the coast generally has more rainfall and
+cooler conditions than many areas located inland.
+The common factor structure allows for nonlinear unob-
+served heterogeneity across individual units, due to differences
+in the number of people living in a household, pool owner-
+ship, garden size and structure, and so on. As an example,
+consider two properties: one with two household members, no
+swimming pool and a small garden, and another one with five
+members, a large garden and a pool. The difference in average
+yearly consumption between the two properties is expected to be
+proportionately larger under extreme weather conditions than
+under normal conditions. To put this differently, the change in
+water consumption following an extreme weather event is likely
+to be smaller for the former property than the latter.
+The formulation above requires that household size (and
+other property-specific characteristics) remains constant over
+the 5-year period of our analysis. While it is unreasonable to
+expect such condition to be fulfilled for all households in the
+sample, recall that each individual unit i = 1, . . . , N represents
+an average of four to six households, which is due to the data
+aggregation implemented by SWC in the original dataset. As
+a result, changes in household size over time are likely to be
+smoothed out to a large extent. If this is not true, our estimator
+will not be consistent. This implies that violation of such restric-
+tion can indeed be detected in practice using the usual J-statistic.
+We implement our methodology by assuming that the unob-
+served factor component is approximated by an external vari-
+able, the average daily soil moisture index (smi) observed for
+unit i at period t. smi is computed based on a combination of
+precipitation, temperature and soil moisture, and is used widely
+as an index accounting for extreme weather and soil drought
+intensity (see, e.g., Hunt et al. 2009). Hence, in terms of the
+notation used in Section 3.1, we set vi,t = smii,t.
+We estimate the model by fitting L = {0, 1, 2} factors. We
+employ three weights, namely wi =
+
+1, yi,0, y2
+i,0
+′. In terms of
+the notation introduced in Section 3, we have Lmax = 2, R = 3
+and the set B(Lmax) contains all 6 possible permutations of
+FR =
+1
+N
+	N
+i=1 viw′
+i, where vi is constructed by stacking smii,t
+for t = 1, . . . , T in a [T × 1] vector. The implementation of
+our approach based on regularization follows closely the steps
+described in Section 3.5, with Le estimated from T−1FRF′
+R using
+the ER-statistic outlined therein. The implementation based on
+best-subset selection estimates the model using six different
+combinations of weights, that is, those in B(Lmax). The esti-
+mated number of factors, P, as well as the associated selected
+weight combination, are determined using the BIC criterion
+documented in Section 3.5. The value of ρ in the BIC function
+is set equal to 0.75, as in the Monte Carlo setup.
+5.2. Results
+Table 1 reports results for ten different specifications. In specific,
+M0 denotes the estimator that imposes ϵi,t = εi,t, that is, it
+assumes unobserved heterogeneity away. MDIF and MSYS denote
+the first-differenced and system GMM estimators proposed by
+Arellano and Bond (1991) and Arellano and Bover (1995),
+respectively. Both estimators allow for an additive two-way error
+components structure and are obtained using the xtabond2
+command in Stata 15 (see Roodman 2009). M˜F denotes the
+GMM estimator that uses regularized factor proxies, F, based
+onLe = 1 (the value of which is obtained from the ER-statistic).
+In addition, M1c, M1y0, and M1y2
+0 denote the GMM estimators
+that impose Le = 1 and use wi = 1, wi = yi,0 and wi = y2
+i,0,
+respectively. Finally, M2c,y0 imposes Le = 2 with weights given
+by wi =
+
+1, yi,0
+ ′. The same holds for M2c,y2
+0 and M2y0,y2
+0, except
+that wi =
+
+1, y2
+i,0
+ ′ and wi =
+
+yi0, y2
+i0
+ ′, respectively.
+In all models the price variable is treated as endogenous
+and is instrumented by appropriate lagged values of the same
+variable. This is because during the period of the analysis a two-
+tier pricing scheme was in place in NSW, such that consumers
+paid a higher price when their consumption levels exceeded a
+certain threshold. On the other hand, all weather variables are
+treated as exogenous with respect to εi,t.
+All estimators that allow for a common factor structure, make
+use of ζ = 40 moment conditions, whereas MDIF and MSYS
+make use of 17 and 21 moment conditions, respectively. The
+difference in the number of moment conditions between the
+GMM estimators that impose an additive structure and those
+that allow for a genuine factor model is mainly due to their treat-
+ment of the exogenous weather variables. In the former case,
+standard practice involves taking first differences to remove
+unobserved (linear) heterogeneity and then using the exogenous
+weather variables as Anderson–Hsiao type instruments. In the
+latter case, present and lagged values of the weather variables
+are included as instruments in each time period, to allow for
+possible arbitrary correlations between nonlinear heterogeneity
+and weather conditions.
+Results are reported in terms of the estimated coefficients and
+standard errors (in parentheses), where β1/(1−α) corresponds
+to the long-run price coefficient, the standard error of which has
+been obtained using the Delta method. Furthermore, Table 1
+reports the J-statistic and its p-value (in square brackets), the
+12
+A. JUODIS AND V. SARAFIDIS
+Table 1. Results.
+M0
+MDIF
+MSYS
+M˜F
+M1c
+M1y0
+M1y2
+0
+M2c,y0
+M2c,y2
+0
+M2y0,y2
+0
+α
+0.942
+0.504
+0.771
+0.405
+0.414
+0.405
+0.393
+0.354
+0.382
+0.395
+(0.004)
+(0.045)
+(0.018)
+(0.047)
+(0.048)
+(0.048)
+(0.047)
+(0.082)
+(0.082)
+(0.087)
+β1
+0.170
+−0.032
+0.261
+−0.185
+−0.178
+−0.187
+−0.192
+−0.247
+−0.225
+−0.190
+(0.015)
+(0.361)
+(0.419)
+(0.034)
+(0.035)
+(0.035)
+(0.034)
+(0.061)
+(0.054)
+(0.051)
+β2
+−0.051
+−0.001
+−0.003
+−0.013
+−0.013
+−0.021
+−0.013
+−0.030
+−0.011
+−0.018
+(0.003)
+(0.008)
+(0.009)
+(0.006)
+(0.006)
+(0.010)
+(0.006)
+(0.009)
+(0.010)
+(0.011)
+β3
+−0.008
+0.034
+0.029
+0.050
+0.050
+0.084
+0.050
+0.032
+0.060
+0.051
+(0.001)
+(0.012)
+(0.013)
+(0.010)
+(0.010)
+(0.019)
+(0.010)
+(0.013)
+(0.015)
+(0.016)
+β1
+1−α
+2.93
+−0.065
+1.14
+−0.310
+−0.303
+−0.314
+−0.316
+−0.383
+−0.364
+−0.314
+(0.075)
+(0.726)
+(1.86)
+(0.078)
+(0.079)
+(0.079)
+(0.077)
+(0.137)
+(0.128)
+(0.113)
+J-test
+156.3
+27.6
+49.2
+28.8
+28.7
+28.9
+28.9
+13.6
+16.1
+15.6
+p-value
+[0.000]
+[0.002]
+[0.000]
+[0.092]
+[0.094]
+[0.092]
+[0.091]
+[0.096]
+[0.042]
+[0.050]
+ζ
+40
+17
+21
+40
+40
+40
+40
+40
+40
+40
+dim (θ)
+5
+9
+10
+20
+20
+20
+20
+32
+32
+32
+BIC
+10.6
+−17.8
+−4.91
+−54.48
+−54.54
+−54.46
+−54.39
+−19.69
+−17.24
+−17.74
+number of moment conditions and of parameters estimated for
+each model, and finally the value of the BIC.
+It is clear that the p-value of the J-statistic is close to zero
+when we fit either zero factors or the two-way (additive) error
+components structure, which implies that the model is mis-
+specified. This is also reflected in the estimated price coefficient,
+which is largely statistically insignificant for both MDIF and
+MSYS, and for the latter it even has the wrong sign. We note
+that these results are not sensitive to the number of instruments
+employed. For example, using only the two most recent lags of
+the dependent variable as instruments, that is, yi,t−2 and yi,t−3,
+along with the collapse option in Stata, the J-statistic for MSYS
+roughly equals 27.6, and so the p-value remains close to zero.
+On the other hand, fitting one or two genuine factors fails to
+reject the specified model at the 1% level of significance. This
+finding provides evidence that the factor structure is supported
+by the data compared to the additive error components model,
+and demonstrates the importance of controlling for nonlinear
+heterogeneity.
+More specifically, recall that the ER-statistic indicates that
+Le = 1. In addition, according to the BIC criterion, P = 1.
+Furthermore, M1c, the estimator that uses a constant weight,
+wi = 1, minimizes the overall BIC criterion. The results from
+adopting the regularization approach (M˜F) and the best-subset
+selection approach (M1c) are similar. While this may be partially
+attributed to Le = P = 1, it is evident that the estimated price
+elasticity of demand appears to be robust across different factor
+proxies and different values of L. This is a desirable outcome.
+In what follows we discuss further findings based on M˜F.
+A unit (dollar) increase in the price of water is estimated to
+reduce water consumption by approximately 18.5% and 31.0%
+in the short- and long-run, respectively. Similarly, a unit increase
+in rain (temperature) is expected to reduce (increase) water
+consumption by approximately 1.13% (5.00%) in the short-run.
+The price elasticity of demand is computed by multiplying
+the relevant price coefficients with a range of values for price.
+Table 2 presents elasticity estimates at four different values of
+price; namely, mean and median price, as well as the 10th and
+Table 2. Point-wise predicted elasticities for MFR.
+10th perc.
+Mean
+Median
+90th perc.
+Price
+1.17
+1.35
+1.37
+1.56
+SR elasticity
+−0.216
+−0.249
+−0.253
+−0.288
+LR elasticity
+−0.362
+−0.419
+−0.426
+−0.483
+90th percentiles. For example, at the median price of $1.37 per
+kL, a 1% increase in the price of water lowers demand by about
+0.25% in the short-run and 0.43% in the long-run.
+As expected, urban water demand appears to be much more
+elastic in the long-run than in the short-run. This may be
+attributed to habit formation and technological constraints of
+water appliance efficiency. Moreover, the value of α = 0.405
+implies that it takes about 2.5 years for 90% of the total price
+effect to be realized, all other things being constant. This out-
+come casts doubt on the potential effectiveness of scarcity pric-
+ing to balance demand and supply of water in periods of transi-
+tory droughts.
+In comparison to other studies in the literature, the estimated
+price elasticity of demand is in the low-to-middle range of
+results. For instance, the long-run price coefficient is not sta-
+tistically different to the value obtained by Nauges and Thomas
+(2003) (see Table III in their article) although theirs is derived
+from the constant-elasticity model using municipal-level data
+and includes average income but not weather conditions.
+7. Concluding Remarks
+This article puts forward a novel method-of-moments approach
+for estimation of factor-augmented panel data models with
+endogenous regressors and T fixed. The underlying idea is to
+proxy the factors by observed variables, so that the resulting
+moment conditions are linear in the parameters. The proposed
+methodology addresses several issues that arise with existing
+nonlinear GMM estimators, such as local minima-related prob-
+lems and a potential lack of global identification. At the same
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+13
+time, the proposed methodology retains the appealing features
+of the method of moments in that it accommodates weakly
+exogenous and endogenous regressors without the need for bias
+correction.
+We note that although this article has explicitly assumed that
+vi (or Vi) has an additive factor structure with corresponding
+factor loadings γ i (Υ i), in practice, as it is clear from Equation
+(21), the additive factor specification is sufficient but not neces-
+sary. In particular, since the proposed estimation method uses
+information from EF[Fe] only, it is sufficient that this expected
+value is of reduced rank structure, that is, EF[Fe] = FeA. The
+deviations from the mean, that is, Ψ = N−1 	N
+i=1 Ψ i, can still
+contain unobserved common shocks so long as they satisfy the
+conditional independence in Assumption 2.1. Finally, Fe and
+A should be simply regarded as correspondingly the left and
+right singular vectors (up to a scaling) of EF[Fe]. Thus, the
+FeA decomposition can be assumed completely without loss of
+generality, provided that Le is defined accordingly.
+We hope that the proposed methodology will enhance the
+application of multifactor error structures in panels involving
+micro level data, and encourage empirical researchers to imple-
+ment such approaches in practice. Furthermore, since the result-
+ing method of moments estimator has a close form solution, our
+approach can be extended straightforwardly to several different
+set ups, such as multidimensional panels, spatial panels, pseudo
+panels, and threshold models, to mention a few. We leave these
+avenues for future research.
+Supplementary Materials
+The supplementary appendix to this article provides additional results
+about the method developed in the present article. In particular, Section S1
+analyses several extensions of the model analyzed in the main text, includ-
+ing unbalanced panels, observed factors, and consistency of the GMM
+estimator under an alternative set of assumptions, in which the factor load-
+ings are treated as a sequence of constants. Section S2 provides descriptive
+statistics for the data used in the empirical illustration. Section S3 reports
+additional Monte Carlo results. Finally, Section S4 provides proofs of the
+main theoretical results put forward in the article.
+Acknowledgments
+We would like to thank the editor, Jianqing Fan, and three anonymous ref-
+erees for their constructive comments and suggestions, which have helped
+to improve our article substantially. We are also grateful to Pavel ˇCížek,
+Mervyn Silvapulle, Rutger Teulings, and Frank Windmeijer for helpful
+comments at an earlier stage of this project.
+Funding
+Financial support from the NWO VENI grant number 451-17-002 is grate-
+fully acknowledged by the first author. The second author acknowledges
+financial support from the Australian Research Council, under research
+grant number DP-170103135.
+Appendix A: Monte Carlo Results
+Table A1. Estimation results for L = 1 and Le = 1 setup.
+Designs
+F1
+F2
+Fr
+Fbic
+N
+T
+α
+δ
+Bias
+RMSE
+Std
+Size
+Bias
+RMSE
+Std
+Size
+Bias
+RMSE
+Std
+Size
+Bias
+RMSE
+Std
+Size
+α
+200
+4
+0.4
+0.0
+0.00
+0.02
+0.02
+0.06
+0.00
+0.05
+0.05
+0.02
+0.00
+0.02
+0.02
+0.06
+0.00
+0.04
+0.04
+0.07
+200
+4
+0.4
+0.3
+0.00
+0.03
+0.03
+0.05
+−0.01
+0.07
+0.07
+0.02
+0.00
+0.03
+0.03
+0.07
+0.00
+0.04
+0.04
+0.08
+200
+4
+0.8
+0.0
+0.00
+0.03
+0.03
+0.06
+0.00
+0.05
+0.05
+0.02
+0.00
+0.02
+0.02
+0.07
+0.00
+0.03
+0.03
+0.07
+200
+4
+0.8
+0.3
+0.00
+0.03
+0.03
+0.07
+0.00
+0.06
+0.06
+0.03
+0.00
+0.03
+0.03
+0.07
+0.00
+0.03
+0.03
+0.08
+200
+8
+0.4
+0.0
+0.00
+0.02
+0.02
+0.11
+0.00
+0.02
+0.02
+0.06
+0.00
+0.01
+0.01
+0.09
+0.00
+0.02
+0.02
+0.11
+200
+8
+0.4
+0.3
+−0.01
+0.03
+0.03
+0.18
+−0.01
+0.03
+0.03
+0.09
+−0.01
+0.03
+0.03
+0.15
+−0.01
+0.04
+0.03
+0.18
+200
+8
+0.8
+0.0
+0.00
+0.01
+0.01
+0.10
+0.00
+0.02
+0.02
+0.07
+0.00
+0.01
+0.01
+0.12
+0.00
+0.02
+0.02
+0.13
+200
+8
+0.8
+0.3
+0.00
+0.02
+0.02
+0.13
+0.00
+0.02
+0.02
+0.07
+0.00
+0.02
+0.02
+0.13
+0.00
+0.02
+0.02
+0.13
+800
+4
+0.4
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.03
+0.03
+0.02
+0.00
+0.01
+0.01
+0.04
+0.00
+0.01
+0.01
+0.07
+800
+4
+0.4
+0.3
+0.00
+0.02
+0.02
+0.05
+0.00
+0.04
+0.04
+0.02
+0.00
+0.02
+0.02
+0.06
+0.00
+0.02
+0.02
+0.06
+800
+4
+0.8
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.03
+0.03
+0.02
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+800
+4
+0.8
+0.3
+0.00
+0.01
+0.01
+0.05
+0.00
+0.04
+0.04
+0.02
+0.00
+0.01
+0.01
+0.05
+0.00
+0.02
+0.02
+0.06
+800
+8
+0.4
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.4
+0.3
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.8
+0.0
+0.00
+0.01
+0.01
+0.07
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+0.00
+0.01
+0.01
+0.07
+800
+8
+0.8
+0.3
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.07
+0.00
+0.01
+0.01
+0.07
+β
+200
+4
+0.4
+0.0
+0.00
+0.03
+0.03
+0.07
+0.00
+0.07
+0.07
+0.02
+0.00
+0.02
+0.02
+0.07
+0.00
+0.06
+0.06
+0.06
+200
+4
+0.4
+0.3
+0.00
+0.03
+0.03
+0.06
+0.01
+0.08
+0.08
+0.02
+0.00
+0.03
+0.03
+0.07
+0.00
+0.04
+0.04
+0.06
+200
+4
+0.8
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.03
+0.03
+0.02
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+200
+4
+0.8
+0.3
+0.00
+0.01
+0.01
+0.05
+0.00
+0.04
+0.04
+0.03
+0.00
+0.01
+0.01
+0.06
+0.00
+0.02
+0.02
+0.06
+200
+8
+0.4
+0.0
+0.00
+0.02
+0.02
+0.11
+0.00
+0.02
+0.02
+0.06
+0.00
+0.02
+0.02
+0.11
+0.01
+0.02
+0.02
+0.13
+200
+8
+0.4
+0.3
+0.01
+0.04
+0.03
+0.19
+0.01
+0.03
+0.03
+0.10
+0.01
+0.03
+0.03
+0.16
+0.01
+0.04
+0.04
+0.19
+200
+8
+0.8
+0.0
+0.00
+0.01
+0.01
+0.10
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.10
+0.00
+0.01
+0.01
+0.10
+200
+8
+0.8
+0.3
+0.00
+0.02
+0.02
+0.13
+0.00
+0.02
+0.02
+0.07
+0.00
+0.01
+0.01
+0.12
+0.00
+0.02
+0.02
+0.14
+800
+4
+0.4
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.05
+0.05
+0.02
+0.00
+0.01
+0.01
+0.06
+0.00
+0.02
+0.02
+0.06
+800
+4
+0.4
+0.3
+0.00
+0.02
+0.02
+0.05
+0.00
+0.05
+0.05
+0.03
+0.00
+0.02
+0.02
+0.05
+0.00
+0.02
+0.02
+0.05
+800
+4
+0.8
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.02
+0.02
+0.02
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+4
+0.8
+0.3
+0.00
+0.01
+0.01
+0.05
+0.00
+0.03
+0.03
+0.02
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.4
+0.0
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+800
+8
+0.4
+0.3
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.8
+0.0
+0.00
+0.00
+0.00
+0.06
+0.00
+0.01
+0.01
+0.04
+0.00
+0.00
+0.00
+0.06
+0.00
+0.00
+0.00
+0.06
+800
+8
+0.8
+0.3
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+14
+A. JUODIS AND V. SARAFIDIS
+Table A2. Estimation results for L = 2 and Le = 2 setup.
+Designs
+F1
+F2
+Fr
+Fbic
+N
+T
+α
+δ
+Bias
+RMSE
+Std
+Size
+Bias
+RMSE
+Std
+Size
+Bias
+RMSE
+Std
+Size
+Bias
+RMSE
+Std
+Size
+α
+200
+4
+0.4
+0.0
+−0.02
+0.14
+0.14
+0.60
+0.00
+0.04
+0.04
+0.05
+0.00
+0.04
+0.04
+0.05
+−0.01
+0.09
+0.09
+0.09
+200
+4
+0.4
+0.3
+−0.05
+0.26
+0.26
+0.66
+0.00
+0.06
+0.06
+0.04
+0.00
+0.06
+0.06
+0.05
+−0.01
+0.22
+0.22
+0.09
+200
+4
+0.8
+0.0
+−0.02
+0.14
+0.13
+0.60
+0.00
+0.04
+0.04
+0.05
+0.00
+0.04
+0.04
+0.05
+−0.01
+0.09
+0.09
+0.10
+200
+4
+0.8
+0.3
+−0.03
+0.17
+0.17
+0.64
+0.00
+0.05
+0.05
+0.05
+0.00
+0.05
+0.05
+0.06
+−0.01
+0.15
+0.15
+0.11
+200
+8
+0.4
+0.0
+−0.03
+0.11
+0.11
+0.76
+0.00
+0.02
+0.02
+0.08
+0.00
+0.02
+0.02
+0.08
+0.00
+0.02
+0.02
+0.09
+200
+8
+0.4
+0.3
+−0.10
+0.33
+0.31
+0.83
+0.00
+0.03
+0.03
+0.11
+0.00
+0.03
+0.03
+0.11
+0.00
+0.04
+0.04
+0.11
+200
+8
+0.8
+0.0
+−0.02
+0.09
+0.09
+0.73
+0.00
+0.01
+0.01
+0.09
+0.00
+0.01
+0.01
+0.09
+0.00
+0.02
+0.02
+0.09
+200
+8
+0.8
+0.3
+−0.08
+0.20
+0.18
+0.79
+0.00
+0.02
+0.02
+0.10
+0.00
+0.02
+0.02
+0.10
+0.00
+0.02
+0.02
+0.11
+800
+4
+0.4
+0.0
+−0.02
+0.14
+0.14
+0.79
+0.00
+0.02
+0.02
+0.05
+0.00
+0.02
+0.02
+0.04
+0.00
+0.06
+0.06
+0.07
+800
+4
+0.4
+0.3
+−0.05
+0.25
+0.24
+0.80
+0.00
+0.03
+0.03
+0.06
+0.00
+0.03
+0.03
+0.05
+−0.01
+0.13
+0.13
+0.08
+800
+4
+0.8
+0.0
+−0.02
+0.13
+0.13
+0.78
+0.00
+0.02
+0.02
+0.05
+0.00
+0.02
+0.02
+0.05
+0.00
+0.04
+0.04
+0.08
+800
+4
+0.8
+0.3
+−0.04
+0.17
+0.17
+0.80
+0.00
+0.02
+0.02
+0.05
+0.00
+0.02
+0.02
+0.06
+−0.01
+0.12
+0.12
+0.08
+800
+8
+0.4
+0.0
+−0.02
+0.11
+0.10
+0.85
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.4
+0.3
+−0.09
+0.31
+0.30
+0.91
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+800
+8
+0.8
+0.0
+−0.02
+0.08
+0.08
+0.84
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.8
+0.3
+−0.07
+0.17
+0.16
+0.87
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+0.00
+0.01
+0.01
+0.08
+β
+200
+4
+0.4
+0.0
+0.02
+0.14
+0.14
+0.42
+0.00
+0.06
+0.06
+0.06
+0.00
+0.06
+0.06
+0.05
+0.01
+0.21
+0.21
+0.08
+200
+4
+0.4
+0.3
+0.04
+0.26
+0.26
+0.54
+0.00
+0.07
+0.07
+0.05
+0.00
+0.08
+0.08
+0.06
+0.00
+0.28
+0.28
+0.08
+200
+4
+0.8
+0.0
+0.01
+0.05
+0.05
+0.32
+0.00
+0.03
+0.03
+0.05
+0.00
+0.03
+0.03
+0.06
+0.00
+0.07
+0.07
+0.06
+200
+4
+0.8
+0.3
+0.01
+0.07
+0.07
+0.35
+0.00
+0.04
+0.04
+0.05
+0.00
+0.04
+0.04
+0.04
+0.01
+0.13
+0.13
+0.07
+200
+8
+0.4
+0.0
+0.03
+0.13
+0.13
+0.71
+0.00
+0.02
+0.02
+0.09
+0.00
+0.02
+0.02
+0.09
+0.00
+0.02
+0.02
+0.09
+200
+8
+0.4
+0.3
+0.11
+0.39
+0.37
+0.81
+0.00
+0.03
+0.03
+0.11
+0.00
+0.03
+0.03
+0.11
+0.00
+0.04
+0.04
+0.12
+200
+8
+0.8
+0.0
+0.01
+0.05
+0.05
+0.61
+0.00
+0.01
+0.01
+0.09
+0.00
+0.01
+0.01
+0.09
+0.00
+0.01
+0.01
+0.10
+200
+8
+0.8
+0.3
+0.07
+0.19
+0.18
+0.74
+0.00
+0.02
+0.02
+0.10
+0.00
+0.02
+0.02
+0.10
+0.00
+0.02
+0.02
+0.11
+800
+4
+0.4
+0.0
+0.02
+0.14
+0.14
+0.64
+0.00
+0.03
+0.03
+0.05
+0.00
+0.03
+0.03
+0.05
+0.00
+0.18
+0.18
+0.07
+800
+4
+0.4
+0.3
+0.04
+0.24
+0.24
+0.72
+0.00
+0.03
+0.03
+0.05
+0.00
+0.04
+0.04
+0.05
+0.01
+0.12
+0.12
+0.07
+800
+4
+0.8
+0.0
+0.00
+0.04
+0.04
+0.53
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.05
+0.00
+0.13
+0.13
+0.07
+800
+4
+0.8
+0.3
+0.01
+0.08
+0.08
+0.56
+0.00
+0.02
+0.02
+0.05
+0.00
+0.02
+0.02
+0.06
+0.00
+0.12
+0.12
+0.07
+800
+8
+0.4
+0.0
+0.03
+0.12
+0.11
+0.81
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.4
+0.3
+0.09
+0.37
+0.36
+0.90
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+800
+8
+0.8
+0.0
+0.01
+0.04
+0.04
+0.74
+0.00
+0.01
+0.01
+0.05
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.06
+800
+8
+0.8
+0.3
+0.06
+0.16
+0.15
+0.83
+0.00
+0.01
+0.01
+0.07
+0.00
+0.01
+0.01
+0.06
+0.00
+0.01
+0.01
+0.07
+Table A3. Model selection and specification testing results.
+L = Le = 1
+L = Le = 2
+Designs
+J-statistic
+BIC
+ER Le
+J-statistic
+BIC
+ER Le
+N
+T
+α
+δ
+F1
+F2
+Fr
+#ˆL = 1
+#ˆL = 2
+#ˆLe = 1
+#ˆLe = 2
+#ˆLe = 3
+F1
+F2
+Fr
+#ˆL = 1
+#ˆL = 2
+#ˆLe = 1
+#ˆLe = 2
+#ˆLe = 3
+200
+4
+0.4
+0.0
+0.03
+0.01
+0.05
+0.98
+0.02
+0.98
+0.00
+0.02
+0.97
+0.05
+0.05
+0.16
+0.84
+0.16
+0.76
+0.08
+200
+4
+0.4
+0.3
+0.03
+0.01
+0.04
+0.98
+0.02
+0.97
+0.00
+0.02
+0.96
+0.04
+0.05
+0.16
+0.84
+0.17
+0.76
+0.07
+200
+4
+0.8
+0.0
+0.05
+0.02
+0.05
+0.98
+0.02
+0.98
+0.00
+0.02
+0.96
+0.04
+0.04
+0.20
+0.80
+0.17
+0.76
+0.08
+200
+4
+0.8
+0.3
+0.04
+0.02
+0.04
+0.98
+0.02
+0.97
+0.00
+0.03
+0.95
+0.04
+0.04
+0.20
+0.80
+0.15
+0.77
+0.08
+200
+8
+0.4
+0.0
+0.03
+0.01
+0.03
+0.96
+0.04
+1
+0.00
+0.00
+1
+0.03
+0.02
+0.01
+0.99
+0.06
+0.93
+0.01
+200
+8
+0.4
+0.3
+0.03
+0.01
+0.03
+0.96
+0.04
+1
+0.00
+0.00
+1
+0.02
+0.02
+0.02
+0.98
+0.07
+0.93
+0.01
+200
+8
+0.8
+0.0
+0.02
+0.01
+0.03
+0.97
+0.03
+1
+0.00
+0.00
+1
+0.03
+0.03
+0.01
+0.99
+0.07
+0.92
+0.01
+200
+8
+0.8
+0.3
+0.03
+0.01
+0.03
+0.97
+0.03
+1
+0.00
+0.00
+1
+0.02
+0.02
+0.02
+0.98
+0.06
+0.93
+0.01
+800
+4
+0.4
+0.0
+0.06
+0.02
+0.06
+0.99
+0.01
+0.99
+0.00
+0.01
+1
+0.05
+0.05
+0.05
+0.95
+0.07
+0.91
+0.03
+800
+4
+0.4
+0.3
+0.04
+0.02
+0.04
+1
+0.00
+0.99
+0.00
+0.01
+1
+0.05
+0.05
+0.04
+0.96
+0.07
+0.90
+0.03
+800
+4
+0.8
+0.0
+0.04
+0.02
+0.04
+1
+0.00
+0.99
+0.00
+0.01
+0.99
+0.04
+0.04
+0.06
+0.94
+0.08
+0.89
+0.03
+800
+4
+0.8
+0.3
+0.05
+0.02
+0.06
+1
+0.00
+0.99
+0.00
+0.01
+1
+0.05
+0.06
+0.05
+0.95
+0.07
+0.90
+0.03
+800
+8
+0.4
+0.0
+0.05
+0.02
+0.04
+1
+0.01
+1
+0.00
+0.00
+1
+0.05
+0.05
+0.00
+1
+0.01
+0.99
+0.00
+800
+8
+0.4
+0.3
+0.04
+0.02
+0.04
+0.99
+0.01
+1
+0.00
+0.00
+1
+0.05
+0.04
+0.00
+1
+0.01
+0.99
+0.00
+800
+8
+0.8
+0.0
+0.05
+0.02
+0.05
+1
+0.00
+1
+0.00
+0.00
+1
+0.05
+0.05
+0.00
+1
+0.01
+0.99
+0.00
+800
+8
+0.8
+0.3
+0.05
+0.02
+0.05
+0.99
+0.01
+1
+0.00
+0.00
+1
+0.05
+0.04
+0.00
+1
+0.01
+0.99
+0.00
+JOURNAL OF BUSINESS & ECONOMIC STATISTICS
+15
+References
+Abrams, B., Kumaradevan, S., Sarafidis, V., and Spaninks, F. (2012), “An
+Econometric Assessment of Pricing Sydney’s Residential Water Use,”
+Economic Record, 88, 89–105. [10]
+Ahn, S. C., and Horenstein, A. R. (2013), “Eigenvalue Ratio Test for the
+Number of Factors,” Econometrica, 81, 1203–1227. [8]
+Ahn, S. C., Lee, Y. H., and Schmidt, P. (2013), “Panel Data Models With
+Multiple Time-Varying Individual Effects,” Journal of Econometrics, 174,
+1–14. [1,2,3,8,9,10]
+Al-Qunaibet, M. H., and Johnston, R. S. (1985), “Municipal Demand for
+Water in Kuwait: Methodological Issues and Empirical Results,” Water
+Resources Research, 21, 433–438. [11]
+Araral, E., and Wang, Y. (2013), “Water Demand Management: Review of
+Literature and Comparison in South-East Asia,” International Journal of
+Water Resources Development, 29, 434–450. [10]
+Arellano, M., and Bond, S. (1991), “Some Tests of Specification for Panel
+Data: Monte Carlo Evidence and an Application to Employment Equa-
+tions,” Review of Economic Studies, 58, 277–297. [11]
+Arellano, M., and Bover, O. (1995), “Another Look at the Instrumental Vari-
+able Estimation of Error-Components Models,” Journal of Econometrics,
+68, 29–51. [11]
+Bai, J. (2003), “Inferential Theory for Factor Models of Large Dimensions,”
+Econometrica, 71, 135–171. [6,7]
+(2009), “Panel Data Models With Interactive Fixed Effects,” Econo-
+metrica, 77, 1229–1279. [1,4]
+Bun, M. J. G., and Kiviet, J. F. (2006), “The Effects of Dynamic Feedbacks
+on LS and MM Estimator Accuracy in Panel Data Models,” Journal of
+Econometrics, 132, 409–444. [9]
+Connor, G., and Korajczyk, R. A. (1986), “Performance Measurement With
+the Arbitrage Pricing Theory: A New Framework for Analysis,” Journal
+of Financial Economics, 15, 373–394. [7]
+Cragg, J. C., and Donald, S. G. (1997), “Inferring the Rank of a Matrix,”
+Journal of Econometrics, 76, 223–250. [8,9]
+De Vos, I., and Everaert, G. (2019), “Bias-Corrected Common Correlated
+Effects Pooled Estimation in Homogeneous Dynamic Panels,” Journal of
+Business & Economic Statistics, DOI: 10.1080/07350015.2019.1654879.
+[2]
+Everaert, G., and De Groote, T. (2016), “Common Correlated Effects Esti-
+mation of Dynamic Panels With Cross-Sectional Dependence,” Econo-
+metric Reviews, 35, 428–463. [5]
+Fan, J., and Liao, Y. (2019), “Learning Latent Factors From Diversified
+Projections and Its Applications to Over-Estimated and Weak Factors,”
+arXiv no. 1908.01252. [5]
+Gagliardini, P., and Gouriéroux, C. (2017), “Double Instrumental Variable
+Estimation of Interaction Models With Big Data,” Journal of Economet-
+rics, 201, 176–197. [5]
+Gagliardini, P., Ossola, E., and Scaillet, O. (2016), “Time-Varying Risk
+Premium in Large Cross-Sectional Equity Data Sets,” Econometrica, 84,
+985–1046. [3]
+Gato, S., Jayasuriya, N., and Roberts, P. (2007), “Temperature and Rainfall
+Thresholds for Base Use Urban Water Demand Modelling,” Journal of
+Hydrology, 337, 364–376. [10]
+Hansen, C., and Liao, Y. (2019), “The Factor-Lasso and k-Step Bootstrap
+Approach for Inference in High-Dimensional Economic Applications,”
+Econometric Theory, 35, 465–509. [4]
+Hastie, T., Tibshirani, R., and Friedman, J. (2017), The Elements of Statistical
+Learning (2nd ed.), New York: Springer. [8]
+Hayakawa, K. (2016), “Identification Problem of GMM Estimators for Short
+Panel Data Models With Interactive Fixed Effects,” Economics Letters,
+139, 22–26. [1]
+Holtz-Eakin, D., Newey, W. K., and Rosen, H. S. (1988), “Estimating Vector
+Autoregressions With Panel Data,” Econometrica, 56, 1371–1395. [1]
+House-Peters, L. A., and Chang, H. (2011), “Urban Water Demand Mod-
+eling: Review of Concepts, Methods, and Organizing Principles,” Water
+Resources Research, 47, W05401. [10]
+Hsiao, C., Pesaran, M. H., and Tahmiscioglu, A. K. (2002), “Maximum
+Likelihood Estimation of Fixed Effects Dynamic Panel Data Models
+Covering Short Time Periods,” Journal of Econometrics, 109, 107–150.
+[2]
+Hunt, E., Hubbard, K., Wilhite, D., Arkebauer, T., and Dutcher, A. (2009),
+“The Development and Evaluation of a Soil Moisture Index,” Interna-
+tional Journal of Climatology, 29, 747–759. [11]
+Jiang, B., Yang, Y., Gao, J., and Hsiao, C. (2017), “Recursive Estimation in
+Large Panel Data Models: Theory and Practice,” Mimeo. [1]
+Juodis, A. (2018), “Pseudo Panel Data Models With Cohort Interactive
+Effects,” Journal of Business & Economic Statistics, 36, 47–61. [1]
+Juodis, A., Karabıyık, H., and Westerlund, J. (2020), “On the Robustness of
+the Pooled CCE Estimator,” Journal of Econometrics (forthcoming). [5]
+Juodis, A., and Sarafidis, V. (2018), “Fixed T Dynamic Panel Data Esti-
+mators With Multifactor Errors,” Econometric Reviews, 37, 893–929.
+[1,4,10]
+Kapetanios, G., Serlenga, L., and Shin, Y. (2020), “Estimation and Inference
+for Multidimensional Heterogeneous Panel Datasets With Hierarchical
+Multi-Factor Error Structure,” Journal of Econometrics (forthcoming).
+[1]
+Karabıyık, H., Urbain, J.-P., and Westerlund, J. (2019), “CCE Estimation of
+Factor-Augmented Regression Models With More Factors Than Observ-
+ables,” Journal of Applied Econometrics, 34, 268–284. [4]
+Kleibergen, F. R., and Paap, R. (2006), “Generalized Reduced Rank Tests
+Using the Singular Value Decomposition,” Journal of Econometrics, 133,
+97–126. [8]
+Kruiniger, H. (2008), “Not So Fixed Effects: Correlated Structural Breaks in
+Panel Data,” Mimeo. [1]
+Kuersteiner, G., and Prucha, I. R. (2013), “Limit Theory for Panel Data
+Models With Cross Sectional Dependence and Sequential Exogeneity,”
+Journal of Econometrics, 174, 107–126. [4]
+Maidment, D. R., and Miaou, S. P. (1986), “Daily Water Use in Nine Cities,”
+Water Resources Research, 22, 845–851. [10]
+Moon, H. R., and Weidner, M. (2015), “Linear Regression for Panel With
+Unknown Number of Factors as Interactive Fixed Effects,” Econometrica,
+83, 1543–1579. [4]
+Nauges, C., and Thomas, A. (2003), “Long-Run Study of Residential Water
+Consumption,” Environmental and Resource Economics, 26, 25–43.
+[12]
+Norkute, M., Sarafidis, V., Yamagata, T., and Cui, G. (2020), “Instrumen-
+tal Variable Estimation of Dynamic Linear Panel Data Models With
+Defactored Regressors and a Multifactor Error Structure,” Journal of
+Econometrics (forthcoming). [1]
+Pesaran, M. H. (2006), “Estimation and Inference in Large Heterogeneous
+Panels With a Multifactor Error Structure,” Econometrica, 74, 967–1012.
+[1,6]
+Pesaran, M. H., Smith, L. V., and Yamagata, T. (2013), “Panel Unit Root Tests
+in the Presence of a Multifactor Error Structure,” Journal of Econometrics,
+175, 94–115. [4]
+Robertson, D., and Sarafidis, V. (2015), “IV Estimation of Panels with Factor
+Residuals,” Journal of Econometrics, 185, 526–541. [1,3,4,7,9]
+Robertson, D., Sarafidis, V., and Westerlund, J. (2018), “Unit Root Inference
+in Generally Trending and Cross-Correlated Dynamic Panels,” Journal of
+Business & Economic Statistics, 36, 493–504. [1]
+Roodman, D. (2009), “How To Do xtabond2: An Introduction to Difference
+and System GMM in Stata,” The Stata Journal, 9, 86–136. [11]
+Sarafidis, V., and Wansbeek, T. J. (2012), “Cross-Sectional Dependence in
+Panel Data Analysis,” Econometric Reviews, 31, 483–531. [1]
+(2020), “Celebrating 40 Years of Panel Data Analysis: Past, Present
+and Future,” Journal of Econometrics (forthcoming). [1]
+Staiger, D., and Stock, J. H. (1997), “Instrumental Variables Regression With
+Weak Instruments,” Econometrica, 65, 557–586. [8]
+Westerlund, J., Petrova, Y., and Norkute, M. (2019), “CCE in Fixed-T
+Panels,” Journal of Applied Econometrics, 34, 746–761. [1]
+Windmeijer, F. (2005), “A Finite Sample Correction for the Variance of
+Linear Efficient Two-Step GMM Estimators,” Journal of Econometrics,
+126, 25–51. [10]
+Zhu, H., Sarafidis, V., and Silvapulle, M. (2020), “A New Structural Break
+Test for Panels With Common Factors,” Econometrics Journal, 23, 137–
+155. [10]

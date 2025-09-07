@@ -1,0 +1,1066 @@
+RESEARCH ARTICLE
+Hemodynamics in a giant intracranial
+aneurysm characterized by in vitro 4D flow
+MRI
+Omid Amili1, Daniele Schiavazzi2, Sean Moen5, Bharathi Jagadeesan3,4,5, Pierre-
+Franc¸ois Van de Moortele3,6, Filippo Coletti1,7*
+1 Department of Aerospace Engineering and Mechanics, University of Minnesota, Minneapolis, MN, United
+States of America, 2 Department of Applied and Computational Mathematics and Statistics, University of
+Notre Dame, Notre Dame, IN, United States of America, 3 Department of Radiology, University of Minnesota,
+Minneapolis, MN, United States of America, 4 Department of Neurology, University of Minnesota,
+Minneapolis, MN, United States of America, 5 Department of Neurosurgery, University of Minnesota,
+Minneapolis, MN, United States of America, 6 Center for Magnetic Resonance Research, University of
+Minnesota, Minneapolis, MN, United States of America, 7 St. Anthony Falls Laboratory, University of
+Minnesota, Minneapolis, MN, United States of America
+* fcoletti@umn.edu
+Abstract
+Experimental and computational data suggest that hemodynamics play a critical role in the
+development, growth, and rupture of cerebral aneurysms. The flow structure, especially
+in aneurysms with a large sac, is highly complex and three-dimensional. Therefore, volumet-
+ric and time-resolved measurements of the flow properties are crucial to fully characterize
+the hemodynamics. In this study, phase-contrast Magnetic Resonance Imaging is used
+to assess the fluid dynamics inside a 3D-printed replica of a giant intracranial aneurysm,
+whose hemodynamics was previously simulated by multiple research groups. The physio-
+logical inflow waveform is imposed in a flow circuit with realistic cardiovascular impedance.
+Measurements are acquired with sub-millimeter spatial resolution for 16 time steps over a
+cardiac cycle, allowing for the detailed reconstruction of the flow evolution. Moreover, the
+three-dimensional and time-resolved pressure distribution is calculated from the velocity
+field by integrating the fluid dynamics equations, and is validated against differential pres-
+sure measurements using precision transducers. The flow structure is characterized by vor-
+tical motions that persist within the aneurysm sac for most of the cardiac cycle. All the main
+flow statistics including velocity, vorticity, pressure, and wall shear stress suggest that the
+flow pattern is dictated by the aneurysm morphology and is largely independent of the pulsa-
+tility of the inflow, at least for the flow regimes investigated here. Comparisons are carried
+out with previous computational simulations that used the same geometry and inflow condi-
+tions, both in terms of cycle-averaged and systolic quantities.
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+1 / 25
+a1111111111
+a1111111111
+a1111111111
+a1111111111
+a1111111111
+OPEN ACCESS
+Citation: Amili O, Schiavazzi D, Moen S,
+Jagadeesan B, Van de Moortele P-F, Coletti F
+(2018) Hemodynamics in a giant intracranial
+aneurysm characterized by in vitro 4D flow MRI.
+PLoS ONE 13(1): e0188323. https://doi.org/
+10.1371/journal.pone.0188323
+Editor: Dalin Tang, Worcester Polytechnic Institute,
+UNITED STATES
+Received: July 21, 2017
+Accepted: November 3, 2017
+Published: January 4, 2018
+Copyright: © 2018 Amili et al. This is an open
+access article distributed under the terms of the
+Creative Commons Attribution License, which
+permits unrestricted use, distribution, and
+reproduction in any medium, provided the original
+author and source are credited.
+Data Availability Statement: Data has been
+uploaded to a repository hosted by the University
+of Minnesota. The persistent link is: https://doi.org/
+10.13020/D6WX0S.
+Funding: This research was conducted with the
+support of the Winston and Maxine Wallin
+Neuroscience Discovery Fund (Principal
+Investigator: Bharathi Jagadeesan).
+Competing interests: The authors have declared
+that no competing interests exist.
+1 Introduction
+Brain aneurysms have a prevalence rate of 3-5% in the general population [1, 2] having an
+overall rupture risk of 1.2% within 5 years from diagnosis [3]. According to the Brain Aneu-
+rysm Foundation [4], there are more than three brain aneurysm ruptures every hour across
+the United States and approximately half a million deaths worldwide each year.
+The formation and growth of an aneurysm is the result of a complex interaction of multiple
+factors. In addition to genetic, physiological, environmental factors, and tissue mechanics, it is
+believed that fluid dynamics play an important role in the formation and development of arte-
+rial aneurysms at certain sites, e.g. see [5, 6]. The majority of the brain aneurysms are observed
+at bifurcations or arterial branches located in the circle of Willis where the flow topology is
+complex. At these locations, the aneurysm geometrical shape parameters have been suggested
+to correlate with the progression of the lesion with metrics such as aneurysm size, aspect ratio,
+size ratio, undulation index, non-sphericity index, and ellipticity index, see for example [7].
+Of these, the impact of the aneurysm size on the rupture risk remains the most widely studied
+metric.
+Intracranial aneurysms are normally considered small if their largest dimension is smaller
+than *10 mm, large if the corresponding measurement is in the range of 10-25 mm, and giant
+if larger than 25 mm. The risk of subarachnoid haemorrhage is known to increase with an
+increase in the size of the aneurysm [3, 8, 9]. For example, a 30 mm aneurysm at the tip of the
+basilar artery has a rupture risk of 50-60% within 5 follow-up years [9]. Location of the aneu-
+rysm in the posterior circulation is also known to increase the risk of rupture. However, both
+size and location of the aneurysm remain sub-optimal predictors of rupture risk as evidenced
+by the fact that a significant number of ruptured cerebral aneurysms measure less than 7 mm
+[10, 11].
+Therefore, in addition to the observation of the simple morphological aspects mentioned
+above, in recent years there has been an increasing interest in the image-based fluid dynamics
+assessment of brain aneurysms due to availability of high resolution CT/MRI scans. Elevated
+or abnormally low wall shear stress (WSS) or pressure, oscillatory shear index (OSI), relative
+residence time (RRT), energy loss (EL) across the aneurysm, and Aneurysm number (An) are
+among the key factors that have been studied to understand the flow dynamics in aneurysms
+with the aim of quantitatively characterizing the risk for aneurysm growth and rupture. For
+example, in the computational fluid dynamics (CFD) study by [12], the Aneurysm number
+(the ratio of the transport time scale to vortex formation time scale) was studied as a predictor
+for rupture risk. It was argued that for An <1, a stable shear layer is attached to inflow and out-
+flow walls and a cavity type flow is expected. However, for An >1, the shear layer is separated
+from the outflow wall, and the unsteadiness of the unstable shear layer leads to a vortex ring
+formation at the neck/artery interface (for the relative position of the body, dome, and neck of
+different brain aneurysms see [6]). It was further argued that aneurysms under the vortex ring
+mode are likely to grow and rupture. The clinical study on carotid artery aneurysms by [13]
+also observed an increased pulsatility index within the aneurysm for ruptured cases implying
+higher An. A persistent vortex ring structure in an elastase-induced sidewall aneurysm under
+An >1 was also observed by [14].
+As evidenced by the above studies, most of our current understanding of the role of the
+metrics in brain aneurysms comes from computational fluid dynamics with comparably few
+experimental studies to support and validate the numerical simulations. For example, in the
+ASME 2012 Summer Bioengineering Conference CFD Challenge (for brevity, 2012 CFD
+Challenge), 27 groups simulated the Newtonian pulsatile flow in a giant brain aneurysm with
+rigid walls. The only experimental validation available was the pressure drop across the entire
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+2 / 25
+aneurysm. Although the majority of groups were consistent in predicting the systolic pressure,
+there was much larger variability in the predicted systolic velocity pattern [15]. In this compar-
+ative study, identified outlier simulations based on the pressure map were not necessarily outli-
+ers based on the velocity map and vice versa. In addition, agreement in the systolic pressure/
+flow pattern did not necessarily imply a corresponding agreement in the mean values over
+the cardiac cycle. This motivates the need for rigorous in vitro validation of hemodynamic
+metrics at conditions matching the numerical simulations. Without detailed experimental
+studies supporting the computations, our understanding of aneurysm hemodynamics remains
+incomplete.
+On the other hand, most previous experimental studies using in vitro replicas of intracranial
+aneurysms have used laser-based flow diagnostics such as point-wise laser doppler anemome-
+try (LDA) or planar particle image/tracking velocimetry (PIV/PTV). A three-component
+three-dimensional (3C-3D) velocity field was reconstructed by [16] using stereoscopic PIV by
+stacking several non-simultaneously recorded planes. Le et al. (2013) [14] also successfully
+measured the full 3C-3D velocity field in an animal brain aneurysm using 3D particle tracking
+based on defocusing PIV. Nevertheless, the majority of experimental attempts to measure this
+three-dimensional and unsteady flow is limited to slices of the flow in the aneurysm sac. For
+example, see [17, 18, 19, 20, 21, 22, 23].
+In the present study, we leverage magnetic resonance imaging (MRI) to perform 4D (i.e.
+three-dimensional and time-resolved) flow measurements in a giant brain aneurysm, aiming
+at investigating the volumetric velocity and pressure fields under a physiological cardiac wave-
+form. In addition, this study provides experimental information for the same geometry and
+boundary condition that was previously analyzed by several groups in [15] and demonstrates
+the opportunities offered by 4D flow MRI measurements to investigate complex hemodynam-
+ics. The paper provides details of the experimental methodology including the fabrication of
+the aneurysm phantom, flow circuit design, 4D flow MRI measurements, pressure reconstruc-
+tion based on the velocity field, pressure drop measurements, and details of data pre- and
+post-processing. Results are presented and discussed in detail and are briefly compared to the
+2012 CFD Challenge data, followed by concluding remarks.
+2 Methodology & experimental setup
+2.1 Aneurysm model
+The selected aneurysm geometry was first investigated by [24] and later was used in the 2012
+CFD Challenge [15]. It is a giant pre-treatment aneurysm at the left internal carotid artery
+(ICA) with a stenosis proximal to the aneurysm orifice. The aneurysm ruptured 4 days follow-
+ing a flow-diverting stent treatment. The inlet diameter of the vessel is approximately 5.6 mm,
+and the maximum dimension in the aneurysm sac is approximately 26 mm. Although the
+spatial resolution in the flow measurements is high (see Section 2.3), to further increase the
+dynamic range, the original geometry has been scaled up by a factor of 2.0. The model is man-
+ufactured by 3D printing with a wall thickness of 3 mm at the W. M. Keck Center, University
+of Texas at El Paso. High resolution stereo-lithography with 25 μm layers of Somos1 Water-
+Shed XC 11122 guarantees hydro-dynamically smooth walls. The phantom reconstructed
+through MRI closely matches the 3D printing geometry confirming sub-millimeter precision.
+In order to establish well-defined inflow/outflow conditions, the inlet and outlet consist of
+acrylic tubes with an inner diameter of Dt = 12.7 mm and a length of Lt = 22Dt. This allows for
+sufficient spacing between the lumen inlet/outlet and the corresponding connections to the
+flow circuit. Both pulsatile and steady state conditions are considered here. The steady flow
+configurations are used for comparison, to illustrate the influence of the oscillatory inflow.
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+3 / 25
+This is important, as it will be shown, the main hemodynamics aspects are similar under
+both steady and pulsatile inflow conditions. The inflow velocity profile at the inlet follows the
+Womersley solution [25] in case of the pulsatile flow measurement and it closely approximates
+the Poiseuille solution in the steady state flow scenario. The CAD and real geometries are
+shown in Fig 1(a) and 1(b), respectively. Throughout this study, the “inlet” as shown in Fig
+1(a) refers to the inflow parent artery leading to the aneurysm sac with an inner diameter of
+D  11.2 mm.
+2.2 Flow circuit
+In order to generate the required flow, we use the flow loop schematically illustrated in Fig 2.
+To produce physiologically realistic flow waveforms, an in-house built cardiac pump consist-
+ing of a precision 2-phase hybrid stepper motor, a linear traverse stage, and a Teflon piston
+sliding in an acrylic cylinder is used. For switching between discharging and charging lines, a
+solenoid actuated Swagelok 3-way ball valve with a short response time of *0.2 s is used. This
+ensures the charging/discharging periods are isolated from each other and hence any reverse
+flow in the aneurysm model during the charging period is avoided.
+A ME-6PXL Transonic flow transducer (0-5 LPM) is used to monitor the flow rate. It is
+an ultrasonic flow sensor with an absolute accuracy of ±10% of the reading, clamped onto a
+Tygon1 tube with an inner diameter of 6.35 mm and a wall thickness of 1.6 mm. A TS410
+Transonic tubing flow module operated at a low-pass filter cutoff frequency of 40 Hz is used to
+obtain the high fidelity flow signal. Flow meter has been calibrated against timed collection of
+fluid. The signals for solenoid actuation, MRI gating, and flow rate are logged using a 14-bit
+National Instruments data acquisition system (USB-6001) at a sampling rate of 200 Hz.
+A centrifugal pump is used to prime the flow loop and to drive the steady flow configura-
+tion. An Alicat Scientific flow controller (LCR-series 0-5 LPM) is used to remove any plausible
+upstream fluctuations due to the centrifugal pump. Reinforced plastic tubing with an inner
+diameter of 25.4 mm is used for all lines to ensure minimal compliance in the system while
+providing enough flexibility for connections. The impedance of the flow circuit mimics the
+arterial bed through standard Windkessel boundary conditions [26] and is controlled using
+two resistors made of capillary tubes and a module containing air mimicking the arterial
+capacitance.
+Fig 1. (a) Lumen of the giant pre-treatment internal carotid artery aneurysm in 2:1 scale. The light gray geometry
+indicates the STereoLithography file taken from [24], and the dark gray regions are the extensions that connect the
+lumen to the acrylic tubes. (b) 3D-printed phantom in 2:1 scale filled with water-glycerol mixture infused with CuSO4.
+The arrows represent the flow direction.
+https://doi.org/10.1371/journal.pone.0188323.g001
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+4 / 25
+A mixture of water with approximately 25% of glycerin by weight is used as the working
+fluid. CuSO4 with a concentration of *0.06 mol/L is added to the mixture. This does not
+change the fluid properties and enhances the MRI signal-to-noise ratio [27]. Measurements
+are acquired at a temperature of 20.5˚C with a kinematic viscosity (ν) of approximately
+2.0×10−6 m2/s and a density (ρ) equal to *1060 kg/m3 calculated based on the fluid’s refrac-
+tive index [28]. The viscosity calculation is confirmed using a glass capillary viscometer. The
+use of the glycerin solution is advantageous compared to plain water as it allows us to use
+higher velocities in order to stay well above the noise floor of the PC-MRI measurements
+which in this case is less than 0.01 m/s. In addition, the input waveform period with the use
+of this glycerin solution is half that of plain water and therefore the MRI acquisition time is
+shorter.
+The inflow waveform is taken from [24] (or “Pulsatile 2” case in [15]) and is scaled in
+flow rate (Q) and period (T) to match the desired Reynolds and Womersley numbers. The
+Reynolds number based on the inflow bulk (i.e. cross-section average) velocity (Ub) and the
+parent artery diameter at the inlet (D) is in the range of Re = Ub D/ν = 238–651 with a cycle-
+averaged value of *366. The Womersley number based on the inlet vessel diameter and a
+waveform period of T  7.92 s is Wo ¼ D=2
+ﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+2pT  1n  1
+p
+ 3:51. The waveform pulsatility
+index, PI ¼ ðUmax   UminÞ=Ucycle, is approximately 1.13. Umax is the peak systolic bulk veloc-
+ity, Umin is the end diastolic bulk velocity, and Ucycle is the cycle-averaged bulk velocity at the
+inlet. The resistive index, RI = (Umax −Umin)/Umax is approximately 0.63. Two steady state
+flow conditions, one at the systolic peak, i.e. Re = 651, and one at a higher Reynolds number,
+i.e. Re = 1000, are acquired using the same flow loop by bypassing the cardiac pump.
+Fig 2. A schematic of the experimental setup. The black solid lines indicate the flow circuit, whereas the red dashed lines indicate the electronics connections. Note
+that the components are not to scale.
+https://doi.org/10.1371/journal.pone.0188323.g002
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+5 / 25
+2.3 4D flow measurements
+4D flow measurements are performed using phase contrast magnetic resonance imaging
+(PC-MRI). This non-intrusive measuring technique, unlike PIV and LDA, does not require
+optical access or deployment of tracer particles, providing all three velocity components in the
+volume of interest with sub-millimeter resolution. The fundamental concept of the velocity
+encoding is based on the relation between the fluid velocity and the MR signal phase along a
+magnetic field gradient. For a comprehensive review of the method and its applications, the
+reader is referred to [27, 29].
+Flow measurements in the present study are performed at the Center for Magnetic Reso-
+nance Research (CMRR) at the University of Minnesota. A 64 channel head/neck receiver coil
+is used in a 3 Tesla Siemens human MRI scanner. The phase-locked measurements of the volu-
+metric flow field are acquired for 16 phases of the cardiac cycle using the velocity acquisition
+sequence discussed in [29]. The full acquisition cycle is repeated twice and the velocity fields
+are averaged to increase the statistical accuracy. The acquisition time for each test is approxi-
+mately 2.5 hours corresponding to 560 cardiac cycles. It is worth noting that in vivo measure-
+ments are much shorter due the fact that the period of real cardiac cycles are shorter. Details of
+the PC-MRI settings are given in Table 1.
+The velocity random error, σv, is estimated using the relation proposed by [30]:
+sv ¼
+ﬃﬃ
+2
+p
+p
+Venc
+SNR
+ð1Þ
+where Venc is the velocity encoding which defines the maximum measurable velocity, and SNR
+is the signal-to-noise ratio. Here, SNR is calculated as:
+SNR ¼ < S >   < B >
+sb
+ð2Þ
+where < S > is the mean of MR signal inside the wetted volume (i.e. flow region), < B > is the
+mean of the MR signal in the background (i.e. outside the flow region), and σb is the standard
+deviation of MR in the background. For N number of scans, SNR in the above is improved by
+a factor of
+ﬃﬃﬃﬃ
+N
+p
+[31]. The observed random error in the velocities is approximately *6.8% of
+the cycle-averaged bulk velocity at the inlet. For alternative methods to estimate SNR in MRI
+Table 1. PC-MRI parameters.
+Parameter
+Value
+Unit
+Echo time
+5.4
+ms
+Repetition time
+492
+ms
+Bandwidth
+465
+Hz/px
+Velocity encoding
+0.8
+m/s
+Flip angle
+15
+˚
+Bit-depth
+12
+−
+Spatial resolution
+0.6×0.6×0.6
+mm3
+Field of view
+230×71×76
+mm3
+Number of scans
+2
+−
+Signal-to-noise ratio
+80
+−
+ along all directions.
+https://doi.org/10.1371/journal.pone.0188323.t001
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+6 / 25
+experiments and the effect of different parameters and source of velocimetry inaccuracies see
+[30, 32].
+2.4 Data pre- and post-processing
+The wetted volume, i.e. lumen volume, is determined based on a selected SNR threshold of 8.5.
+The reconstructed lumen surface is dilated and eroded in order to remove any potential arti-
+facts at the geometry’s boundaries. In order to take into account any spurious systematic spa-
+tial variation of the flow inside the region of interest due to the coil response, before and after
+each flow test, a flow-off state is scanned. Identical MRI acquisition parameters as used in the
+flow-on tests are used for this purpose. A polynomial regression is used for each velocity com-
+ponent to obtain the distribution of the signal when the fluid is at rest. The analytical fit to the
+flow-off field, which is below 1% of Ucycle, is then subtracted from the flow-on velocity field at
+each phase, see [33] for further details.
+After flow-off subtraction, an outlier detection method is applied to the velocity field at
+each phase. This filter is based on the local normalized median of velocities and the use of a
+varying threshold based on the local MR signal. A rejected velocity vector is then replaced with
+the median of the neighboring vectors. In addition, a standard median filter with a kernel size
+of 3×3×3, and a Gaussian filter with the same kernel size are applied to the data. It is followed
+by a solenoidal filter application as described in [34] to ensure that the mass conservation is
+globally enforced in an integral sense. The various filtering techniques applied here produced
+changes smaller than 10% of the unfiltered data at all points in the flow volume.
+Following the velocity field filtering, the relative pressure field at each phase is recon-
+structed by solving the Poisson pressure equation as described in [35]. The Poisson equation is
+discretized and solved using isoparametric hexahedral finite elements. For the wall shear stress
+calculation, the unit normal vector to the treated reconstructed wall is first computed. The dot
+product of the vorticity vector adjacent to the wall and the local wall-normal vector is calcu-
+lated to find the angle between the two. The magnitude of the vorticity vector (ωmag) tangent
+to the wall is then locally calculated. For a given dynamic viscosity, the local wall shear stress is
+obtained as τw = νρωmag|wall,tan.
+2.5 Pressure measurements
+For the purpose of pressure measurements, a phantom with 23 ports is designed and built in
+the same way as the previous phantom. Holes for the pressure ports are drilled into the phan-
+tom with an inner diameter of approximately 1 mm. The model geometry and the fabricated
+phantom are shown in Fig 3(a) and 3(b), respectively. A Validyne diaphragm transducer (DP-
+15) is used for the pressure waveform measurement at the aneurysm inlet and for the pressure
+drop measurements over the aneurysm sac. A Validyne sine wave carrier demodulator (CD-
+15) is used to acquire the high fidelity analog signal.
+To achieve the highest dynamic range, a diaphragm with a high sensitivity range of 0-0.86
+kPa is used to capture the differential pressure, i.e. between the port at the inlet and other
+ports. A diaphragm in the range of 0-8.6 kPa is used to measure the pressure difference
+between the inlet port and ambient. According to the manufacturer, pressure is measured with
+an accuracy of ±0.25% of the full scale range with a dynamic response of 1 kHz. The pressure
+transducer has been calibrated against a Rosemount 3051S pressure transmitter over the range
+of expected experimental pressures. The phantom is connected to the same flow loop using
+thick tubing with minimal compliance. The pressure and flow signals are recorded for approx-
+imately 55 cardiac cycles at a sampling rate of 200 Hz.
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+7 / 25
+3 Results
+3.1 Flow waveform evaluation
+The inflow waveforms are shown in Fig 4. The bins represent 16 acquisitions over the cardiac
+cycle with the cross symbols showing the flow rate averaged within each bin. The flow rate
+Fig 3. (a) Aneurysm model with 23 ports for the pressure measurements. (b) 3D-printed phantom. The pressure
+reading holes have an inner diameter of *1 mm. The arrows represent the flow direction.
+https://doi.org/10.1371/journal.pone.0188323.g003
+Fig 4. Input flow rate waveform along with the binned input waveform, and the inflow waveform reconstructed from
+PC-MRI at the inlet of the aneurysm. The flow rate and pressure waveforms measured upstream of the aneurysm using
+the ultrasonic flow meter and pressure transducer respectively are shown for comparison.
+https://doi.org/10.1371/journal.pone.0188323.g004
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+8 / 25
+waveform reconstructed from PC-MRI at the inflow vessel is in good agreement with the
+imposed input in which all features including the dicrotic notch are resolved. Quantitatively,
+there is a maximum mismatch of approximately 10% at the systolic peak. This is likely since
+due to difficulties in resolving the systolic velocity gradient at the wall, a fraction of the velocity
+field near the wall is not well captured. The flow rate measured by the ultrasonic flow meter
+is also provided. The light gray lines each represent one cardiac cycle measured by the flow
+meter over the course of the experiment. A minimal cycle to cycle variation is observed in the
+generated flow waveform. The standard deviation band of variations has a maximum value of
+2% with respect to the ensemble average flow rate showing a repeatable waveform generated
+by the cardiac pump. Finally, the inlet pressure waveform measured as described in Section 2.5
+is also shown. Pcycle is the cycle-averaged pressure at the inlet and Qcycle is the cycle-averaged
+flow rate.
+3.2 Flow structure and statistics
+To show the evolution of the flow pattern in the aneurysm sac, the iso-surface of velocity mag-
+nitude at a threshold level of 1:5Ucycle is depicted in Fig 5 along with the corresponding stream-
+lines and vortex lines for five cardiac phases. The iso-surface of the velocity shows the region
+where the flow travels faster than the bulk velocity in the vessel. Due to the stenosis at the par-
+ent artery right before the aneurysm neck, the flow accelerates while entering the aneurysm
+sac in such a way that the jetting flow reaches the aneurysm apex, impinges on the distal wall,
+and rolls back. This happens consistently for approximately half of the cardiac cycle.
+Highly three-dimensional vortical flow structures inside the aneurysm sac are evident from
+both the streamlines and vortex lines. Streamlines that are tangent to the local velocity vectors
+are useful to examine the complex flow field. The vortex lines that everywhere are tangent to
+the vorticity field are essentially the continuity of vortex filaments. Due to the anatomy of the
+inflow vessel and the location of the aneurysm with respect to the parent artery, the incoming
+flow to the aneurysm sac is somewhat vortical and helicoidal. The vortical flow entering the
+aneurysm sac induces a single large vortex and other small vortices that can be identified from
+the streamlines. The vortex lines in the sac imply the existence of a few vortices of different
+rotational strength that can be identified with the highest strength near the aneurysm neck and
+along the wall proximal to the neck. Vortex lines tend to align with the vessel at the aneurysm
+inflow and outflow. Although the shape and location of vortices may vary over the cardiac
+cycle, the general flow structure is preserved.
+To have a clearer view of the flow pattern, velocity magnitude in orthogonal slices with the
+corresponding vector fields are shown in Fig 6. The highly rotational nature of the flow is evi-
+dent in all directions. The cross planes of the velocity iso-surface shown in Fig 5 can be seen
+here showing the penetration of the fast moving fluid into the sac. This constitutes the domi-
+nant flow structure in all three directions. The main vortex is induced by the fast inflow jetting
+into the sac while other vortices are formed due to the shear layer between the high speed jet
+and low speed flow residing in the aneurysm sac. Such coexisting vortices are more easily iden-
+tified through the X −Y cross sections.
+The evolution of vorticity magnitude and the corresponding swirl is shown in a Y −Z cut
+plane in Fig 7 for three cardiac phases. For a better visualization, a threshold level of 3.0 for the
+normalized vorticity magnitude is used to blank the low vortical regions. The high vorticity level
+at the shear layer extends towards the distal wall and progressively reaches the tip of the aneu-
+rysm dome and beyond. Swirl (also termed helicity) is calculated as S ¼ ~U  ~o=j~Uj
+2 is a scalar
+quantity that shows the alignment of the vorticity vector with the local velocity vector. Swirling
+motions persist in a large volume of the sac with the highest strength at the interface of the fast
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+9 / 25
+Fig 5. Columns from left to right: Iso-surface of the velocity magnitude at 1:5Ucycle, streamlines, vortex lines, and the measurement
+phase. Five measurement phases from top to bottom rows are early systole, systolic peak, late systole, dicrotic notch, and late diastole,
+respectively. Streamlines are colored by the normalized velocity magnitude (Umag=Ucycle), and vortex lines are colored by the normalized
+vorticity magnitude (omagD=Ucycle).
+https://doi.org/10.1371/journal.pone.0188323.g005
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+10 / 25
+Fig 6. Normalized velocity magnitude (Umag=Ucycle) at three selected cut planes in the aneurysm sac. Each row shows one cardiac
+phase. Note that for better visibility, every third vector in each direction is shown.
+https://doi.org/10.1371/journal.pone.0188323.g006
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+11 / 25
+incoming jet and the low speed recirculation region. Swirl maps are useful as they show the
+regions (e.g. the middle of the sac) where the vorticity level is low but is parallel to the local
+velocity, whereas the vorticity maps mostly pick the shearing regions. Due to the anatomy of
+the parent artery, the incoming jet flow follows the aneurysm wall and the shear layer remains
+attached to it.
+To show the persistence of the flow pattern in the aneurysm sac, iso-surfaces of the velocity
+magnitude at the systolic peak and cycle-averaged states are shown in Fig 8(a) and 8(b), respec-
+tively. The thresholds for velocity iso-surfaces are chosen proportional to the inflow flow rate.
+The flow structure under systolic and cycle-averaged conditions looks very similar suggesting
+that the main flow feature resides in the sac for a number of phases and hence in an average
+sense it outweighs the low speed features in the rest of the cycle. In addition, two steady state
+flow measurements at the systolic peak, i.e. Re = 651, and at a higher Reynolds number, i.e.
+Re = 1000 are shown in Fig 8(c) and 8(d), respectively. As can be seen, the flow pattern at both
+steady conditions closely resembles the systolic and cycle-averaged cases. This suggests that
+the same flow structure resides in the sac regardless of the measurement phase and Reynolds
+Fig 7. Normalized vorticity magnitude (ωmagD=Ucycle), and normalized swirl (SD) for three cardiac phases at the same Y −Z slice shown in Fig 6. Every
+third vector in each direction is shown.
+https://doi.org/10.1371/journal.pone.0188323.g007
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+12 / 25
+number. It seems likely then the flow is mostly dictated by the aneurysm geometry (sac size,
+aspect ratio, and location with respect to the parent artery) with only weak sensitivity to the
+pulsatility of the incoming waveform. This is valid at least for the inflow conditions examined
+here.
+To have a more quantitative comparison of velocities at different phases, probability den-
+sity functions (PDFs) of the velocity magnitude are shown in physical and normalized units
+in Fig 9(a) and 9(b), respectively. Naturally, a wider velocity range is expected at the systole
+and its neighboring phases. However, the distributions collapse when velocities at each phase
+are normalized by the inlet bulk velocity at that phase, Ub,in,ph. This provides further evidence
+of the existence of a persistent flow pattern in the aneurysm sac shown in Fig 8. Another
+point to note in Fig 9(b) is the presence of a log-normal behavior. In this figure, the standard
+deviation (σ) and ensemble average (μ) of the velocities inside the aneurysm sac over the
+entire cycle are used to plot a log-normal distribution. At each phase more than 75% of the
+velocity vectors have a magnitude between zero and the inlet bulk velocity at that phase.
+The rest of the velocity probability corresponds to the fast traveling fluid due to the incoming
+jet into the aneurysm sac. The most probable events at each phase occur at approximately
+0.5Ub,in,ph, which is consistent with the mode of a log-normal distribution, μ(1 + (σ/μ)2)−3/2
+[36]. The use of the same velocity scale also leads to a good collapse of PDFs of the vorticity
+Fig 8. Flow structure at: (a) systole (0.25 ≲t/T ≲0.31); (b) cycle-averaged state (0  t/T  1); (c) steady state with the Reynolds number at the systolic peak,
+Re = 651; (d) steady state at Re = 1000. The velocity iso-surface thresholds are 1:9Ucycle, 1:1Ucycle, 1:9Ucycle, and 2:9Ucycle, respectively.
+https://doi.org/10.1371/journal.pone.0188323.g008
+Fig 9. (a) PDFs of the velocity magnitude in the aneurysm sac. (b) PDFs of the normalized velocity magnitude using the phase-locked bulk velocity at
+the inlet, Ub,in,ph. For log-normal distribution, σ = σUmag,sac,cycle and μ = < Umag,sac,cycle > are calculated using all velocity points inside the sac over all phases.
+(c) PDFs of the normalized vorticity magnitude in the aneurysm sac. PDFs are color coded with the measurement phase from diastole (light gray) to
+systole (dark gray).
+https://doi.org/10.1371/journal.pone.0188323.g009
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+13 / 25
+magnitude in the sac as shown in Fig 9(c). The same applies to the PDFs of individual veloc-
+ity and vorticity components.
+3.3 Wall shear stress distribution
+The spatial resolution of the experimental technique compares well with previous in vitro and
+in vivo studies, however, it may not be sufficient to accurately capture the gradients at the wall
+where the strongest change in the velocity usually occur. First, we checked the accuracy of the
+wall shear stress (WSS) calculation in the straight inlet tube under well defined geometry and
+flow condition, using an harmonic flow waveform decomposition [25]. For this purpose, the
+22 sinusoidal waves (harmonics) composing the inflow waveform given by [15] are used. Fig
+10(a) shows the overall WSS obtained by the superimposition of the stresses calculated at each
+harmonic. The estimated wall shear stress, depending on the cardiac phase, is up to 30% differ-
+ent from the expected true value. The mismatch is most pronounced at the systolic peak. Simi-
+lar to the flow rate, this is again due to the inability to fully resolve the velocity gradient close
+to the wall. Therefore, the calculated shear stress is to be considered an approximation of the
+actual WSS. Nevertheless, this approximation is insightful as it images the WSS distribution
+along the parent artery and over the aneurysm sac showing the magnitude of stresses relative
+to each other. Fig 11 shows the WSS map on the aneurysm for three cardiac phases that indi-
+cate regions with elevated shear. The highest shear is found at the aneurysm neck where the
+flow is accelerated due to the stenosis in the parent artery. In addition, the aneurysm sac expe-
+riences an increased level of shear where the incoming jet impinges. PDFs of the shear stress
+estimated at the aneurysm wall are shown in Fig 10(b) and 10(c) in physical and normalized
+units, respectively. A similar trend to the velocity and vorticity PDFs is observed here. The use
+of the inlet bulk velocity leads to a good collapse of the PDFs.
+3.4 Pressure distribution
+Fig 11 shows the iso-surface of the normalized relative pressure for three cardiac phases where
+it decreases from the inflow to the outflow vessel. At the systolic peak, a relatively large low
+pressure region affects the aneurysm sac due to a stronger jet being injected into the sac.
+Hence, a stronger pressure gradient across the induced vortex is expected. The low pressure
+region is located at/near the core of the large vortex. The pressure at the wall is also shown in
+Fig 10. (a) Estimation of the wall shear stress at the tube upstream the inflow vessel. The expected wall shear stress is calculated from the Womersley
+solution. (b) PDFs of the wall shear stress at the aneurysm sac. (c) PDFs of the normalized wall shear stress using the inlet bulk velocity. The color
+coding in PDFs is the same as in Fig 9.
+https://doi.org/10.1371/journal.pone.0188323.g010
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+14 / 25
+Fig 11. Pressure in the parent artery is reduced towards the aneurysm neck but is slightly ele-
+vated at the wall proximal to the neck and at the dome where the jet impingement is located.
+These regions are easier to be recognized in the systole where there is a higher pressure differ-
+ence in the sac.
+Fig 12 shows the normalized relative pressure along with the normalized velocity magni-
+tude at the centerline of the phantom for different cardiac phases as well as the cycle average.
+Fig 11. Columns from left to right: Normalized shear stress at the wall, τwD=ðνρUcycleÞ, normalized relative pressure at the wall, Pw=Pcycle, and iso-surface of
+the relative pressure at threshold levels of 0:5P=Pcycle.
+https://doi.org/10.1371/journal.pone.0188323.g011
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+15 / 25
+The centerline is segmented from the wetted volume using SimVascular [37]. The origin of the
+centerline coordinate is at the aneurysm inlet and the curvilinear abscissa (s) is normalized by
+the vessel diameter at the inlet (See Fig 1(a)). As expected, velocity remains almost constant
+with a slight increase towards the aneurysm inlet (-8 ≲s/D ≲0) where the pressure monotoni-
+cally decreases. The sharp decrease and increase in the velocity in the range of 1 ≲s/D ≲5 cor-
+responds to the sharp bend of the parent artery. Inspection of the velocity magnitude at the
+corresponding cross planes shows skewed velocity maps which explains the oscillations of the
+centerline velocity in this region. The pressure is more uniformly distributed at these planes
+and therefore no sharp pressure variation is observed. When the flow approaches the stenosis
+location at the aneurysm neck (s/D  6.8), the velocity spikes and the pressure drops sharply.
+There is a mild pressure recovery downstream the stenosis (6.8 ≲s/D ≲8) where the expan-
+sion to the aneurysm sac happens. In the aneurysm sac (6.8 ≲s/D ≲16.6), the pressure and
+velocity remain almost constant along the centerline as it follows the recirculation region.
+Near the aneurysm outlet (15.8 ≲s/D ≲16.6), due to the contraction, velocity increases
+quickly and pressure decreases accordingly. At the outlet of the parent artery, the flow is helical
+and vortical and hence the velocity map is skewed and the centerline sees oscillations. Eventu-
+ally, through the downstream vessel (s/D ≳23), velocity increases monotonically and pressure
+decreases mildly along the straightened outflow.
+Fig 12. Normalized relative pressure, P=Pcycle, and normalized velocity magnitude, Umag=Ucycle, at the phantom centerline. Each blue line represents velocity
+distribution at the centerline in one phase from diastole (light blue) to systole (dark blue) with the dashed blue line showing the cycle-averaged velocity. The red
+color coding shows the pressure distribution at the centerline in the same fashion. The centerlines shown at the top right and bottom right are respectively colored
+by the local systolic velocity and systolic pressure from blue (low) to red (high).
+https://doi.org/10.1371/journal.pone.0188323.g012
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+16 / 25
+In order to further quantify the pressure distribution in the sac, PDFs of the pressure are
+shown in Fig 13 in physical and normalized units. In Fig 13(a), for phases with smaller inlet
+bulk velocity, a smaller range of pressure is noticed whereas close to systole a wider range of
+values is observed. The inspection of the velocity and pressure fields indicates that the peak of
+positive/zero pressure is associated with two main regions: the impingement of the jet into the
+sac wall and the stagnation region at the aneurysm dome. The wider and larger negative pres-
+sure peak in the PDFs relates to the remainder of the aneurysm volume. The use of the inlet
+pressure scaling collapses the PDFs as shown in Fig 13(b) which again indicates that the essen-
+tial hemodynamics features are maintained during the cardiac cycle.
+To further investigate the pressure drop evolution, pressure measurements detailed in Sec-
+tion 2.5 are shown in Fig 14. Pressure loss over an aneurysm sac could be an important factor
+as it is an indication of energy dissipation and could be used as a metric for aneurysm growth
+and rupture risk [38, 39]. The temporal variation of the normalized pressure drop is given in
+Fig 14(a). The pressure drop over the inflow parent artery (between port 1 and port 2, see Fig
+3(a)) is the smallest since port 2 is located just before the aneurysm entrance. The pressure dif-
+ference between the inlet (port 1) and the ports on the aneurysm sac (from 3 to 22) experiences
+a larger pressure drop as these ports are located past the stenosis and the flow is expanded.
+Fig 13. (a) PDFs of the relative pressure inside the aneurysm sac. (b) PDFs of the normalized relative pressure using
+phase-locked pressure at the inlet. The color coding is the same as in Fig 9.
+https://doi.org/10.1371/journal.pone.0188323.g013
+Fig 14. (a) Pressure drop along the inflow vessel (between port 1 & 2), over the aneurysm sac (between port 1 and ports 3-22),
+between the inflow and outflow (between port 1 & 23). The dashed lines indicate the second run of the measurement. Each waveform
+is an ensemble average of 55 cardiac cycles. (b) Pressure drop between the inlet (port 1) and the outlet (port 23) in the steady state
+flow condition. (c) Evolution of the pressure drop between the inlet and the outlet in the cardiac cycle measured by the pressure
+transducer and PC-MRI.
+https://doi.org/10.1371/journal.pone.0188323.g014
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+17 / 25
+Within the measurement uncertainty, the wall pressure on the aneurysm sac experiences a
+very similar pattern with very small variation from one port to another. The small variation on
+the wall pressure map has also been noted earlier in Fig 11. Finally, the highest pressure drop
+as expected is observed between the inlet and the outlet (port 1 and 23) where the pressure
+over the entire sac and the parent vessel is measured. In addition, the pressure difference
+between port 1 and 23 is measured in the steady state condition for the range of flow rates
+expected in the cardiac cycle. A second order polynomial regression is obtained as shown in
+Fig 14(b) yielding the expected quadratic relation between pressure drop and flow rate.
+In Fig 14(c), the pressure drop measured by the pressure traducer in the pulsatile and steady
+states are compared with the one computed from the PC-MRI. As can be seen, a very good
+agreement is noticed especially between the pulsatile cases. The steady state plot also predicts
+the trend in an average sense. In order to better understand the pressure behavior in terms of
+the input flow rate, a color coding similar to Fig 12 is used along with arrows indicating the
+direction of time. End of diastole is located at the bottom left of the plot where the pressure
+and flow rate are at the minimum level. The pressure drop increases along with the flow rate
+reaching the systolic peak, and decreases towards diastole. The interesting point to notice in
+the pressure-flow diagram is the formation of a small loop inside the large loop that corre-
+sponds to an increase in the pressure drop due to the dicrotic notch. Although only 16 phases
+are measured by PC-MRI, all flow features including the inner loop are well captured.
+3.5 A brief comparison with 2012 CFD Challenge
+To determine exactly how our experimental results compare with the computational simula-
+tions reported in the 2012 CFD Challenge [15], a comprehensive comparative study would be
+needed which is beyond the scope of the present work. Here we present a brief comparison in
+terms of the cycle-averaged and systolic velocity magnitude and wall pressure, as reported in
+[15]. Velocity magnitude iso-surfaces for the cycle-averaged and systolic peak states are respec-
+tively shown in Fig 15(a) and 15(b) for the same threshold levels and angle of view as used in
+[15]. For comparison, readers are referred to Figs 10 and 11 in [15] with a focus on the simula-
+tions labeled as “W” and “X” that were carried out with particularly high spatial and temporal
+resolution and thus considered closest to a “gold standard” by [15]. The cycle-averaged mea-
+surements are in close agreement with most of the simulations. On the other hand, the same
+iso-surface at the systolic peak shows significant variability among the CFD solutions in terms
+of penetration of the jetting flow into the aneurysm sac. In addition, flow instabilities are
+noticed in some cases (visible in the wobbling shape of the iso-surfaces) but not in others.
+Fig 15. (a) Cycle-averaged velocity pattern at a threshold level of 1:1Ucycle that is equivalavnt to 0.3 m/s used in [15].
+(b) Systolic peak velocity pattern at a threshold level of 1:9Ucycle that corresponds to 0.5 m/s used in the computational
+studies. (c) Cycle-averaged wall pressure map. The color bar range used here is *2.0 cycle-averaged pressure drop
+between the inlet and outlet of the aneurysm that corresponds to 75-90 mmHg used in the computations in [15]. (d)
+Wall pressure map at the systolic peak. The color bar range is *5.3 cycle-averaged pressure drop between the inlet and
+outlet of the aneurysm corresponding to 80-120 mmHg used in the computational studies.
+https://doi.org/10.1371/journal.pone.0188323.g015
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+18 / 25
+According to [15] the disagreement among different solutions could be due to insufficient
+temporal resolution in the calculations. We remark that our data is the result of a phase-aver-
+age process, and therefore instantaneous flow instabilities (if present) would not be captured.
+Fig 15(c) and 15(d) display the cycle-averaged and systolic pressure distribution at the wall,
+respectively. For comparison, readers are referred to Figs 6 and 7 in [15] with a particular
+focus on “W” and “X” simulations. The experimental measurements capture the fine details
+reproduced by the CFD simulations, and there is good quantitative agreement with most of
+the numerical solutions in terms of cycle-averaged pressure. On the other hand, the systolic
+distributions show wider disparity, with most of the simulations indicating higher pressure
+drop compared to the measurements here. Considering the median of the 27 solutions in
+[15], the inlet-to-outlet pressure drop at systole was found to be approximately 2.7 times the
+cycle-averaged pressure drop. Our MRI-based pressure measurements indicate that the ratio
+between the systolic and cycle-averaged pressure drop is *2.0 which is in agreement with the
+benchmark measurements using the pressure transducer which gives *2.2.
+The discrepancies at the systolic peak confirm that the unsteadiness during the flow acceler-
+ation phase is challenging to reproduce numerically [15]. It is also worth underscoring the role
+of the stenosis in the parent artery right before the aneurysm sac. There, the cross-section area
+of the vessel is reduced by *70%, with a consequently strong and localized pressure drop.
+Therefore, even small differences between the fabricated model and the geometry used in the
+simulations may affect the comparison. The high resolution stereo-lithography and the scaling
+factor of 2.0 in the present study were aimed to mitigate this effect, but manufacturing imper-
+fections cannot be completely ruled out. However, if these had a strong impact at systole, one
+would expect them to also affect the cycle-averaged results, for which instead the agreement
+with CFD is satisfactory. Finally, we remark that in the 2012 CFD Challenge, aside from the
+prescribed pulsatile flow rates, there were no other constraints imposed on the inflow and out-
+flow boundary conditions. It is therefore possible that different boundary conditions with
+respect to the present measurements account for some of the disagreement.
+4 Discussions and concluding remarks
+4D flow measurements in a giant intracranial aneurysm are performed using PC-MRI under
+pulsatile and steady inflow conditions. In addition, the relative pressure is reconstructed from
+velocities through a Poisson pressure equation. The evolution of the flow structure and the
+probability density functions of the velocity magnitude, vorticity magnitude, relative pressure,
+and wall shear stress show a flow configuration that is largely preserved during the cardiac
+cycle and is not significantly affected by the pulsatility. These findings suggest that the flow pat-
+tern is mostly dictated by the aneurysm sac size and geometry and is quite independent of the
+input conditions. Normalized pressure drop over the aneurysm sac measured at different loca-
+tions of the sac using a pressure transducer is also found in good agreement with the calculated
+pressure distribution. The wall pressure and wall shear stress are elevated near the aneurysm
+neck and near the aneurysm wall where the incoming jet impinges.
+A major goal of the study was to demonstrate the ability of in vitro 4D flow MRI to fully
+resolve the spatio-temporal flow features needed to characterize the hemodynamics. Previ-
+ously, MRI velocimetry has been used in vivo to characterize blood flow in intracranial aneu-
+rysms (e.g. [40]), but limitations in resolution, SNR, and possible artifacts associated to patient
+scanning prevent the unambiguous determination of all flow parameters. There, the compari-
+son with CFD simulations does not completely alleviate this point, due to inherent uncertain-
+ties in the numerical modeling as shown in [15]. In vitro MRI applications have been reported
+(for example [20]), but the resolution of the detailed flow features is hindered by the relatively
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+19 / 25
+small dimension of the aneurysm itself. Isoda et al. (2006) [41] scaled up the phantom but only
+performed a qualitative analysis of the flow topology. The present study demonstrates how
+state-of-the-art 4D flow MRI on scaled-up in vitro models can provide a full description of the
+fluid flow, both for the velocity field and derived quantities (such as vorticity, wall shear stress,
+and pressure field). By scaling up the geometry and matching physiological Reynolds and
+Womersley numbers, we achieve a resolution of about one hundred vectors across the aneu-
+rysm sac, while maintaining a high SNR and therefore high precision.
+Such high resolution and accuracy of the measurements is necessary both for understand-
+ing the hemodynamics and for providing a reliable source of validation to CFD solutions. It
+is in this perspective that we chose an aneurysm that was previously studied by numerous
+groups, but with the only validation of the inlet-outlet pressure drop. In particular, we carried
+out a comparison with the results of the 2012 CFD Challenge simulations [15]. In general, a
+good agreement is observed between experiments and computations for the cycle-averaged
+solution. On the other hand, the discrepancies at the systolic peak are, in many cases, signifi-
+cant both in terms of high velocity structures and wall pressure distribution. This might indi-
+cate an inherent difficulty in accurately simulating the unsteady/unstable flow during the
+acceleration phase of the cardiac cycle in this complex geometry. More detailed topological
+flow features in the simulations, as well as possible effects of inflow/outflow conditions, could
+not be quantified here and should be addressed in future studies.
+The quasi-steady nature of the flow found in our measurements could have significant
+hemodynamic implications. The mechanical stimuli (in terms of pressure and shear stress)
+imparted to the wall by the blood flow persist throughout the cardiac cycle, with the oscillatory
+inflow mildly varying them in magnitude. This is an inherently different situation with respect
+to healthy arterial blood flow, where the temporal variation of the flow features (for the same
+Reynolds and Womersley numbers) would be stronger. Determining the role of this quasi-
+steadiness in the aneurysm formation and progression is beyond the scope of the present
+work, and would require evidence from multiple cases. Nevertheless, the clear indication is
+that here the vessel geometry dominates the hemodynamics, as compared to the specific inflow
+waveform.
+As mentioned in Section 1, a cavity flow mode exhibiting stable features during most of
+the cardiac cycle has been associated with side-wall aneurysms (i.e. originating from the side
+of the artery as in the present case, rather than at a branch point) when the aneurysm number
+is An < 1. It is reminded that the Aneurysm number is defined as An = PIWa/Da where PI is
+the pulsatility index defined earlier and Wa and Da are the aneurysm neck width and parent
+artery diameter, respectively [12, 14, 42]. In the present case, we have An  0.63, and indeed
+we retrieve a quasi-steady behavior with flow features persisting throughout the cycle. This is
+confirmed, in our study, through the main flow statistics (velocity, vorticity, pressure, and wall
+shear stress) that collapse remarkably well for all phases in the cardiac cycle when normalized
+by the relevant quantity based on the inflow at each phase. The quasi-steady nature of the flow
+is confirmed by the fact that quantitatively similar features are found for the steady inflow
+case. Although previous experimental studies have shown stable vortical patterns in intracra-
+nial aneurysms, e.g. [18, 43], to the best of our knowledge this is the first time that a quantita-
+tive account of such behavior is given based on the full volumetric flow information. We also
+note that the aneurysm number has been proposed as a criterion to predict the lesion evolu-
+tion, with An > 1 being an indication of higher rupture risk [12]. In this case we have An < 1,
+and yet the aneurysm was documented to have grown significantly and ruptured shortly after
+treatment [24]. However, as also pointed out by [12], the aneurysm number does not include
+all the important geometrical parameters. Indeed, the sheer size of the present giant aneurysm
+likely plays a dominant role. On the other hand, An is successful in predicting the overall
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+20 / 25
+hemodynamic mode for this case. Realistically, reliable risk assessment requires (at least) a
+combination of hemodynamics and morphologic parameters [44].
+The present study has several limitations. First, this study investigates a single aneurysm
+anatomy with a specific inflow waveform. Therefore, before generalizing our findings, the
+results need to be corroborated by similar analysis in multiple geometries and with different
+physiologically realistic waveforms. Moreover, while our spatial resolution compares favorably
+with previous experimental studies both in vitro and in vivo, it might still not be fine enough to
+accurately resolve the thin boundary layer in the near wall region, which is needed to calculate
+wall shear stress with high accuracy. Furthermore, although the phase-resolved measurements
+provide detailed information on the fluid mechanics throughout the cardiac cycle, they cannot
+capture instantaneous (therefore inherently transient and possibly acyclic) changes in flow fea-
+tures, which may be important at the considered Reynolds numbers [16, 45, 46, 47]. Another
+source of approximation compared to in vivo dynamics is due to a rigid geometry. This is a
+widespread computational and experimental practice given the lack of sufficient in vivo data
+on patient-specific vessel wall constitutive properties. Some studies using dynamic angiogra-
+phy coupled with CFD models showed marginal effects of the wall motion on the flow pattern
+but noticeable change in WSS [48], while others using similar approaches reported no signifi-
+cant effect overall [49]. Still, retrospective clinical studies have shown an association between
+wall motion and rupture status [50]. Recent CFD investigations incorporating fluid-structure
+interaction found that the aneurysm volume variation during the cardiac cycle is correlated
+with the probability of rupture [51, 52]. Finally, we have neglected the non-Newtonian nature
+of the blood. This approximation is typically correct in relatively large brain vessels although it
+may not be fully justified at smaller vessel sizes [53]. Several aneurysm studies that incorpo-
+rated non-Newtonian formulations found Newtonian models to be adequate, see e.g. [54].
+This study shows the significant amount of information that can be extracted from the
+complete volumetric and phase-resolved reconstruction of the flow inside an intracranial
+aneurysm. Although it was not pursued here, this type of data also lends itself to Lagrangian
+transport analysis, whose power has been shown in numerous computational works, see e.g.
+[55]. The potential of 4D flow MRI to elucidate important mechanisms in brain aneurysms
+was recently demonstrated in vivo [56]. Imaging of real patients presents challenges that are
+easily overcome in phantom studies, allowing for higher accuracy and spatial resolution. How-
+ever, with continuous improvements associated to advanced MRI sequences (e.g. leading to
+larger dynamic range, [57]) and ever-increasing magnetic field strength [58], one can envision
+future in vivo studies to reach similar performances. Therefore, development of technological
+advances through in vitro studies has a significant potential to improve non-invasive diagnos-
+tics with evident long-term benefits for patients.
+Acknowledgments
+The authors would like to thank Andras Nemes, Tristan Van de Moortele, Sahar Jalal, Ute
+Goerke, and Andy Grande for their assistance in conducting the experiments and fruitful dis-
+cussions on the matter. This research was conducted with the support of the Winston and
+Maxine Wallin Neuroscience Discovery Fund.
+Author Contributions
+Conceptualization: Omid Amili, Filippo Coletti.
+Data curation: Omid Amili.
+Formal analysis: Omid Amili.
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+21 / 25
+Funding acquisition: Bharathi Jagadeesan, Pierre-Franc¸ois Van de Moortele, Filippo Coletti.
+Investigation: Omid Amili, Sean Moen, Bharathi Jagadeesan, Pierre-Franc¸ois Van de Moor-
+tele, Filippo Coletti.
+Methodology: Omid Amili, Daniele Schiavazzi, Filippo Coletti.
+Project administration: Sean Moen.
+Software: Omid Amili, Daniele Schiavazzi.
+Supervision: Filippo Coletti.
+Validation: Omid Amili.
+Visualization: Omid Amili.
+Writing – original draft: Omid Amili.
+Writing – review & editing: Daniele Schiavazzi, Sean Moen, Bharathi Jagadeesan, Pierre-
+Franc¸ois Van de Moortele, Filippo Coletti.
+References
+1.
+Bonneville F, Sourour N, Biondi A. Intracranial Aneurysms: an Overview. Neuroimaging Clinics of North
+America. 2006; 16(3):371–382. https://doi.org/10.1016/j.nic.2006.05.001 PMID: 16935705
+2.
+Keedy A. An overview of intracranial aneurysms. McGill Journal of Medicine. 2006; 9(2):141–146.
+PMID: 18523626
+3.
+Wermer MJH, Van Der Schaaf IC, Algra A, Rinkel GJE. Risk of rupture of unruptured intracranial aneu-
+rysms in relation to patient and aneurysm characteristics: An updated meta-analysis. Stroke. 2007; 38
+(4):1404–1410. https://doi.org/10.1161/01.STR.0000260955.51401.cd PMID: 17332442
+4.
+Brain Aneurysm Foundation. Brain Aneurysm Statistics and Facts; 2017.
+5.
+Lasheras JC. The biomechanics of arterial aneurysms. Annual Review of Fluid Mechanics. 2007;
+39:293–319. https://doi.org/10.1146/annurev.fluid.39.050905.110128
+6.
+Sforza DM, Putman CM, Cebral JR. Hemodynamics of cerebral aneurysms. Annual Review of Fluid
+Mechanics. 2009; 41:91–107. https://doi.org/10.1146/annurev.fluid.40.111406.102126 PMID:
+19784385
+7.
+Dhar S, Tremmel M, Mocco J, Kim M, Yamamoto J, Siddiqui AH, et al. Morphology parameters for intra-
+cranial aneurysm rupture risk assessment. Neurosurgery. 2008; 63(2):185–196. https://doi.org/10.
+1227/01.NEU.0000316847.64140.81 PMID: 18797347
+8.
+Wiebers DO, Marsh R. Unruptured intracranial aneurysms—Risk of rupture and risks of surgical inter-
+vention. New England Journal of Medicine. 1998; 339(24):1725–1733. https://doi.org/10.1056/
+NEJM199812103392401
+9.
+Wiebers DO. Unruptured intracranial aneurysms: Natural history, clinical outcome, and risks of surgical
+and endovascular treatment. Lancet. 2003; 362(9378):103–110. https://doi.org/10.1016/S0140-6736
+(03)13860-3 PMID: 12867109
+10.
+Weir B, Disney L, Karrison T. Sizes of ruptured and unruptured aneurysms in relation to their sites and
+the ages of patients. Journal of Neurosurgery. 2002; 96(1):64–70. https://doi.org/10.3171/jns.2002.96.
+1.0064 PMID: 11794606
+11.
+Zanaty M, Daou B, Chalouhi N, Starke RM, Jabbour P, Hasan D. Evidence that a subset of aneurysms
+less than 7 mm warrant treatment. Journal of the American Heart Association. 2016; p. 1–7.
+12.
+Le TB, Borazjani I, Sotiropoulos F. Pulsatile flow effects on the hemodynamics of intracranial aneu-
+rysms. Journal of Biomechanical Engineering. 2010; 132(11). https://doi.org/10.1115/1.4002702 PMID:
+21034150
+13.
+Patti J, Viñuela F, Chien A. Distinct trends of pulsatility found at the necks of ruptured and unruptured
+aneurysms. Journal of NeuroInterventional Surgery. 2014; 6(2):103–107. https://doi.org/10.1136/
+neurintsurg-2013-010660 PMID: 23416784
+14.
+Le TB, Troolin DR, Amatya D, Longmire EK, Sotiropoulos F. Vortex phenomena in sidewall aneurysm
+hemodynamics: Experiment and numerical simulation. Annals of Biomedical Engineering. 2013; 41
+(10):2157–2170. https://doi.org/10.1007/s10439-013-0811-9 PMID: 23604953
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+22 / 25
+15.
+Steinman DA, Hoi Y, Fahy P, Morris L, Walsh MT, Aristokleous N, et al. Variability of computational fluid
+dynamics solutions for pressure and flow in a giant aneurysm: The ASME 2012 summer bioengineering
+conference CFD challenge. Journal of Biomechanical Engineering. 2013; 135(2). https://doi.org/10.
+1115/1.4023382 PMID: 23445061
+16.
+Yagi T, Sato A, Shinke M, Takahashi S, Tobe Y, Takao H, et al. Experimental insights into flow impinge-
+ment in cerebral aneurysm by stereoscopic particle image velocimetry: Transition from a laminar
+regime. Journal of the Royal Society Interface. 2013; 10(82). https://doi.org/10.1098/rsif.2012.1031
+17.
+Hoi Y, Woodward SH, Kim M, Taulbee DB, Meng H. Validation of CFD simulations of cerebral aneu-
+rysms with implication of geometric variations. Journal of Biomechanical Engineering. 2006; 128
+(6):844–851. https://doi.org/10.1115/1.2354209 PMID: 17154684
+18.
+Ford MD, Nikolov HN, Milner JS, Lownie SP, DeMont EM, Kalata W, et al. PIV-measured versus CFD-
+predicted flow dynamics in anatomically realistic cerebral aneurysm models. Journal of Biomechanical
+Engineering. 2008; 130(2). https://doi.org/10.1115/1.2900724 PMID: 18412502
+19.
+Hollnagel DI, Summers PE, Poulikakos D, Kollias SS. Comparative velocity investigations in cerebral
+arteries and aneurysms: 3D phase-contrast MR angiography, laser Doppler velocimetry and computa-
+tional fluid dynamics. NMR in Biomedicine. 2009; 22(8):795–808. https://doi.org/10.1002/nbm.1389
+PMID: 19412933
+20.
+van Ooij P, Gue´don A, Poelma C, Schneiders J, Rutten MCM, Marquering HA, et al. Complex flow pat-
+terns in a real-size intracranial aneurysm phantom: Phase contrast MRI compared with particle image
+velocimetry and computational fluid dynamics. NMR in Biomedicine. 2012; 25(1):14–26. https://doi.org/
+10.1002/nbm.1706 PMID: 21480417
+21.
+Roloff C, Borda´s R, Nickl R, Ma´trai Z, Szasza´k N, Szila´rd S, et al. Investigation of the velocity field in a
+full-scale model of a cerebral aneurysm. International Journal of Heat and Fluid Flow. 2013; 43:212–
+219. https://doi.org/10.1016/j.ijheatfluidflow.2013.06.006
+22.
+Bouillot P, Brina O, Ouared R, Lovblad KO, Pereira VM, Farhat M. Multi-time-lag PIV analysis of steady
+and pulsatile flows in a sidewall aneurysm. Experiments in Fluids. 2014; 55(6). https://doi.org/10.1007/
+s00348-014-1746-0
+23.
+McGah PM, Nerva JD, Morton RP, Barbour MC, Levitt MR, Mourad PD, et al. In vitro validation of endo-
+vascular Doppler-derived flow rates in models of cerebral circulation. Physiological Measurement.
+2015; 36(11). https://doi.org/10.1088/0967-3334/36/11/2301 PMID: 26450643
+24.
+Cebral JR, Mut F, Raschi M, Scrivano E, Ceratto R, Lylyk P, et al. Aneurysm rupture following treatment
+with flow-diverting stents: Computational hemodynamics analysis of treatment. American Journal of
+Neuroradiology. 2011; 32(1):27–33. PMID: 21071533
+25.
+Womersley JR. Method for the calculation of velocity, rate of flow and viscous drag in arteries when the
+pressure gradient is known. The Journal of Physiology. 1955; 127(3):553–563. https://doi.org/10.1113/
+jphysiol.1955.sp005276 PMID: 14368548
+26.
+Westerhof N, Lankhaar JW, Westerhof BE. The arterial windkessel. Medical and Biological Engineering
+and Computing. 2009; 47(2):131–141. https://doi.org/10.1007/s11517-008-0359-2 PMID: 18543011
+27.
+Elkins CJ, Alley MT. Magnetic resonance velocimetry: Applications of magnetic resonance imaging in
+the measurement of fluid motion. Experiments in Fluids. 2007; 43(6):823–858. https://doi.org/10.1007/
+s00348-007-0383-2
+28.
+Glycerine Producers’ Association. Physical properties of glycerine and its solutions. New York: Glycer-
+ine Producers’ Association; 1963.
+29.
+Markl M, Frydrychowicz A, Kozerke S, Hope M, Wieben O. 4D flow MRI. Journal of Magnetic Reso-
+nance Imaging. 2012; 36(5):1015–1036. https://doi.org/10.1002/jmri.23556 PMID: 23090914
+30.
+Pelc NJ, Sommer FG, Li KC, Brosnan TJ, Herfkens RJ, Enzmann DR. Quantitative magnetic resonance
+flow imaging. Magnetic resonance quarterly. 1994; 10(3):125–147. PMID: 7811608
+31.
+Haacke EM, Smith AS, Lin W, Lewin JS, Finelli DA, Duerk JL. Velocity quantification in magnetic reso-
+nance imaging. Topics in Magnetic Resonance Imaging. 1991; 3(3):34–49. https://doi.org/10.1097/
+00002142-199106000-00007 PMID: 2054197
+32.
+Dietrich O, Raya JG, Reeder SB, Reiser MF, Schoenberg SO. Measurement of signal-to-noise ratios in
+MR images: Influence of multichannel coils, parallel imaging, and reconstruction filters. Journal of Mag-
+netic Resonance Imaging. 2007; 26(2):375–385. https://doi.org/10.1002/jmri.20969 PMID: 17622966
+33.
+Jalal S, Nemes A, Van de Moortele T, Schmitter S, Coletti F. Three-dimensional inspiratory flow in a
+double bifurcation airway model. Experiments in Fluids. 2016; 57(9). https://doi.org/10.1007/s00348-
+016-2234-5
+34.
+Schiavazzi D, Coletti F, Iaccarino G, Eaton JK. A matching pursuit approach to solenoidal filtering of
+three-dimensional velocity measurements. Journal of Computational Physics. 2014; 263:206–221.
+https://doi.org/10.1016/j.jcp.2013.12.049
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+23 / 25
+35.
+Schiavazzi D, Nemes A, Schmitter S, Coletti F. The effect of velocity filtering in pressure estimation.
+Experiments in Fluids. 2017; 58(5). https://doi.org/10.1007/s00348-017-2314-1
+36.
+Evans M, Hastings N, Peacock B. Statistical distributions. 3rd ed. John Wiley & Sons; 2001.
+37.
+Updegrove A, Wilson NM, Merkow J, Lan H, Marsden AL, Shadden SC. SimVascular: An Open Source
+Pipeline for Cardiovascular Simulation. Annals of Biomedical Engineering. 2017; 45(3):525–541.
+https://doi.org/10.1007/s10439-016-1762-8 PMID: 27933407
+38.
+Qian Y, Takao H, Umezu M, Murayama Y. Risk analysis of unruptured aneurysms using computational
+fluid dynamics technology: Preliminary results. American Journal of Neuroradiology. 2011; 32
+(10):1948–1955. https://doi.org/10.3174/ajnr.A2655 PMID: 21903914
+39.
+Takao H, Murayama Y, Otsuka S, Qian Y, Mohamed A, Masuda S, et al. Hemodynamic differences
+between unruptured and ruptured intracranial aneurysms during observation. Stroke. 2012; 43
+(5):1436–1439. https://doi.org/10.1161/STROKEAHA.111.640995 PMID: 22363053
+40.
+Boussel L, Rayz V, Martin A, Acevedo-Bolton G, Lawton MT, Higashida R, et al. Phase-contrast mag-
+netic resonance imaging measurements in intracranial aneurysms in vivo of flow patterns, velocity
+fields, and wall shear stress: Comparison with computational fluid dynamics. Magnetic Resonance in
+Medicine. 2009; 61(2):409–417. https://doi.org/10.1002/mrm.21861 PMID: 19161132
+41.
+Isoda H, Hirano M, Takeda H, Kosugi T, Alley MT, Markl M, et al. Visualization of hemodynamics in a sil-
+icon aneurysm model using time-resolved, 3D, phase-contrast MRI. American Journal of Neuroradiol-
+ogy. 2006; 27(5):1119–1122. PMID: 16687555
+42.
+Asgharzadeh H, Borazjani I. Effects of Reynolds and Womersley Numbers on the Hemodynamics of
+Intracranial Aneurysms. Computational and Mathematical Methods in Medicine. 2016; 2016. https://doi.
+org/10.1155/2016/7412926 PMID: 27847544
+43.
+Hope TA, Hope MD, Purcell DD, von Morze C, Vigneron DB, Alley MT, et al. Evaluation of intracranial
+stenoses and aneurysms with accelerated 4D flow. Magnetic Resonance Imaging. 2010; 28(1):41–46.
+https://doi.org/10.1016/j.mri.2009.05.042 PMID: 19577400
+44.
+Xiang J, Natarajan SK, Tremmel M, Ma D, Mocco J, Hopkins LN, et al. Hemodynamic-morphologic dis-
+criminants for intracranial aneurysm rupture. Stroke. 2011; 42(1):144–152. https://doi.org/10.1161/
+STROKEAHA.110.592923 PMID: 21106956
+45.
+Ford MD, Piomelli U. Exploring high frequency temporal fluctuations in the terminal aneurysm of the
+basilar bifurcation. Journal of Biomechanical Engineering. 2012; 134(9). https://doi.org/10.1115/1.
+4007279 PMID: 22938370
+46.
+Poelma C, Watton PN, Ventikos Y. Transitional flow in aneurysms and the computation of haemody-
+namic parameters. Journal of the Royal Society Interface. 2015; 12(105). https://doi.org/10.1098/rsif.
+2014.1394
+47.
+Varble N, Xiang J, Lin N, Levy E, Meng H. Flow Instability Detected by High-Resolution Computational
+Fluid Dynamics in Fifty-Six Middle Cerebral Artery Aneurysms. Journal of Biomechanical Engineering.
+2016; 138(6). https://doi.org/10.1115/1.4033477 PMID: 27109451
+48.
+Oubel E, De Craene M, Putman CM, Cebral JR, Frangi AF. Analysis of intracranial aneurysm wall
+motion and its effects on hemodynamic patterns. vol. 6511; 2007.
+49.
+Sforza DM, Lo¨hner R, Putman C, Cebral JR. Hemodynamic analysis of intracranial aneurysms with
+moving parent arteries: Basilar tip aneurysms. International Journal for Numerical Methods in Biomedi-
+cal Engineering. 2010; 26(10):1219–1227. https://doi.org/10.1002/cnm.1385 PMID: 21113271
+50.
+Vanrossomme XAE, Eker OF, Thiran JP, Courbebaisse GP, Zouaoui Boudjeltia K. Intracranial aneu-
+rysms: Wall motion analysis for prediction of rupture. American Journal of Neuroradiology. 2015; 36
+(10):1796–1802. https://doi.org/10.3174/ajnr.A4310 PMID: 25929878
+51.
+Sanchez M, Ambard D, Costalat V, Mendez S, Jourdan F, Nicoud F. Biomechanical assessment of the
+individual risk of rupture of cerebral aneurysms: A proof of concept. Annals of Biomedical Engineering.
+2013; 41(1):28–40. https://doi.org/10.1007/s10439-012-0632-2 PMID: 22864824
+52.
+Sanchez M, Ecker O, Ambard D, Jourdan F, Nicoud F, Mendez S, et al. Intracranial aneurysmal pulsati-
+lity as a new individual criterion for rupture risk evaluation: Biomechanical and numeric approach
+(IRRAs Project). American Journal of Neuroradiology. 2014; 35(9):1765–1771. https://doi.org/10.3174/
+ajnr.A3949 PMID: 24852288
+53.
+Basombrı´o FG, Dari EA, Buscaglia GC, Feijo´o RA. Numerical experiments in complex hemodynamic
+flows. Non-Newtonian effects. International Journal of Computational Fluid Dynamics. 2002; 16
+(4):231–246.
+54.
+Cebral JR, Castro MA, Appanaboyina S, Putman CM, Millan D, Frangi AF. Efficient pipeline for image-
+based patient-specific analysis of cerebral aneurysm hemodynamics: Technique and sensitivity. IEEE
+Transactions on Medical Imaging. 2005; 24(4):457–467. https://doi.org/10.1109/TMI.2005.844159
+PMID: 15822804
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+24 / 25
+55.
+Shadden SC, Arzani A. Lagrangian Postprocessing of Computational Hemodynamics. Annals of Bio-
+medical Engineering. 2014; 43(1):41–58. https://doi.org/10.1007/s10439-014-1070-0 PMID: 25059889
+56.
+Schnell S, Ansari SA, Vakil P, Wasielewski M, Carr ML, Hurley MC, et al. Three-dimensional hemody-
+namics in intracranial aneurysms: Influence of size and morphology. Journal of Magnetic Resonance
+Imaging. 2014; 39(1):120–131. https://doi.org/10.1002/jmri.24110 PMID: 24151067
+57.
+Schnell S, Ansari SA, Wu C, Garcia J, Murphy IG, Rahman OA, et al. Accelerated dual-venc 4D flow
+MRI for neurovascular applications. Journal of Magnetic Resonance Imaging. 2017;. https://doi.org/10.
+1002/jmri.25595
+58.
+Erturk MA, Wu X, Eryaman Y, Van de Moortele PF, Auerbach EJ, Lagore RL, et al. Toward imaging the
+body at 10.5 tesla. Magnetic Resonance in Medicine. 2017; 77(1):434–443. https://doi.org/10.1002/
+mrm.26487 PMID: 27770469
+Hemodynamics in a giant intracranial aneurysm characterized by in vitro 4D flow MRI
+PLOS ONE | https://doi.org/10.1371/journal.pone.0188323
+January 4, 2018
+25 / 25

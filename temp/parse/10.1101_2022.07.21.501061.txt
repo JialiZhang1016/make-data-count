@@ -1,0 +1,2111 @@
+Climate Ecology as a Driver of Global Breeding Periods in Anurans 
+1 
+ 
+2 
+Bryan H. Juarez and Lauren A. O’Connell 
+3 
+  
+4 
+Department of Biology; Stanford University; Stanford, California 94305, USA.  
+5 
+ 
+6 
+Co-Corresponding Authors Email: bryanhjuarez@gmail.com, loconnel@stanford.edu 
+7 
+  
+8 
+ORCIDs: Juarez: 0000-0002-5474-596X; O’Connell: 0000-0002-2706-4077  
+9 
+  
+10 
+Key Words: amphibian, frogs, reproduction, phenology, environmental change, conservation, 
+11 
+microhabitat, body size 
+12 
+Running Title: Global climate effects on amphibian reproduction 
+13 
+Author contributions: BHJ and LAO conceptualized the project; BHJ gathered the data and 
+14 
+performed all analyses; BHJ wrote the manuscript and both authors edited and discussed the 
+15 
+text. 
+16 
+Data accessibility: All data and code are publicly available on datadryad.org 
+17 
+(https://doi.org/10.5061/dryad.547d7wmc2) and included as supplementary material. Code is 
+18 
+also found at github.com/bhjuarez/breeding-period in R, Rmarkdown, and HTML formats. 
+19 
+Number of words: Abstract: 150; Main text: 4,708. 
+20 
+Number of references: 97. 
+21 
+Number of figures and tables: 4 Figures, 2 Tables. 
+22 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Abstract 
+23 
+Climate can have profound effects on reproductive behavior and physiology, especially in 
+24 
+ectothermic animals. In amphibians, the evolution of breeding period due to climate has 
+25 
+received little attention despite its direct connection to fitness and relevance to conservation. We 
+26 
+used phylogenetic comparative methods to analyze a global dataset of frog breeding periods, 
+27 
+climate, body size, and microhabitat for 497 species (41 of 54 families). We found support for 
+28 
+the hypothesis that breeding periods are longer in the warmer, wetter, aseasonal tropics and 
+29 
+shorter in the colder, dryer, seasonal temperate zone. However, this latitudinal reproduction 
+30 
+gradient is more complex than expected; the effect of climate depends on body size. 
+31 
+Additionally, breeding periods were similar across microhabitats. Overall, our model describes 
+32 
+~20% of variation in breeding periods and these results are robust to phylogenetic uncertainty. 
+33 
+Our results set within an eco-physiology framework have broad implications for more targeted 
+34 
+priorities in amphibian conservation. 
+35 
+ 
+36 
+37 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+ 
+38 
+Introduction 
+39 
+Climate change is increasingly threatening global biodiversity with increasing extinctions 
+40 
+as environments are altered (Arneth et al. 2020; Bellard et al. 2012; Thomas et al. 2004; Urban 
+41 
+2015). While climate change is a growing problem in the present, its past effects have molded 
+42 
+the behavior and physiology of species still around today. Thus, by studying coevolution 
+43 
+between organisms and the environment, we can better understand how climate change will 
+44 
+differentially affect species survival. Importantly, evolutionary biology is taking a key role in 
+45 
+conservation biology (Zizka et al. 2021), with climate change and anthropogenic impacts at the 
+46 
+heart of these studies. As successful reproduction is necessary for survival and fitness, studies 
+47 
+of the ecology and evolution of reproductive traits are needed to understand the effects of 
+48 
+climate change on species reproductive success. For example, climate change has led to 
+49 
+shifting clutch sizes, offspring sizes, and breeding season start times in vertebrates (Bronson 
+50 
+2009; Padilla Perez and Angilletta 2022; Pankhurst and Munday 2011; Telemeco et al. 2013; 
+51 
+Todd et al. 2011; Visser et al. 2004). However, limited natural history observations across many 
+52 
+species and vertebrate groups has stalled research that would help us better understand how 
+53 
+climate impacts various reproductive behaviors. Therefore, ideal model systems for learning 
+54 
+how climate affects reproductive behaviors and success include groups with abundant natural 
+55 
+history observations and whose reproduction is tied to particular environments.  
+56 
+Anurans (frogs and toads) are an ecologically and taxonomically diverse ectotherm 
+57 
+group (>7,400 species; AmphibiaWeb 2022) whose reproduction and development is generally 
+58 
+dependent on water availability during breeding. Their iconic calling behavior used for 
+59 
+reproduction has made them a prime target for natural history studies, making their reproductive 
+60 
+behaviors reasonably well-known. Anurans inhabit a wide array of habitats around the world 
+61 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+including tropical rainforests, arid deserts, temperate forests, freezing tundras, and more. These 
+62 
+habitats are used differently by various species which specialize in aquatic, terrestrial, fossorial 
+63 
+(underground), or arboreal (above ground) microhabitats (Moen & Wiens 2017). Studies of 
+64 
+amphibian reproduction and climate are dominated by advancements in our understanding of 
+65 
+reproductive modes (e.g., Gomez-Mestre et al. 2012) or reproductive timing (Beattie 1985; 
+66 
+Benard 2015; Neveu 2009; Reading 2003; Todd et al. 2011; While and Uller 2014). 
+67 
+Comparatively little is known about the relationship between climate and breeding period (sensu 
+68 
+Wells 1977), the duration of breeding within a population, which is unique from the duration of 
+69 
+breeding across populations of a single species. This is despite the stunning contrast of tropical 
+70 
+species that breed year-round to explosive-breeding species that limit reproduction to only a few 
+71 
+days or weeks of the year (Wells 1977). Common knowledge in herpetology says there exists a 
+72 
+latitudinal gradient in breeding periods, where tropical amphibians breed for generally longer 
+73 
+periods compared to temperate amphibians (Wells 2007). However, the precise role of climate 
+74 
+on breeding periods has yet to be identified across the phylogeny of anurans and further study 
+75 
+is necessary given widespread amphibian declines (Campbell Grant et al. 2020; Fisher and 
+76 
+Garner 2020). 
+77 
+If climate has an effect on breeding periods, we can expect physiology to play a central 
+78 
+role since frogs are especially sensitive to the environment as ectotherms and are reliant on 
+79 
+water for reproduction. Natural selection has likely led to physiological changes such that 
+80 
+populations maximize their reproductive investment leading to longer breeding periods in the 
+81 
+context of specific climate exposure or microhabitat use (Huey et al. 2012; Williams et al. 2008). 
+82 
+Thus, climate is tied to physiological and reproductive traits to the extent that individuals 
+83 
+experience changes in regional climate and atmospheric conditions during the breeding period 
+84 
+while in water or on land. These links have been shown previously, where body temperature is 
+85 
+correlated with substrate temperature and air temperature in the toad Bufo canorus 
+86 
+(Cunningham 1963). Both temperature and water are known breeding cues in frogs and warmer 
+87 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+temperatures likely lead to longer breeding periods due to greater food supply, reproductive 
+88 
+investment, and egg formation in frogs (Girish and Saidapur 2000; Lardner and Loman 2003; 
+89 
+Rastogi et al. 1983). Additionally, since reproduction in anurans is generally tied to water, we 
+90 
+can expect increased water availability to result in longer breeding periods. These abiotic 
+91 
+variables can also interact, as higher temperatures in drier environments may lead to increased 
+92 
+rates of water loss. From this perspective, larger-bodied species with lower surface area:volume 
+93 
+(SA:V) ratios may benefit from lower rates of water loss relative to smaller species. Alternatively, 
+94 
+larger-bodied species may be at a disadvantage in sub-optimal environments due to greater 
+95 
+resource demand and limited area for water or heat exchange. Species body size likely 
+96 
+influences the effect climate has on breeding period due to trade-offs between reproduction and 
+97 
+physiological performance over the course of the breeding period. Knowledge of how climate 
+98 
+and body size interact to influence anuran breeding periods is unknown but is likely to allow for 
+99 
+more targeted conservation efforts.  
+100 
+The goal of this study is to identify how ecological factors are related to reproduction 
+101 
+(breeding periods) in anurans on a global scale. Specifically, we test (H1) whether longer 
+102 
+breeding periods are the result of warmer, wetter climates, (H2) whether differences in body 
+103 
+size significantly alter the way climate influences breeding periods, (H3) whether species with 
+104 
+different non-breeding microhabitat preferences exhibit differences in breeding period, and (H4) 
+105 
+whether climate differs significantly between species microhabitat and geographical (temperate 
+106 
+and tropical) zones. Here, we provide the first quantitative assessment of the latitudinal gradient 
+107 
+of reproduction in anurans, including climatic and possible physiological drivers. 
+108 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Material and Methods 
+109 
+Climate data 
+110 
+We obtained coordinate data for 497 species representing 41 of 54 anuran families from 
+111 
+GBIF.org (GBIF.org 2021a,b,c,d) accessed 3 October 2021. These queries were for presence 
+112 
+coordinate data for non-fossil native observations lacking geospatial issues. We cleaned the 
+113 
+data by removing coordinates points with >100km uncertainty or outside land boundaries of a 
+114 
+high resolution (1:10m) world countries map using the R v4.2.1 (R Core Team 2021) package 
+115 
+rworldxtra v1.01 (South 2012). We also removed coordinates incorrectly associated with and 
+116 
+within 100m of biodiversity collections outside of the natural range of the species. Additionally, 
+117 
+we removed Corythomantis greeningi since its coordinates mapped to a continent far outside its 
+118 
+natural range. We restricted data for the invasive Cane Toad (Rhinella marina) to its naturally 
+119 
+occurring range from southern United States to South America (AmphibiaWeb 2021). Next, we 
+120 
+removed species with less than 3 unique observations from the dataset and retained only 
+121 
+unique coordinates for each species to minimize the effects of spatial autocorrelation. Lastly, we 
+122 
+removed data outside the spatial 95% Confidence Interval for each species distribution with a 
+123 
+minimum of 30 occurrences using the median absolute deviation (mad) method (Huber 1981). 
+124 
+This resulted in a final coordinate dataset of 822,953 observations (mean = 1,656 observations 
+125 
+per species) after removing species without behavior or body size (see below) or missing from 
+126 
+the phylogeny of Jetz and Pyron (2018). Data cleaning was performed using the 
+127 
+CoordinateCleaner package v2.0-20 (Zizka et al. 2019).  
+128 
+We extracted seven variables from each coordinate using the WorldClim 2.1 (Fick & 
+129 
+Hijmans 2017) and envirem (Title & Bemmels 2018) databases at 30 seconds (~1km2) 
+130 
+resolution. Our data included variables affecting temperature and water availability and covering 
+131 
+all possible breeding period values (0–365 days). The final dataset included annual mean 
+132 
+temperature, temperature seasonality, annual precipitation, precipitation seasonality, annual 
+133 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+potential evapotranspiration (PET), PET seasonality, and topographic wetness. Topographic 
+134 
+wetness is the land’s ability to retain water obtained from estimates of upslope incurrent areas 
+135 
+and local slope, which is correlated to vascular plant species richness and soil moisture (see 
+136 
+Sørensen et al. 2005). We calculated species means for each climate variable to analyze the 
+137 
+dataset in a phylogenetic comparative framework. 
+138 
+Behavior data 
+139 
+We collected species means of breeding period (sensu Wells 1977) for each species in 
+140 
+this study. To obtain species means, we collected approximate start and end dates for breeding 
+141 
+periods from the primary literature or AmphibiaWeb (2022) and averaged all available breeding 
+142 
+period data for individual populations. We then calculated the difference in calendar days 
+143 
+between the start and end dates, assuming 365 calendar days. Since some dates were reported 
+144 
+as qualitative data (e.g., “May”, or “early May”), we ascribed values of either the first or last day 
+145 
+of the month when breeding periods were reported as starting or ending on a specific month 
+146 
+without a specific date given. When breeding periods were reported as the “early” or “late” parts 
+147 
+of a month, we matched this to the end of the 1st week and 3rd week, respectively. Rarely, 
+148 
+breeding periods were reported as specific seasons (e.g., “Summer” or “wet season”) and we 
+149 
+defined these as the number of days corresponding to each season and country. Populations 
+150 
+from species which are explosive breeders are typically associated with breeding periods lasting 
+151 
+only a few days to weeks, but never more than a month (Wells 1977). Since we never observed 
+152 
+published data reporting explosive breeding over a period longer than 2 weeks, we 
+153 
+conservatively assigned a period of 2 weeks to species whose only description of the breeding 
+154 
+period was “explosive breeding”. 
+155 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Body size, habitat, and phylogenetic data 
+156 
+We collected maximum male body sizes (snout-vent length) and habitat data for every 
+157 
+species in this study from the primary literature and other datasets (AmphibiaWeb 2022; IUCN 
+158 
+2022; Moen and Wiens 2017; Womack and Bell 2020). Species were assigned to microhabitat 
+159 
+categories following Moen and Wiens (2017) and included: (1) aquatic, (2) arboreal, (3) 
+160 
+burrowing, (4) terrestrial, and (5) torrential. We also included partial categories such as: (6) 
+161 
+semi-arboreal, (7) semi-aquatic, and (8) semi-burrowing. Finally, we calculated phylogenetic 
+162 
+covariance matrices from the consensus tree of Jetz and Pyron (2018) to incorporate 
+163 
+evolutionary history as weights in phylogenetic regression. Additionally, we used 1,000 samples 
+164 
+from the pseudoposterior distribution of trees from Jetz and Pyron (2018) to assess models in 
+165 
+terms of phylogenetic uncertainty (see below). 
+166 
+Statistical analysis and visualization 
+167 
+ 
+All analyses were performed in R. We used ggtree v3.4.0 (Yu 2020; Yu et al. 2018; Yu et 
+168 
+al. 2017) to plot average species breeding periods and temperate-tropical geographical zones. 
+169 
+We analyzed the data using phylogenetic generalized least squares (PGLS; Grafen 1989; 
+170 
+Martins & Hansen 1997) implemented through RRPP v1.3.0 (Collyer and Adams 2018, 2019). 
+171 
+Notably, RRPP uses a residual randomized permutation procedure to fit models, evaluate 
+172 
+significance, and calculate effect sizes for model terms. We used 9,999 iterations for 
+173 
+significance testing in all models. We estimated phylogenetic covariance matrices using ape 
+174 
+v5.6-2 (Paradis & Schliep 2019).  
+175 
+We scaled each climate variable and performed a principal component analysis (PCA) to 
+176 
+avoid collinearity issues in our models. To test our hypotheses, we used phylogenetic multiple 
+177 
+regression to examine the relationship of breeding period, all 7 principal components (PCs), and 
+178 
+body size. To account for allometry of body size and since the natural logarithm of surface area-
+179 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+to-volume ratio is expected to scale linearly with the natural logarithm of body size (Castro et al. 
+180 
+2021; Klein et al. 2016; Santini et al. 2018), we used the natural logarithm of body size in our 
+181 
+models. Additionally, we fit a phylogenetic ANCOVA model which included interactions between 
+182 
+each PC and body size. We also used ANOVA to test whether adding these interactions 
+183 
+resulted in a significant improvement in model performance. To aid in interpretation of these 
+184 
+models, we used phylogenetic regression to determine the relationship between breeding period 
+185 
+and each individual climate variable. We determined the effects of phylogenetic uncertainty in 
+186 
+our models by rerunning the ANCOVA model once each for 1,000 trees from the 
+187 
+pseudoposterior distribution of Jetz and Pyron (2018), following Baken et al. (2021). From these 
+188 
+analyses we obtained one distribution of 1,000 Z-scores per model term and visualized the 
+189 
+proportion of trees under which terms were not significant. We plotted these distributions using 
+190 
+ggridges v0.5.3 (Wilke 2021).  
+191 
+We used phylogenetic ANOVA to test whether breeding periods differ between 
+192 
+microhabitat categories, followed by evaluation of pairwise comparisons. We controlled for Type 
+193 
+I error rates due to multiple comparisons using the Sidak-like step-down procedure, which is 
+194 
+more powerful than the Sidak and Bonferroni methods (Holland & Copenhaver 1987), using 
+195 
+mutoss v0.1-12 (MuToss Coding Team et al. 2017). We used a phylogenetic factorial 
+196 
+MANCOVA to determine how climate (all 7 PC’s) differs among microhabitats and 
+197 
+temperate/tropical zones. Finally, we visualized these data by plotting conver hulls for groupings 
+198 
+of microhabitat and geographical zone using geomorph v4.0.4 (Adams et al. 2021; Baken et al. 
+199 
+2021b). 
+200 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Results 
+201 
+Frog breeding periods follow a latitudinal gradient 
+202 
+We examined phylogenetic patterns of average breeding period (mean = 148 days, 
+203 
+range = 1–365 days, std. error = 4.5 days) and geographical zone (temperate/tropical) (Fig. 1) 
+204 
+and found species with longer breeding periods tend to live in tropical regions, whereas 
+205 
+temperate species breed for shorter periods. However, this pattern has several exceptions, such 
+206 
+as temperate species with long breeding periods and tropical species with very short breeding 
+207 
+periods. Overall, temperate species breed for an average of 127.8 days (median = 107 days, 
+208 
+range = 1–365 days, std. error = 5.87 days) and tropical species breed for an average of 167.3 
+209 
+days (median = 181 days, range = 5–365 days, std. error = 6.52 days). Climate principal 
+210 
+components (PCs) 1–3 explained 90% of data variance (Table 1; SI 1). We found variable 
+211 
+loadings for PC1 to be similar to known latitudinal climate differences and determined PC1 was 
+212 
+highly correlated (r = -0.94) with the absolute value of median latitude for each species (SI 1).  
+213 
+Climate and body size impact breeding periods 
+214 
+As body size can play a large role in thermal physiology and desiccation, we compared 
+215 
+model fits between two models with and without interactions between climate and body size 
+216 
+(snout-vent length). Indeed, including body size substantially improved model fit (F = 2.40, p = 
+217 
+0.0082; Table 2). Overall, this model explained 18% of variation in breeding periods.  
+218 
+We next describe this model in the context of phylogenetic uncertainty and given the 
+219 
+individual effects of each climate variable (see SI 1). We found larger species from the tropics 
+220 
+(high scores on PC1) tend to exhibit longer breeding periods relative to smaller species and the 
+221 
+magnitude of this effect can be up to 60-90 days. However, this pattern reverses in the 
+222 
+temperate zone where relatively smaller species exhibit longer breeding periods (Fig. 2A). For 
+223 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+example, Rana pretiosa (median latitude = 42.60) can be 14mm larger than Rana macrocnemis 
+224 
+(median latitude = 45.33) but exhibit a breeding period 48 days shorter (61-13=48 days). This 
+225 
+effect was due to latitudinal differences in temperature, temperature seasonality, precipitation, 
+226 
+and potential evapotranspiration (PET) seasonality, each showing similar effects when analyzed 
+227 
+individually (SI 1 Table 1). Since PET did not have a significant individual effect on breeding 
+228 
+periods, it likely does not affect breeding periods although it loads highly onto PC1; we do not 
+229 
+interpret PET further for any PC. The effect of PC1 was robust to phylogenetic uncertainty and 
+230 
+significant in 89.7% of surveyed trees while its combined effect with body size was supported in 
+231 
+64.2% of trees (Fig. 3). Independent of latitude (PC1), we found a significant impact of PC2 and 
+232 
+body size on breeding periods (Fig. 2B). Specifically, we found that relatively larger species 
+233 
+breed for longer periods in rainy environments with low topographic wetness (high values for 
+234 
+PC2) and smaller species breed for longer periods in environments with little rain but high 
+235 
+topographic wetness. Although topographic wetness had no individual effect on breeding 
+236 
+periods, it did exhibit a significant impact when paired with body size. This trend showed 
+237 
+moderate support across surveyed phylogenies with significance of PC2 and the interaction with 
+238 
+size supported in 0.714% and 0.704% of trees, respectively (Fig. 3). Additionally, we found 
+239 
+support for a size-independent role of PC3, where species living regions with low precipitation 
+240 
+seasonality (PC3) exhibit longer breeding periods (Fig. 2C). This pattern was significant in 
+241 
+87.9% of surveyed trees compared to only 31.4% of trees when taking size into account (Fig. 3). 
+242 
+Finally, we also found a size-independent effect of PC7 associated with warmer temperatures, 
+243 
+independent of temperature effects of other PC’s, where longer breeding periods are associated 
+244 
+with warmer temperatures. This pattern was supported in 66.9% of surveyed phylogenetic 
+245 
+histories.  
+246 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Breeding periods are not different between microhabitats 
+247 
+The microhabitats species occupy can have different effects on breeding period 
+248 
+depending on differences in temperature and moisture within temperate or tropical regions. 
+249 
+Therefore, we tested whether anuran species with different microhabitat preferences exhibit 
+250 
+differences in breeding periods. We initially found support for this relationship, where species 
+251 
+from various microhabitats have different breeding periods (F = 4.09, p = 0.0062). However, 
+252 
+pairwise differences between microhabitats were not significant after accounting for multiple 
+253 
+comparisons (see SI 1 Table 2). In contrast to our expectation, we found large overlap in 
+254 
+breeding periods across microhabitat categories (Fig. 4A), including a wide breeding period 
+255 
+range associated with burrowing and semi-burrowing species. Semi-arboreal species had the 
+256 
+greatest proportion of species with a long breeding period. We next used a factorial MANCOVA 
+257 
+used examine climatic differences corresponding to combinations of microhabitat and 
+258 
+geographical zone (i.e., their interaction; F = 2.05, r2 = 0.02, Z = 2.27, p = 0.0124), but none of 
+259 
+these were significant after correcting for multiple comparisons (see SI 1 Table 3). Finally, we 
+260 
+found significant climate differences among microhabitats (F = 7.01, r2 = 0.08, Z = 3.77, p = 
+261 
+0.0001; Fig. 4B) and between temperate and tropical zones (F = 87.46, r2 = 0.14, Z = 8.93, p = 
+262 
+0.0001) but we did not find pairwise differences in the former after accounting for geographical 
+263 
+zone (see SI 1 Table 4). 
+264 
+Discussion 
+265 
+ 
+This study documents the evolution of reproductive behavior associated with climate in 
+266 
+one of the largest vertebrate groups. Here we present the first quantitative evidence, to our 
+267 
+knowledge, of the latitudinal gradient of breeding period in anurans and its relationship to 
+268 
+climate. Our overall findings support longer breeding periods where frogs invest more time into 
+269 
+reproduction in warmer and wetter habitats with little seasonality. We also discovered that the 
+270 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+time invested into reproduction, within the context of particular climates, is influenced by body 
+271 
+size. We discuss our results in the context of physiology and reproduction and suggest how this 
+272 
+new information can guide conservation management priorities of anurans in different climates.  
+273 
+Body size played an important role in determining how climate affects breeding periods. 
+274 
+This is likely due to its effect on physiological processes such as regulating body temperature 
+275 
+and water loss, where larger frogs are better at maintaining body temperatures and are slower 
+276 
+to dessicate (Castro et al. 2021; Klein et al. 2016; Santini et al. 2018; Tracy et al. 2010). The 
+277 
+size-dependent effect of climate on anuran reproduction is most notable when comparing 1) 
+278 
+temperate versus tropical environments, and 2) regions with high rainfall and limited propensity 
+279 
+to hold water versus regions with low rainfall and high topographic water retention. These 
+280 
+results are consistent with our hypothesis that larger body sizes are associated with greater 
+281 
+resource demands and limited area for water and heat exchange, resulting in shorter breeding 
+282 
+periods in environments with little rain, cooler temperatures, and low topographic water 
+283 
+retention. High temperature seasonality and high potential evapotranspiration seasonality also 
+284 
+seem to shorten breeding periods in larger species, possibly due to their combined effect and 
+285 
+this may be due to meeting physiological demands in relatively unpredictable environments. 
+286 
+Interestingly, environments which shorten breeding periods in larger species seem to be less 
+287 
+detrimental to smaller species, possibly due to their lower resource demand and relatively 
+288 
+greater area for water and heat exchange. Furthermore, larger-bodied species may be at a 
+289 
+disadvantage in cool and dry environments because the amount of energy used for maintaining 
+290 
+homeostasis (hydration) may limit the amount of reproductive investment females are able to 
+291 
+make, since egg formation is energetically costly for females. This seems likely, given that we 
+292 
+know larger frog species exhibit greater reproductive investment in the form of forming larger 
+293 
+clutches and larger eggs (Prado & Haddad 2005; Silva et al. 2020). Body size is also correlated 
+294 
+with reproductive investment in seasonally breeding endotherms like lagomorphs, whose body 
+295 
+size is correlated with neonatal mass, gestation time, and maternal reproductive effort (Swihart 
+296 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+1984). Temperature and water preferences and limits can evolve in a correlated fashion (Bonetti 
+297 
+and Wiens 2014; Guevara-Molina et al. 2020; Köhler et al. 2011) and likely involve 
+298 
+underexplored molecular and morphological traits associated with the skin and body size in 
+299 
+amphibians (Finn et al. 2014; Shibata et al. 2014; Tracy et al. 2010). How temperature and 
+300 
+water limits have shaped anuran breeding physiology is unclear and is an area that needs more 
+301 
+research. 
+302 
+Ecology, in addition to physiology, plays an important role in determining breeding 
+303 
+periods. Our results suggest seasonal environments present the challenge of overcoming 
+304 
+unreliable cues for reproduction, similar to findings at shorter ecological scales (Todd et al. 
+305 
+2011). Here, we found size-dependent patterns, themselves independent of latitude, where 
+306 
+breeding periods in smaller species decline in rainier environments with lower topographic 
+307 
+wetness. These qualities are characteristic of high-altitude rainforests, or cloud forests, such as 
+308 
+those found in Central and South America, which hold much of the world’s anuran diversity 
+309 
+(Cortés et al. 2008; Duellman 1988; Giaretta et al. 1999). One explanation for this pattern is that 
+310 
+cloud forests exhibit relatively rapid local drainage of water resources necessary for prolonged 
+311 
+amphibian reproduction. Another possible explanation is that areas with low topographic 
+312 
+wetness and correspondingly low vascular plant species richness (Sørensen et al. 2005) 
+313 
+presents a challenge for prolonged breeding periods in smaller species by limiting protection 
+314 
+from canopy cover or reproductive opportunities associated with leaf- or phytotelma-breeding 
+315 
+species (Donnelly and Guyer 1994; Poelman et al. 2013; Schulte et al. 2010). Predation risk 
+316 
+may also differ between small and large species, where larger species are less reliant on 
+317 
+canopy cover due to their large size reducing predation pressure (Nakazawa et al. 2013), 
+318 
+resulting in longer breeding periods. Future research investigating the role of plant diversity and 
+319 
+predator-prey relationships in anurans seems likely to explain this variability in amphibian 
+320 
+reproduction. 
+321 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Microhabitat use across and within species undoubtedly plays a critical role in how 
+322 
+animals experience broader regional climates and together they define climate exposure (Huey 
+323 
+et al. 2012; Williams et al. 2008). While ambient and body temperatures are connected 
+324 
+(Cunningham 1963), water stream and air temperatures are also correlated to atmospheric 
+325 
+temperatures in both warmer and colder climatic zones (Erickson and Stefan 1996; Mohseni 
+326 
+and Stefan 1999; Pilgrim et al. 1995). However, support for our hypothesis of differences in 
+327 
+breeding periods between species occupying different microhabitats was lacking. Instead, we 
+328 
+found a minority of burrowing species exhibit explosive breeding (extremely short breeding 
+329 
+periods) and an overabundance of semi-arboreal species which breed for longer periods. The 
+330 
+latter is likely related to radiations of small semi-arboreal frogs in the tropics of Central and 
+331 
+South America, one of the most diverse regions of the world. Perhaps unsurprisingly, we did not 
+332 
+find discernible climatic differences between microhabitats. This could reflect a low correlation 
+333 
+between regional climate and ambient conditions within microhabitats (e.g., a burrow). However, 
+334 
+such a strong role of microhabitat buffering seems unlikely if we expect, for example, 
+335 
+microhabitats within a temperate desert to resemble each other more closely than microhabitats 
+336 
+within a tropical rainforest. Instead, the lack of breeding period differences among microhabitats 
+337 
+most likely reflects the ecological breadth of frog communities and global convergent evolution 
+338 
+of microhabitat use across anurans (Moen et al. 2015). Further study of the relationships 
+339 
+between microhabitat, reproductive traits, and climate would likely result in additional model 
+340 
+improvements and better predictions of breeding period. For example, previous work found 
+341 
+decreased fecundity in anurans was associated with warmer winters within species (Benard 
+342 
+2015; Neveu 2009; Reading 2003) and warm, wet climates across terrestrial egg-laying species 
+343 
+(Gomez-Mestre et al. 2012). Notably, species in seasonal environments may have evolved 
+344 
+larger clutches in response to shorter breeding periods (Sheridan 2009). Future research will 
+345 
+continue to disentangle the relationships between behaviors, the environment, and further 
+346 
+investigate the role of life history in determining the effect of climate on reproductive ecology. 
+347 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Unfortunately, we still know very little about the life histories of many frogs. A sustained push for 
+348 
+deeper understanding of life history diversity is necessary for identifying causal mechanisms 
+349 
+related to eco-evolutionary patterns.  
+350 
+Adaptation to changing climates is a key part of amphibian evolutionary history and 
+351 
+should be centered in future amphibian conservation efforts. Previous research has shown 
+352 
+conclusive evidence of adaptation to changing climates over ecological timescales (<40 yrs.; 
+353 
+Beattie 1985; Benard 2015; Freidenburg and Skelly 2004; Neveu 2009; Reading 2003; Skelly 
+354 
+and Freidenburg 2008; Skelly et al. 2007; Todd et al. 2011). This work, along with previous 
+355 
+studies on breeding start date (Beattie 1985; Ulloa et al. 2019; While and Uller 2014), identify 
+356 
+both water and temperature as important environmental cues for the start of the breeding 
+357 
+period. Associated neuroendocrine systems, thermal preferences, and critical thermal limits 
+358 
+seem to show flexibility in responding to changing climate, but this might change as the effects 
+359 
+of climate change become more severe. Huey et al. (2012) provide a model used to assess 
+360 
+extinction vulnerability over time, which can be affected by behavioral thermoregulation, 
+361 
+acclimation, and adaptation. Unfortunately, most anuran species live in warm, dry environments 
+362 
+and these same species exhibit narrow climatic niche breadths (Bonetti & Wiens 2014) which 
+363 
+can restrict dispersal (Chejanovski & Wiens 2014). The current study shows how species with 
+364 
+restricted breeding periods living in the cold, dry, and seasonal environments may be less 
+365 
+tolerant of climate change. Within the temperate zone, larger frogs with greater resource 
+366 
+demands may be particularly vulnerable, while smaller frogs are most vulnerable in the tropics. 
+367 
+Independent of latitude differences, we also found larger species may be vulnerable in areas 
+368 
+receiving little rain. Without physiological adaptation to climate change, frogs might mistime their 
+369 
+reproduction and be faced with either extinction, or potentially speciation through temporal 
+370 
+isolation of reproduction. This might be one of the possible mechanisms linking diversification 
+371 
+rates and rates of climatic niche change in anurans (Moen & Wiens 2017).  
+372 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Amphibians are facing unprecedented threats due to climate change from the lens of 
+373 
+eco-physiology. Notably, climate change seems to amplify the current amphibian chytrid fungus 
+374 
+epidemic due to size-related osmoregulatory costs (Wu et al. 2018). Given the several factors 
+375 
+contributing to growing extinction risks faced by frogs and toads, an attempt to maintain 
+376 
+reproductive fitness by maximizing breeding duration seems critical. Overall, our research 
+377 
+suggests a regional-based approach toward conserving species’ flexibility in the timing and 
+378 
+period of breeding. There are multiple factors impacting amphibian breeding periods but 
+379 
+regional climate has a noticeable average effect on breeding periods worldwide. Extinction risks 
+380 
+due to the mistiming of reproduction or shortened breeding periods might be highest in smaller 
+381 
+tropical species which are common in tropical lowlands. Species living in tropical lowlands along 
+382 
+with those living in cloud forests have both been identified as being under threat of extinction 
+383 
+(von May et al. 2019; Meza-Parral and Pineda 2015; Murrieta-Galindo et al. 2013; Ponce-Reyes 
+384 
+et al. 2013). Further research is needed to understand the neuroendocrine cues used for timing 
+385 
+reproduction in frogs, thermal preferences, and the role of molecular or morphological 
+386 
+adaptations related to water and heat stress. Without this research, future temperature 
+387 
+instability will increase extinction risk without either dispersal to suitable habitats or the ability to 
+388 
+acclimate and adapt to their changing environment (Huey et al. 2012). Perhaps the existence of 
+389 
+tropical explosive breeders shows capacity for adaptation and persistence in the face of climate 
+390 
+change. For example, species faced with limited breeding periods may also adapt to produce 
+391 
+more eggs (Sheridan 2009) and habitat shifts associated with thermal preference and choosing 
+392 
+egg-laying sites may help mitigate negative thermal climatic effects on tadpoles (Pintanel et al. 
+393 
+2022; Todd et al. 2011). Amphibians have much to benefit from dedicated conservation efforts 
+394 
+to protect large and diverse landscapes allowing dispersal, protecting plant diversity, and 
+395 
+preserving a thermally-diverse range of habitat options. Similar efforts have been successful in 
+396 
+partially restoring amphibian diversity in cloud forests (Díaz-García et al. 2020). Future research 
+397 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+might seek to combine environmental, behavioral, and physiological data to assess extinction 
+398 
+risk and habitat suitability (Greenberg and Palen 2021; Griffis-Kyle 2016; Huey 1991). 
+399 
+Acknowledgements 
+400 
+We thank the O’Connell and Hadly labs at Stanford University for providing valuable 
+401 
+feedback on previous versions of this manuscript. This material is based upon work supported by 
+402 
+the NSF Postdoctoral Research Fellowships in Biology Program under Grant No. 2109850 (to BHJ). 
+403 
+BHJ and LAO are supported by the New York Stem Cell Foundation. LAO is a New York Stem 
+404 
+Cell – Robertson Investigator. We are indebted to the following museums for making their data 
+405 
+available online: the Department of Herpetology, California Academy of Sciences (CAS); the 
+406 
+Museum of Southwestern Biology (MSB); the Museum of Vertebrate Zoology, University of 
+407 
+California, Berkeley (MVZ); and the University of Washington Burke Museum (UWBM). 
+408 
+ 
+409 
+Tables 
+410 
+ 
+411 
+Table 1. PCA summary and loadings of climate variables. PCA based on means for 497 species. 
+412 
+Cumulative proportion of variance is given in parentheses next to PC heading. Loadings with a magnitude 
+413 
+>=0.30 are in bold. Asterisks indicate variables with a significant individual effect on breeding periods and 
+414 
+carets indicate variables with a significant interaction with body size (see SI). 
+415 
+ 
+416 
+ Variable 
+PC1 
+(52) 
+PC2 
+(76) 
+PC3 
+(90) 
+PC4 
+(94) 
+PC5 
+(97) 
+PC6 
+(99) 
+PC7 
+(100) 
+Annual Mean 
+Temperature*^ 
+0.47 
+-0.28 
+0.08 
+-0.02 
+0.24 
+0.15 
+0.78 
+Temperature 
+Seasonality*^ 
+-0.47 
+-0.14 
+-0.09 
+0.44 
+0.25 
+0.70 
+0.04 
+Annual 
+Precipitation*^ 
+0.38 
+0.38 
+0.13 
+0.75 
+0.27 
+-0.21 
+-0.14 
+Precipitation 
+Seasonality*^ 
+0.15 
+-0.26 
+-0.90 
+0.23 
+-0.16 
+-0.15 
+0.00 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Annual Potential 
+Evapotranspiration 
+(PET) 
+0.42 
+-0.4 
+0.00 
+-0.23 
+0.47 
+0.21 
+-0.59 
+PET Seasonality*^ 
+-0.45 
+-0.28 
+0.01 
+0.02 
+0.59 
+-0.60 
+0.11 
+Topographic 
+Wetness^ 
+0.01 
+-0.67 
+0.40 
+0.37 
+-0.47 
+-0.15 
+-0.10 
+ 
+417 
+ 
+418 
+Table 2. Model summary of the effects of climate and body size on breeding periods in 497 frog 
+419 
+species. Climate shown as PC’s. Body size is snout-vent length (SVL) in mm. Breeding periods are 
+420 
+species means. Df = degrees of freedom, SS = sum of squares, MS = mean square, Rsq = coefficient of 
+421 
+determination, F = F-statistic, Z = standardized effect size (Z-score), and P = p-value. Rows with 
+422 
+significant terms (p < 0.05) are in bold.  
+423 
+ 
+424 
+ Term 
+Df 
+SS 
+MS 
+Rsq 
+F 
+Z 
+P 
+PC1 
+1 
+6279.32 
+6279.32 
+0.05 
+26.34 
+3.69 
+1e-04 
+PC2 
+1 
+2443.75 
+2443.75 
+0.02 
+10.25 
+2.59 
+0.0017 
+PC3 
+1 
+6756.84 
+6756.84 
+0.05 
+28.34 
+3.83 
+1e-04 
+PC4 
+1 
+22.69 
+22.69 
+0 
+0.10 
+-0.71 
+0.7519 
+PC5 
+1 
+734.96 
+734.96 
+0.01 
+3.08 
+1.39 
+0.0810 
+PC6 
+1 
+601.68 
+601.68 
+0 
+2.52 
+1.22 
+0.1152 
+PC7 
+1 
+1643.48 
+1643.48 
+0.01 
+6.89 
+2.12 
+0.0096 
+SVL 
+1 
+1058.17 
+1058.17 
+0.01 
+4.44 
+1.71 
+0.0389 
+PC1:SVL 
+1 
+1555.92 
+1555.92 
+0.01 
+6.53 
+2.07 
+0.0115 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+PC2:SVL 
+1 
+2228.56 
+2228.56 
+0.02 
+9.35 
+2.49 
+0.0020 
+PC3:SVL 
+1 
+831.79 
+831.79 
+0.01 
+3.49 
+1.51 
+0.0599 
+PC4:SVL 
+1 
+0.12 
+0.12 
+0 
+0 
+-2.05 
+0.9812 
+PC5:SVL 
+1 
+30.6 
+30.6 
+0 
+0.13 
+-0.62 
+0.7241 
+PC6:SVL 
+1 
+57.72 
+57.72 
+0 
+0.24 
+-0.32 
+0.6277 
+PC7:SVL 
+1 
+103.47 
+103.47 
+0 
+0.43 
+0.02 
+0.5090 
+Residuals 
+481 
+114677.84 
+238.42 
+0.82 
+NA 
+NA 
+NA 
+Total 
+496 
+139026.91 
+NA 
+NA 
+NA 
+NA 
+NA 
+ 
+425 
+Figure Legends 
+426 
+ 
+427 
+Figure 1. Phylogenetic differences in average breeding period and geographic region across 497 
+428 
+species of frogs. A. Phylogeny of 497 species with breeding period and region mapped at the tips. Node 
+429 
+labels identify the 4 highest-sampled families in our dataset. Inner ring shows tropical versus temperate 
+430 
+regions. The tropical zone is shown in red and the temperate zone is shown in blue. Outer ring shows the 
+431 
+breeding period. Species with shorter breeding periods are shown in lighter colors while species with 
+432 
+longer breeding periods are shown in darker colors. B. Boxplot showing differences in breeding period 
+433 
+between temperate (N = 237) and tropical (N = 260) species. Temperate species breed for an average of 
+434 
+127.8 days (median = 107 days, range = 1–365 days, std. error = 5.87 days) and tropical species breed 
+435 
+for an average of 167.3 days (median = 181 days, range = 5–365 days, std. error = 6.52 days). 
+436 
+Combined, anurans breed for a mean of 148 days (range = 1–365 days, std. error = 4.5 days). 
+437 
+ 
+438 
+Figure 2. Climate and body size (snout-vent length) influence breeding periods in 497 frog 
+439 
+species. All relationships are significant at p < 0.0115. Regression lines for A,B represent effects at 10th 
+440 
+and 90th percentiles of body size (snout-vent length; 24 and 80 mm). A. High scores on PC1 represent 
+441 
+warm, rainy areas with low temperature and annual potential evapotranspiration seasonality and are 
+442 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+correlated with latitude. Larger species have longer breeding periods in the tropics; smaller species have 
+443 
+longer breeding periods in the temperate zone. Combined effects of PC1 and body size yield Rsq = 0.07. 
+444 
+B. High PC2 scores are regions with relatively higher annual precipitation but low topographic wetness. 
+445 
+Larger species have longer breeding periods in rainy climates with low topographic wetness. Smaller 
+446 
+species have longer breeding periods in less rainy climates with high topographic wetness. The combined 
+447 
+effect of PC2 and body size yields Rsq = 0.05 C. High PC3 scores are regions with relatively lower 
+448 
+precipitation seasonality but higher topographic wetness. Regression line shown in red. Longer breeding 
+449 
+periods are common in areas with lower precipitation seasonality and higher topographic wetness. Rsq = 
+450 
+0.05. D. Density plot showing the distribution of raw (untransformed) body sizes of species used in this 
+451 
+study. 
+452 
+ 
+453 
+Figure 3. Effect of phylogenetic uncertainty on effect sizes (z-scores) relating climate and body 
+454 
+size to breeding periods. Z-scores for each model term calculated from 1,000 trees of the 
+455 
+pseudoposterior distribution of Jetz and Pyron (2018). PC’s are climate variables; SVL is snout-vent 
+456 
+length. Vertical line denotes the Z = 1.645 significance cutoff for empirically generated Z-scores. Values 
+457 
+to the right of distributions indicate percent of significant Z-scores per distribution. Red highlights portions 
+458 
+of the density within the 10th percentile. 
+459 
+ 
+460 
+Figure 4. Breeding period and climate differences between microhabitats across 497 frog species. 
+461 
+A. Average breeding periods do not differ between microhabitats; most ranges overlap. semi-arboreal 
+462 
+species stand out in having the greatest proportion of species with longer breeding periods. B. Scatterplot 
+463 
+of first two PCA axes corresponding to climate variables. Polygon outlines encase species in 
+464 
+microhabitats corresponding in color. PC1 is correlated with absolute latitude (r = -0.94). Temperate 
+465 
+species denoted by circles and encased in solid lines. Tropical species denoted by triangles and encased 
+466 
+in dashed lines. 
+467 
+ 
+468 
+ 
+469 
+ 
+470 
+ 
+471 
+ 
+472 
+ 
+473 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+References 
+474 
+Adams, D.C., Collyer, M.L., Kaliontzopoulou, A. & Baken E.K. (2021). Geomorph: Software for 
+475 
+geometric morphometric analyses. R package version 4.0.2. https://cran.r-
+476 
+project.org/package=geomorph. 
+477 
+AmphibiaWeb. (2022). Amphibian Species By the Numbers. Available at: 
+478 
+https://amphibiaweb.org/amphibian/speciesnums.html. University of California, Berkeley, 
+479 
+CA, USA. Last accessed 12 July 2022. 
+480 
+AmphibiaWeb. (2021). Rhinella marina: Marine Toad. Available at: 
+481 
+https://amphibiaweb.org/species/229. University of California, Berkeley, CA, USA. Last 
+482 
+accessed 12 July 2022. 
+483 
+Arneth, A., Shin, Y.-J., Leadley, P., Rondinini, C., Bukvareva, E., Kolb, M., et al. (2020). Post-
+484 
+2020 biodiversity targets need to embrace climate change. Proc. Natl. Acad. Sci. U. S. A., 
+485 
+117, 30882–30891. 
+486 
+Baken, E.K., Mellenthin, L.E. & Adams, D.C. (2021a). Is salamander arboreality limited by 
+487 
+broadscale climatic conditions? PLoS ONE, 16, e0255393. 
+488 
+https://doi.org/10.1371/journal.pone.0255393. 
+489 
+Baken, E. K., Collyer, M.L., Kaliontzopoulou, A. & Adams, D.C. (2021b). geomorph v4.0 and 
+490 
+gmShiny: enhanced analytics and a new graphical interface for a comprehensive 
+491 
+morphometric experience. Methods Ecol. Evol., 12, 2355-2363. 
+492 
+Beattie, R.C. (1985). The date of spawning in populations of the Common frog (Rana 
+493 
+temporaria) from different altitudes in northern England. J. Zool., 205, 137–154. 
+494 
+Bellard, C., Bertelsmeier, C., Leadley, P., Thuiller, W. & Courchamp, F. (2012). Impacts of 
+495 
+climate change on the future of biodiversity. Ecol. Lett., 15, 365–377. 
+496 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Benard, M.F. (2015). Warmer winters reduce frog fecundity and shift breeding phenology, which 
+497 
+consequently alters larval development and metamorphic timing. Glob. Chang. Biol., 21, 
+498 
+1058–1065. 
+499 
+Bonetti, M.F. & Wiens, J.J. (2014). Evolution of climatic niche specialization: a phylogenetic 
+500 
+analysis in amphibians. Proc. Biol. Sci., 281, 20133229. 
+501 
+http://dx.doi.org/10.1098/rspb.2013.3229. 
+502 
+Bronson, F.H. (2009). Climate change and seasonal reproduction in mammals. Philos. Trans. R. 
+503 
+Soc. Lond. B Biol. Sci., 364, 3331–3340. 
+504 
+Campbell Grant, E.H., Miller, D.A.W. & Muths, E. (2020). A synthesis of evidence of drivers of 
+505 
+amphibian declines. Herpetologica, 76, 101–107. 
+506 
+Castro, K.M.S.A., Amado, T.F., Olalla-Tárraga, M.Á., Gouveia, S.F., Navas, C.A. & Martinez, 
+507 
+P.A. (2021). Water constraints drive allometric patterns in the body shape of tree frogs. Sci. 
+508 
+Rep., 11, 1218. 
+509 
+Chejanovski, Z.A. & Wiens, J.J. (2014). Climatic niche breadth and species richness in 
+510 
+temperate treefrogs. J. Biogeogr., 41, 1936–1946. 
+511 
+Collyer, M.L. & Adams, D.C. (2018). RRPP: An R package for fitting linear models to 
+512 
+high‐dimensional data using residual randomization. Methods Ecol. Evol., 9, 1772–1779. 
+513 
+Collyer, M.L. & Adams, D.C. (2019). RRPP: Linear Model Evaluation with Randomized 
+514 
+Residuals in a Permutation Procedure. https://CRAN.R-project.org/package=RRPP. 
+515 
+Cortés, A.M., Ramírez-Pinilla, M.P., Suárez, H.A. & Tovar, E. (2008). Edge effects on richness, 
+516 
+abundance and diversity of frogs in Andean cloud forest fragments. S. Am. J. Herpetol., 3, 
+517 
+213–222. 
+518 
+Cunningham, J.D. (1963). Additional observations on the ecology of the Yosemite Toad, Bufo 
+519 
+canorus. Herpetologica, 19, 56–61. 
+520 
+Díaz-García, J.M., López-Barrera, F., Toledo-Aceves, T., Andresen, E. & Pineda, E. (2020). 
+521 
+Does forest restoration assist the recovery of threatened species? A study of cloud forest 
+522 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+amphibian communities. Biol. Conserv., 242, 108400. 
+523 
+Donnelly, M.A. & Guyer, C. (1994). Patterns of reproduction and habitat use in an assemblage 
+524 
+of Neotropical hylid frogs. Oecologia, 98, 291–302. 
+525 
+Duellman, W.E. (1988). Patterns of species diversity in anuran amphibians in the American 
+526 
+tropics. Ann. Mo. Bot. Gard., 75, 79–104. 
+527 
+Erickson, T.R. & Stefan, H.G. (1996). Correlations of Oklahoma stream temperatures with air 
+528 
+temperatures. St. Anthony Falls Laboratory. Available at: 
+529 
+https://hdl.handle.net/11299/109509. 
+530 
+Fick, S.E. & Hijmans, R.J. (2017). WorldClim 2: new 1‐km spatial resolution climate surfaces for 
+531 
+global land areas. Int. J. Climatol., 37, 4302–4315. 
+532 
+Finn, R.N., Chauvigné, F., Hlidberg, J.B., Cutler, C.P. & Cerdà, J. (2014). The lineage-specific 
+533 
+evolution of aquaporin gene clusters facilitated tetrapod terrestrial adaptation. PLoS One, 
+534 
+9, e113686. 
+535 
+Fisher, M.C. & Garner, T.W.J. (2020). Chytrid fungi and global amphibian declines. Nat. Rev. 
+536 
+Microbiol., 18, 332–343. 
+537 
+Freidenburg, L.K. & Skelly, D.K. (2004). Microgeographical variation in thermal preference by an 
+538 
+amphibian. Ecol. Lett., 7, 369–373. 
+539 
+GBIF.org. (2021a). Data from: GBIF Occurrence Download. Available at: 
+540 
+https://doi.org/10.15468/dl.354f8k. Accessed: 03 October 2021. 
+541 
+GBIF.org. (2021b). Data from: GBIF Occurrence Download. Available at: 
+542 
+https://doi.org/10.15468/dl.pdjqte. Accessed: 03 October 2021. 
+543 
+GBIF.org. (2021c). Data from: GBIF Occurrence Download. Available at: 
+544 
+https://doi.org/10.15468/dl.nbku3v. Accessed: 03 October 2021. 
+545 
+GBIF.org. (2021d). Data from: GBIF Occurrence Download. Available at: 
+546 
+https://doi.org/10.15468/dl.uejpg6. Accessed: 03 October 2021.  
+547 
+Giaretta, A.A., Facure, K.G., Sawaya, R.J., Meyer, J.H.D.M. & Chemin, N. (1999). Diversity and 
+548 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+abundance of litter frogs in a Montane forest of southeastern Brazil: Seasonal and 
+549 
+altitudinal changes. Biotropica, 31, 669–674. 
+550 
+Girish, S. & Saidapur, S.K. (2000). Interrelationship between food availability, fat body, and 
+551 
+ovarian cycles in the frog, Rana tigrina, with a discussion on the role of fat body in anuran 
+552 
+reproduction. J. Exp. Zool., 286, 487–493. 
+553 
+Gomez-Mestre, I., Pyron, R.A. & Wiens, J.J. (2012). Phylogenetic analyses reveal unexpected 
+554 
+patterns in the evolution of reproductive modes in frogs. Evolution, 66, 3687–3700. 
+555 
+Grafen, A. (1989). The phylogenetic regression. Philos. Trans. R. Soc. Lond. B Biol. Sci., 326, 
+556 
+119–157. 
+557 
+Greenberg, D.A. & Palen, W.J. (2021). Hydrothermal physiology and climate vulnerability in 
+558 
+amphibians. Proc. Biol. Sci., 288, 20202273. 
+559 
+Griffis-Kyle. (2016). Physiology and ecology to inform climate adaptation strategies for desert 
+560 
+amphibians. Herpetol. Conserv. Biol., 11, 563–582. 
+561 
+Guevara-Molina, E.C., Gomes, F.R. & Camacho, A. (2020). Effects of dehydration on 
+562 
+thermoregulatory behavior and thermal tolerance limits of Rana catesbeiana (Shaw, 1802). 
+563 
+J. Therm. Biol., 93, 102721. 
+564 
+Holland, B.S. & Copenhaver, M.D. (1987). An improved sequentially rejective bonferroni test 
+565 
+procedure. Biometrics, 43, 417–423. 
+566 
+Huber, P.J. (1981). Robust statistics. In: International encyclopedia of statistical science. {  ed.  
+567 
+Lovric, M.  }. Springer, Berlin, Heidelberg, pp. 1248–1251.  
+568 
+Huey, R.B. (1991). Physiological consequences of habitat selection. Am. Nat., 137, S91–S115. 
+569 
+Huey, R.B., Kearney, M.R., Krockenberger, A., Holtum, J.A.M., Jess, M. & Williams, S.E. 
+570 
+(2012). Predicting organismal vulnerability to climate warming: roles of behaviour, 
+571 
+physiology and adaptation. Philos. Trans. R. Soc. Lond. B Biol. Sci., 367, 1665–1679. 
+572 
+IUCN. (2022). Data from: The IUCN Red List of Threatened Species, version 2021-3. Available 
+573 
+at: https://www.iucnredlist.org. 
+574 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Jetz, W. & Pyron, R.A. (2018). The interplay of past diversification and evolutionary isolation 
+575 
+with present imperilment across the amphibian tree of life. Nat Ecol Evol, 2, 850–858. 
+576 
+Klein, W., Dabés, L., Bonfim, V.M.G., Magrini, L. & Napoli, M.F. (2016). Allometric relationships 
+577 
+between cutaneous surface area and body mass in anuran amphibians. Zoologischer 
+578 
+Anzeiger - A Journal of Comparative Zoology, 263, 45–54. 
+579 
+Köhler, A., Sadowska, J., Olszewska, J., Trzeciak, P., Berger-Tal, O. & Tracy, C.R. (2011). 
+580 
+Staying warm or moist? Operative temperature and thermal preferences of common frogs 
+581 
+(Rana temporaria), and effects on locomotion. Herpetol. J., 21, 17–26. 
+582 
+Lardner, B. & Loman, J. (2003). Growth or reproduction? Resource allocation by female frogs 
+583 
+Rana temporaria. Oecologia, 137, 541–546. 
+584 
+Martins, E.P. & Hansen, T.F. (1997). Phylogenies and the comparative method: A general 
+585 
+approach to incorporating phylogenetic information into the analysis of interspecific data. 
+586 
+Am. Nat., 149, 646–667. 
+587 
+von May, R., Catenazzi, A., Santa-Cruz, R., Gutierrez, A.S., Moritz, C. & Rabosky, D.L. (2019). 
+588 
+Thermal physiological traits in tropical lowland amphibians: Vulnerability to climate warming 
+589 
+and cooling. PLoS One, 14, e0219759. 
+590 
+Meza-Parral, Y. & Pineda, E. (2015). Amphibian diversity and threatened species in a severely 
+591 
+transformed neotropical region in Mexico. PLoS One, 10, e0121652. 
+592 
+Moen, D.S., Morlon, H. & Wiens, J.J. (2015). Testing convergence versus history: convergence 
+593 
+dominates phenotypic evolution for over 150 million years in frogs. Syst. Biol., 65, 145–
+594 
+160. 
+595 
+Moen, D.S. & Wiens, J.J. (2017). Microhabitat and climatic niche change explain patterns of 
+596 
+diversification among frog families. Am. Nat., 190, 29–44. 
+597 
+Mohseni, O. & Stefan, H.G. (1999). Stream temperature/air temperature relationship: a physical 
+598 
+interpretation. J. Hydrol., 218, 128–141. 
+599 
+Murrieta-Galindo, R., López-Barrera, F., González-Romero, A. & Parra-Olea, G. (2013). Matrix 
+600 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+and habitat quality in a montane cloud-forest landscape: amphibians in coffee plantations 
+601 
+in central Veracruz, Mexico. Wildl. Res., 40, 25–35 
+602 
+MuToss Coding Team, Blanchard, G., Dickhaus, T., Hack, N., Konietschke, F., Rohmeyer, K., et 
+603 
+al. (2017). mutoss: Unified Multiple Testing Procedures. R package version 0.1-12. 
+604 
+https://CRAN.R-project.org/package=mutoss. 
+605 
+Nakazawa, T., Ohba, S.-Y. & Ushio, M. (2013). Predator-prey body size relationships when 
+606 
+predators can consume prey larger than themselves. Biol. Lett., 9, 20121193. 
+607 
+Neveu, A. (2009). Incidence of climate on common frog breeding: Long-term and short-term 
+608 
+changes. Acta Oecol., 35, 671–678. 
+609 
+Padilla Perez, D.J. & Angilletta, M.J., Jr. (2022). Macroclimatic and maternal effects on the 
+610 
+evolution of reproductive traits in lizards. Ecol. Evol., 12, e8885. 
+611 
+Pankhurst, N.W. & Munday, P.L. (2011). Effects of climate change on fish reproduction and 
+612 
+early life history stages. Mar. Freshwater Res., 62, 1015–1026. 
+613 
+Paradis, E. & Schliep, K. (2019). ape 5.0: an environment for modern phylogenetics and 
+614 
+evolutionary analyses in R. Bioinformatics, 35, 526–528. 
+615 
+Pilgrim, J.M., Fang, X., Stefan, H.G. (1995). Correlations of Minnesota stream water 
+616 
+temperatures with air Temperatures. St. Anthony Falls Laboratory. Available at: 
+617 
+https://hdl.handle.net/11299/109299. 
+618 
+Pintanel, P., Tejedo, M., Merino-Viteri, A., Almeida-Reinoso, F., Salinas-Ivanenko, S., López-
+619 
+Rosero, A.C., et al. (2022). Elevational and local climate variability predicts thermal breadth 
+620 
+of mountain tropical tadpoles. Ecography, 2022, e05906. 
+621 
+Poelman, E.H., van Wijngaarden, R.P.A. & Raaijmakers, C.E. (2013). Amazon poison frogs 
+622 
+(Ranitomeya amazonica) use different phytotelm characteristics to determine their 
+623 
+suitability for egg and tadpole deposition. Evol. Ecol., 27, 661–674. 
+624 
+Ponce-Reyes, R., Nicholson, E., Baxter, P.W.J., Fuller, R.A. & Possingham, H. (2013). 
+625 
+Extinction risk in cloud forest fragments under climate change and habitat loss. Divers. 
+626 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Distrib., 19, 518–529. 
+627 
+Prado, C.P.A. & Haddad, C.F.B. (2005). Size-fecundity relationships and reproductive 
+628 
+investment in female frogs in the Pantanal, South-Western Brazil. Herpetol. J., 15, 181–
+629 
+189. 
+630 
+R Core Team. (2022). R: A language and environment for statistical computing. R Foundation 
+631 
+for Statistical Computing, Vienna, Austria. Available at: https://www.R-project.org/. 
+632 
+Rastogi, R.K., Izzo-Vitiello, I., Meglio, M., Matteo, L., Franzese, R., Costanzo, M.G., et al. 
+633 
+(1983). Ovarian activity and reproduction in the frog, Rana esculenta. J. Zool. , 200, 233–
+634 
+247. 
+635 
+Reading, C.J. (2003). The effects of variation in climatic temperature (1980-2001) on breeding 
+636 
+activity and tadpole stage duration in the common toad, Bufo bufo. Sci. Total Environ., 310, 
+637 
+231–236. 
+638 
+Santini, L., Benítez-López, A., Ficetola, G.F. & Huijbregts, M.A.J. (2018). Length-mass 
+639 
+allometries in amphibians. Integr. Zool., 13, 36–45. 
+640 
+Schulte, Rödder, Schulte & Lötters. (2010). Preference and competition for breeding plants in 
+641 
+coexisting Ranitomeya species (Dendrobatidae): does height play a role. Salamandra, 186, 
+642 
+180–184. 
+643 
+Sheridan, J.A. (2009). Reproductive variation corresponding to breeding season length in three 
+644 
+tropical frog species. J. Trop. Ecol., 25, 583–592. 
+645 
+Shibata, Y., Sano, T., Tsuchiya, N., Okada, R., Mochida, H., Tanaka, S., et al. (2014). Gene 
+646 
+expression and localization of two types of AQP5 in Xenopus tropicalis under hydration and 
+647 
+dehydration. Am. J. Physiol. Regul. Integr. Comp. Physiol., 307, R44–56. 
+648 
+Silva, N.R., Berneck, B.V.M., da Silva, H.R., Haddad, C.F.B., Zamudio, K.R., Mott, T., et al. 
+649 
+(2020). Egg-laying site, fecundity and degree of sexual size dimorphism in frogs. Biol. J. 
+650 
+Linn. Soc. Lond., 131, 600–610. 
+651 
+Skelly, D.K. & Freidenburg, L.K. (2008). Effects of beaver on the thermal biology of an 
+652 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+amphibian. Ecol. Lett., 3, 483–486. 
+653 
+Skelly, D.K., Joseph, L.N., Possingham, H.P., Freidenburg, L.K., Farrugia, T.J., Kinnison, M.T., 
+654 
+et al. (2007). Evolutionary responses to climate change. Conserv. Biol., 21, 1353–1355. 
+655 
+Sørensen, R., Zinko, U. & Seibert, J. (2005). On the calculation of the topographic wetness 
+656 
+index: evaluation of different methods based on field observations. Hydrol. Earth Syst. Sci. 
+657 
+Discuss., 2, 1807–1834. 
+658 
+South, A. (2012). rworldxtra: Country boundaries at high resolution. R package version 1.01. 
+659 
+https://CRAN.R-project.org/package=rworldxtra. 
+660 
+Swihart, R.K. (1984). Body size, breeding season length, and life history tactics of lagomorphs. 
+661 
+Oikos, 43, 282–290. 
+662 
+Telemeco, R.S., Abbott, K.C. & Janzen, F.J. (2013). Modeling the effects of climate change-
+663 
+induced shifts in reproductive phenology on temperature-dependent traits. Am. Nat., 181, 
+664 
+637–648. 
+665 
+Thomas, C.D., Cameron, A., Green, R.E., Bakkenes, M., Beaumont, L.J., Collingham, Y.C., et 
+666 
+al. (2004). Extinction risk from climate change. Nature, 427, 145–148. 
+667 
+Title, P.O. & Bemmels, J.B. (2018). ENVIREM: an expanded set of bioclimatic and topographic 
+668 
+variables increases flexibility and improves performance of ecological niche modeling. 
+669 
+Ecography , 41, 291–307. 
+670 
+Todd, B.D., Scott, D.E., Pechmann, J.H.K. & Gibbons, J.W. (2011). Climate change correlates 
+671 
+with rapid delays and advancements in reproductive timing in an amphibian community. 
+672 
+Proc. Biol. Sci., 278, 2191–2197. 
+673 
+Tracy, C.R., Christian, K.A. & Tracy, C.R. (2010). Not just small, wet, and cold: effects of body 
+674 
+size and skin resistance on thermoregulation and arboreality of frogs. Ecology, 91, 1477–
+675 
+1484. 
+676 
+Ulloa, J.S., Aubin, T., Llusia, D., Courtois, É.A., Fouquet, A., Gaucher, P., et al. (2019). 
+677 
+Explosive breeding in tropical anurans: environmental triggers, community composition and 
+678 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+acoustic structure. BMC Ecol., 19, 28. 
+679 
+Urban, M.C. (2015). Climate change. Accelerating extinction risk from climate change. Science, 
+680 
+348, 571–573. 
+681 
+Visser, M.E., Both, C. & Lambrechts, M.M. (2004). Global climate change leads to mistimed 
+682 
+avian reproduction. In: Advances in Ecological Research. Academic Press, 89–110. 
+683 
+Wells, K.D. (1977). The social behaviour of anuran amphibians. Anim. Behav., 25, 666–693. 
+684 
+Wells, K.D. (2007). The Ecology and Behavior of Amphibians. University of Chicago Press. 
+685 
+While, G.M. & Uller, T. (2014). Quo vadis amphibia? Global warming and breeding phenology in 
+686 
+frogs, toads and salamanders. Ecography, 37, 921-929. 
+687 
+Wilke, C.O. (2021). ggridges: Ridgeline Plots in 'ggplot2'. R package version 0.5.3. 
+688 
+https://CRAN.R-project.org/package=ggridges. 
+689 
+Williams, S.E., Shoo, L.P., Isaac, J.L., Hoffmann, A.A. & Langham, G. (2008). Towards an 
+690 
+integrated framework for assessing the vulnerability of species to climate change. PLoS 
+691 
+Biol., 6, 2621–2626. 
+692 
+Womack, M.C. & Bell, R.C. (2020). Two‐hundred million years of anuran body‐size evolution in 
+693 
+relation to geography, ecology and life history. J. Evol. Biol., 33, 1417–1432. 
+694 
+Wu, N.C., Cramp, R.L. & Franklin, C.E. (2018). Body size influences energetic and 
+695 
+osmoregulatory costs in frogs infected with Batrachochytrium dendrobatidis. Sci. Rep., 8, 
+696 
+3739. 
+697 
+Yu, G. (2020). Using ggtree to visualize data on tree-like structures. Curr. Protoc. 
+698 
+Bioinformatics, 69, e96. doi: 10.1002/cpbi.96.  
+699 
+Yu, G., Lam, T.T.-Y., Zhu, H. & Guan, Y. (2018). Two methods for mapping and visualizing 
+700 
+associated data on phylogeny using ggtree. Mol. Biol. Evol., 35, 3041–3043. doi: 
+701 
+10.1093/molbev/msy194.  
+702 
+Yu, G., Smith, D., Zhu, H., Guan, Y. & Lam, T.T-Y. (2017). ggtree: an R package for 
+703 
+visualization and annotation of phylogenetic trees with their covariates and other 
+704 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+associated data. Methods Ecol. Evol., 8, 28–36. doi:10.1111/2041-210X.12628. 
+705 
+Zizka, A., Barratt, C.D., Ritter, C.D., Joerger-Hickfang, T. & Zizka, V.M.A. (2021). Existing 
+706 
+approaches and future directions to link macroecology, macroevolution and conservation 
+707 
+prioritization. Ecography, 2022, e05557. 
+708 
+Zizka A., Silvestro, D., Andermann, T., Azevedo, J., Duarte Ritter, C., Edler, D. et al. (2019). 
+709 
+CoordinateCleaner: standardized cleaning of occurrence records from biological collection 
+710 
+databases. Methods Ecol. Evol., 10, 744–751. R package version 2.0-20, Available at: 
+711 
+https://github.com/ropensci/CoordinateCleaner. doi: 10.1111/2041-210X.13152.  
+712 
+ 
+713 
+.
+CC-BY-NC 4.0 International license
+available under a
+was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint (which
+this version posted July 22, 2022. 
+; 
+https://doi.org/10.1101/2022.07.21.501061
+doi: 
+bioRxiv preprint 
+Hylidae 
+ Myobatrachidae
+Bufonidae 
+ Ranidae
+A
+100 200 300
+Breeding
+Period
+(days)
+Region
+Tropical
+Temperate
+0
+100
+200
+300
+Region
+Breeding Period (days)
+B
+SVL Percentile Range
+  0 − 20%
+21 − 40%
+41 − 60%
+61 − 80%
+81 − 100%
+0
+100
+200
+300
+−6
+−4
+−2
+0
+2
+Climate PC1 52.10%
+Breeding Period (days)
+A
+0
+100
+200
+300
+−4
+−2
+0
+2
+Climate PC2 23.70%
+Breeding Period (days)
+B
+0
+100
+200
+300
+−2
+0
+2
+Climate PC3 13.90%
+Breeding Period (days)
+C
+Max
+80th Percentile
+Mean
+60th Percentile
+Median
+40th Percentile
+20th Percentile
+Min
+220
+ 66
+ 49
+ 49
+ 44
+ 38
+ 28
+ 14
+0
+50
+100
+150
+200
+Snout−Vent Length (mm)
+D
+0.313
+0.121
+0.168
+0.153
+0.314
+0.704
+0.642
+0.345
+0.665
+0.483
+0.422
+0.367
+0.879
+0.714
+0.897
+PC7:SVL
+PC6:SVL
+PC5:SVL
+PC4:SVL
+PC3:SVL
+PC2:SVL
+PC1:SVL
+SVL
+PC7
+PC6
+PC5
+PC4
+PC3
+PC2
+PC1
+−2.5
+0.0
+2.5
+5.0
+7.5
+Empirical Z score
+Model Term
+Percentile Range
+(0, 0.10]
+(0.10, 1]
+0
+100
+200
+300
+Breeding Period (days)
+Microhabitat
+A
+−4
+−2
+0
+2
+−6
+−4
+−2
+0
+2
+Climate PC1 52.10%
+Climate PC2 23.70%
+B
+Microhabitat
+Arboreal
+Semi−arboreal
+Terrestrial
+Semi−burrowing
+Burrowing
+Semi−aquatic
+Aquatic
+Torrential
+Zone
+Temperate
+Tropical

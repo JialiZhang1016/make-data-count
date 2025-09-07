@@ -1,0 +1,1434 @@
+rsos.royalsocietypublishing.org
+Research
+Cite this article: Gangan MS, Athale CA. 2017
+Threshold effect of growth rate on population
+variability of Escherichiacoli cell lengths.
+R.Soc.opensci. 4: 160417.
+http://dx.doi.org/10.1098/rsos.160417
+Received: 22 June 2016
+Accepted: 23 January 2017
+Subject Category:
+Cellular and molecular biology
+Subject Areas:
+biophysics/cellular biology/microbiology
+Keywords:
+cell size, bacteria, multi-fork replication,
+population variability, RecA, bacterial
+cell division
+Author for correspondence:
+Chaitanya A. Athale
+e-mail: cathale@iiserpune.ac.in
+Electronic supplementary material is available
+online
+at
+https://dx.doi.org/10.6084/m9.
+figshare.c.3685441.
+Threshold effect of growth
+rate on population
+variability of Escherichiacoli
+cell lengths
+Manasi S. Gangan and Chaitanya A. Athale
+Division of Biology, Indian Institute of Science Education and Research (IISER) Pune,
+Dr Homi Bhabha Road, Pashan, Pune 411008, India
+MSG, 0000-0003-2980-7329; CAA, 0000-0002-9506-2153
+A long-standing question in biology is the effect of growth on
+cell size. Here, we estimate the effect of Escherichia coli growth
+rate (r) on population cell size distributions by estimating
+the coefﬁcient of variation of cell lengths (CVL) from image
+analysis of ﬁxed cells in DIC microscopy. We ﬁnd that the
+CVL is constant at growth rates less than one division per
+hour, whereas above this threshold, CVL increases with an
+increase in the growth rate. We hypothesize that stochastic
+inhibition of cell division owing to replication stalling by a
+RecA-dependent mechanism, combined with the growth rate
+threshold of multi-fork replication (according to Cooper and
+Helmstetter), could form the basis of such a threshold effect. We
+proceed to test our hypothesis by increasing the frequency of
+stochastic stalling of replication forks with hydroxyurea (HU)
+treatment and ﬁnd that cell length variability increases only
+when the growth rate exceeds this threshold. The population
+effect is also reproduced in single-cell studies using agar-pad
+cultures and ‘mother machine’-based experiments to achieve
+synchrony. To test the role of RecA, critical for the repair
+of stalled replication forks, we examine the CVL of E. coli
+recA cells. We ﬁnd cell length variability in the mutant to
+be greater than wild-type, a phenotype that is rescued by
+plasmid-based RecA expression. Additionally, we ﬁnd that
+RecA-GFP protein recruitment to nucleoids is more frequent
+at growth rates exceeding the growth rate threshold and is
+further enhanced on HU treatment. Thus, we ﬁnd growth rates
+greater than a threshold result in increased E. coli cell lengths
+in the population, and this effect is, at least in part, mediated
+by RecA recruitment to the nucleoid and stochastic inhibition
+of division.
+2017 The Authors. Published by the Royal Society under the terms of the Creative Commons
+Attribution License http://creativecommons.org/licenses/by/4.0/, which permits unrestricted
+use, provided the original author and source are credited.
+2
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1. Introduction
+The size and shape of a cell is considered a characteristic feature of a given cell type, and quantifying its
+variability in a population provides information about the effect of ﬂuctuations on a complex phenotype.
+Escherichia coli cells have typically been described as spherocylinders of length 2 µm and width 1 µm.
+Differences in sizes are primarily owing to cell length (L) and not so much the width [1–3]. Cell
+length frequency distributions show a positive skew owing to the presence of long cells (L > 8 μm),
+the proportion of which is increased by environmental factors such as low bacterial density at 22°C
+and 37°C or a shift to richer media [4]. In Salmonella, growth rate (r) alone has been shown to correlate
+with increased cell size and multiple nucleoids [5], but a microscopic study on E. coli has shown that
+cells grown at 22°C are shorter than at 37°C [4]. The effect of temperature and growth medium on
+cell size appears thus to suggest that growth rate might primarily regulate the cell size. However, the
+quantitative relationship and molecular mechanism by which growth could affect cell sizes remains
+unclear.
+The growth rate of bacteria, in particular, E. coli, is regulated by numerous pathways that typically
+connect growth to nutrient availability [6–8]. Many genetic factors that link nutrient sensing to
+cell size regulation have been identiﬁed [9–11]. These pathways, however, link growth rate via
+pathways independent of replication to cell size. If DNA replication fails to complete and the bacterial
+nucleoid does not segregate, the nucleoid ‘occlusion’ response results in cell elongation [12–14].
+Based on the BCD—birth (B), chromosome replication (C) and division (D)—cycle [15], growth rates
+exceeding one doubling per hour (doubling time, td = 60 min) result in insufﬁcient time for the
+completion of the chromosome replication (C-period approx. 40 min) and cell division (D-period approx.
+20 min). Cooper and Helmstetter postulated and experimentally demonstrated that E. coli undergoes
+simultaneous rounds of replication, multi-fork replication [16] to overcome the shortening of td in
+rapid growth. However, the role of multi-fork replication in cell size regulation has not yet been
+investigated.
+Recent improvements in light microscopy image analysis have allowed quantiﬁcation of bacterial
+morphology and growth dynamics with subpixel accuracy [17–19]. Combined with ﬂuorescence
+microscopy of subcellular components [20,21], it has become possible to address single-cell dynamics
+of the bacterial cell division cycle. These advances now allow us to address the effect of population sizes
+and physical factors and probe the mechanisms that control cell sizes and cell size variability.
+Theoretical studies have suggested that asymmetric cell division [2], lognormal distribution of
+growth rates [22] or stochastic partitioning of molecular components at cell division [23] could lead
+to a heterogeneity in cell sizes in the population. Recent single-cell bacterial growth kinetic data [19]
+combined with theoretical modelling have reopened the debate of whether cell-size robustness is
+determined by a ‘timer’ or ‘sizer’ mechanism [24] and currently the ‘incremental’ or ‘adder’ model
+appears to explain all available data [25,26]. However, the effect of molecular regulatory networks on
+cell size and the correlation of cell size variability with growth rate remain unclear.
+RecA is a central regulator of the SOS response pathway, and deletion mutants of E. coli for the
+recA gene experience enhanced replication fork stalling [27]. Additionally, a recA1 mutation is known
+to result in asynchronous replication and a reduction in the expected genome-copy numbers [15].
+In previous work, we had found that a recA1 mutation phenocopies typical cell septation defects,
+resulting in elongated cells containing multiple nucleoids and increased cell length variability [28]. While
+replication fork stalling and repair are important for DNA replication, as reviewed by Cox et al. [29],
+the artiﬁcial induction of replication stalling results in increased cell lengths [30]. The repair of stalled
+replication forks by RecA protein assembly on DNA [31] also triggers SulA-mediated cell division
+inhibition [32] via the SOS response pathway [33–35]. At the same time, the population growth rate
+affects the number of replication forks per cell in a step-wise manner [16]. As a result, the number of
+replication stalling events could be multiplicatively increased by growth rate and thus affect cell division.
+Therefore, we hypothesize that RecA might provide the molecular link between E. coli growth rate and
+cell length.
+Here, we measure the correlation between cell length variability and growth rate from steady-state
+cultures, and test our method against single-cell agar-pad and microﬂuidic growth assays. We ﬁnd
+that cell size variability remains unchanged for slow-growing cultures, but increases above a threshold
+growth rate. By increasing replication fork stalling with hydroxyurea (HU) in multiple mutant strains,
+we demonstrate that DNA replication fork dynamics can affect population cell size distributions in a
+RecA-dependent manner. From the growth-rate-dependent recruitment of RecA to the genome, we infer
+a molecular mechanism that links growth rate to cell size.
+3
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2. Material and methods
+2.1. Bacterial strains and plasmids
+Multiple E. coli strains were used: MG1655 (6300, CGSC), ΔrecA (JW26691, CGSC), ΔsulA (JW09411,
+CGSC), ΔslmA (JW56411, CGSC) and E. coli MG1655 with a GFP-tagged genomic copy of recA (recA-
+GFP) was grown in the presence of 25 µg ml−1 kanamycin as described previously [36] (gift from Dr G.P.
+Manjunath). Nucleoid segregation dynamics were followed in E. coli MG1655 with a pBAD24-hupA-gfp
+plasmid with 100 µg ml−1 ampicillin [37] (gift from Dr Josette Rouviere-Yaniv). We constructed two recA
+expression plasmids (i) mCherry tagged and (ii) arabinose-inducible, untagged. Two primer sets were
+used with complementary regions to the genomic RecA sequence and overhangs for restriction digestion
+for the p-recA-mCherry and pBAD-recA constructs (electronic supplementary material, table S1). The
+recA gene was PCR-ampliﬁed (Mastercycler proS, Eppendorf, Germany) using Taq polymerase and
+dNTPs (Bangalore GeNei, India) in recommended buffers. The template DNA, E. coli MG1655 genomic
+DNA, was extracted by a rapid extraction method that avoids polysaccharide contamination [38]. The
+recA amplicon for mCherry tagging and the p-mCherry plasmid were sequentially digested with SalI
+and HindIII. The fragments were separated on an agarose gel, column-puriﬁed (QIAquick, Qiagen,
+Germany) and ligated using a T4 DNA Ligase (Bangalore GeNei, India). The plasmid p-mCherry was
+constructed by replacing the GFP sequence in a pGFP plasmid with mCherry from p-mCherry-N1 (both
+plasmids from Clontech, USA) by directional cloning using the restriction enzymes SalI and EcoRI. The
+recA amplicon for arabinose-inducible expression was puriﬁed, and both the amplicon and pBAD24
+digested sequentially by NheI and XbaI, and ligated as before. Plasmids were transformed using the
+CaCl2 method [39] in E. coli DH5α cells. Plasmids were isolated using a spin column-based method
+(Miniprep Kit, Qiagen GmbH, Germany).
+2.2. Growth media
+For rapid growth, cells were grown in Luria–Bertani (LB) broth (HiMedia, Mumbai, India), while reduced
+growth rate was achieved using the reduced media yeast extract broth (YEB): 0.5% (w/v) yeast extract in
+1% (w/v) solutions of NaCl and tryptone broth (TB): 1% (w/v) tryptone in a 1% (w/v) solution of NaCl.
+Additionally, M9 minimal salts medium [40] supplemented with 4 µg ml−1 thymidine were reconstituted
+with three different carbon sources (to result in successively slower growth rates): 0.4% (w/v) glucose or
+0.9% (w/v) succinic acid or 0.5% (w/v) sodium acetate (all sugars from Sigma-Aldrich). All broths and
+media were made in deionized water and the pH was adjusted to 7.
+2.3. Batch culture and growth rate estimation
+Cells were grown at 37°C with shaking at 180 r.p.m. (Forma, ThermoScientiﬁc, USA) in 100 ml LB, YEB
+and TB using a 1% overnight inoculum. Identical conditions were used to grow E. coli MG1655 in
+M9 + sugars. Cell density was estimated by converting 1 OD600 nm = 8 × 108 cells ml−1 [41]. To estimate
+the growth rate (r), the averaged OD with time curves were ﬁt to the solution to the logistic equation by
+N(t) =
+N(0) · K
+N(0) + (K −N(0)) · e−r·t ,
+(2.1)
+where N(0) is the population at the time of inoculation, r is the growth rate (h−1), K is the carrying
+capacity and t is time (electronic supplementary material, ﬁgure S1). Doubling time is td = 1/r [42].
+2.4. Continuous cell culture
+A PDMS-based microﬂuidic device was used to grow E. coli MG1655 culture continuously based on
+the ‘mother machine’ design [19]. The device was designed as a two-layered micro-pattern mask in
+CleWin (WieWin Web, The Netherlands) and fabricated by using an approximately 100 nm layer of
+gold (for aligning the second layer) followed by spin-coating a 2 µm layer SU8-2 negative photoresist
+(Microchem, USA) onto a SiO2 wafer using a spin coater model WS-400B-6NPP LITE (Laurell Tech.
+Corp., USA). The photoresist was cured by UV exposure with a mask (EVG, Austria) corresponding
+to the trench and dead-end channels. Unexposed photoresist was washed and a 20 µm layer of SU8-20
+negative photoresist (Microchem, USA) spun and exposed to UV corresponding only to the trench, for
+4
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+curing. The PDMS device was made by mixing elastomer : curing agent of 10 : 1 w/w (Sylgard 184, Dow-
+Corning, USA) and coating the wafer and heat-curing it in an oven at 60°C (Raut Scientiﬁc, Maharashtra,
+India) for 2 h. The cured PDMS membrane was cleaned with pentane (Sigma-Aldrich, Mumbai, India)
+and washed with acetone (Fisher Scientiﬁc, Mumbai, India). The air-dried device was then bonded
+in air using a plasma cleaner (Emitech K050X, Quorum Technologies, UK) under RF power of 70 W,
+washing time of 30 s and 1 mbar vacuum (Edwards Pumps, UK). The PDMS-glass device was integrated
+and channels passivated by passing 10 mg ml−1 of BSA (Sigma-Aldrich, Mumbai, India) for 1 h. E. coli
+MG1655 cells were infused into the device (OD ∼1.0) and allowed to diffuse into the channels for 1 h at
+37°C using a syringe pump (PHD Ultra, Harvard Apparatus, USA). The device was washed by ﬂowing
+in either fresh LB medium or M9 + succinate at a constant ﬂow rate of 0.3 ml h−1. Cell growth and
+division were observed in DIC microscopy. To measure the effect of HU treatment in continuous culture,
+E. coli MG1655 and recA strains expressing eGFP from a plasmid were introduced in the microﬂuidics
+device as before. Cells were grown under continuous ﬂow in LB for 1 h (approx. three generations),
+followed by a change of the medium to the corresponding medium supplemented with 30 mM HU for
+1 h (‘treatment’). Subsequently, the medium without any drug (no HU) was once again replaced for 2.5 h
+of ‘recovery’. Fluorescence time-lapse images were acquired in the GFP channel and analysed.
+2.5. Hydroxyurea and trimethoprim treatment
+Overnight cultures were grown from a single colony of E. coli MG1655, recA, sulA, slmA and
+recA + pRecA-mCherry. The cultures were diluted 1 : 100 (1% inoculum) into 5 ml of fresh LB and
+M9 + 0.9% succinate and grown at 37°C with shaking (180 r.p.m.). E. coli MG1655 with genomic RecA-
+GFP was similarly grown in LB, TB and YEB at 37°C with shaking. At OD600 nm ∼0.2, the cultures were
+incubated in 10–100 mM HU containing growth medium for three generations corresponding to 1 h in LB,
+1.5 h in TB, 2 h in YEB, 3 h in M9 + succinate. Subsequently, cells were allowed to recover for another three
+generations. Similarly, E. coli MG1655 cells grown in LB and M9 + succinate were exposed to 1 µg ml−1
+trimethoprim (Sigma-Aldrich, India) and allowed to recover for 1 and 3 h, respectively. After recovery,
+all cultures (treated and untreated) were washed, ﬁxed and imaged.
+2.6. Western blotting
+Escherichia coli MG1655 and recA cells grown in LB, YEB and TB media were grown for three generations
+and treated with HU as above. The OD at 600 nm was measured before treatment and after recovery,
+and 1 ml cell suspensions were diluted to result in comparable cell densities (electronic supplementary
+material, table S2). The cells were pelleted, washed in phosphate-buffered saline (PBS), resuspended
+in 50 µl of lysis buffer consisting of 10 µl of 5× SDS loading dye (250 mM Tris–Cl (pH 6.8), 10% SDS,
+50% glycerol, 0.5% bromophenol blue and 500 mM DTT) and 40 µl PBS, heated to 95°C for 10 min
+with constant shaking at 700 r.p.m. (ThermoMixer, Eppendorf, Germany), and samples were centrifuged
+before loading on a 10% SDS–PAGE gel run at 120 V (Bio-Rad, USA). Proteins were transferred onto
+a PVDF membrane (Immobilon-P transfer membrane, EMD Millipore Corporation, USA) and the
+membrane blocked with 5% milk powder in TBST buffer (Tris–Cl-buffered saline (pH 7.4) and 0.1%
+Tween 20). Rabbit antiserum raised against E. coli RecA [43] (a gift from Dr K. Muniyappa) was diluted
+to 1 : 12 000 in blocking agent (5% milk powder in TBST buffer) and incubated with 100 ml of cell lysate
+of E. coli recA for 12 h at 4°C to immunodeplete non-speciﬁc antibodies. The lysate was prepared
+by growing E. coli recA cells to OD600 nm approximately 2.0, resuspending the pellet in PBST (PBS
+with 0.05% (v/v) Tween 20) and lysis by pulse sonication for 2 min, 30 cycles. The membrane was
+incubated with this pre-treated serum at 4°C overnight, washed and hybridized with the secondary
+HRP-conjugated anti-rabbit antibody, 1 : 10 000 diluted (Jackson ImmunoResearch, USA). The blot was
+developed using a reagent Luminata Femto (Millipore Corporation, USA) and luminescence images
+acquired (LAS 4000, GE Healthcare, USA).
+2.7. Cell immunostaining
+Escherichia coli MG1655 were grown to the mid-log phase and cells ﬁxed with 1.6% paraformaldehyde
+(PFA) and 0.01% glutaraldehyde, incubated for 1 h and washed three times with PBST. The cells were
+treated with GTE (50 mM glucose, 25 mM Tris–Cl, 10 mM EDTA) containing 5 µg ml−1 lysozyme and
+incubated at 37°C for 45 min, followed by 3× wash with PBST. The cell suspension was spread on poly-L-
+lysine-coated coverslips and air-dried for 1 h. Coverslips were washed three times with PBST, incubated
+5
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+with 2% BSA (blocking agent) for 1 h, washed with PBST and incubated with the rabbit anti-RecA serum
+(1 : 1000 diluted in PBS) at 4°C for approximately 12 h. The coverslip was then incubated at 37°C for 1 h
+with Alexa647 conjugated anti-rabbit antibody (Thermo Fisher Scientiﬁc, USA) and mounted on slides.
+2.8. Fluorimetry
+E. coli recA-GFP was grown in 5 ml of LB, TB and YEB (1% inoculum) with 25 µg ml−1 kanamycin at
+37°C with constant shaking. The cultures were treated with 30 mM HU as above. Cell suspensions
+(1 ml) were sampled at pre-treatment (pt) and recovery (r) stages, and r-samples were diluted in the
+respective growth medium based on the ratio of OD recovery : pre-treatment samples (LB: pt 0.23, r 1.3;
+YEB: pt 0.195, r 0.92; TB: pt 0.193, r 0.819). All samples were pelleted and resuspended in 50 µl PBS and
+ﬂuorescence measured in a 96-well half-area round bottom black plate (Corning, USA) using 480 nm
+excitation and 510 nm emission in a Varioskan Flash multifunctional plate reader (Thermo Scientiﬁc,
+USA). Measurements were blank-subtracted by measuring E. coli MG1655 of the same density grown in
+LB, YEB and TB. Fluorescence per cell was estimated by dividing by the total cell numbers in 50 µl by
+using the conversion 1 OD600 nm = 8 × 108 cells ml−1 as before.
+2.9. Microscopy
+Cells were sampled (200 µl) from the batch cultures at the mid-log phase and ﬁxed in 4% PFA, stained
+with 0.1 µg µl−1 of DAPI (Sigma-Aldrich, India) and mounted, as has been described previously [28].
+Fixed cells of E.coli MG1655 recA-GFP and E. coli recA expressing RecA-Cherry were acquired using
+the 100× (Plan Apochromat N.A. 1.4, oil) objective of a Zeiss Axio Imager Z1 (Carl Zeiss, Germany)
+microscope in ﬂuorescence and DIC channels. For live-imaging, cells were grown on 2% agar pads
+with 100 µg ml−1 ampicillin and induced for 2 h by 0.2% Arabinose (Sisco Research Labs, Mumbai,
+India) to express HupA-GFP and imaged on a Zeiss LSM780 confocal microscope (Carl Zeiss, Germany)
+simultaneously in ﬂuorescence (Diode laser 405 nm, beam splitter MBS 405, pinhole 126.5 corresponding
+to 1 airy unit) and DIC modes using a 63× lens (Plan Apochromat NA 1.40, oil). Multiple positions
+were scanned as 512 × 512 pixel images (0.264 µm per pixel) with an image acquired every 2 min
+for approximately 2 h and at 37°C.
+2.10. Image analysis
+Cell lengths were automatically analysed from DIC images of ﬁxed cells using a previously developed
+algorithm [28] in Matlab R2014b (MathWorks Inc., MA, USA). The source code has been released on a
+GPL basis and can be downloaded from a Github repository (https://github.com/athale/ecolilenDIC).
+The birth lengths and the division lengths of E. coli cells in the ‘mother machine’ and RecA puncta were
+interactively estimated using IMAGEJ (v. 1.50f) [44]. Kymographs of E. coli cells expressing plasmid-
+based eGFP grown in the ‘mother machine’ were generated by using ‘multiplekymograph’ plugin in
+IMAGEJ [44] based on a line of interest drawn along the growth channel. RecA puncta were quantiﬁed by
+selecting a segmented line corresponding to the length of the E. coli cell in DIC and used to generate an
+intensity proﬁle in the RecA-GFP and DAPI channels. Co-localized peaks were used to score cells in the
+population and calculate the percentage cells showing such co-localization of RecA on the nucleoid.
+To follow the dynamics of nucleoid segregation, intensity proﬁles from timeseries of pHupA-GFP-
+transformed cells were plotted as a matrix to produce a kymograph (space–time plot), using the imagesc
+function in Matlab R2014b (MathWorks Inc.). Western blot intensity analysis was performed using ‘gel
+analyser’, an IMAGEJ plugin. The protein band area was obtained by using the ‘label peaks’ function
+and maximum normalized for comparison.
+2.11. Data analysis
+Cell frequency distributions were normalized by the sum of the area under the curve, ﬁt to a lognormal
+distribution to obtain lognormal mean (µ) and variance (v) using ﬁtdist, lognpdf and lognstat functions
+using Matlab with the Statistics Toolbox (MathWorks Inc.). The Kolmogorov–Smirnov (KS) test statistic
+6
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+was calculated for the number of bins (n = 44) and signiﬁcance level (α) of 0.01 to arrive at a test statistic
+(D (α,n)) given by [45,46]
+D(α,n) =
+
+−ln(α/2)
+2n
+.
+(2.2)
+The cumulative distribution function (CDF) of observed and ﬁt data was calculated for each bin
+(i) from the length–frequency distribution. The difference |di| = |Fi −ˆFi| between the observed (Fi) and
+expected (ˆFi) values of the CDF was evaluated, and the maximum (dmax) was found. The hypothesis that
+the ﬁt to the data was good was accepted if dmax < D(α,n). Variability in cell lengths was quantiﬁed by
+the coefﬁcient of variation (CVL) using the expression CVL = σ L/μL, where σ L and μL are the standard
+deviation and mean of cell lengths, respectively.
+3. Results
+3.1. Growth rate affects population cell length distributions of Escherichiacoli MG1655
+With the aim of measuring the effect of growth rate, r, on cell size, E. coli MG1655 cells were grown in LB,
+YEB, TB and M9 supplemented with glucose, succinate and acetate. As expected, the growth of cells was
+the fastest in LB and decreased for all other media with the slowest growth observed in M9 supplemented
+with acetate (ﬁgure 1a). Doubling time (td) values were obtained from logistic function (equation (2.1)) ﬁt
+to the growth curves (electronic supplementary material, ﬁgure S1) and ranged between 33 and 273 min
+(table 1). Cells sampled from the mid-log phase of each culture (ﬁgure 1a) were imaged, analysed and
+the frequency distributions of cell lengths ﬁt to a lognormal function (ﬁgure 1b). The goodness of the
+ﬁt was validated based on the KS non-parametric test (electronic supplementary material, table S3).
+The number of cells analysed in each sample ranged between 102 and 103 cells, comparable to previous
+microscopic studies on population cell size distributions [2,47]. Corresponding to the decrease in growth
+rate, the cell length distributions also decreased in spread. The spread of the distribution was maximal
+in samples grown in LB and minimal in M9 + acetate, with intermediate growth rates (in YEB, TB,
+M9 + glucose, M9 + succinate), resulting in an intermediate spread of cell lengths. The growth rate thus
+appears to alter the quantitative nature of the cell length distribution, while leaving the qualitative nature
+(lognormal) unchanged. Dynamic imaging of a population of E. coli MG1655 cells expressing HupA-GFP
+to label the DNA demonstrated that most cells divided normally, whereas elongated cells arose rarely
+and were accompanied by hampered DNA segregation (electronic supplementary material, video S1).
+This hints at cell division failure and DNA replication–segregation coupling as a potential cause for the
+observed variability of cell lengths. However, because the population distributions analysed from ﬁxed
+cell microscopy are taken from unsynchronized bulk cultures, we proceeded to examine if the cell-cycle
+stage does indeed affect our analysis, using live cells in continuous culture.
+3.2. Single-cell analysis of lengths of newborn and dividing cells in microfluidics
+The ‘mother machine’ microﬂuidics device described previously by Wang et al. [19] is ideally suited
+for single-cell analysis of rod-shaped cell growth dynamics. We capture birth and division events and
+estimate cell lengths (ﬁgure 2a) from timeseries of cells grown in LB (electronic supplementary material,
+video S2) and M9 + succinate (electronic supplementary material, video S3) at 37°C. The frequency
+distribution of the cell lengths from single-cell analysis also ﬁt a lognormal distribution (ﬁgure 2b–e),
+similar to the ﬁxed-cell data, with the goodness of ﬁt validated by the KS Test (electronic supplementary
+material, table S3). While the variance of cell lengths in LB showed a difference between newborn
+cells (ﬁgure 2b) and cells just prior to division (ﬁgure 2c), the mean cell length of newborn cells was
+also smaller (μ = 2.7 µm, v = 0.9 µm2) than dividing cells (μ = 5.28 µm, v = 3.29 µm2). As a result, the
+normalized variability measured by the coefﬁcient of variation of cell lengths (CVL) remained constant
+for cells grown in LB—0.3188 for newborn cells (arithmetic mean 2.73 µm, s.d. 0.87 µm) and 0.3129
+for dividing cells (arithmetic mean 5.27 µm, s.d. 1.65 µm). This suggests that population cell length
+variability is independent of cell growth stage, based on the two extreme cases, i.e. newborn and dividing
+cells in the same growth medium. Compared with LB, cell length distributions of cultures grown in
+M9 + succinate have a narrower spread in data from both newborn (ﬁgure 2d) and dividing (ﬁgure 2e)
+cells. The CVL of these cells is 0.156 (newborn) and 0.139 (dividing), twofold smaller than those measured
+in LB, conﬁrming the qualitative impression. This suggests that the cell length variability as measured
+by CVL from single-cell experiments is independent of the cell-cycle stage in a given medium, while
+7
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+107
+108
+109
+(a)
+(b)
+0
+15
+30
+cells ml–1
+time (h)
+LB
+yeast extract broth
+tryptone broth
+M9 + glucose
+M9 + succinate
+M9 + acetate
+LB
+yeast extract
+tryptone
+glucose
+succinate
+acetate
+0.3
+0.5
+0.3
+0.5
+0.3
+0.5
+0.3
+0.5
+0.3
+0.5
+0.3
+0.5
+0
+5
+10
+0
+5
+10
+frequency
+frequency
+frequency
+frequency
+frequency
+frequency
+cell length (mm)
+data
+fit
+m = 3.2842
+v = 1.6888
+n = 1217
+dmax= 24.9
+OD: 0.327
+m = 3.0754
+v = 1.2663
+n = 2402
+m = 2.2504
+v = 0.3956
+n = 1266
+m = 2.167
+v = 0.3207
+n = 511
+m = 2.0094
+v = 0.1859
+n = 3665
+m = 2.0065
+v = 0.1886
+n = 281
+OD: 0.217
+OD: 0.329
+OD: 0.395
+OD: 0.258
+OD: 0.286
+0
+5
+10
+cell length (mm)
+0
+5
+10
+0
+5
+10
+0
+5
+10
+dmax= 40.7
+dmax= 63.1
+dmax= 24.8
+dmax= 108.2
+dmax= 24.8
+Figure 1. Growth rate and cell size distributions. (a) The growth (log10 cell density) of E. coli MG1655 cells was measured as a function
+oftime inthe following growthmedia: LB(black), yeastextractbroth(YEB)(red), tryptone broth(TB)(green), M9mediasupplemented
+eitherwithglucose(blue),succinate(brown)oracetate(purple).Samplestakenfromthemid-logphase(circles)(b)(left)wereexamined
+inDICmicroscopy(scalebar,5 µm)and(right)thecelllengthdistribution(bars)plotted.Thedistributionwasfittolognormal(red)where
+μ: mean cell length, v, variance; n, total number of cells. dmax is the Kolmogorov–Smirnov test value evaluated for the fit.
+Table 1. The doubling times and growth rates of E.coli MG1655 were estimated from fitting the logistic equation to average (n = 3) OD
+measurements with time. Cultures were grown at 37°C with constant shaking.
+growth medium
+doubling time, td (min)
+growth rate, r (h−1)
+LB
+33.11
+1.814
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+yeast extract broth
+39.87
+1.505
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+tryptone broth
+57.2
+1.049
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+M9 + 0.4% glucose
+63.13
+0.9504
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+M9 + 0.9% succinate
+131.98
+0.4546
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+M9 + 0.5% acetate
+273.35
+0.2195
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+changing growth rates lead to measurable differences in the CVL. To validate this ﬁnding, we also
+examine the growth of microcolonies, which form natural populations.
+3.3. Growth-rate dependence of cell size variability in microcolonies
+Agar-pad-based single-cell dynamics are routinely used to examine cell division dynamics in E. coli.
+We followed the growth dynamics of single cells, as they formed microcolonies at 37°C on LB agar
+8
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+t = 0 min
+t = 40 min
+t = 100 min
+mother cell at
+t = 0 min
+mother cell at
+t = 30 min
+newborn cells at
+t = 32 min
+0.50
+no. cells
+0.25
+0.50
+no. cells
+0.25
+0.50
+0.25
+0.50
+0.25
+0
+5
+10
+15
+0
+5
+10
+15
+0
+5
+cell length at birth (mm)
+10
+0
+5
+cell length at division (mm)
+10
+m = 2.7391
+v = 0.9419
+n = 153
+dmax= 6.30
+m = 1.4913
+v = 0.0540
+n = 133
+dmax= 5.15
+m = 3.2358
+v = 0.2084
+n = 68
+dmax= 0.61
+m = 5.2833
+v = 3.2094
+n = 110
+dmax= 6.23
+data
+fit
+(a)
+(b)
+(c)
+(d)
+(e)
+Figure2. Celllengthdistributionofwild-typeE.coli incontinuousculture.(a)RepresentativeDICimagesofE.coli MG1655cellsgrownin
+continuouscultureina‘mothermachine’devicewithLBwererecordedat0,40and100 min(alsoelectronicsupplementarymaterial,video
+S3).Scalebar,10 µm.Inset:arepresentativechannelismarkedtoindicateamothercell(blackline),whichgrowsin30 min(blueline)and
+divides into two daughter cells at 32 min (green and red lines). The cell length distributions of cells grown in two growth media: (b,c) LB
+and(d,e)M9 + succinateweremeasuredatbirth(b,d)anddivision(c,e)andthefrequencydistributionsarefitbylognormaldistributions
+(red)withparametersµandvandthegoodnessoffitwasmeasuredbydmax (evaluatedfortheKStest,electronicsupplementarymaterial,
+table S1).
+9
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+0.5
+0.4
+0.2
+0
+no. cells
+cell length variability
+0.3
+0
+0
+5
+cell length (mm)
+0.5
+1.0
+1.5
+2.0
+2.5
+growth rate (h–1)
+10
+m = 3.2501
+v = 0.7688
+n = 151
+t = 0 min
+t = 142 min
+r = 0.6 h–1
+r = 1.0 h–1
+r = 2.3 h–1
+dmax= 8.8
+(a)
+(b)
+(c)
+(d)
+Figure 3. Population cell size variability in a microcolony. (a) The growth from a single cell to a microcolony at the end of 140 min is
+depicted. (b) Multiple microcolonies originating from a single cell after 140 min of growth are of different sizes, indicating differences
+in growth rates. Scale bar is 5 µm. (c) The cell length frequency distribution (bar) pooled from 13 microcolonies is fit by a lognormal
+distribution(red).μ,mean;v,variance;n,numberofcellsanalysed,dmax,theKSteststatisticmeasure.(d)Thevariabilityofcelllengths
+in a microcolony measured by the CV is plotted as a function of the average microcolony growth rate (h−1). The dotted vertical line
+indicates a growth rate of rmf = 1 h−1.
+for 140 min (ﬁgure 3a; electronic supplementary material, video S4). Consistent with previous reports
+of growth rate heterogeneity in single cells [48], we ﬁnd that growth rates vary in the range of 0.6–
+2.3 h−1 in the population (ﬁgure 3b). Each colony examined originates from a single cell, and hence at
+the end of 140 min when microcolony sizes vary, the cell–cell variation in growth rates is conﬁrmed.
+The population cell length distribution of these microcolonies also ﬁt a lognormal function (ﬁgure 3c),
+with the goodness of ﬁt evaluated using the KS test (electronic supplementary material, table S3). To
+our surprise, the CVL from individual microcolonies appeared to increase with increasing growth rate
+(ﬁgure 3d). Because the sample size in each CVL measurement of a single microcolony is very small, and
+the growth-rate difference between single cells is difﬁcult to control and is possibly the result of intrinsic
+stochastic variability, we instead proceeded to modulate average growth rate by the nutrient medium
+and analyse cell size variability in ﬁxed cell microscopy, to take advantage of better population statistics.
+3.4. Cell length variability affected by a combination of growth rate, recA and hydroxyurea
+Cell length variability was quantiﬁed in the mid-log phase of cells grown in media resulting in growth
+rates ranging between 0.2 and 1.81 h−1 by using LB, the reduced media YEB, TB and M9 supplemented
+with sugars, to modulate growth rates (table 1). We ﬁnd that cells grown in M9 supplemented with
+glucose, succinate and acetate are less variable (CVL < 0.25), and the variability increases gradually
+with increasing growth rate (ﬁgure 4a). When the growth rate (r) exceeds 1 division per hour (in TB,
+YEB and LB), the CVL appears to enter a second phase of a steeper increase. This inﬂection point also
+correlates with the growth rate threshold for multi-fork (mf) replication (rmf = 1 h−1) [16]. Because multi-
+fork replication changes the genomic content per cell (G), we used a previously developed expression
+relating G with the BCD cycle [49] and doubling times, to estimate it as
+G = td · (2(C+D)/td −2D/td)
+C · ln 2
+,
+(3.1)
+10
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+growth rate (h–1)
+hydroxyurea (mM)
+genomic content/cell
+R2= 0.9368
+expt
+fit
+medium
+medium + 1 mg ml–1 TM 
+medium + 30 mM HU
+0
+0.3
+0.6
+cell length variability
+MG1655
+DrecA
+DslmA
+DsulA
+DrecA+ 
+pRecA- mcherry
+0
+50
+100
+0
+50
+100
+0
+50
+100
+0
+50
+100
+0
+50
+100
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0.2
+0.4
+0.6
+0.8
+1.0
+LB
+M9 + succinate
+cell length variability
+0.25
+0.50
+(a)
+(c)
+(d)
+(b)
+0
+1
+2
+0.50
+0.25
+0
+2
+1
+cell length variability
+cell length variability
+cell length variability
+rmf
+M9 + succinate
+LB
+Figure 4. Effect of growth rate and replication stochasticity on cell lengths. (a) The cell length variability from the mid-log phase
+of cultures (y-axis) is plotted as a function of the growth rate (x-axis). The growth rate of rmf = 1 h−1 (red line) is the multi-fork
+replication threshold based on Cooper & Helmstetter [16]. Error bars indicate s.d. (b) The measured cell length variability (y-axis) is
+plotted as a function of the expected total cellular DNA (x-axis) based on the model of Zaritsky etal. [49] (equation (3.1)). (c) Cell length
+variability of E. coli (y-axis) with increasing hydroxyurea (HU) concentration (x-axis) was estimated for the following strains: MG1655
+(dots), recA (asterisks), slmA (circles), sulA (x) and recA + pRecA-mCherry (open squares). Cultures were grown either in LB
+(black)orM9 + succinate(red).(d)ThecelllengthvariabilityofE.coliMG1655populations(y-axis)growninLBorM9 + succinate(black)
+and compared with cells grown in the same medium but treated with 1 µg ml−1 of trimethoprim (TM) (red) or 30 mM HU (blue).
+where td is the doubling time, C is the period of chromosome (DNA) replication and D is the time for
+cell division (septum formation). We combine the experimentally measured doubling times for different
+growth media (table 1) with an assumed C-period of 40 min and D-period of 20 min [16,50]. We ﬁnd that
+the measured CVL is positively correlated to increasing values of the estimated average genome content
+(G) per cell (ﬁgure 4b). This correlation demonstrates that genome content and cell size regulation could
+be coupled.
+Because the genome content dependence of CVL does not, however, reproduce a biphasic, threshold
+dependence in cell length variability (ﬁgure 4a), we examined whether perturbing replication dynamics
+below and above the presumptive growth rate threshold could be used as a test of replication
+stochasticity as the underlying mechanism. HU is known to induce stochastic replication fork
+stalling [51,52] and the RecA protein is critical for restarting stalled replication forks [31]. Expectedly,
+cells mutant for recA have a reduced ability to recover stalled replication forks [35]. To our surprise, on
+treatment with HU, both wild-type and recA cells showed an increase in CVL when grown in LB, but
+not when grown in M9 + succinate (ﬁgure 4c and electronic supplementary material, ﬁgure S5). Thus,
+slow growth appears to protect cells from the cell-division defects of HU, but rapid growth induces an
+increase followed by saturation in cell length variability. E. coli recA mutants, however, differ from wild-
+type, because the difference of CVL between LB and M9 + succinate was more pronounced. On the other
+hand, minimal medium-grown cells lacking sulA, ‘the effector’ of RecA, are less variable when compared
+with wild-type and do not respond to HU treatment. The treatment of LB and minimal medium-grown
+slmA and recA cells expressing RecA-mCherry cells results in variability comparable to MG1655. The
+‘rescue’ of the wild-type phenotype by expression of RecA in a mutant background and the variability of
+sulA mutant suggest the speciﬁcity of the RecA-SulA mechanism for growth-rate-dependent regulation
+of cell size. Additionally, the increase and saturation of cell size variability on treatment with HU of wild-
+type cells only during rapid but not slow growth further validate the threshold growth rate dependence
+of cell length variability. The growth-rate-dependent increase in cell length variability with trimethoprim
+treatment (ﬁgure 4d), a drug known to increase replication fork stalling [53], reinforces replication
+stochasticity as a mechanism regulating cell size. Based on this, we hypothesize that, in addition to
+11
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+0¢
+(a)
+(b)
+(c)
+(d)
+(e)
+(f)
+(g)
+(h)
+I
+I
+II
+II
+III
+III
+I
+II
+III
+60¢
+E. coli MG1655
+E. coli DrecA
+time (min)
+time (min)
+time (min)
+time (min)
+120¢ 270¢
+0¢
+60¢ 120¢ 270¢
+0¢ 60¢ 120¢ 222¢ 270¢
+dist. (mm)
+dist. (mm)
+dist. (mm)
+dist. (mm)
+0¢
+60¢ 120¢ 270¢
+I
+II
+III
+I
+II
+III
+I
+II
+III
+I
+II
+III
+I
+II
+III
+Figure 5. Effect of hydroxyurea (HU) on E. coli strain expressing eGFP grown in the ‘mother machine’. (a,c) Images of E. coli MG1655
+and (e,g) E. coli recA mutants were both grown at 37°C in the ‘mother machine’ with three phases in the nutrient supplied I: LB (‘pre-
+treatment’), II: LB + 30 mM HU (‘treatment’) and III: LB (‘recovery’). Scale bar is 2 µm. (b,d,f,h) Kymographs of the preceding timeseries
+are used to follow cell division. The yellow horizontal lines mark the three phases. Time is in minutes. Horizontal scale bar is 3 µm
+and the vertical scale bar is 25 min.
+its previously known roles, RecA recruitment to replication fork stalls [54] could mechanistically relate
+growth rate with cell size variability.
+3.5. Single-cell dynamics of Escherichiacoli MG1655 and recA with hydroxyurea treatment
+Based on this evidence from ﬁxed cells, we expect that HU treatment should affect single-cell dynamics
+in a manner similar to the effect at a population level. To test this, E. coli MG1655 cells expressing
+eGFP from a plasmid were grown in the ‘mother machine’ in LB with the medium changed in three
+stages: 1 h pre-treatment (stage I), 1 h 30 mM HU treatment (stage II) and 2.5 h recovery from HU (stage
+III). Most cells continued to divide normally (ﬁgure 5a) and a few appeared to undergo moderate
+ﬁlamentation (cell lengths approx. 7 µm) at the end of the ‘recovery’ period (ﬁgure 5c). The kymographs
+suggest that the division of some cells is unaffected (ﬁgure 5b), while a few undergo ﬁlamentation
+(ﬁgure 5d). Most E. coli recA cells continued to divide normally after recovery from treatment (ﬁgure 5e),
+whereas others became prominently ﬁlamentous, resulting in cell lengths of approx. 12 µm (ﬁgure 5g).
+The kymographs conﬁrmed regular divisions of most cells (ﬁgure 5f), while a failure of division in
+some resulted in cell ﬁlamentation (ﬁgure 5h). This qualitatively corroborates our observations from
+population measurements that (i) cell division failure results in elongated cells, (ii) cell ﬁlamentation
+is probabilistic and (iii) the extent of cell ﬁlamentation is greater in recA cells owing to a more
+extreme ﬁlamentation phenotype, when compared with E. coli MG1655. From population and single-
+cell dynamics, we hypothesize that cells that rapidly divide and are treated with HU are expected to
+have a higher frequency of ﬁlamentation and greater variability owing to increased RecA recruitment to
+the DNA. We proceed to test this hypothesis using microscopy.
+3.6. Nucleoid localization of recA corresponds to increased cell length variability
+To test the hypothesis of growth rate-dependent recruitment of RecA to the genome, an E. coli MG1655
+strain expressing an endogenous RecA-GFP protein [36] was grown in three different media: LB, YEB
+and TB, to modulate growth rates as before. RecA foci co-localization with the nucleoid (labelled
+with DAPI) appeared to increase when cells were grown in LB when compared with YEB and TB
+(ﬁgure 6a). Treatment with HU resulted in increased co-localization when compared with untreated
+cells grown in the same growth medium (ﬁgure 6a). The proportion of cells with co-co-localization of
+the RecA protein on the nucleoid is low (less than 15% cells with RecA-DNA co-localization) during
+slow growth (TB), intermediate (approx. 15%) for cells in YEB and high (approx. 30%) in LB during
+12
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+30
+0
+6
+2
+1
+0
+×10–8
+3
+0
+LB
+YEB
+TB
+LB
+YEB
+TB
+LB
+YEB
+TB
+60
+30
+0
+1.4
+2.0
+2.6 0.35
+0.45
+0.55
+60
+30
+0
+60
+30
+0.7
+0.6
+0.5
+0
+DIC
+LB
+YEB
+TB
+nucleoid + RecA
+DIC
+nucleoid + RecA
++hydroxyurea
+–hydroxyurea
+medium
+medium + HU
+media
+media + HU
+% cells with RecA
+DNA co-localization
+RecA-GFP
+fluorescence/cell
+RecA-GFP fluorescence
+HU-treated: untreated
+n = 3
+cell length variability
+growth rate (h–1)
+R2= 0.877
+R2= 0.9372
+y = 30.46x – 24.963
+y = 21.61x – 22.109
+(a)
+(b)
+(c)
+(d)
+Figure6. GrowthratedependenceofRecAco-localizationwithnucleoids.(a)Mid-logculturesofE.coli expressingRecA-GFP(genomic)
+grown in LB, YEB and TB with (+) and without (−) 30 mM hydroxyurea (HU) were imaged in DIC (grey), and the fluorescence.
+ThemergedimageofDAPI(red)andGFP(green)fluorescencewithco-localization(yellow)isshown.Scalebar,5 µm.(b)Theproportion
+ofE.coli cellsinwhichRecAfocico-localizewithnucleoids(y-axis)isplottedagainstthreegrowthmedia(x-axis)with(red)andwithout
+(black)HU,growthrate(h−1)(x-axis)andcelllengthvariability(x-axis).(c)Mean(±s.d.fromthreesamples)RecA-GFPfluorescence/cell
+fromfluorimetryofliquidculturesisplottedasabarchartforuntreated(black)andHU-treated(red)cellsgrowninthreemedia:LB,YEB
+and TB. (d) The ratio of RecA-GFP fluorescence of HU treated to untreated cells grown in LB, YEB and TB are compared.
+rapid growth (ﬁgure 6b). The co-localization percentages are further increased on HU treatment. This
+is evidenced by the percentage cells with co-localized RecA-GFP and DNA increasing linearly with
+growth rate for untreated cells, with a 1.4-fold increase in the slope for HU-treated cells (ﬁgure 6b).
+The percentage co-localization of treated and untreated cells correlates positively with CVL, consistent
+with our previous results of increasing cell length variability with growth rate and HU treatment. As
+before, the variability of HU-treated cells is higher for the same growth medium, when compared
+with untreated cells. To test if the co-localization of RecA with the nucleoid was not the result of
+an artefact of GFP tagging of RecA, the native RecA protein was immunostained in ﬁxed cells of
+E. coli MG1655 and analysed for co-localization with DNA by DAPI staining in multiple ﬁelds of view
+13
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+(electronic supplementary material, ﬁgure S6a). The percentage cells with RecA co-localized on the
+nucleoid matched the values from the RecA-GFP co-localization (electronic supplementary material,
+ﬁgure S6b). In addition, the measured cell length variability from the DIC images was also comparable
+between the RecA-GFP-expressing strain and the immunostained samples (electronic supplementary
+material, ﬁgure S6c). Alternatively, we also imaged the localization of RecA-mCherry protein expressed
+from a plasmid in E. coli recA cells grown in LB (electronic supplementary material, ﬁgure S7a)
+and found the RecA-nucleoid co-localization to be comparable to anti-RecA and RecA-GFP-based
+quantiﬁcation (electronic supplementary material, ﬁgure S7b). The CVL of all three samples remained
+comparable (electronic supplementary material, ﬁgure S7c), suggesting that RecA protein tagging did
+not result in artefacts in either localization or cell length variability. To test if the increased co-localization
+could have resulted from RecA protein abundance instead of recruitment, we measured the RecA-
+GFP concentration per cell in ﬂuorimetry and found that HU-treated cells had a slightly increased
+(approx. 1.25-fold) RecA-GFP expression per cell, for all three growth media tested (ﬁgure 6c). Western
+blotting using anti-RecA antiserum of cells grown in LB, YEB and TB with and without treatment
+also appear to show increased protein in cell lysates on HU treatment, independent of the growth
+medium (electronic supplementary material, ﬁgure S8a). Quantiﬁcation showed an approximately 1.5-
+to threefold increase in RecA (electronic supplementary material, ﬁgure S8b) and RecA-GFP intensity
+after HU treatment, in all growth media tested, not owing to loading artefacts (electronic supplementary
+material, ﬁgure S8c,d). Additionally, the expression of RecA-GFP from the genomic locus also increased
+by 2.5-fold on HU treatment (electronic supplementary material, ﬁgure S8e,f), with non-speciﬁc protein
+content remaining comparable (electronic supplementary material, ﬁgure S8g,h). Taken together, the
+results suggest that RecA recruitment to the nucleoid could serve as one of multiple mechanisms that
+drive growth rate-dependent cell size variability in clonal populations, independent of RecA protein
+abundance.
+4. Discussion
+While the study of average values of cell size [55,56] and single-cell studies [19,26,48] have demonstrated
+that cell size is robust to environmental changes, understanding the population distribution remains
+important to the ecology of microbes and their survival in changing environments [57,58].
+Here, we have examined the population variability of clonal cell sizes and their link to growth rate.
+We demonstrate that at a ﬁxed growth rate, the cell length variability is constant and independent of
+the cell-cycle stage using a microﬂuidics-based continuous culture system. Additionally, the growth
+rate of microcolonies on an agar pad appears to correlate with cell-cycle synchronized variability in cell
+lengths. However, in our analysis, quantitative ﬁxed cell microscopy from bulk cultures results in better
+statistics and a more robust control over growth rates. We ﬁnd increasing growth rates increases the
+population variability in cell lengths in a bi-phasic manner, with the two phases separated by a growth
+rate threshold, rmf (the growth rate of multi-fork replication). HU treatment, known to induce DNA
+replication fork stalling, increases the cell length variability of only those cells which are undergoing
+rapid growth. This HU-induced variability is further enhanced in a recA mutant when compared with
+wild-type. The linear increase in RecA co-localization on the nucleoid with growth rate and cell length
+variability suggests the involvement of the RecA protein in coupling increasing growth rates to higher
+cell length variability.
+In general, stochastic partitioning of subcellular components has been shown to be a major source
+of cell phenotypic variability in a study combining theory and experiment [23]. Our observations on
+the role of stochastic replication dynamics potentially add to the potential contributors to phenotypic
+variability or ‘noise’. We expect stochastic DNA replication–segregation effects on cell size, should result
+in cell elongation owing to incomplete segregation of DNA. In agar-pad growth experiments in DIC
+and ﬂuorescence of E. coli MG1655 with nucleoids labelled by HupA-GFP, most cells divide to produce
+newborn cells with typical birth lengths of approximately 2 µm after successfully segregating their
+nucleoids in approximately 20 min (electronic supplementary material, ﬁgure S4a and video S1). On the
+other hand, rare cells become approximately 40 µm long, after their nucleoids fail to segregate even after
+50 min (electronic supplementary material, ﬁgure S4b and video S1). Growing wild-type and mutant
+strains in multiple growth media with HU and trimethoprim, we show that cell length variability is
+greater when replication processivity is perturbed, depending on the growth rate.
+Cell size is a complex phenotype and is inﬂuenced by multiple pathways such as nutrient sensing
+[9–11,59], the division site selection by the minCDE proteins [60,61], nucleoid occlusion to sense
+14
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+DNA
+Rf
+SulA
+cell division
+FtsZ ring
+fs
+fr
+RecA
+inhibition and filamentation
+(a)
+(b)
+Figure 7. A proposed model of RecA recruitment and cell length regulation. (a) The stalled DNA-replication forks (red) result in the
+recruitment of RecA (dark blue) to the DNA and trigger SulA expression (light blue). The transition of recovered (green) and stalled
+replication forks is stochastic (determined by the frequency of stalling, f s) and reversible (determined by the frequency of recovery, f r).
+RecA filament assembly promotes increased recovery (f r). (b) In normal cell division, replication forks are in a recovered state and FtsZ
+assembles at the septum. Recruitment of RecA results in SulA-based inhibition of division and cell filamentation (long cell).
+incomplete replication [51,62] and the SOS response pathway [34,35]. However, this is the ﬁrst study,
+to the best of our knowledge, that proposes a mechanism connecting growth rate with cell length
+variability based on multi-fork replication. It remains to be seen if a more direct method of replication
+fork tracking [30] can be used to test this proposed mechanism.
+In previous studies on mammalian cell size regulation, the statistics of ﬁxed cells were used to estimate
+the ‘variability’ [63]. While many older studies on bacterial cell length regulation [2,64] made use of such
+an approach, the advent of single-cell approaches have improved the robustness and accuracy of E. coli
+cell size and division measurements [18,19]. However, in the process, the population effects have been
+ignored. In this work, we attempt to bridge this gap. Additionally, we test our method of population
+variability measurement for artefacts that could result from a lack of cell cycle stage synchronization of
+the population. Indeed by measuring the growth of populations under different growth conditions, we
+ﬁnd that the growth rate dependence of cell size variability is related to genome copy numbers per cell
+and is independent of synchronization.
+We ﬁnd the genome-copy number per cell, driven by growth rate, appears to positively correlate with
+cell size distributions in the population. An analogous study in yeast has examined the effect of the
+ploidy of speciﬁc genes on cell size regulation [65]. In the case of this study, while the genome copies per
+cell increase cell size variability, we have not estimated the possible role of speciﬁc genes and their ploidy
+on cell sizes. Additionally, our microcolony analysis once more reveals growth rate differences between
+clonal individuals under identical conditions (ﬁgure 3d). While these differences are not addressed in our
+study, it would be useful to extend our current analysis to the possible role of speciﬁc genes and proteins
+in single-cell growth rate variability.
+The RecA protein, examined in this study for a relationship with growth-rate-dependent cell size
+variability, is an SOS response pathway protein. It has previously been shown to enhance the recovery
+of stalled replication forks [29,66]. At the same time, when RecA is recruited to DNA, it activates SulA,
+which sequesters FtsZ monomers [34], thus acting as a cell division inhibitor. Fast-growing E. coli are
+also known to initiate multiple replication forks [16,67]. DNA replication fork progression is known to
+be stochastic [68]. The increase in cell length variability that we observe as a function of growth rate
+in wild-type E. coli can thus be explained by a model where RecA recruitment to stalled replication
+forks (ﬁgure 7a) leads to an increase in the proportion of elongated cells owing to cell-division inhibition
+(ﬁgure 7b). The cause for the onset of this process during rapid growth, we hypothesize, results from
+the probabilistic replication fork stalling (ﬁgure 7a) and the multiplicative effect owing to multi-fork
+replication [16]. While a computer simulation of multi-fork replication in the E. coli cell cycle exists [49],
+an explicit model of replication stochasticity coupled to multi-fork replication dynamics could help
+further test our hypothesis.
+Our observations of the role of RecA in cell size variability have two parts: (i) the effect of a functional
+copy of recA and (ii) the effect of a recA deletion. (i) We observed population cell length variability
+of E. coli to increase with growth rate (ﬁgures 1–3) and tested the hypothesis that increasing RecA
+localization on the genome with increasing growth rate correlated with this growth rate dependence
+(ﬁgure 6). We ﬁnd that RecA-SulA-mediated cell division inhibition increases cell length variability in
+rapid growth in wild-type cells (ﬁgure 4). Additionally, in rapidly growing cultures of the wild-type
+(LB, 37°C), overexpression of the RecA protein from the pRecA-mCherry (electronic supplementary
+15
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+material, ﬁgure S9a) and arabinose-inducible pBAD24-RecA constructs (electronic supplementary
+material, ﬁgure S9b) did not affect cell length variability (electronic supplementary material, ﬁgure S2a,b).
+In cells missing a copy of recA, treatment with 30 mM HU increased the variability of cell lengths
+(electronic supplementary material, ﬁgure S3a). The overexpression of plasmid-based copy of recA
+in these cells from pRecA-mCherry and pBAD24-recA plasmids reduced the spread of cell lengths
+to levels comparable to untreated MG1655 (electronic supplementary material, ﬁgure S3b). (ii) As
+reported previously, in the absence of RecA, the function of DNA replication fork stall rescue is
+hindered [31], resulting in replication defects [66] which are not repaired owing to the inability of
+the cell to induce an SOS response through LexA cleavage [69]. This results in cell division inhibition
+potentially owing to nucleoid occlusion [70,71] and additional RecA-independent pathways that detect
+incomplete replication [51]. However, distinct from previous work, we ﬁnd greater variability in cell
+lengths in a recA strain when compared with hydroxyurea-treated wild-type cells in LB (ﬁgure 4c). We
+also demonstrate that the phenotype can be rescued by plasmid-based expression of the RecA protein,
+both with and without a ﬂuorescent tag (ﬁgure 4c and electronic supplementary material, ﬁgure S2a,b).
+In future, our data could form the basis of a mathematical model, extending a previously developed
+model of recA gene expression dynamics during UV-based damage [72], focusing instead on the effect of
+growth rates.
+HU treatment increases replication fork stalling and slows down DNA replication [73] and also
+results in cell division failure. Stalled replication forks that are not repaired, result in incomplete
+DNA replication [29] and result in elongated cells owing to cell division inhibition [12,13]. A direct
+measurement of replication fork dynamics of a population of dividing bacteria based on methods used to
+study the single molecule replication dynamics [30,74] could be used to potentially test our predictions
+at a subcellular level. Additionally, recently developed artiﬁcial ‘replication roadblocks’ in E. coli [30] and
+Bacillus subtilis [62] could be used in future to generate known number of replication fork stalling events
+and quantify their effect on population cell lengths, as a further test of the model.
+The role of small proportions of outliers or ‘tails’ in phenotypic variability of a population has been
+shown to confer advantages to ‘persister’ cells, when the population undergoes selection [57,58,75].
+However, a clear functional role for cell lengths is yet to be unambiguously determined. Suggestive
+evidence from clinical isolates of uropathogenic E. coli have implied that ﬁlamentous cells are harder for
+immune cells to clear than those of normal length [76]. In future, a study of the possible role of cell size
+and shape of not just E. coli in their natural environment could shed more light on the possible role in
+cell survival.
+Our results suggest that an increased genome copy numbers in E. coli increases cell size heterogeneity.
+This is consistent with single-cell measurements in E. coli [30], but in contrast with S. cerevisiae, which
+shows that increased genome copy numbers lead to reduced ‘noise’ in cell size distributions [65]. To
+infer general principles from these results, the distribution of DNA replication origins in yeast and the
+concurrent nature of replication in bacteria will need to be taken into account. It can be presumed that the
+effect we report will only occur in organisms where rapid growth entails multiple simultaneous rounds
+of DNA replication.
+5. Conclusion
+In conclusion, we ﬁnd that cell length variability of wild-type E. coli increases with increasing
+growth rate in a non-monotonic manner above a growth rate threshold for multi-fork replication
+(rmf). This variability is independent of cell-cycle stage synchronization of the population. Increasing
+HU concentrations to modulate replication stochasticity only changes the cell length distributions of
+populations undergoing rapid growth, an effect ampliﬁed in recA cells. The rescue of increased cell
+length variability by RecA expression in deletion mutants, the effect of replication stalling induction on
+cell lengths and recruitment of RecA to the DNA, all indicate a model of stochastic multi-fork replication
+involving SOS response proteins. This could provide a mechanistic explanation of how growth rate
+affects population cell length variability in E. coli.
+Research ethics. The Institutional Biosafety Committee (IBSC) of the IISER Pune instituted under the aegis of the
+Department of Biotechnology, Government of India, has approved of the biological safety aspects of this work in
+2015 and is valid.
+Animal ethics. No human or animal subjects were used in this study.
+Data accessibility. The software code developed as a part of this manuscript has been released as Open Source software
+and can be freely downloaded from https://github.com/athale/ecolilenDIC. The link to the program is also available
+16
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+from the Dryad Digital Repository: http://dx.doi.org/10.5061/dryad.2bs69. All experimental data are included in
+this manuscript and the accompanying electronic supplementary materials [77].
+Authors’contributions. M.S.G. performed all the experiments, image analysis and statistics and made all the ﬁgures. C.A.A.
+designed the microﬂuidics chip, developed the image analysis code, designed the study and wrote the paper. Both
+authors gave their ﬁnal approval for publication.
+Competing interests. We have no competing interests.
+Funding. M.S.G. is supported by a fellowship from ICMR 3/1/3/WLC/JRF-2011/HRD-156 (51550). IISER Pune and
+a grant from the Department of Biotechnology, Government of India (BT/PR1595/BRB/10/1043/2012) supported
+C.A.A. The Indian Nanoelectronics User Programme (INUP), IIT Bombay supported the microﬂuidics work with a
+short-term grant to C.A.A.
+Acknowledgements. We acknowledge the gift of the HupA-GFP construct by Dr Josette Rouviere-Yaniv and the RecA-
+GFP-expressing strain provided by Dr G.P. Manjunath. The Coli Genomic Stock Centre (CGSC), Yale University
+provided the remaining strains. We are grateful to Prof. K. Muniyappa (IISC Bangalore, India) for the kind gift of
+the anti-RecA rabbit serum. Dr Suckjoon Jun (UCSD), Dr K. Nageshwari (IIT Bombay) and Dr Siddharth Deshpande
+(TU Delft) are acknowledged for help with the microﬂuidics. Hemangi Chaudhari and Shraddha Shitut were involved
+in the early stages of the project.
+References
+1.
+Grover NB, Woldringh CL. 2001 Dimensional
+regulation of cell-cycle events in Escherichia coli
+during steady-state growth. Microbiology 147,
+171–181. (doi:10.1099/00221287-147-1-171)
+2.
+Cullum J, Vicente M. 1978 Cell growth and length
+distribution in Escherichiacoli. J.Bacteriol. 134,
+330–337.
+3.
+Kaya T, Koser H. 2009 Characterization of
+hydrodynamic surface interactions of Escherichia
+coli cell bodies in shear flow. Phys.Rev.Lett. 103,
+138103. (doi:10.1103/PhysRevLett.103.
+138103)
+4.
+Trueba FJ, Spronsen EA, Traas J, Woldringh CL. 1982
+Effects of temperature on the size and shape of
+Escherichiacoli cells. Arch.Microbiol. 131, 235–240.
+(doi:10.1007/BF00405885)
+5.
+Schaechter M, Maaloe O, Kjeldgaard NO. 1958
+Dependency on medium and temperature of cell
+size and chemical composition during balanced
+growth of Salmonellatyphimurium. J.Gen.
+Microbiol. 19, 592–606. (doi:10.1099/00221287-
+19-3-592)
+6.
+Mason MM. 1933 A comparison of the maximal
+growth rates of various bacteria under optimal
+conditions. J.Bacteriol. 29, 103–110.
+7.
+Powell EO. 1956 Growth rate and generation time of
+bacteria, with special reference to continuous
+culture. J.Gen.Microbiol. 15, 492–511. (doi:10.1099/
+00221287-15-3-492)
+8.
+Kubitschek HE. 1968 Linear cell growth in
+Escherichiacoli. Biophys.J. 8, 792–804. (doi:10.1016/
+S0006-3495(68)86521-X)
+9.
+Yao Z, Davis RM, Kishony R, Kahne D, Ruiz N. 2012
+Regulation of cell size in response to nutrient
+availability by fatty acid biosynthesis in Escherichia
+coli. Proc.NatlAcad.Sci.USA 109, E2561–E2568.
+(doi:10.1073/pnas.1209742109)
+10. Wang JD, Levin PA. 2009 Metabolism, cell growth
+and the bacterial cell cycle. Nat.Rev.Microbiol. 7,
+822–827. (doi:10.1038/nrmicro2202)
+11. Weart RB, Lee AH, Chien A-C, Haeusser DP, Hill NS,
+Levin PA. 2007 A metabolic sensor governing cell
+size in bacteria. Cell 130, 335–347. (doi:10.1016/
+j.cell.2007.05.043)
+12. Veiga H, Jorge AM, Pinho MG. 2011 Absence of
+nucleoid occlusion effector Noc impairs formation
+of orthogonal FtsZ rings during Staphylococcus
+aureus cell division. Mol.Microbiol. 80, 1366–1380.
+(doi:10.1111/j.1365-2958.2011.07651.x)
+13. Norris V, Woldringh C, Mileykovskaya E. 2004 A
+hypothesis to explain division site selection in
+Escherichiacoli by combining nucleoid occlusion
+and Min. FEBSLett. 561, 3–10. (doi:10.1016/S0014-
+5793(04)00135-8)
+14. Wu LJ, Errington J. 2004 Coordination of cell division
+and chromosome segregation by a nucleoid
+occlusion protein in Bacillussubtilis. Cell 117,
+915–925. (doi:10.1016/j.cell.2004.06.002)
+15. Allman R, Schjerven T, Boye E. 1991 Cell cycle
+parameters of Escherichiacoli K-12. J.Bacteriol. 173,
+7970–7974. (doi:10.1128/jb.173.24.7970-7974.1991)
+16. Cooper S, Helmstetter CE. 1968 Chromosome
+replication and the division of Escherichiacoli B/r.
+J.Mol.Biol. 31, 519–540. (doi:10.1016/0022-2836(68)
+90425-7)
+17. Guberman JM, Fay A, Dworkin J, Wingreen NS, Gitai
+Z. 2008 PSICIC: noise and asymmetry in bacterial
+division revealed by computational image analysis
+at sub-pixel resolution. PLoSComp.Biol. 4,
+e1000233. (doi:10.1371/journal.pcbi.1000233)
+18. Sliusarenko O, Heinritz J, Emonet T, Jacobs-Wagner
+C. 2011 High-throughput, subpixel precision analysis
+of bacterial morphogenesis and intracellular
+spatio-temporal dynamics. Mol.Microbiol. 80,
+612–627. (doi:10.1111/j.1365-2958.2011.07579.x)
+19. Wang P, Robert L, Pelletier J, Dang WL, Taddei F,
+Wright A, Jun S. 2010 Robust growth of Escherichia
+coli. Curr.Biol. 20, 1099–1103. (doi:10.1016/j.cub.
+2010.04.045)
+20. Locke JC, Elowitz MB. 2009 Using movies to analyse
+gene circuit dynamics in single cells. Nat.Rev.
+Microbiol. 7, 383–392. (doi:10.1038/nrmicro2056)
+21. Fisher JK, Bourniquel A, Witz G, Weiner B, Prentiss
+M, Kleckner N. 2013 Four-dimensional imaging of
+E.coli nucleoid organization and dynamics in living
+cells. Cell 153, 882–895. (doi:10.1016/j.cell.2013.
+04.006)
+22. Wakita J, Kuninaka H, Matsuyama T, Matsushita M.
+2010 Size distribution of bacterial cells in
+homogeneously spreading disk-like colonies by
+Bacillussubtilis. J.Phys.Soc.Jpn 79, 94002-1-5.
+23. Huh D, Paulsson J. 2011 Non-genetic heterogeneity
+from stochastic partitioning at cell division. Nat.
+Gen. 43, 95–100. (doi:10.1038/ng.729)
+24. Robert L, Hoffmann M, Krell N, Aymerich S, Robert
+J, Doumic M. 2014 Division in Escherichia coli is
+triggered by a size-sensing rather than a timing
+mechanism. BMCBiol. 12, 17. (doi:10.1186/
+1741-7007-12-17)
+25. Amir A. 2014 Cell size regulation in bacteria.
+Phys.Rev.Lett. 112, 1–5. (doi:10.1103/PhysRevLett.
+112.208102)
+26. Taheri-Araghi S, Bradde S, Sauls JT, Hill NS, Levin
+PA, Paulsson J, Vergassola M, Jun S. 2014 Cell-size
+control and homeostasis in bacteria. Curr.Biol. 25,
+385–391. (doi:10.1016/j.cub.2014.12.009)
+27. Skarstad K, Boye E. 1993 Degradation of individual
+chromosomes in recA mutants of Escherichiacoli.
+J.Bacteriol. 175, 5505–5509. (doi:10.1128/jb.175.
+17.5505-5509.1993)
+28. Athale CA, Chaudhari H. 2011 Population length
+variability and nucleoid numbers in Escherichiacoli.
+Bioinformatics 27, 2944–2948. (doi:10.1093/
+bioinformatics/btr501)
+29. Cox MM, Goodman MF, Kreuzer KN, Sherratt DJ,
+Sandler SJ, Marians KJ. 2000 The importance of
+repairing stalled replication forks. Nature 404,
+37–41. (doi:10.1038/35003501)
+30. Possoz C, Filipe SR, Grainge I, Sherratt DJ. 2006
+Tracking of controlled Escherichiacoli replication
+fork stalling and restart at repressor-bound DNA
+invivo. EMBOJ. 25, 2596–2604. (doi:10.1038/sj.
+emboj.7601155)
+31. Robu ME, Inman RB, Cox MM. 2001 RecA protein
+promotes the regression of stalled replication forks
+invitro. Proc.NatlAcad.Sci.USA 98, 8211–8218.
+(doi:10.1073/pnas.131022698)
+32. Huisman O, D’Ari R, Gottesman S. 1984 Cell-division
+control in Escherichia coli: specific induction of the
+SOS function SfiA protein is sufficient to block
+septation. Proc.NatlAcad.Sci.USA 81, 4490–4494.
+(doi:10.1073/pnas.81.14.4490)
+33. Trusca D, Scott S, Thompson C, Bramhill D. 1998
+Bacterial SOS checkpoint protein SulA inhibits
+polymerization of purified FtsZ Cell division protein.
+J.Bacteriol. 180, 3946–3953.
+34. MukherjeeA,CaoC,LutkenhausJ.1998Inhibitionof
+FtsZ polymerization by SulA, an inhibitor of
+septation in Escherichiacoli. Proc.NatlAcad.SciUSA
+95, 2885–2890. (doi:10.1073/pnas.95.6.
+2885)
+17
+rsos.royalsocietypublishing.org R.Soc. opensci. 4: 160417
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+35. Aksenov SV. 1999 Induction of the SOS response in
+ultraviolet-irradiated Escherichiacoli analyzed by
+dynamics of LexA, RecA and SulA proteins. J.Biol.
+Phys. 25, 263–277. (doi:10.1023/A:1005163310168)
+36. Renzette N, Gumlaw N, Nordman JT, Krieger M, Yeh
+SP, Long E, Centore R, Boonsombat R, Sandler SJ.
+2005 Localization of RecA in Escherichiacoli K-12
+using RecA-GFP. Mol.Microbiol. 57, 1074–1085.
+(doi:10.1111/j.1365-2958.2005.04755.x)
+37. Wery M, Woldringh CL, Rouviere-Yaniv J. 2001
+HU-GFP and DAPI co-localize on the Escherichiacoli
+nucleoid. Biochimie 83, 193–200. (doi:10.1016/
+S0300-9084(01)01254-8)
+38. Chen W, Kuo TT. 1993 A simple and rapid method
+for the preparation of gram-negative bacterial
+genomic DNA. NucleicAcidsRes. 21, 2260.
+(doi:10.1093/nar/21.9.2260)
+39. Sambrook J, Russell D. 2001 Molecularcloning:a
+laboratorymanual, 3rd edn, 2344. Cold Spring
+Harbor, NY: Cold Spring Harbor Laboratories Press.
+40. Chai NC, Lark KG. 1970 Cytological studies of
+deoxyribonucleic acid replication in Escherichiacoli
+15T-: replication at slow growth rates and after a
+shift-up into rich medium. J.Bacteriol. 104,
+401–409.
+41. Sezonov G, Joseleau-Petit D, D’Ari R. 2007
+Escherichiacoli physiology in Luria–Bertani broth.
+J.Bacteriol. 189, 8746–8749. (doi:10.1128/JB.
+01368-07)
+42. Schlegel HG. 1993 Generalmicrobiology. Cambridge,
+UK: Cambridge University Press.
+43. Venkatesh R, Ganesh N, Guhan N, Reddy MS,
+Chandrasekhar T, Muniyappa K. 2002 RecX protein
+abrogates ATP hydrolysis and strand exchange
+promoted by RecA: insights into negative regulation
+of homologous recombination. Proc.NatlAcad.Sci.
+USA 99, 12 091–12 096. (doi:10.1073/pnas.
+192178999)
+44. Schneider CA, Rasband WS, Eliceiri KW. 2012 NIH
+Image to IMAGEJ: 25 years of image analysis. Nat.
+Methods 9, 671–675. (doi:10.1038/nmeth.2089)
+45. Birnbaum ZW, Tingey FH. 1951 One-sided
+confidence contours for probability distribution
+functions. Ann.Math.Stat. 22, 592–596.
+(doi:10.1214/aoms/1177729550)
+46. Zar JH. 2008 Biostatisticalanalysis, 4th edn. Delhi,
+India: Pearson Education Inc.
+47. Trueba FJ, Woldringh CL. 1980 Changes in cell
+diameter during the division cycle of Escherichia
+coli. J.Bacteriol. 142, 869–878.
+48. Reshes G, Vanounou S, Fishov I, Feingold M. 2008
+Timing the start of division in E.coli: a single-cell
+study. Phys.Biol. 5, 46001. (doi:10.1088/1478-
+3975/5/4/046001)
+49. Zaritsky A, Wang P, Vischer NOE. 2011 Instructive
+simulation of the bacterial cell division cycle.
+Microbiology 157, 1876–1885. (doi:10.1099/mic.0.
+049403-0)
+50. Skarstad K, Steen HB, Boye E. 1985 Escherichia coli
+DNA distributions measured by flow cytometry and
+compared with theoretical computer simulations.
+J.Bacteriol. 163, 661–668.
+51. CambridgeJ,BlinkovaA,MagnanD,BatesD,Walker
+JR. 2014 A replication-inhibited unsegregated
+nucleoid at mid-cell blocks Z-ring formation and
+cell division independently of SOS and the SlmA
+nucleoid occlusion protein in Escherichiacoli.
+J.Bacteriol. 196, 36–49. (doi:10.1128/JB.01230-12)
+52. Cha RS, Kleckner N. 2002 ATR homolog Mec1
+promotes fork progression, thus averting breaks in
+replication slow zones. Science 297, 602–606.
+(doi:10.1126/science.1071398)
+53. Slager J, Kjos M, Attaiech L, Veening JW. 2014
+Antibiotic-induced replication stress triggers
+bacterial competence by increasing gene dosage
+near the origin. Cell 157, 395–406. (doi:10.1016/j.
+cell.2014.01.068)
+54. Simmons LA, Grossman AD, Walker GC. 2007
+Replication is required for the RecA localization
+response to DNA damage in Bacillus subtilis. Proc.
+NatlAcad.Sci.USA 104, 1360–1365. (doi:10.1073/
+pnas.0607123104)
+55. Shehata TE, Marr AG. 1975 Effect of temperature on
+the size of Escherichiacoli cells. J.Bacteriol. 124,
+857–862.
+56. Trueba FJ, Neijssel OM, Woldringh CL. 1982
+Generality of the growth kinetics of the average
+individual cell in different bacterial populations.
+J.Bacteriol. 150, 1048–1055.
+57. Kussell E, Kishony R, Balaban NQ, Leibler S. 2005
+Bacterial persistence: a model of survival in
+changing environments. Genetics 169, 1807–1814.
+(doi:10.1534/genetics.104.035352)
+58. Gefen O, Gabay C, Mumcuoglu M, Engel G, Balaban
+NQ. 2008 Single-cell protein induction dynamics
+reveals a period of vulnerability to antibiotics in
+persister bacteria. Proc.NatlAcad.Sci.USA 105,
+6145–6149. (doi:10.1073/pnas.0711712105)
+59. Hill NS, Buske PJ, Shi Y, Levin PA. 2013 A
+moonlighting enzyme links Escherichiacoli cell size
+with central metabolism. PLoSGenet. 9, e1003663.
+(doi:10.1371/journal.pgen.1003663)
+60. Lutkenhaus J. 2007 Assembly dynamics of the
+bacterial MinCDE system and spatial regulation of
+the Z ring. Annu.Rev.Biochem. 76, 539–562.
+(doi:10.1146/annurev.biochem.75.103004.142652)
+61. Kerr RA, Levine H, Sejnowski TJ, Rappel W-J. 2006
+Division accuracy in a stochastic model of Min
+oscillations in Escherichiacoli. Proc.NatlAcad.Sci.
+USA 103, 347–352. (doi:10.1073/pnas.0505825102)
+62. Bernard R, Marquis KA, Rudner DZ. 2010 Nucleoid
+occlusion prevents cell division during replication
+fork arrest in Bacillus subtilis. Mol.Microbiol. 78,
+866–882. (doi:10.1111/j.1365-2958.2010.07369.x)
+63. Tzur A, Kafri R, LeBleu VS, Lahav G, Kirschner MW.
+2009 Cell growth and size homeostasis in
+proliferating animal cells. Science 325, 167–171.
+(doi:10.1126/science.1174294)
+64. Koppes LH, Woldringh CL, Nanninga N. 1978 Size
+variations and correlation of different cell cycle
+events in slow-growing Escherichiacoli. J.Bacteriol.
+134, 423–433.
+65. Di Talia S, Skotheim JM, Bean JM, Siggia ED, Cross
+FR. 2007 The effects of molecular noise and size
+control on variability in the budding yeast cell
+cycle. Nature 448, 947–951. (doi:10.1038/nature
+06072)
+66. Skarstad K, Boye E. 1988 Perturbed chromosomal
+replication in recA mutants of Escherichiacoli.
+J.Bacteriol. 170, 2549–2554. (doi:10.1128/jb.170.6.
+2549-2554.1988)
+67. Nielsen HJ, Youngren B, Hansen FG, Austin S. 2007
+Dynamics of Escherichiacoli chromosome
+segregation during multifork replication.
+J.Bacteriol. 189, 8660–8666. (doi:10.1128/JB.
+01212-07)
+68. Tanner NA, Hamdan SM, Jergic S, Loscha KV,
+Schaeffer PM, Dixon NE, van Oijen AM. 2008
+Single-molecule studies of fork dynamics in
+Escherichiacoli DNA replication. Nat.Struct.Mol.
+Biol. 15, 170–176. (doi:10.1038/nsmb.1381)
+69. Little JW. 1983 The SOS regulatory system: control
+of its state by the level of RecA protease. J.Mol.Biol.
+167, 791–808. (doi:10.1016/S0022-2836(83)80111-9)
+70. Woldringh CL, Mulder E, Valkenburg JAC, Wientjes
+FB, Zaritsky A, Nanninaga N. 1990 Role of the
+nucleoid in the top regulation of division. Res.
+Microbiol. 141, 39–49. (doi:10.1016/0923-
+2508(90)90096-9)
+71. Bernhardt TG, de Boer PAJ. 2005 SlmA, a
+nucleoid-associated, FtsZ binding protein required
+for blocking septal ring assembly over
+chromosomes in E.coli. Mol.Cell 18, 555–564.
+(doi:10.1016/j.molcel.2005.04.012)
+72. Krishna S, Maslov S, Sneppen K. 2007 UV-induced
+mutagenesis in Escherichiacoli SOS response: a
+quantitative model. PLoSComp.Biol. 3, e41.
+(doi:10.1371/journal.pcbi.0030041)
+73. Odsbu I, Skarstad K. 2009 A reduction in
+ribonucleotide reductase activity slows down the
+chromosome replication fork but does not change
+its localization. PLoSONE 4, e7617. (doi:10.1371/
+journal.pone.0007617)
+74. Uphoff S, Reyes-Lamothe R, Garza de Leon F,
+Sherratt DJ, Kapanidis AN. 2013 Single-molecule
+DNA repair in live bacteria. Proc.NatlAcad.Sci.
+USA 110, 8063–8068. (doi:10.1073/pnas.130180
+4110)
+75. Rotem E, Loinger A, Ronin I, Levin-Reisman I, Gabay
+C,ShoreshN,BihamO,BalabanNQ.2010Regulation
+of phenotypic variability by a threshold-based
+mechanism underlies bacterial persistence. Proc.
+NatlAcad.Sci.USA 107, 12 541–12 546. (doi:10.1073/
+pnas.1004333107)
+76. Horvath DJ, Li B, Casper T, Partida-Sanchez S,
+Hunstad DA, Hultgren SJ, Justice SS. 2011
+Morphological plasticity promotes resistance to
+phagocyte killing of uropathogenic Escherichiacoli.
+Microb.Infect. 13, 426–437. (doi:10.1016/j.micinf.
+2010.12.004)
+77. Gangan MS, Athale CA. 2017 Data from: Threshold
+effect of growth rate on population variability of
+Escherichiacoli cell lengths. Dryad Digital
+Repository. (doi:10.5061/dryad.2bs69)

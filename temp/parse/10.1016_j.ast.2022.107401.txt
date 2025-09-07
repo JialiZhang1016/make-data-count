@@ -1,0 +1,603 @@
+Aerospace Science and Technology 122 (2022) 107401
+Contents lists available at ScienceDirect
+Aerospace Science and Technology
+www.elsevier.com/locate/aescte
+Short communication
+Numerical investigation of full helicopter with and without the ground 
+effect
+Paulo A.S.F. Silva a,b,∗, Panagiotis Tsoutsanis a, Antonios F. Antoniadis a
+a Centre for Computational Engineering Sciences, Cranﬁeld University, Cranﬁeld MK43 0AL, United Kingdom
+b Federal Institute of Brasília, Brasília, Brazil
+a r t i c l e 
+i n f o
+a b s t r a c t
+Article history:
+Received 21 October 2021
+Received in revised form 7 January 2022
+Accepted 5 February 2022
+Available online 15 February 2022
+Communicated by Damiano Casalino
+Dataset link: https://
+doi .org /10 .17862 /cranﬁeld .rd .19146182 .v1
+Keywords:
+High-order methods
+Rotorcraft
+CFD
+IGE
+OGE
+Ground effect
+In the present work, the aerodynamic performance of the full helicopter PSP in hover ﬂight is investigated 
+using a simpliﬁed concept of multiple reference frame (MRF) technique in the context of high-order 
+Monotone Upstream Centred Scheme for Conservation Laws (MUSCL) cell-centred ﬁnite volume method. 
+The predictions were obtained for two ground distances and several collective pitch angle at tip Mach 
+number of 0.585. The calculations were made for both out-of-ground-effect (OGE) and in-ground-effect 
+(IGE) cases and compared with experimental data in terms of pressure distribution and integrated thrust 
+and torque and vortex system.
+© 2022 The Author(s). Published by Elsevier Masson SAS. This is an open access article under the CC BY 
+license (http://creativecommons.org/licenses/by/4.0/).
+1. Introduction
+The brownout phenomenon is often experienced in helicopters 
+in ground effect (IGE) when landing, take-off or hovering in dusty 
+environments, where the particles cloud obscure the pilot’s vision 
+of the terrain and consequently decreases substantially the safety. 
+This ﬂight operation is usual on medical services on beaches and 
+army operations on desert environments. Understanding the rotor 
+downwash wake is crucial to improve not only the safety of the 
+surrounding but also the rotor performance. Predicting helicopter 
+aerodynamics and the surrounding ﬂowﬁeld challenges most Com-
+putational Fluid Dynamics (CFD) solvers as it requires a low nu-
+merical dissipation to accurate predict the blade forces and the 
+vortex dominated ﬂow.
+Over the years, numerical simulation of the helicopter in 
+ground effect has progressed from theoretical models [1] and free 
+wake models [2] to full block structured CFD analysis [3]. The GOA-
+HEAD project conducted an extensive wind tunnel measurements 
+* Corresponding author at: Centre for Computational Engineering Sciences, Cran-
+ﬁeld University, Cranﬁeld MK43 0AL, United Kingdom.
+E-mail addresses: paulo.a.silva@cranﬁeld.ac.uk (P. A.S.F. Silva), 
+panagiotis.tsoutsanis@cranﬁeld.ac.uk (P. Tsoutsanis), a.f.antoniadis@cranﬁeld.ac.uk
+(A.F. Antoniadis).
+of a fully instrumented 4-bladed helicopter model out of ground 
+effect (OGE). This database was used to compare with CFD simula-
+tions [4–6]. Kalra et al. [7] studied the effect of different tip shapes 
+on a hovering rotor near ground comparing the tip vortex trajec-
+tory and core size against experimental results. Jacobson et al. [8]
+presented a hybrid methodology with CFD and free wake models 
+to predict the thrust and torque performance and vortex trajectory 
+of the hovering S-76 scaled rotor. Hwang et al. [9] assessed the 
+ground effect of the isolated rotor S-76 hovering for three blade tip 
+geometries using overset unstructured meshes. Hu et al. [10] de-
+veloped a hybrid CFD coupled with discrete element to study the 
+dust and dispersion of sediments with the ground effect. Pasquali 
+et al. [11] performed a numerical and experimental correlation to 
+predict the tip vortex trajectories and rotor performance. Rovere 
+et al. [12] carried out a numerical analysis of a micro rotor in 
+ground effect and validated it with experimental data. The results 
+were used to assess several safety factors by using force estima-
+tors on ground personnel and particle tracking. The AIAA Hover 
+Prediction Workshop (HPW) has established a strong group with 
+members from industry, government agencies, and academia to as-
+sess the current state-of-art of the numerical works on helicopter 
+ﬂows and identify the needs and future of hover prediction. Jain 
+[13] studied the inﬂuence of the facility on the rotor aerodynam-
+ics. Park et al. [14] performed full rotor and isolated analysis of the 
+https://doi.org/10.1016/j.ast.2022.107401
+1270-9638/© 2022 The Author(s). Published by Elsevier Masson SAS. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+P. A.S.F. Silva, P. Tsoutsanis and A.F. Antoniadis
+Aerospace Science and Technology 122 (2022) 107401
+Pressure Sensitive Paint (PSP) rotor using transitional turbulence 
+modelling. The wake breakdown has been extensively studied by 
+Abras [15–17]. Carnes developed an Ampliﬁcation Factor Transport 
+model to study the effect of crossﬂow transition on hovering ro-
+tors. Silva et al. [18] presented the development of a new multiple 
+reference frame domain decomposition to assess the IGE and OGE 
+on isolated rotors.
+In the present work, an unstructured hybrid mesh open-source 
+CFD code is used to simulate the Pressure Sensitive Paint rotor 
+with the Robin-Mod7 fuselage hovering near ground. Solutions are 
+obtained using the Spalart-Allmaras turbulence model with rota-
+tional correction. The governing equations are discretised using 
+the absolute velocity formulation, the Harten-Lax-van-Leer-Contact 
+(HLLC) Riemann solver [19], the spatial discretisation employs the 
+[20] MUSCL-MOGE variant limiter of Tsoutsanis [21]. The solu-
+tion is advanced in time is with the block Jacobi implicit back-
+ward Euler time integration. The CFD solver labelled Unstructured 
+Compressible Navier-Stokes 3D (UCNS3D) [22] which is validated, 
+assessed and evaluated across a wide range of ﬂow conditions 
+[18,23–34]. The out of ground case is used to validate the results 
+of pressure distribution and integrated loads. The ground effect is 
+compared with the previous case using quantitative data of the 
+aerodynamic performance and the qualitative analysis of the vor-
+tex system. Isosurfaces of q criteria are also used to investigate the 
+interaction between the disturbed ﬂow with and ground and the 
+fuselage.
+2. Numerical methodology
+The unstructured, compressible, Navier-Stokes and three-dimen-
+sional open source code UCNS3D [22] is used as CFD solver this 
+study. It solves the governing equations with several high-order 
+spatial discretisation schemes including several MUSCL and WENO 
+variants across a wide range of ﬂow conditions [23–32,35,36]. 
+The Reynolds Averaged Navier-stokes (RANS) governing equations 
+is discretised by using cell-centred ﬁnite volume method where 
+the Spalart-Allmaras turbulence model is employed. The Mono-
+tone Upstream-centred Schemes for Conservation Laws (MUSCL) 
+[37,38] are used to provide 3rd order accuracy in space. The gov-
+erning equations are formulated in a multiple reference frame, the 
+Harten-Lax-van-Leer-Contact (HLLC) Riemann solver [20] with the 
+MUSCL-MOGE variant limiter of Tsoutsanis [21] computes the in-
+viscid ﬂuxes. The frame of reference is deﬁned at the solver level 
+with no need of mesh-based interface. The velocity components 
+are computed in absolute formulation within the appropriate ﬂux 
+correction according to the element frame of reference, for a more 
+detailed description of the implementation and validation of this 
+technique the reader must refer to [18]. The solution advances 
+in time with the implicit backward Euler time integration with a 
+local time-stepping strategy. The Block Jacobi relaxation method 
+solves the linear system of equation in which the Jacobian on the 
+non-inertial source terms are included on the lower and upper 
+diagonalization pre-conditioning to improve the stability on high 
+Courant-Friedricks-Lewy (CFL) numbers. The ﬂow solver is paral-
+lelized using the ParMeTis grid partitioning and hybrid MPI/OMP 
+paradigm for improving the computational eﬃciency.
+3. Geometries and grids
+The four-bladed Pressure Sensitive Paint (PSP) rotor was simu-
+lated to investigate the ground effect on a full helicopter conﬁgu-
+ration. The experiment for the PSP rotor was developed by NASA 
+Langley Research center with the main purpose of investigating 
+the rotor performance and the natural and forced transition of the 
+ﬂow over the blades [39]. The geometric information of the ro-
+tor and fuselage are summarized in Table 1 and 2, respectively. 
+Table 1
+Speciﬁcations and operating conditions of the 
+PSP ﬂow [39].
+Parameter
+Value
+Number of blades
+4
+Radius (R)
+1.69 m
+Blade chord (c)
+0.14 m
+Rotor solidity
+0.1033
+linear twist angle
+−14◦
+Pitch angle
+7◦, 9◦and 11◦
+Mtip
+0.585
+ρ∞
+1.2168 kg/m3
+T∞
+290◦
+p∞
+101325 Pa
+Table 2
+Geometry speciﬁcations of the Robin-Mod7 Fuselage 
+[42].
+Parameter
+Value
+FS dimension [in]
+123.931
+Rotor shaft angle [deg]
+-3.5
+Nose location [in]
+FS 0.0, WL 0.0
+Rotor hub centre [in]
+FS 42.78, WL 24.98
+Tail Location [in]
+FS 123.931, WL 12.093
+Table 3
+Mesh information.
+Region
+Number of elements
+Each Blade
+7.4 × 106
+Fuselage
+1.5 × 106
+Off-body OGE
+17.4 × 106
+Off-body Z/R = 1
+19.3 × 106
+Off-body Z/R = 0.75
+13.4 × 106
+The model scaled PSP rotor consists of RC-series airfoil linearly 
+twisted by −14◦with radius of 66.5 inches. The blade has the 
+reference chord of 5.45 inches and aspect ratio of 12.2. The ex-
+periment was carried out with the blades operating at Mach tip 
+number of 0.585. The Robin-Mod7 geometry is deﬁned by analyt-
+ical shape functions given the experimental and numerical work 
+carried out by NASA and ONERA [40]. In the present work, the 
+geometry was collected on [41] in which the shape coeﬃcients 
+were modiﬁed for the mod7 conﬁguration. The fuselage length is 
+123.931 inches with shaft angle of −3.5◦down with the rotor. A 
+detailed geometry description of the rotor and fuselage positioning 
+can be found in [42].
+The computational domain has a cylindrical shape with 10.6 m 
+radius and 22.7 m length, similarly to the facility test setup. The 
+mesh sizes for the blade and fuselage for all cases are listed in 
+Table 3. The blade unstructured surface grid used in the present 
+study was collected from the AIAA Rotorcraft Hover Prediction 
+Workshop (HPW) [43]. To capture the boundary layer in detail, 
+44 prismatic layers were extruded on the normal direction with 
+a 1.2 grown rate, the height of the ﬁrst element is positioned at 
+1.6 × 10−6 from the wall surface to insure y+ < 1. The near-body 
+mesh blocks for the four blades contain around 7.4 million ele-
+ments for both IGE and OGE computations. Local reﬁnement with 
+a mesh size of 10% of the reference chord was applied in the vicin-
+ity of the blade tips and in the near wake region between the 
+rotor and the ground to better resolve the blade tip vortices, as 
+can be seen in Fig. 1. The non-slip wall condition was applied on 
+2
+P. A.S.F. Silva, P. Tsoutsanis and A.F. Antoniadis
+Aerospace Science and Technology 122 (2022) 107401
+Fig. 1. Right ﬁgure depicts the spatial domain, highlighting the domain sizes; on the top left, a view of the blade and fuselage surface grid; on the bottom left, a cut section 
+of the volume mesh is shown illustrating the local reﬁnement conﬁguration.
+the blade’s and fuselage surface The farﬁeld boundary condition 
+was used on the outer surfaces. On IGE simulations, the ground 
+was treated as free-slip wall to avoid an excessive number of ele-
+ments at this location.
+4. Results
+The hover solutions near ground are highly unsteady with chal-
+lenging convergence. The set of equations is numerically stiff, as 
+it has near-zero velocity on parts of domain in addition to strong 
+source terms due to the non-inertial forces. In all simulations, the 
+steady state solutions are obtained with the implicit block Jacobi 
+iteration algorithm based on local time-stepping, which is largely 
+used for high-Reynolds ﬂows on unstructured grids as it is free 
+of matrix inversion and has moderate memory requirements at 
+reasonable convergence rate [44]. The convergence solutions were 
+achieved within at least 104 iteration steps using CFL number of 
+15.
+In Fig. 2 the pressure coeﬃcient C p along the chord are com-
+pared with experimental data at two radial stations (r/R = 0.93 −
+0.99) at three thrust coeﬃcient: Ct = 0.05, 0.07, 0.09. Two exper-
+imental techniques were used to measured the C p distribution: 
+kulite transducers and pressure sensitive paint. Overall, for the 
+OGE CFD predicts the C p curve at a reasonable level of agreement 
+compared with both experimental techniques. Small discrepancies 
+are observed at leading edge at higher thrust. Other works using 
+high-order solutions under the same ﬂow conditions present simi-
+lar values [45]. Regarding the effect of the ground on the pressure 
+coeﬃcient distribution (blue and red lines), overall, the main dif-
+ference is related to the pressure coeﬃcient C p at the leading edge, 
+in which large values are found on IGE results. An exception is seen 
+at Ct = 0.09 at the tip blade, in which the ground proximity de-
+creases the pressure coeﬃcient peak.
+In Fig. 3, the predicted thrust coeﬃcient (Ct), torque coeﬃ-
+cient (Cq), and ﬁgure of merit (FoM) of the OGE case (solid black 
+square)are compared with two experimental data: natural tran-
+sition (open red circle) and forced transition (open square). The 
+main difference between this two experimental datasets is the in-
+stallation of trip dots on the blade upper/lower surface at chosen 
+locations to measure the boundary layer transition or blade aeroe-
+lastic deﬂection [13]. As there is no experimental and numerical 
+data of the ground inﬂuence using this rotor, the IGE computations 
+are only for comparative purpose. It is shown that for the OGE, the 
+predicted torque and thrust and ﬁgure of merit agrees well with 
+the experiment. At low Ct, the present work overpredicts the FoM 
+which may be due the turbulence modelling at this ﬂow condition, 
+as according to [42] at this operational point the blades surface 
+experiences a transitional turbulent ﬂow. It can also be seen that, 
+the presence of the ground slightly changes the slope of the ro-
+tor performance curve. This is also seen on other rotors such as 
+S-76 [9,46] which has similar geometry and ﬂow condition. To fur-
+ther investigate the effect of ground, the predicted results for the 
+three collective pitch angles (θc = 7, 9, 11◦) are summarized in Ta-
+ble 4. The results show that, the increment of thrust and torque on 
+the rotor varies no only due to the ground presence but also with 
+the pitch angle. At θc = 7◦and 9◦the rise is more substantial on 
+thrust and torque calculations accordingly to the ground distance. 
+For θc = 11◦the increment ratio is considerable lower in compar-
+ison with other collective pitch angles. The FoM increases around 
+3% on Z/R=1.0 and 10% on Z/R=0.75 for all collective pitch angles, 
+apart from θc = 11◦in which experiences only a marginal rise of 
+1% at Z/R=1.0 and 3% at Z/R=0.75. The change on the sign of the 
+integrated thrust on the fuselage from OGE to IGE computations 
+shows the effect of the fountain ﬂow generated below the fuselage 
+with the ground presence.
+In Fig. 4, the pressure coeﬃcient contours, computed with the 
+freestream velocity equal to the Mach tip, are shown with the 
+range from -0.05 to 0.45. Comparing the IGE and OGE simulations, 
+the distribution of pressure at the noose and the tail of the fuse-
+lage presents similar patterns and locations. The main difference is 
+at the left/right side of the fuselage in which the pressure drop is 
+smoother due to the fountain ﬂow originated from the jet impinge-
+ment on the ground. This feature seems to be the main contributor 
+for the sign change of the predicted net vertical forces acting on 
+the fuselage previously shown in Table 4. On IGE is also seen larger 
+pressure ﬂuctuation at the upper surface which is related to the 
+bigger recirculating ﬂow at stronger downwash.
+In Fig. 5, the vorticity contours at the front and side planes 
+are compared between IGE and OGE simulations at θc = 9◦. In 
+Fig. 6, these wake structures are represented in by isosurfaces of 
+q-criterion coloured by vorticity magnitude. The predicted wake 
+structures are well resolved by the current solver for both near 
+ground and off ground ﬂow condition. In the case of OGE, the 
+effect of aspect ratio of the fuselage on the radial evolution of 
+the tip vortex can be seen by a comparison of the side and front 
+slices of vorticity contours seen in Fig. 5. The noose and tail of 
+the fuselage slightly changes the tip vortex trajectory. The q crite-
+ria isosurface seen in Fig. 6 shows ring vortex is seen downstream 
+the rotor and it is also noticeable broken vortices structures origi-
+nated from the interaction of the fuselage with the turbulent ﬂow, 
+especially on the tail. On IGE, the tip vortex ﬁrst experiences a ra-
+3
+P. A.S.F. Silva, P. Tsoutsanis and A.F. Antoniadis
+Aerospace Science and Technology 122 (2022) 107401
+Fig. 2. Computed pressure coeﬃcient (C p) compared with experimental data by Watkins et al. [39]. Solutions are shown for three different Thrust coeﬃcient (Ct) at two 
+radial stations, left at r/R = 0.93 and right at r/R = 0.99. (For interpretation of the colours in the ﬁgure(s), the reader is referred to the web version of this article.)
+Fig. 3. Integrated blade loads: Ct/σ , Cq/σ and FoM for the PSP model rotor at Mtip = 0.585. Comparison of experimental (open square and open red circle) and predicted 
+for conﬁgurations with and without ground effect (closed symbols).
+4
+P. A.S.F. Silva, P. Tsoutsanis and A.F. Antoniadis
+Aerospace Science and Technology 122 (2022) 107401
+Table 4
+Predicted aerodynamic parameter with Ground and without Ground effect.
+θc = 7◦
+θc = 9◦
+θc = 11◦
+OGE
+Z/R=1.0
+Z/R=0.75
+OGE
+Z/R=1.0
+Z/R=0.75
+OGE
+Z/R=1.0
+Z/R=0.75
+Thrust (rotor)
+2329.05
+3029.95
+3314.74
+3192.16
+4188.12
+4366.65
+4080.19
+5036.78
+5113.88
+Thrust (fuselage)
+-160.91
+18.23
+67.71
+-194.35
+85.80
+123.08
+-124.94
+120.00
+204.99
+Torque (rotor)
+281.65
+405.68
+426.15
+433.14
+622.06
+626.23
+623.76
+841.44
+847.74
+Fom
+0.72
+0.75
+0.81
+0.75
+0.79
+0.83
+0.76
+0.77
+0.78
+Fig. 4. Force affecting on the fuselage by the interaction effect of PSP rotor for solutions at θc = 9◦: OGE (left), Z/R=0.1 (middle) and Z/R=0.75(right).
+Fig. 5. Vorticity magnitude [s−1] contours on front (top) and side (bottom) plane section for all solutions at θc = 9◦: OGE (left), Z/R=0.1 (middle) and Z/R=0.75(right).
+dially contraction, as in the OGE case, and then it expands due 
+to the ground and fuselage presence as can be seen in the curva-
+ture of the jet wake downstream the rotor in Fig. 5. The tip vortex 
+rolls up radially due to the effect of the disturbed incoming ﬂow 
+from the fuselage and the ground. Previous work on isolated ro-
+tors [9] shows that the radial expansion on IGE occurs after 180◦
+wake age and is more evident when the rotor within close proxim-
+ity to the ground [18]. On the close proximity of the ground it can 
+be seen horse shoe vortices structures originated from upcoming 
+ﬂow, which promote the ground vortex roll-up spreading radially 
+forming a ring-like vortex as depicted in Fig. 6. Since the ground 
+surface is treated as free-slip it may also being artiﬁcially increas-
+ing this radial expansion. On both IGE and OGE simulations, the 
+fuselage interaction is more clear at the tail, especially with the 
+tip vortex which breaks down in contact with the wall and even-
+tually rolls up and embracing it as gets close to the end.
+5
+P. A.S.F. Silva, P. Tsoutsanis and A.F. Antoniadis
+Aerospace Science and Technology 122 (2022) 107401
+Fig. 6. Isosurfaces of Q-criterion coloured by vorticity magnitude [s−1] at isometric (top) and side (bottom) views for all solutions at θc = 9◦: OGE (left), Z/R=0.1 (centre) and 
+Z/R=0.75(right).
+5. Conclusion
+In the present paper, full helicopter was studied with the 
+ground and without ground effect in the ucns3d high-order un-
+structured CFD solver. The governing equations were solved in 
+multiple reference frame fashion in which the domain decompo-
+sition is performed at the solver level. The calculations were made 
+at a tip Mach number of 0.585 and for collective pitch angles from 
+7 to 11 degrees. The numerical solutions were compared with ex-
+perimental data such as pressure coeﬃcient distribution, thrust 
+and torque coeﬃcients and ﬁgure of merit. The wake structure for 
+both IGE and OGE conditions were also analysed. It was observed 
+that the predicted thrust and torque of IGE is considerable higher 
+on IGE, for the same collective pitch angle. As a result, the rotor 
+performance curve in terms of Ct/σ and FoM changes its slope 
+within the rotor distance from the ground. It is also seen that on 
+IGE, the fuselage present smoother pressure difference at left/right 
+side. The qualitative features of the wake were also well predicted 
+to demonstrate the interaction with the tip vortex with the fuse-
+lage and the ground. It was shown that MRF method coupled with 
+the high-order spatial accuracy is well capable of predicting ac-
+curately the aerodynamic performance of full helicopter in hover 
+with and without the ground effect.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnan-
+cial interests or personal relationships that could have appeared to 
+inﬂuence the work reported in this paper.
+Data availability
+Data underlying this study can be accessed through the Cran-
+ﬁeld University repository at https://doi .org /10 .17862 /cranﬁeld .rd .
+19146182 .v1
+Acknowledgements
+The authors acknowledge the computing time of high-perform-
+ance computing service Delta of Cranﬁeld University, the Univer-
+sity of Cambridge Tier-2 national high-performance computing ser-
+vice Peta4 provided through the [EPSRC grant EP/P020259/1] and 
+ARCHER through UK Turbulence Consortium [EPSRC grant number 
+EP/L000261/1 and EP/R029326/1]. During this study, Paulo A. S. F. 
+Silva was supported by the Coordenac¸ ão de Aperfeic¸ oamento de 
+Pessoal de Nível Superior - Brasil (Capes) - Finance Code 001 (No 
+88881.128864/2016-01).
+References
+[1] H. Xin, J. Prasad, D. Peters, An analysis of partial ground effect on the aerody-
+namics of a helicopter rotor, in: 38th Aerospace Sciences Meeting and Exhibit, 
+2000, p. 262.
+[2] M. Gilad, Evaluation of Flexible Rotor Hover Performance in Extreme Ground 
+Effect, University of Maryland, College Park, 2011.
+[3] B.M. Kutz, F. Bensing, M. Keßler, E. Krämer, CFD Calculation of a Helicopter Ro-
+tor Hovering in Ground Effect, Springer, Berlin, Heidelberg, 2013, pp. 297–304.
+[4] A. Kyrkos, J.A. Ekaterinaris, Assessment of an unstructured mesh approach for 
+cfd predictions of the nh90 fuselage rotor, Aerosp. Sci. Technol. 19 (1) (2012) 
+77–85.
+[5] R. Steijl, G.N. Barakos, CFD analysis of complete helicopter conﬁgurations -
+lessons learnt from the GOAHEAD project, Aerosp. Sci. Technol. 19 (1) (2012) 
+58–71, https://doi .org /10 .1016 /j .ast .2011.01.007.
+[6] A. Antoniadis, D. Drikakis, B. Zhong, G. Barakos, R. Steijl, M. Biava, L. Vigevano, 
+A. Brocklehurst, O. Boelens, M. Dietz, et al., Assessment of cfd methods against 
+experimental ﬂow measurements for helicopter ﬂows, Aerosp. Sci. Technol. 
+19 (1) (2012) 86–100.
+[7] T. Kalra, V.K. Lakshminarayan, J. Baeder, Effect of tip geometry on a hovering 
+rotor in ground effect: a computational study, in: 31st AIAA Applied Aerody-
+namics Conference, 2013, p. 2542.
+[8] K.E. Jacobson, M.J. Smith, Carefree hybrid methodology for rotor hover perfor-
+mance analysis, J. Aircr. 55 (1) (2018) 52–65.
+[9] J.Y. Hwang, O.J. Kwon, Assessment of s-76 rotor hover performance in ground 
+effect using an unstructured mixed mesh method, Aerosp. Sci. Technol. 84 
+(2019) 223–236.
+[10] J. Hu, G. Xu, Y. Shi, L. Wu, A numerical simulation investigation of the inﬂuence 
+of rotor wake on sediment particles by computational ﬂuid dynamics coupling 
+discrete element method, Aerosp. Sci. Technol. (2020) 106046.
+6
+P. A.S.F. Silva, P. Tsoutsanis and A.F. Antoniadis
+Aerospace Science and Technology 122 (2022) 107401
+[11] C. Pasquali, J. Seraﬁni, G. Bernardini, J. Milluzzo, M. Gennaretti, Numerical-
+experimental correlation of hovering rotor aerodynamics in ground effect, 
+Aerosp. Sci. Technol. (2020) 106079.
+[12] F. Rovere, R. Steijl, G.N. Barakos, CFD Analysis of a Micro Rotor in Ground Effect, 
+American Institute of Aeronautics and Astronautics (AIAA), 2020.
+[13] R. Jain, Effect of facility walls and blade aeroelasticity on psp rotor hover 
+performance predictions, in: 2018 AIAA Aerospace Sciences Meeting, 2018, 
+p. 0305.
+[14] S.H. Park, O.J. Kwon, Numerical Study of Isolated and Full Conﬁguration PSP 
+Rotor Using a Mixed Mesh Flow Solver, American Institute of Aeronautics and 
+Astronautics (AIAA), 2020.
+[15] J.N. Abras, N. Hariharan, Comparison of computational ﬂuid dynamics hover 
+predictions on the S-76 rotor, J. Aircr. 55 (1) (2018) 12–22, https://doi .org /10 .
+2514 /1.C034121.
+[16] J.N. Abras, R. Narducci, N. Hariharan, Wake breakdown of high-ﬁdelity simula-
+tions of a rotor in hover, in: AIAA Scitech 2019 Forum, American Institute of 
+Aeronautics and Astronautics Inc., AIAA, 2019.
+[17] J. Abras, R.P. Narducci, N.S. Hariharan, Impact of High-Fidelity Simulation Vari-
+ations on Wake Breakdown of a Rotor in Hover, American Institute of Aeronau-
+tics and Astronautics (AIAA), 2020.
+[18] P.A. Silva, P. Tsoutsanis, A.F. Antoniadis, Simple multiple reference frame for 
+high-order solution of hovering rotors with and without ground effect, Aerosp. 
+Sci. Technol. 111 (2021) 106518.
+[19] E.F. Toro, M. Spruce, W. Speares, Restoration of the contact surface in the hll-
+Riemann solver, Shock Waves 4 (1) (1994) 25–34.
+[20] E. Toro, The HLLC Riemann solver, Shock Waves 29 (2019) 1065–1082.
+[21] P. Tsoutsanis, Extended bounds limiter for high-order ﬁnite-volume schemes 
+on unstructured meshes, J. Comput. Phys. 362 (2018) 69–94.
+[22] UCNS3D cfd code, http://www.ucns3d .com. (Accessed 30 October 2019).
+[23] P.S. Farmakis, P. Tsoutsanis, X. Nogueira, WENO schemes on unstructured 
+meshes using a relaxed a posteriori MOOD limiting approach, Comput. Meth-
+ods Appl. Mech. Eng. 363 (2020) 112921, https://doi .org /10 .1016 /j .cma .2020 .
+112921, https://linkinghub .elsevier.com /retrieve /pii /S0045782520301043.
+[24] P. Tsoutsanis, D. Drikakis, A high-order ﬁnite-volume method for atmospheric 
+ﬂows on unstructured grids, J. Coupled Syst. Multiscale Dyn. 4 (2016) 170–186, 
+https://doi .org /10 .1166 /jcsmd .2016 .1104.
+[25] P. Tsoutsanis, Stencil selection algorithms for weno schemes on unstruc-
+tured meshes, J. Comput. Phys. X 4 (2019), https://doi .org /10 .1016 /j .jcpx .2019 .
+100037.
+[26] P. Tsoutsanis, A.F. Antoniadis, D. Drikakis, WENO schemes on arbitrary unstruc-
+tured meshes for laminar, transitional and turbulent ﬂows, J. Comput. Phys. 
+256 (2014) 254–276, https://doi .org /10 .1016 /j .jcp .2013 .09 .002.
+[27] P. Tsoutsanis, A.F. Antoniadis, K.W. Jenkins, Improvement of the computational 
+performance of a parallel unstructured WENO ﬁnite volume CFD code for 
+implicit large Eddy simulation, Comput. Fluids 173 (2018) 157–170, https://
+doi .org /10 .1016 /J .COMPFLUID .2018 .03 .012.
+[28] A.F. Antoniadis, D. Drikakis, I.W. Kokkinakis, P. Tsoutsanis, Z.A. Rana, High-order 
+methods for hypersonic shock wave turbulent boundary layer interaction ﬂow, 
+in: 20th AIAA International Space Planes and Hypersonic Systems and Tech-
+nologies Conference, 2015.
+[29] P. Tsoutsanis, V.A. Titarev, D. Drikakis, Weno schemes on arbitrary mixed-
+element unstructured meshes in three space dimensions, J. Comput. Phys. 
+230 (4) (2011) 1585–1601.
+[30] P. Tsoutsanis, I.W. Kokkinakis, L. Könözsy, D. Drikakis, R.J. Williams, D.L. Youngs, 
+Comparison of structured-and unstructured-grid, compressible and incom-
+pressible methods using the vortex pairing problem, Comput. Methods Appl. 
+Mech. Eng. 293 (2015) 207–231.
+[31] A. Antoniadis, P. Tsoutsanis, D. Drikakis, High-order schemes on mixed-element 
+unstructured grids for aerodynamic ﬂows, in: 42nd AIAA Fluid Dynamics Con-
+ference and Exhibit, 2012, p. 2833.
+[32] F. Ricci, P.A. Silva, P. Tsoutsanis, A.F. Antoniadis, Hovering rotor solutions by 
+high-order methods on unstructured grids, Aerosp. Sci. Technol. 97 (2020) 
+105648.
+[33] P. Tsoutsanis, M. Dumbser, Arbitrary high order central non-oscillatory schemes 
+on mixed-element unstructured meshes, Comput. Fluids 225 (2021) 104961.
+[34] P. Tsoutsanis, E. Mayowa, A. Merino, A. Perez, M. Skote, Cweno schemes for 
+ﬁnite-volume diffuse interface method on unstructured meshes, J. Sci. Comput. 
+89 (2021) 64, https://doi .org /10 .1007 /s10915 -021 -01673 -y.
+[35] N. Simmonds, P. Tsoutsanis, A.F. Antoniadis, K.W. Jenkins, A. Gaylard, Low-Mach 
+number treatment for ﬁnite-volume schemes on unstructured meshes, Appl. 
+Math. Comput. 336 (2018) 368–393, https://doi .org /10 .1016 /j .amc .2018 .04 .076, 
+http://linkinghub .elsevier.com /retrieve /pii /S0096300318304028.
+[36] D. Drikakis, A.F. Antoniadis, P. Tsoutsanis, I. Kokkinakis, Z. Rana, Azure: an ad-
+vanced CFD software suite based on high-resolution and high-order methods, 
+in: 53rd AIAA Aerospace Sciences Meeting, 2015.
+[37] V. Kolgan, Application of the minimum-derivative principle in the construction 
+of ﬁnite-difference schemes for numerical analysis of discontinuous solutions 
+in gas dynamics, Trans. Central Aerohydrodyn. Inst. 3 (6) (1972) 68–77 (in Rus-
+sian).
+[38] V. Kolgan, Application of the principle of minimizing the derivative to the con-
+struction of ﬁnite-difference schemes for computing discontinuous solutions of 
+gas dynamics, J. Comput. Phys. 230 (7) (2011) 2384–2390.
+[39] A.N. Watkins, B.D. Leighty, W.E. Lipford, K.Z. Goodman, J. Crafton, J.W. Gregory, 
+Measuring surface pressures on rotor blades using pressure-sensitive paint, 
+AIAA J. 54 (1) (2015) 206–215.
+[40] B. Allan, N. Langley, Progress Towards Fuselage Drag Reduction via Active 
+Flow Control: A Combined CFD and Experimental Effort, Instrumentation, 2010, 
+pp. 1–17.
+[41] B.B. Hillier, M.J. Stock, A. Gharakhani, Robin-surface-mesh: robust and cor-
+rected coeﬃcients for the ROBIN body geometry, https://github .com /Applied -
+Scientiﬁc -Research /robin -surface -mesh, 2020.
+[42] A.D. Overmeyer, P.B. Martin, Measured boundary layer transition and rotor 
+hover performance at model scale, in: 55th AIAA Aerospace Sciences Meeting, 
+American Institute of Aeronautics and Astronautics, Reston, Virginia, 2017.
+[43] Aiaa rotorcraft hover prediction workshop (hpw), https://www.aiaa -hpw.org /
+psp -rotor. (Accessed 9 September 2021).
+[44] Z.J. Wang, High-order methods for the Euler and Navier-Stokes equations on 
+unstructured grids, Prog. Aerosp. Sci. 43 (2007) 1–41, https://doi .org /10 .1016 /j .
+paerosci .2007.05 .001.
+[45] A. Jimenez-Garcia, G. Barakos, Numerical simulations on the psp rotor using 
+hmb3, in: 2018 AIAA Aerospace Sciences Meeting, 2018, p. 0306.
+[46] D.T. Balch, J. Lombardi, Experimental study of main rotor tip geometry and 
+tail rotor interactions in hover. Volume 2: run log and tabulated data, https://
+ntrs .nasa .gov /search .jsp ?R =19850014035, Feb 1985.
+7
+Cranfield University
+CERES Research  Repository
+https://dspace.lib.cranfield.ac.uk/
+School of Aerospace, Transport and Manufacturing (SATM)
+Staff publications (SATM)
+Numerical investigation of full helicopter
+with and without the ground effect
+Silva, Paulo A. S. F.
+2022-02-15
+Attribution 4.0 International
+Silva PASF, Tsoutsanis P, Antoniadis AF. (2022) Numerical Investigation of full helicopter with
+and without the ground effect, Aerospace Science and Technology, Volume 122, Issue March,
+Article number 107401
+https://doi.org/10.1016/j.ast.2022.107401
+Downloaded from CERES Research Repository, Cranfield University

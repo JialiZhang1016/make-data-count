@@ -1,0 +1,918 @@
+* Corresponding author: tessa@build.aau.dk 
+Monitored conditions in wooden wall plates in relation to mold 
+and wood decaying fungi 
+Tessa Kvist Hansen1*, Nickolaj Feldt Jensen2, Eva Møller2, Ernst Jan de Place Hansen1, and Ruut Peuhkuri1  
+1Aalborg University, Department of the Built Environment, 2450 Copenhagen, Denmark 
+2Technical University of Denmark, Department of Civil Engineering, 2800 Kgs. Lyngby, Denmark 
+Abstract. In historic masonry buildings, wood can be embedded in the walls as storey partition beams, or as 
+supportive wall plates. Half-timbered masonry constructions, or wooden frames, e.g. combined with internal 
+insulation, are other examples of wooden elements. Wood decaying fungi can cause serious damage to wood, 
+which may lose mass and strength, ultimately yielding the risk of collapse. In addition, some fungal species 
+may even be hazardous for occupants. All wood decaying fungi depend on favorable moisture and temperature 
+conditions, although the threshold conditions may vary with various fungal species and types, and state of the 
+wood. To predict the risk of occurrence of wood rot, several models have been developed, however most of 
+these are based on a limited number of experiments, or very specific cases. For these reasons, the applicability 
+of the models to other scenarios (fungal species, wood species) may not be appropriate. Furthermore, another 
+failure mode for wood and moisture, is mold growth, which is initiated at lower moisture levels. An indication 
+of risk of mold growth would indicate problems or risks before the initiation of wood rot. Mold growth does 
+not deteriorate the wood, but is usually equally undesired due to health concerns of occupants. For this reason, 
+there might be places where some mold growth would be acceptable, e.g. embedded beam ends if there is no 
+transfer of air from the moldy area to the indoor air. Therefore, risk of rot could be important. The paper 
+investigates models for mass loss due to wood decay and mold growth based on exposure time to favorable 
+hygrothermal conditions. The investigation is based on inspection of wood samples (wall plates) from a full-
+scale experimental setup of masonry with embedded wood and monitored conditions, to which the prediction 
+models will be applied. Monitored hygrothermal conditions were implemented in mold and wood decay 
+models, and samples were removed from the test setup. The implemented models yielded high mold index 
+and mass loss, whereas neither mold nor decay was observed in the physical samples. Results indicate that 
+the implemented models, in these cases appear to overestimate the risks of mold and rot in the supportive lath 
+behind the insulation. 
+1 Introduction  
+In older masonry buildings, wood is often embedded in 
+the walls as storey partitioning beams, supportive wall 
+plates, or wooden frames in half-timbered masonry. Thus, 
+the wooden elements can be significant load-bearing 
+elements. Wood decaying fungi usually causes wood to 
+lose strength, and change shape and color. A reduced 
+strength and mass due to fungal attack can therefore have 
+substantial consequences. Furthermore, the fungi may 
+release unpleasant odors, and inhalation of airborne 
+microorganisms and metabolites of some species may 
+cause symptoms of respiratory problems for building 
+occupants, depending on exposure and immunological 
+reactivity [1]. Biological degradation of wood is a 
+naturally occurring process of fungal growth given 
+favorable conditions of both e.g., moisture and 
+temperature. Most wood decaying fungi have optimum 
+conditions at 20-30°C, and a wood moisture content of 20-
+30 % (wt.). Wood-decaying fungi colonize in wood with 
+a moisture content above 20 % (wt.) [1], and below 
+70 % (wt.) [2]. Some species are able to decay wood at 
+lower moisture levels than 20 % (wt.) and still other 
+species prefer much higher moisture contents for optimal 
+growth. There are more than 30 known wood decaying 
+fungi species as may be found in buildings [3], and they 
+have different preferences and optimal growth conditions. 
+Some species can hibernate in dry periods, and the decay 
+will once again initiate when moisture conditions allow it 
+[4]. Some decay processes are very slow, and actual mass 
+and strength loss can take years to develop [3]. Other 
+fungi can cause serious damage within short time frames 
+given optimal conditions. The optimal moisture 
+conditions for fungal growth also depends on other 
+factors, such as the time of wetness, temperature and the 
+type and condition of the wood. Previously attacked wood 
+is also more prone to new attacks. 
+There are three types of rot fungi that initiate wood 
+decay; brown rot, soft rot and white rot [5]. Brown rot is 
+initiated earlier and develops faster when compared to the 
+other types. Furthermore, brown rot causes higher mass and 
+strength loss when compared to white and soft rot on 
+southern pine sapwood [6]. The more aggressive behavior 
+of brown rot has also been demonstrated by Brischke et al. 
+especially in sap and non-colored heartwood of European 
+larch, Douglas fir, scots pine and Norway spruce [7]. They 
+also found, that some species, e.g. larch and pine, were 
+more sensitive to decay fungi when compared to fir. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+  
+ 
+© The Authors, published by EDP Sciences. This is an open access article distributed under the terms of the Creative Commons Attribution License 4.0
+ (http://creativecommons.org/licenses/by/4.0/). 
+Models for prediction of wood decay have been 
+developed to evaluate the risk of decay under given 
+conditions in structures. Similarly, models have been 
+developed for prediction of the risk of mold growth under 
+dynamic temperature and relative humidity conditions, 
+and for different material sensitivity classes.
+In this paper, indicative experimental investigations and 
+dynamic models for mass loss due to wood decay and mold 
+growth based on exposure time to favorable hygrothermal 
+conditions for the formation of wood rot are compared. The 
+investigation is based on inspection of wood samples (wall 
+plates) from a full-scale experimental setup of masonry 
+with embedded wood and monitored hygrothermal 
+conditions, to which the prediction models will be applied.
+The paper first describes the two applied wood decay 
+models and one mold model. Thereafter, the experimental 
+setup is described, as well as the method for removal of 
+wooden samples and measurements performed. The 
+monitored conditions in the wall plates that were 
+investigated are presented and discussed, as well as results 
+using prediction models, monitored moisture content and 
+observed decay and mold growth.
+2 Methods
+Both prediction models and experimental methods have 
+been implemented in this study for comparison of the 
+predicted and observed conditions of the wood. In-situ 
+measurements of hygrothermal conditions in wall plates 
+were implemented in prediction models for mold and 
+decay, and using a destructive method, wood samples 
+were removed from the test setup and studied with regard
+to the predicted risks.
+2.1 Prediction models
+For evaluation of the risks of wood decay or mold growth, 
+models for the prediction of risks have been implemented. 
+The models are briefly described in the next sections. 
+2.1.1 VTT wood decay model
+The VTT wood decay model accounts for the period of 
+time in which the hygrothermal conditions (temperature, 
+T, and relative humidity, RH) are favorable with regard to 
+wood decay [5]. The model generates a percentage of 
+irreversible mass loss, ML [%], in the wood. The original 
+model, described in equation 1, was developed for brown 
+rot decay in sapwood under constant conditions with 
+T≥0°C and RH≥95%. Under dynamic hygrothermal 
+conditions, the mass loss is separated in two processes; 
+the activation process and a mass loss process. The 
+activation process is defined by α (equation 2-4) which is 
+initially 0. When α reaches 1, the decay process is initiated 
+and the mass loss is described in Equation 5;
+(, , ) = −42.9 −2.3 −0.035 +
+0.14 ∙ + 0.024 ∙ + 0.45 ∙ [%] 
+(1)
+	() = 
+ 	 = (∆	)
+
+
+
+
+ 
+(2)
+∆	 =
+⎩
+⎨
+⎧
+∆
+(, ) ,   > 0r   > 95%
+∆
+17520 , ℎ!
+ 
+(3)
+(, ) = "2.3 + 0.035 −0.024 ∙
+−42.9 + 0.14 + 0.45
+# [ℎ] 
+(4)
+(, )
+
+= −5.96 ∙10$& +
+1.96 ∙10$' + 6.25 ∙10$' [%/ℎ]
+(5)
+2.1.2 Japanese wood decay model
+Similarly to the VTT model, the Japanese model defines 
+mass loss due to wood decay, based on hygrothermal 
+conditions (T, RH), and exposure time [8,9]. The 
+development of the Japanese wood decay model was 
+based on rate constants determined by mass loss in small 
+wood samples (Japanese red pine) with brown rot fungus.
+In this model, mass loss initiates when the relative 
+humidity exceeds 98%, which is defined as the critical 
+relative humidity, RHcrit, as no mass loss was observed at
+lower relative humidities. The Japanese model neglects 
+the initial response time for delay, when conditions reach 
+RHcrit. The mass loss due to wood decay is generated 
+through equations 6-8, and output of the model is mass 
+loss in kg/kg. The mass loss at surface points is found by 
+equation 6, whilst the mass loss at inner points in a 
+construction is defined by equation 7. The rate constant 
+for mass loss, km [1/s], is found by equation 8.
+*-
+*8
+:; = <?()     ( ≥) [
+AB
+AB] 
+ 
+ 
+(6)
+*-
+*8
+:C = <?()     ($D  ED > 0,  ≥)[
+AB
+AB]
+ 
+ 
+ 
+(7)
+<?() = (2.77 −3.23 + 0.865& −0.0189&) ∙10$D
+ 
+ 
+(8)
+2.1.3 VTT Mold model
+The VTT mold model generates a mold index, M [-],
+based on given boundary conditions of temperature and 
+relative humidity, as well as considering the sensitivity 
+class of the substrate. The mold index, M, is a number 
+between 0 and 6 indicating the amount of mold growth to 
+be expected under given conditions on the given substrate. 
+The definitions of the various values for mold index are 
+given in Table 1.
+Table 1. Mold growth index classification [10]
+M
+Description of growth rate
+0
+No growth, spores not activated
+1
+Small amounts of mold on surface (microscope), initial stages 
+of local growth
+2
+Several local mold growth colonies on surface (microscope)
+3
+Visual findings of mold on surface, <10% coverage, or, 
+<50% coverage of mold (microscope)
+4
+Visual findings of mold on surface, 10-50% coverage, or, 
+>50% coverage of mold (microscope)
+5
+Plenty of growth on surface, >50% coverage (visual)
+6
+Very heavy and tight growth, coverage around 100%
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+2
+The model index is found by means of equation 9
+below [10,11]. In this case, SQ (surface quality) was 0 for 
+sawn surfaces, and W (wood species) was 0 for pine. The 
+factors k1 and k2 are correction coefficients for mold
+growth intensity and moderation of mold growth intensity 
+as M approaches Mmax. The value of Mmax is the maximum 
+mold index value achieved under the given conditions, 
+and constant factors A, B and C are determined by k2 and 
+the sensitivity class [10].
+
+ =
+1
+7 ∙$.GH IJ(K)$DL.M IJ(NO)E.D'P$.LLQREGG.& ∙<D<& (9)
+<D =
+⎩
+⎨
+⎧
+S;D,TUV
+S;D
+,  < 1
+2 ∙
+S;L,TUV −S;D,TUV
+S;L −S;D 
+,  > 1
+ 
+(10)
+<& = XY Z1 −&.L∙(S$S\^_)
+0
+ 
+(11)
+?`: = a + b ∙ −
+ −100 − ∙" −
+ −100#
+&
+ 
+(12)
+To take into account the decline of mold growth 
+during unfavorable conditions, the extent of degradation 
+of mold must also be considered. The reduction in value 
+of mold index is defined as presented in equations 13
+(mold decline intensity for pine) and 14 (mold decline 
+intensity for any material given the recurrence coefficient 
+Cmat). For this work, the material is classified as 
+“sensitive”, corresponding to planed wood, paper-based 
+products, and wood-based panels (e.g. planed pine, 
+glulam). The recurrence coefficient Cmat, was set to 1, 
+corresponding to untreated wood or pine.
+"
+ #
+
+= c
+−0.00133, ℎ  −D ≤6ℎ
+0, ℎ 6ℎ≤ −D ≤24ℎ
+0.000667, ℎ  −D > 24ℎ
+ 
+(13)
+
+?`
+= ?` ∙"
+ #
+
+ 
+(14)
+2.2 Experimental investigations
+2.2.1 Large scale experimental setup
+A large-scale experimental setup at the Technical 
+University of Denmark consisted
+of 24 internally 
+insulated solid masonry wall sections with embedded 
+wooden beams and supportive wall plates (pine). A
+section view of the wall configurations is given in Fig. 1;
+red dots and numbers represent monitoring points for 
+temperature and relative humidity (digital HYT 221 
+sensors; ±1.8%RH (23°C ,0-90%RH)). The experimental 
+setup was first and foremost conducted for evaluating the 
+performance of several different internal insulation 
+systems, which have been further described, analyzed and 
+reported in [12–14]. For the present study, samples from 
+the wooden supportive wall plate were taken from six of 
+these walls. By means of sorption isotherms for pine [15],
+the moisture content was determined. In this study, only 
+results from measuring point no. 5, in the wall plate, have 
+been included.
+Four years of measurement data (5/1/2015-5/1/2019) 
+from sensor location 5 (supportive wall plate) were 
+studied, and the cases with highest relative humidity were 
+implemented in the VTT wood decay model. Six walls 
+showed very high wood decay according to the VTT 
+model, and were chosen for further investigation. All of 
+these walls were oriented towards the SW, and the wall 
+configurations are elaborated in Table 2 with regard to 
+insulation system, and internal and external surface 
+treatments. The digital RH measurements for the wooden 
+wall plates were used for both the wood decay models as 
+well as the mold model.
+Fig. 1. Section view of the walls from the experimental setup, 
+and indication of measurement points in the construction
+Table 2. Descriptions of walls from which the supportive wall 
+plate was investigated with regard to wood decay and mold
+growth, and estimated values of thermal resistance through the 
+construction*
+Interior 
+insulation 
+system, 
+100mm
+Exterior 
+surface
+Interior 
+surface
+Thermal 
+resistance
+[m2K/W]
+G1
+Mineral wool + 
+vapor barrier
+Bare 
+brick
+Gypsum + 
+Acrylic 
+paint
+3.16
+G4
+Calcium 
+silicate
+Bare 
+brick
+Diffusion 
+open paint
+2.26
+G5
+Foam concrete
+Bare 
+brick
+Diffusion 
+open paint
+2.27
+X1
+Autoclaved 
+aerated 
+concrete
+Render
+Diffusion 
+open paint
+3.00
+X2
+Autoclaved 
+aerated 
+concrete
+Bare 
+brick
+Diffusion 
+open paint
+2.98
+X8
+Autoclaved 
+aerated 
+concrete
+Bare 
+brick
+Acrylic 
+paint
+2.98
+*Estimations based on: 348mm brick, λbrick = 0.6W/mK, 10mm 
+internal and external render, λrender = 0.5W/mK, 100mm of each 
+insulation with λmin.wool = 0.04W/mK, λCaSi = 0.061W/mK, λfoam concrete 
+= 0.064W/mK, λAAC = 0.044W/mK. 10mm adhesive, 8mm int. 
+render for CaSi, λad.ren.CaSi = 0.5W/mK, 8mm adhesive and render 
+for AAC and foam concrete, λad.ren.foam.AAC = 0.155W/mK
+2.2.2 Destructive investigation
+To study the conditions of the wall plates, and indications 
+of rot and mold, Ø80mm samples were extracted by cup-
+drilling the construction from the inside after removal of 
+the covering insulation and finishing. The samples were 
+visually inspected and smelt for any odors to permit 
+detecting signs of either rot or mold; the material 
+resistance towards awl compression was also assessed. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+3
+A rule of thumb says, that if the awl penetrates 1-3mm, 
+the wood is healthy. A 3-6mm penetration indicates that
+the wood is very moist, and possibly attacked by wood 
+rot. If the penetration depth of the awl exceeds 6mm, there 
+is likely a comprehensive fungi attack [16].
+The moisture content of the wood was measured with 
+a pin gauge on the internal surface immediately after 
+removal of covering insulation, and on the external 
+surface after the sample was removed from the 
+construction. Furthermore, the mass of each sample was 
+registered directly after removal from the wall that 
+thereafter, allowed determining the total moisture content 
+in the sample. This was performed by weigh-dry-weigh 
+method, where the specimens were dried at 105°C until 
+constant mass. 
+a) 
+ 
+b) 
+ 
+c) 
+ 
+d) 
+ 
+Fig. 2. Process of removing samples from the supportive wall 
+plate. Measurements of moisture content (a) and Mycometer 
+swabs (d) were performed on both ends of the samples.
+Finally, two Mycometer swab tests [17–19] were 
+made on each end of the drilled-out sample. Mycometer 
+(surface) is a method for detection and quantification of 
+mold growth on surfaces. The method is based on 
+fluorometric detection and quantification of an enzyme 
+found in mold spores and the mycelium. The Mycometer 
+test generates a number that indicates the density of fungal 
+biomass on the surface, corresponding to one of the 
+following categories; A: ≤25 (mold level is not above 
+regular background level); B: 25-450 (mold level is above 
+regular background level. This mold level can be caused 
+by high concentrations in dust, or indicate the presence of 
+dried-out mold), and; C: >450 (mold level is much higher 
+than regular background level due to mold growth). The 
+process of removing insulation, measuring moisture 
+content, drilling the samples and Mycometer swabs, is 
+illustrated in Fig. 2.
+3 Results and discussion
+The moisture content in the supportive wall plates over a 
+4-year time period of this study, are depicted in Fig. 3. An 
+average between adsorption and desorption has been used 
+under the assumption of equilibrium to surrounding air. It 
+is seen, that the moisture content has an upper limit in this 
+case, due to the limits of the sorption isotherm as was 
+implemented [15], however the magnitude of the values 
+are compatible with on-site measurements (see Fig. 7). It 
+is seen, that after the first year of measurements, all the 
+wall plates exhibit moisture contents between 20 and 33
+% (wt.) for the entire period. Wall plates G4, X2 and X8 
+have few, shorter periods with moisture contents less than 
+20 % (wt.). The conditions are thus above the threshold 
+value for decay, and for this reason, these wall plates 
+appear to be in high risk of occurrence of wood decaying 
+fungi.
+Fig. 3. Moisture content in the supportive wall plates, based on measurements of temperature and relative humidity, and sorption 
+isotherms from pine [15]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+4
+The monitored hygrothermal conditions for the six 
+wall configurations presented in Table 2
+were 
+implemented in the wood decay models and the mold
+model respectively. The progression in values of wood 
+decay and mold index over the 4 years of measurement 
+data, are presented in Fig. 4, Fig. 5 and Fig. 6.
+In the VTT model, three of the wall configurations (G4, 
+G5 and X1) exhibit mass loss above 120% before 4 years.
+The remaining three wall configurations (X8, G1, X2) 
+generated mass loss above 60% within 4 years. In terms of 
+the Japanese model, the generated mass loss is less in terms 
+of magnitude compared to the VTT model. The Japanese 
+model yields mass loss above 60% in G4, G5 and X1. Wall 
+X8 generated 40% mass loss in 4 years, whereas G1 and 
+X2 resulted in around 20% mass loss. With regard to the 
+value of the mold index, all the wall configurations show 
+maximum value of mold index of 5.29 within 3 years. This 
+is the maximum mold index value to be achieved for
+sensitivity class 2. The worst cases (G4, G5, X1) yielded
+the maximum value of mold index within the first year. 
+Furthermore, it can be seen from the graphs of predicted 
+wood decay and mold index (Fig. 4, Fig. 5, Fig. 6), that 
+the initiation of mold growth occurs prior to the initiation 
+of wood decay, which was also found to be the case in 
+[11].
+Fig. 4. Generated mass loss in the supportive wall plates for 6 
+wall configurations, with the VTT wood decay model, based on 
+monitored temperature and relative humidity data
+Fig. 5. Generated mass loss in the supportive wall plates for 6 
+wall configurations, with the Japanese wood decay model, based 
+on monitored temperature and relative humidity data
+The measurements of moisture content performed on-
+site, during the removal of samples from the wall plate, 
+are presented in Fig. 7; this was performed in October
+2019. The in-situ measurements reported in Fig. 3 are
+presented for up to 1st of May 2019, and show a clear 
+general tendency of nadirs in the autumn seasons.
+Fig. 6. Generated mold index in the supportive wall plates for 6 
+wall configurations, with the mold model, based on monitored 
+temperature and relative humidity
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+5
+Fig. 7. Measurements of moisture content performed on site 
+with pin gauge on internal and external surface, as well as the 
+whole specimen
+From the in-situ pin gauge measurements on the 
+external surface of the sample, and the weigh-dry-weigh 
+experiments on the samples, in Fig. 7 it is seen that the 
+moisture content in the supportive wall plates is in the 
+range of 20-27 % (wt.). The moisture content on the 
+internal surface is recorded as lower in all cases. This 
+observation is in line with the expected results: Due to the 
+temperature gradient, the relative humidity on the exterior 
+side of the construction is higher and therefore also the 
+moisture content. The effect from external moisture loads 
+(e.g. wind-driven rain) may also influence the conditions 
+on the external side of the wall plates, as the masonry 
+covering the wall plate is only one brick unit in depth 
+(228mm). Furthermore, the anisotropic properties of 
+wood promote moisture transport in the longitudinal 
+direction and thus not tangentially through the wall plate. 
+It is seen in Fig. 7, that samples from walls X2 and X8 
+yield the lowest moisture contents, consistent with Fig. 3.
+The measurements depicted in Fig. 3 also show, that G4 
+declined in moisture content by the spring of 2019, 
+however the measurements from October 2019 indicate 
+that the moisture content has again increased. The 
+procedure of drilling out the samples generated high 
+temperatures, and this is why it can be assumed that the 
+pin gauge measurements on the external surface, as well 
+the weigh-dry-weigh measurements could be affected by
+this process. The moisture content registered on the 
+external surface, as well as for the entire sample (weigh-
+dry-weigh), might therefore have been even higher 
+without the generation of heat from drilling.
+The state of the wooden core samples from the wall 
+plates is seen in Fig. 8, as well as an example of the awl 
+test. None of the wood samples exhibited any indication 
+of mass loss nor rot or mold. Neither did the awl test,
+visual inspection or smelling indicate anything other than 
+sound and healthy wood. The discolorations seen in the 
+wood samples, were due to the drilling procedure, and 
+from the wall construction and adjacent materials.
+Results from Mycometer (surface) measurements are 
+displayed in
+Table 3.
+None of the Mycometer 
+measurements exhibit results in category C, above 450, 
+which would be a clear indication of severe mold growth. 
+The calculations with the mold model were performed 
+with measurements from the external surface of the wall 
+plate. The mold model yielded high mold index for all the 
+cases, but G4, G5 and X1 generated mold growth the 
+fastest. Two of these, G5 and X1 show the lowest density 
+of mold with regard to the Mycometer tests on the external 
+surface. The highest mold density was found on the 
+external surface of X2, which in the model was shown to 
+be almost the last case to reach the maximum value of 
+mold index.
+Table 3. Results from Mycometer (surface) tests. Green color 
+represents result values within category A, while yellow color 
+represents values within category B. None of the swabs 
+generated results within category C.
+Internal surface
+External surface
+swab 1
+swab 2
+swab 1
+swab 2
+G1
+129
+159
+44
+42
+G4
+21
+12
+51
+117
+G5
+29
+30
+20
+24
+X1
+72
+72
+14
+22
+X2
+15
+26
+106
+299
+X8
+41
+18
+60
+35
+Thus, it is seen, that prediction models for wood decay 
+and mold growth, in this case, appear too conservative with 
+regard to the actual state of the rot and mold, as the degree 
+of deterioration and mold as the results obtained from the 
+model appear to be exaggerated. The VTT wood decay 
+model predicted 60-160% mass loss in all the cases, where 
+no rot or decay was actually detected. The Japanese decay
+model appears to be less conservative, however the model 
+generated mass loss above 20% for all cases, while no 
+mass loss was observed. The difference between the two 
+models is first and foremost the threshold value for rot; the 
+VTT model initiates decay at 95% relative humidity, 
+Fig. 8. Left: The 6 specimens drilled out from the supportive wall plates from the 6 wall configurations; left to right: X1, X2, X8, 
+G1, G4, G5. Right: awl test of a specimen.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+6
+whereas the Japanese threshold for wood decay is 98% 
+relative humidity. In addition, the mold model generated 
+alarmingly high mold index in all the cases, corresponding 
+to “plenty of growth on surface, >50% coverage (visual)”, 
+whilst no significant mold growth was detected by the 
+Mycometer surface experiments nor visual inspection. 
+With regard to the six investigated samples, the 
+hygrothermal performance can be ranked in the following 
+sequence according to monitored conditions, see Fig. 3;
+X2, G1, X8, X1, G4, and G5. The wood decay models 
+yield very similar results with regard to the performance 
+and mass loss achieved, which is not surprising as these
+prediction models are based on the hygrothermal 
+conditions provided. The mold model gave a mold index 
+value above 5 for all the wall plates investigated, which 
+were differentiated only by the time it took to reach the 
+maximum value of mold index. 
+The summation of Mycometer results on each wall 
+plate, however, yielded a different sequence of optimal 
+performance; G5, X8, X1, G4, G1, X2. The highest 
+Mycometer numbers, were thus found in X2 (external 
+side) and G1 (internal side), despite the fact that these wall 
+plates exhibited the lowest moisture contents during in-situ 
+measurements (Fig. 3), and as such, from the prediction 
+results were the last to reach the maximum value of mold 
+index. Thus, the Mycometer results were not consistent 
+with the moisture content determinations and the predicted 
+risks of neither wood decay nor mold growth. G1 yielded 
+the highest Mycometer number on the internal surface, 
+which may be partly explained by the fact that this 
+insulation system is the only one represented without 
+alkaline cementitious glue mortar, that can inhibit mold 
+growth [20]. Furthermore, the quality, sawing and 
+finishing of the wood may differ from wall to wall, which 
+may also affect the results.
+It should be noted, that the physical methods applied 
+for detection of mould and/or decay (visual, odor, awl, 
+mycometer) are indicative methods. This fact naturally 
+reduces the reliability of the results, and may be cause of 
+some discrepancies. However, the combined indicators all 
+yield similar results. The moisture conditions in the 
+supportive lath yield very high moisture content, and the
+uncertainty in the monitoring equipment is only given for 
+up to 90% RH. Therefore, the in-situ measurements 
+themselves also carry uncertainties, that are included in the 
+prediction models.
+Furthermore, some of the
+discrepancies can be 
+explained by the fact that the mold model was developed 
+for surface conditions, not built-in surfaces, for worst case 
+(untreated pine sapwood) and based on small specimens 
+with mainly constant climate conditions [11]. The updated 
+mold model implemented in this study does allow better 
+prediction by including the sensitivity classification, and 
+mold condition states to yield reliable predictions of first 
+biological growth at interfaces [10], however the results 
+still appear too conservative. Some of the reasons provided 
+for these discrepancies also apply to the VTT wood decay 
+models, given that these were based on experiments under 
+constant hygrothermal conditions for small samples of 
+untreated pine sapwood [5], and on small samples of 
+Japanese red pine for the Japanese model [8]. Despite the 
+discrepancies found in this study, the models provide 
+indications of potential risks of fungal attacks under the 
+given hygrothermal conditions and exposure time. In this 
+way, the models can be used to evaluate systems a
+comparative basis and in relation to one another, and thus, 
+permit establishing better or poorer performance.
+Such 
+results, however, could also be achieved by observation of 
+the measured moisture contents alone.
+4 Conclusions
+From the present investigation it was found that:
+ The wood decay models were too conservative in this 
+case. The VTT model yielded 60-160% mass loss, and 
+the Japanese model gave 20-70% mass loss in the wall 
+plates, and none was detected by visual inspection and 
+awl compression test.
+ The mold model was too conservative as all the samples 
+from the wall plates yielded predicted mold index values 
+above 5, but no significant mold growth was detected on 
+the samples by visual inspection nor Mycometer 
+measurements.
+ The presented models all appear to overestimate the 
+potential risks of wood decay and mold growth 
+respectively. The models can be used for comparison 
+purposes of different solutions under given conditions. 
+This may however also be evaluated from a review of 
+results of moisture content alone. The models should be 
+further developed to be applicable for evaluation of 
+moisture safe construction assemblies.
+ Mold growth is initiated prior to wood decay based on 
+the same parameters of temperature, relative humidity 
+and time; as such, mold (in most cases) could be a 
+limiting factor with regard to “moisture safe” solutions 
+in critical positions where the presence of mold is not 
+acceptable.
+ In cases where mold growth is not a threat for indoor air 
+quality, e.g., built-in wood in constructions that do not 
+have air transfer to indoors, wood decay would be the 
+relevant failure mode.
+ The initiation of mold growth in building construction 
+always indicates the presence of excess moisture, which 
+is an undesirable condition and likely caused by a
+building defect or certainly an issue that should be 
+addressed.
+Acknowledgements to GI (Grundejernes Investeringsfond) and 
+EU’s Horizon 2020 research and innovation programme under 
+grant agreement no. 637268 (RIBuild).
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+7
+References
+1.
+J. Singh, Indoor Built Environ. 8 3–20 (1999)
+2.
+Teknologisk Institut, 
+https://www.trae.dk/leksikon/nedbrydning-af-
+trae/ (2019).
+3
+A.P. Koch, H.J. Larsen, O. Munck, BYG-ERFA, 
+03 12 19 (2003) 
+4.
+A.P. Koch, O. Munck, H.J. Larsen, BYG-ERFA, 
+03 12 28 (2003) 
+5.
+H. Viitanen, T. Toratti, L. Makkonen, R. 
+Peuhkuri, T. Ojanen, L. Ruokolainen, J. 
+Räisänen, Eur. J. Wood Wood Prod. 68 303–313
+(2010) 
+6.
+S.F. Curling, C.A. Clausen, J.E. Winandy, Int. 
+Biodeterior. Biodegrad. 49 13–19 (2002)
+7.
+C. Brischke, L. Meyer-Veltrup, Mater. Struct. 49
+3281–3291 (2016)
+8.
+H. Saito, K. Fukuda, T. Sawachi, Build. Therm. 
+Light. Acoust. Model. 5 315–324 (2012)
+9.
+H. Saito, 11th Nord. Symp. Build. Physics, 
+NSB2017, 399–404 (2017)
+10.
+T. Ojanen, R. Peuhkuri, H. Viitanen, K. 
+Lähdesmäki, J. Vinha, K. Salminen, 9th Nord. 
+Symp. Build. Phys. NSB2011, 867–874 (2011)
+11.
+A. Hukka, H. Viitanen, Wood Sci. Technol. 33
+475–485 (1999)
+12.
+T. Odgaard, S.P. Bjarløv, C. Rode, Energy 
+Build. 173 530–546 (2018) 
+13.
+N.F. Jensen, S.P. Bjarløv, C. Rode, T.R. 
+Odgaard, Ce Pap. 2 79–87 (2018) 
+14.
+N. Feldt Jensen, S.P. Bjarløv, DTU Civ. Eng.
+https://backend.orbit.dtu.dk/ws/portalfiles/portal/
+187292747/Rapport_fra_DTU_om_indvendig_ef
+terisolering.pdf (2019)
+15.
+K. Kielsgaard Hansen, DTU Civ. Eng. Report 
+no. TR-162, http://docplayer.net/5813927-
+Sorption-isotherm-s-a-catalogu-e-kurt-
+kielsgaard-hanse-n.html (1986)
+16.
+L.L. Andersen, C. Kjerumgaard, Videnscentret 
+Bolius. https://www.bolius.dk/tjek-vinduer-
+havedoere-og-yderdoere-af-trae-18319 (2016)
+17.
+Mycometer, 
+http://cdn.mycometer.com/fileadmin/user_uploa
+d/Pdf/Mycometer-Surface_Flyer__2012_.pdf
+(2012)
+18.
+M. Reeslev, M. Miller, Proc. Heal. Build. 589–
+590 (2000)
+19.
+M. Miller, A. Palojärvi, A. Rangger, M. Reeslev, 
+A. Kjøller, Appl. Environ. Microbiol. 64 613–
+617 (1998)
+20.
+H. Viitanen, M. Krus, T. Ojanen, V. Eitner, D. 
+Zirkelbach, Energy Procedia. 78 1425–1430, 6th 
+International Building Physics Conference, 
+IMPC2015 (2015) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+E3S Web of Conferences 1
+ 
+72, 20004 (2020) 
+NSB 2020
+http://doi.org/10.1051/e3sconf/202017220004
+8

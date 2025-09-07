@@ -1,0 +1,2803 @@
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+© Author(s) 2022. This work is distributed under
+the Creative Commons Attribution 4.0 License.
+Retrievals of ice microphysical properties using dual-wavelength
+polarimetric radar observations during stratiform precipitation
+events
+Eleni Tetoni1, Florian Ewald1, Martin Hagen1, Gregor Köcher2, Tobias Zinner2, and Silke Groß1
+1Deutsches Zentrum für Luft- und Raumfahrt (DLR), Institut für Physik der Atmosphäre, Oberpfaffenhofen, Germany
+2Meteorologisches Institut, Ludwig-Maximilians-Universität, Munich, Germany
+Correspondence: Eleni Tetoni (eleni.tetoni@dlr.de)
+Received: 29 July 2021 – Discussion started: 21 October 2021
+Revised: 17 May 2022 – Accepted: 3 June 2022 – Published: 5 July 2022
+Abstract. Ice growth processes within clouds affect the type
+and amount of precipitation. Hence, the importance of an
+accurate representation of ice microphysics in numerical
+weather and numerical climate models has been conﬁrmed
+by several studies. To better constrain ice processes in mod-
+els, we need to study ice cloud regions before and during
+monitored precipitation events. For this purpose, two radar
+instruments facing each other were used to collect comple-
+mentary measurements. The C-band POLDIRAD weather
+radar from the German Aerospace Center (DLR) in Oberp-
+faffenhofen and the Ka-band MIRA-35 cloud radar from
+the Ludwig Maximilians University of Munich (LMU) were
+used to monitor stratiform precipitation in the vertical cross-
+sectional area between the two instruments. The logarithmic
+difference of radar reﬂectivities at two different wavelengths
+(54.5 and 8.5 mm), known as the dual-wavelength ratio, was
+exploited to provide information about the size of the de-
+tected ice hydrometeors, taking advantage of the different
+scattering behavior in the Rayleigh and Mie regime. Along
+with the dual-wavelength ratio, differential radar reﬂectivity
+measurements from POLDIRAD provided information about
+the apparent shape of the detected ice hydrometeors. Scatter-
+ing simulations using the T-matrix method were performed
+for oblate and horizontally aligned prolate ice spheroids of
+varying shape and size using a realistic particle size distribu-
+tion and a well-established mass–size relationship. The com-
+bination of dual-wavelength ratio, radar reﬂectivity, and dif-
+ferential radar reﬂectivity measurements as well as scattering
+simulations was used for the development of a novel retrieval
+for ice cloud microphysics. The development of the retrieval
+scheme also comprised a method to estimate the hydrom-
+eteor attenuation in both radar bands. To demonstrate this
+approach, a feasibility study was conducted on three strati-
+form snow events which were monitored over Munich in Jan-
+uary 2019. The ice retrieval can provide ice particle shape,
+size, and mass information which is in line with differential
+radar reﬂectivity, dual-wavelength ratio, and radar reﬂectiv-
+ity observations, respectively, when the ice spheroids are as-
+sumed to be oblates and to follow the mass–size relation of
+aggregates. When combining two spatially separated radars
+to retrieve ice microphysics, the beam width mismatch can
+locally lead to signiﬁcant uncertainties. However, the cali-
+bration uncertainty is found to cause the largest bias for the
+averaged retrieved size and mass. Moreover, the shape as-
+sumption is found to be equally important to the calibration
+uncertainty for the retrieved size, while it is less important
+than the calibration uncertainty for the retrieval of ice mass.
+A further ﬁnding is the importance of the differential radar
+reﬂectivity for the particle size retrieval directly above the
+MIRA-35 cloud radar. Especially for that observation geom-
+etry, the simultaneous slantwise observation from the polari-
+metric weather radar POLDIRAD can reduce ambiguities in
+retrieval of the ice particle size by constraining the ice parti-
+cle shape.
+1
+Introduction
+The ice phase is the predominant cloud phase at middle and
+higher latitudes (Field and Heymsﬁeld, 2015). Ice clouds are
+known to reﬂect the shortwave incoming solar radiation, but
+Published by Copernicus Publications on behalf of the European Geosciences Union.
+3970
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+they can also trap the longwave terrestrial radiation, interfer-
+ing with the Earth’s energy budget (Liou, 1986). Their inﬂu-
+ence on the radiation budget of the climate system strongly
+depends on their top height as well as on ice crystal habits
+and effective ice crystal size (Zhang et al., 2002). Ice growth
+processes such as deposition, riming, and aggregation play a
+leading role in the formation of precipitation and are a cen-
+tral topic in many ice cloud studies. A misrepresentation of
+these processes in numerical weather models can lead to high
+uncertainties, and therefore they need to be constrained as ac-
+curately as possible. Brdar and Seifert (2018) presented the
+novel Monte Carlo microphysical model, McSnow, aiming
+for a better representation of aggregation and riming pro-
+cesses of ice particles. When numerical weather models are
+used to predict microphysics information about ice hydrom-
+eteors (e.g., Predicted Particle Properties – P3, Morrison and
+Milbrandt, 2015), we need to investigate under which con-
+ditions each ice growth process occurs. To better understand
+these mechanisms and improve their representation in mod-
+els, more precise microphysics information (e.g., size, shape,
+and mass) through ice retrievals based on measurements is
+needed.
+Many studies showed how millimeter-wave radar mea-
+surements can be used to retrieve ice water content (IWC)
+proﬁles in clouds (e.g., Hogan et al., 2006). However, stand-
+alone single-frequency radar measurements cannot constrain
+microphysical properties such as ice particle size and shape
+simultaneously without using empirical relations. To deal
+with more parameters (e.g., IWC, size, and shape) more
+measurements are needed. Thus, observations or simulated
+radar parameters are often combined with other remote sens-
+ing instruments, e.g., with lidars, to retrieve microphysics
+properties such as the effective radius of cloud ice particles
+(Cazenave et al., 2019) or with infrared radiometers (Ma-
+trosov et al., 1994) to retrieve the median diameter of the
+ice particle size distribution. Another way to gain micro-
+physics information is to use multi-frequency radar obser-
+vations (described in detail in Sect. 1.1) as they exploit the
+scattering properties of ice particles in both the Rayleigh and
+non-Rayleigh regime. To this end, frequencies are chosen
+with respect to the prevalent ice particle size. In the case of
+dual-frequency techniques, one frequency is chosen to be in
+the Rayleigh regime (e.g., S, C, or X band), wherein parti-
+cle size is much smaller than the radar wavelength, and the
+other is chosen to be in the Mie regime (e.g., Ka, Ku, or W
+band), wherein particle size is comparable or larger than the
+radar wavelength (e.g., Matrosov, 1998; Hogan et al., 2000,
+and many more). The scattering of radar waves is sensitive
+to the size and number concentration of particles. The radar
+reﬂectivity factor z is deﬁned as the sixth moment of the par-
+ticle size distribution N(D) and is thus designed to be pro-
+portional to the Rayleigh scattering cross-section of small –
+with a size much smaller compared to the radar wavelength
+– liquid spheres:
+z[mm6 m−3] =
+∞
+Z
+0
+N(D)D6dD,
+(1a)
+where z is the radar reﬂectivity in linear scale, N(D) the
+number concentration, and D the geometric diameter of the
+particles.
+This formula can be also expressed in logarithmic terms:
+Z [dBZ] = 10log10(z).
+(1b)
+This deﬁnition, however, cannot be directly applied to snow
+due to the varying density, irregular shape, and larger size
+of ice particles, which cause deviations from the Rayleigh
+into the Mie scattering regime. Moreover, N(D) for ice par-
+ticles refers to the size distribution of their melted diameters.
+Nevertheless, an equivalent radar reﬂectivity factor Ze can be
+derived from the measured radar reﬂectivity η (η = P
+Volσn;
+normalized to a speciﬁc volume summation of backscatter-
+ing cross-section, σn, of all detected hydrometeors) when the
+dielectric factor of water |K|2 = 0.93 is assumed:
+ze [mm6 m−3] = η
+λ4
+π5|K|2 and
+Ze [dBZ] = 10log10(ze),
+(1c)
+where λ is the radar wavelength. In the Rayleigh regime, the
+radar reﬂectivity factor Z or the equivalent radar reﬂectivity
+factor Ze (for simplicity also referred to as radar reﬂectivity
+in this paper) is proportional to the sixth power of the parti-
+cle size, while in the Mie regime Ze scales with the second
+power of the particle size. In both regimes Ze scales linearly
+with the particle number concentration.
+1.1
+Size and shape microphysics retrievals
+Using the ratio of radar reﬂectivities at two different radar
+wavelengths (Eq. 2; dual-wavelength ratio, DWR), we can
+infer size information about hydrometeors observed within
+the radar beams. This parameter increases with the particle
+size when the shorter radar wavelength is equal to or shorter
+than the particle size:
+DWRλ1,λ2 [dB] = 10log10
+ze,λ1
+ze,λ2
+
+or
+DWRλ1,λ2 [dB] = Ze,λ1 [dBZ] −Ze,λ2 [dBZ].
+(2)
+In Eq. (2), λ1 > λ2 represents the two radar wavelengths,
+ze,λ1 and ze,λ2 the radar reﬂectivities at the two radar wave-
+lengths in linear scale (units: mm6 m−3), and Ze,λ1 and Ze,λ2
+the radar reﬂectivities in logarithmic scale (units: dBZ). Re-
+cent studies (e.g., Trömel et al., 2021) have underlined that
+multi-wavelength (also known as multi-frequency) measure-
+ments should be combined with other types of radar observa-
+tions, e.g., polarimetric variables or Doppler velocity, to im-
+prove our understanding of ice microphysics. For ice particle
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3971
+density in particular, DWR provides only limited informa-
+tion, while Doppler velocity measurements can better con-
+strain the particle density as the fall speed is strongly con-
+nected to it. Speciﬁcally, Mason et al. (2018) used vertically
+pointing Ka- and W-band cloud radars to combine DWR and
+Doppler measurements to provide information about the par-
+ticle size distribution (PSD) and an ice particle’s density fac-
+tor, which is connected to ice particle shape and mass, but
+also terminal velocity and backscatter cross-section. How-
+ever, the DWR approach has been widely used in many stud-
+ies in the past, providing microphysics information with-
+out Doppler velocity measurements. In particular, the DWR
+method has been used in ice studies to estimate the snowfall
+rate R or for the quantitative precipitation estimation (QPE).
+Matrosov (1998) developed a DWR method to estimate R,
+supplementing experimental Ze-R relations with a retrieved
+median size. In other studies, such as Hogan and Illingworth
+(1999) and Hogan et al. (2000), DWR from airborne and
+ground-based radars was used to obtain information about
+ice crystal sizes and IWC for cirrus clouds. In recent years,
+the combination of multiple DWR measurements has been
+explored to provide more microphysics information, e.g., ice
+particle habits or density. Kneifel et al. (2015) developed a
+triple-frequency method (DWRX,Ka and DWRKa,W) to de-
+rive ice particle habit information from three snowfall events
+measured during the Biogenic Aerosols Effects on Clouds
+and Climate (BAECC) ﬁeld campaign (Petäjä et al., 2016).
+The triple-frequency method was also used by Leinonen et
+al. (2018b) to develop an algorithm that retrieves ice particle
+size and density as well as number concentration using air-
+borne radar data from the Olympic Mountains Experiment
+(OLYMPEX, Houze et al., 2017). In Mason et al. (2019), the
+PSD and morphology of ice particles were thoroughly ex-
+plored using the triple-frequency method to improve ice par-
+ticle parameterizations in numerical weather prediction mod-
+els. In the same study, it was also found that for heavily rimed
+ice particles, the triple-frequency radar observations can con-
+strain the shape parameter µ of the PSD. Recently, Mroz
+et al. (2021) used single-frequency measurements (X band),
+triple-frequency radar measurements (X, Ka, W band), and
+triple-frequency combined with Doppler velocity radar mea-
+surements to develop different versions of an algorithm that
+retrieves the mean mass-weighted particle size, IWC, and the
+degree of riming. The multi-frequency versions of the algo-
+rithm retrieved IWC with lower uncertainties compared to
+the single-frequency version. Additionally, with the multi-
+frequency approaches, the algorithm was also able to provide
+ice particle density information and mean mass-weighted di-
+ameter information for larger snowﬂakes in contrast to the
+single-frequency approach, which could only constrain the
+mean mass-weighted diameter for snowﬂakes up to 3 mm
+size. Overall, the multi-frequency versions of the algorithm
+performed better, as the retrieved parameters agreed better
+with in situ measurements.
+Beyond multi-frequency techniques, ice microphysics in-
+formation can be obtained from polarimetric radar measure-
+ments. In previous studies, polarimetry was commonly used
+for snowfall rate estimation. Bukovˇci´c et al. (2018), for in-
+stance, used polarimetric radar variables to study the IWC
+and the resulting snow water equivalent rate. Besides these
+precipitation rate studies, polarimetry is an advantageous
+tool to obtain information about the size distribution and the
+shape of ice particles. Additional characteristics, like the par-
+ticle orientation and canting angle distribution, as well as
+the variable refractive index of melting or rimed ice crys-
+tals, have a further inﬂuence on polarimetric radar signals.
+To untangle some of these particle properties, polarimetric
+weather radars can provide several parameters such as dif-
+ferential radar reﬂectivity (ZDR), linear depolarization ratio
+(LDR), reﬂectivity difference (ZDP), cross-correlation coef-
+ﬁcient (ρHV), differential propagation phase (ϕDP), and spe-
+ciﬁc differential phase (KDP). A description of the aforemen-
+tioned polarimetric radar variables can be found in Straka
+et al. (2000) and Kumjian (2013). The different sensitivi-
+ties of these parameters have been widely used in classiﬁ-
+cation schemes of atmospheric hydrometeors. Höller et al.
+(1994) developed one of the ﬁrst algorithms to distinguish
+between rain, hail, single cells, or multi-cells using ZDR,
+LDR, KDP, and ρHV measurements during the evolution of
+a thunderstorm while moving from the west towards southern
+Germany. Subsequently, this algorithm was extended to esti-
+mate hydrometeor mass concentrations (Höller, 1995). Later,
+Straka et al. (2000) summarized the characteristics of differ-
+ent hydrometeor types depending on their radar signatures
+at a wavelength of 10 cm. One prominent polarimetric pa-
+rameter in ice microphysics studies is known to be ZDR, a
+parameter which is deﬁned as
+ZDR[dB] = 10log10
+zH
+zV
+
+,
+(3)
+where zH is the signal received or reﬂectivity factor at hor-
+izontal polarization, and zV is the signal received or reﬂec-
+tivity factor at vertical polarization. Following the deﬁnition
+of ZDR, it is zero if the received signal in both polarization
+states is the same, i.e., for spherical targets. For elongated,
+azimuthally oriented particles ZDR is found to be greater
+(oblate particles) or less than zero (vertically aligned pro-
+lates), depending on the orientation of the rotational axis to
+the horizontal polarization state (e.g., Straka et al., 2000).
+In Moisseev et al. (2015), ZDR along with KDP has been
+used to investigate growth processes of snow and the signa-
+tures on dual-polarization and Doppler velocity radar obser-
+vations. Later on, Tiira and Moisseev (2020) exploited ver-
+tical proﬁles of ZDR combined with KDP and Ze for the
+development of an unsupervised classiﬁcation of snow and
+ice crystal particles. In that study, the most important growth
+processes of ice particles were studied using several years of
+Ikaalinen C-band radar data from the Hyytiälä forestry sta-
+tion in Juupajoki, Finland.
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3972
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Although the size of atmospheric hydrometeors is strongly
+correlated with DWR, many studies have shown that DWR
+is also sensitive to the shape of ice hydrometeors. This sen-
+sitivity of DWR to shape was shown in, e.g., Matrosov et
+al. (2005), wherein the authors estimated the increased un-
+certainty in particle size retrievals when the particles are as-
+sumed to be spherical only. One solution to that problem
+was offered by Matrosov et al. (2019), who stated that the
+shape of ice hydrometeors can be disentangled from DWR
+by studying the effect of radar elevation angle on DWR. Non-
+spherical ice hydrometeors should show a strong inﬂuence of
+elevation angle on DWR compared to spherical ice particles.
+Besides this scanning approach, the combination with po-
+larimetry from collocated or nearby radar instruments could
+offer a promising solution to disentangle the contribution of
+size and shape in DWR measurements. While the shape can
+be constrained by ZDR measurements, the size of the de-
+tected particles can be determined using DWR.
+1.2
+Representation of ice atmospheric hydrometeors
+using spheroids
+Single-scattering simulations are an indispensable tool to
+bridge the gap between microphysical properties of hydrom-
+eteors and polarimetric radar observations. In the case of ice
+particles, the calculation of scattering properties can be chal-
+lenging due to their large complexity and variety in shape,
+structure, size, and density. One of the most sophisticated
+methods, the discrete-dipole approximation (DDA; Draine
+and Flatau, 1994), can be used to calculate the scattering
+properties of realistic ice crystals and aggregates. However,
+this approximation can be computationally demanding. To
+reduce computation cost and complexity, ice particles are
+often assumed to be spheres and their scattering properties
+are calculated using the Mie theory, or they are assumed to
+be spheroids and their scattering properties are calculated
+using the T-matrix method (Waterman, 1965) or the self-
+similar Rayleigh–Gans approximation (SSRGA; e.g., Hogan
+and Westbrook, 2014; Hogan et al., 2017; Leinonen et al.,
+2018a). The SSRGA was developed to consider the distri-
+bution of the ice mass throughout the particle’s volume in
+scattering simulations. As we aim for a simple ice parti-
+cle model, we extensively used the T-matrix method in this
+study, assuming the ice particles to be soft spheroids. It is
+a common approach in model studies that ice particles are
+represented by homogeneous spheroids with density equal
+to or smaller than bulk ice. Due to its simplicity, the limita-
+tions of the spheroid approximation have been a heavily re-
+searched and debated topic in the last decade. While Tyynelä
+et al. (2011) showed an underestimation of the backscat-
+tering for large snowﬂakes, Hogan et al. (2012) suggested
+that horizontally aligned oblate spheroids with a sphericity
+(S; minor to major axis ratio) of 0.6 can reliably reproduce
+the scattering properties of realistic ice aggregates which are
+smaller than the radar wavelength. The same study also con-
+cluded that spheroids are more suitable to represent larger
+particles (maximum diameter up to 2.5 mm) in simulations
+rather than Mie spheres, as the latter can lead to a strong
+overestimation of Ze. Leinonen et al. (2012), on the other
+hand, showed that the spheroidal model cannot always ex-
+plain the radar measurements as more sophisticated parti-
+cle models can, e.g., snowﬂake models. Later on, Hogan
+and Westbrook (2014) indicated that the soft spheroid ap-
+proximation underestimates the backscattered signal of large
+snowﬂakes (1 cm size) – measured with a 94 GHz radar – by
+up to 40 and 100 times for vertical and horizontal incidence,
+respectively. In contrast, the simple spheroidal particle model
+could successfully explain measurements of slant-45◦lin-
+ear depolarization ratio, SLDR, and SLDR patterns at ele-
+vation angles (Matrosov, 2015) during the Storm Peak Labo-
+ratory Cloud Property Validation Experiment (StormVEx).
+In Liao et al. (2016) it was found that randomly oriented
+oblate ice spheroids could reproduce scattering properties
+in the Ku and Ka band similar to those from scattering
+databases when large particles were assumed to have a den-
+sity of 0.2 gcm−3 and a maximum size up to 6 mm. Al-
+though Schrom and Kumjian (2018) showed that homoge-
+neous reduced-density ice spheroids or plates cannot gen-
+erally represent the scattering properties of branched pla-
+nar crystals, the simple spheroidal model has been used in
+recent studies to represent ice aggregates as in Jiang et al.
+(2019), to simulate DWR for snow rate estimation studies as
+in Huang et al. (2019), and to retrieve shape from LDR as in
+Matrosov (2020). In all these studies, it is recognized that the
+spheroidal model requires fewer assumed parameters com-
+pared to more complex particle models.
+Although more complex ice particle and scattering mod-
+els are available, this work will use the soft spheroid approx-
+imation for the following reasons: (1) in this work we aim
+to provide a feasibility study to combine two spatially sepa-
+rated radars to better constrain the ice crystal shape in micro-
+physical retrievals using simultaneous DWR and ZDR ob-
+servations from an oblique angle. Besides instrument coordi-
+nation, the actual measurements and the assessment of mea-
+surement errors, the ice crystals, and the scattering model are
+just one component. Due to its simple and versatile setup, this
+work will utilize the soft spheroid approximation to study the
+beneﬁt of additional ZDR measurements and the role of the
+observation geometry. (2) More importantly, to our knowl-
+edge, the more accurate SSRGA described by Hogan and
+Westbrook (2014) does not (yet) provide polarimetric vari-
+ables used in this study, namely the ZDR. (3) In anticipa-
+tion of a prognostic aspect ratio of ice crystals in bulk mi-
+crophysical models (e.g., the adaptive habit prediction; Har-
+rington et al., 2013), we aim to keep a minimal set of degrees
+of freedom to remain comparable with these modeling ef-
+forts. (4) Using ice spheroids, we are able to vary parameters
+such as median size, aspect ratio, and ice water content in-
+dependently, which serve as degrees of freedom of the ice
+spheroids, and calculate their scattering properties without
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3973
+much computational cost as in other scattering algorithms
+(e.g., DDA) that are used in more realistic ice crystal shape
+simulations. Due to the independent parameters describing a
+spheroid, we can better study the dependence between each
+variable and the forward-simulated radar variables.
+Due to this simpliﬁcation, this study will focus on the fea-
+sibility of combining DWR and ZDR from spatially sepa-
+rated radar instruments into a common retrieval framework.
+Due to the missing internal structure and the near-ﬁeld ice
+dipole interactions of soft spheroids, the known underesti-
+mation of the radar backscatter and generally lower ZDR for
+larger snowﬂakes will limit this study to ice aggregates with
+sizes in the millimeter regime. This will include the onset of
+ice aggregation within clouds above the melting layer (ML)
+but will exclude heavy snowfall close to the ground. How-
+ever, this region is rarely included in the measurement region
+with an overlap between the two scanning radar instruments.
+1.3
+Scientiﬁc objective and outline of this study
+Although vertically pointing radars are useful for Doppler
+spectra observations (e.g., Kneifel et al., 2016; Kalesse et al.,
+2016), they cannot provide slantwise polarimetric measure-
+ments of ZDR, which can be useful to estimate the shape
+of the ice particles, due to their observation geometry. In
+this study we want to investigate the feasibility of combin-
+ing two spatially separated radars to derive observations of
+DWR and ZDR for size, shape, and mass retrievals of ice
+cloud particles and aggregates detected above the ML. In the
+scope of the priority program “Fusion of Radar Polarime-
+try and Numerical Atmospheric Modelling Towards an Im-
+proved Understanding of Cloud and Precipitation Processes”
+(PROM; Trömel et al., 2021), funded by the German Re-
+search Foundation (DFG), we explore the added value when
+operational weather radars are augmented with cloud radar
+measurements. By using ZDR measurements from a polari-
+metric weather radar, we estimate the shape of the ice hy-
+drometeors. To estimate particle size, we use simultaneous
+range-height indicator (RHI) scans from a scanning cloud
+radar, 23 km away from the weather radar, to obtain dual-
+wavelength observations for the same observation volume.
+As we aim to use DWR and ZDR measurements from two
+different locations, we are focused on case studies with ho-
+mogeneous cloud scenes and in which hydrometeor attenu-
+ation can be considered negligible. Therefore, we selected
+cloud cross-sections of cloud scenes with stratiform snow-
+fall wherein water hydrometeors are unlikely to occur. To
+exclude liquid hydrometeors and melting layers, an ice mask
+was developed and applied to the observational dataset. Fu-
+ture studies will also include wet particles to improve the
+representation of melting and riming processes in numerical
+weather models. Combining ice-scattering simulations and
+radar measurements, we present an ice microphysics retrieval
+that resolves the ice water content, the median size, and the
+apparent shape of the detected ice particles. The apparent
+shape (for simplicity, the term “shape” will be used through-
+out this study) is described by the average observed aspect
+ratio, which is strongly connected to the orientation of ice
+particles including their ﬂutter around this preferential orien-
+tation. Our approach considers single RHI scans from each
+radar instrument, resulting in a single radar cross-section.
+In the special case when the wind direction in this area is
+aligned to our radar cross-section, we can monitor the evolu-
+tion of precipitation and the development of fall streaks in-
+side the clouds by performing continuous RHI scans accord-
+ing to the precipitation rate. In another approach, to deeply
+investigate the initiation of convection as well as to better
+observe ice microphysical processes in clouds, we used a
+sector range-height indicator (S-RHI) with POLDIRAD and
+MIRA-35 to monitor precipitation cells during convection.
+In this way, a ﬁrst scan was executed towards the cell of in-
+terest at a speciﬁc azimuth. Then, two additional fast RHI
+scans were executed from each radar deviated ±2◦from the
+initial azimuth. This approach can result in nine vertical pro-
+ﬁles within the precipitation cell, providing additional micro-
+physical information (Köcher et al., 2022, their Fig. 1).
+Our approach of combining two radars located at differ-
+ent areas has multiple advantages. First of all, we can ex-
+ploit the non-Rayleigh scattering, which usually complicates
+Ze-only retrievals, by using the DWR to constrain the size
+of the atmospheric hydrometeors. DWR has been used so
+far in many conventional retrievals to retrieve particle size
+– usually by making an a priori assumption of the ice par-
+ticle shape, e.g., the aspect ratio. In our approach, we aug-
+ment this technique with polarimetric measurements (e.g.,
+ZDR). Especially when the other scanning radar is point-
+ing upwards, ZDR creates added value when obtained from a
+second scanning radar. For the multi-wavelength technique,
+oblate ice particles appear like spheres when it is applied
+to vertically pointing radars. In this study we advocate that
+spatially separated radars are suited to provide this kind of
+measurement. Operational weather radars located throughout
+Germany could therefore be used in synergy with already es-
+tablished cloud radar sites to monitor precipitation but also
+to obtain microphysical properties of atmospheric hydrome-
+teors.
+This paper is organized as follows: in Sect. 2 the in-
+struments used to produce the measurement dataset are de-
+scribed. In Sect. 3 the measurement strategy and the error
+assessments of the radar observations as well as the T-matrix
+scattering simulations are presented in detail. Section 3 also
+demonstrates the methodology of combining DWR and po-
+larimetric measurements along with the scattering simula-
+tions in order to retrieve microphysical properties of ice par-
+ticles. In addition, the attenuation correction methods are de-
+scribed. In Sect. 4, retrieval results along with their uncer-
+tainties as well as statistical results of the ice microphysics
+retrieval are presented. Furthermore, limitations of this study,
+comparisons to other methods, and the performance of the
+ice retrieval in different areas of the radar cross-section are
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3974
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+fully discussed. In Sect. 5, the conclusions for the presented
+approach are drawn.
+2
+Instruments
+This feasibility study to combine two spatially separated
+weather and cloud radars was conducted in the scope of the
+IcePolCKa project (Investigation of the initiation of convec-
+tion and the evolution of precipitation using simulations and
+polarimetric radar observations at C- and Ka-band), which is
+part of the PROM priority program (Trömel et al., 2021). For
+the DWR dataset the synergy of two polarimetric radars, the
+C-band POLDIRAD weather radar at the German Aerospace
+Center (DLR) in Oberpfaffenhofen and the Ka-band MIRA-
+35 cloud radar at Ludwig Maximilians University of Munich
+(LMU) was used. POLDIRAD and MIRA-35 performed co-
+ordinated RHI scans towards each other (azimuth angle con-
+stant for both radars) at a distance of 23 km between DLR
+and LMU, monitoring stratiform precipitation events.
+2.1
+POLDIRAD
+POLDIRAD (Fig. 1, left) is a polarization diversity Doppler
+weather radar operating at C band at a frequency of
+5.504 GHz (λ = 54.5 mm, λ1 in Eq. 2). The radar is located
+at DLR, Oberpfaffenhofen, 23 km southwest of Munich at
+48◦05′12′′ N and 11◦16′45′′ E at an altitude of 602.5 m above
+mean sea level (m a.m.s.l.). Since 1986, POLDIRAD has
+been operated on the roof of the Institute of Atmospheric
+Physics (IPA) for meteorological research purposes (Schroth
+et al., 1988). The weather radar consists of a parabolic an-
+tenna with a diameter of 4.5 m and a circular beam width of
+1◦. A magnetron transmitter with a power peak of 400 kW
+and a Selex ES Germatronik GDRX digital receiver with
+both linear and logarithmic response are synchronized with
+the polarization network of the receiver, which can record the
+linear, elliptic, and circular polarization of each radar pulse
+(Reimann and Hagen, 2016). POLDIRAD has the capability
+to receive the co- and cross-polar components of the hor-
+izontal, vertical, circular, and elliptical polarized transmit-
+ted electromagnetic waves. In this way it provides several
+polarimetric variables, e.g., ZDR and ρHV, which can be
+used to obtain additional information about the size, shape,
+phase, and falling behavior of the hydrometeors in the at-
+mosphere (Straka et al., 2000; Steinert and Chandra, 2009).
+Depending on its operational mode, the maximum range that
+can be reached is 300 km (for a pulse repetition frequency
+of 400 Hz, a pulse duration of 2 µs, and a range resolution
+of 300 m), making it a suitable instrument for nowcasting
+in the surrounding area of Munich. For the present study
+POLDIRAD’s maximum range was 130 km with a pulse rep-
+etition frequency of 1150 Hz, a pulse duration of 1 µs, and
+a range resolution of 150 m. The system can also be oper-
+ated in the STAR mode (simultaneous transmission and re-
+Figure 1. C-band POLDIRAD weather radar (left, photo: Martin
+Hagen) and Ka-band MIRA-35 cloud radar (right, photo: Bernhard
+Mayer).
+ception). Here, we used the alternate-HV mode (alternate
+horizontally and vertically polarized transmitted electromag-
+netic waves), which allows measuring the cross-polar com-
+ponents of the backscatter matrix. The elevation velocity dur-
+ing the RHI scans was 1◦s−1. The technical characteristics of
+POLDIRAD are presented in Table 1.
+2.2
+MIRA-35
+MIRA-35 (Fig. 1, right) is a Ka-band scanning Doppler cloud
+radar developed by Metek (Meteorologische Messtech-
+nik GmbH, Elmshorn, Germany) with a frequency of ca.
+35.2 GHz and a wavelength λ = 8.5 mm (Görsdorf et al.,
+2015), which is λ2 in Eq. (2). The cloud radar, which is
+operated by the Meteorological Institute Munich (MIM) as
+part of the Munich Aerosol Cloud Scanner (MACS) project
+(also referred to as miraMACS, Ewald et al., 2019), is located
+on the roof of the institute at the LMU at 48◦08′52.2′′ N,
+11◦34′24.2′′ E and 541 m a.m.s.l. The transmitter consists of
+a magnetron with a power peak of 30 kW, which typically
+transmits radar pulses of 0.2 µs with a pulse repetition fre-
+quency of 5 kHz, corresponding to a range resolution of
+30 m. The 1 m diameter antenna dish produces a beam width
+of 0.6◦. The MIRA-35 cloud radar emits horizontally po-
+larized radiation and measures both vertical and horizontal
+components of the backscattered wave. Hence, it has the ca-
+pability to perform LDR measurements. The cloud radar usu-
+ally points to the zenith but can also perform RHI scans at
+different azimuths with an elevation velocity of 4◦s−1 and
+plan-position indicator (PPI) scans at different elevation an-
+gles. The technical characteristics of MIRA-35 are presented
+in Table 1.
+3
+Methods
+This study intends to investigate the synergy of two spatially
+separated radars to retrieve microphysical properties of ice
+hydrometeors detected in clouds that are known to affect the
+type of precipitation (e.g., stratiform or convective), aiming
+to improve their representation in numerical weather mod-
+els. To address this, an ice microphysics retrieval scheme has
+been developed. In this way, the microphysical properties of
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3975
+Table 1. POLDIRAD and MIRA-35 technical characteristics.
+POLDIRAD
+MIRA-35
+Frequency/wavelength
+5.5 GHz / 54.5 mm
+35.2 GHz / 8.5 mm
+Peak transmitted power
+400 kW
+30 kW
+Antenna diameter
+4.5 m diameter
+1 m diameter
+Beam width
+1.0◦
+0.6◦
+Transmit mode
+pulse duration: 1 µs
+pulse duration: 0.2 µs
+pulse repetition frequency: 1150 Hz
+pulse repetition frequency: 5000 Hz
+max. range: 130 km
+max. range: 24 km
+range resolution: 150 m
+range resolution: 30 m
+ice hydrometeors are revealed for stratiform snow precipita-
+tion cases. In this section, our approach is presented in detail
+and demonstrated using a case study example from 30 Jan-
+uary 2019 when a snowfall event took place over the Munich
+area. At 04:00 UTC of that night, an ice cloud started form-
+ing at an altitude of 9 km. During the time of our coordinated
+measurements the cloud’s vertical extension was up to 7 km.
+Throughout that day, the ambient temperature was mostly be-
+low 0 ◦C. The wind speed at the surface was very low, while
+at higher altitudes it exceeded 15 ms−1 in some cases. The
+vertical gradient of the wind favored the development of fall
+streaks (also shown in our radar observations in Fig. 3) and
+thus ice particle growth within the ice cloud.
+3.1
+Measurement strategy and data preprocessing
+Coordinated RHI measurements with POLDIRAD and
+MIRA-35 have been collected during three snowfall days on
+9, 10, and 30 January 2019, with some ice particles reaching
+the ground where both radars are located (602.5 m a.m.s.l.
+for POLDIRAD and 541 m a.m.s.l. for MIRA-35). However,
+only ice particles above the melting layer were investigated
+in the present study. A total of 59 RHI scans were executed
+from the two radars at almost the same time (time differ-
+ence between RHIs was estimated as less than 15 s) with
+a temporal resolution which was adjusted to the precipita-
+tion rate. POLDIRAD scanned between 0 and 35◦eleva-
+tion towards MIRA-35 (northeast direction, azimuth of 73◦),
+while MIRA-35 scanned between 0 and 90◦elevation to-
+wards POLDIRAD (southwest direction, azimuth of 253◦)
+as well as 90–169◦elevation in a backward northeast di-
+rection but still inside the common cross-section (Fig. 2).
+With this setup, the cross-section between the two radars
+and beyond the MIRA-35 position was fully covered to
+record the development and microphysics of precipitation
+cells and fall streaks. During the snow events, Ze measure-
+ments from the two radars were performed and interpo-
+lated, using the nearest-neighbor interpolation method, onto
+a common rectangular grid (50m × 50 m). The 0-height of
+this grid is deﬁned to be the height above mean sea level,
+while POLDIRAD and MIRA-35 are located at 602.5 and
+541 m a.m.s.l. In Fig. 3a and c, the measured Ze from the two
+radar systems during the RHI scans from 30 January 2019 at
+10:08 UTC is presented. For the MIRA-35 Ze measurements
+we applied a calibration offset of 4 dBZ as derived in Ewald
+et al. (2019). Studying only snow cases, no strong effects of
+hydrometeor attenuation are expected (e.g., Nishikawa et al.,
+2016). However, an iterative method to estimate hydrome-
+teor attenuation has been developed. Additionally, both Ze
+datasets are corrected for gaseous attenuation using the ITU-
+R P.676-12 formulas provided by the International Telecom-
+munication Union (ITU) in August 2019 (ITU-R P.676-12,
+2019). Both methods are fully described in Sect. 3.3. After
+the interpolation of both radar reﬂectivities in the common
+radar grid, we calculated the DWR (Fig. 3b) using Eq. (2).
+Since DWR is deﬁned as the ratio of Ze at two wavelengths,
+it is independent of number concentration N. Therefore, it
+exploits the difference in the received radar signal due to Mie
+effects to give size information. To avoid unwanted biases
+by measurement artifacts, DWR values lower than −5 dB
+and higher than 20 dB were excluded. Furthermore, errors
+from other sources, e.g., beam width mismatch effects (beam
+width 1◦for POLDIRAD and 0.6◦for MIRA-35), are con-
+sidered (fully explained in Sect. 3.1.2). Besides DWR mea-
+surements, polarimetric observations were used to study the
+shape of ice particles. POLDIRAD provided polarimetric
+measurements of ZDR, but only ZDR values between −1 and
+7 dB were considered to be atmospheric hydrometeor signa-
+tures. The ZDR calibration was validated using additional
+measurements, which are described in detail in Sect. 3.1.2
+and Appendix A. For the ZDR panel (Fig. 3d), reasonable
+boundaries for optimal visualization purposes were used in
+the color map.
+When Ze, ZDR, and DWR measurements are combined
+(Fig. 3), one can already get a ﬁrst glimpse of the prevalent
+ice microphysics. Especially below 3 km of height, between
+20 and 30 km from POLDIRAD, the large values of Ze ac-
+companied by the large values of DWR (greater than 5 dB)
+and the low values of ZDR (lower than 1 dB) indicate the
+presence of large and quite spherical ice particles. In the fol-
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3976
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 2. Geometry of the radar setup. The range of elevation an-
+gles is 0–35 and 0–169◦for POLDIRAD and MIRA-35, respec-
+tively.
+lowing, quantitative ice microphysics will be revealed by the
+combination of Ze, DWR, and ZDR measurements with scat-
+tering simulations for a variety of ice particles.
+3.1.1
+Application of the ice mask
+As already mentioned, the current version of the ice mi-
+crophysics retrieval only accounts for ice particles that are
+detected in clouds above the ML. Hence, radar datasets
+should be ﬁltered accordingly and an ice mask should be ap-
+plied. The implementation of the ice mask using a thresh-
+old from polarimetric radar variables, i.e., MIRA-35 LDR,
+POLDIRAD ZDR, and ρHV, and temperature sounding data
+(shown in Fig. 4) are fully presented in Appendix B.
+3.1.2
+Assessment of radar observation errors
+Radar measurements are often affected by systematic or ran-
+dom errors. To assess their impact on the ice microphysics
+retrieval developed in this study we need to investigate possi-
+ble errors in POLDIRAD and MIRA-35 observations as well
+as all their sources.
+The absolute radiometric calibration of both instruments is
+an important error source in DWR measurements. While the
+error of the absolute radiometric calibration of POLDIRAD
+is estimated to be ±0.5 dB following the validation with an
+external device (Reimann, 2013), the budget laboratory cal-
+ibration of MIRA-35 following Ewald et al. (2019) is esti-
+mated to be ±1.0 dB.
+In order to test for a systematic ZDR bias, we exploited
+POLDIRAD measurements during vertically pointing scans
+(also known as birdbath scans, e.g., Gorgucci et al., 1999) in
+a liquid cloud layer performed on 4 April 2019. The measure-
+ments indicated that ZDR has an offset of about +0.15 dB as
+ZDR values are expected to be near 0 dB for this case due
+to the apparent spherical shape of liquid droplets. Although
+the examined calibration study from 4 April 2019 was con-
+ducted 3 months later, we consider this ZDR offset to be reli-
+able since calibration efforts showed similar values over the
+past years. Recent studies (Ryzhkov et al., 2005; Frech and
+Hubbert, 2020; Ferrone and Berne, 2021) conﬁrm the stabil-
+ity of ZDR offsets for even longer time periods as long as
+the integrity of the antenna is maintained and wet radome
+effects are avoided. In Fig. A1 (Appendix A), examples of
+radar reﬂectivity Ze, differential reﬂectivity ZDR, and a scat-
+ter plot showing the average ZDR offset are presented. The
+scatters in the last panel (Fig. A1c) indicate the median ZDR
+value averaged over the full measurement period, shown in
+Fig. A1a, for each vertical radar bin within the cloud layer.
+The data were acquired by super-sampling the 150 m pulse in
+75 m range steps to enhance the signal statistics. To further
+ensure the stability of ZDR bias, an additional calibration
+validation was conducted following the Ryzhkov and Zrnic
+(2019) approach (described in their Sect. 6.2.4). Our mea-
+surement dataset from January 2019 was ﬁltered for large
+Ze regions and intermediate temperatures for dry and large
+aggregates. This analysis yielded a median ZDR = 0.2 dB
+for these areas where ice aggregates are expected, indicat-
+ing that POLDIRAD was well calibrated during the period
+of this study.
+Another error that should be considered is the random er-
+ror, especially for ZDR measurements at low signal levels. To
+detect and ﬁlter out regions with high ZDR noise we compare
+the local (three range gates) standard deviation ZDRSD with
+the local mean ZDRmean. Subsequently, we only include re-
+gions where the signal ZDRmean exceeds the noise ZDRSD
+by 1 order of magnitude. An example of this approach can
+be found in Fig. A2 (Appendix A).
+In our case of spatially separated radar instruments, an az-
+imuthal misalignment between the two instruments had to be
+excluded to obtain meaningful DWR measurements. To this
+end, we performed several solar scans with both instruments
+in spring 2019 to conﬁrm their azimuthal pointing accuracy
+(e.g., Reimann and Hagen, 2016). Here, we found an azimuth
+offset of −0.2◦for POLDIRAD and an azimuth offset of
++0.1◦for MIRA-35. Consecutive solar scans conﬁrmed the
+azimuthal pointing accuracy within ±0.1◦. Despite the small
+azimuthal misalignment, the radar beam centroids of both
+instruments were clearly within the respective other beam
+width during our measurement period in 2019.
+Besides an azimuthal misalignment, we also analyzed the
+temporal mismatch between the RHIs as well as the volu-
+metric mismatch in the context of nonuniform beam ﬁlling.
+Although the RHIs from the radars were scheduled to be
+executed simultaneously, regions within the RHIs are mea-
+sured at slightly different times by both instruments. This
+temporal mismatch can lead to slightly different Ze radar
+observations from both radars in the context of horizontal
+advection of an inhomogeneous cloud scene. In the follow-
+ing we use this temporal mismatch to estimate the result-
+ing DWR error for the example case shown in Fig. 3. Us-
+ing wind data (Fig. 4) from the Oberschleißheim sounding
+station (source: Deutscher Wetterdienst, data provided by
+University of Wyoming; http://weather.uwyo.edu/upperair/
+sounding.html, last access: 8 April 2022), we converted the
+temporal mismatch (Fig. 5a) between the radar measure-
+ments for each pixel in the common radar grid to a spatial
+difference (Fig. 5c). To estimate the impact of this spatiotem-
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3977
+Figure 3. Radar observations of (a, c) MIRA-35 and POLDIRAD Ze, (b) DWR, and (d) POLDIRAD ZDR from 30 January 2019 at
+10:08 UTC. The −5, −15, and −25 ◦C temperature levels are plotted with black solid lines (source: Deutscher Wetterdienst, data provided
+by University of Wyoming; http://weather.uwyo.edu/upperair/sounding.html, last access: 8 April 2022).
+Figure 4. Temperature and wind speed data from the Ober-
+schleißheim sounding station (about 13 km north of Munich,
+source: Deutscher Wetterdienst, data provided by University
+of Wyoming; http://weather.uwyo.edu/upperair/sounding.html, last
+access: 8 April 2022) at 12:00 UTC are presented.
+poral mismatch (hereafter spatiotemporal error) we subse-
+quently used these spatial differences to calculate DWR er-
+rors between pixels in the spatially higher resolved MIRA-35
+Ze measurements (Fig. 5e). Concluding the DWR error as-
+sessment, we also analyzed the volumetric mismatch caused
+by the different beam widths of the two radars. For spatially
+heterogeneous scenes, this volumetric mismatch can lead to
+artiﬁcial DWR signatures caused by nonuniform beam ﬁll-
+ing. Here, the spatially higher resolved MIRA-35 Ze mea-
+surements (30 m range gate length) along the RHI cross-
+section were used as a proxy to obtain the spatial heterogene-
+ity of Ze perpendicular to the RHI cross-section. In a ﬁrst
+step, the local beam diameters for each pixel in the common
+grid are calculated for POLDIRAD (Fig. 5b) and MIRA-35
+(Fig. 5d). Then, moving averages along the Ze cross-sections
+from MIRA-35 are performed using the corresponding local
+beam diameters. Hence, at each pixel of the common radar
+grid two averaged MIRA-35 Ze values are obtained: one cor-
+responding to the local beam diameter of MIRA-35 and one
+corresponding to the local beam diameter of POLDIRAD.
+Subtracting the averaged Ze for each pixel, we were able
+to estimate the error caused by the volumetric mismatch be-
+tween the two radar beams (Fig. 5f). We apply the retrieval
+to all cloud regions, except for those ﬁltered out by the ice
+mask and noise thresholds. The aforementioned errors are
+considered during the statistical aggregation of retrieval re-
+sults (Sect. 4.2).
+3.2
+Numerical methods
+Complementary to measurements, the numerical methods
+used in this work are introduced in the following section.
+First, an ice crystal model needs to be assumed, which can be
+used in a scattering algorithm to simulate the backscattering
+of these crystals. On this basis, radar variables can be com-
+puted, which can then be compared to radar measurements.
+As we intended to retrieve the apparent shape, size, and mass
+of the detected ice hydrometeors, we used the aspect ratio
+(hereafter referred to as AR), median mass diameter (Dm) of
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3978
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 5. DWR error assessment due to temporal mismatch (a, c, and e) and volumetric mismatch (b, d, and f). In panels (a), (c), and
+(e), the POLDIRAD and MIRA-35 temporal and spatial mismatch and the spatiotemporal error (dB) are plotted. In panels (b) and (d), the
+POLDIRAD and MIRA-35 beam widths are presented, while in panel (f) the estimated DWR error due to the volumetric mismatch is shown.
+For this plot the data from 30 January 2019 at 10:08 UTC are used. The ice-masked and noise-ﬁltered values in (e) and (f) are plotted with
+gray. Black in panel (e) denotes the additional missing values due to the spatial shift of the radar grid. For better visualization purposes the
+−5, −15, and −25 ◦C temperature levels are not plotted here.
+the PSD, and ice water content as 3 degrees of freedom of the
+simulated ice particles for the development of lookup tables
+(LUTs). Different LUTs for several angles of radars geome-
+try (Fig. 2) were created. Their values were then interpolated
+to ﬁt all possible radar viewing geometries and used in the ice
+retrieval. The a priori assumptions used in the simulations are
+fully described in the following subsections.
+3.2.1
+Soft spheroid model
+For the scattering simulations we assumed that ice hydrom-
+eteors can be represented by ice spheroids. These so-called
+soft spheroids are assumed to be homogeneous ice particles
+composed of an ice–air mixture with a real refractive index
+close to 1.
+Refractive index
+Our soft spheroid model uses the effective medium approxi-
+mation (EMA) to model the refractive index of the composite
+material as an ice matrix with inclusions of air following the
+Maxwell–Garnett (MG) mixing formula given in Garnett and
+Larmor (1904):
+eeff −ei
+eeff + 2ei
+= fi
+ei −em
+ei + 2em
+,
+(4)
+with em,ei being the permittivities of the medium and the
+inclusion, respectively, eeff the effective permittivity, and fi
+the volume fraction of the inclusions.
+The complex refractive index, mEMA, is then calculated
+from mEMA = √eeff. In the framework of the EMA, the elec-
+tromagnetic interaction of an inhomogeneous dielectric par-
+ticle (components with different refractive indices) can be
+approximated with one effective refractive index of a homo-
+geneous particle (e.g., Liu et al., 2014; Mishchenko et al.,
+2016). In Liu et al. (2014), internal mixing was proven to best
+represent the scattering properties of hydrometeors. Here, the
+refractive index is modeled as an internal mixing of ice with
+air inclusions, which are arranged throughout the ice parti-
+cle. The same work also pointed out that the size parameter
+Dcrit = πd/λ for each of these air inclusions should not be
+larger than 0.4 (with d as the diameter of the inclusion).
+Aspect ratio
+The shape of the particles is deﬁned using the aspect ratio,
+AR. In this study, AR is deﬁned as the ratio of the hori-
+zontal to rotational axis of the particle. From the descrip-
+tion of the simulated ice spheroids in Fig. 6, it is obvious
+that oblate (shaped like lentil) and prolate particles (shaped
+like rice) have AR larger and lower than 1.0, respectively,
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3979
+as the z axis is selected to be the rotational axis. Using this
+principle, the representative value of sphericity S = 0.6 for
+oblate ice spheroids from Hogan et al. (2012) is calculated
+as AR = 1.67 in this study, and therefore this number was
+used as a reference value for the simulation plots (Figs. 7, 8,
+and 9a). In this work, we used S in addition to AR to com-
+pare retrieval results when the oblate and prolate shape as-
+sumption is used. S for oblates and prolates is found to be
+smaller than 1, while for spheres it is equal to 1. Here, all
+ice particles were assumed to fall with their maximum diam-
+eter aligned to the horizontal plane. Hence, all ice prolates
+(hereafter referred to as horizontally aligned prolates or hori-
+zontally aligned prolate ice spheroids) are rotated 90◦(mean
+canting angle) in the y–z plane (Fig. 6), while ice oblates
+are not rotated (0◦mean canting angle). The variability of
+the canting angle, i.e., the angle between the particle’s major
+dimension and the horizontal plane, of the falling hydromete-
+ors has been the topic of several studies. This value in nature
+is not so easy to estimate, and thus a standard deviation (e.g.,
+2–23◦as in Melnikov, 2017) is often additionally used. Here,
+we used a ﬁxed standard deviation of 20◦to describe the os-
+cillations of the particles’ maximum dimension around the
+selected canting angle. Then the calculation of the scattering
+properties is performed using an adaptive integration tech-
+nique for all possible particle geometries, ignoring the Euler
+angles (α and β) of the scattering orientation.
+Mass–size relation
+The maximum dimension, Dmax, and the sphericity values
+for the spheroids were a priori deﬁned and their mass was
+calculated according to the formula that describes the rela-
+tion between mass and Dmax, i.e., mass–size relation. This
+formula can provide information about the mass of the ice
+particles and therefore their effective density with respect to
+their size. Mass m of an ice particle is usually connected to
+its maximum diameter Dmax with a power-law formula:
+m(Dmax) = aDb
+max,
+(5)
+where a is the prefactor of the m(Dmax), which refers to
+the density scaling at all particles sizes, and b is the expo-
+nent of the m(Dmax), which relates to the particle shape and
+growth mechanisms. With the mass and the spheroid dimen-
+sions known, the density of the ice spheroid was calculated.
+In the special case when the density was found to exceed
+that of solid ice (0.917 gcm−3), the mass of the spheroid was
+clipped and its density was set equal to 0.917 gcm−3.
+For the mass of the ice particles, the modiﬁed mass–size
+relation of Brown and Francis (Brown and Francis, 1995) as
+presented in Hogan et al. (2012), hereinafter referred to as
+BF95, is initially used in this study:
+m(Dmax) = 480D3
+max,
+Dmax < 6.6 × 10−5 m,
+m(Dmax) = 0.0121D1.9
+max,
+Dmax ≥6.6 × 10−5 m,
+(6)
+where Dmax is maximum dimension of a spheroid in me-
+ters (m), and m is the mass of the particle in kilograms (kg).
+While the effective density of a spheroid decreases strongly
+with its size due to the exponent b = 1.9 in BF95, we con-
+trast this with a second m(Dmax) with a higher and constant
+density. To that end, we borrowed the m(Dmax) from the ir-
+regular aggregate model from Yang et al. (2000) to create
+soft spheroids with an analog mass–size ratio. Originally, the
+construction of these aggregates was fully described in Yang
+and Liou (1998) as an aggregated collection of geometrical
+hexagonal columns. In our study, this second soft spheroid
+model only emulates the maximum dimension and mass of
+the underlying aggregates. Assuming spheroids to represent
+the ice aggregates, the density and thus the mass of the par-
+ticles can be calculated via the melted-equivalent diameter
+Deq using Dmax in Eq. (7). The Deq is used to describe the
+diameter of a spherical water particle with the same mass as
+an ice particle with maximum dimension Dmax,
+m(Dmax) =
+πρwD3
+eq
+6
+= πρw
+6 e
+P4
+n=0bn(ln(Dmax))n3
+,
+(7)
+where bn is taken from Table 2 in Yang et al. (2000); the
+water density ρw = 1 gcm−3 and Deq as well as Dmax are in
+micrometers.
+Particle size distribution
+In all calculations of our study, ice particle sizes were as-
+sumed to follow the normalized gamma particle size distri-
+bution of Bringi and Chandrasekar (2001) with a shape pa-
+rameter µ = 0 (exponential PSD), a typical value for snow
+aggregates (e.g., Tiira et al., 2016; Matrosov and Heymsﬁeld,
+2017, and many more):
+N(D) = Nwf (µ)
+ D
+D0
+µ
+e
+−(3.67+µ)D
+D0
+with
+f (µ) =
+6
+3.674 (3.67 + µ)
+(µ+4)
+0(µ+4) ,
+(8)
+where Nw is the intercept parameter, µ is the shape parame-
+ter, D0 is the median volume diameter, and D is the melted-
+equivalent diameter of the ice particles (deﬁned as Deq in
+this study). The median volume diameter (D0) is one of the
+three parameters used to deﬁne the gamma PSD for the scat-
+tering simulations and is the size which separates the PSD in
+half with respect to volume (deﬁned as
+R D0
+0
+D3N(D)dD =
+1
+2
+R Dmax_PSD
+0
+D3N(D)dD). However, the use of the median
+mass diameter is more common in ice studies. The me-
+dian mass diameter, or equivalent median diameter, of the
+ice particles which have been melted (Dm) is the size that
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3980
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 6. Description of simulated oblate, vertically aligned prolate, and horizontally aligned (rotated 90◦in the y–z plane) prolate ice
+spheroids. Only oblate and horizontally aligned prolate ice spheroids were used in the scattering simulations with a 20◦standard deviation
+out of the horizontal plane.
+Figure 7. Gamma PSD for different values of Dm, AR = 1.67, Nw = 1 × 103, and µ = 0.
+splits the PSD in half with respect to mass (deﬁned as
+R Dm
+0
+m(D)N(D)dD = 1
+2IWC, Ding et al., 2020). Although
+DWR can be used to retrieve median size D0 of PSD with-
+out D0 being affected much by the density of the ice parti-
+cles (e.g., Matrosov, 1998; Hogan et al., 2000), it can also
+be used to retrieve Dm when a mass–size relation is investi-
+gated as Dm is signiﬁcantly affected by the m(Dmax) used.
+For instance, Leroy et al. (2016) found that Dm is signiﬁ-
+cantly affected by the b exponent of the m(Dmax) and thus
+by the mass and the density of ice hydrometeors. As we
+aim to investigate how the choice of different parameters af-
+fects the results of the ice retrieval (mass, shape, and me-
+dian size), we were also focused on the Dm median size.
+Along with the shape parameter µ and intercept parameter
+Nw, soft spheroids with a deﬁned AR were used to calcu-
+late Ze and speciﬁc attenuation A at both radar wavelengths
+and ZDR only at 54.5 mm as this radar variable is only pro-
+vided by POLDIRAD. For the refractive index calculation,
+the Maxwell–Garnett mixing formula was used (e.g., Gar-
+nett and Larmor, 1904). In addition to Ze, A, and ZDR sim-
+ulations, the IWC of the PSD was calculated. The Nw that
+corresponds to this value of IWC served as a factor for rescal-
+ing to the desired IWC values used for the simulations. The
+rescale factor was used for the new estimation of Ze, A, and
+ZDR. In Fig. 7 an example of the gamma PSD for intercept
+parameter Nw = 1 × 103, shape parameter µ = 0 (exponen-
+tial PSD), different Dm values, and constant AR = 1.67 is
+presented, showing how Dm and the shape of the PSD are
+related. For all calculations, minimum and maximum diame-
+ters of 2 × 10−2 and 20 mm were used as integration bound-
+aries in the PSD of the ice particles, as we aim to retrieve
+microphysics only for ice particles detected in clouds and
+above the ML.
+3.2.2
+Scattering simulations
+The single-scattering properties of the ice spheroids were cal-
+culated using the T-matrix scattering method as described by,
+e.g., Waterman (1965), Mishchenko and Travis (1994), and
+Mishchenko et al. (1996). The averaging over particle orien-
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3981
+Figure 8. Radar observations between 0 and 5◦elevation angles and scattering simulations for ice spheroids with m(Dmax) corresponding
+to aggregates (red) and BF95 (black) for AR = 1.67, IWC = 0.50 gm−3, and both radar beams simulated to be emitted horizontally. With
+scatters, the Dm = 0.5 mm and Dm = 1.0 mm are denoted. The 95th percentile of the 2D density histogram is drawn with a dark blue isoline.
+With red dashed and dash-dotted lines simulations for ice spheroids with double and half the density of aggregates are plotted.
+Figure 9. Scattering simulations for (a) radar reﬂectivity and (b) differential radar reﬂectivity vs. the dual-wavelength ratio for horizontally
+aligned spheroid ice particles, horizontal–horizontal geometry, shape parameter µ = 0, and m(Dmax) of aggregates. For (a) the AR was
+chosen as 1.67, while for (b) the IWC was chosen as 0.50 gm−3. In panel (b) the light green and dark green lines denote simulations for
+oblates and horizontally aligned prolates, respectively.
+tations and the calculation of radar variables for whole size
+distributions are done using PyTMatrix (Leinonen, 2014)
+since the simple Rayleigh approximation of Eq. (1a) can-
+not be used for soft spheroids. PyTMatrix is a package that
+can be easily adjusted to the user’s needs via functions and
+classes regarding the desired preferences for particle shape,
+size, orientation, particle size distribution (PSD), and wave-
+length.
+Combining the PSD with the m(Dmax) relationships of
+BF95 and aggregates, scattering simulations show that ice
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3982
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+spheroids following the m(Dmax) of aggregates produce
+more pronounced polarimetric signatures for larger ice par-
+ticles due to their higher density and, in turn, higher real re-
+fractive index. This is illustrated by scattering simulations
+using both m(Dmax) assumptions, which are shown along
+with our radar observations in Fig. 8 (the BF95 and aggre-
+gate line is plotted with black and solid red, respectively).
+These calculations were done for horizontally emitted radar
+beams, an aspect ratio of 1.67, and an IWC of 0.50 gm−3.
+Here, larger DWR values are an indication of larger particles,
+while ZDR values around 0 are an indication of spherical par-
+ticles. The same ﬁgure also shows scattering simulations for
+ice spheroids with double and half the density of aggregates
+m(Dmax) (red dashed and dash-dotted line, respectively).
+This inﬂuence of density on retrieval results will be further
+discussed in a sensitivity study presented in Sect. 4.3.1. In ad-
+dition, Fig. 8 also shows our DWR–ZDR measurements for
+low elevation angles (0–5◦) and for all 59 RHI coordinated
+scans as a blue shaded density histogram. The dark blue iso-
+line frames the 95th percentile of our radar observations. In
+Fig. 8 it becomes apparent that the BF95 m(Dmax) relation-
+ship assumed for our ice spheroids cannot explain our radar
+observations for large ice hydrometeors as ZDR values drop
+fast with increasing DWR due to the fast decrease in den-
+sity with size. Therefore, BF95 will be excluded from further
+analysis. To compare BF95 with aggregates, some retrieval
+results using BF95 can be found in Sect. 4.3.1. The mass–size
+relationship for aggregate ice particles can obviously better
+explain the density histogram of our DWR–ZDR dataset, es-
+pecially for particles with DWR > 4 dB.
+Lookup table structure
+Using ice spheroids that follow the m(Dmax) of aggregates,
+we proceeded to the development of LUTs for different val-
+ues of Dm, AR, IWC, and geometries covering the radar el-
+evation angles presented in Fig. 2. Dm of the PSD was var-
+ied between 0.1 and 3.02 mm in a logarithmic grid of 150
+points. A minimum sensitivity limit of DWR = 0.1 dB was
+used in the simulations, leading to different minimum re-
+trievable Dm according to the m(Dmax) and the AR used,
+but also the radar viewing geometry (more details about
+this topic can be found in Appendix C). IWC was varied
+between 0.00001 and 1 gm−3 in a logarithmic grid of 101
+points. Scattering properties for spheroid oblate and horizon-
+tally aligned prolate ice particles were calculated and saved
+in separated LUTs with the aspect ratio ranging 0.125–1.0
+(values: 0.125, 0.16, 0.21, 0.27, 0.35, 0.45, 0.6, 0.8, 1.0) for
+the horizontally aligned prolates and the inverse values for
+the oblate particles. Two examples of the scattering simula-
+tions are presented in Fig. 9. For the creation of both panels
+we assumed the simulated radar beams to be transmitted hor-
+izontally towards each other (horizontal–horizontal geome-
+try). For Fig. 9a the AR was chosen as 1.67. Radar reﬂectiv-
+ity Ze at C band and DWR were calculated for different Dm
+values and different values of IWC of the PSD. Larger val-
+ues of radar reﬂectivity Ze at C band are observed for larger
+values of Dm and larger IWC. Furthermore, as Dm increases,
+DWR increases as well, indicating the sensitivity of DWR to
+the size. An important remark is that for constant Dm, DWR
+remains invariant to varied IWC. For Fig. 9b we chose IWC
+to be 0.50 gm−3. ZDR values are found to be invariant for
+all simulated values of IWC when AR, Dm, and the shape
+parameter µ of PSD as well as the m(Dmax) remained the
+same. All the aforementioned principles are then used to im-
+plement a method for retrieving ice microphysics informa-
+tion from radar measurements.
+3.3
+Correction of attenuation
+Before using the radar observations for the development of
+the ice retrieval algorithm, they need to be corrected for beam
+propagation effects. One major inﬂuence is attenuation by
+atmospheric gases and hydrometeors. This holds especially
+true for the Ka-band radar measurements. Although snow
+attenuation in the C band can be mostly neglected, espe-
+cially for low-density particles and low snowfall rates (Bat-
+tan, 1973; Table 6.4), the corrections will be done in both
+radar bands for reliability purposes.
+3.3.1
+Gaseous attenuation
+Both MIRA-35 and POLDIRAD radar reﬂectivities are cor-
+rected for attenuation caused by atmospheric gases. Atmo-
+spheric water vapor can cause considerable attenuation of
+radar signals, especially at the higher frequency (35.2 GHz)
+of our instrumentation. The gaseous attenuation for both
+radar bands is calculated using line-by-line formulas pro-
+posed by the ITU-R P.676-12 model (ITU-R P.676-12, 2019).
+The corrections are implemented for oxygen and water vapor
+lines where the attenuation is expected to be signiﬁcant. The
+gaseous attenuation formulas use atmospheric pressure, tem-
+perature, and relative humidity for each RHI obtained from
+the Copernicus Climate Change Service (C3S) Climate Data
+Store (CDS) ECMWF ERA5 reanalysis data (Hersbach et al.,
+2018).
+3.3.2
+Hydrometeor attenuation
+Next to the gaseous attenuation, the hydrometeor attenuation
+needs to be considered, too. For this purpose, an iterative ap-
+proach using the ice microphysics results is developed. In
+this way, both radar reﬂectivities are corrected to mitigate the
+impact of hydrometeor attenuation on the ice microphysics
+retrieval. For this approach, the retrieval algorithm is used
+twice. A more detailed description of this method will be
+presented in Sect. 3.4 along with the developed ice retrieval
+scheme.
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3983
+3.4
+Development of ice microphysical retrieval
+For the development of the ice retrieval scheme, radar mea-
+surements of Ze, ZDR, and DWR are compared with the
+PyTMatrix scattering simulations described in Sect. 3.2. The
+retrieved parameters are IWC (gm−3), Dm of the PSD (mm),
+and AR of the measured hydrometeors. Considering their dif-
+ferent ranges, we used normalized differences between sim-
+ulated and measured values of DWR as well as Ze and ZDR
+at C band. By minimizing these differences, the best-ﬁtting
+microphysical parameters are found. The microphysics re-
+trieval is implemented in two steps using the minimization
+of the two following cost functions J1 and J2:
+minJ1(Dm,AR) = norm(1ZDR(Dm,AR))
++ norm(1DWR(Dm,AR))
+minJ2(IWC) = norm(1Ze,C(IWC)),
+(9)
+where 1, the difference between simulated and measured pa-
+rameters, is denoted.
+Both ZDR and DWR are invariant to IWC when the same
+values of Dm and AR are used. Therefore, Dm and AR are
+found in the ﬁrst step, while the IWC is constrained in the
+second step. While the DWR contributes to the retrieval of
+Dm, the ZDR measurement merely narrows down the solu-
+tion of the aspect ratio of the ice particles. As Ze at C band
+is less affected by attenuation compared to the Ka band, it is
+better suited to estimate the IWC. After the retrieval of size
+Dm and shape AR in the ﬁrst step, the algorithm continues
+with these values with the retrieval of IWC in the second step
+by minimizing the cost function J2 in the LUT. Completing
+these two steps, the microphysics retrieval has retrieved not
+only preliminary Dm, AR, and IWC but also the speciﬁc at-
+tenuation A at both radar bands, which is used for the total
+attenuation estimation. As the ice retrieval produces results
+using radar measurements interpolated onto a Cartesian grid,
+the retrieved A at C and Ka band needs to be converted from
+Cartesian to the original polar coordinates for the calculation
+of the total attenuation for each radar band. After A, in po-
+lar coordinates, is integrated along the radar beams, the total
+attenuation for each radar dataset is calculated and converted
+back from polar to Cartesian coordinates. Then, it is used to
+correct Ze for both radars. In the next step, the ﬁnal micro-
+physical parameters such as AR, IWC, and Dm are retrieved
+using the corrected Ze from both bands as well as ZDR from
+POLDIRAD. Figure 10 shows the process of attenuation cor-
+rection and retrieval in more detail. An output example of the
+ice microphysics retrieval scheme for the already introduced
+case study from 30 January 2019 at 10:08 UTC (Figs. 11
+and 12) can be found in Sect. 4.1. The total attenuation for
+this case study is presented in the Supplement accompanying
+this paper.
+4
+Results
+4.1
+Retrieval of ice microphysics
+59
+pairs
+of
+coordinated
+RHI
+measurements
+from
+POLDIRAD
+and
+MIRA-35
+were
+investigated.
+Here,
+we use a case study from 30 January 2019 at 10:08 UTC, al-
+ready presented before in Fig. 3, to demonstrate the output of
+the ice microphysics retrieval scheme. For all the presented
+results, we anticipated that the ice hydrometeors could be
+represented by ice spheroids that follow the aggregates’
+mass–size relation and the a priori deﬁned exponential PSD.
+The microphysical properties of the detected hydrometeors
+are shown in Fig. 11 (assuming oblate ice spheroids and
+LUTs for different radar viewing geometries) and Fig. 12
+(assuming horizontally aligned prolate ice spheroids and
+LUTs for different radar viewing geometries). In Figs. 11a
+and 12a, the retrieved AR is presented. Both plots suggest
+that in the cross-section of the cloud between the two radars,
+especially in the area below 3 km of height at a distance of
+0–12 km from POLDIRAD, more spherical ice hydromete-
+ors are present. Further away at a distance of 12–20 km from
+POLDIRAD, more aspherical particles with AR around 4.0
+and AR around 0.5 for oblates and horizontally aligned
+prolates, respectively, were found. The same result is also
+supported by S plots in Figs. 11c and 12c, where S > 0.6
+for the spherical particles between 0 and 12 km of distance
+and S < 0.6 for the aspherical particles between 12 and
+20 km of distance. The retrieved AR and S could explain the
+ZDR measurements well in Fig. 3d where more spherical
+particles have ZDR < 0.5 dB, while aspherical particles
+have ZDR > 0.5 dB. Overall, the ZDR measurements could
+be replicated better with the retrieval results using oblate
+ice spheroids with RMSE = 0.19 dB (RMSE refers to
+the root mean square error over all grid points) between
+the ﬁtted and measured ZDR for the whole scene against
+RMSE = 0.25 dB when horizontally aligned prolate ice
+spheroids were used. With the a priori assumptions for PSD
+and mass–size relation, the retrieved Dm increasing towards
+the ground is an indication that large ice particles are present
+below 3 km of height compared to smaller particles that are
+dominant at higher altitudes. This is obvious in both oblate
+and horizontally aligned prolate results (Figs. 11b and 12b).
+Comparing this plot with the DWR measurements from
+Fig. 3b, we observe that the retrieved Dm could reasonably
+explain DWR. The correlation between DWR and Dm is
+again found to be better when oblate ice spheroids are used.
+The RMSE for the ﬁtted-simulated and measured DWR is
+0.50 dB when ice oblates are used in the simulations, while
+RMSE = 0.61 dB when the ice particles were assumed to
+be horizontally aligned prolates. Although DWR and ZDR
+measurements are combined for the shape and size retrieval
+(minimization of J1 in Eq. 9), the spatial pattern agreement
+between DWR–Dm and ZDR-AR/S plots indicates the
+strong correlation of DWR and ZDR with size and shape,
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3984
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 10. Ice microphysics ﬂowchart. The dark blue refers to radar observations. The light blue is used for scattering simulations, and the
+red dotted rounded rectangle gives information about the ice microphysics retrieval scheme. In gray, the total attenuation correction method
+is described.
+Figure 11. Retrieved (a) AR, (b) Dm, (c) S, and (d) IWC for 30 January 2019 at 10:08 UTC with ice spheroids assumed to be oblates and
+their m(Dmax) corresponding to aggregates from Yang et al. (2000). The −5, −15, and −25 ◦C temperature levels are plotted with black
+solid lines (source: Deutscher Wetterdienst, data provided by University of Wyoming; http://weather.uwyo.edu/upperair/sounding.html, last
+access: 8 April 2022). Areas where ice-masked and noise-ﬁltered measurement values are located are plotted with gray.
+respectively. Figures 11d and 12d show the results of the
+retrieved IWC for oblates and horizontally aligned prolate
+ice spheroids described by m(Dmax) of aggregates and
+an exponential PSD. Areas with positive POLDIRAD Ze
+values in Fig. 3c correspond to IWC values higher than
+1 × 10−3 gm−3. Hence, the sensitivity of Ze to the mass of
+the ice particles is again indicated for both spheroid shapes
+(oblates and horizontally aligned prolates). Nevertheless, the
+Ze RMSE for horizontally aligned prolate ice particles is
+0.36 dB, while the RMSE is found to be 0.20 dB when ice
+oblates are used. All RMSEs which serve as residual values
+for the ice retrieval are collected in Table 2. The lowest
+RMSEs are found when oblate ice spheroids are assumed.
+Figure 13 shows averaged proﬁles of Dm and IWC for the
+whole cloud cross-section measured on 30 January 2019 at
+10:08 UTC when different error sources and different shape
+assumptions are considered. In Fig. 13a and b, the aver-
+aged Dm and IWC proﬁle for oblate ice spheroids, as they
+are calculated from Fig. 11b and d only accounting for
+ice-masked and noise-ﬁltered measurements, are plotted in
+dark red and dark blue, respectively. In the same panels,
+the averaged Dm and IWC proﬁles are plotted with differ-
+ent red and blue shades for different combinations of cal-
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3985
+Figure 12. Retrieved (a) AR, (b) Dm, (c) S, and (d) IWC for 30 January 2019 at 10:08 UTC with ice spheroids assumed to be horizontally
+aligned prolates and their m(Dmax) corresponding to aggregates from Yang et al. (2000). The −5, −15, and −25 ◦C temperature levels are
+plotted with black solid lines (source: Deutscher Wetterdienst, data provided by University of Wyoming; http://weather.uwyo.edu/upperair/
+sounding.html, last access: 8 April 2022). Areas where ice-masked and noise-ﬁltered measurement values are located are plotted with gray.
+Table 2. RMSE values between simulated and observed ZDR,
+DWR, and Ze values for the whole radar cross-section after run-
+ning the retrieval for 30 January 2019 at 10:08 UTC using oblate
+and horizontally aligned prolate ice spheroids and assuming their
+m(Dmax) to be the aggregates from Yang et al. (2000).
+Shape assumption
+Parameter
+RMSE
+Oblates
+DWR
+0.50 dB
+ZDR
+0.19 dB
+Ze
+0.20 dB
+Horizontally aligned prolates
+DWR
+0.61 dB
+ZDR
+0.25 dB
+Ze
+0.36 dB
+ibration errors for POLDIRAD (±0.5 dBZ) and MIRA-35
+(±1.0 dBZ). Figure 13a indicates that the lowest values of
+Dm would be retrieved if the calibration for POLDIRAD and
+MIRA-35 were dZe,C = −0.5 dBZ and dZe,Ka = +1.0 dBZ,
+respectively, resulting in a DWR bias of −1.5 dB. Due
+to the smaller Dm retrieval, the retrieved IWC proﬁle in
+Fig. 13b is the largest in this case. In the lower panels of
+the same ﬁgure, the same proﬁles of Dm (Fig. 13c) and
+IWC (Fig. 13d) are plotted again, now including the addi-
+tional errors caused by the spatiotemporal and beam width
+mismatch discussed in Sect. 3.1.2. While the beam width
+mismatch can locally lead to the most signiﬁcant deviations
+(shown in Fig. 5), the calibration uncertainty (red and blue
+shades) in the worst case (for dZe,C = −0.5 dBZ, dZe,Ka =
++1.0 dBZ vs. dZe,C = +0.5 dBZ, dZe,Ka = −1.0 dBZ) can
+lead to the largest bias throughout the proﬁle. With increas-
+ing microphysical heterogeneity within a cloud, the DWR er-
+ror due to the volumetric mismatch between the instruments
+increases. Here, criteria would need to be deﬁned with the
+estimated DWR errors indicating a non-applicability of the
+multi-wavelength technique. The selection of such criteria,
+however, would require an in-depth sensitivity study using
+model clouds and in situ data, which is beyond the scope of
+our study. Our error estimation therefore only serves as an in-
+dication of areas in which the retrieval results should be taken
+with caution. The lower panels of Fig. 13 also show the av-
+eraged Dm and IWC proﬁle (dashed lines) as they are calcu-
+lated from Fig. 12b and d when horizontally aligned prolate
+ice spheroids are assumed. Between the two shape assump-
+tions the horizontally aligned prolates yield a larger Dm pro-
+ﬁle (+0.31 mm) on average, while oblate ice spheroids yield
+a slightly larger IWC proﬁle (+0.002 gm−3). With the inﬂu-
+ence of the calibration uncertainty on the retrieved Dm and
+IWC proﬁle with ±0.41 mm and ±0.02 gm−3, respectively,
+the shape assumption is of equal signiﬁcance for the retrieval
+of Dm, while it is less important for the retrieval of IWC.
+4.2
+Statistical overview
+After investigating 59 pairs of RHI scans from three differ-
+ent snow events (9 January 2019 11:18–15:08 UTC, 10 Jan-
+uary 2019 09:08–17:08 UTC, and 30 January 2019 10:08–
+12:38 UTC), we created stacked histograms with respect to
+temperature for a deeper insight into the retrieval. Particu-
+larly, all RHI measurements from these days were compared
+to scattering simulations in LUTs for oblate and horizontally
+aligned prolate ice particles. Statistical results of the retrieved
+S, Dm, and IWC are presented in Fig. 14. For these results, all
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3986
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 13. Averaged proﬁles of the retrieved (a) Dm and (b) IWC as derived from Fig. 11b and d for oblate ice spheroids, with (thinner
+lines) and without (thicker line) considering the calibration error for both radars. (c, d) Same as (a, b) but now the beam width error, the
+spatiotemporal error, and dDWR = +0.5 dB or dDWR = −0.5 dB are considered. With dashed lines the retrieved Dm and IWC as derived
+from Fig. 12b and d for the horizontally aligned prolate assumption are plotted. All panels refer to the case study from 30 January 2019 at
+10:08 UTC as well as to aggregate mass–size relationship and exponential particle size distribution.
+errors and biases described in Sect. 3.1.2 are considered for
+the RHI measurements. For the statistics it is also assumed
+that ice hydrometeors are represented by ice spheroids fol-
+lowing an exponential PSD and with m(Dmax) correspond-
+ing to that of aggregates. In the ﬁrst three panels of this
+ﬁgure, results for the retrieved parameters assuming oblate
+ice spheroids are presented, while in the last three panels,
+the same kind of results for horizontally aligned prolate ice
+spheroids are shown. At ﬁrst glance, the majority of ice hy-
+drometeors are found to be neither very spherical nor very
+elongated (green panel plots, ﬁrst column in Fig. 14). When
+oblate ice spheroids are used in the scattering simulations,
+the greater part of retrieved S values is found to range from
+0.3 to 0.6. With the assumption that ice hydrometeors can
+be represented by horizontally aligned prolate ice spheroids,
+the distribution is narrower, with the majority of the detected
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3987
+particles having S values ranging 0.4–0.6. From the Dm re-
+trieval (red panel plots, second column in Fig. 14) the re-
+sults for oblates showed a narrower distribution shifted to-
+wards lower median mass diameters, while for horizontally
+aligned prolates the retrieved values are more broadly dis-
+tributed towards larger values of Dm (median value of both
+distributions can be found in Table 3). The histograms for
+the retrieved IWC (blue plot panels, third column in Fig. 14)
+are plotted using a logarithmic x axis for visualization pur-
+poses. The statistical results show that the greater part of
+the detected ice hydrometeors is found to have IWC values
+3 × 10−4–3 × 10−1 gm−3 (−3.5 to −0.5 in the logarithmic
+axis) when oblate ice spheroids were assumed. For horizon-
+tally aligned prolate ice particles, most of the detected ice
+hydrometeors are found to have IWC values of 1 × 10−4–
+1×10−1 gm−3 (−4 to −1 in the logarithmic axis). The spikes
+in both Dm and IWC histograms are merely caused from the
+strong discrepancies between simulated and measured radar
+variables during the minimization of J1 and J2 in Eq. (9), i.e.,
+negative measured values of DWR, while the minimum value
+0.1 dB was used in the simulations (see also Appendix C).
+The different color shades in all panel plots denote the dif-
+ferent temperature groups in which the detected hydromete-
+ors are separated. For both shape assumptions, it is observed
+that when temperature drops below −25 ◦C ice hydrometeor
+populations with IWC < 1 × 10−2 gm−3 dominate the par-
+ticle distribution. Furthermore, for higher temperatures the
+greater part of the log10IWC distribution is shifted towards
+larger values in the logarithmic axis, denoting larger retrieved
+IWC.
+For better interpretation of the ice retrieval results during
+the three snow events, we further proceeded with the cal-
+culation of some descriptive statistics presented in Table 3,
+always under the assumption that the detected ice hydrom-
+eteors can be represented by ice spheroids whose m(Dmax)
+corresponds to that of aggregates and they follow a PSD
+with µ = 0. The median of the retrieved properties for the
+observed particles distributions was calculated. Anticipating
+that the detected ice particles can be represented by oblate
+spheroids, we calculated the median retrieved S = 0.45, the
+median retrieved Dm = 0.80 mm, and the median retrieved
+IWC = 13×10−3 gm−3. On the contrary, when the observed
+hydrometeors were assumed to be horizontally aligned pro-
+late spheroids, the median retrieved sphericity, the median
+retrieved median mass diameter and the median retrieved ice
+water content were found to be S = 0.45, Dm = 1.08 mm,
+and IWC = 5 × 10−3 gm−3, respectively. Although the two
+median S values are the same, there are differences in the me-
+dian Dm and IWC between oblates and horizontally aligned
+prolates. For the latter, the median Dm was calculated as
+larger and the IWC was calculated as lower than the respec-
+tive values for oblate ice spheroids. Therefore, the shape as-
+sumption seemed to affect the retrieved microphysical prop-
+erties of the ice particles (also shown in Sect. 4.1). In Table 3
+the 10th and 90th percentile of the detected ice hydrometeor
+retrieved parameters can be also found.
+4.3
+Discussion
+One limitation of the current version of the ice retrieval is
+the need to make some signiﬁcant a priori assumptions about
+the particle properties. At ﬁrst, we selected the ice spheroid
+model, as the model with a small number of parameters to be
+pre-deﬁned, to represent the detected ice particles. Then, we
+decided about the PSD that the detected ice particles follow.
+For this decision, several studies argue that a typical PSD is
+described by a shape parameter close to 0 for ice particles
+(e.g., Matrosov and Heymsﬁeld, 2017). Therefore, we also
+chose an exponential PSD for the simulated ice spheroids.
+The use of the two aforementioned assumptions was not fur-
+ther investigated in this study, and they were used as already
+described. The third assumption (discussed in Sect. 4.1) con-
+cerns the choice of whether we assume oblate or horizon-
+tally aligned prolate ice spheroids. In addition to the shape,
+we have to assume a suitable m(Dmax) relationship for the
+prevalent ice particles. For the three investigated snow events
+the selection of m(Dmax) of aggregates over the BF95 for
+ice spheroids has been partially discussed in Sect. 3.2. An
+extended explanation for this selection is also presented in
+Sect. 4.3.1.
+4.3.1
+Unknown mass–size relationship
+From the two m(Dmax) relations initially used for ice
+spheroids in the scattering simulations, only the m(Dmax) of
+aggregates was systematically used for the statistical anal-
+ysis of this study. The BF95 mass–size relation could not
+represent our radar observations, especially for large ice hy-
+drometeors. Although ice crystals are known to have lower
+densities when they grow larger (except for graupel or hail),
+BF95 prescribes near-zero density values for large particles,
+especially when they are assumed to be homogeneous soft
+spheroids. The homogeneity that this ice model suggests,
+along with the missing internal structures and the near-ﬁeld
+ice dipole interactions, that the realistic ice particles have
+leads to very low simulated ZDR values with increasing par-
+ticle size (Fig. 8) and decreasing particle density. The ice re-
+trieval results for the examined case study, using LUTs for
+oblate ice spheroids, an exponential PSD, and BF95 mass–
+size relation, are presented in Fig. 15 along with the resid-
+ual values of ZDR, DWR, and Ze, expressed using RMSE
+values in Table 4. The RMSE for ZDR and Ze is quite low
+and generally of the same order of magnitude as the RMSE
+using m(Dmax) of aggregates for both oblate and horizon-
+tally aligned prolate shape assumptions (Table 2). However,
+with the aforementioned assumptions, the retrieved AR and
+S (Fig. 15a and c) could not really explain ZDR measure-
+ments (Fig. 3d). The AR is almost unrealistically high, sug-
+gesting, e.g., plates for the greater part of the cloud cross-
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3988
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 14. Temperature stacked histograms for all RHI scans on 9, 10, and 30 January 2019 for oblate and horizontally aligned prolate ice
+particles using the retrieval output for ice spheroids m(Dmax) as the aggregates from Yang et al. (2000).
+Table 3. Statistical description of the retrieved parameters for oblate and horizontally aligned prolate ice spheroids that follow the mass–size
+relation of aggregates from Yang et al. (2000) for all RHI scans on 9, 10, and 30 January 2019.
+Shape assumption
+Statistical description
+Sphericity
+Median mass diameter [mm]
+Ice water content [gm−3]
+Oblates
+Median
+0.45
+0.80
+13 × 10−3
+10th percentile
+0.35
+0.27
+11 × 10−4
+90th percentile
+0.80
+1.36
+11 × 10−2
+Horizontally aligned prolates
+Median
+0.45
+1.08
+5 × 10−3
+10th percentile
+0.45
+0.40
+4 × 10−4
+90th percentile
+0.80
+1.82
+6 × 10−2
+section using BF95 m(Dmax). The RMSE for DWR with
+2.27 dB was found to be quite high, suggesting that the re-
+trieved Dm (Fig. 15b) could not replicate DWR measure-
+ments (Fig. 3b). On the other hand, IWC (Fig. 15d) showed
+good agreement with the radar measurements as it could
+explain POLDIRAD Ze well (Fig. 3c). The retrieved val-
+ues were found to be larger than the IWC values retrieved
+using the m(Dmax) of aggregates for both shape assump-
+tions. Overall, the plots of retrieved parameters as well as
+the RMSE for ZDR, DWR, and Ze reveal that the output of
+the ice retrieval using an exponential PSD, the m(Dmax) of
+aggregates, and LUTs for oblate ice spheroids (Fig. 11 and
+Table 2, but also in Table 4) was found to better explain the
+radar observations compared to the BF95 assumption. Fig-
+ure 16 shows the residuals between the simulated and mea-
+sured DWR for aggregates (Fig. 16a) and BF95 (Fig. 16b)
+m(Dmax). For ice spheroids that follow the m(Dmax) of ag-
+gregates, the residuals are evenly distributed around 0 (mean
+value of +0.08 dB), suggesting that this mass–size relation
+can better explain our measurements in this case. In contrast,
+the measured DWR appeared to be higher than the simulated
+one for BF95 for the larger part of the cloud cross-section
+(reddish areas) with a mean value of −0.923 dB.
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3989
+Figure 15. Retrieved (a) AR, (b) Dm, (c) S, and (d) IWC for oblate ice particles for 30 January 2019 at 10:08 UTC using BF95 m(Dmax).
+The −5, −15, and −25 ◦C temperature levels are plotted with black solid lines (source: Deutscher Wetterdienst, data provided by Univer-
+sity of Wyoming; http://weather.uwyo.edu/upperair/sounding.html, last access: 8 April 2022). Areas where ice-masked and noise-ﬁltered
+measurement values are located are plotted with gray.
+Figure 16. Difference (residuals) between simulated and measured values of DWR for ice spheroids that follow m(Dmax) of (a) aggregates
+and (b) BF95 for 30 January 2019 at 10:08 UTC. For better visualization purposes the −5, −15, and −25 ◦C temperature lines are not plotted
+here. Areas where ice-masked and noise-ﬁltered measurement values are located are plotted with gray.
+To further investigate the signiﬁcance of the m(Dmax) re-
+lation for the retrieval result, we conducted a small sensi-
+tivity study using the aggregate assumption from Yang et
+al. (2000), which suggests an almost constant effective den-
+sity, ρeff, (approximately ρeff = 0.2 gcm−3) of ice particles
+with increasing size. Using this value as a reference, we
+created LUTs for oblate ice particles (1) with twice and
+(2) with half the density of the aggregate mass–size rela-
+tion (simulations also shown in Fig. 8 with red dashed and
+dash-dotted lines), always with the assumption that the ice
+spheroids follow an exponential PSD. Retrieval results for
+ice oblates with half, equal, and twice the density of aggre-
+gates are shown in panels (a–c), (d–f), and (g–i) of Fig. 17,
+respectively. Corresponding RMSE values for Ze are given
+in Table 4. Focusing on the IWC retrieval, we obtain lower
+IWC values (with an RMSE = 0.28 dB for Ze) for ice parti-
+cles with twice the density of aggregates than the IWC val-
+ues retrieved in Figs. 11d or 17f. Analogously, we retrieve
+larger IWC (with an RMSE = 0.23 dB for Ze) for ice parti-
+cles with half the density of aggregates. In Table 4 the resid-
+ual values expressed as RMSE for DWR and ZDR can also
+be found. When the ice spheroids are denser with doubled
+aggregates ρeff, the DWR RMSE is 0.50 dB, while the DWR
+RMSE is 0.54 dB for the less dense ice spheroids. The RM-
+SEs for ZDR are found to be similar with 0.21 and 0.20 dB
+when ice spheroids with twice and half the density of ag-
+gregates, respectively, are assumed. However, the denser ice
+spheroid assumption (doubled effective density of aggregate
+mass–size relation) suggests the presence of more spherical
+particles compared to more aspherical particles when less
+dense ice spheroids (halved effective density of aggregates)
+are assumed.
+The aforementioned examples indicate the limitations of
+the ice retrieval to provide realistic microphysics information
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3990
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 17. Ice microphysics results for oblate ice spheroids; sphericity, median mass diameter, and ice water content using (a–c) 0.5 × ρeff,
+(d–f) 1×ρeff, and (g–i) 2×ρeff from Yang et al. (2000) m(Dmax) of aggregates. For better visualization purposes the −5, −15, and −25 ◦C
+temperature levels are not plotted here. Areas where ice-masked and noise-ﬁltered measurement values are located are plotted with gray.
+Table 4. RMSE values for simulated ZDR, DWR, and Ze compared
+to original observations for the whole radar cross-section after run-
+ning the retrieval for 30 January 2019 at 10:08 UTC for oblate ice
+spheroids and different m(Dmax) assumptions.
+m(Dmax) assumption for
+Parameter
+RMSE
+ice spheroids
+BF95
+DWR
+2.27 dB
+ZDR
+0.25 dB
+Ze
+0.20 dB
+Aggregates
+DWR
+0.50 dB
+Yang et al. (2000)
+ZDR
+0.19 dB
+Ze
+0.20 dB
+Aggregates 2 times
+DWR
+0.50 dB
+denser than Yang et al. (2000)
+ZDR
+0.21 dB
+Ze
+0.28 dB
+Aggregates 0.5 times
+DWR
+0.54 dB
+less dense than Yang et al. (2000)
+ZDR
+0.20 dB
+Ze
+0.23 dB
+when different assumptions have to be considered. To over-
+come the weakness of the ﬁxed mass–size relation but still
+keep our approach simple, a combination of m(Dmax) rela-
+tions considering the different behavior of large or softer and
+small or denser ice particles would help the retrieval, pro-
+ducing more realistic microphysics results. Additional mea-
+surements (e.g., Doppler velocity), in a possible extension of
+this method, might be able to replace the ﬁxed m(Dmax) as-
+sumption used in this approach with a whole set of m(Dmax)
+depending on the average ice particle density affected by the
+environment in which they are formed.
+4.3.2
+Comparisons to other ice retrievals
+In the absence of collocated in situ observations, we pro-
+ceeded to compare our retrieval results with already estab-
+lished methods to infer ice microphysics. As a ﬁrst step, we
+used the different aggregate mass–size relation assumptions
+from the previous section to retrieve IWCs and to calculate
+the corresponding ice water path (IWP). Then, we compared
+our results to IWP data from the MODIS MYD06_L2 prod-
+uct (Platnick et al., 2015) for our measurement region. From
+MODIS, an averaged value of IWP ∼90 gm−2 was esti-
+mated for the whole radar cross-section. Using our retrieved
+IWC for the three assumptions (0.5×, 1×, 2× aggr. ρeff) we
+obtain IWP values of approximately 46, 80, and 137 gm−2,
+respectively. In comparison, the original mass–size relation
+(1× aggr. ρeff) shows the best agreement with the results
+from MODIS.
+To further evaluate our retrieved IWC, we compared our
+results with the IWC formula of Bukovˇci´c et al. (2018)
+for dry snow (IWC(KDP,Ze) = 0.71KDP0.65Z0.28
+e
+, their
+Eq. 28). For this comparison, we used our C-band radar
+KDP along with Ze (and not S band as the previously
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3991
+mentioned literature suggests) for the presented case study
+(Fig. 3) to calculate IWC and IWP. The method of Bukovˇci´c
+yields a much higher mean IWP (∼2308 gm−2) compared
+to our IWP (∼80 gm−2). A deeper investigation showed
+that their method assumes a much smaller melted-equivalent
+particle diameter (∼300 µm vs. our retrieved ∼1 mm). As
+Bukovˇci´c’s method has to assume the particle size, we con-
+sider our IWP results more reasonable for a moderate snow-
+fall case since our method explicitly retrieves the particle size
+along with the IWC.
+Furthermore, we compared our scattering calculations to
+Matrosov et al. (2017, their Fig. 3b) to examine whether
+we can reproduce their aspect ratio retrieval using the BF95
+mass–size relation. Comparing the simulation lines we ob-
+serve some differences between our calculations and those
+of the aforementioned literature. For the BF95 mass–size re-
+lation, a canting angle of 3◦and a median volume diameter
+of 0.02 cm with ZDR = 1 dB would give an aspect ratio of
+0.55 using Matrosov’s approach, while our retrieval yields
+an aspect ratio of 0.45 and thus 20 % lower values. In our pa-
+per we mainly use the aggregate m(Dmax) from Yang et al.
+(2000). For this assumption, ZDR = 1 dB is in line with an
+aspect ratio of ∼0.38 for the same median volume diameter
+of 0.02 cm. For both mass–size relation assumptions, our re-
+trieved aspect ratio is lower than Matrosov’s approach. Some
+of this disagreement could be attributed to a different model-
+ing of the composite refractive index.
+4.3.3
+Particles shape and viewing geometry
+The retrieval results in both Figs. 11 and 12 show that some
+areas are affected more than others by the shape assump-
+tion inside the cloud cross-section. For instance, in the region
+above the Ka-band radar, the retrieved Dm was found to be
+lower when oblate ice spheroids were used compared to hori-
+zontally aligned prolates. Conversely, the lower values of Dm
+for ice oblates lead to a higher retrieved IWC. In these areas,
+the use of the polarimetric signature from POLDIRAD, i.e.,
+ZDR, is furthermore found to be crucial: not only to constrain
+the shape but also to reduce ambiguities between the size
+and mass of the detected ice hydrometeors. To further eval-
+uate the performance of the retrieval, 2D density histograms
+between retrieved Dm and measured DWR were created for
+the oblate shape assumption, including all 59 RHI scans.
+The histograms are presented in Fig. 18 for elevation an-
+gles θC = θKa = 30◦(Fig. 18a) and θC = 10◦, with θKa = 90◦
+(Fig. 18b). The ﬁrst observation geometry (Fig. 18a) is a re-
+gion located between the two radar instruments, while the
+second one (Fig. 18b) is located directly above the Ka-band
+radar site. On top of the density histograms, the DWR–Dm
+simulations for different values of AR are plotted with gray
+lines. In Fig. 18a, the simulations and the retrieved Dm are
+more closely distributed than in Fig. 18b. The close distri-
+bution of the DWR–Dm lines in Fig. 18a suggests that the
+shape and the size retrieval are not strongly correlated in
+the region between the two radar systems since the simu-
+lated DWR does not change much with AR. In the region
+above the Ka-band cloud radar, however, polarimetric mea-
+surements from the C-band weather radar POLDIRAD (i.e.,
+ZDR) help to narrow down the solution space of the size re-
+trieval (Fig. 18b) by providing information about the ice par-
+ticle shape. This behavior is fully explained in Fig. 19, where
+the radar beams passing through ice oblate spheroids are
+drawn. In Fig. 19a, the radar beams from the two instruments
+penetrate oblate spheroids with different AR with the same
+elevation angle θC = θKa = 30◦. From the radar viewing ge-
+ometry this is supposed to happen in cloud regions located
+between the two radar instruments. In Fig. 19b, the elevation
+angle for the C band is θC = 10◦, while the Ka band points to
+zenith with θKa = 90◦. In both cases, the radar beams pene-
+trate three differently shaped ice oblates that are aligned with
+their maximum dimension in the horizontal plane and which
+are chosen to have the same Dmax. In Fig. 19a, the length of
+the Ka-band beam does not change dramatically inside the
+oblate ice particle. In Fig. 19b, however, the MIRA-35 beam
+length through the oblate ice particle, and hence the DWR,
+is very sensitive to the aspect ratio. Therefore, the DWR–
+Dm relationship becomes quite sensitive to AR in this area,
+especially when particles are assumed to be horizontally ori-
+ented. From similar geometric considerations, the region be-
+tween the two radars at very low elevation angles is another
+region in which the size retrieval beneﬁts from the AR con-
+straint. In the case of variable ice crystal shapes, ZDR from
+POLDIRAD is thus very helpful for the Dm estimation.
+5
+Conclusions
+In the present study, we exploited dual-wavelength radar
+observations from the spatially separated weather radar
+POLDIRAD and cloud radar MIRA-35 to estimate the size of
+ice hydrometeors. Introducing a novel approach, we used the
+differential radar reﬂectivity from the weather radar to con-
+strain the particle shape during the particle size retrieval. To
+this end, we calculated scattering properties for a variety of
+ice particles using PyTMatrix with AR/S, Dm, and IWC as
+degrees of freedom for the simulated ice spheroids. Scatter-
+ing simulations for all possible viewing geometries between
+the cross-section of the radar instruments were then compiled
+in LUTs and compared to radar observations implementing
+an ice microphysics retrieval scheme. In this scheme, the ice
+particles were selected to be represented by soft spheroids.
+Using the microphysics retrieval and making some a priori
+assumptions about the shape, PSD, and mass–size relation
+of the ice spheroids, we obtained AR/S, Dm, and IWC in
+ice cloud regions. Next to these parameters, we also calcu-
+lated the attenuation by ice hydrometeors and corrected our
+radar observations. Besides attenuation, the uncertainty of
+the radar calibration has been considered. In addition, the
+impact of the spatiotemporal mismatch between RHI scans
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3992
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure 18. 2D density histograms between retrieved Dm and measured DWR for different observation geometries. (a) Between the two radars
+θC = θKa = 30◦and (b) above the Ka-band radar θC = 10◦, with θKa = 90◦. With gray lines the DWR and Dm simulations are plotted for
+different values of AR using oblate ice spheroids with m(Dmax) of aggregates.
+Figure 19. Radar beam geometries through oblate ice spheroids with different AR values for (a) θC = θKa = 30◦and (b) θC = 10◦, with
+θKa = 90◦.
+and the volumetric mismatch between the radar beams on
+the measured DWR were analyzed. All aforementioned er-
+rors were subsequently propagated through the retrieval to
+obtain an error estimation.
+Three snow events from January 2019 were used to test
+the ice microphysical retrieval. The retrieved parameters for
+shape, size, and mass could reasonably explain the radar
+measurements of ZDR, DWR, and Ze when the detected ice
+particles were assumed to be represented by oblate spheroids
+(smaller RMSE and retrieval errors than for horizontally
+aligned prolates) that follow an exponential PSD and the
+m(Dmax) of aggregates from Yang et al. (2000). It was also
+found that the well-known BF95 assumption could not rep-
+resent our dataset for large particles as the density of large
+ice spheroids from BF95 was calculated as lower than that of
+the detected ice hydrometeors. This is merely caused when
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3993
+BF95 is used along with the ice soft spheroid model. The ho-
+mogeneity that this model suggests, along with the lack of
+near-ﬁeld ice dipole interactions, that the realistic ice parti-
+cles have against soft spheroids leads to low simulated ef-
+fective density and lower simulated ZDR values. For that
+reason, BF95 m(Dmax) combined with the soft spheroidal
+model could not produce pronounced polarimetric signals
+matching our ZDR measurements. Although the assump-
+tion of aggregates m(Dmax) for ice spheroids could better
+explain our ZDR–DWR observations, it suggests an almost
+constant density with increasing particle size; i.e., small ice
+crystals (columns or plates) appear to have the same density
+as larger ice particles (aggregates). Therefore, we still need a
+m(Dmax) relation which describes a more realistic function
+between density and size. Here, additional measurements,
+e.g., Doppler velocity of ice hydrometeors, could be ex-
+ploited in future studies to provide a more variable m(Dmax)
+relation instead of a ﬁxed one. In conclusion, the assump-
+tion of the m(Dmax) relation can have a great impact on the
+retrieval. Moreover, our approach for the retrieval’s error as-
+sessment showed that, although the beam width mismatch
+can locally lead to signiﬁcant deviations, the calibration un-
+certainty can lead to the largest bias throughout the averaged
+Dm and IWC proﬁle. Nonuniform beam-ﬁlling effects, how-
+ever, can locally have strong impacts (of several dB) on DWR
+measurements. Subsequent studies certainly need to explore
+this effect for spatially separated radars in more detail and
+need to develop techniques to detect and ﬁlter out these re-
+gions. Further analysis of the error of the ice retrieval showed
+that the shape assumption is equally important to the calibra-
+tion uncertainty for the retrieved Dm proﬁle, while it is less
+important than the calibration uncertainty for the retrieval of
+IWC.
+Nevertheless, promising microphysics information can be
+obtained from the combination of dual-wavelength and po-
+larimetric measurements from spatially separated radars.
+This combination, i.e., DWR and ZDR, can reduce the ambi-
+guity in Dm retrievals caused by the variable aspect ratio AR
+of ice particles. While we found some inﬂuence of AR on Dm
+retrievals in the region between the two radar instruments and
+at high elevation angles (e.g., 30◦), ZDR from POLDIRAD
+was very helpful to improve Dm retrievals above the Ka-band
+cloud radar and in the areas between the two systems where
+the elevation angles of both radars are low. In these regions,
+ZDR measurements are essential to reduce the uncertainty
+in Dm retrieval from DWR measurements of horizontally
+aligned ice oblates.
+The current version of the ice microphysics retrieval
+scheme considers only dry ice particles. In future studies,
+this methodology will be extended to include wet particles
+as well. In this way, we aim for a better understanding of mi-
+crophysical processes of ice growth, such as aggregation or
+riming, to improve their representation in future weather and
+climate models.
+Appendix A: Radar measurement error assessment
+Figure A1. POLDIRAD (a) Ze and (b) ZDR measurements of a
+liquid cloud layer for different times and azimuth angles with a ver-
+tically pointing antenna on 4 April 2019. Panel (c) shows the offset
+of the averaged ZDR for the range wherein the liquid layer was de-
+tected.
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3994
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Figure A2. (a) The local standard deviation of ZDR is plotted as a function of the local mean of ZDR using a 2D density histogram of the
+calculated parameters (the color bar indicates the density values). (b) The ratio a = ZDRSD/ZDRmean can be used to ﬁlter out noisy ZDR
+measurements (values of ZDR are indicated with the corresponding color bar). In the red encircled areas (a < 0.1), the retrieval results are
+considered to be reliable enough to be aggregated into statistical results.
+Appendix B: Development of an ice mask
+For the ice mask implementation, variables from both radars,
+i.e., the LDR from MIRA-35 as well as the ZDR and ρHV
+from POLDIRAD, were used. These variables are known to
+have distinct polarimetric signatures when an ML is present.
+The mask was applied to each vertical proﬁle of the com-
+mon grid for every pair of RHI scans. Below 4 km an ML
+is detected for the following condition: MIRA-35 LDR is in
+the range −22dB ≤LDR ≤−15 dB and POLDIRAD ρHV
+as well as ZDR are in the range 0.75 ≤ρHV ≤0.95 and
+1.5dB ≤ZDR ≤2.5 dB, respectively. As we merely focus
+on stratiform snowfall precipitation cases and as we assume
+that riming or melting ice is unlikely to occur, all hydrom-
+eteors above 4 km a.m.s.l. and/or above the ML were ac-
+counted for as dry. When the criteria were not met, the
+isotherm of 0 ◦C was used as auxiliary information for ice
+above that height. The temperature data were obtained from
+the Oberschleißheim sounding station (about 13 km north of
+Munich, source: Deutscher Wetterdienst, data provided by
+University of Wyoming; http://weather.uwyo.edu/upperair/
+sounding.html, last access: 8 April 2022). Although the
+thresholds used in the ice mask were evaluated in precipi-
+tation cases in which an ML was observed, either investigat-
+ing more precipitation cases to obtain more precise thresh-
+olds or using already established ML detection algorithms
+exploiting polarimetric radar observations is required (e.g.,
+Wolfensberger et al., 2016).
+The necessity of sharpening our ice mask’s thresholds is
+highlighted from Fig. B1, where an example of ZDR obser-
+vations during a thunderstorm observed over Munich on 7
+July 2019 at 08:22 UTC with an ML detected at 3 km is pre-
+sented. Figure B1a shows ZDR without the application of
+any noise ﬁlters (described in Sect. 3.1), while in Fig. B1b
+the ﬁltered and masked ZDR is plotted. Figure B1c presents
+the origin of the masked ZDR values. The greater part of the
+cloud cross-section is masked using the 0 ◦C isotherm, re-
+vealing the need for more precise ice thresholds with evaluat-
+ing more case studies with mixed-phase cloud cross-sections.
+In our investigated case studies, an ML was never detected
+and only a very small part of the cloud cross-section was
+masked using the 0◦isotherm in some cases.
+Figure B1. (a) Unﬁltered POLDIRAD ZDR measurements from 7
+July 2019 at 08:22 UTC. (b) Noise-ﬁltered and ice-masked values of
+POLDIRAD ZDR plotted with gray. (c) Different origin of ﬁltered
+and masked values plotted with different color.
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3995
+Appendix C: Estimation of minimum retrievable Dm
+For sensitivity purposes regarding DWR measurements we
+had to consider a minimum Dm in our simulations. For this
+reason, we assumed a minimum value of DWR = 0.1 dB that
+can be observed by the two radars. The minimum retrievable
+Dm depends not only on the viewing geometry of the two
+radars but also on the AR and the m(Dmax) used for the cal-
+culation of the ice spheroid density. In Fig. C1 examples of
+the minimum retrievable Dm for different radar geometries
+and m(Dmax) are presented. For this ﬁgure, the m(Dmax) of
+aggregates is used for red and dark red line plots for the mass
+estimation of the ice spheroids. When the two radar beams
+are both simulated to be emitted horizontally the horiz–horiz
+deﬁnition is used, while when the C-band beam is simulated
+to be emitted horizontally and the Ka band towards zenith,
+the horiz–vert label is used in the legend. As all ice spheroids
+are assumed to be aligned to the horizontal plane with small
+oscillations of up to 20◦out of this plane, the minimum re-
+trievable Dm is, in general, smaller when the radar beams
+are passing through the ice spheroids from the side. Assum-
+ing the C-band beam to be emitted horizontally and for ice
+particles with the same size, Mie effects can be stronger for
+the Ka-band beam when it penetrates the particles from the
+side (horiz–horiz geometry) rather than from below (horiz–
+vert geometry), as the light travels a longer distance inside
+the particle. For horiz–horiz geometry, Ze,Ka values are lower
+and thus DWR is higher than for horiz–vert geometry for the
+same particle size. Therefore, the lowest minimum retriev-
+able Dm is smaller in horiz–horiz than in horiz–vert geom-
+etry. From the comparison of red (ice spheroids that follow
+m(Dmax) of aggregates) and blue (ice spheroids that follow
+m(Dmax) of BF95) line plots, in which the radar beams are
+simulated to be emitted horizontally (C band) and vertically
+(Ka band), the minimum retrievable Dm using ice spheroids
+following the m(Dmax) of aggregates is larger compared to
+that of BF95 due to the assumption of a higher effective den-
+sity of aggregates for ice spheroids of the same size. The less
+dense the particles are, the smaller the Dm will be for the
+minimum DWR threshold of 0.1 dB. For the same geome-
+try (C band emitted horizontally and Ka band emitted verti-
+cally) and both mass–size relations, the more aspherical the
+particles the larger the minimum retrievable Dm due to the
+larger cross-section of the horizontally aligned spheroids for
+the Ka-band beam.
+Figure C1. Minimum possible retrieved Dm using ice spheroids
+following the m(Dmax) of aggregates when the C-band and Ka-
+band beam are emitted horizontally (dark red). With red and blue,
+the minimum possible retrieved Dm is plotted for ice spheroids
+following the m(Dmax) of aggregates and BF95 when the C-band
+beam is emitted horizontally and the Ka band is emitted towards
+zenith.
+Data availability. Hersbach et al. (2018) was downloaded from
+the Copernicus Climate Change Service (C3S) Climate Data Store
+(CDS): https://doi.org/10.24381/cds.bd0915c6. The authors did not
+download the data to distribute them. The results contain modi-
+ﬁed Copernicus Climate Change Service information 2020. Ice wa-
+ter path data were taken from the MODIS MYD06_L2 product
+with the identiﬁer https://doi.org/10.5067/MODIS/MYD06_L2.006
+(Platnick et al., 2015). The temperature and wind speed proﬁle data
+used in this study were provided by the University of Wyoming http:
+//weather.uwyo.edu/upperair/sounding.html (last access: 8 April
+2022; University of Wyoming, 2022) (source: Deutscher Wetterdi-
+enst). Radar data from POLDIRAD weather radar from DLR as well
+as MIRA-35 cloud radar from LMU are available upon request to
+the authors.
+Supplement. The supplement related to this article is available on-
+line at: https://doi.org/10.5194/amt-15-3969-2022-supplement.
+Author contributions. In the framework of the IcePolCKa project,
+ET, FE, MH, and GK performed radar measurements during snow-
+fall events. ET developed the method used in this work and wrote
+the ﬁnal paper in consultation with FE. SG and TZ contributed to
+this work with productive discussions during the development of the
+ice microphysics retrieval. All authors contributed to the paper with
+helpful comments.
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3996
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Competing interests. The contact author has declared that none of
+the authors have any competing interests.
+Disclaimer. Neither the European Commission nor ECMWF
+is responsible for any use that may be made of the Copernicus
+information or data it contains.
+Publisher’s note: Copernicus Publications remains neutral with
+regard to jurisdictional claims in published maps and institutional
+afﬁliations.
+Special issue statement. This article is part of the special issue “Fu-
+sion of radar polarimetry and numerical atmospheric modelling to-
+wards an improved understanding of cloud and precipitation pro-
+cesses (ACP/AMT/GMD inter-journal SI)”. It is not associated with
+a conference.
+Acknowledgements. Some of the ﬁgures of the present paper were
+created using the freely available “Scientiﬁc colour maps 7.0” pack-
+age with the identiﬁer https://doi.org/10.5281/zenodo.5501399, de-
+scribed in, e.g., Crameri et al. (2020). Panels (a) and (c) in
+Fig. 3 were created using the ARM Radar Toolkit (Py-ART)
+developed by Helmus and Collis (2016), with the identiﬁer
+https://doi.org/10.5334/jors.119. The authors would like to thank
+Klaus Gierens and Luca Bugliaro for the internal review of the pa-
+per. This work was funded within the priority program “Fusion of
+Radar Polarimetry and Numerical Atmospheric Modelling Towards
+an Improved Understanding of Cloud and Precipitation Processes”
+priority program (SPP-2115, PROM) of the Deutsche Forschungs-
+gemeinschaft (DFG, German Research Foundation) in the project
+“Investigation of the initiation of convection and the evolution of
+precipitation using simulations and polarimetric radar observations
+at C- and Ka-band” (IcePolCKa).
+Financial support. This research was supported by the Deutsche
+Forschungsgemeinschaft (grant no. HA 3314/9-1).
+The article processing charges for this open-access
+publication were covered by the German Aerospace Center (DLR).
+Review statement. This paper was edited by Raquel Evaristo and
+reviewed by four anonymous referees.
+References
+Battan, L. J.: Radar observation of the atmosphere, Q. J. Roy. Me-
+teor. Soc., 99, 793–793, https://doi.org/10.1002/qj.49709942229,
+1973.
+Brdar, S. and Seifert, A.: McSnow: A Monte-Carlo Particle Model
+for Riming and Aggregation of Ice Particles in a Multidimen-
+sional Microphysical Phase Space, J. Adv. Model. Earth Sy., 10,
+187–206, https://doi.org/10.1002/2017MS001167, 2018.
+Bringi, V. N. and Chandrasekar, V.: Polarimetric Doppler Weather
+Radar: Principles and Applications, Cambridge University Press,
+Cambridge, https://doi.org/10.1017/CBO9780511541094, 2001.
+Brown, P. R. A. and Francis, P. N.: Improved Measurements of the
+Ice Water Content in Cirrus Using a Total-Water Probe, J. At-
+mos. Ocean. Tech., 12, 410–414, https://doi.org/10.1175/1520-
+0426(1995)012<0410:IMOTIW>2.0.CO;2, 1995.
+Bukovˇci´c, P., Ryzhkov, A., Zrniæ, D., and Zhang, G.: Polari-
+metric Radar Relations for Quantiﬁcation of Snow Based on
+Disdrometer Data, J. Appl. Meteorol. Clim., 57, 103–120,
+https://doi.org/10.1175/JAMC-D-17-0090.1, 2018.
+Cazenave, Q., Ceccaldi, M., Delanoë, J., Pelon, J., Groß, S.,
+and Heymsﬁeld, A.: Evolution of DARDAR-CLOUD ice cloud
+retrievals: new parameters and impacts on the retrieved mi-
+crophysical properties, Atmos. Meas. Tech., 12, 2819–2835,
+https://doi.org/10.5194/amt-12-2819-2019, 2019.
+Crameri,
+F.:
+Scientiﬁc
+colour-maps,
+Zenodo
+[data
+set],
+https://doi.org/10.5281/zenodo.5501399, 2021.
+Crameri, F., Shephard, G. E., and Heron, P. J.: The misuse of
+colour in science communication, Nat. Commun., 11, 5444,
+https://doi.org/10.1038/s41467-020-19160-7, 2020.
+Ding, S., McFarquhar, G. M., Nesbitt, S. W., Chase, R. J., Poel-
+lot, M. R., and Wang, H.: Dependence of Mass–Dimensional
+Relationships on Median Mass Diameter, Atmosphere, 11, 756,
+https://doi.org/10.3390/atmos11070756, 2020.
+Draine, B. T. and Flatau, P. J.: Discrete-Dipole Approximation For
+Scattering Calculations, J. Opt. Soc. Am. A, 11, 1491–1499,
+https://doi.org/10.1364/JOSAA.11.001491, 1994.
+Ewald, F., Groß, S., Hagen, M., Hirsch, L., Delanoë, J.,
+and Bauer-Pfundstein, M.: Calibration of a 35 GHz air-
+borne cloud radar: lessons learned and intercomparisons with
+94 GHz cloud radars, Atmos. Meas. Tech., 12, 1815–1839,
+https://doi.org/10.5194/amt-12-1815-2019, 2019.
+Ferrone, A. and Berne, A.: Dynamic Differential Reﬂectivity Cali-
+bration Using Vertical Proﬁles in Rain and Snow, Remote Sens.-
+Basel, 13, 8, https://doi.org/10.3390/rs13010008, 2021.
+Field, P. R. and Heymsﬁeld, A. J.: Importance of snow to
+global precipitation, Geophys. Res. Lett., 42, 9512–9520,
+https://doi.org/10.1002/2015GL065497, 2015.
+Frech, M. and Hubbert, J.: Monitoring the differential reﬂec-
+tivity and receiver calibration of the German polarimetric
+weather radar network, Atmos. Meas. Tech., 13, 1051–1069,
+https://doi.org/10.5194/amt-13-1051-2020, 2020.
+Garnett, J. C. M. and Larmor, J.: XII. Colours in metal glasses
+and in metallic ﬁlms, Philos. T. R. Soc. Lond., 203, 385–420,
+https://doi.org/10.1098/rsta.1904.0024, 1904.
+Gorgucci, E., Scarchilli, G., and Chandrasekar, V.: A proce-
+dure to calibrate multiparameter weather radar using proper-
+ties of the rain medium, IEEE T. Geosci. Remote, 37, 269–276,
+https://doi.org/10.1109/36.739161, 1999.
+Görsdorf, U., Lehmann, V., Bauer-Pfundstein, M., Peters, G.,
+Vavriv, D., Vinogradov, V., and Volkov, V.: A 35 GHz Polarimet-
+ric Doppler Radar for Long-Term Observations of Cloud Param-
+eters – Description of System and Data Processing, J. Atmos.
+Ocean. Tech., 32, 675–690, https://doi.org/10.1175/JTECH-D-
+14-00066.1, 2015.
+Harrington, J. Y., Sulia, K., and Morrison, H.: A Method for
+Adaptive Habit Prediction in Bulk Microphysical Models. Part
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3997
+I: Theoretical Development, J. Atmos. Sci., 70, 349–364,
+https://doi.org/10.1175/JAS-D-12-040.1, 2013.
+Helmus, J. and Collis, S.: The Python ARM Radar Toolkit (Py-
+ART), a Library for Working with Weather Radar Data in the
+Python Programming Language, J. Open Res. Software, 4, e25,
+https://doi.org/10.5334/jors.119, 2016.
+Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A.,
+Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I.,
+Schepers, D., Simmons, A., Soci, C., Dee, D., and Thépaut, J.-
+N.: ERA5 hourly data on pressure levels from 1979 to present,
+Copernicus Climate Change Service (C3S) Climate Data Store
+(CDS) [data set], https://doi.org/10.24381/cds.bd0915c6, 2018.
+Hogan,
+R.
+J.
+and
+Illingworth,
+A.
+J.:
+The
+Potential
+of
+Spaceborne
+Dual-Wavelength
+Radar
+to
+Make
+Global
+Measurements
+of
+Cirrus
+Clouds,
+J.
+Atmos.
+Ocean.
+Tech.,
+16,
+518–531,
+https://doi.org/10.1175/1520-
+0426(1999)016<0518:TPOSDW>2.0.CO;2, 1999.
+Hogan, R. J. and Westbrook, C. D.: Equation for the Microwave
+Backscatter Cross Section of Aggregate Snowﬂakes Using the
+Self-Similar Rayleigh–Gans Approximation, J. Atmos. Sci., 71,
+3292–3301, https://doi.org/10.1175/JAS-D-13-0347.1, 2014.
+Hogan, R. J., Illingworth, A. J., and Sauvageot, H.: Measur-
+ing Crystal Size in Cirrus Using 35- and 94-GHz Radars, J.
+Atmos. Ocean. Tech., 17, 27–37, https://doi.org/10.1175/1520-
+0426(2000)017<0027:MCSICU>2.0.CO;2, 2000.
+Hogan, R. J., Mittermaier, M. P., and Illingworth, A. J.:
+The Retrieval of Ice Water Content from Radar Reﬂectiv-
+ity Factor and Temperature and Its Use in Evaluating a
+Mesoscale Model, J. Appl. Meteorol. Clim., 45, 301–317,
+https://doi.org/10.1175/JAM2340.1, 2006.
+Hogan, R. J., Tian, L., Brown, P. R. A., Westbrook, C. D.,
+Heymsﬁeld, A. J., and Eastment, J. D.: Radar Scattering
+from Ice Aggregates Using the Horizontally Aligned Oblate
+Spheroid Approximation, J. Appl. Meteorol. Clim., 51, 655–671,
+https://doi.org/10.1175/JAMC-D-11-074.1, 2012.
+Hogan, R. J., Honeyager, R., Tyynelä, J., and Kneifel, S.: Calculat-
+ing the millimetre-wave scattering phase function of snowﬂakes
+using the self-similar Rayleigh–Gans Approximation, Q. J. Roy.
+Meteor. Soc., 143, 834–844, https://doi.org/10.1002/qj.2968,
+2017.
+Höller, H.: Radar-Derived Mass-Concentrations of Hydrometeors
+for Cloud Model Retrievals, in: Proc. 27th Conference on Radar
+Meteorology, Vail, CO, USA, 9–13 October 1995, 453–454,
+1995.
+Höller,
+H.,
+Hagen,
+M.,
+Meischner,
+P.
+F.,
+Bringi,
+V.
+N.,
+and
+Hubbert,
+J.:
+Life
+Cycle
+and
+Precipitation
+For-
+mation
+in
+a
+Hybrid-Type
+Hailstorm
+Revealed
+by
+Po-
+larimetric
+and
+Doppler
+Radar
+Measurements,
+J.
+At-
+mos.
+Sci.,
+51,
+2500–2522,
+https://doi.org/10.1175/1520-
+0469(1994)051<2500:LCAPFI>2.0.CO;2, 1994.
+Houze, R. A., McMurdie, L. A., Petersen, W. A., Schwaller, M.
+R., Baccus, W., Lundquist, J. D., Mass, C. F., Nijssen, B., Rut-
+ledge, S. A., Hudak, D. R., Tanelli, S., Mace, G. G., Poellot, M.
+R., Lettenmaier, D. P., Zagrodnik, J. P., Rowe, A. K., DeHart,
+J. C., Madaus, L. E., Barnes, H. C., and Chandrasekar, V.: The
+Olympic Mountains Experiment (OLYMPEX), B. Am. Meteo-
+rol. Soc., 98, 2167–2188, https://doi.org/10.1175/BAMS-D-16-
+0182.1, 2017.
+Huang, G.-J., Bringi, V. N., Newman, A. J., Lee, G., Moisseev, D.,
+and Notaroš, B. M.: Dual-wavelength radar technique develop-
+ment for snow rate estimation: a case study from GCPEx, At-
+mos. Meas. Tech., 12, 1409–1427, https://doi.org/10.5194/amt-
+12-1409-2019, 2019.
+ITU-R P.676-12: Attenuation by atmospheric gases, ITU, https:
+//www.itu.int/rec/R-REC-P.676/en (last access: 8 April 2022),
+2019.
+Jiang, Z., Verlinde, J., Clothiaux, E. E., Aydin, K., and Schmitt,
+C.: Shapes and Fall Orientations of Ice Particle Aggregates, J.
+Atmos. Sci., 76, 1903–1916, https://doi.org/10.1175/JAS-D-18-
+0251.1, 2019.
+Kalesse, H., Szyrmer, W., Kneifel, S., Kollias, P., and Luke, E.: Fin-
+gerprints of a riming event on cloud radar Doppler spectra: ob-
+servations and modeling, Atmos. Chem. Phys., 16, 2997–3012,
+https://doi.org/10.5194/acp-16-2997-2016, 2016.
+Kneifel, S., von Lerber, A., Tiira, J., Moisseev, D., Kol-
+lias,
+P.,
+and
+Leinonen,
+J.:
+Observed
+relations
+between
+snowfall
+microphysics
+and
+triple-frequency
+radar
+mea-
+surements,
+J.
+Geophys.
+Res.-Atmos.,
+120,
+6034–6055,
+https://doi.org/10.1002/2015JD023156, 2015.
+Kneifel, S., Kollias, P., Battaglia, A., Leinonen, J., Maahn,
+M., Kalesse, H., and Tridon, F.: First observations of triple-
+frequency
+radar
+Doppler
+spectra
+in
+snowfall:
+Interpreta-
+tion and applications, Geophys. Res. Lett., 43, 2225–2233,
+https://doi.org/10.1002/2015GL067618, 2016.
+Köcher, G., Zinner, T., Knote, C., Tetoni, E., Ewald, F., and Ha-
+gen, M.: Evaluation of convective cloud microphysics in nu-
+merical weather prediction models with dual-wavelength po-
+larimetric radar observations: methods and examples, Atmos.
+Meas. Tech., 15, 1033–1054, https://doi.org/10.5194/amt-15-
+1033-2022, 2022.
+Kumjian, M.: Principles and applications of dual-polarization
+weather
+radar.
+Part
+I:
+Description
+of
+the
+polarimet-
+ric
+radar
+variables,
+J.
+Oper.
+Meteorol.,
+1,
+226–242,
+https://doi.org/10.15191/nwajom.2013.0119, 2013.
+Leinonen, J.: High-level interface to T-matrix scattering calcula-
+tions: architecture, capabilities and limitations, Opt. Express, 22,
+1655–1660, https://doi.org/10.1364/OE.22.001655, 2014.
+Leinonen,
+J.,
+Kneifel,
+S.,
+Moisseev,
+D.,
+Tyynelä,
+J.,
+Tanelli,
+S.,
+and
+Nousiainen,
+T.:
+Evidence
+of
+non-
+spheroidal
+behavior
+in
+millimeter-wavelength
+radar
+ob-
+servations of snowfall, J. Geophys. Res., 117, D18205,
+https://doi.org/10.1029/2012JD017680, 2012.
+Leinonen, J., Kneifel, S., and Hogan, R. J.: Evaluation of
+the Rayleigh–Gans approximation for microwave scattering
+by rimed snowﬂakes, Q. J. Roy. Meteor. Soc., 144, 77–88,
+https://doi.org/10.1002/qj.3093, 2018a.
+Leinonen, J., Lebsock, M. D., Tanelli, S., Sy, O. O., Dolan, B.,
+Chase, R. J., Finlon, J. A., von Lerber, A., and Moisseev, D.:
+Retrieval of snowﬂake microphysical properties from multifre-
+quency radar observations, Atmos. Meas. Tech., 11, 5471–5488,
+https://doi.org/10.5194/amt-11-5471-2018, 2018b.
+Leroy, D., Fontaine, E., Schwarzenboeck, A., and Strapp, J. W.:
+Ice Crystal Sizes in High Ice Water Content Clouds. Part
+I: On the Computation of Median Mass Diameter from In
+Situ Measurements, J. Atmos. Ocean. Tech., 33, 2461–2476,
+https://doi.org/10.1175/JTECH-D-15-0151.1, 2016.
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+3998
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+Liao, L., Meneghini, R., Tokay, A., and Bliven, L. F.: Re-
+trieval of Snow Properties for Ku- and Ka-Band Dual-
+Frequency Radar, J. Appl. Meteorol. Clim., 55, 1845–1858,
+https://doi.org/10.1175/JAMC-D-15-0355.1, 2016.
+Liou, K.-N.: Inﬂuence of Cirrus Clouds on Weather and Cli-
+mate
+Processes:
+A
+Global
+Perspective,
+Mon.
+Weather
+Rev.,
+114,
+1167–1199,
+https://doi.org/10.1175/1520-
+0493(1986)114<1167:IOCCOW>2.0.CO;2, 1986.
+Liu, C., Lee Panetta, R., and Yang, P.: Inhomogeneity struc-
+ture
+and
+the
+applicability
+of
+effective
+medium
+approx-
+imations
+in
+calculating
+light
+scattering
+by
+inhomoge-
+neous particles, J. Quant. Spectrosc. Ra., 146, 331–348,
+https://doi.org/10.1016/j.jqsrt.2014.03.018, 2014.
+Mason, S. L., Chiu, C. J., Hogan, R. J., Moisseev, D., and Kneifel,
+S.: Retrievals of Riming and Snow Density From Vertically
+Pointing Doppler Radars, J. Geophys. Res.-Atmos., 123, 13807–
+13834, https://doi.org/10.1029/2018JD028603, 2018.
+Mason, S. L., Hogan, R. J., Westbrook, C. D., Kneifel, S., Moisseev,
+D., and von Terzi, L.: The importance of particle size distribu-
+tion and internal structure for triple-frequency radar retrievals of
+the morphology of snow, Atmos. Meas. Tech., 12, 4993–5018,
+https://doi.org/10.5194/amt-12-4993-2019, 2019.
+Matrosov,
+S.
+Y.:
+A
+Dual-Wavelength
+Radar
+Method
+to
+Measure
+Snowfall
+Rate,
+J.
+Appl.
+Meteorol.
+Clim.,
+37,
+1510–1521,
+https://doi.org/10.1175/1520-
+0450(1998)037<1510:ADWRMT>2.0.CO;2, 1998.
+Matrosov, S. Y.: Evaluations of the Spheroidal Particle Model
+for
+Describing
+Cloud
+Radar
+Depolarization
+Ratios
+of
+Ice Hydrometeors, J. Atmos. Ocean. Tech., 32, 865–879,
+https://doi.org/10.1175/JTECH-D-14-00115.1, 2015.
+Matrosov, S. Y.: Ice Hydrometeor Shape Estimations Using Polari-
+metric Operational and Research Radar Measurements, Atmo-
+sphere, 11, 97, https://doi.org/10.3390/atmos11010097, 2020.
+Matrosov, S. Y. and Heymsﬁeld, A. J.: Empirical Relations be-
+tween Size Parameters of Ice Hydrometeor Populations and
+Radar Reﬂectivity, J. Appl. Meteorol. Clim., 56, 2479–2488,
+https://doi.org/10.1175/JAMC-D-17-0076.1, 2017.
+Matrosov, S. Y., Orr, B. W., Kropﬂi, R. A., and Snider,
+J.
+B.:
+Retrieval
+of
+Vertical
+Proﬁles
+of
+Cirrus
+Cloud
+Microphysical
+Parameters
+from
+Doppler
+Radar
+and
+Infrared
+Radiometer
+Measurements,
+J.
+Appl.
+Meteo-
+rol.
+Clim.,
+33,
+617–626,
+https://doi.org/10.1175/1520-
+0450(1994)033<0617:ROVPOC>2.0.CO;2, 1994.
+Matrosov, S. Y., Heymsﬁeld, A. J., and Wang, Z.: Dual-frequency
+radar ratio of nonspherical atmospheric hydrometeors, Geophys.
+Res. Lett., 32, L13816, https://doi.org/10.1029/2005GL023210,
+2005.
+Matrosov, S. Y., Schmitt, C. G., Maahn, M., and de Boer, G.:
+Atmospheric Ice Particle Shape Estimates from Polarimet-
+ric Radar Measurements and In Situ Observations, J. Atmos.
+Ocean. Tech., 34, 2569–2587, https://doi.org/10.1175/JTECH-
+D-17-0111.1, 2017.
+Matrosov, S. Y., Maahn, M., and de Boer, G.: Observa-
+tional and Modeling Study of Ice Hydrometeor Radar Dual-
+Wavelength Ratios, J. Appl. Meteorol. Clim., 58, 2005–2017,
+https://doi.org/10.1175/JAMC-D-19-0018.1, 2019.
+Melnikov, V.: Parameters of Cloud Ice Particles Retrieved
+from Radar Data, J. Atmos. Ocean. Tech., 34, 717–728,
+https://doi.org/10.1175/JTECH-D-16-0123.1, 2017.
+Mishchenko, M. I. and Travis, L. D.: T-matrix computations of light
+scattering by large spheroidal particles, Opt. Commun., 109, 16–
+21, https://doi.org/10.1016/0030-4018(94)90731-5, 1994.
+Mishchenko, M. I., Travis, L. D., and Mackowski, D. W.: T-
+matrix computations of light scattering by nonspherical par-
+ticles: A review, J. Quant. Spectrosc. Ra., 55, 535–575,
+https://doi.org/10.1016/0022-4073(96)00002-7, 1996.
+Mishchenko, M. I., Dlugach, J. M., and Liu, L.: Applicabil-
+ity of the effective-medium approximation to heterogeneous
+aerosol particles, J. Quant. Spectrosc. Ra., 178, 284–294,
+https://doi.org/10.1016/j.jqsrt.2015.12.028, 2016.
+Moisseev, D. N., Lautaportti, S., Tyynela, J., and Lim, S.: Dual-
+polarization radar signatures in snowstorms: Role of snowﬂake
+aggregation, J. Geophys. Res.-Atmos., 120, 12644–12655,
+https://doi.org/10.1002/2015JD023884, 2015.
+Morrison, H. and Milbrandt, J. A.: Parameterization of Cloud
+Microphysics Based on the Prediction of Bulk Ice Particle
+Properties. Part I: Scheme Description and Idealized Tests,
+J. Atmos. Sci., 72, 287–311, https://doi.org/10.1175/JAS-D-14-
+0065.1, 2015.
+Mroz, K., Battaglia, A., Nguyen, C., Heymsﬁeld, A., Protat, A.,
+and Wolde, M.: Triple-frequency radar retrieval of microphys-
+ical properties of snow, Atmos. Meas. Tech., 14, 7243–7254,
+https://doi.org/10.5194/amt-14-7243-2021, 2021.
+Nishikawa, M., Nakamura, K., Fujiyoshi, Y., Nakagawa, K.,
+Hanado, H., Minda, H., Nakai, S., Kumakura, T., and Oki, R.:
+Radar Attenuation and Reﬂectivity Measurements of Snow With
+Dual Ka-Band Radar, IEEE T. Geosci. Remote, 54, 714–722,
+https://doi.org/10.1109/TGRS.2015.2464099, 2016.
+Petäjä, T., O’Connor, E. J., Moisseev, D., Sinclair, V. A., Man-
+ninen, A. J., Väänänen, R., von Lerber, A., Thornton, J. A.,
+Nicoll, K., Petersen, W., Chandrasekar, V., Smith, J. N., Win-
+kler, P. M., Krüger, O., Hakola, H., Timonen, H., Brus, D., Lau-
+rila, T., Asmi, E., Riekkola, M.-L., Mona, L., Massoli, P., Engel-
+mann, R., Komppula, M., Wang, J., Kuang, C., Bäck, J., Virta-
+nen, A., Levula, J., Ritsche, M., and Hickmon, N.: BAECC: A
+Field Campaign to Elucidate the Impact of Biogenic Aerosols
+on Clouds and Climate, B. Am. Meteorol. Soc., 97, 1909–1928,
+https://doi.org/10.1175/BAMS-D-14-00199.1, 2016.
+Platnick, S., Ackerman, S. A., King, M. D., Meyer, K., Men-
+zel, W. P., Holz, R. E., Baum, B. A., and Yang, P.: MODIS
+atmosphere L2 cloud product (06_L2), NASA MODIS Adap-
+tive Processing System, Goddard Space Flight Center [data set],
+https://doi.org/10.5067/MODIS/MYD06_L2.006, 2015.
+Reimann, J.: On fast, polarimetric non-reciprocal calibration and
+multipolarization measurements on weather radars, PhD dis-
+sertation, Technische Universität Chemnitz, 161 pp., http:
+//nbn-resolving.de/urn:nbn:de:bsz:ch1-qucosa-132088 (last ac-
+cess: 8 April 2022), 2013.
+Reimann, J. and Hagen, M.: Antenna Pattern Measurements of
+Weather Radars Using the Sun and a Point Source, J. Atmos.
+Ocean. Tech., 33, 891–898, https://doi.org/10.1175/JTECH-D-
+15-0185.1, 2016.
+Ryzhkov, A. V. and Zrnic, D. S.: Data Quality and Mea-
+surement Errors, in: Radar Polarimetry for Weather Ob-
+servations, Springer Atmospheric Sciences, Springer, Cham,
+https://doi.org/10.1007/978-3-030-05093-1_6, 2019.
+Ryzhkov, A. V., Giangrande, S. E., Melnikov, V. M., and
+Schuur, T. J.: Calibration Issues of Dual-Polarization Radar
+Atmos. Meas. Tech., 15, 3969–3999, 2022
+https://doi.org/10.5194/amt-15-3969-2022
+E. Tetoni et al.: Synergy of multi-wavelength and polarimetric radar measurements
+3999
+Measurements,
+J.
+Atmos.
+Ocean.
+Tech.,
+22,
+1138–1155,
+https://doi.org/10.1175/JTECH1772.1, 2005.
+Schrom, R. S. and Kumjian, M. R.: Bulk-Density Representa-
+tions of Branched Planar Ice Crystals: Errors in the Polarimet-
+ric Radar Variables, J. Appl. Meteorol. Clim., 57, 333–346,
+https://doi.org/10.1175/JAMC-D-17-0114.1, 2018.
+Schroth,
+A.
+C.,
+Chandra,
+M.
+S.,
+and
+Mesichner,
+P.
+F.:
+A
+C-Band
+Coherent
+Polarimetric
+Radar
+for
+Prop-
+agation
+and
+Cloud
+Physics
+Research,
+J.
+Atmos.
+Ocean.
+Tech.,
+5,
+803–822,
+https://doi.org/10.1175/1520-
+0426(1988)005<0803:ABCPRF>2.0.CO;2, 1988.
+Steinert, J. and Chandra, M.: Classiﬁcation of ice crystals at C-band,
+Adv. Radio Sci., 7, 273–277, https://doi.org/10.5194/ars-7-273-
+2009, 2009.
+Straka, J. M., Zrniæ, D. S., and Ryzhkov, A. V.: Bulk Hy-
+drometeor Classiﬁcation and Quantiﬁcation Using Polari-
+metric Radar Data: Synthesis of Relations, J. Appl. Me-
+teorol. Clim., 39, 1341–1372, https://doi.org/10.1175/1520-
+0450(2000)039<1341:BHCAQU>2.0.CO;2, 2000.
+Tiira, J. and Moisseev, D.: Unsupervised classiﬁcation of ver-
+tical proﬁles of dual polarization radar variables, Atmos.
+Meas. Tech., 13, 1227–1241, https://doi.org/10.5194/amt-13-
+1227-2020, 2020.
+Tiira, J., Moisseev, D. N., von Lerber, A., Ori, D., Tokay, A., Bliven,
+L. F., and Petersen, W.: Ensemble mean density and its con-
+nection to other microphysical properties of falling snow as ob-
+served in Southern Finland, Atmos. Meas. Tech., 9, 4825–4841,
+https://doi.org/10.5194/amt-9-4825-2016, 2016.
+Trömel, S., Simmer, C., Blahak, U., Blanke, A., Doktorowski,
+S., Ewald, F., Frech, M., Gergely, M., Hagen, M., Janjic, T.,
+Kalesse-Los, H., Kneifel, S., Knote, C., Mendrok, J., Moser,
+M., Köcher, G., Mühlbauer, K., Myagkov, A., Pejcic, V., Seifert,
+P., Shrestha, P., Teisseire, A., von Terzi, L., Tetoni, E., Vogl,
+T., Voigt, C., Zeng, Y., Zinner, T., and Quaas, J.: Overview:
+Fusion of radar polarimetry and numerical atmospheric mod-
+elling towards an improved understanding of cloud and pre-
+cipitation processes, Atmos. Chem. Phys., 21, 17291–17314,
+https://doi.org/10.5194/acp-21-17291-2021, 2021.
+Tyynelä, J., Leinonen, J., Moisseev, D., and Nousiainen, T.: Radar
+Backscattering from Snowﬂakes: Comparison of Fractal, Ag-
+gregate, and Soft Spheroid Models, J. Atmos. Ocean. Tech.,
+28, 1365–1372, https://doi.org/10.1175/JTECH-D-11-00004.1,
+2011.
+University of Wyoming (UW): Radiosonde data, UW [data
+set], http://weather.uwyo.edu/upperair/sounding.html, last ac-
+cess: 8 April 2022.
+Waterman, P. C.: Matrix formulation of electromagnetic scattering,
+P. IEEE, 53, 805–812, https://doi.org/10.1109/PROC.1965.4058,
+1965.
+Wolfensberger, D., Scipion, D., and Berne, A.: Detection and
+characterization of the melting layer based on polarimet-
+ric radar scans, Q. J. Roy. Meteor. Soc., 142, 108–124,
+https://doi.org/10.1002/qj.2672, 2016.
+Yang, P. and Liou, K.: Single-scattering properties of complex ice
+crystals in terrestrial atmosphere, Contrib. Atmos. Phys., 71,
+223–248, 1998.
+Yang, P., Liou, K. N., Wyser, K., and Mitchell, D.: Parameter-
+ization of the scattering and absorption properties of individ-
+ual ice crystals, J. Geophys. Res.-Atmos., 105, 4699–4718,
+https://doi.org/10.1029/1999JD900755, 2000.
+Zhang,
+Y.,
+Li,
+Z.,
+and
+Macke,
+A.:
+Retrieval
+of
+Sur-
+face
+Solar
+Radiation
+Budget
+under
+Ice
+Cloud
+Sky:
+Uncertainty
+Analysis
+and
+Parameterization,
+J.
+At-
+mos.
+Sci.,
+59,
+2951–2965,
+https://doi.org/10.1175/1520-
+0469(2002)059<2951:ROSSRB>2.0.CO;2, 2002.
+https://doi.org/10.5194/amt-15-3969-2022
+Atmos. Meas. Tech., 15, 3969–3999, 2022

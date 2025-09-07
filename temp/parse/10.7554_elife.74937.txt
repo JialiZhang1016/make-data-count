@@ -1,0 +1,2436 @@
+ 
+1 
+First-order visual interneurons distribute distinct contrast and luminance 
+1 
+information across ON and OFF pathways to achieve stable behavior 
+2 
+ 
+3 
+ 
+4 
+Madhura Ketkar*1,2,, Burak Gür*1,2, Sebastian Molina-Obando*1,2, Maria Ioannidou1,3, 
+5 
+Carlotta Martelli1 and Marion Silies1 
+6 
+ 
+7 
+ 
+8 
+ 
+9 
+1 Institute of Developmental Biology and Neurobiology, Johannes-Gutenberg University Mainz, 
+10 
+55128 Mainz, Germany.  
+11 
+2 Göttingen Graduate School for Neurosciences, Biophysics, and Molecular Biosciences (GGNB) 
+12 
+and International Max Planck Research School (IMPRS) for Neurosciences at the University of 
+13 
+Göttingen, 37077 Göttingen, Germany  
+14 
+1,3 Present address: School of Physics, Faculty of Sciences, Aristotle University of Thessaloniki, 
+15 
+54124, Greece 
+16 
+* these authors contributed equally to this work 
+17 
+ 
+18 
+ 
+19 
+ 
+20 
+Corresponding author: msilies@uni-mainz.de  
+ 
+21 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+2 
+Abstract 
+22 
+ 
+23 
+The accurate processing of contrast is the basis for all visually guided behaviors. Visual scenes 
+24 
+with rapidly changing illumination challenge contrast computation, because adaptation is not fast 
+25 
+enough to compensate for such changes. Yet, human perception of contrast is stable even when 
+26 
+the visual environment is quickly changing. The fruit fly Drosophila also shows nearly luminance 
+27 
+invariant behavior for both ON and OFF stimuli. To achieve this, first-order interneurons L1, L2 
+28 
+and L3 all encode contrast and luminance differently, and distribute information across both ON 
+29 
+and OFF contrast-selective pathways. Behavioral responses to both ON and OFF stimuli rely on 
+30 
+a luminance-based correction provided by L1 and L3, wherein L1 supports contrast computation 
+31 
+linearly, and L3 non-linearly amplifies dim stimuli. Therefore, L1, L2 and L3 are not distinct inputs 
+32 
+to ON and OFF pathways but the lamina serves as a separate processing layer that distributes 
+33 
+distinct luminance and contrast information across ON and OFF pathways to support behavioral 
+34 
+performance in varying conditions. 
+ 
+35 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+3 
+Introduction 
+36 
+  
+37 
+Across species, contrast information forms the basis of visual computations. For our perception 
+38 
+to be stable, our eyes must compute contrast relative to the mean illumination of a scene. In 
+39 
+natural environments, illumination changes by several orders of magnitude not only from dawn to 
+40 
+dusk, but also at much faster timescales as our eyes saccade across a scene or we quickly move 
+41 
+from sun to shade (Frazor and Geisler, 2006; Mante et al., 2005; Rieke and Rudd, 2009).Thus, 
+42 
+the computation of contrast needs to be invariant to rapid changes in luminance, such that visual 
+43 
+perception of a given contrast remains constant. This is accomplished by human perception, and 
+44 
+neuronal responses in the cat lateral geniculate nucleus (LGN) display contrast constancy at rapid 
+45 
+time scales (Burkhardt et al., 1984; Mante et al., 2005). However, contrast encoding in 
+46 
+photoreceptors is not luminance invariant when the stimulus changes more rapidly than 
+47 
+photoreceptor adaptation (Laughlin and Hardie, 1978; Normann and Werblin, 1974).  
+48 
+  
+49 
+The visual OFF pathway in fruit flies, sensitive to contrast decrements, also displays contrast-
+50 
+constant behavior (Ketkar et al., 2020) , allowing to investigate the underlying mechanisms. In the 
+51 
+OFF pathway, luminance information itself is maintained postsynaptic to photoreceptors, and is 
+52 
+crucial for the accurate estimation of contrast, resulting in contrast-constant behavior. Luminance 
+53 
+serves as a corrective signal that scales contrast computation when background luminance 
+54 
+quickly changes (Ketkar et al., 2020). The requirement of such a corrective signal can be 
+55 
+theoretically expected regardless of ON and OFF contrast polarities, since the adaptational 
+56 
+constraints in dynamic environments challenge both contrast polarities. However, the ON and 
+57 
+OFF pathways are not mere sign-inverted versions of each other since they face different 
+58 
+environmental challenges (Clark et al., 2014; Ruderman, 1994) and have evolved several 
+59 
+structural and physiological asymmetries (Chichilnisky and Kalmar, 2002; Jin et al., 2011; 
+60 
+Leonhardt et al., 2016; Ratliff et al., 2010). It is thus not clear if this luminance invariance is a 
+61 
+general feature of all visual pathways, and how luminance and contrast information are distributed 
+62 
+across visual pathways to establish contrast constancy is not known. 
+63 
+  
+64 
+Drosophila melanogaster offers a promising model system to study the pathway-specific function 
+65 
+of luminance since the ON and OFF motion pathways have been well characterized on the 
+66 
+cellular, circuit and behavioral levels (Behnia et al., 2014; Yang and Clandinin, 2018). In the fly 
+67 
+visual system, neurons were assigned to distinct ON or OFF pathways based on physiological 
+68 
+properties (Molina-Obando et al., 2019; Serbe et al., 2016; Shinomiya et al., 2019; Silies et al., 
+69 
+2013; Strother et al., 2017), anatomical connectivity (Shinomiya et al., 2014; Takemura et al., 
+70 
+2015, 2013, 2017), and behavioral function (Clark et al., 2011; Silies et al., 2013). ON and OFF 
+71 
+contrast selectivity first arises two synapses downstream of photoreceptors, in medulla neurons 
+72 
+(Fischbach and Dittrich, 1989; Serbe et al., 2016; Silies et al., 2013; Strother et al., 2017; Yang 
+73 
+et al., 2016). They receive photoreceptor information through the lamina neurons L1-L3, which 
+74 
+project to specific medulla layers (Meinertzhagen and O’Neil, 1991; Strother et al., 2014). 
+75 
+Although L1-L3 all show the same response polarity, and hyperpolarize to light onset and 
+76 
+depolarize to light offset, L1 projects to layers where it mostly connects to ON-selective medulla 
+77 
+neurons. Similarly, L2 and L3 project to layers where OFF-selective medulla neurons get most of 
+78 
+their inputs (Shinomiya et al., 2014; Takemura et al., 2015, 2013). L1 is thus thought to be the 
+79 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+4 
+sole major input of the ON pathway, whereas L2 and L3 are considered the two major inputs of 
+80 
+the OFF pathway (Figure 1A) (Clark et al., 2011; Joesch et al., 2008; Shinomiya et al., 2019). 
+81 
+Among these, L2 is contrast-sensitive, but cannot support contrast constancy alone if 
+82 
+photoreceptor adaptation is insufficient. Instead, contrast constancy in OFF-motion guided 
+83 
+behavior is ensured by a corrective signal from luminance-sensitive L3 neurons (Ketkar et al., 
+84 
+2020). It is not known whether ON-motion driven behavior also requires luminance information 
+85 
+and whether L1 can provide it along with its contrast signal (Figure 1B). 
+86 
+Contrast and luminance are both encoded by the transient and sustained response components 
+87 
+in both vertebrates and invertebrate photoreceptors (Laughlin and Hardie, 1978; Normann and 
+88 
+Perlman, 1979; Normann and Werblin, 1974; Shapley and Enroth-Cugell, 1984), which are 
+89 
+captured differentially by their downstream neurons. In the vertebrate retina, many different types 
+90 
+of first order interneurons, bipolar cells, exist. Although they are generally thought to capture the 
+91 
+contrast component of the photoreceptors response, luminance information has been shown be 
+92 
+preserved in post-photoreceptor visual circuitry post of the retina (Awatramani and Slaughter, 
+93 
+2000; Ichinose and Hellmer, 2016; Ichinose and Lukasiewicz, 2007; Odermatt et al., 2012; Oesch 
+94 
+and Diamond, 2011). As suggested by their sustained response component, different degrees of 
+95 
+luminance-sensitivity exists across bipolar cell types (Baden et al., 2016; Euler et al., 2014). 
+96 
+Furthermore, ON and OFF contrast selectivity emerges at the bipolar cell layer, where ON 
+97 
+selectivity emerges through glutamatergic inhibition (Masu et al., 1995). These ON and OFF 
+98 
+bipolar cells also split anatomically, as they innervate different layers (Euler et al., 2014).   
+99 
+Together, many parallels exist between the Drosophila visual system and the vertebrate retina, 
+100 
+including the response properties of photoreceptors, the layered organization and the existence 
+101 
+of ON and OFF pathways (Clark and Demb, 2016; Mauss et al., 2017). However, in contrast to 
+102 
+the vertebrate retina, fewer first order interneuron types distribute contrast and luminance 
+103 
+information, and contrast selectivity itself clearly only occurs one synapse further downstream, 
+104 
+where neurons postsynaptic to lamina neurons are either ON or OFF selective. Comparing the 
+105 
+vertebrate retina with the insect visual system, it is unclear how just three first order interneurons 
+106 
+distribute their different physiological properties across visual pathways.  
+107 
+  
+108 
+Here, we show that luminance and contrast information is distributed to, and is of behavioral 
+109 
+relevance for both ON and OFF pathways. In vivo calcium imaging experiments reveal that each 
+110 
+first order interneuron is unique in its contrast and luminance encoding properties. Whereas L2 is 
+111 
+purely contrast sensitive, L1 encodes both contrast and luminance in distinct response 
+112 
+components. L1 linearly scales with luminance, whereas the luminance-sensitive L3 non-linearly 
+113 
+amplifies dim light. Behavioral experiments further show that these differential luminance- and 
+114 
+contrast- encoding properties translate into distinct behavioral roles. In the ON pathway, L1 and 
+115 
+L3 both provide luminance information for higher luminance invariance than possible by the 
+116 
+contrast input alone. Furthermore, L2, known as the OFF-pathway contrast input, provides 
+117 
+contrast information to the ON-pathway, in addition to L1. Surprisingly, both L1 and L3 neurons 
+118 
+are necessary and sufficient for OFF behavior. These findings indicate that L1 L2, and L3 do not 
+119 
+constitute ON- or OFF-specific inputs. Instead, the three first-order interneurons encode 
+120 
+luminance and contrast differentially and contribute to computations in both ON and OFF 
+121 
+pathways. Together, our data reveal how luminance and contrast information are distributed to 
+122 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+5 
+both ON and OFF pathways to approach luminance invariance, a core computation of visual 
+123 
+systems. 
+124 
+ 
+125 
+ 
+126 
+Results 
+127 
+L1 responses to contrast do not explain ON behavior 
+128 
+Luminance-invariant behavioral responses have been observed in multiple species (Burkhardt et 
+129 
+al., 1984; Silies et al., 2014), highlighting their ethological relevance. In Drosophila, luminance-
+130 
+invariant behavior has been shown in response to OFF stimuli, where a dedicated luminance-
+131 
+sensitive pathway scales contrast-sensitive inputs to achieve luminance invariance in behavior 
+132 
+(Ketkar et al., 2020). The ON pathway is thought to have just one prominent input, L1. We thus 
+133 
+asked if luminance invariance is achieved in the ON pathway and if the contrast-sensitive input 
+134 
+L1 can explain such invariance. For this purpose, we compared turning behavior of walking flies 
+135 
+with the responses of L1. Behavioral responses were measured in a fly-on-a-ball assay. Flies 
+136 
+were shown moving ON edges of different luminance but the same 100% Michelson contrast. Fly 
+137 
+turning responses were highly similar across luminances, with low-luminance edges eliciting 
+138 
+slightly larger turning responses than brighter edges (Figure 1C).  
+139 
+ 
+140 
+We wondered if the sole ON pathway input L1 can directly drive this behavior. To test this, we 
+141 
+examined the contrast responses of L1 to moving ON edges with comparable parameters and 
+142 
+overlapping luminance values as those used in the behavioral assay (Figure 1D). We recorded 
+143 
+L1 in vivo calcium responses to visual stimuli from its axon terminals expressing GCaMP6f using 
+144 
+two-photon microscopy. As described previously, L1 responded negatively to contrast 
+145 
+increments, in line with the inverted response polarity of lamina neurons (Figure 1D) (Clark et al., 
+146 
+2011; Laughlin and Hardie, 1978; Yang et al., 2016). The absolute response amplitude of the L1 
+147 
+calcium signals scaled with luminance and did not co-vary with the behavioral response (Figure 
+148 
+1E). We performed linear regression across calcium signals at different luminances and quantified 
+149 
+the slope to extract the luminance dependency of the responses. L1 signals and behavioral 
+150 
+responses had opposite luminance dependencies (Figure 1E). Thus, the observed behavior, 
+151 
+approaching luminance invariance, cannot be explained solely by contrast inputs from L1, 
+152 
+suggesting that the ON-pathway additionally gets luminance-sensitive input. 
+153 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+6 
+ 
+154 
+Figure 1: L1 responses to contrast do not explain ON behavior across luminance. (A) Schematic of lamina 
+155 
+neurons projecting from the lamina to the medulla . L1 is considered the main input to the ON-pathway, whereas L2 
+156 
+and L3 are thought to provide input to the OFF pathway. (B) Transient L2 and sustained L3 neurons provide contrast 
+157 
+and luminance information, respectively, to the OFF pathway to guide contrast-constant behavior (Ketkar et al., 2020). 
+158 
+L1 is thought to have physiological properties very similar to L2 (Clark et al., 2011) and provides contrast information 
+159 
+to the ON selective pathway. (C) Turning response to multiple moving ON edges, displayed on an LED arena that 
+160 
+surrounds a fly walking on an air-cushioned ball. The edge luminance takes five different values, and the background 
+161 
+is dark (~0 luminance), all resulting in 100% contrast. Turning responses are color-coded according to the edge 
+162 
+luminance. The gray box indicates motion duration. n = 10 flies. (D) In vivo calcium signals of L1 axon terminal in 
+163 
+medulla layer M1 in response to moving ON edges of six different luminances. Calcium responses of single L1 axon 
+164 
+terminal are shown. (E) Left: Absolute step responses of L1 are plotted together with peak turning velocities calculated 
+165 
+from (C). Behavioral and calcium traces are aligned by maximum response. Right, slope quantification of luminance 
+166 
+dependency for normalized behavior and L1 fluorescence signals. NV = normalized peak velocity, NF = normalized 
+167 
+fluorescent signal. Traces and plots in C and E show mean ± SEM. 
+168 
+ 
+169 
+ 
+170 
+L1 neuronal responses carry a luminance-sensitive component 
+171 
+  
+172 
+To explore the sources of luminance information in first-order interneurons, we measured calcium 
+173 
+signals in L1, L2 and L3. Flies were shown a staircase stimulus with luminance going sequentially 
+174 
+up and down. L1 and L2 showed positive and negative transient responses when luminance 
+175 
+stepped down and up, respectively (Figure 2A), consistent with their contrast sensitivity (Clark et 
+176 
+al., 2011; Silies et al., 2013). L2 did not show any sustained component. L3 showed sustained 
+177 
+responses to OFF steps and was non-linearly tuned to stimulus luminance, responding strongly 
+178 
+to the darkest stimulus. Intriguingly, L1 showed a transient component followed by a sustained 
+179 
+component, suggesting that it encodes luminance in addition to contrast (Figure 2A). The 
+180 
+sustained components of L1 response were negatively correlated with luminance, such that the 
+181 
+baseline calcium signal at each step sequentially increased with decreasing stimulus luminance. 
+182 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+7 
+Thus, in addition to L3, L1 also maintains luminance information postsynaptically to 
+183 
+photoreceptors. 
+184 
+ 
+185 
+Figure 2: Lamina neuron types L1-L3 are differently sensitive to contrast and luminance. (A) Schematic of the 
+186 
+‘staircase’ stimulus. Luminance sequentially steps up through five values and then sequentially steps down. Shown 
+187 
+below are the plateau calcium responses of L1 (orange), L2 (purple) and L3 (green) axon terminals, plotted against 
+188 
+luminance. Colored traces shown the mean response, grey traces show individual fly means. (B) Example calcium 
+189 
+traces of single L1, L2 and L3 axon terminals to a stimulus comprising 10 s full-field flashes varying randomly between 
+190 
+five different luminances. (C) Plateau responses of the three neuron types, quantified from the responses to the stimulus 
+191 
+in (B). (D) Mutual information between luminance and calcium signal, ***p < 0.001, one-way ANOVA followed by 
+192 
+multiple comparison test corrected with Bonferroni. (E) Non-linearity quantification of luminance-dependent signals of 
+193 
+L1 and L3 in (C), *p < 0.05, tested by a wilcoxon rank sum test. 
+194 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+8 
+To explicitly compare luminance information across the three input neurons, we measured 
+195 
+responses to randomized luminance and calculated the mutual information between stimulus and 
+196 
+the sustained response component (Figure 2B-D). As for the staircase stimulus, L2 transient 
+197 
+responses returned to baseline within the 10s of the stimulus presentation, whereas both L1 and 
+198 
+L3 displayed sustained components that varied with luminance (Figure 2B,C). Sustained 
+199 
+response components in L1 and L3 carried similar mutual information with luminance, and both 
+200 
+were higher than L2 (Figure 2D). Interestingly, the luminance-sensitive response components of 
+201 
+L1 and L3 scaled differently with luminance. We quantified non-linearity using the difference of 
+202 
+Pearson’s linear and Spearman’s correlation between response and luminance. This value will 
+203 
+approach zero if the relationship is linear and increase or decrease if non-linear, depending on 
+204 
+the sign of correlation between luminance and response. L1 responses were more linear with 
+205 
+respect to luminance than L3 responses, which selectively amplified low luminance (Figure 2E). 
+206 
+Thus, the two luminance-sensitive neurons carry different types of luminance information. 
+207 
+ 
+208 
+L1 is not required but sufficient for ON behavior across luminances 
+209 
+Since the canonical ON pathway input L1 is also found to carry luminance information, we 
+210 
+hypothesized that it plays a role in mediating the observed behavior. To test this, we silenced L1 
+211 
+outputs while measuring ON behavior using Shibirets (Kitamoto, 2001). Silencing L1 severely 
+212 
+reduced turning responses when different ON contrasts were interleaved, consistent with previous 
+213 
+behavioral studies that identified L1 as the major input to the ON pathway (Clark et al., 2011; 
+214 
+Silies et al., 2013) (Supp. Figure 1A-D). However, L1 silencing had little effect on responses to 
+215 
+100% contrast at varying luminance, suggesting the existence of other ON pathway inputs (Figure 
+216 
+3A,B). To explicitly test if and how L1 silencing changed the luminance dependence of behavioral 
+217 
+responses, we quantified the slope of peak turning velocities across different background 
+218 
+luminances (Figure 3C). The slopes were slightly negative for both the control and L1-silenced 
+219 
+conditions, and did not differ significantly between conditions, suggesting another luminance input 
+220 
+masking the L1 contribution. To test this possibility, we asked if L1 is sufficient for ON behavior in 
+221 
+dynamically changing luminance conditions. We measured behavioral responses after 
+222 
+functionally isolating L1 from other circuitry downstream of photoreceptors. To achieve this, we 
+223 
+selectively rescued expression of the histamine-gated chloride channel Ort in ort-mutant flies, 
+224 
+which otherwise lack communication between photoreceptors and their postsynaptic neurons. 
+225 
+Behavioral responses of ort mutant control flies were absent, indicating that ON-motion behavior 
+226 
+fully depends on Ort (Figure 3D). Heterozygous ort controls turned with the moving 100% contrast 
+227 
+ON edges at all luminances (Figure 3E). Flies in which ort expression was rescued in L1 
+228 
+responded to ON motion at all luminances, and indistinguishable from controls (Figure 3F), 
+229 
+showing that L1 can mediate normal turning behavior to ON edges at all luminances. This data 
+230 
+confirms L1’s general importance in the ON pathway and additionally highlights its behaviorally 
+231 
+relevant role of its luminance-sensitive component. 
+232 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+9 
+ 
+233 
+Figure 3: L1 is not required but sufficient for ON behavior across luminance. (A) Turning responses of L1-silenced 
+234 
+flies (blue) and their specific Gal4 control (gray) to moving 100% contrast ON edges at five different luminances. (B) 
+235 
+Peak velocities quantified for each of the five edges during the motion period, also including the control UAS-shits/+, **p 
+236 
+< 0.01, two-tailed Student’s t tests against both controls. (C) Relationship of the peak velocities with luminance, 
+237 
+quantified as slopes of the linear fits to the data in (B). Sample sizes are n = 10 flies for each genotype. (D-E) Schematic 
+238 
+of the stimulus (same as in A) and turning responses of the ort null mutant (ort-/- controls, D) and heterozygous ort 
+239 
+controls (ort+/-controls, E). (F) Schematic of the L1 ort rescue genotype and turning responses of L1 ort rescue flies 
+240 
+(left). Peak turning velocities of L1 ort rescue flies and the respective controls (right); *p<0.05, **p < 0.01, two-tailed 
+241 
+Student’s t tests against both controls. The gray box region in (A,D,E,F) indicates motion duration. Traces and plots 
+242 
+show mean ± SEM. 
+243 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+10
+L1 and L3 together provide luminance signals required for ON behavior 
+244 
+ 
+245 
+Our data suggest the existence of a second luminance input to the ON-pathway. In the OFF 
+246 
+pathway, the luminance-sensitive L3 neuron provides the necessary luminance-based correction 
+247 
+to achieve contrast constancy (Ketkar et al., 2020). Connectomics data suggest that L3 could 
+248 
+provide input to the ON pathway as well (Takemura et al., 2013). To test the hypothesis that L3 
+249 
+also provides a luminance signal to approach luminance-invariant ON responses, we measured 
+250 
+behavioral responses to a set of 100% contrast ON edges at five different luminances while 
+251 
+silencing L3 synaptic outputs (Figure 4A,B). Interestingly, unlike controls, L3-silenced flies 
+252 
+responded stronger to all ON edges, revealing an unexplored, inhibitory role of L3. However, the 
+253 
+responses of L3-silenced flies were still highly similar across luminances. This demonstrates that, 
+254 
+like L1, L3 is not alone required for the near-invariant ON pathway behavior. Unlike controls, L3 
+255 
+silenced flies did not show a slight increase in turning amplitude at lower edge luminance, also 
+256 
+reflected in the differences in their slopes (Figure 4C), suggesting that L3 inputs to the ON 
+257 
+pathway also contribute to behavior in a luminance-dependent manner. To further explore this, 
+258 
+we next asked if L3 is sufficient for ON behavior and functionally isolated L3 from other circuitry. 
+259 
+L3 rescue flies turned to ON edges at all luminances tested (Figure 4D) and significantly rescued 
+260 
+turning behavior at low luminances compared to ort mutant flies (Figure 4E), showing that L3 is 
+261 
+sufficient for ON behavior at low luminances. This further reflects L3’s nonlinear preference for 
+262 
+dim light seen at the physiological level (Ketkar et al., 2020), (Figure 2C). 
+263 
+ 
+264 
+We found that L3 is a second luminance input to the ON-pathway that, together with L1, supports 
+265 
+luminance-invariant responses in ON behavior. To test this, we silenced the outputs of both L1 
+266 
+and L3 simultaneously while measuring ON behavior across luminance. Flies still turned to the 
+267 
+moving ON edges. However, turning responses of flies lacking both L1 and L3 functional outputs 
+268 
+were no longer luminance invariant and turned less than controls in a luminance-dependent 
+269 
+manner (Figure 4F,G). Intriguingly, behavioral responses now scaled positively with the edge 
+270 
+luminance (Figure 4H), qualitatively recapitulating the LMC contrast-sensitive responses. Thus, 
+271 
+L1 and L3 can together account for the luminance information available to the ON pathway. To 
+272 
+analyze the extent of the individual contributions of L1 and L3, we compared L1 and L3 ort rescues 
+273 
+by computing rescue efficiency, defined as the fraction of the difference between positive and 
+274 
+negative control behaviors. Whereas L1 fully rescued turning behavior to ON edges at all 
+275 
+luminances, L3 significantly rescued turning behavior selectively at low luminances (Figure 4I). 
+276 
+Taken together, L1 and L3 both provide distinct types of luminance information to the ON pathway 
+277 
+(Figure 4J). Because flies lacking both of these neurons still respond to ON contrast, our data 
+278 
+suggest the existence of an unidentified contrast input.  
+279 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+11
+280 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+12
+Figure 4: L1 and L3 together provide luminance signals required for ON behavior. (A) Turning velocities of the 
+281 
+controls (gray) and L3-silenced flies (green) in response to five moving ON edges of 100% contrast . The gray box 
+282 
+region indicates motion duration. (B) Peak turning velocities for five ON edges quantified during the motion period, **p 
+283 
+< 0.01, two-tailed Student’s t tests against both controls. (C) Relationship of the peak velocities with luminance, 
+284 
+quantified as slopes of the linear fits to the data in (B). Fitting was done for individual flies. Sample sizes are n = 10 
+285 
+(UAS-shits/+,L3>>shits) and n = 8 (L30595-Gal4/+). (D) Schematic of the L3 ort rescue genotype and turning responses 
+286 
+of the heterozygous control (gray) and rescue (green) flies. (E) Peak turning velocities, *p<0.05, **p < 0.01, two-tailed 
+287 
+Student’s t tests against both controls. (F) Turning responses of flies where L1 and L3 were silenced together (golden 
+288 
+brown) and their specific Gal4 control (gray), color-coded according to ON edge luminance. The same five moving ON 
+289 
+edges of 100% contrast as in Figure 2A were shown. Responses of the other control UAS-shits/+ to these stimuli have 
+290 
+been included in Figure 1C. (G) Peak velocities quantified for each of the five edges during the motion period, also 
+291 
+including the control UAS-shits/+, **p < 0.01, two-tailed Student’s t tests against both controls. (H) Relationship of the 
+292 
+peak velocities with luminance, quantified as slopes of the linear fits to the data in (G). Slopes from the L3-silenced flies 
+293 
+(green, dashed) responding to the same stimuli (Figure 3C) are included again for comparison. Fitting was done for 
+294 
+individual flies. Sample sizes are n = 10 (UAS-shits/+and L1,L3>>shits) and n = 7 (L1c2025-Gal4/+;L30595-Gal4/+). (I) 
+295 
+Efficiency of the L1 and L3 behavioral rescue, calculated for each edge luminance as (rescue - ort-/- control) / (ort+/- 
+296 
+control - ort-/- control). *p<0.05, **p < 0.01, permutation test with 1000 permutations over the L1 ort rescue and L3 ort 
+297 
+rescue flies. (J) Summary schematic. The ON pathway in addition to the OFF pathway receives a prominent input from 
+298 
+L3. Like the OFF pathway, the ON pathway drives contrast constant behavior. Traces and plots show mean ± SEM. 
+299 
+ 
+300 
+The contrast-sensitive L2 provides input to the ON-pathway  
+301 
+Besides L1 and L3, the remaining input downstream of photoreceptors is the contrast-sensitive 
+302 
+L2 neuron, which provides strong inputs to OFF-pathway neurons (Takemura et al., 2013). To 
+303 
+explore the possibility of L2 also being an ON pathway input, we silenced L2 outputs either 
+304 
+individually or together with L1. L2-silenced flies showed only slightly reduced turning to all ON 
+305 
+edges as compared to controls (Figure 5A,B) similarly to silencing L1 alone (Figure 3A,B). 
+306 
+However, when L1 and L2 were silenced together, fly turning responses were fully disrupted 
+307 
+across conditions (Figure 5C,D). Moreover, these flies did not turn to other ON contrasts steps 
+308 
+either (Supp. Figure 2). This shows that L2, together with L1, is required for ON behavioral 
+309 
+responses across different contrasts and luminances. Altogether, L1, L2 and L3 are all ON-
+310 
+pathway inputs. 
+311 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+13
+ 
+312 
+Figure 5: The contrast-sensitive L2 provides input to the ON-pathway. (A) Turning responses of flies where L2 
+313 
+was silenced (purple) and their specific Gal4 control (gray), color-coded according to 100% contrast ON edge at five 
+314 
+different luminances. Sample sizes are n = 9 (L221Dhh>>shits) and n = 6 (L221Dhh-Gal4/+). (B) Peak velocities quantified 
+315 
+for each of the five edges during the motion period, *p < 0.05, two-tailed Student’s t tests against both controls. (C) 
+316 
+Turning responses of flies where L1 and L2 were silenced together (brown) and their specific Gal4 control (gray), color-
+317 
+coded according to ON edge luminance. Sample sizes are n = 9 (L1c2025,L221Dhh>>shits) and n = 8 (L1c2025-Gal4/+;L221Dhh-
+318 
+Gal4/+). (D) Peak velocities quantified for each of the five edges during the motion period, ***p < 0.001, two-tailed 
+319 
+Student’s t tests against both controls. Traces and plots show mean ± SEM. 
+320 
+ 
+321 
+L1 is also an OFF pathway input  
+322 
+  
+323 
+Given that three lamina neuron inputs encode visual stimuli differently and that all of them convey 
+324 
+information to the ON-pathway, we next asked if L1 could also contribute to OFF-pathway 
+325 
+function. To test this, we silenced L1 neurons while showing moving OFF edges, all of -100% 
+326 
+contrast, and moving across five different background luminances. Control flies turned similarly 
+327 
+under all conditions, showing lumiance-invariant responses (Figure 6A). Previous work showed 
+328 
+that L3 is required to achieve luminance invariance by scaling behavioral responses when 
+329 
+background luminance turned dark (Ketkar et al., 2020). Similarly, when L1 was silenced, 
+330 
+behavioral responses were no longer invariant across luminance, but flies turned less to -100% 
+331 
+contrast at low luminance as compared to high luminance (Figure 6A,B). Underestimation of the 
+332 
+dim OFF stimuli by L1-silenced flies was not as strong as by L3-silenced flies (Ketkar et al., 2020), 
+333 
+again highlighting the specialized role of L3 in dim light (Figure 6B). These data demonstrate that 
+334 
+L1 luminance inputs are required for luminance-invariant OFF behavior. Since L1 carries both 
+335 
+contrast and luminance information, it could be also sufficient to drive OFF behavior. To test this, 
+336 
+we measured behavioral responses to OFF edges in L1 ort rescue flies. Heterozygous ort controls 
+337 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+14
+showed turning responses to -100% OFF edges at five different luminances (Figure 6C). As 
+338 
+described previously (Ketkar et al., 2020), ort null mutants were not completely blind to this OFF-
+339 
+edge motion stimulus and responded especially at high luminance but very little at low 
+340 
+luminances. L1 ort rescue flies responded similarly to positive controls, rescuing OFF edges at 
+341 
+low luminances (Figure 6D). Therefore, L1 is even sufficient to guide OFF behavior under the 
+342 
+same conditions that were previously described for L3 (Ketkar et al., 2020). Taken together, these 
+343 
+findings reveal that the lamina neurons L1 and L3 provide behaviorally relevant but differentially 
+344 
+encoded luminance information to both ON and OFF pathways. In sum, our data uncover L1, L2 
+345 
+and L3 as important inputs for both ON and the OFF pathways, relevant for visually guided 
+346 
+behaviors across luminances (Figure 6E). 
+347 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+15
+ 
+348 
+Figure 6: The L1 luminance signal is required and sufficient for OFF behavior. (A) Turning responses of L1-
+349 
+silenced flies (orange) and the controls (gray) to five OFF edges moving onto different backgrounds. (B) Peak velocities 
+350 
+quantified for each of the five edges during the motion period, also including the peak velocities of L3-silenced flies 
+351 
+(green dashed, re-quantified from the data in (Ketkar et al., 2020). Shown next to it is the relationship of the peak 
+352 
+velocities with luminance, quantified as slopes of the linear fits to the data. **p < 0.01, two-tailed Student’s t tests against 
+353 
+both controls (not significant against the L3>>shits slopes). Sample sizes are n = 7 (L1-Gal4/+) and n = 10 for other 
+354 
+genotypes. (C) Schematics of the L1 ort rescue genotypes followed by its turning responses to the moving OFF edges. 
+355 
+(D) Peak turning velocities of L1 ort rescue flies and the respective controls; *p<0.05, two-tailed Student’s t tests against 
+356 
+both controls. Sample sizes are n = 11 flies (ort-/-control) and n =10 for other genotypes. The gray box region in (A) and 
+357 
+(C) indicates motion duration. (E) Summary schematic. Lamina neurons L1-L3 distribute different visual features 
+358 
+necessary for both ON and OFF pathways to guide contrast-constant behavior. Traces and plots show mean ± SEM. 
+359 
+ 
+360 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+16
+Discussion 
+361 
+The present study establishes that contrast and luminance are basic visual features that interact 
+362 
+with both ON and OFF pathways. In both pathways, the interaction between these features 
+363 
+enables stable visual behaviors across changing conditions. The lamina neurons L1, L2 and L3 
+364 
+act as the circuit elements segregating both contrast and luminance information. Behavioral 
+365 
+experiments show that luminance information is required for contrast constancy in both ON and 
+366 
+OFF behaviors. While L1 and L3 provide contrast inputs to both ON and OFF pathways, L1 also 
+367 
+encodes luminance, together with L3. Whereas L3 activity non-linearly increases with decreasing 
+368 
+luminance, L1 shows a linear relationship with luminance. Luminance information from both 
+369 
+neurons is differently used in ON and OFF pathways. Thus, L1, L2 and L3 are not ON or OFF 
+370 
+pathways specific inputs, but they instead distribute the two most basic visual features, contrast 
+371 
+and luminance, across pathways to enable behaviorally relevant computations. 
+372 
+ 
+373 
+Contrast constancy is a common feature of ON and OFF visual pathways, but with 
+374 
+distinct implementations 
+375 
+Our work shows that visual behaviors guided by both ON and OFF pathways are luminance 
+376 
+invariant. Similarly, luminance invariance has been shown in human perception of both ON and 
+377 
+OFF contrasts, and in neural responses in cat LGN (Burkhardt et al., 1984; Mante et al., 2005). 
+378 
+This argues that luminance invariance is a common feature of all visual systems, which is 
+379 
+ethologically relevant for any species that relies on visual information for its survival in changing 
+380 
+visual environments. Changing visual environments impose a common challenge onto the 
+381 
+encoding of both ON and OFF contrasts, namely the contrasts are underestimated in sudden dim 
+382 
+light. The L1 contrast-sensitive responses reflect such underestimation. Thus, both ON and OFF 
+383 
+visual pathways would require a luminance-based correction to achieve luminance invariance, 
+384 
+and such correction would in turn rely on luminance-sensitive neuronal signals themselves. We 
+385 
+now confirm this hypothesis for both ON and OFF pathways. Specifically, luminance information 
+386 
+from both L1 and L3 are required for luminance-invariant visual behaviors. However, the impact 
+387 
+of the two neurons on behavior is pathway dependent. In the OFF pathway, losing either L1 or L3 
+388 
+function leads to a strong deviation from luminance invariance, such that the dim light stimuli are 
+389 
+underestimated. On the contrary, ON motion-driven behavior only strongly deviates from 
+390 
+invariance if both L1 and L3 neuron types are not functional. Furthermore, L2 neurons, which 
+391 
+were formerly thought to be OFF pathway inputs, contribute contrast-sensitive information to ON 
+392 
+behavior (Clark et al., 2011; Joesch et al., 2010; Silies et al., 2013). Notably, ON and OFF contrast 
+393 
+constancy is not achieved symmetrically at every processing stage. For example, in the vertebrate 
+394 
+retina, ON RGCs encode a mixture of luminance-invariant and absolute (i.e. luminance-
+395 
+dependent) contrast, whereas OFF RGCs encode predominantly absolute contrast (Idrees and 
+396 
+Münch, 2020). Thus, asymmetrical implementation of contrast-corrective mechanisms can be 
+397 
+common across visual systems, too.  
+398 
+ 
+399 
+All lamina neurons are inputs to both ON and OFF pathways  
+400 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+17
+L1, L2 and L3 all show different contrast and luminance sensitivities. These distinct neuronal 
+401 
+properties are then differentially utilized across ON and OFF pathways. How does this fit with the 
+402 
+established notion that L1 is an input to the ON and L2 and L3 are inputs to OFF pathways? The 
+403 
+luminance-varying stimuli sets used here were able to pull out lamina neuron contributions that 
+404 
+were not obvious with simpler stimuli. For example, our data show that L1 and L2 provide 
+405 
+redundant contrast input to the ON pathway at 100% contrast and varying luminance. However, 
+406 
+L1 is still strictly required for ON responses if different contrasts are mixed. This is consistent with 
+407 
+a more complex ON pathway input architecture and hints at a role for the L1 pathway in contrast 
+408 
+adaptation. Interestingly, Mi1, an important post-synaptic partner of L1, shows an almost 
+409 
+instantaneous and strong contrast adaptation (Matulis et al., 2020).  
+410 
+All three lamina neuron types hyperpolarize to light onset and depolarize to light offset and are 
+411 
+not contrast selective themselves. Contrast selectivity emerges downstream of these neurons: 
+412 
+known post-synaptic partners of L1 acquire ON contrast selectivity due to inhibitory glutamatergic 
+413 
+synapses, whereas cholinergic L2 and L3 synapses retain OFF contrast selectivity (Molina-
+414 
+Obando et al., 2019). While L3 was actually already suggested to be an ON pathway input based 
+415 
+on connectomics (Borst et al., 2020), other synaptic connections that link L1 to downstream OFF-
+416 
+selective neurons, and link L2 and to downstream ON-selective neurons still have to be 
+417 
+investigated in detail. However, it now becomes evident that a split in ON and OFF circuitry only 
+418 
+truly exists in downstream medulla neurons and direction-selective cells. The luminance and 
+419 
+contrast features encoded differently in L1, L2 and L3 lamina neurons are shared by both 
+420 
+pathways. Importantly, the distinct features that are passed on by the specific inputs downstream 
+421 
+of photoreceptors guide distinct behavioral roles. 
+422 
+ 
+423 
+L1 and L3 convey luminance information to multiple pathways 
+424 
+ Behavioral experiments in combination with genetic manipulations show that both L1 and L3 
+425 
+neurons provide luminance information to to achieve luminance-invariant behaviors. This 
+426 
+functional data is consistent with anatomical predictions suggesting a role for L3 in the ON 
+427 
+pathway based on synaptic contacts with ON-selective neurons (Takemura et al., 2013). L3 had 
+428 
+mostly been considered an OFF pathway neuron because the OFF pathway neuron Tm9 receives 
+429 
+its strongest input from L3 (Fisher et al., 2015; Shinomiya et al., 2014; Takemura et al., 2013). 
+430 
+Remarkably, L3 itself actually makes most synaptic connections with the ON-pathway neuron 
+431 
+Mi9. Further synapses of L3 with the ON-selective Mi1 neuron are similar in number to those with 
+432 
+Tm9 (Takemura et al., 2013). Finally, L3 can potentially also convey information to the chromatic 
+433 
+pathway, as Tm20 is its second strongest postsynaptic connection (Lin et al., 2016). There, L3 
+434 
+luminance sensitivity might play a relevant role in achieving color constancy, i.e., color recognition 
+435 
+irrespective of illumination conditions. Altogether, anatomical and functional data indicate that it 
+436 
+is time to redefine L3 as part of a luminance-encoding system rather than a mere OFF-pathway 
+437 
+input.  
+438 
+A role of L1 beyond the ON pathway was less obvious based on anatomical data but is supported 
+439 
+by functional connectivity studies showing that Tm9 properties rely in part on L1 input (Fisher et 
+440 
+al., 2015), and that Tm9 together with other OFF pathway interneurons displays contrast-
+441 
+opponent receptive fields, adding evidence to the presence of ON information in the OFF pathway 
+442 
+(Ramos-Traslosheros and Silies, 2021). Connectomics data did not identify any known OFF-
+443 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+18
+pathway neurons postsynaptic to L1 and presynaptic to the OFF-motion selective neuron T5 
+444 
+(Takemura et al., 2013). L1 must therefore connect to the OFF pathway via interneurons. Among 
+445 
+the strongest postsynaptic partners of L1 are the GABAergic interneurons C2 and C3 that connect 
+446 
+to the OFF pathway (Takemura et al., 2013). Intercolumnar neurons downstream of L1, such as 
+447 
+Dm neurons (Nern et al., 2015), could further carry information to OFF-selective neurons, likely 
+448 
+through disinhibition from ON-selective inputs. In the vertebrate retina, intercolumnar amacrine 
+449 
+cells mediate interaction between ON and OFF bipolar cells, which has been shown to extend the 
+450 
+operating range of the OFF pathway (Manookin et al., 2008; Odermatt et al., 2012). Altogether, 
+451 
+strategies appear to be shared across animals in which type of interneurons help to convey 
+452 
+relevant features from one pathway to the other.  
+453 
+ 
+454 
+Neurons postsynaptic to photoreceptors encode contrast and luminance differently   
+455 
+Despite being postsynaptic to the same photoreceptor input, all lamina neurons respond 
+456 
+differently to light stimuli. L1 was previously considered the ON pathway sibling of the contrast-
+457 
+sensitive L2, both with regard to its temporal filtering properties and at the transcriptome level 
+458 
+(Clark et al., 2011; Tan et al., 2015). However, L1 calcium signals show a transient and a 
+459 
+sustained response component, which are contrast- and luminance-sensitive, respectively. 
+460 
+Compared to photoreceptors, which also carry both contrast and luminance components, L1 still 
+461 
+amplifies the contrast signals received from the photoreceptors, since its transient component is 
+462 
+more pronounced than the one seen in the photoreceptor calcium traces (Gür et al., 2020). In 
+463 
+other insect species, different types of lamina neurons have also been distinguished based on 
+464 
+their physiological properties (Rusanen et al., 2018, 2017), although their specific luminance and 
+465 
+contrast sensitivities are yet unknown.  
+466 
+The two luminance-sensitive neurons L1 and L3 differ in their luminance-encoding properties. 
+467 
+L1’s initial transient contrast response might reduce the operating range of the subsequent 
+468 
+luminance-sensitive baseline. L3’s calcium responses show little adaptation and can utilize most 
+469 
+of its operating range to encode luminance. L3 seems to invest this wider operating range into 
+470 
+amplifying the darkest luminance values selectively and non-linearly. Thus, a predominantly 
+471 
+luminance-sensitive channel among LMCs may have evolved to selectively process stimuli in the 
+472 
+low luminance range. The different linear and non-linear properties of L1 and L3 might further 
+473 
+increase the dynamic range of luminance signaling (Odermatt et al., 2012). Together with the 
+474 
+pure contrast sensitivity of L2, the first-order interneurons in flies exhibit a wide range of 
+475 
+sensitivities with respect to contrast and luminance, and our data confirm the functional relevance 
+476 
+of the differential sensitivities. Diversifying feature encoding through distinct temporal properties 
+477 
+of first-order interneurons is a strategy employed to reliably handle wide luminance ranges. 
+478 
+ 
+479 
+Similarities and differences of peripheral processing strategies across species 
+480 
+In flies, three first-order interneurons feed contrast and luminance information into downstream 
+481 
+circuitry. In the mouse retina, more than 30 functionally distinct bipolar types show a spectrum of 
+482 
+temporal filter properties rather than a strict transient-sustained dichotomy, thus capturing a larger 
+483 
+diversity of temporal information in parallel channels (e.g., (Baden et al., 2016; Ichinose et al., 
+484 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+19
+2014; Odermatt et al., 2012)). Many bipolar cell types resemble L1, in that they have both 
+485 
+luminance and contrast signals in distinct response components (e.g., (Oesch and Diamond, 
+486 
+2011)). However, the degree of transiency varies from cell type to cell type, and some 
+487 
+predominantly sustained bipolar cell types are also found, closely resembling the luminance-
+488 
+sensitive L3 (e.g., (Awatramani and Slaughter, 2000; Ichinose et al., 2014)). Such diversification 
+489 
+of feature extraction at the periphery has been shown to be computationally advantageous, 
+490 
+especially when processing complex natural scenes (e.g. (Odermatt et al., 2012; Rieke and Rudd, 
+491 
+2009)). For example, during daylight, visual scenes can differ in intensity by 4 to 5 log units, 
+492 
+whereas electrical signals in cone photoreceptors reach a dynamic range of only two orders of 
+493 
+magnitude (Naka and Rushton, 1966; Normann and Perlman, 1979; Pouli et al., 2010; Schnapf 
+494 
+et al., 1990).  
+495 
+Although the vertebrate retina apparently has a much larger diversity of cell types to handle the 
+496 
+wide and complex statistics of the visual environments, there is only a single layer of processing 
+497 
+between photoreceptors and the first direction-selective cells, whereas in insects, there are two: 
+498 
+the lamina and the medulla. It seems as if the combined properties of bipolar cells are spread 
+499 
+across these two processing stages in the fly visual system: whereas some properties, such as 
+500 
+diversity of temporal filtering starts in LMCs, contrast selectivity only emerges in medulla neurons 
+501 
+and not directly in the first-order interneurons as it happens in bipolar cells. In both vertebrates 
+502 
+and invertebrates, the emergence of ON selectivity occurs through inhibitory glutamatergic 
+503 
+synapses, but whereas this happens at the photoreceptor-to-bipolar cell synapse in vertebrates, 
+504 
+it happens one synapse further down between lamina and medulla neurons in flies (Masu et al., 
+505 
+1995; Molina-Obando et al., 2019). Taken together, LMCs and downstream medulla neurons 
+506 
+combined appear to be the functional equivalents of vertebrate bipolar cell layers. Given the size 
+507 
+limitations of the fly visual system to encode the same complex environment effectively, one 
+508 
+benefit of this configuration with an extra layer could be that it allows more combinations. 
+509 
+Furthermore, the photoreceptor-to-lamina synapse in the fly superposition eye already serves to 
+510 
+spatially pool information from different photoreceptors (Braitenberg, 1967; Clandinin and 
+511 
+Zipursky, 2002; Kirschfeld, 1967). In both visual systems, diversifying distinct information across 
+512 
+several neurons could serve as a strategy to reliably respond to contrast when luminance 
+513 
+conditions vary. 
+514 
+515 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+20
+Methods 
+516 
+  
+517 
+Experimental model 
+518 
+All flies were raised at 25 ºC and 65 % humidity on standard molasses-based fly food while being 
+519 
+subjected to a 12:12h light-dark cycle. Two-photon experiments were conducted at room 
+520 
+temperature (20 ºC) and behavioral experiments at 34 ºC. Female flies 2-4 days after eclosion 
+521 
+were used for all experimental purposes. Lamina neuron driver lines used for genetic silencing 
+522 
+and ort rescue experiments were L30595-Gal4 (Silies et al., 2013), L221Dhh-Gal4 and L1C202a-Gal4 
+523 
+(Rister et al., 2007), and UAS-shi[ts], ort1,ninaE1 and Df(3R)BSC809 were from BDSC (# 44222, 
+524 
+1946 and 27380). Since the ort1 mutant chromosomes also carries a mutation in ninaE1 
+525 
+(Drosophila rhodopsin1), we used the ort1 mutation in trans to a deficiency that uncovers the ort 
+526 
+but not the ninaE locus. UAS-ort was first described in (Hong et al., 2006). For imaging 
+527 
+experiments, GCaMP6f (BDSC #42747) was expressed using L1c202a-Gal4, L221Dhh-Gal4 (Rister 
+528 
+et al., 2007), and L3MH56-Gal4 (Timofeev et al., 2012). Detailed genotypes are given in Table 1. 
+529 
+Table 1.: Genotypes used in this study. 
+530 
+Name 
+Genotype 
+Figure 
+Imaging 
+ 
+ 
+L1>>GCaMP6f 
+w+; L1c202a-Gal4 / +; UAS-GCaMP6f / + 
+ 
+Fig 1, 2 
+L2>>GCaMP6f 
+w+; UAS-GCaMP6f / +; L221Dhh-Gal4 / + 
+  
+Fig 2 
+ 
+L3>>GCaMP6f 
+w+; L3MH56-Gal4 / +; UAS-GCaMP6f / + 
+ 
+Fig 2 
+Behavior 
+ 
+UAS-shibirets 
+control 
+w+; + / +; UAS-shits / + 
+ 
+Fig 2, 3,4, 5, 
+6, S1, S2 
+L3-Gal4 control 
+w+; +/ +; L30595-Gal4 /+   
+ 
+Fig 4 
+L3 silencing  
+w+; +/ +; L30595-Gal4 /UAS- shits  
+ 
+Fig 4 
+L1-Gal4 control 
+w+; L1c202a-Gal4 / +; + /+   
+ 
+Fig 3, 6, S1 
+L1 silencing  
+w+; L1c202a-Gal4 / +; + /UAS- shits  
+ 
+Fig 3, 6, S1 
+L1-Gal4, L3-Gal4 
+control 
+w+; L1c202a-Gal4 / +; L30595-Gal4 /+   
+ 
+Fig 4 
+L1, L3 silencing 
+w+; L1c202a-Gal4 / +; L30595-Gal4 /UAS- shits  
+ 
+Fig 4 
+ort mutant  
+w+; UAS-ort / +; ort1,ninaE1 / Df(3R)BSC809 
+ 
+Fig 3, 4, 6 
+L3 ort +/- control 
+w+; + / +; L30595-Gal4, ort1, ninaE1 / + 
+ 
+Fig 4 
+L3 ort rescue 
+w+; UAS-ort / +; L30595-Gal4, ort1,ninaE1 / 
+Df(3R)BSC809 
+Fig 4 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+21
+ 
+L1 ort +/- control 
+w+; L1c202a-Gal4 / +, ort1, ninaE1  / + 
+ 
+Fig 3, 6 
+L1 ort rescue 
+w+; UAS-ort / +; L1[c202a]; ort1,ninaE1 / 
+Df(3R)BSC809 
+ 
+Fig 3, 6 
+L2-Gal4 control 
+w+; + /+; L221Dhh-Gal4 / +   
+ 
+Fig 5,S2  
+L2 silencing  
+w+; + / +; L221Dhh-Gal4 /UAS- shits  
+ 
+Fig 5, S2 
+L1-Gal4, L2-Gal4 
+control 
+w+; L1c202a-Gal4 / +; L221Dhh-Gal4 /+   
+ 
+Fig 5, S2 
+L1, L2 silencing 
+w+; L1c202a-Gal4 / +; L221Dhh-Gal4 /UAS- shits  
+ 
+Fig 5, S2  
+  
+531 
+Behavioral experiments 
+532 
+Behavioral experiments were performed as described in (Ketkar et al., 2020). In brief, all 
+533 
+experiments were conducted at 34 ºC, a restrictive temperature for shibirets (Kitamoto, 2001). 
+534 
+Female flies were cold anesthetized and glued to the tip of a needle at their thorax using UV-
+535 
+hardened Norland optical adhesive. A 3D micromanipulator positioned the fly above an air-
+536 
+cushioned polyurethane ball (Kugel-Winnie, Bamberg, Germany), 6 mm in diameter, and located 
+537 
+at the center of a cylindrical LED arena that spanned 192º in azimuth and 80º in elevation (Reiser 
+538 
+and Dickinson, 2008). The LED panels arena (IO Rodeo, CA, USA) consisted of 570 nm LEDs 
+539 
+and was enclosed in a dark chamber. The pixel resolution was ~2º at the fly’s elevation. Rotation 
+540 
+of the ball was sampled at 120 Hz with two wireless optical sensors (Logitech Anywhere MX 1, 
+541 
+Lausanne, Switzerland), positioned toward the center of the ball and at 90º to each other (setup 
+542 
+described in (Seelig et al., 2010). Custom written C#-code was used to acquire ball movement 
+543 
+data. MATLAB (Mathworks, MA, USA) was used to coordinate stimulus presentation and data 
+544 
+acquisition. Data for each stimulus sequence were acquired for 15-20 minutes, depending on the 
+545 
+number of distinct epochs in the sequence (see ‘visual stimulation’ for details). 
+546 
+  
+547 
+Visual stimulation for behavior 
+548 
+The stimulation panels consist of green LEDs that can show 16 different, linearly spaced intensity 
+549 
+levels. To measure the presented luminance, candela/m2 values were first measured from the 
+550 
+position of the fly using a LS-100 luminance meter (Konika Minolta, NJ, USA). Then, these values 
+551 
+were transformed to photons incidence per photoreceptor per second, following the procedure 
+552 
+described by (Dubs et al., 1981). The highest native LED luminance was approximately 11.77 * 
+553 
+105 photons * s-1 * photoreceptor-1 (corresponding to a measured luminance of 51.34 cd/m2), and 
+554 
+the luminance meter read 0 candela/ m2 when all LEDs were off. For all experiments, a 0.9 neutral 
+555 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+22
+density filter foil (Lee filters) was placed in front of the panels, such that the highest LED level 
+556 
+corresponded to 14.71 *104 photons*s-1*receptor-1. 
+557 
+Fly behavior was measured in an open-loop paradigm where either ON or OFF edges were 
+558 
+presented. For every set of ON or OFF edges, each epoch was presented for around 60 to 80 
+559 
+trials. Each trial consisted of an initial static pattern (i.e., the first frame of the upcoming pattern) 
+560 
+shown for 500 ms followed by 750 ms of edge motion. Inter-trial intervals were 1s. All edges from 
+561 
+a set were randomly interleaved and presented in a mirror-symmetric fashion (moving to the right, 
+562 
+or to the left) to account for potential biases in individual flies or introduced when positioning on 
+563 
+the ball. 
+564 
+The ON edge stimuli comprised four edges, each covering 48º arena space. All ON edges moved 
+565 
+with the angular speed of 160º/s. Thus, within a 750 ms stimulus epoch, the edge motion repeated 
+566 
+thrice: After each repetition, the now bright arena was reset to the pre-motion lower LED level, 
+567 
+and the next repetition followed immediately, picking up from the positions where the edges 
+568 
+terminated in the first repetition. This way, each edge virtually moved continuously. The following 
+569 
+sets of ON edges were presented: 
+570 
+1. 100% contrast edges: Here, the edges were made of 5 different luminance values (i.e. five 
+571 
+unique epochs), moving on a complete dark background. Thus, the pre-motion LED level was 
+572 
+zero, and the edges assumed the intensities 7%, 14%, 27%, 53% or 100% of the highest LED 
+573 
+intensity (corresponding to the luminances: 0.98, 1.96, 3.92, 7.84 or 14.71 *104 photons*s-
+574 
+1*receptor-1 luminance). Thus, every epoch comprised 100% Michelson contrast. The inter-
+575 
+trial interval consisted of a dark screen. 
+576 
+2. Mixed-contrast edges – full range: The set comprised of seven distinct epochs, each with a 
+577 
+different Michelson contrast value (11%, 25%, 33%, 43%, 67%, 82% and 100%). Here, the 
+578 
+edge luminance was maintained constant at 67% of the highest LED intensity, across epochs, 
+579 
+and the background luminance varied. The inter-trial interval showed a uniformly lit screen 
+580 
+with luminance equivalent to the edge luminance. 
+581 
+3. Mixed-contrast edges – low contrast range: The set comprised of four distinct epochs, with 
+582 
+contrasts from the range 9%, 18%, 27% and 36%. Here, edge luminances and background 
+583 
+luminances both varied: The edge luminances assumed the intensities 80%, 87%, 93% and 
+584 
+100% of the highest LED intensity, whereas the background intensities were 67%, 60%, 53% 
+585 
+and 47% of the highest LED intensity, respectively. The inter-trial interval consisted of a dark 
+586 
+screen. 
+587 
+ 
+588 
+For the experiments concerning OFF edges, a set of five OFF edges comprising 100% Weber 
+589 
+contrast was used as described in (Ketkar et al., 2020). Epoch consisted of a single OFF edge 
+590 
+presented at one of five different uniformly lit backgrounds. The edge luminance was always 
+591 
+~zero, whereas the five different background luminances were 7%, 14%, 27%, 54% and 100% of 
+592 
+the highest LED intensity (corresponding to five different background luminances: 0.98, 1.96, 
+593 
+3.92, 7.84 or 14.71 *104 photons*s-1*receptor-1). The inter-trial interval consisted of a dark screen. 
+594 
+ 
+595 
+ 
+596 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+23
+Behavioral data analysis 
+597 
+Fly turning behavior was defined as yaw velocities that were derived as described in (Seelig et 
+598 
+al., 2010), leading to a positive turn when flies turned in the direction of the stimulation and to a 
+599 
+negative turn in the opposite case. Turning elicited by the same epoch moving either to the right 
+600 
+or to the left were aggregated to compute the mean response of the fly to that epoch. Turning 
+601 
+responses are presented as angular velocities (rad/s) averaged across flies ± SEM. Peak 
+602 
+velocities were calculated over the stimulus motion period (750ms), shifted by 100 ms to account 
+603 
+for a response delay, and relative to a baseline defined as the last 200 ms of the preceding inter-
+604 
+stimulus intervals. For the moving edges of 100% contrast and varying luminance, relation 
+605 
+between peak velocities and luminance was assessed by fitting a straight line (V = 
+606 
+a*log(luminance) + b) to the peak velocities of individual flies and quantifying the mean slope (a) 
+607 
+± SEM across flies. When comparing the slopes computed for behavior and L1 physiology, the 
+608 
+two data types were first normalized for individual flies for behavior and individual regions of 
+609 
+interest (ROIs) for L1 physiology (Figure 1E). For the ort rescue experiments, rescue efficiency 
+610 
+was calculated at each stimulus luminance as 
+611 
+𝐸!"#$%" = 𝑟𝑒𝑠𝑐𝑢𝑒−𝑐𝑜𝑛𝑡𝑟𝑜𝑙&
+𝑐𝑜𝑛𝑡𝑟𝑜𝑙' −𝑐𝑜𝑛𝑡𝑟𝑜𝑙& 
+612 
+where Erescue is the fractional rescue efficiency, rescue is the mean peak velocity of the rescue 
+613 
+genotype such as L1 rescue, control- is the mean peak velocity of the ort null mutant negative 
+614 
+control and control+ stands for the mean peak velocity of the positive heterozygous ort1 control 
+615 
+(e.g., L1-Gal4; ort1/+). Statistical significance of Erescue differences was tested using a permutation 
+616 
+test. Specifically, flies of the genotypes L1 ort rescue and L3 ort rescue were shuffled 1000 times 
+617 
+and the difference between their rescue efficiencies was obtained each time. The difference 
+618 
+values so obtained gave a probability distribution that approximated a normal distribution. The 
+619 
+efficiency difference was considered significant when it corresponded to less than 5% probability 
+620 
+on both tails of the distribution. 
+621 
+Mean turning of flies as well as the slopes from control and experimental genotypes were normal 
+622 
+distributed as tested using a Kolmogorov-Smirnov test (p > 0.05). Two-tailed Student’s t tests and 
+623 
+Bonferroni-Holm correction were performed between genotypes. Data points were considered 
+624 
+significantly different only when the experimental group significantly differed from both genetic 
+625 
+controls. Flies with a baseline forward walking speed of less than 2 mm/s were discarded from 
+626 
+the analysis. This resulted in rejection of approximately 25% of all flies. 
+627 
+  
+628 
+Two-photon imaging 
+629 
+Female flies were anesthetized on ice before placing them onto a sheet of stainless-steel foil 
+630 
+bearing a hole that fit the thorax and head of the flies. Flies they were head fixated using UV-
+631 
+sensitive glue (Bondic). The head of the fly was tilted downward, looking toward the stimulation 
+632 
+screen and their back of the head was exposed to the microscope objective. To optically access 
+633 
+the optic lobe, a small window was cut in the cuticle on the back of the head using sharp forceps. 
+634 
+During imaging, the brain was perfused with a carboxygenated saline-sugar imaging solution 
+635 
+composed of 103 mM NaCl, 3 mM KCl, 5 mM TES, 1 mM NaH2PO4, 4 mM MgCl2, 1.5 mM 
+636 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+24
+CaCl2,10 mM trehalose, 10 mM glucose, 7 mM sucrose, and 26 mM NaHCO3. Dissections were 
+637 
+done in the same solution, but lacking calcium and sugars. The pH of the saline equilibrated near 
+638 
+7.3 when bubbled with 95% O2 / 5% CO2. The two-photon experiments for Figure 2 were 
+639 
+performed using a Bruker Investigator microscope (Bruker, Madison,WI, USA), equipped with a 
+640 
+25x/NA1.1 objective (Nikon, Minato, Japan). An excitation laser (Spectraphysics Insight DS+) 
+641 
+tuned to 920 nm was used to excite GCaMP6f, applying 5-15 mW of power at the sample. For 
+642 
+experiments in Figure 1, a Bruker Ultima microscope, equipped with a 20x/NA1.0 objective (Leica, 
+643 
+Jerusalem, Israel) was used. Here the excitation laser (YLMO-930 Menlo Systems, Martinsried, 
+644 
+Germany) had a fixed 930 nm wavelength, and a power of 5-15 mW was applied at the sample. 
+645 
+In both setups, emitted light was sent through a SP680 shortpass filter, a 560 lpxr dichroic filter 
+646 
+and a 525/70 emission filter. Data was acquired at a frame rate of ~10 to 15Hz and around 6–8x 
+647 
+optical zoom, using PrairieView software. 
+648 
+ 
+649 
+Visual stimulation for imaging 
+650 
+For the staircase stimuli and light flashes of different luminances, the visual stimuli were 
+651 
+generated by custom-written software using C++ and OpenGL and projected onto an 8cm x 8cm 
+652 
+rear projection screen placed anterior to the fly and covering 60º of the fly’s visual system in 
+653 
+azimuth and 60º in elevation. These experiments were performed with the Bruker Investigator 
+654 
+microscope. 
+655 
+For ON-moving edges, the stimulus was generated by custom-written software using the Python 
+656 
+package PsychoPy (Peirce, 2008), and then projected onto a 9cm x 9cm rear projection screen 
+657 
+placed anterior to the fly at a 45º angle and covering 80º of the fly’s visual system in azimuth and 
+658 
+80º in elevation. These experiments were performed with the Bruker Ultima microscope. 
+659 
+Both stimuli were projected using a LightCrafter (Texas Instruments, Dallas, TX, USA), updating 
+660 
+stimuli at a frame rate of 100 Hz. Before reaching the fly eye, stimuli were filtered by a 482/18 
+661 
+band pass filter and a ND1.0 neutral density filter (Thorlabs). The luminance values are measured 
+662 
+using the same procedure described above for the behavioral experiments. The maximum 
+663 
+luminance value measured at the fly position was 2.17*105 photons s-1 photoreceptor-1 for the 
+664 
+staircase and random luminance stimulation, and 2.4*105 photons s-1 photoreceptor-1 for the ON-
+665 
+moving edge stimulation. The imaging and the visual stimulus presentation were synchronized as 
+666 
+described previously (Freifeld et al., 2013). 
+667 
+  
+668 
+Staircase stimulation 
+669 
+The stimulus consisted of 10s full-field flashes of 5 different luminances (0, 0.25, 0.5, 0.75 and 
+670 
+1∗ of the maximal luminance Imax). The different luminance epochs were presented first in an 
+671 
+increasing order (from darkness to full brightness) then in a decreasing order (full brightness to 
+672 
+darkness). This sequence was repeated ~3-5 times. 
+673 
+  
+674 
+Flashes of different luminances 
+675 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+25
+The stimulus consisted of 10s full-field flashes of 5 different luminances (0, 0.25, 0.5, 0.75 and 
+676 
+1∗ of the maximal luminance Imax). The order between the flashes was pseudo-randomized and 
+677 
+the stimulus sequence was presented for ~300s. 
+678 
+ 
+679 
+ON moving edges at different luminances 
+680 
+Here, the edges were made of 6 different luminance values (corresponding to 0.16, 0.31, 0.62, 
+681 
+1.2, 1.8, 2.4 *105 photons*s-1*receptor-1 luminance), moving on a dark background. The inter-
+682 
+stimulus interval was 4 seconds of darkness. 
+683 
+  
+684 
+Two photon data analysis 
+685 
+Staircase stimulation and randomized flashes of different luminances 
+686 
+Data processing was performed offline using MATLAB R2019a (The MathWorks Inc., Natick, MA). 
+687 
+To correct for motion artifacts, individual images were aligned to a reference image composed of 
+688 
+a maximum intensity projection of the first 30 frames. The average intensity for manually selected 
+689 
+ROIs was computed for each imaging frame and background subtracted to generate a time trace 
+690 
+of the response. All responses and visual stimuli were interpolated at 10 Hz and trial averaged. 
+691 
+Neural responses are shown as relative fluorescence intensity changes over time (ΔF/F0). To 
+692 
+calculate ΔF/F0, the mean of the whole trace was used as F0. In some recordings, a minority of 
+693 
+ROIs responded in opposite polarity (positively correlated with stimulus), as described previously 
+694 
+(Fisher et al., 2015). These ROIs have their receptive fields outside the stimulation screen (Fisher 
+695 
+et al., 2015; Freifeld et al., 2013). To discard these and other noisy ROIs, we only used ROIs that 
+696 
+were negatively correlated (Spearman’s rank correlation coefficient) with the stimulus. Plateau 
+697 
+responses were calculated as the mean of the last 2 seconds within each luminance presentation. 
+698 
+In the randomized flashes of different luminances, plateau response values of the highest 
+699 
+luminance epoch were subtracted for each plateau response to get a comparable relationship 
+700 
+between each neuron for visualization (this leads to 0 plateau response for each neuron in the 
+701 
+highest luminance condition). Mutual information between luminance and response was 
+702 
+calculated according to (Ross, 2014). To characterize the distinct luminance-response 
+703 
+relationships of L1 and L3, the difference of Pearson correlation and Spearman’s rank correlation 
+704 
+was used as a Non-linearity index. This value will reach zero if there is a strict linear relationship 
+705 
+between luminance and response.  
+706 
+ 
+707 
+ON moving edges at different luminances 
+708 
+Data processing was performed offline using Python 2.7 (Van Rossum 1995). Motion correction 
+709 
+was performed using the SIMA Python package’s Hidden Markov Model based motion correction 
+710 
+algorithm (Kaifosh et al., 2014). The average intensity for manually selected ROIs was computed 
+711 
+for each imaging frame and background subtracted to generate a time trace of the response. To 
+712 
+calculate ΔF/F0, the mean of the whole trace was used as F0. The traces were then trial averaged. 
+713 
+Responses of ROIs for each epoch was calculated as the absolute difference between the mean 
+714 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+26
+of the full darkness background epoch and the minimum of the ON edge presentation (minimum 
+715 
+values are chosen because L1 neurons respond to ON stimuli with hyperpolarization). 
+716 
+ 
+717 
+Statistics  
+718 
+Throughout the analysis procedure, mean of quantified variables were calculated first for all ROIs 
+719 
+within a fly, and then between flies. All statistical analysis was performed between flies. For 
+720 
+normally distributed data sets, a two-tailed Student t test for unpaired (independent) samples was 
+721 
+used. For other data sets, Wilcoxon rank-sum was used for statistical analysis. Normality was 
+722 
+tested using Lilliefors test (p>0.05). One way ANOVA was used followed by multiple comparisons 
+723 
+using the Bonferroni method for determining statistical significance between pairs of groups.  
+724 
+ 
+725 
+ 
+726 
+Acknowledgments  
+727 
+ 
+728 
+We thank members of the Silies lab for comments on the manuscript. We are grateful to Christine 
+729 
+Gündner, Simone Renner, and Jonas Chojetzki for excellent technical assistance. 
+730 
+This project has received funding from the European Research Council (ERC) under the 
+731 
+European Union’s Horizon 2020 research and innovation program (grant agreement No 716512), 
+732 
+and from the German Research Foundation (DFG) through the Emmy-Noether program (SI 
+733 
+1991/1-1) and the collaborative research center 1080 “Neural homeostasis” (project C06) to MS, 
+734 
+as well as DFG grant MA 7804/2-1 to CM. 
+735 
+ 
+736 
+ 
+737 
+Author contributions:  
+738 
+Conceptualization: MK, BG, SMO and MS 
+739 
+Methodology: MK, BG, CM 
+740 
+Software: MK, BG, SMO 
+741 
+Investigation: MK, BG, SMO, MI 
+742 
+Visualization: MK, BG, SMO   
+743 
+Supervision: MS, CM 
+744 
+Writing—original draft: MK, SMO, MS  
+745 
+Writing—review & editing: all authors  
+746 
+Funding acquisition: MS  
+747 
+ 
+748 
+ 
+749 
+Competing interest: 
+750 
+The authors declare no competing interests. 
+ 
+751 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+27
+Bibliography 
+752 
+ 
+753 
+Awatramani GB, Slaughter MM. 2000. Origin of Transient and Sustained Responses in 
+754 
+Ganglion Cells of the Retina. J Neurosci 20:7087–7095. doi:10.1523/JNEUROSCI.20-
+755 
+18-07087.2000 
+756 
+Baden T, Berens P, Franke K, Román Rosón M, Bethge M, Euler T. 2016. The functional 
+757 
+diversity of retinal ganglion cells in the mouse. Nature 529:345–350. 
+758 
+doi:10.1038/nature16468 
+759 
+Behnia R, Clark DA, Carter AG, Clandinin TR, Desplan C. 2014. Processing properties of on 
+760 
+and off pathways for Drosophila motion detection. Nature. doi:10.1038/nature13427 
+761 
+Borst A, Haag J, Mauss AS. 2020. How fly neurons compute the direction of visual motion. J 
+762 
+Comp Physiol A 206:109–124. doi:10.1007/s00359-019-01375-9 
+763 
+Braitenberg V. 1967. Patterns of projection in the visual system of the fly. I. Retina-lamina 
+764 
+projections. Exp Brain Res 3:271–298. doi:10.1007/BF00235589 
+765 
+Burkhardt DA, Gottesman J, Kersten D, Legge GE. 1984. Symmetry and constancy in the 
+766 
+perception of negative and positive luminance contrast. J Opt Soc Am A 1:309. 
+767 
+doi:10.1364/JOSAA.1.000309 
+768 
+Chichilnisky EJ, Kalmar RS. 2002. Functional Asymmetries in ON and OFF Ganglion Cells of 
+769 
+Primate Retina. J Neurosci 22:2737–2747. doi:10.1523/JNEUROSCI.22-07-02737.2002 
+770 
+Clandinin TR, Zipursky SL. 2002. Making connections in the fly visual system. Neuron 35:827–
+771 
+841. doi:10.1016/S0896-6273(02)00876-0 
+772 
+Clark DA, Bursztyn L, Horowitz MA, Schnitzer MJ, Clandinin TR. 2011. Defining the 
+773 
+Computational Structure of the Motion Detector in Drosophila. Neuron. 
+774 
+doi:10.1016/j.neuron.2011.05.023 
+775 
+Clark DA, Demb JB. 2016. Parallel Computations in Insect and Mammalian Visual Motion 
+776 
+Processing. Curr Biol 26:R1062–R1072. doi:10.1016/j.cub.2016.08.003 
+777 
+Clark DA, Fitzgerald JE, Ales JM, Gohl DM, Silies MA, Norcia AM, Clandinin TR. 2014. Flies 
+778 
+and humans share a motion estimation strategy that exploits natural scene statistics. Nat 
+779 
+Neurosci 17:296–303. doi:10.1038/nn.3600 
+780 
+Dubs A, Laughlin SB, Srinivasan MV. 1981. Single photon signals in fly photoreceptors and first 
+781 
+order interneurones at behavioral threshold. J Physiol 317:317–334. 
+782 
+doi:10.1113/jphysiol.1981.sp013827 
+783 
+Euler T, Haverkamp S, Schubert T, Baden T. 2014. Retinal bipolar cells: Elementary building 
+784 
+blocks of vision. Nat Rev Neurosci 15:507–519. doi:10.1038/nrn3783 
+785 
+Fischbach KF, Dittrich APM. 1989. The optic lobe of Drosophila melanogaster. I. A Golgi 
+786 
+analysis of wild-type structure. Cell Tissue Res. doi:10.1007/BF00218858 
+787 
+Fisher YE, Leong JCS, Sporar K, Ketkar MD, Gohl DM, Clandinin TR, Silies M. 2015. A Class of 
+788 
+Visual Neurons with Wide-Field Properties Is Required for Local Motion Detection. Curr 
+789 
+Biol. doi:10.1016/j.cub.2015.11.018 
+790 
+Frazor RA, Geisler WS. 2006. Local luminance and contrast in natural images. Vision Res 
+791 
+46:1585–1598. doi:10.1016/j.visres.2005.06.038 
+792 
+Freifeld L, Clark DA, Schnitzer MJ, Horowitz MA, Clandinin TR. 2013. GABAergic Lateral 
+793 
+Interactions Tune the Early Stages of Visual Processing in Drosophila. Neuron. 
+794 
+doi:10.1016/j.neuron.2013.04.024 
+795 
+Gür B, Sporar K, Lopez-Behling A, Silies M. 2020. Distinct expression of potassium channels 
+796 
+regulates visual response properties of lamina neurons in Drosophila melanogaster. J 
+797 
+Comp Physiol A Neuroethol Sens Neural Behav Physiol 206:273–287. 
+798 
+doi:10.1007/s00359-019-01385-7 
+799 
+Hong S-T, Bang S, Paik D, Kang J, Hwang S, Jeon K, Chun B, Hyun S, Lee Y, Kim J. 2006. 
+800 
+Histamine and Its Receptors Modulate Temperature-Preference Behaviors in 
+801 
+Drosophila. J Neurosci 26:7245–7256. doi:10.1523/JNEUROSCI.5426-05.2006 
+802 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+28
+Ichinose T, Fyk-Kolodziej B, Cohn J. 2014. Roles of ON Cone Bipolar Cell Subtypes in 
+803 
+Temporal Coding in the Mouse Retina. J Neurosci 34:8761–8771. 
+804 
+doi:10.1523/JNEUROSCI.3965-13.2014 
+805 
+Ichinose T, Hellmer CB. 2016. Differential signalling and glutamate receptor compositions in the 
+806 
+OFF bipolar cell types in the mouse retina: Temporal coding in the retinal OFF bipolar 
+807 
+cells. J Physiol 594:883–894. doi:10.1113/JP271458 
+808 
+Ichinose T, Lukasiewicz PD. 2007. Ambient Light Regulates Sodium Channel Activity to 
+809 
+Dynamically Control Retinal Signaling. J Neurosci 27:4756–4764. 
+810 
+doi:10.1523/JNEUROSCI.0183-07.2007 
+811 
+Idrees S, Münch TA. 2020. Different contrast encoding in ON and OFF visual pathways 
+812 
+(preprint). Neuroscience. doi:10.1101/2020.11.25.398230 
+813 
+Jin J, Wang Y, Lashgari R, Swadlow HA, Alonso J-M. 2011. Faster Thalamocortical Processing 
+814 
+for Dark than Light Visual Targets. J Neurosci 31:17471–17479. 
+815 
+doi:10.1523/JNEUROSCI.2456-11.2011 
+816 
+Joesch M, Plett J, Borst A, Reiff DF. 2008. Response Properties of Motion-Sensitive Visual 
+817 
+Interneurons in the Lobula Plate of Drosophila melanogaster. Curr Biol 18:368–374. 
+818 
+doi:10.1016/j.cub.2008.02.022 
+819 
+Joesch M, Schnell B, Raghu SV, Reiff DF, Borst A. 2010. ON and off pathways in Drosophila 
+820 
+motion vision. Nature. doi:10.1038/nature09545 
+821 
+Kaifosh P, Zaremba JD, Danielson NB, Losonczy A. 2014. SIMA: Python software for analysis 
+822 
+of dynamic fluorescence imaging data, Frontiers in Neuroinformatics. 
+823 
+Ketkar MD, Sporar K, Gür B, Ramos-Traslosheros G, Seifert M, Silies M. 2020. Luminance 
+824 
+Information Is Required for the Accurate Estimation of Contrast in Rapidly Changing 
+825 
+Visual Contexts. Curr Biol. doi:10.1016/j.cub.2019.12.038 
+826 
+Kirschfeld K. 1967. Die projektion der optischen umwelt auf das raster der rhabdomere im 
+827 
+komplexauge von Musca. Exp Brain Res 3:248–270. doi:10.1007/BF00235588 
+828 
+Kitamoto T. 2001. Conditional modification of behavior inDrosophila by targeted expression of a 
+829 
+temperature-sensitiveshibire allele in defined neurons. J Neurobiol 47:81–92. 
+830 
+doi:10.1002/neu.1018 
+831 
+Laughlin SB, Hardie RC. 1978. Common strategies for light adaptation in the peripheral visual 
+832 
+systems of fly and dragonfly. J Comp Physiol 128:319–340. doi:10.1007/BF00657606 
+833 
+Leonhardt A, Ammer G, Meier M, Serbe E, Bahl A, Borst A. 2016. Asymmetry of Drosophila on 
+834 
+and off motion detectors enhances real-world velocity estimation. Nat Neurosci. 
+835 
+doi:10.1038/nn.4262 
+836 
+Lin T-Y, Luo J, Shinomiya K, Ting C-Y, Lu Z, Meinertzhagen IA, Lee C-H. 2016. Mapping 
+837 
+chromatic pathways in the Drosophila visual system: Chromatic Visual Circuits in the 
+838 
+Fly’s Lobula. J Comp Neurol 524:213–227. doi:10.1002/cne.23857 
+839 
+Manookin MB, Beaudoin DL, Ernst ZR, Flagel LJ, Demb JB. 2008. Disinhibition Combines with 
+840 
+Excitation to Extend the Operating Range of the OFF Visual Pathway in Daylight. J 
+841 
+Neurosci 28:4136–4150. doi:10.1523/JNEUROSCI.4274-07.2008 
+842 
+Mante V, Frazor RA, Bonin V, Geisler WS, Carandini M. 2005. Independence of luminance and 
+843 
+contrast in natural scenes and in the early visual system. Nat Neurosci 8:1690–1697. 
+844 
+doi:10.1038/nn1556 
+845 
+Masu M, Iwakabe H, Tagawa Y, Miyoshi T, Yamashita M, Fukuda Y, Sasaki H, Hiroi K, 
+846 
+Nakamura Y, Shigemoto R. 1995. Specific deficit of the ON response in visual 
+847 
+transmission by targeted disruption of the mGluR6 gene. Cell 80:757–765. 
+848 
+Matulis CA, Chen J, Gonzalez-Suarez AD, Behnia R, Clark DA. 2020. Heterogeneous Temporal 
+849 
+Contrast Adaptation in Drosophila Direction-Selective Circuits. Curr Biol. 
+850 
+doi:10.1016/j.cub.2019.11.077 
+851 
+Mauss AS, Vlasits A, Borst A, Feller M. 2017. Visual Circuits for Direction Selectivity. 
+852 
+doi:10.1146/annurev-neuro-072116 
+853 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+29
+Meinertzhagen IA, O’Neil SD. 1991. Synaptic organization of columnar elements in the lamina 
+854 
+of the wild type in Drosophila melanogaster. J Comp Neurol 305:232–263. 
+855 
+doi:10.1002/cne.903050206 
+856 
+Molina-Obando S, Vargas-Fique JF, Henning M, Gür B, Schladt M, Akhtar J, Berger TK, Silies 
+857 
+M. 2019. ON selectivity in the Drosophila visual system is a multisynaptic process 
+858 
+involving both glutamatergic and GABAergic inhibition. doi:10.7554/eLife.49373.001 
+859 
+Naka KI, Rushton WAH. 1966. S-potentials from luminosity units in the retina of fish 
+860 
+(Cyprinidae). J Physiol 185:587–599. doi:10.1113/jphysiol.1966.sp008003 
+861 
+Nern A, Pfeiffer BD, Rubin GM. 2015. Optimized tools for multicolor stochastic labeling reveal 
+862 
+diverse stereotyped cell arrangements in the fly visual system. Proc Natl Acad Sci 
+863 
+112:E2967–E2976. doi:10.1073/pnas.1506763112 
+864 
+Normann RA, Perlman I. 1979. The effects of background illumination on the photoresponses of 
+865 
+red and green cones. J Physiol 286:491–507. doi:10.1113/jphysiol.1979.sp012633 
+866 
+Normann RA, Werblin FS. 1974. Control of Retinal Sensitivity I . Light and Dark Adaptation of. J 
+867 
+Gen Physiol 63:37–61. doi:10.1085/jgp.63.1.37 
+868 
+Odermatt B, Nikolaev A, Lagnado L. 2012. Encoding of Luminance and Contrast by Linear and 
+869 
+Nonlinear Synapses in the Retina. Neuron 73:758–773. 
+870 
+doi:10.1016/j.neuron.2011.12.023 
+871 
+Oesch NW, Diamond JS. 2011. Ribbon synapses compute temporal contrast and encode 
+872 
+luminance in retinal rod bipolar cells. Nat Neurosci 14:1555–1561. doi:10.1038/nn.2945 
+873 
+Peirce JW. 2008. Generating stimuli for neuroscience using PsychoPy. Front Neuroinformatics 
+874 
+2. doi:10.3389/neuro.11.010.2008 
+875 
+Pouli T, Cunningham D, Reinhard E. 2010. Statistical regularities in low and high dynamic range 
+876 
+imagesProceedings of the 7th Symposium on Applied Perception in Graphics and 
+877 
+Visualization - APGV ’10. Presented at the the 7th Symposium. Los Angeles, California: 
+878 
+ACM Press. p. 9. doi:10.1145/1836248.1836250 
+879 
+Ramos-Traslosheros G, Silies M. 2021. The physiological basis for contrast opponency in 
+880 
+motion computation in Drosophila. Nat Commun 12:1–16. doi:10.1038/s41467-021-
+881 
+24986-w 
+882 
+Ratliff CP, Borghuis BG, Kao Y-H, Sterling P, Balasubramanian V. 2010. Retina is structured to 
+883 
+process an excess of darkness in natural scenes. Proc Natl Acad Sci 107:17368–17373. 
+884 
+doi:10.1073/pnas.1005846107 
+885 
+Reiser MB, Dickinson MH. 2008. A modular display system for insect behavioral neuroscience. 
+886 
+J Neurosci Methods 167:127–139. doi:10.1016/j.jneumeth.2007.07.019 
+887 
+Rieke F, Rudd ME. 2009. The Challenges Natural Images Pose for Visual Adaptation. Neuron 
+888 
+64:605–616. doi:10.1016/j.neuron.2009.11.028 
+889 
+Rister J, Pauls D, Schnell B, Ting CY, Lee CH, Sinakevitch I, Morante J, Strausfeld NJ, Ito K, 
+890 
+Heisenberg M. 2007. Dissection of the Peripheral Motion Channel in the Visual System 
+891 
+of Drosophila melanogaster. Neuron 56:155–170. doi:10.1016/j.neuron.2007.09.014 
+892 
+Ross BC. 2014. Mutual information between discrete and continuous data sets. PLoS ONE 
+893 
+9:e87357–e87357. doi:10.1371/journal.pone.0087357 
+894 
+Ruderman DL. 1994. The statistics of natural images. Netw Comput Neural Syst 5:517–548. 
+895 
+doi:10.1088/0954-898X_5_4_006 
+896 
+Rusanen J, Frolov R, Weckström M, Kinoshita M, Arikawa K. 2018. Non-linear amplification of 
+897 
+graded voltage signals in the first-order visual interneurons of the butterfly Papilio 
+898 
+xuthus. J Exp Biol 221:jeb179085–jeb179085. doi:10.1242/jeb.179085 
+899 
+Rusanen J, Vähäkainu A, Weckström M, Arikawa K. 2017. Characterization of the first-order 
+900 
+visual interneurons in the visual system of the bumblebee (Bombus terrestris). J Comp 
+901 
+Physiol A Neuroethol Sens Neural Behav Physiol 203:903–913. doi:10.1007/s00359-
+902 
+017-1201-9 
+903 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+30
+Schnapf JL, Nunn BJ, Meister M, Baylor DA. 1990. Visual transduction in cones of the monkey 
+904 
+Macaca fascicularis. J Physiol 427:681–713. doi:10.1113/jphysiol.1990.sp018193 
+905 
+Seelig JD, Chiappe ME, Dutta A, Osborne JE, Reiser MB, Jayaraman V. 2010. Two-photon 
+906 
+calcium imaging from head-fixed Drosophila during optomotor walking behavior. Nat 
+907 
+Methods 7:535–40. doi:10.1038/nmeth.1468 
+908 
+Serbe E, Meier M, Leonhardt A, Borst A. 2016. Comprehensive Characterization of the Major 
+909 
+Presynaptic Elements to the Drosophila OFF Motion Detector. Neuron 89:829–841. 
+910 
+doi:10.1016/j.neuron.2016.01.006 
+911 
+Shapley R, Enroth-Cugell C. 1984. Chapter 9 Visual adaptation and retinal gain controls. Prog 
+912 
+Retin Res 3:263–346. doi:10.1016/0278-4327(84)90011-7 
+913 
+Shinomiya K, Huang G, Lu Z, Parag T, Xu CS, Aniceto R, Ansari N, Cheatham N, Lauchie S, 
+914 
+Neace E, Ogundeyi O, Ordish C, Peel D, Shinomiya A, Smith C, Takemura S, Talebi I, 
+915 
+Rivlin PK, Nern A, Scheffer LK, Plaza SM, Meinertzhagen IA. 2019. Comparisons 
+916 
+between the ON- and OFF-edge motion pathways in the Drosophila brain. eLife 
+917 
+8:e40025. doi:10.7554/eLife.40025 
+918 
+Shinomiya K, Karuppudurai T, Lin TY, Lu Z, Lee CH, Meinertzhagen IA. 2014. Candidate neural 
+919 
+substrates for off-edge motion detection in drosophila. Curr Biol. 
+920 
+doi:10.1016/j.cub.2014.03.051 
+921 
+Silies M, Gohl DM, Clandinin TR. 2014. Motion-Detecting Circuits in Flies: Coming into View. 
+922 
+Annu Rev Neurosci 37:307–327. doi:10.1146/annurev-neuro-071013-013931 
+923 
+Silies M, Gohl DM, Fisher YE, Freifeld L, Clark DA, Clandinin TR. 2013. Modular Use of 
+924 
+Peripheral Input Channels Tunes Motion-Detecting Circuitry. Neuron. 
+925 
+doi:10.1016/j.neuron.2013.04.029 
+926 
+Strother JA, Nern A, Reiser MB. 2014. Direct observation of on and off pathways in the 
+927 
+drosophila visual system. Curr Biol. doi:10.1016/j.cub.2014.03.017 
+928 
+Strother JA, Wu ST, Wong AM, Nern A, Rogers EM, Le JQ, Rubin GM, Reiser MB. 2017. The 
+929 
+Emergence of Directional Selectivity in the Visual Motion Pathway of Drosophila. Neuron 
+930 
+94:168-182.e10. doi:10.1016/j.neuron.2017.03.010 
+931 
+Takemura Shin-ya, Bharioke A, Lu Z, Nern A, Vitaladevuni S, Rivlin PK, Katz WT, Olbris DJ, 
+932 
+Plaza SM, Winston P, Zhao T, Horne JA, Fetter RD, Takemura Satoko, Blazek K, Chang 
+933 
+LA, Ogundeyi O, Saunders MA, Shapiro V, Sigmund C, Rubin GM, Scheffer LK, 
+934 
+Meinertzhagen IA, Chklovskii DB. 2013. A visual motion detection circuit suggested by 
+935 
+Drosophila connectomics. Nature. doi:10.1038/nature12450 
+936 
+Takemura Shin-ya, Xu CS, Lu Z, Rivlin PK, Parag T, Olbris DJ, Plaza S, Zhao T, Katz WT, 
+937 
+Umayam L, Weaver C, Hess HF, Horne JA, Nunez-Iglesias J, Aniceto R, Chang L-A, 
+938 
+Lauchie S, Nasca A, Ogundeyi O, Sigmund C, Takemura Satoko, Tran J, Langille C, 
+939 
+Lacheur KL, McLin S, Shinomiya A, Chklovskii DB, Meinertzhagen IA, Scheffer LK. 
+940 
+2015. Synaptic circuits and their variations within different columns in the visual system 
+941 
+of Drosophila. Proc Natl Acad Sci 112:13711–13716. doi:10.1073/pnas.1509820112 
+942 
+Takemura SY, Nern A, Chklovskii DB, Scheffer LK, Rubin GM, Meinertzhagen IA. 2017. The 
+943 
+comprehensive connectome of a neural substrate for ‘ON’ motion detection in 
+944 
+Drosophila. eLife. doi:10.7554/eLife.24394 
+945 
+Tan L, Zhang KX, Pecot MY, Nagarkar-Jaiswal S, Lee PT, Takemura SY, McEwen JM, Nern A, 
+946 
+Xu S, Tadros W, Chen Z, Zinn K, Bellen HJ, Morey M, Zipursky SL. 2015. Ig Superfamily 
+947 
+Ligand and Receptor Pairs Expressed in Synaptic Partners in Drosophila. Cell 
+948 
+163:1756–1769. doi:10.1016/j.cell.2015.11.021 
+949 
+Timofeev K, Joly W, Hadjieconomou D, Salecker I. 2012. Localized netrins act as positional 
+950 
+cues to control layer-specific targeting of photoreceptor axons in drosophila. Neuron 
+951 
+75:80–93. doi:10.1016/j.neuron.2012.04.037 
+952 
+Yang HH, Clandinin TR. 2018. Elementary Motion Detection in Drosophila : Algorithms and 
+953 
+Mechanisms. Annu Rev Vis Sci 4:143–163. doi:10.1146/annurev-vision-091517-034153 
+954 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+31
+Yang HHH, St-Pierre F, Sun X, Ding X, Lin MZZ, Clandinin TRR. 2016. Subcellular Imaging of 
+955 
+Voltage and Calcium Signals Reveals Neural Processing In Vivo. Cell 166:245–257. 
+956 
+doi:10.1016/j.cell.2016.05.031 
+957 
+ 
+ 
+958 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+32
+Supplementary figures 
+959 
+ 
+960 
+ 
+961 
+ 
+962 
+Figure S1: L1 is required for ON behavior across a range of contrasts. (A) Turning responses of the controls 
+(gray) and L1-silenced flies (orange) in response to the moving ON edges of different contrasts, ranging from 11% 
+to 100%. (B) Peak turning velocities quantified during the motion period, *p < 0.05, ***p < 0.01, ***p < 0.001, two-
+tailed Student’s t tests against both controls. Sample sizes are n = 9 (UAS-shits/+, L1c202a >>shits) and n = 5 (L1c202a-
+Gal4/+). (C) Turning velocity time traces of the controls and L3-silenced flies in response to the moving ON edges 
+of different contrasts, ranging from 9% to 36%. (D) Peak turning velocities quantified during the motion period, *p < 
+0.05, two-tailed Student’s t tests against both controls. Sample sizes are n = 8 (UAS-shits/+), n = 8 (L1c202a >>shits) 
+and n = 5 (L1c202a -Gal4/+). Traces and plots show mean ± SEM. The gray box region in (A) and (C) indicates motion 
+duration. 
+ 
+963 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 
+ 
+33
+Figure S2: L1 and L2 together are required for ON behavior across a range of contrasts. (A) Turning velocity 
+time traces of the Gal4 control (gray) and L2-silenced flies (purple) in response to the moving ON edges of different 
+contrasts, ranging from 11% to 100%. (B) Peak turning velocities quantified during the motion period. Sample sizes 
+are n = 9 (UAS-shits/+), n = 8 (L221Dhh >>shits) and n = 8 (L221Dhh-Gal4/+). (C) Turning velocity time traces of the Gal4 
+control and L1,L2-silenced flies (brown) in response to the moving ON edges of different contrasts, ranging from 
+11% to 100%. (D) Peak turning velocities quantified during the motion period, *p < 0.05, **p < 0.01, ***p < 0.001, 
+two-tailed Student’s t tests against both controls. Sample sizes are n = 9 (UAS-shits/+),n = 8 (L1,L2 >>shits) and n = 
+9 (L1,L2 -Gal4/+). Traces and plots show mean ± SEM. The gray box region in (A) and (C) indicates motion duration. 
+ 
+ 
+964 
+.
+CC-BY 4.0 International license
+available under a
+(which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made 
+The copyright holder for this preprint
+this version posted November 5, 2021. 
+; 
+https://doi.org/10.1101/2021.11.03.467156
+doi: 
+bioRxiv preprint 

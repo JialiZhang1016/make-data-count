@@ -1,0 +1,2879 @@
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+© Author(s) 2022. This work is distributed under
+the Creative Commons Attribution 4.0 License.
+Research article
+Factors affecting precipitation formation and
+precipitation susceptibility of marine stratocumulus
+with variable above- and below-cloud aerosol
+concentrations over the Southeast Atlantic
+Siddhant Gupta1,2, Greg M. McFarquhar1,2, Joseph R. O’Brien3, Michael R. Poellot3, David J. Delene3,
+Rose M. Miller4, and Jennifer D. Small Griswold5
+1Cooperative Institute for Severe and High Impact Weather Research and Operations,
+University of Oklahoma, Norman, OK, USA
+2School of Meteorology, University of Oklahoma, Norman, OK, USA
+3Department of Atmospheric Sciences, University of North Dakota, Grand Forks, ND, USA
+4Department of Atmospheric Sciences, University of Illinois at Urbana-Champaign, Urbana, IL, USA
+5Department of Meteorology, University of Hawai’i at Manoa, Honolulu, HI, USA
+Correspondence: Siddhant Gupta (sid@ou.edu)
+Received: 11 August 2021 – Discussion started: 9 September 2021
+Revised: 26 January 2022 – Accepted: 4 February 2022 – Published: 2 March 2022
+Abstract. Aerosol–cloud–precipitation interactions (ACIs) provide the greatest source of uncertainties in pre-
+dicting changes in Earth’s energy budget due to poor representation of marine stratocumulus and the associated
+ACIs in climate models. Using in situ data from 329 cloud proﬁles across 24 research ﬂights from the NASA Ob-
+seRvations of Aerosols above CLouds and their intEractionS (ORACLES) ﬁeld campaign in September 2016,
+August 2017, and October 2018, it is shown that contact between above-cloud biomass burning aerosols and
+marine stratocumulus over the Southeast Atlantic Ocean was associated with precipitation suppression and a de-
+crease in the precipitation susceptibility (So) to aerosols. The 173 “contact” proﬁles with aerosol concentration
+(Na) greater than 500 cm−3 within 100 m above cloud tops had a 50 % lower precipitation rate (Rp) and a 20 %
+lower So, on average, compared to 156 “separated” proﬁles with Na less than 500 cm−3 up to at least 100 m
+above cloud tops.
+Contact and separated proﬁles had statistically signiﬁcant differences in droplet concentration (Nc) and ef-
+fective radius (Re) (95 % conﬁdence intervals from a two-sample t test are reported). Contact proﬁles had 84
+to 90 cm−3 higher Nc and 1.4 to 1.6 µm lower Re compared to separated proﬁles. In clean boundary layers
+(below-cloud Na less than 350 cm−3), contact proﬁles had 25 to 31 cm−3 higher Nc and 0.2 to 0.5 µm lower Re.
+In polluted boundary layers (below-cloud Na exceeding 350 cm−3), contact proﬁles had 98 to 108 cm−3 higher
+Nc and 1.6 to 1.8 µm lower Re. On the other hand, contact and separated proﬁles had statistically insigniﬁcant
+differences between the average liquid water path, cloud thickness, and meteorological parameters like surface
+temperature, lower tropospheric stability, and estimated inversion strength. These results suggest the changes
+in cloud microphysical properties were driven by ACIs rather than meteorological effects, and adjustments to
+existing relationships between Rp and Nc in model parameterizations should be considered to account for the
+role of ACIs.
+Published by Copernicus Publications on behalf of the European Geosciences Union.
+2770
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+1
+Introduction
+Clouds drive the global hydrological cycle with an an-
+nual average precipitation rate of 3 mm d−1 over the oceans
+(Behrangi et al., 2014). Marine stratocumulus cloud (MSC)
+is the most common cloud type with an annual coverage of
+22 % over the ocean surface (Eastman et al., 2011). These
+low-level, boundary layer clouds typically exist over subtrop-
+ical oceans in regions with large-scale subsidence such as
+the Southeast Atlantic Ocean (Klein and Hartmann, 1993).
+MSCs have higher reﬂectivity (albedo) than the ocean sur-
+face, which results in a strong, negative shortwave cloud ra-
+diative forcing (CRF) with a weak and positive longwave
+CRF (Oreopoulos and Rossow, 2011).
+Low-cloud cover in the subsidence regions is negatively
+correlated with sea surface temperature (SST) (Eastman et
+al., 2011; Wood and Hartmann, 2006). CRF is thus sensitive
+to changes in SST, but there is a large spread in model es-
+timates of CRF sensitivity (Bony and Dufresne, 2005). This
+provides uncertainty in the model estimates of Earth’s en-
+ergy budget in future climate scenarios (Trenberth and Fa-
+sullo, 2009). Uncertainty in the parameterization of bound-
+ary layer aerosol, cloud, and precipitation processes con-
+tributes to model uncertainties (Ahlgrimm and Forbes, 2014;
+Stephens et al., 2010).
+MSC CRF is regulated by cloud processes that depend
+on cloud microphysical properties, like droplet concentration
+(Nc), effective radius (Re), and liquid water content (LWC),
+and macrophysical properties, like cloud thickness (H) and
+liquid water path (LWP). These cloud properties can de-
+pend on the concentration, composition, and size distribu-
+tions of aerosols, which act as cloud condensation nuclei.
+Under conditions of constant LWC, increases in aerosol con-
+centration (Na) can increase Nc and decrease Re, strengthen-
+ing the shortwave CRF (Twomey, 1974, 1977). A decrease
+in droplet sizes in polluted clouds can inhibit droplet growth
+from collision–coalescence and suppress precipitation inten-
+sity, resulting in lower precipitation rate (Rp), higher LWP,
+and increased cloud lifetime (Albrecht, 1989). In combina-
+tion, these aerosol–cloud–precipitation interactions (ACIs)
+and the resulting cloud adjustments lead to an effective ra-
+diative forcing, termed ERFaci (Boucher et al., 2013).
+Satellite retrievals of Re and cloud optical thickness (τ)
+can be used to estimate Nc and LWP using the adiabatic as-
+sumption (Boers et al., 2006; Wood and Hartmann, 2006;
+Bennartz, 2007). LWC increases linearly with height in adi-
+abatic clouds, and τ is parameterized as a function of Nc
+and LWP (ταN1/3
+c
+LWP5/6) (Brenguier et al., 2000). Since
+τ has greater sensitivity to LWP compared to Nc, assum-
+ing constant LWP under different aerosol conditions can
+lead to underestimation of the cloud albedo susceptibility
+to aerosol perturbations (Platnick and Twomey, 1994; Mc-
+Comiskey and Feingold, 2012).
+LWP can have a positive or negative response to increas-
+ing Nc due to aerosols (Toll et al., 2019). The LWP response
+is regulated by environmental conditions (e.g., lower tro-
+pospheric stability (LTS), boundary layer depth (HBL), and
+relative humidity), cloud particle sizes (e.g., represented by
+Re), Rp, and by Nc and LWP themselves (Chen et al., 2014;
+Gryspeerdt et al., 2019; Toll et al., 2019; Possner et al.,
+2020). Accurate estimation of the LWP response to aerosol
+perturbations is important for regional and global estimates
+of ERFaci (Douglas and L’Ecuyer, 2019, 2020).
+Droplet evaporation associated with cloud-top entrainment
+and precipitation constitutes the two major sinks of LWC in
+MSC. Smaller droplets associated with higher Nc or Na evap-
+orate more readily, which leads to greater cloud-top evapora-
+tive cooling and a negative LWP response (Hill et al., 2008).
+The LWP response to the evaporation–entrainment feedback
+(Xue and Feingold, 2006; Small et al., 2009) also depends on
+above-cloud humidity (Ackerman et al., 2004). Precipitation
+susceptibility (So) to aerosol-induced changes in cloud prop-
+erties is related to the change in Rp due to aerosol-induced
+changes in Nc and is a function of LWP or H (Feingold and
+Seibert, 2009).
+The magnitude of So depends on precipitation formation
+processes like collision–coalescence which are parameter-
+ized in models using mass transfer rates, such as the auto-
+conversion rate (SAUTO) and the accretion rate (SACC) (Mor-
+rison and Gettelman, 2008; Geoffroy et al., 2010). Autocon-
+version describes the process of collisions between cloud
+droplets that coalesce to form drizzle drops which initiate
+precipitation. Accretion refers to collisions between cloud
+droplets and drizzle drops which lead to larger drizzle drops
+and greater precipitation intensity. The variability in So as a
+function of LWP or H depends on the cloud type and the
+ratio of SACC versus SAUTO (Wood et al., 2009; Jiang et al.,
+2010; Sorooshian et al., 2010).
+Recent ﬁeld campaigns focused on studying ACIs over
+the Southeast Atlantic Ocean because unique meteorolog-
+ical conditions are present in the region (Zuidema et al.,
+2016; Redemann et al., 2021). Biomass burning aerosols
+from southern Africa are lofted into the free troposphere (Gui
+et al., 2021) and transported over the Southeast Atlantic by
+mid-tropospheric winds where the aerosols overlay an exten-
+sive MSC deck that exists off the coast of Namibia and An-
+gola (Adebiyi and Zuidema, 2016; Devasthale and Thomas,
+2011). The above-cloud aerosol plume is associated with ele-
+vated water vapor content (Pistone et al., 2021), which inﬂu-
+ences cloud-top humidity and dynamics following the mech-
+anisms discussed by Ackerman et al. (2004). In situ obser-
+vations of cloud and aerosol properties were collected over
+the Southeast Atlantic during the NASA ObseRvations of
+Aerosols above CLouds and their intEractionS (ORACLES)
+ﬁeld campaign during three Intensive Observation Periods
+(IOPs) in September 2016, August 2017, and October 2018
+(Redemann et al., 2021).
+During ORACLES, the aerosol layer was comprised
+of shortwave-absorbing aerosols (500 nm single-scattering
+albedo of about 0.83), with above-cloud aerosol optical depth
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2771
+up to 0.42 (Pistone et al., 2019; LeBlanc et al., 2020). The
+sign of the forcing due to shortwave absorption by the aerosol
+layer depends on the location of aerosols in the vertical col-
+umn and the albedo of the underlying clouds (Cochrane et al.,
+2019). Warming aloft due to aerosol absorption of solar radi-
+ation strengthens the temperature inversion, which decreases
+dry air entrainment into clouds, increases LWP and cloud
+albedo, and decreases the shortwave CRF (Wilcox, 2010).
+The net radiative forcing due to the aerosol and cloud lay-
+ers thus depends on aerosol-induced changes in Nc, Re, and
+LWP and the resulting changes in τ. Sinks of Nc and LWP
+like precipitation and entrainment mixing lead to uncertain-
+ties in satellite retrievals of Nc, which pose the biggest chal-
+lenge in the use of satellite retrievals to study the aerosol im-
+pact on Nc (Quaas et al., 2020). This motivates observational
+studies of ACIs that examine Nc and LWP under different
+aerosol and meteorological conditions.
+During the 2016 IOP, variable vertical displacement (0 to
+2000 m) was observed between above-cloud aerosols and the
+MSC (Gupta et al., 2021; hereafter G21). Instances of con-
+tact and separation between the aerosol and cloud layers were
+associated with differences in the above- and below-cloud
+Na, water vapor mixing ratio (wv), and cloud-top entrain-
+ment processes. These differences led to changes in Nc, Re,
+and LWC and their vertical proﬁles (G21). In this study, the
+response of the MSC to above- and below-cloud aerosols is
+further examined using data from all three ORACLES IOPs,
+and precipitation formation and So are evaluated as a func-
+tion of H.
+The paper is organized as follows. In Sect. 2, the ORA-
+CLES observations are discussed, along with the data qual-
+ity assurance procedures (additional details are in the Sup-
+plement). In Sect. 3, the calculation of cloud properties is de-
+scribed. In Sect. 4, the inﬂuence of aerosols on Nc, Re, and
+LWC is examined by comparing the parameters for MSC in
+contact or separated from the above-cloud aerosol layer. In
+Sect. 5, the changes in precipitation formation due to aerosol-
+induced microphysical changes are examined. In Sect. 6, Nc,
+Rp, and So are examined as a function of H and the above-
+and below-cloud Na. In Sect. 7, the meteorological condi-
+tions are examined using reanalysis data. In Sect. 8, the con-
+clusions are summarized with directions for future work.
+2
+Observations
+The ORACLES IOPs were based at Walvis Bay, Namibia
+(23◦S, 14.6◦E), in September 2016, and at São Tomé and
+Príncipe (0.3◦N, 6.7◦E) in August 2017 and October 2018.
+The data analyzed in this study were collected during the
+three IOPs (Table 1 and Fig. 1): six P-3 research ﬂights
+(PRFs) from 6 to 25 September 2016 with cloud sampling
+conducted between 1◦W to 12◦E and 9 to 20◦S; seven PRFs
+from 12 to 28 August 2017 with cloud sampling conducted
+between 8◦W to 6◦E and 2 to 15◦S; and 11 PRFs from
+Figure 1. PRF tracks from ORACLES IOPs with base of operations
+and cloud sampling locations (tracks for multiple 2017 and 2018
+PRFs overlap along 5◦E).
+27 September to 23 October 2018 with cloud sampling con-
+ducted between 3◦W to 9◦E and 1◦N to 15◦S. These PRFs
+were selected because in situ cloud sampling was conducted
+during at least three vertical proﬁles through the cloud layer
+(Table 1).
+Three PRFs from the 2016 IOP had overlapping tracks
+when the P-3B aircraft ﬂew northwest from 23◦S, 13.5◦E
+toward 10◦S, 0◦E and returned along the same track (Fig. 1).
+The 2017 and 2018 IOPs had 10 PRFs with overlapping ﬂight
+tracks when the aircraft ﬂew south from 0◦N, 5◦E toward
+15◦S, 5◦E and returned along the same track. PRFs with
+overlapping tracks acquired statistics for model evaluation
+(Doherty et al., 2022), while the other PRFs targeted speciﬁc
+locations based on meteorological conditions (Redemann et
+al., 2021).
+During ORACLES, the NASA P-3B aircraft was equipped
+with in situ probes. The data analyzed in this study were
+collected using Cloud Droplet Probes (CDPs) (Lance et al.,
+2010), a cloud and aerosol spectrometer (CAS) on the cloud,
+aerosol and precipitation spectrometer (Baumgardner et al.,
+2001), a phase Doppler interferometer (PDI) (Chuang et al.,
+2008), a two-dimensional stereo probe (2D-S) (Lawson et al.,
+2006), a high-volume precipitation sampler (HVPS-3) (Law-
+son et al., 1998), a King hot wire (King et al., 1978), and a
+Passive Cavity Aerosol Spectrometer Probe (PCASP) (Cai et
+al., 2013). A single CDP was used during the 2016 IOP (here-
+after CDP-A), a second CDP (hereafter CDP-B) was added
+for the 2017 and 2018 IOPs, and CDP-A was replaced by a
+different CDP (hereafter CDP-C) for the 2018 IOP.
+The CAS, CDP, King hot wire, and PCASP data were pro-
+cessed at the University of North Dakota using the Airborne
+Data Processing and Analysis processing package (Delene,
+2011). The PDI data were processed at the University of
+Hawaii. The 2D-S and HVPS-3 data were processed using
+the University of Illinois/Oklahoma Optical Array Probe Pro-
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2772
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Table 1. The number of cloud proﬁles (n) for P-3 research ﬂights (PRFs) analyzed in the study, number of contact and separated proﬁles
+with sampling time in parentheses, and instruments that provided valid samples of droplets with D<50 µm (instrument used for analysis is
+in bold).
+PRF number and date
+n
+Contact
+Separated
+Instruments
+PRF05Y16: Sep 6
+24
+13 (857 s)
+11 (470 s)
+CAS, PDI
+PRF07Y16: Sep 10
+9
+0 (0 s)
+9 (461 s)
+CAS, PDI
+PRF08Y16: Sep 12
+8
+1 (32 s)
+7 (472 s)
+CAS, PDI
+PRF09Y16: Sep 14
+8
+0 (0 s)
+8 (574 s)
+CAS, PDI
+PRF11Y16: Sep 20
+13
+13 (669 s)
+0 (0 s)
+CAS, PDI
+PRF13Y16: Sep 25
+9
+3 (148 s)
+6 (363 s)
+CAS, PDI
+PRF01Y17: Aug 12
+15
+14 (499 s)
+1 (25 s)
+CAS, CDP-B
+PRF02Y17: Aug 13
+17
+17 (754 s)
+0 (0 s)
+CAS, CDP-B
+PRF03Y17: Aug 15
+12
+12 (272 s)
+0 (0 s)
+CAS, CDP-B
+PRF04Y17: Aug 17
+7
+7 (127 s)
+0 (0 s)
+CAS, CDP-B
+PRF07Y17: Aug 21
+13
+9 (188 s)
+4 (76 s)
+CAS, CDP-B
+PRF08Y17: Aug 24
+9
+9 (324 s)
+0 (0 s)
+CAS, CDP-B
+PRF10Y17: Aug 28
+11
+7 (496 s)
+4 (168 s)
+CAS, CDP-B
+PRF01Y18: Sep 27
+21
+0 (0 s)
+21 (933 s)
+CAS, CDP-B, CDP-C
+PRF02Y18: Sep 30
+13
+7 (337 s)
+6 (183 s)
+CAS, CDP-B, CDP-C
+PRF04Y18: Oct 3
+5
+0 (0 s)
+5 (137 s)
+CAS, CDP-B, CDP-C
+PRF05Y18: Oct 5
+4
+4 (109 s)
+0 (0 s)
+CAS, CDP-B, CDP-C
+PRF06Y18: Oct 7
+10
+10 (337 s)
+0 (0 s)
+CAS, CDP-B, CDP-C
+PRF07Y18: Oct 10
+13
+11 (472 s)
+2 (153 s)
+CDP-B, CDP-C
+PRF08Y18: Oct 12
+19
+0 (0 s)
+19 (773 s)
+CDP-B, CDP-C
+PRF09Y18: Oct 15
+30
+17 (766 s)
+13 (365 s)
+CDP-B, CDP-C
+PRF11Y18: Oct 19
+12
+0 (0 s)
+12 (731 s)
+CDP-B, CDP-C
+PRF12Y18: Oct 21
+18
+0 (0 s)
+18 (833 s)
+CDP-B, CDP-C
+PRF13Y18: Oct 23
+29
+19 (777 s)
+10 (366 s)
+CDP-B, CDP-C
+Total (2016)
+71
+30 (1706 s)
+41 (2340 s)
+Total (2017)
+84
+75 (2660 s)
+9 (269 s)
+Total (2018)
+174
+68 (2798 s)
+106 (4474 s)
+Total
+329
+173 (7164 s)
+156 (7083 s)
+cessing Software (McFarquhar et al., 2018). The data pro-
+cessing procedures followed to reject artifacts were summa-
+rized by G21. Comparisons between the cloud probe datasets
+are described in the Supplement.
+The King hot wire was used to sample LWC (here-
+after King LWC). The PCASP was used to sample the
+accumulation-mode aerosols sized from 0.1 to 3.0 µm. The
+CAS, CDP, PDI, 2D-S, and HVPS-3 collectively sampled
+the number distribution function N(D) for particles with
+diameter D from 0.5 to 19200 µm. The size distribution
+covering the complete droplet size range was determined
+by merging the N(D) for 3<D<50 µm with the N(D)
+for 50<D<1050 µm from the 2D-S and the N(D) for
+1050<D<19200 µm from the HVPS-3. The HVPS-3 sam-
+pled droplets with D>1050 µm for a single 1 Hz data sam-
+ple across the PRFs analyzed in this study. Measurement
+uncertainties in droplet sizes were expected to be within
+20 % for droplets with D>5 µm from the CAS and the CDP,
+D>50 µm from the 2D-S, and D>750 µm from the HVPS-3
+(Baumgardner et al., 2017).
+During each PRF, at least two independent measurements
+of N(D) were made for 3<D<50 µm using the CAS, the
+PDI, or a CDP (Table 1). The differences between the Nc
+and LWC derived from the CAS, PDI, and CDP N(D)
+were quantiﬁed to determine if these differences were within
+measurement uncertainties. The LWC estimates from the
+CAS, PDI, and CDP were compared with the adiabatic
+LWC (LWCad), which represents the theoretical maximum
+for LWC (Brenguier et al., 2000). The N(D) for droplets
+with D<50 µm was determined using the probe which con-
+sistently had the LWC with better agreement with the LWCad
+during each IOP (see Supplement). LWCad can be used to
+compare LWC from different probes since it is derived using
+environmental conditions and does not depend on the cloud
+probe datasets. The relative differences between the LWCad
+and the LWC estimates from cloud probes provide a measure
+of the uncertainty associated with using one probe over the
+other for data analysis.
+The differences between in-cloud datasets from different
+instruments were determined using a two-sample t test. The
+95 % conﬁdence intervals (CIs) between parameter means
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2773
+were reported if the differences were statistically signiﬁ-
+cant. During the 2017 IOP, the CAS and the CDP-B sampled
+droplets with D<50 µm. The CDP-B LWC was higher than
+the CAS LWC (95 % CIs: 0.11 to 0.12 g m−3 higher), and
+the average CDP-B LWC (0.18 g m−3) had better agreement
+with the average LWCad (0.24 g m−3) compared to the av-
+erage CAS LWC (0.08 g m−3). Thus, the CDP-B N(D) was
+used to represent the N(D) for droplets with D<50 µm for
+the 2017 IOP.
+Similar results were obtained when the CAS LWC and the
+CDP-B LWC were compared with the LWCad for the 2018
+IOP. During the 2018 IOP, the CDP-C was mounted at a dif-
+ferent location relative to the aircraft wing compared to the
+CAS and CDP-B, and the positions of CDP-B and CDP-C
+were switched after 10 October 2018. O’Brien et al. (2022)
+found the CDP mounting positions had only a 6 % impact
+on the calculation of Nc, and the average CDP-B LWC and
+CDP-C LWC were within 0.02 g m−3. To maintain consis-
+tency with the 2017 IOP, data from the CDP mounted next
+to the CAS were used for droplets with D<50 µm for the
+2018 IOP (except on 15 October 2018 when the CDP-C had
+a voltage issue).
+During the 2016 IOP, measurements from the CDP-A were
+unusable for all PRFs due to an optical misalignment issue.
+Nevertheless, the CAS and the PDI sampled droplets with
+3<D<50 µm. On average, the PDI LWC was higher than the
+CAS LWC (95 % CIs: 0.20 to 0.21 g m−3 higher). Since the
+PDI LWC was greater than the LWCad (95 % CIs: 0.04 to
+0.06 g m−3 higher), it was hypothesized that the PDI LWC
+was an overestimate of the actual LWC. Thus, the CAS N(D)
+was used to represent the N(D) for droplets with D<50 µm
+for the 2016 IOP.
+The 2D-S has two channels which concurrently sample
+the cloud volume. Nc and LWC were derived using data
+from the horizontal channel (NH and LWCH) and the ver-
+tical channel (NV and LWCV). NH and LWCH were used
+for the 2016 IOP because NV and LWCV were not available
+due to soot deposition on the inside of the receive-side mir-
+ror of the vertical channel. NH and NV as well as LWCH
+and LWCV were strongly correlated for the 2017 and 2018
+IOPs, with Pearson’s correlation coefﬁcient R ≥0.92 and the
+best-ﬁt slope ≥0.90. The high correlation values suggest that
+little difference would have resulted from using the average
+of the two 2D-S channels. To maintain consistency with the
+2016 IOP, NH and LWCH were used for all three IOPs.
+3
+Cloud properties
+The N(D) from the merged droplet size distribution was
+integrated to calculate Nc. The 1 Hz data samples with
+Nc>10 cm−3 and King LWC >0.05 g m−3 were deﬁned as
+in-cloud measurements (G21). The PCASP N(D) was used
+to determine the out-of-cloud Na. In situ cloud sampling dur-
+ing ORACLES included ﬂight legs when the P-3B aircraft as-
+cended or descended through the cloud layer (hereafter cloud
+proﬁles). Data from 329 cloud proﬁles with just under 4 h of
+cloud sampling were examined (Table 1).
+For every cloud proﬁle, the cloud top height (ZT) was
+deﬁned as the highest altitude with Nc>10 cm−3 and King
+LWC >0.05 g m−3 (Table 2). The average ZT during OR-
+ACLES was 1038 ± 270 m, where the uncertainty estimate
+refers to the standard deviation. The cloud base height (ZB)
+was deﬁned as the lowest altitude with Nc>10 cm−3 and
+King LWC >0.05 g m−3. In decoupled boundary layers, a
+layer of cumulus can be present below the stratocumulus
+layer with a gap between the cloud layers (Wood, 2012).
+Measurements from stratocumulus were used in this study,
+and ZB for the stratocumulus layer was identiﬁed as the al-
+titude above which the King LWC increased without gaps
+greater than 25 m in the cloud sampling up to ZT.
+The difference between ZT and ZB was deﬁned as H.
+Due to aerosol-induced changes in entrainment and bound-
+ary layer stability, the aerosol impact on H and ZT can have
+the strongest inﬂuence on LWP adjustments associated with
+ACIs (Toll et al., 2019). Thus, the inﬂuence of ACIs on pre-
+cipitation formation and So was examined as a function of
+H. Data collected during incomplete proﬁles of the stratocu-
+mulus or while sampling open-cell clouds (for example, on
+2 October 2018) were excluded because of difﬁculties with
+estimating H for such proﬁles.
+For each 1 Hz in-cloud data sample, the droplet size dis-
+tribution was used to calculate Re following Hansen and
+Travis (1974), where
+Re (h) =
+∞
+Z
+3
+D3 N (D,h) dD/
+∞
+Z
+3
+2D2 N (D,h) dD.
+(1)
+Based on the aircraft speed, 1 Hz data samples corresponded
+to roughly 5 m intervals in the vertical direction. LWC was
+calculated as
+LWC (h) = π ρw/6
+∞
+Z
+3
+D3 N (D,h) dD,
+(2)
+where ρw is the density of liquid water, and h is height in
+cloud above cloud base. LWC and King LWC were inte-
+grated over h from ZB to ZT to calculate LWP and King
+LWP, respectively. τ was calculated as
+βext (h) =
+∞
+Z
+3
+Qext π/4D2 N (D,h) dD,
+τ =
+ZT
+Z
+ZB
+βext (h) dh,
+(3)
+where βext is the cloud extinction, and Qext is the extinction
+coefﬁcient (approximately 2 for cloud droplets, assuming ge-
+ometric optics apply for visible wavelengths) (Hansen and
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2774
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Table 2. Range of time, latitude, longitude, ZT, and cloud top pressure (PT) for PRFs in Table 1.
+PRF
+Time (UTC)
+Latitude (◦S)
+Longitude (◦E)
+ZT (m)
+PT (mb)
+PRF05Y16: Sep 6
+08:46–12:35
+10.2–19.7
+9.00–11.9
+359–1002
+904–976
+PRF07Y16: Sep 10
+09:09–12:36
+14.1–18.7
+4.00–8.60
+990–1201
+885–908
+PRF08Y16: Sep 12
+11:16–12:26
+9.70–12.9
+−0.30–3.00
+1146–1226
+881–890
+PRF09Y16: Sep 14
+09:36–14:16
+16.4–18.1
+7.50–9.00
+635–824
+922–945
+PRF11Y16: Sep 20
+08:44–13:11
+15.7–17.3
+8.90–10.5
+432–636
+941–966
+PRF13Y16: Sep 25
+10:59–13:51
+10.9–14.3
+0.80–4.30
+729–1124
+890–934
+PRF01Y17: Aug 12
+11:30–15:01
+2.41–13.0
+4.84–5.13
+748–1379
+866–933
+PRF02Y17: Aug 13
+10:15–13:07
+7.20–9.00
+4.50–5.00
+779–1384
+865–928
+PRF03Y17: Aug 15
+11:26–13.32
+9.08–15.0
+4.96–5.00
+536–1148
+887–954
+PRF04Y17: Aug 17
+12:03–16:14
+7.99–9.43
+−7.0 to −12.8
+1547–1782
+827–848
+PRF07Y17: Aug 21
+13:20–16:37
+7.96–8.05
+−8.16–3.32
+1061–1491
+855–897
+PRF08Y17: Aug 24
+11:28–14:58
+4.90–14.8
+4.97–5.15
+911–2015
+801–916
+PRF10Y17: Aug 28
+11:46–13:18
+7.84–11.0
+4.89–5.01
+1070–1216
+881–897
+PRF01Y18: Sep 27
+10:07–13:11
+5.66–12.1
+4.87–5.03
+819–1169
+885–922
+PRF02Y18: Sep 30
+09:50–12:24
+6.85–8.18
+4.94–5.13
+747–840
+920–930
+PRF04Y18: Oct 3
+13:17–14:41
+−1.05–4.61
+5.00–5.06
+1137–2151
+790–888
+PRF05Y18: Oct 5
+07:22–10:09
+9.50–9.63
+5.79–6.66
+780–892
+915–928
+PRF06Y18: Oct 7
+11:04–11:29
+10.1–11.8
+5.00–5.00
+863–928
+913–918
+PRF07Y18: Oct 10
+10:16–13:31
+4.46–13.1
+4.88–5.09
+926–1329
+866–912
+PRF08Y18: Oct 12
+13:02–16:19
+1.02–4.58
+5.50–6.96
+1073–1905
+813–895
+PRF09Y18: Oct 15
+10:27–13:09
+5.25–14.1
+4.91–5.00
+693–1547
+849–937
+PRF11Y18: Oct 19
+11:58–13:00
+6.50–7.70
+8.00–9.06
+701–1276
+873–932
+PRF12Y18: Oct 21
+10:21–13:07
+4.91–13.5
+4.88–5.00
+675–983
+902–936
+PRF13Y18: Oct 23
+10:28–13:38
+3.07–5.00
+−2.65–5.00
+873–1281
+873–915
+Travis, 1974). The integrals in Eqs. (1) to (3) were converted
+to discrete sums for D>3 µm to consider the contributions of
+cloud drops and not aerosols.
+According to the adiabatic model (Brenguier et al., 2000),
+LWCad and LWPad are functions of H (the subscript “ad”
+added to represent the adiabatic equivalents). These relation-
+ships help parameterize τad as
+LWCad (h) ∝h, LWPad ∝H 2 , τad ∝(Nc)1/3 LWP5/6.
+(4)
+4
+Aerosol inﬂuence on cloud microphysics
+The MSCs over the Southeast Atlantic were overlaid by
+biomass burning aerosols from southern Africa (Adebiyi and
+Zuidema, 2016; Redemann et al., 2021), with instances of
+contact and separation between the MSC cloud tops and the
+base of the biomass burning aerosol layer (G21). Across the
+three IOPs, 173 proﬁles were conducted at locations where
+an extensive aerosol plume with Na>500 cm−3 was located
+within 100 m above ZT (hereafter contact proﬁles) (Table 1).
+156 proﬁles were conducted at locations where the level of
+Na>500 cm−3 was located at least 100 m above ZT (here-
+after separated proﬁles). About 50 % of the in situ cloud
+sampling across the three IOPs was conducted during con-
+tact proﬁles (Table 1). Due to inter-annual variability, contact
+proﬁles accounted for about 42 %, 91 %, and 39 % of the in
+situ cloud sampling during the 2016, 2017, and 2018 IOPs,
+respectively.
+The average Nc and Re for all cloud proﬁles across the
+three IOPs were 157±96 cm−3 and 8.2±2.7 µm, respectively
+(Table 3). The high proportion of contact proﬁles during the
+2017 IOP was associated with higher average Nc and lower
+average Re (229 cm−3 and 6.9 µm) compared to the 2016
+IOP (150 cm−3 and 7.0 µm) and the 2018 IOP (132 cm−3 and
+9.8 µm). It is possible that the use of CDP-B data for the 2017
+IOP contributed to the increase in average Nc relative to the
+2016 IOP. However, the difference between the average CAS
+Nc and the average CDP-B Nc for the 2017 IOP (12 cm−3)
+was lower than the difference between the average Nc for the
+2016 and 2017 IOPs (79 cm−3). The difference between the
+Nc for these IOPs was thus primarily due to the conditions
+at the cloud sampling locations. The microphysical differ-
+ences between the 2016 and 2017 IOPs were associated with
+differences in surface precipitation. Based on the W-band re-
+trievals from the Jet Propulsion Laboratory Airborne Precip-
+itation Radar Version 3 (APR-3), the 2017 IOP had fewer
+proﬁles with precipitation reaching the surface (13 %) com-
+pared to the 2016 IOP (34 %) (Dzambo et al., 2019).
+On average, contact proﬁles had signiﬁcantly higher Nc
+(95 % CIs: 84 to 90 cm−3 higher) and lower Re (95 % CIs:
+1.4 to 1.6 µm lower) compared to separated proﬁles (through-
+out the study, the term “signiﬁcant” is exclusively used to
+represent statistical signiﬁcance). The signiﬁcant differences
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2775
+Table 3. Average values for cloud properties measured during cloud proﬁles from the PRFs listed in Table 1 for each IOP. Error estimates
+represent 1 standard deviation. R between LWP estimates and H in parentheses.
+Parameter
+2016
+2017
+2018
+All
+Proﬁle count
+71
+84
+174
+329
+Nc (cm−3)
+150 ± 73
+229 ± 108
+132 ± 87
+157 ± 96
+Re (µm)
+7.0 ± 1.9
+6.9 ± 1.6
+9.8 ± 3.3
+8.2 ± 2.7
+LWC (g m−3)
+0.15 ± 0.09
+0.21 ± 0.15
+0.26 ± 0.17
+0.22 ± 0.16
+King LWC (g m−3)
+0.29 ± 0.15
+0.23 ± 0.17
+0.24 ± 0.14
+0.25 ± 0.15
+τ
+7.2 ± 3.6
+7.2 ± 8.9
+9.0 ± 7.7
+8.8 ± 7.7
+H (m)
+244 ± 83
+148 ± 92
+212 ± 116
+201 ± 108
+LWP (g m−2)
+34 ± 17 (0.75)
+37 ± 43 (0.88)
+59 ± 54 (0.83)
+48 ± 47 (0.78)
+King LWP (g m−2)
+68 ± 30 (0.80)
+37 ± 35 (0.84)
+52 ± 40 (0.89)
+52 ± 38 (0.87)
+LWPad (g m−2)
+77 ± 57 (0.97)
+51 ± 55 (0.96)
+93 ± 97 (0.94)
+79 ± 82 (0.93)
+Rp (mm h−1)
+0.02 ± 0.05
+0.02 ± 0.08
+0.10 ± 0.33
+0.06 ± 0.25
+in Nc and Re were associated with signiﬁcantly higher τ
+(95 % CIs: 0.04 to 3.06 higher) for contact proﬁles, in accor-
+dance with the Twomey effect (Twomey, 1974, 1977). These
+results were consistent with the 2016 IOP when the contact
+proﬁles had higher Nc (95 % CIs: 60 to 68 cm−3 higher),
+lower Re (95 % CIs: 1.1 to 1.3 µm lower), and higher τ (95 %
+CIs: 1.1 to 4.3 higher) (G21).
+Figure 2 shows violin plots for cloud properties as a
+function of normalized height (ZN), deﬁned as ZN = Z −
+−ZB/ZT −ZB. The violin plots include box plots and illus-
+trate the distribution of the data (Hintze and Nelson, 1998).
+The median Nc increased with ZN for ZN ≤0.25, consis-
+tent with droplet nucleation (Fig. 2a). The median Nc de-
+creased near cloud top for ZN ≥0.75 from 204 to 154 cm−3
+for contact and from 104 to 69 cm−3 for separated proﬁles.
+This is consistent with droplet evaporation associated with
+cloud-top entrainment (G21). The median Re increased with
+ZN consistent with condensational growth (Fig. 2b). There
+was a greater increase in the median Re from cloud base to
+cloud top for separated proﬁles (from 7.1 to 9.5 µm) com-
+pared to contact proﬁles (from 6.1 to 7.9 µm). This is consis-
+tent with previous observations of stronger droplet growth in
+cleaner conditions as a function of ZN (Braun et al., 2018;
+G21) and LWP (Rao et al., 2020). Statistically insigniﬁcant
+differences between the average H for contact and separated
+proﬁles suggest that the differential droplet growth was as-
+sociated with differences in cloud processes like collision–
+coalescence (further discussed in Sect. 5).
+The LWC and LWP responses to changes in aerosol con-
+ditions were examined because the adiabatic model suggests
+ταLWP5/6 (Eq. 4) (Brenguier et al., 2000). Contact proﬁles
+had signiﬁcantly higher LWC, but the relative increase was
+less than 10 % (Table 4). LWC was divided into rainwater
+content (RWC) and cloud water content (CWC) based on
+droplet size. Droplets with D>50 µm were deﬁned as driz-
+zle (Abel and Boutle, 2012; Boutle et al., 2014), and the
+total drizzle mass was deﬁned as RWC. The droplet mass
+Figure 2. Kernel density estimates (distribution of the data indi-
+cated by width of shaded area) and box plots showing the 25th, 50th
+(white circle), and 75th percentiles for (a) Nc, (b) Re, (c) CWC, and
+(d) RWC as a function of ZN for contact and separated proﬁles.
+for D<50 µm was deﬁned as CWC. Rainwater path (RWP)
+and (cloud water path) CWP were deﬁned as the vertical in-
+tegrals of RWC and CWC, respectively. The median CWC
+increased with ZN but decreased over the top 10 % of the
+cloud layer for contact proﬁles and over the top 20 % of
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2776
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+the cloud layer for separated proﬁles, consistent with cloud-
+top entrainment (Fig. 2c). For contact proﬁles, the median
+RWC increased with ZN before decreasing for ZN ≥0.75.
+The median RWC for separated proﬁles varied with ZN.
+The bottom half of the cloud layer had higher median val-
+ues (up to 8.7 × 10−3 g m−3) compared to the top half (up to
+7.0 × 10−3 g m−3) (Fig. 2d).
+For contact proﬁles, there was a signiﬁcant increase in the
+average CWC (10 %) and a signiﬁcant decrease in the aver-
+age RWC (60 %) compared to separated proﬁles (Table 4).
+Contact proﬁles also had signiﬁcantly lower average RWP
+with insigniﬁcant differences for average CWP (Table 4).
+Contact proﬁles were located in deeper boundary layers with
+signiﬁcantly higher ZB and ZT compared to separated pro-
+ﬁles. However, the decrease in RWC cannot be attributed to
+differences in H or LWP (Kubar et al., 2009) because of sta-
+tistically similar H and LWP for contact and separated pro-
+ﬁles, on average (Table 4). These results show that instances
+of contact between above-cloud aerosols and the MSC were
+associated with more numerous and smaller cloud droplets
+and weaker droplet growth compared to instances of separa-
+tion between the above-cloud aerosols and the MSC.
+5
+Precipitation formation and H
+The precipitation rate Rp was calculated using the drizzle
+water content and fall velocity u(D) following Abel and
+Boutle (2012):
+Rp = π/6
+∞
+Z
+50 µm
+n(D)D3u(D)dD,
+(5)
+with fall velocity relationships from Rogers and Yau (1989)
+used in the computation.
+Contact proﬁles had signiﬁcantly lower Rp compared to
+separated proﬁles (95 % CIs: 0.03 to 0.05 mm h−1 lower).
+This suggests contact between the MSC and above-cloud
+biomass burning aerosols was associated with precipitation
+suppression. LWP and H impact the sign and magnitude of
+the precipitation changes in response to changes in aerosol
+conditions (Kubar et al., 2009; Christensen and Stephens,
+2012). Thus, cloud and precipitation properties were eval-
+uated as a function of H to examine the aerosol-induced
+changes in precipitation formation.
+The 95th percentile was used to represent the maximum
+value of a variable. For example, the 95th percentile of
+Rp (denoted by Rp95) represents the maximum Rp during
+a cloud proﬁle. Although more numerous contact proﬁles
+were drizzling compared to separated proﬁles, the latter had
+more numerous proﬁles with high precipitation intensity.
+For instance, 114 out of 173 contact and 95 out of 156
+separated proﬁles were drizzling with Rp95>0.01 mm h−1,
+out of which 36 contact and 40 separated proﬁles had
+Rp95>0.1 mm h−1, and only 1 contact and 9 separated pro-
+ﬁles had Rp95>1 mm h−1 (Fig. 3a). This is consistent with
+radar retrievals of surface Rp<1 mm h−1 for over 93 % of the
+radar proﬁles from 2016 and 2017 (Dzambo et al., 2019).
+5.1
+Microphysical properties
+On
+average,
+separated
+proﬁles
+had
+greater
+Rp95
+(0.22 mm h−1) compared to contact proﬁles (0.07 mm h−1).
+Rp95 was positively correlated with H as thicker proﬁles
+had higher precipitation intensity (Fig. 3a). The average
+Rp95 increased from thin (H<175 m) to thick clouds
+(H>175 m) from 0.04 to 0.10 mm h−1 for contact and 0.13
+to 0.29 mm h−1 for separated proﬁles. Precipitation intensity
+thus decreased from separated to contact proﬁles for both
+thin and thick proﬁles. The average Rp95 for thin and thick
+contact proﬁles was 32 % and 37 % of the average Rp95 for
+thin and thick separated proﬁles, respectively.
+CWC95 was positively correlated with H as thicker clouds
+had higher droplet mass (Fig. 3b). This was consistent with
+condensational and collision–coalescence growth continuing
+to occur with greater height above cloud base (Fig. 2b, c)
+and greater cloud depth allowing for greater droplet growth.
+Nc95 and Re95 were negatively and positively correlated with
+H, respectively (Fig. 3c, d). The trends in Nc and Re versus
+H were consistent with the process of collision–coalescence
+resulting in fewer and larger droplets.
+On average, contact proﬁles had higher Nc95 and lower
+Re95 (311 cm−3 and 8.6 µm) compared to separated proﬁles
+(166 cm−3 and 10.8 µm). It can be inferred that the presence
+of more numerous and smaller droplets during contact pro-
+ﬁles decreased the efﬁciency of collision–coalescence. Al-
+ternatively, there may not have been sufﬁcient time for the
+updraft to produce the few large droplets needed to broaden
+the size distribution and initiate collision–coalescence. Since
+contact and separated proﬁles had statistically similar H (Ta-
+ble 4), the following discussion examines the link between
+precipitation suppression and the aerosol-induced changes in
+Nc, Re, and LWC and their impact on precipitation.
+5.2
+Precipitation properties
+Precipitation formation process rates were estimated using
+equations used in numerical models to compare precipitation
+formation between contact and separated proﬁles. Precipita-
+tion development in models is parameterized using bulk mi-
+crophysical schemes. General circulation models (GCMs) or
+large eddy simulation (LES) models parameterize precipita-
+tion formation using SAUTO and SACC (e.g., Penner et al.,
+2006; Morrison and Gettelman, 2008; Gordon et al., 2018).
+The most commonly used parameterizations were used to es-
+timate equivalent rates of precipitation formation from mod-
+els. SAUTO and SACC were calculated following Khairoutdi-
+nov and Kogan (2000):
+SAUTO = (dwr)AUTO /dt = 1350w2.47
+c
+N−1.79
+c
+(6)
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2777
+Table 4. Average and standard deviation for cloud properties measured during contact and separated proﬁles with 95 % conﬁdence intervals
+(CIs) from a two-sample t test applied to contact and separated proﬁle data. Positive CIs indicate higher average for contact proﬁles, and
+“insigniﬁcant” indicates statistically similar averages for contact and separated proﬁles.
+Parameter
+Contact
+Separated
+95 % CIs
+Nc (cm−3)
+200 ± 103
+113 ± 63
+84 to 90
+Re (µm)
+7.5 ± 2.1
+9 ± 3
+−1.6 to −1.4
+τ
+8.8 ± 8.3
+7 ± 5
+0.04 to 3.06
+LWC (g m−3)
+0.23 ± 0.17
+0.21 ± 0.14
+0.01 to 0.02
+CWC (g m−3)
+0.22 ± 0.16
+0.20 ± 0.14
+0.01 to 0.02
+RWC (×10−3 g m−3)
+11 ± 15
+18 ± 31
+−8 to −6
+H (m)
+194 ± 109
+208 ± 106
+insigniﬁcant
+LWP (g m−2)
+46 ± 49
+46 ± 41
+insigniﬁcant
+CWP (g m−2)
+45 ± 50
+46 ± 44
+insigniﬁcant
+RWP (g m−2)
+1.8 ± 3.3
+3.0 ± 7.1
+−2.4 to −0.01
+ZT (m)
+1069 ± 267
+1004 ± 271
+6 to 123
+ZB (m)
+874 ± 294
+796 ± 274
+16 to 140
+Rp (mm h−1)
+0.04 ± 0.09
+0.08 ± 0.33
+−0.05 to −0.03
+SAUTO (×10−10 s−1)
+1.6 ± 3.0
+4.9 ± 12.6
+−3.6 to −3.1
+SACC (×10−8 s−1)
+0.8 ± 1.6
+1.7 ± 4.3
+−1.1 to −0.8
+SACC / SAUTO (×102)
+0.7 ± 1.1
+0.5 ± 0.9
+0.2 to 0.3
+Figure 3. The 95th percentile for (a) Rp, (b) CWC, (c) Nc, and (d) Re as a function of H. Each dot represents the 95th percentile from the
+1 Hz measurements for a single cloud proﬁle. Pearson’s correlation coefﬁcient (R) and p value for the correlation indicated in legend.
+and
+SACC = (dwr)ACC/dt = 67(wcwr)1.15,
+(7)
+where wc and wr are cloud water and rainwater mixing ratios,
+respectively, and are equal to the CWC and RWC divided by
+the density of air (ρa).
+Contact proﬁles had signiﬁcantly lower SAUTO and SACC
+compared to separated proﬁles (Table 4). This is consistent
+with signiﬁcantly lower RWC and Rp for contact proﬁles
+and the association of SAUTO and SACC with precipitation
+onset and precipitation intensity, respectively. SAUTO95 and
+SACC95 were positively correlated with H (Fig. 4a, b). Sep-
+arated proﬁles had higher SAUTO95 and SACC95 (9.6 × 10−10
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2778
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+and 2.2×10−8 s−1) compared to contact proﬁles (2.9×10−10
+and 1.2 × 10−8 s−1), associated with the inverse relationship
+between SAUTO and Nc (Eq. 6). Faster autoconversion re-
+sulted in higher drizzle water content and greater accretion
+of droplets on drizzle drops.
+The sampling of lower Nc95 and higher Re95 compared to
+thinner proﬁles suggests that collision–coalescence was more
+effective in proﬁles with higher H (Fig. 3c, d). Thin contact
+proﬁles had the lowest SAUTO95 (1.4 × 10−10 s−1), followed
+by thick contact (4.5 × 10−10 s−1), thin separated (4.7 ×
+10−10 s−1), and thick separated proﬁles (1.4 × 10−9 s−1).
+High Nc and low CWC for thin contact proﬁles (Fig. 3b,
+c) are consistent with increased competition for cloud wa-
+ter leading to weaker autoconversion. It is hypothesized
+that these microphysical differences resulted in the lower
+SAUTO95 and Rp95 for thin contact proﬁles compared to other
+proﬁles. The differences between Rp for contact and sepa-
+rated proﬁles thus varied with H in addition to Nc, Re, and
+CWC. Nc, Re, and CWC varied with Na (Sect. 4), and ACIs
+were examined in Sects. 6 and 7.
+6
+Aerosol inﬂuence on precipitation
+6.1
+Below-cloud Na
+Polluted boundary layers in the Southeast Atlantic are asso-
+ciated with entrainment mixing between the free troposphere
+and the boundary layer (Diamond et al., 2018). Ground-
+based observations from Ascension Island have shown clean
+boundary layers can have elevated biomass burning trace
+gas concentrations during the burning season (Pennypacker
+et al., 2020). This suggests boundary layers could be clean
+in terms of Na despite the entrainment of biomass burning
+aerosols into the boundary layer due to precipitation scaveng-
+ing of below-cloud aerosols. Carbon monoxide (CO) concen-
+trations were examined since CO acts as a biomass burning
+tracer that is unaffected by precipitation scavenging (Penny-
+packer et al., 2020). For the 2016 IOP, contact proﬁles were
+located in boundary layers with signiﬁcantly higher Na (95 %
+CIs: 93 to 115 cm−3 higher) and CO (95 % CIs: 13 to 16 ppb
+higher) compared to separated proﬁles (G21). This is consis-
+tent with data from all three IOPs when contact proﬁles were
+located in boundary layers with higher Na (95 % CIs: 231 to
+249 cm−3 higher) and CO (95 % CIs: 27 to 29 ppb higher).
+Following G21, 171 contact and 148 separated proﬁles
+from the IOPs were classiﬁed into four regimes: contact, high
+Na (C-H); contact, low Na (C-L); separated, high Na (S-H);
+and separated, low Na (S-L), where “low Na” meant the pro-
+ﬁle was in a boundary layer with Na<350 cm−3 up to 100 m
+below cloud base. Boundary layer CO concentration above
+100 ppb was sampled during 107 contact and 31 separated
+proﬁles, respectively. Contact proﬁles were more often lo-
+cated in high Na boundary layers (131 out of 171 proﬁles
+classiﬁed as C-H), while separated proﬁles were more often
+located in low Na boundary layers (108 out of 148 proﬁles
+classiﬁed as S-L). This suggests contact between MSC cloud
+tops and above-cloud biomass burning aerosols was associ-
+ated with the entrainment of biomass burning aerosols into
+the boundary layer.
+Contact proﬁles had signiﬁcantly higher Nc and signiﬁ-
+cantly lower Re relative to separated proﬁles in both high
+Na (C-H relative to S-H) and low Na (C-L relative to S-L)
+boundary layers (Fig. 5, Table 5). This was associated with
+signiﬁcantly higher above- and below-cloud Na for the con-
+tact proﬁles. The differences in Nc and Re were higher in
+high Na boundary layers, where the differences in above- and
+below-cloud Na were also higher compared to low Na bound-
+ary layers (Table 5). This is consistent with previous obser-
+vations of MSC properties (Diamond et al., 2018; Mardi et
+al., 2019) and similar analysis for data from the 2016 IOP
+(G21).
+C-L proﬁles had signiﬁcantly higher Nc (95 % CIs: 5 to
+14 cm−3 higher) compared to S-H proﬁles, despite having
+signiﬁcantly lower below-cloud Na (95 % CIs: 69 to 85 cm−3
+lower). Signiﬁcantly higher above-cloud Na for C-L proﬁles
+(95 % CIs: 321 to 361 cm−3 higher) suggests that this was
+associated with the inﬂuence of above-cloud Na on Nc. How-
+ever, the smaller difference in Nc compared to the differences
+between C-H and S-H or C-L and S-L proﬁles suggests the
+combined impact of above- and below-cloud Na was stronger
+than the impact of above-cloud Na alone. These compar-
+isons were qualitatively consistent when thresholds of 300
+or 400 cm−3 were used to deﬁne a low Na boundary layer.
+6.2
+Nc and Rp versus H
+The cloud proﬁles were divided into four populations based
+on H to compare Nc and Rp between different aerosols con-
+ditions, while H was constrained. The populations were di-
+vided at H = 129, 175, and 256 m to ensure similar sam-
+ple sizes (Table 6). For each population, contact proﬁles had
+higher Nc and lower Rp (Fig. 6a, b), consistent with compar-
+isons averaged over all proﬁles (Table 4). Due to collision–
+coalescence, the average Nc decreased, and the average Rp
+increased with H (Fig. 6a, b). For contact proﬁles, the aver-
+age Nc decreased with H from 221 to 191 cm−3, and the av-
+erage Rp increased from 0.03 to 0.07 mm h−1. For separated
+proﬁles, the average Nc decreased from 149 to 92 cm−3, and
+the average Rp increased from 0.06 to 0.21 mm h−1 over the
+same range of H. C-H proﬁles had the highest average Nc
+and the lowest average Rp among the four regimes due to
+high above- and below-cloud Na (Fig. 6c, d). C-H proﬁles
+had the smallest increase in the average Rp with H (0.02 to
+0.04 mm h−1). Conversely, low above- and below-cloud Na
+for S-L proﬁles was associated with the lowest average Nc,
+the highest average Rp, and the highest increase in the aver-
+age Rp with H (0.12 to 0.29 mm h−1). For each regime, the
+average Nc decreased with H (except C-L), and the average
+Rp increased with H (Fig. 6c, d).
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2779
+Figure 4. The 95th percentile for (a) SAUTO and (b) SACC as a function of H. Each dot represents the 95th percentile from the 1 Hz
+measurements for a single cloud proﬁle. R and p value for the correlation indicated in legend.
+Table 5. Average values for aerosol and cloud properties from C-H, S-H, C-L, and S-L regimes (deﬁned in text), along with differences
+reported as 95 % CIs.
+Parameter
+C-H
+S-H
+C-H relative to S-H
+C-L
+S-L
+C-L relative to S-L
+Above-cloud Na (cm−3)
+1120
+220
+852 to 948
+562
+161
+387 to 413
+Below-cloud Na (cm−3)
+498
+288
+194 to 226
+211
+162
+45 to 53
+Nc (cm−3)
+226
+123
+98 to 108
+132
+104
+25 to 31
+Re (µm)
+7.0
+8.6
+−1.6 to −1.8
+9.0
+9.3
+−0.2 to −0.5
+Rp (×10−3 mm h−1)
+26
+64
+−32 to −44
+83
+100
+0.3 to −36
+Figure 5. Average Nc (error bars extend to 95 % CIs) as a func-
+tion of ZN. Number of 1 Hz data points and corresponding regimes
+indicated in legend.
+6.3
+Precipitation susceptibility So
+So was used to evaluate the dependence of Rp on Nc under
+the different aerosol conditions. So, deﬁned as the negative
+slope between the natural logarithms of Rp and Nc (Feingold
+and Seibert, 2009), is given by
+So = −dln(Rp)/dln(Nc),
+(8)
+where a positive value indicates decreasing Rp with increas-
+ing Nc, in accordance with the “lifetime effect” (Albrecht,
+Figure 6. The average (a, c) Nc and (b, d) Rp as a function of H for
+(a, b) contact and separated proﬁles and (c, d) the regimes indicated
+in legend.
+1989). The average So across all proﬁles was 0.88 ± 0.03,
+with lower So for contact proﬁles (0.87 ± 0.04) compared to
+separated proﬁles (1.08 ± 0.04) (Table 6). This is consistent
+with the hypothesis of lower values for So analogues (where
+Nc in Eq. (8) is replaced by Na) in the presence of above-
+cloud aerosols (Duong et al., 2011). So depends on the ratio
+of SACC to SAUTO because SACC is independent of Nc, and
+higher SACC/SAUTO represents weaker dependence of Rp on
+Nc (Wood et al., 2009; Jiang et al., 2010). Lower So for con-
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2780
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Table 6. So ± standard error for contact, separated, and all proﬁles, with sample size and R in parentheses. The use of italics denotes the
+statistical insigniﬁcance of So.
+H
+Contact
+Separated
+All proﬁles
+All
+0.87 ± 0.04 (173, 0.30)
+1.08 ± 0.04 (156, 0.36)
+0.88 ± 0.03 (329, 0.33)
+28 to 129 m
+−0.06 ± 0.11 (52,−0.03)
+1.47 ± 0.10 (30, 0.55)
+0.67 ± 0.07 (82, 0.28)
+129 to 175 m
+0.88 ± 0.06 (38, 0.42)
+0.53 ± 0.09 (42, 0.20)
+0.68 ± 0.05 (80, 0.32)
+175 to 256 m
+0.92 ± 0.08 (41, 0.27)
+0.34 ± 0.07 (44, 0.13)
+0.54 ± 0.05 (85, 0.20)
+256 to 700 m
+1.15 ± 0.06 (42, 0.36)
+1.45 ± 0.07 (40, 0.41)
+1.13 ± 0.04 (82, 0.40)
+Figure 7. So as a function of H (error bars extend to standard er-
+ror from the regression model) for (a) contact, separated, and all
+proﬁles and (b) the regimes indicated in legend. So was statistically
+insigniﬁcant when marked with a cross.
+tact proﬁles was associated with higher SACC/SAUTO com-
+pared to separated proﬁles (Table 4).
+So was calculated as a function of H using Nc and Rp for
+the four populations of cloud proﬁles (Fig. 7). The sensitivity
+of So to the number of populations is discussed in Appendix
+A. Averaged over all proﬁles, So had minor variations with H
+(e.g., 0.67, 0.68, and 0.54 as H increased) before increasing
+to 1.13 for H>256 m (Table 6). This trend in So versus H
+is consistent with previous analyses of So (Sorooshian et al.,
+2009; Jung et al., 2016). However, different trends emerged
+when So was calculated for contact and separated proﬁles.
+The largest difference between So for contact and sepa-
+rated proﬁles was observed for thin clouds with H<129 m.
+The 30 separated proﬁles with H<129 m had the highest So
+(1.47±0.10) because of strong dependence of Rp on Nc. For
+Figure 8. Scatter plots of Rp and Nc for 1 Hz data points
+from contact and separated proﬁles with (a) 28<H<129 m,
+(b) 129<H<175 m, (c) 175<H<256 m, and (d) 256<H<700 m.
+these proﬁles, measurements with low Nc (<100 cm−3) had
+higher Rp (0.18 mm h−1) compared to measurements with
+higher Nc (0.01 mm h−1) (Fig. 8a). In contrast, the 52 con-
+tact proﬁles with H<129 m had a low and statistically in-
+signiﬁcant value for So (−0.06 ± 0.11) due to poor (and sta-
+tistically insigniﬁcant) correlation (R = −0.03). Poor corre-
+lation between Nc and Rp for contact proﬁles was associated
+with precipitation suppression and weaker droplet growth
+(Sect. 5). These factors resulted in Rp<0.03 mm h−1 inde-
+pendent of the Nc measurement (Fig. 8a).
+For separated proﬁles, So decreased with H from 1.47 ±
+0.10 for H<129 m to 0.53±0.09 for 129<H<175 m and to
+0.34 ± 0.07 for 175<H<256 m (Fig. 7a). This was due to
+the increase in average Rp for high Nc measurements as a
+function of H from 0.01 mm h−1 to 0.05 and 0.04 mm h−1,
+respectively. Rp increased with H due to stronger collision–
+coalescence as droplet mass increased with H. Separated
+proﬁles with H>256 m had lower Nc and higher Rp com-
+pared to the populations with lower H (Fig. 6a, b). For mea-
+surements with low Nc, collision–coalescence and stronger
+autoconversion (following Eq. 6) resulted in higher Rp
+(0.26 mm h−1) compared to measurements with higher Nc
+(0.13 mm h−1). This led to a strong gradient Rp as a function
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2781
+of Nc (Fig. 8d), and So increased to 1.45±0.07 for separated
+proﬁles with H>256 m.
+For contact proﬁles with H>129 m, the average Rp in-
+creased with H, with a larger increase for measurements with
+low Nc (0.028 to 0.12 mm h−1) compared to measurements
+with high Nc (0.03 to 0.06 mm h−1). It is hypothesized that
+collision–coalescence was hindered by the presence of more
+numerous droplets for the latter. With droplet growth and
+collision–coalescence for higher H, the limiting factor for
+Rp changed from H to Nc. The dependence of Rp on Nc thus
+increased with H, and, as a result, So increased with H from
+0.88 ± 0.06 to 1.15 ± 0.06 (Fig. 7a).
+Among the four regimes deﬁned based on the above- and
+below-cloud Na, S-L proﬁles had the highest So (1.12) (Ta-
+ble 7). This was associated with S-L proﬁles having the low-
+est Nc and the highest Rp among the regimes (Fig. 6c, d). In
+descending order of So, S-L proﬁles were followed by C-L
+(0.86), S-H (0.50), and C-H proﬁles (0.33). Proﬁles in low
+Na boundary layers (S-L and C-L) had higher So compared
+to proﬁles in high Na boundary layers (S-H and C-H), con-
+sistent with wet scavenging of below-cloud aerosols (Duong
+et al., 2011; Jung et al., 2016).
+C-L and C-H proﬁles had similar trends in So except for
+proﬁles with H<129 m (Fig. 7b). C-L proﬁles had an in-
+signiﬁcant value for So due to low sample size (4), and C-H
+proﬁles had negative So. These were thin proﬁles with little
+cloud water (Fig. 4b), high Nc (Fig. 6c), and low Rp (Fig. 6d).
+It is hypothesized that increasing Nc would provide the cloud
+water required for precipitation initiation and aid collision–
+coalescence. A total of 107 out of 148 separated proﬁles were
+classiﬁed as S-L proﬁles. As a result, separated and S-L pro-
+ﬁles had similar trends in So versus H (Fig. 7). On average,
+S-L proﬁles had higher So than S-H proﬁles, which could be
+associated with wet scavenging, resulting in the lower below-
+cloud Na for S-L proﬁles. For S-H proﬁles, So was constant
+with H at about 0.45 (except 175<H<256 m when the value
+for So was insigniﬁcant).
+The sensitivity of So to removal of clouds based on Rp
+was examined in Appendix B. The removal of clouds with
+low Rp and high Nc or with high Rp and low Nc resulted in
+lower average So consistent with previous work (Duong et
+al., 2011). The So comparisons between proﬁles located in
+high Na or low Na boundary layers varied with the sample
+sizes of the populations. The sample sizes varied based on
+the threshold used to deﬁne a low Na boundary layer which
+is discussed in Appendix C. CAS data were used to represent
+measurements of droplets with D<50 µm collected during
+ORACLES 2016 in the absence of CDP data. The sensitivity
+of So to the use of CAS data was examined in Appendix D.
+6.4
+So discussion
+Figure 9 shows how So varied with perturbations (1) in Nc
+or Rp. Previous studies hypothesized that increasing above-
+cloud Na or precipitation scavenging of below-cloud Na
+Figure 9. An illustration of the dependence of So on Nc, Rp, and
+perturbations (1) in Nc or Rp.
+would lead to changes in So (Fig. 4, Duong et al., 2011;
+Fig. 11, Jung et al., 2016). Thus, 1Nc and 1Rp for clouds
+with variable above- and below-cloud Na were quantiﬁed
+in this study (Table 5). Higher Nc and lower Re for con-
+tact proﬁles led to precipitation suppression along with lower
+SAUTO, SACC, and Rp, which were associated with lower So
+compared to separated proﬁles. As a result, polluted clouds
+were 20 % less susceptible to precipitation suppression than
+cleaner clouds. Figure 9 shows that the impact of 1Nc or
+1Rp on So depends on the original values for Nc and Rp as
+the same 1Nc and 1Rp can have an opposing effect on So.
+For example, a decrease in Nc at point 1 would decrease the
+slope and the So value, while the same decrease in Nc at point
+2 would increase the slope and the So value.
+Both average and maximum Nc and Rp varied with H
+due to increasing aerosols (Sect. 4) and droplet growth
+due to collision–coalescence, autoconversion, and accretion
+(Sect. 5). Further, co-variability between droplet growth pro-
+cesses and ACIs meant aerosol-induced 1Nc and 1Rp varied
+with H (Sect. 6.2). Consequently, the differences between So
+for clean and polluted clouds varied with H. The change in
+So was highest for thin polluted clouds due to poor corre-
+lation between Nc and Rp as limited droplet growth led to
+low Rp regardless of the Nc. Future work must examine the
+co-variability between 1Nc or 1Rp from cloud processes
+such as droplet growth, entrainment, invigoration, precipita-
+tion, and 1Nc or 1Rp due to ACIs. Model parameterizations
+with power-law relationships between Rp, Nc, and H (Geof-
+froy et al., 2008) must account for changes in the dependence
+of Rp on Nc/H due to increasing aerosols or H.
+The trends in So were only compared with studies ana-
+lyzing airborne data due to the variability in So depending
+on whether aircraft, remote sensing, or modeling data were
+examined (Sorooshian et al., 2019). Consistent with Terai et
+al. (2012), So decreased with H for separated proﬁles with
+H<256 m. The results from Sect. 5 suggest droplet growth
+with H decreased the susceptibility to aerosols because Rp
+was limited by droplet growth instead of Na or Nc. In com-
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2782
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Table 7. So ± standard error with sample size and R in parentheses for cloud regimes deﬁned in text. The use of italics denotes the statistical
+insigniﬁcance of So.
+H
+S-L
+S-H
+C-L
+C-H
+All
+1.29 ± 0.06 (107, 0.40)
+0.50 ± 0.06 (41, 0.19)
+0.86 ± 0.07 (40, 0.30)
+0.33 ± 0.05 (131, 0.11)
+28 to 129 m
+1.12 ± 0.15 (21, 0.42)
+0.43 ± 0.14 (8, 0.27)
+0.04 ± 0.42 (4,0.01)
+−0.33 ± 0.11 (48, −0.14)
+129 to 175 m
+0.66 ± 0.12 (25, 0.25)
+0.48 ± 0.18 (11, 0.17)
+0.50 ± 0.12 (9, 0.25)
+0.26 ± 0.08 (27, 0.13)
+175 to 256 m
+0.66 ± 0.09 (34, 0.22)
+0.07 ± 0.10 (9,0.03)
+1.06 ± 0.13 (14, 0.34)
+0.61 ± 0.11 (27, 0.17)
+256 to 700 m
+1.89 ± 0.09 (27, 0.52)
+0.45 ± 0.11 (13, 0.14)
+0.72 ± 0.11 (13, 0.24)
+0.59 ± 0.09 (29, 0.17)
+parison, So increased with H for contact proﬁles, consistent
+with Jung et al. (2016). The low So for thin contact proﬁles
+was consistent with the low So (0.06) for thin MSC over the
+southeast Paciﬁc (Jung et al., 2016). This was attributed to
+insufﬁcient cloud water for precipitation initiation (as noted
+in Sect. 5). An airborne investigation of marine stratocumu-
+lus off the Californian coast attributed negative values of So
+to the inﬂuence of giant cloud condensation nuclei (Dadas-
+hazar et al., 2017). The authors hypothesized that the low
+statistical signiﬁcance of the negative estimate of So could
+be associated with precipitation suppression by aerosol par-
+ticles.
+Jung et al. (2016) analyzed MSC sampled farther east and
+away from South America compared to Terai et al. (2012).
+They argued a westward increase in precipitation frequency
+and intensity, along with a decrease in aerosols and Nc, led
+to the differences between the two studies. This same attri-
+bution of the role of aerosols can be made for the ORA-
+CLES data as there were differences between contact and
+separated proﬁles because the MSCs sampled during these
+proﬁles were located in similar geographical locations with
+different aerosol conditions. Modeling studies (e.g., Wood
+et al., 2009; Gettelman et al., 2013) have shown that So in-
+creases with H when SAUTO dominates SACC (typically for
+Re<14 µm, the critical radius for precipitation initiation).
+Maximum Re<14 µm was sampled during all but 23 sepa-
+rated and 3 contact proﬁles (Fig. 4d). This would explain the
+increase in So with H for both contact (for H>129 m) and
+separated proﬁles (for H>256 m).
+7
+Meteorological inﬂuence on LWP
+The relationships between LWP or H and Nc, Re, and
+LWC depend on meteorological conditions in addition to
+aerosol properties. The MSC LWP and cloud cover can vary
+with LTS (Klein and Hartmann, 1993; Mauger and Nor-
+ris, 2007), estimated inversion strength (EIS) (Wood and
+Bretherton, 2006), and SST (Wilcox, 2010; Sakaeda et al.,
+2011). The correlations between LWP / H and these param-
+eters are examined using the European Centre for Medium-
+Range Weather Forecasts (ECMWF) atmospheric reanalysis
+(ERA5) (Hersbach et al., 2020) to deﬁne the meteorological
+conditions.
+ERA5 provides hourly output with a horizontal resolution
+of 0.25◦×0.25◦for 37 pressure (p) levels (up to 1 hPa). The
+cloud sampling for most ﬂights was conducted within 3 h of
+12:00 UTC (Table 2). ERA5 data at 12:00 UTC were thus
+used for the grid box nearest to the proﬁle (Dzambo et al.,
+2019). The low cloud cover (LCC), SST, HBL, total column
+liquid water (ERA5 LWP) and rainwater (ERA5 RWP), mean
+sea level pressure (po), 2 m temperature (To), and 2 m dew
+point temperature (Td) were examined (Table 8).
+The difference between potential temperatures at 700 hPa
+and the surface was deﬁned as LTS (Klein and Hartmann,
+1993). EIS was calculated following Wood and Brether-
+ton (2006):
+EIS = LTS−0850
+m (z700 −LCL), LCL = 125 (To −Td), (9)
+where 0m is the moist adiabatic potential temperature gradi-
+ent, z700 is the height at 700 mb, and LCL is the lifting con-
+densation level (Lawrence, 2005). 0850
+m
+is 0m for 850 hPa
+and calculated following Wood and Bretherton (2006).
+LCC refers to cloud fraction for p>0.8po, correspond-
+ing to p>810 hPa, where most proﬁles were sampled (Ta-
+ble 2). The ECMWF model used a threshold of EIS >7 K
+to distinguish between well-mixed boundary layers topped
+by stratocumulus and decoupled boundary layers with cu-
+mulus clouds (ECMWF, 2020). This distinction improved
+the agreement between the model LCC and LWP and ob-
+servations (Köhler et al., 2011). LCC was proportional to
+EIS / LTS, and LCC <0.8 was mostly observed for EIS <7 K
+(Fig. 10a). Decoupled boundary layers can be topped by
+MSC (G21; Wood, 2012). Proﬁles with EIS <7 K were in-
+cluded in the analysis if ERA5 had LCC >0.95. This in-
+cluded 64 contact and 88 separated proﬁles from the three
+IOPs. For the 2016, 2017, and 2018 IOPs, 50, 20, and 76 pro-
+ﬁles, respectively, had LCC >0.95 out of which 0, 4, and 44
+proﬁles, respectively, had EIS <7 K. The average ERA5 HBL
+(599±144 m) was lower than the average ZT (932±196 m).
+This underestimation of HBL by ERA5 has been observed
+for stratocumulus over the southeast and northeast Paciﬁc
+(Ahlgrimm et al., 2009; Hannay et al., 2009).
+On average, the ERA5 LWP (51 ± 21 g m−2) was slightly
+greater than LWP (46 ± 41 g m−2), but the differences
+were statistically insigniﬁcant. There was a signiﬁcant but
+weak correlation between LWP and ERA5 LWP (R = 0.18)
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2783
+Table 8. Meteorological and cloud properties from ERA5 reanalysis for contact, separated, and all proﬁles with LCC >0.95 (LCC is reported
+for all proﬁles), 95 % CIs from a two-sample t test applied to contact and separated proﬁle data, and R between each parameter and LWP
+(RLWP) or H (RH) with statistically signiﬁcant RH and RLWP in bold.
+Parameter
+Contact
+Separated
+All
+95 % CIs
+RH, RLWP
+LCC
+0.75 ± 0.29
+0.83 ± 0.26
+0.79 ± 0.28
+−0.14 to −0.02
+0.24, 0.04
+SST (K)
+293 ± 2
+294 ± 3
+293 ± 2
+−1.5 to −0
+0.16, 0.22
+HBL (m)
+566 ± 164
+624 ± 124
+600 ± 144
+−103 to −11
+−0.05, −0.11
+ERA5 LWP (g m−2)
+53 ± 18
+51 ± 23
+52 ± 21
+insigniﬁcant
+0.31, 0.18
+ERA5 RWP (g m−2)
+0.71 ± 1.56
+0.32 ± 0.40
+0.48 ± 1.07
+0.05 to 0.73
+0.19, −0.01
+Po (mb)
+1015 ± 1
+1014 ± 2
+1014 ± 2
+1 to 2
+−0.09, −0.07
+To (K)
+293 ± 2
+293 ± 3
+293 ± 2
+insigniﬁcant
+0.16, 0.27
+LTS (K)
+23 ± 2
+22 ± 3
+23 ± 3
+insigniﬁcant
+−0.10, −0.29
+EIS (K)
+8.1 ± 1.9
+7.8 ± 3.1
+7.9 ± 2.7
+insigniﬁcant
+−0.13, −0.31
+Figure 10. (a) LTS versus EIS with regression coefﬁcients in leg-
+end (R = 0.98) and (b) LWP from size-resolved probes versus LWP
+from the ERA5 reanalysis (R = 0.18) where each dot represents a
+single cloud proﬁle. LTS, EIS, ERA5 LWP, and LCC for each cloud
+proﬁle taken from the nearest ERA5 grid box (within 0.25◦of lati-
+tude and longitude) at 12:00 UTC. Panel (a) shows all cloud proﬁles
+and panel (b) shows cloud proﬁles with LCC >0.95.
+(Fig. 10b). On average, the ERA5 RWP (0.48 ± 1.07 g m−2)
+was lower than RWP (1.19 ± 2.76 g m−2). There were in-
+signiﬁcant differences between ERA5 LWP and LWP for
+contact and separated proﬁles with LCC >0.95 (Table 8).
+Contact proﬁles with LCC >0.95 had signiﬁcantly higher
+ERA5 RWP (Table 8). While this is counterintuitive, given
+the precipitation suppression, it was due to the selection of
+proﬁles with LCC >0.95. Contact proﬁles with LCC >0.95
+also had higher in situ RWP (95 % CIs: 0.32 to 2.08 g m−2
+higher) compared to separated proﬁles with LCC >0.95.
+LWP was positively correlated with SST and To and nega-
+tively correlated with LTS and EIS with weak but statistically
+signiﬁcant correlations (Fig. 11). On average, separated pro-
+ﬁles had signiﬁcantly higher SST (95 % CIs: 0.01 to 1.48 K
+higher) compared to contact proﬁles with insigniﬁcant dif-
+ferences between the average To, EIS, and LTS. Since the
+correlation between LWP / H and SST was weak, it is un-
+likely the differences between contact and separated proﬁles
+were driven by SST differences alone. When all proﬁles (ir-
+respective of LCC) were considered, there were insigniﬁcant
+differences between the average ERA5 RWP, SST, To, EIS,
+and LTS for contact and separated proﬁles. This suggests the
+differences between contact and separated proﬁles found dur-
+ing the ORACLES IOPs were primarily associated with ACIs
+instead of meteorological effects.
+8
+Conclusions
+In situ measurements of stratocumulus over the Southeast
+Atlantic Ocean were collected during the NASA ORACLES
+ﬁeld campaign. The microphysical (Nc and Re), macrophysi-
+cal (LWP and H), and precipitation properties (Rp and So) of
+the stratocumulus were analyzed. A total of 173 contact pro-
+ﬁles with Na>500 cm−3 within 100 m above cloud tops were
+compared with 156 separated proﬁles with Na<500 cm−3 up
+to at least 100 m above cloud tops. Contact between above-
+cloud aerosols and the stratocumulus was associated with the
+following:
+1. More numerous and smaller droplets with weaker
+droplet growth with height.
+Contact proﬁles had signiﬁcantly higher Nc (84 to
+90 cm−3 higher) and lower Re (1.4 to 1.6 µm lower)
+compared to separated proﬁles. The median Re had a
+smaller increase from cloud base to cloud top for con-
+tact (6.1 to 7.9 µm) compared to separated proﬁles (7.1
+to 9.5 µm). The proﬁles had similar LWP and H, and it
+is hypothesized the differences in droplet growth were
+associated with collision–coalescence.
+2. Aerosol-induced cloud microphysical changes in both
+clean and polluted boundary layers.
+Contact proﬁles had 25 to 31 cm−3 higher Nc and 0.2 to
+0.5 µm lower Re in clean and 98 to 108 cm−3 higher
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2784
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Figure 11. LWP from size-resolved probes as a function of (a) SST, (b) 2 m T , (c) LTS, and (d) EIS. Each dot represents a single cloud
+proﬁle with LCC >0.95 and SST, 2 m T , LTS, and EIS taken from the nearest ERA5 grid box (within 0.25◦of latitude and longitude) at
+12:00 UTC.
+Nc and 1.6 to 1.8 µm lower Re in polluted boundary
+layers compared to separated proﬁles. Contact proﬁles
+were more often located in polluted boundary layers and
+had higher below-cloud CO concentration (27 to 29 ppb
+higher), which suggests more frequent entrainment of
+biomass burning aerosols into the boundary layer com-
+pared to separated proﬁles.
+3. Precipitation suppression with signiﬁcantly lower pre-
+cipitation intensity and precipitation formation process
+rates.
+Separated proﬁles had Rp up to 0.22 mm h−1, while
+contact proﬁles had Rp up to 0.07 mm h−1. SAUTO and
+SACC had higher maxima for separated (up to 9.6 ×
+10−10 and 2.2×10−8 s−1) compared to contact proﬁles
+(up to 2.9 × 10−10 and 1.2 × 10−8 s−1).
+4. Lower precipitation susceptibility, with the strongest
+impact in thin clouds (H<129 m).
+Contact proﬁles had lower So (0.87 ± 0.04) compared
+to separated proﬁles (1.08 ± 0.04). Thin clouds had the
+highest difference in So (−0.06 ± 0.11 for contact and
+1.47 ± 0.10 for separated). Lower So for thin contact
+proﬁles was associated with poor correlation between
+Nc and Rp (R = −0.03). For separated proﬁles, So de-
+creased with H before increasing for H>256 m. In
+comparison, So increased with H for contact proﬁles
+for H>129 m.
+5. Statistically insigniﬁcant differences in meteorological
+parameters that inﬂuence LWP/H.
+Based on ERA5 reanalysis data, LWP was correlated
+with SST (R = 0.22), To (R = 0.27), LTS (R = −0.29),
+and EIS (R = −0.31). Contact proﬁles with ERA5
+LCC >0.95 had lower SST (0.01 to 1.48 K lower), with
+similar To, LTS, and EIS compared to separated pro-
+ﬁles. The SST differences were insigniﬁcant when pro-
+ﬁles with LCC <0.95 were included in the comparison.
+Three important factors affecting So were discussed
+(Sorooshian et al., 2019): above-cloud Na, below-cloud Na,
+and meteorological conditions. This study analyzed ORA-
+CLES data from all three IOPs, and the ﬁrst two conclusions
+were consistent with the analysis of ORACLES 2016 (Gupta
+et al., 2021). Future work will compare in situ data with Rp
+retrievals from APR-3 (Dzambo et al., 2021) to evaluate the
+sensitivity of So to the use of satellite retrievals of Rp (Bai et
+al., 2018). Vertical proﬁles of MSC properties will be used
+to evaluate satellite retrievals (Painemal and Zuidema, 2011;
+Zhang and Platnick, 2011) to address the uncertainties asso-
+ciated with satellite-based estimates of ACIs (Quaas et al.,
+2020). The ORACLES dataset can be combined with future
+investigations of marine stratocumulus to address the “lack of
+long-term datasets needed to provide statistical signiﬁcance
+for a sufﬁciently large range of aerosol variability inﬂuencing
+speciﬁc cloud regimes over a range of macrophysical condi-
+tions” (Sorooshian et al., 2010).
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2785
+Appendix A: Sensitivity studies on dependence of So
+on H
+The base analysis examined how cloud properties varied with
+H by separating cloud proﬁles into four populations of H us-
+ing the following endpoints: 28, 129, 175, 256, and 700 m.
+Two sensitivity studies determine if trends describing the
+variation of Nc, Rp, and So with H were sensitive to the end-
+points used to sort cloud proﬁles into different populations.
+First, cloud proﬁles were classiﬁed into two populations
+using the median H (175 m) to divide the populations (Ta-
+ble A1). The average Nc decreased, and the average Rp in-
+creased with H for both contact (211 to 186 cm−3 and 0.03
+to 0.07 mm h−1) and separated proﬁles (129 to 104 cm−3 and
+0.07 to 0.15 mm h−1). So increased with H for contact pro-
+ﬁles from 0.53 to 1.06 and slightly decreased with H for
+separated proﬁles from 1.05 to 1.02 (Table A1). The dif-
+ference between So for contact and separated proﬁles was
+greater for thin proﬁles (H<175 m) compared to thick pro-
+ﬁles (H>175 m). These results are consistent with trends us-
+ing four populations but provide less detail about how So
+varies with H (Fig. A1).
+Figure A1. So as a function of H for contact and separated proﬁles
+classiﬁed into different populations using the endpoints indicated in
+legend. So was statistically insigniﬁcant when marked with a cross.
+Second, cloud proﬁles were classiﬁed into three popula-
+tions using the terciles of H (145 and 224 m) (Table A1). The
+average Nc decreased, and the average Rp increased from the
+lowest to the highest H for contact (231 to 187 cm−3 and
+0.03 to 0.07 mm h−1) and separated proﬁles (138 to 95 cm−3
+and 0.06 to 0.18 mm h−1). For separated proﬁles, So ﬁrst de-
+creased with H from 1.15 to 0.25 before increasing to 1.45
+for the highest H (Fig. A1). Contact proﬁles had insignif-
+icant So for the lowest H, followed by So increasing from
+0.95 to 1.08 with H. The results presented here are robust
+with regards to the number of populations used.
+Table A1. So ± standard error with sample size and R in parenthe-
+ses for contact, separated, and all proﬁles classiﬁed into a different
+number of populations.
+H bin
+Contact
+Separated
+All proﬁles
+Two populations
+28 to 175 m
+0.53 ± 0.05
+1.05 ± 0.07
+0.69 ± 0.04
+(90, 0.24)
+(72, 0.39)
+(162, 0.30)
+175 to 700 m
+1.06 ± 0.05
+1.02 ± 0.05
+0.93 ± 0.03
+(83, 0.33)
+(84, 0.33)
+(167, 0.33)
+Three populations
+28 to 145 m
+0.08 ± 0.08
+1.15 ± 0.09
+0.60 ± 0.05
+(67, 0.04)
+(41, 0.45)
+(108, 0.26)
+145 to 224 m
+0.95 ± 0.07
+0.25 ± 0.06
+0.60 ± 0.04
+(51, 0.34)
+(60, 0.11)
+(111, 0.25)
+224 to 700 m
+1.08 ± 0.05
+1.45 ± 0.06
+1.05 ± 0.04
+(55, 0.34)
+(55, 0.41)
+(110, 0.37)
+Appendix B: Sensitivity studies on dependence of So
+on Rp
+Another sensitivity study examined the Rp threshold used for
+cloud proﬁles included while calculating So. The average So
+decreased if weakly precipitating clouds with low Rp were
+excluded (Fig. B1, Table B1). It is possible that this was due
+to the higher Na and Nc associated with weakly precipitat-
+ing clouds. The exclusion of weakly precipitating clouds pro-
+vides biased trends in So since these clouds could have under-
+gone precipitation suppression already. Conversely, strongly
+precipitating clouds were associated with cleaner conditions
+and lower Na and Nc. The exclusion of strongly precipitating
+clouds also leads to a decrease in the average So (Fig. B2,
+Table B1).
+The occurrence of wet scavenging below strongly precip-
+itating clouds (Duong et al., 2011) results in lower below-
+cloud Na (and subsequently Nc). Higher susceptibility to
+precipitation suppression for cleaner, strongly precipitating
+clouds would explain the increase in the average So. This is
+consistent with observations of So using different Rp thresh-
+olds (see Fig B1, Jung et al., 2016) and hypotheses regarding
+the impact of different Na on So (Duong et al., 2011; Fig. 11,
+Jung et al., 2016).
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2786
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Table B1. So ± standard error with sample size and R in parenthe-
+ses for contact, separated, and all proﬁles with Rp above a certain
+threshold.
+H bin
+Contact
+Separated
+All proﬁles
+Rp>10−3 mm h−1
+All
+0.88 ± 0.03
+0.95 ± 0.04
+0.84 ± 0.02
+(173, 0.34)
+(156, 0.36)
+(329, 0.37)
+28 to 129 m
+0.03 ± 0.10
+1.41 ± 0.09
+0.71 ± 0.07
+(52, 0.02)
+(30, 0.61)
+(82, 0.33)
+129 to 175 m
+0.94 ± 0.05
+0.64 ± 0.09
+0.78 ± 0.04
+(38, 0.49)
+(42, 0.27)
+(80, 0.40)
+175 to 256 m
+0.78 ± 0.07
+0.21 ± 0.06
+0.38 ± 0.04
+(41, 0.30)
+(44, 0.10)
+(85, 0.18)
+256 to 700 m
+1.11 ± 0.06
+1.18 ± 0.07
+1.06 ± 0.04
+(42, 0.38)
+(40, 0.39)
+(82, 0.42)
+Rp>10−2 mm h−1
+All
+0.49 ± 0.03
+0.76 ± 0.03
+0.61 ± 0.02
+(173, 0.27)
+(156, 0.38)
+(329, 0.35)
+28 to 129 m
+0.01 ± 0.08
+0.97 ± 0.10
+0.48 ± 0.06
+(52, 0.01)
+(30, 0.57)
+(82, 0.36)
+129 to 175 m
+0.70 ± 0.04
+0.53 ± 0.08
+0.66 ± 0.04
+(38, 0.53)
+(42, 0.29)
+(80, 0.44)
+175 to 256 m
+0.62 ± 0.06
+0.48 ± 0.05
+0.47 ± 0.04
+(41, 0.31)
+(44, 0.31)
+(85, 0.28)
+256 to 700 m
+0.37 ± 0.05
+0.78 ± 0.06
+0.60 ± 0.03
+(42, 0.19)
+(40, 0.33)
+(82, 0.32)
+Figure B1. So as a function of H for contact and separated proﬁles,
+with Rp greater than the thresholds indicated in legend. So was sta-
+tistically insigniﬁcant when marked with a cross.
+Figure B2. So as a function of H for contact and separated pro-
+ﬁles, with Rp less than the thresholds indicated in legend. So was
+statistically insigniﬁcant when marked with a cross.
+Appendix C: Dependence of So on the deﬁnition of
+clean and polluted boundary layers
+The number of cloud proﬁles classiﬁed into the S-L, C-L,
+S-H, and C-H regimes varied depending on the below-cloud
+Na threshold used to deﬁne a low Na or clean boundary layer.
+For the threshold used in the base analysis (350 cm−3), con-
+tact proﬁles were more often located in polluted boundary
+layers (131 out of 171 proﬁles classiﬁed as C-H) while sep-
+arated proﬁles were more often located in clean boundary
+layers (108 out of 148 proﬁles classiﬁed as S-L). The com-
+parisons between So in clean and polluted boundary layers
+varied with the threshold used.
+As a sensitivity study, a lower threshold was used to de-
+ﬁne a clean boundary layer (300 cm−3). For this case, the
+C-L regime had no proﬁles in the population with the low-
+est H (H<129 m) when four populations of proﬁles were
+used to examine the dependence of So on H. Two out of the
+other three populations had an insigniﬁcant value for So due
+to poor and statistically insigniﬁcant correlations between Nc
+and Rp (Table C1). This was associated with a low sam-
+ple size for the populations (six each). A second sensitiv-
+ity study used a higher threshold to deﬁne a clean boundary
+layer (400 cm−3). For this case, the S-H regime has insignif-
+icant So for three out of the four populations of H and the
+remaining population had a small sample size (three proﬁles)
+(Table C1). The base analysis using a threshold of 350 cm−3
+to deﬁne a clean boundary layer was used to compare So val-
+ues that represent a larger number of cloud proﬁles.
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2787
+Table C1. So ± standard error with sample size and R in paren-
+theses for regimes deﬁned in text and different thresholds to deﬁne
+a low Na boundary layer. The use of italics denotes the statistical
+insigniﬁcance of So.
+H
+S-L
+S-H
+C-L
+C-H
+Low Na = 300 cm−3
+All
+1.37 ± 0.06
+0.45 ± 0.06
+0.29 ± 0.10
+0.84 ± 0.04
+(96, 0.42)
+(52, 0.17)
+(21, 0.10)
+(150, 0.29)
+28 to
+1.20 ± 0.16
+0.38 ± 0.13
+NaN
+−0.06 ± 0.11
+129 m
+(19, 0.44)
+(10, 0.25)
+(0, NaN)
+(52,−0.03)
+129 to
+0.68 ± 0.13
+0.56 ± 0.16
+0.02 ± 0.15
+0.86 ± 0.07
+175 m
+(21, 0.26)
+(15, 0.20)
+(6,0.01)
+(30, 0.41)
+175 to
+0.70 ± 0.10
+0.07 ± 0.10
+0.44 ± 0.17
+1.04 ± 0.10
+256 m
+(31, 0.24)
+(12,0.03)
+(9, 0.15)
+(32, 0.30)
+256 to
+2.03 ± 0.10
+0.40 ± 0.10
+−0.09 ± 0.17
+1.13 ± 0.07
+700 m
+(25, 0.55)
+(15, 0.12)
+(6,−0.03)
+(36, 0.36)
+Low Na = 400 cm−3
+All
+1.12 ± 0.05
+0.37 ± 0.09
+1.11 ± 0.05
+0.25 ± 0.06
+(125, 0.36)
+(23, 0.16)
+(64, 0.39)
+(107, 0.08)
+28 to
+1.04 ± 0.13
+−0.20 ± 0.21
+0.51 ± 0.22
+−0.33 ± 0.13
+129 m
+(23, 0.43)
+(6,−0.11)
+(11, 0.21)
+(41, −0.14)
+129 to
+0.81 ± 0.11
+0.02 ± 0.19
+0.90 ± 0.10
+0.22 ± 0.09
+175 m
+(30, 0.30)
+(6,0.01)
+(12, 0.43)
+(24, 0.10)
+175 to
+0.53 ± 0.09
+0.12 ± 0.12
+0.84 ± 0.09
+0.53 ± 0.19
+256 m
+(35, 0.19)
+(8,0.06)
+(24, 0.30)
+(17, 0.12)
+256 to
+1.42 ± 0.07
+1.10 ± 0.42
+1.52 ± 0.08
+0.47 ± 0.09
+700 m
+(37, 0.41)
+(3, 0.25)
+(17, 0.50)
+(25, 0.13)
+Appendix D: Sensitivity of So to the use of CAS data
+from ORACLES 2016
+Given the differences between the CAS and PDI Nc and
+LWC for droplets with D<50 µm during ORACLES 2016
+(see Supplement), sensitivity tests were performed by ﬁrst
+excluding ORACLES 2016 data and second by using PDI
+data to represent ORACLES 2016 size distributions for
+D<50 µm in the So calculations. These sensitivity tests
+resulted in minor changes in the trends of So versus H
+(Fig. D1), along with average changes in the magnitude of
+So up to 0.05 (Table D1). The noted changes suggest that the
+discussion of trends in So described in this study is robust as
+it relates to the inclusion of ORACLES 2016 data and the use
+of CAS data for the deployment. Since the 2016 deployment
+contributed about a third of the ORACLES measurements,
+data from the 2016 deployment were included in the study
+so as not to reduce the size of the dataset.
+The slight decrease in So for thick clouds (H>256 m)
+upon removal of ORACLES 2016 data is associated with
+a decrease in the number of thick clouds (Table D1). The
+use of PDI data resulted in minor changes because So pri-
+marily depends on Nc and Rp. The CAS and PDI datasets
+had small differences in the average Nc (95 % conﬁdence
+intervals of 9 to 12 cm−3), and Rp was calculated using
+droplets with D>50 µm, which do not include contributions
+from either the CAS or the PDI. The documentation of dif-
+ferences between the ORACLES cloud probes (see Supple-
+ment) highlights the measurement uncertainties associated
+with the cloud probe datasets.
+Table D1. So ± standard error for all proﬁles, with sample size and
+R in parentheses.
+H
+CAS data
+No data
+PDI data
+from 2016
+from 2016
+from 2016
+All
+0.88 ± 0.03
+0.83 ± 0.03
+0.90 ± 0.02
+(329, 0.33)
+(258, 0.33)
+(329, 0.35)
+28 to 129 m
+0.67 ± 0.07
+0.58 ± 0.07
+0.68 ± 0.07
+(82, 0.28)
+(80, 0.26)
+(84, 0.29)
+129 to 175 m
+0.68 ± 0.05
+0.73 ± 0.05
+0.73 ± 0.05
+(80, 0.32)
+(63, 0.35)
+(79, 0.35)
+175 to 256 m
+0.54 ± 0.05
+0.84 ± 0.06
+0.71 ± 0.05
+(85, 0.20)
+(58, 0.31)
+(86, 0.26)
+256 to 700 m
+1.13 ± 0.04
+0.75 ± 0.04
+1.10 ± 0.04
+(82, 0.40)
+(57, 0.30)
+(80, 0.41)
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2788
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Figure D1. So as a function of H (error bars extend to standard error from regression model) using (a) CAS data, (b) no data, or (c) PDI
+data from ORACLES 2016.
+Code availability. University
+of
+Illinois/Oklahoma
+Opti-
+cal Array Probe (OAP) Processing Software is available at
+https://doi.org/10.5281/zenodo.1285969 (McFarquhar et al., 2018).
+The Airborne Data Processing and Analysis software package is
+available at https://doi.org/10.5281/zenodo.3733448 (Delene et al.,
+2020).
+Data availability. All ORACLES data are accessible via the digi-
+tal object identiﬁers provided under ORACLES Science Team refer-
+ences: https://doi.org/10.5067/Suborbital/ORACLES/P3/2018_V2
+(ORACLES
+Science
+Team,
+2020a),
+https://doi.org/10.5067/Suborbital/ORACLES/P3/2017_V2
+(ORACLES
+Science
+Team,
+2020b),
+and
+https://doi.org/10.5067/Suborbital/ORACLES/P3/2016_V2
+(ORACLES Science Team, 2020c). ERA5 data were obtained
+from the Climate Data Store (last access: 18 May 2021):
+https://cds.climate.copernicus.eu/cdsapp#!/home
+(CDS,
+2017;
+Hersbach et al., 2020).
+Supplement. The supplement related to this article is available
+online at: https://doi.org/10.5194/acp-22-2769-2022-supplement.
+Author contributions. GMM and MRP worked with other inves-
+tigators to design the ORACLES project and ﬂight campaigns. SG
+designed the study with guidance from GMM. SG analyzed the
+data with inputs from GMM, JRO’B, and MRP. JRO’B and DJD
+processed PCASP data and cloud probe data, conducted data qual-
+ity tests, and some of the data comparisons between cloud probes.
+SG processed 2D-S and HVPS-3 data and conducted some of the
+data comparisons between cloud probes. JDSG processed PDI data.
+GMM and MRP acquired funding. All authors were involved in data
+collection during ORACLES. SG wrote the manuscript with guid-
+ance from GMM and reviews from all authors.
+Competing interests. The contact author has declared that nei-
+ther they nor their co-authors have any competing interests.
+Disclaimer. Publisher’s note: Copernicus Publications remains
+neutral with regard to jurisdictional claims in published maps and
+institutional afﬁliations.
+Special issue statement. This article is part of the special issue
+“New observations and related modeling studies of the aerosol–
+cloud–climate system in the Southeast Atlantic and southern Africa
+regions (ACP/AMT inter-journal SI)”. This article is not associated
+with a conference.
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2789
+Acknowledgements. The authors thank Yohei Shinozuka for
+providing merged instrument data ﬁles for the ORACLES ﬁeld
+campaign. We acknowledge the entire ORACLES science team for
+their assistance with data acquisition, analysis, and interpretation.
+We thank the NASA Ames Earth Science Project Ofﬁce and the
+NASA P-3B ﬂight/maintenance crew for logistical and aircraft sup-
+port. Some of the computing for this project was performed at the
+OU Supercomputing Center for Education & Research (OSCER) at
+the University of Oklahoma (OU).
+Financial support. ORACLES is funded by NASA Earth Ven-
+ture Suborbital-2 (grant no. NNH13ZDA001N-EVS2). Siddhant
+Gupta was supported by NASA headquarters under the NASA
+Earth and Space Science Fellowship (grant nos. NNX15AF93G and
+NNX16A018H). Greg M. McFarquhar and Siddhant Gupta were
+supported by NASA (grant no. 80NSSC18K0222).
+Review statement. This paper was edited by J. M. Haywood and
+reviewed by three anonymous referees.
+References
+Abel, S. J. and Boutle, I. A.: An improved representation
+of the raindrop size distribution for single-moment micro-
+physics schemes, Q. J. Roy. Meteor. Soc., 138, 2151–2162,
+https://doi.org/10.1002/qj.1949, 2012.
+Ackerman, A. S., Kirkpatrick, M. P., Stevens, D. E., and Toon, O.
+B.: The impact of humidity above stratiform clouds on indirect
+aerosol climate forcing, Nature, 432, 1014–1017, 2004.
+Adebiyi, A. A. and Zuidema, P.: The role of the southern African
+easterly jet in modifying the southeast Atlantic aerosol and
+cloud environments, Q. J. Roy. Meteor. Soc., 142, 1574–1589,
+https://doi.org/10.1002/qj.2765, 2016.
+Ahlgrimm, M. and Forbes, R.: Improving the Representation of
+Low Clouds and Drizzle in the ECMWF Model Based on ARM
+Observations from the Azores, Mon. Weather Rev., 142, 668–
+685, https://doi.org/10.1175/mwr-d-13-00153.1, 2014.
+Ahlgrimm, M., Randall, D. A., and Kohler, M.: Evaluating cloud
+frequency of occurrence and cloud-top height using spaceborne
+lidar observations, Mon. Weather Rev., 137, 4225–4237, 2009.
+Albrecht, B.: Aerosols, Cloud Microphysics, and Fractional Cloudi-
+ness, Science, 245, 1227–1230, 1989.
+Bai, H., Gong, C., Wang, M., Zhang, Z., and L’Ecuyer,
+T.: Estimating precipitation susceptibility in warm marine
+clouds using multi-sensor aerosol and cloud products from
+A-Train
+satellites,
+Atmos.
+Chem.
+Phys.,
+18,
+1763–1783,
+https://doi.org/10.5194/acp-18-1763-2018, 2018.
+Baumgardner, D., Jonsson, H., Dawson, W., Connor, D. O., and
+Newton, R.: The cloud, aerosol and precipitation spectrometer
+(CAPS): A new instrument for cloud investigations, Atmos. Res.,
+59, 59–60, 2001.
+Baumgardner,
+D.,
+Abel,
+S.
+J.,
+Axisa,
+D.,
+Cotton,
+R.,
+Crosier, J., Field, P., Gurganus, C., Heymsﬁeld, A., Ko-
+rolev,
+A.,
+Kraemer,
+M.,
+Lawson,
+P.,
+McFarquhar,
+G.,
+Ulanowski, Z., and Um, J.: Cloud ice properties: in situ
+measurement
+challenges,
+Meteor.
+Mon.,
+58,
+9.1–9.23,
+https://doi.org/10.1175/AMSMONOGRAPHS-D-16-0011.1,
+2017.
+Behrangi, A., Stephens, G., Adler, R. F., Huffman, G. J., Lam-
+brigtsen, B., and Lebsock, M.: An update on the oceanic
+precipitation rate and its zonal distribution in light of ad-
+vanced observations from space, J. Climate, 27, 3957–3965,
+https://doi.org/10.1175/JCLI-D-13-00679.1, 2014.
+Bennartz, R.: Global assessment of marine boundary layer cloud
+droplet number concentration from satellite, J. Geophys. Res.,
+112, D02201, https://doi.org/10.1029/2006JD007547, 2007.
+Boers, R., Acarreta, J. R., and Gras, J. L.: Satellite monitoring of
+the ﬁrst indirect aerosol effect: Retrieval of the droplet concen-
+tration of water clouds, J. Geophys. Res.-Atmos., 111, D22208,
+https://doi.org/10.1029/2005JD006838, 2006.
+Bony,
+S.
+and
+Dufrense,
+J.-L.:
+Marine
+boundary
+layer
+clouds
+at
+the
+heart
+of
+tropical
+feedback
+uncertainties
+in
+climate
+models,
+Geophys.
+Res.
+Lett.,
+32,
+L20806,
+https://doi.org/10.1029/2005GL023851, 2005.
+Boucher, O., Randall, D., Artaxo, P., Bretherton, C., Feingold, G.,
+Forster, P., Kerminen, V.-M., Kondo, Y., Liao, H., Lohmann, U.,
+Rasch, P., Satheesh, S. K., Sherwood, S., Stevens, B., and Zhang,
+X. Y.: Clouds and Aerosols, in: Climate Change 2013: The Phys-
+ical Science Basis, Contribution of Working Group I to the Fifth
+Assessment Report of the Intergovernmental Panel on Climate
+Change, edited by: Stocker, T. F., Qin, D., Plattner, G.-K., Tig-
+nor, M., Allen, S. K., Boschung, J., Nauels, A., Xia, Y., Bex,
+V., and Midgley, P. M., Cambridge University Press, Cambridge,
+United Kingdom and New York, NY, USA, 571–657, 2013.
+Boutle, I. A., Abel, S. J., Hill, P. G., and Morcrette, C. J.: Spa-
+tial variability of liquid cloud and rain: observations and mi-
+crophysical effects, Q. J. Roy. Meteor. Soc., 140, 583–594,
+https://doi.org/10.1002/qj.2140, 2014.
+Braun, R. A., Dadashazar, H., MacDonald, A. B., Crosbie, E.,
+Jonsson, H. H., Woods, R. K., Flagan, R. C., Seinfeld, J. H.,
+and Sorooshian, A.: Cloud Adiabaticity and Its Relationship
+to Marine Stratocumulus Characteristics Over the Northeast
+Paciﬁc Ocean, J. Geophys. Res.-Atmos., 123, 13790–13806,
+https://doi.org/10.1029/2018JD029287, 2018.
+Brenguier, J.-L., Pawlowska, H., Schuller, L., Preusker, R., Fis-
+cher, J., and Fouquart, Y.: Radiative properties of boundary layer
+clouds: Droplet effective radius versus number concentration, J.
+Atmos. Sci., 57, 803–821, 2000.
+Cai, Y., Snider, J. R., and Wechsler, P.: Calibration of the pas-
+sive cavity aerosol spectrometer probe for airborne determina-
+tion of the size distribution, Atmos. Meas. Tech., 6, 2349–2358,
+https://doi.org/10.5194/amt-6-2349-2013, 2013.
+CDS: ERA5 Fifth generation of ECMWF atmospheric reanaly-
+ses of the global climate, CDS [data set], https://cds.climate.
+copernicus.eu/cdsapp#!/home (last access: 26 November 2019),
+2017.
+Chen, Y.-C., Christensen, M. W., Stephens, G. L., and Seinfeld,
+J. H.: Satellite-based estimate of global aerosol–cloud radia-
+tive forcing by marine warm clouds, Nat. Geosci., 7, 643–646,
+https://doi.org/10.1038/ngeo2214, 2014.
+Christensen, M. W. and Stephens, G. L.: Microphysical and
+macrophysical
+responses
+of
+marine
+stratocumulus
+pol-
+luted by underlying ships. Part 2: Impacts of haze on
+precipitating
+clouds,
+J.
+Geophys.
+Res.,
+117,
+D11203,
+https://doi.org/10.1029/2011JD017125, 2012.
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2790
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+Chuang, P. Y., Saw, E. W., Small, J. D., Shaw, R. A., Sipperley, C.
+M., Payne, G. A., and Bachalo, W.: Airborne Phase 495 Doppler
+Interferometry for Cloud Microphysical Measurements, Aerosol
+Sci. Technol., 42, 685–703, 2008.
+Cochrane, S. P., Schmidt, K. S., Chen, H., Pilewskie, P., Kittel-
+man, S., Redemann, J., LeBlanc, S., Pistone, K., Kacenelenbo-
+gen, M., Segal Rozenhaimer, M., Shinozuka, Y., Flynn, C., Plat-
+nick, S., Meyer, K., Ferrare, R., Burton, S., Hostetler, C., How-
+ell, S., Freitag, S., Dobracki, A., and Doherty, S.: Above-cloud
+aerosol radiative effects based on ORACLES 2016 and ORA-
+CLES 2017 aircraft experiments, Atmos. Meas. Tech., 12, 6505–
+6528, https://doi.org/10.5194/amt-12-6505-2019, 2019.
+Dadashazar, H., Wang, Z., Crosbie, E., Brunke, M., Zeng,
+X., Jonsson, H., Woods, R. K., Flagan, R. C., Seinfeld,
+J. H., and Sorooshian, A.: Relationships between giant sea
+salt particles and clouds inferred from aircraft physico-
+chemical data, J. Geophys. Res.-Atmos., 122, 3421–3434,
+https://doi.org/10.1002/2016JD026019, 2017.
+Delene, D. J.: Airborne Data Processing and Analysis Software
+Package, Earth Sci. Inform., 4, 29–44, 2011.
+Delene, D. J., Skow, A., O’Brien, J., Gapp, N., Wagner, S., Hi-
+bert, K., Sand, K., and Sova, G.: Airborne Data Processing
+and Analysis Software Package (Version 3981), Zenodo [code],
+https://doi.org/10.5281/zenodo.3733448, 2020.
+Devasthale,
+A.
+and
+Thomas,
+M.
+A.:
+A
+global
+survey
+of
+aerosol-liquid water cloud overlap based on four years of
+CALIPSO-CALIOP data, Atmos. Chem. Phys., 11, 1143–1154,
+https://doi.org/10.5194/acp-11-1143-2011, 2011.
+Diamond, M. S., Dobracki, A., Freitag, S., Small Griswold, J.
+D., Heikkila, A., Howell, S. G., Kacarab, M. E., Podolske, J.
+R., Saide, P. E., and Wood, R.: Time-dependent entrainment of
+smoke presents an observational challenge for assessing aerosol–
+cloud interactions over the southeast Atlantic Ocean, Atmos.
+Chem. Phys., 18, 14623–14636, https://doi.org/10.5194/acp-18-
+14623-2018, 2018.
+Doherty, S. J., Saide, P. E., Zuidema, P., Shinozuka, Y., Ferrada,
+G. A., Gordon, H., Mallet, M., Meyer, K., Painemal, D., How-
+ell, S. G., Freitag, S., Dobracki, A., Podolske, J. R., Burton,
+S. P., Ferrare, R. A., Howes, C., Nabat, P., Carmichael, G.
+R., da Silva, A., Pistone, K., Chang, I., Gao, L., Wood, R.,
+and Redemann, J.: Modeled and observed properties related to
+the direct aerosol radiative effect of biomass burning aerosol
+over the southeastern Atlantic, Atmos. Chem. Phys., 22, 1–46,
+https://doi.org/10.5194/acp-22-1-2022, 2022.
+Douglas, A. and L’Ecuyer, T.: Quantifying variations in short-
+wave aerosol–cloud–radiation interactions using local meteorol-
+ogy and cloud state constraints, Atmos. Chem. Phys., 19, 6251–
+6268, https://doi.org/10.5194/acp-19-6251-2019, 2019.
+Douglas, A. and L’Ecuyer, T.: Quantifying cloud adjustments and
+the radiative forcing due to aerosol–cloud interactions in satellite
+observations of warm marine clouds, Atmos. Chem. Phys., 20,
+6225–6241, https://doi.org/10.5194/acp-20-6225-2020, 2020.
+Duong, H. T., Sorooshian, A., and Feingold, G.: Investigating po-
+tential biases in observed and modeled metrics of aerosol-cloud-
+precipitation interactions, Atmos. Chem. Phys., 11, 4027–4037,
+https://doi.org/10.5194/acp-11-4027-2011, 2011.
+Dzambo, A. M., L’Ecuyer, T. S., Sy, O. O., and Tanelli, S.: The
+Observed Structure and Precipitation Characteristics of South-
+east Atlantic Stratocumulus from Airborne Radar during OR-
+ACLES 2016–17, J. Appl. Meteor. Climatol., 58, 2197–2215,
+https://doi.org/10.1175/JAMC-D-19-0032.1, 2019.
+Dzambo, A. M., L’Ecuyer, T., Sinclair, K., van Diedenhoven,
+B., Gupta, S., McFarquhar, G., O’Brien, J. R., Cairns, B.,
+Wasilewski, A. P., and Alexandrov, M.: Joint cloud wa-
+ter path and rainwater path retrievals from airborne OR-
+ACLES observations, Atmos. Chem. Phys., 21, 5513–5532,
+https://doi.org/10.5194/acp-21-5513-2021, 2021.
+Eastman, R., Warren, S. G., and Hahn, C. J.: Variations in
+Cloud Cover and Cloud Types over the Ocean from Sur-
+face Observations, 1954–2008, J. Climate, 24, 5914–5934,
+https://doi.org/10.1175/2011JCLI3972.1, 2011.
+ECMWF: IFS Documentation, IFS Documentation CY47R1:
+IFS Documentation CY47R1 – Part IV: Physical Processes,
+https://doi.org/10.21957/cpmkqvhja, 2020.
+Feingold, G. and Siebert, H.: Cloud – Aerosol Interactions from
+the Micro to the Cloud Scale, from the Strungmann Forum Re-
+port, Clouds in the Perturbed Climate System: Their Relationship
+to Energy Balance, Atmospheric Dynamics, and Precipitation,
+2, edited by: Heintzenberg, J. and Charlson, R. J., MIT Press,
+ISBN 978-0-262-01287-4, 2009.
+Gettelman, A., Morrison, H., Terai, C. R., and Wood, R.: Micro-
+physical process rates and global aerosol–cloud interactions, At-
+mos. Chem. Phys., 13, 9855–9867, https://doi.org/10.5194/acp-
+13-9855-2013, 2013.
+Geoffroy, O., Brenguier, J.-L., and Sandu, I.: Relationship between
+drizzle rate, liquid water path and droplet concentration at the
+scale of a stratocumulus cloud system, Atmos. Chem. Phys., 8,
+4641–4654, https://doi.org/10.5194/acp-8-4641-2008, 2008.
+Geoffroy, O., Brenguier, J.-L., and Burnet, F.: Parametric rep-
+resentation of the cloud droplet spectra for LES warm bulk
+microphysical schemes, Atmos. Chem. Phys., 10, 4835–4848,
+https://doi.org/10.5194/acp-10-4835-2010, 2010.
+Gordon, H., Field, P. R., Abel, S. J., Dalvi, M., Grosvenor, D. P.,
+Hill, A. A., Johnson, B. T., Miltenberger, A. K., Yoshioka, M.,
+and Carslaw, K. S.: Large simulated radiative effects of smoke in
+the south-east Atlantic, Atmos. Chem. Phys., 18, 15261–15289,
+https://doi.org/10.5194/acp-18-15261-2018, 2018.
+Gryspeerdt, E., Goren, T., Sourdeval, O., Quaas, J., Mülmenstädt,
+J., Dipu, S., Unglaub, C., Gettelman, A., and Christensen, M.:
+Constraining the aerosol inﬂuence on cloud liquid water path, At-
+mos. Chem. Phys., 19, 5331–5347, https://doi.org/10.5194/acp-
+19-5331-2019, 2019.
+Gui, K., Che, H., Zheng, Y., Zhao, H., Yao, W., Li, L., Zhang,
+L., Wang, H., Wang, Y., and Zhang, X.: Three-dimensional
+climatology, trends, and meteorological drivers of global and
+regional tropospheric type-dependent aerosols: insights from
+13 years (2007–2019) of CALIOP observations, Atmos. Chem.
+Phys., 21, 15309–15336, https://doi.org/10.5194/acp-21-15309-
+2021, 2021.
+Gupta, S., McFarquhar, G. M., O’Brien, J. R., Delene, D. J., Poellot,
+M. R., Dobracki, A., Podolske, J. R., Redemann, J., LeBlanc, S.
+E., Segal-Rozenhaimer, M., and Pistone, K.: Impact of the vari-
+ability in vertical separation between biomass burning aerosols
+and marine stratocumulus on cloud microphysical properties
+over the Southeast Atlantic, Atmos. Chem. Phys., 21, 4615–
+4635, https://doi.org/10.5194/acp-21-4615-2021, 2021.
+Hannay, C., Williamson, D., Hack, J., Kiehl, J., Olson, J., Klein, S.,
+Bretherton, C., and Kohler, M.: Evaluation of forecasted south-
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2791
+east paciﬁc stratocumulus in the NCAR, GFDL, and ECMWF
+Models, J. Climate, 22, 2871–2889, 2009.
+Hansen, J. and Travis, L. D.: Light scattering in planetary atmo-
+spheres, Space Sci. Rev., 16, 527–610, 1974
+Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A.,
+Muñoz-Sabater, J., Nicolas, J., Peubey, C., Radu, R., Schepers,
+D., Simmons, A., Soci, C., Abdalla, S., Abellan, X., Balsamo, G.,
+Bechtold, P., Biavati, G., Bidlot, J., Bonavita, M., De Chiara, G.,
+Dahlgren, P., Dee, D., Diamantakis, M., Dragani, R., Flemming,
+J., Forbes, R., Fuentes, M., Geer, A., Haimberger, L., Healy,
+S., Hogan, R. J., Hólm, E., Janisková, M., Keeley, S., Laloy-
+aux, P., Lopez, P., Lupu, C., Radnoti, G., de Rosnay, P., Rozum,
+I., Vamborg, F., Villaume, S., and Thépaut, J.-N.: The ERA5
+Global Reanalysis, Q. J. Roy. Meteor. Soc., 146, 730, 1999–
+2049, https://doi.org/10.1002/qj.3803, 2020.
+Hill, A. A., Dobbie, S., and Yin, Y.: The impact of aerosols on non-
+precipitating marine stratocumulus. Model description and pre-
+diction of the indirect effect, Q. J. Roy. Meteor. Soc., 134, 1143–
+1154, https://doi.org/10.1002/qj.278, 2008.
+Hintze, J. L. and Nelson, R. D.: Violin Plots: A Box Plot-Density
+Trace Synergism, Am. Stat., 52, 181–184, 1998.
+Jiang, H., Feingold, G., and Sorooshian, A.: Effect of aerosol on
+the susceptibility and efﬁciency of precipitation in trade cumulus
+clouds, J. Atmos. Sci., 67, 3525–3540, 2010.
+Jung, E., Albrecht, B. A., Sorooshian, A., Zuidema, P., and Jon-
+sson, H. H.: Precipitation susceptibility in marine stratocumu-
+lus and shallow cumulus from airborne measurements, Atmos.
+Chem. Phys., 16, 11395–11413, https://doi.org/10.5194/acp-16-
+11395-2016, 2016.
+Khairoutdinov, M. and Kogan, Y.: A new cloud physics parameteri-
+zation in a large-eddy simulation model of marine stratocumulus,
+Mon. Weather Rev., 128, 229–243, 2000.
+King, W. D., Parkin, D. A., and Handsworth, R. J.: A hot-wire liquid
+water device having fully calculable response characteristics, J.
+Appl. Meteorol., 17, 1809–1813, https://doi.org/10.1175/1520-
+0450(1978)017<1809:AHWLWD>2.0.CO;2, 1978.
+Klein, S. A. and Hartmann, D. L.: The seasonal cycle of low strati-
+form clouds, J. Climate, 6, 1587–1606, 1993.
+Köhler, M., Ahlgrimm, M., and Beljaars, A.: Uniﬁed treatment of
+dry convective and stratocumulus-topped boundary layers in the
+ECMWF model, Q. J. Roy. Meteor. Soc., 137, 43–57, 2011.
+Kubar, T. L., Hartmann, D. L., and Wood, R.: Understanding the
+importance of microphysics and macrophysics for warm rain in
+marine low clouds. Part I: Satellite observations, J. Atmos. Sci.
+66, 2953–2972, 2009.
+Lance, S., Brock, C. A., Rogers, D., and Gordon, J. A.: Wa-
+ter droplet calibration of the Cloud Droplet Probe (CDP)
+and in-ﬂight performance in liquid, ice and mixed-phase
+clouds during ARCPAC, Atmos. Meas. Tech., 3, 1683–1706,
+https://doi.org/10.5194/amt-3-1683-2010, 2010.
+Lawrence, M. G.: The relationship between relative humidity and
+the dewpoint temperature in moist air: A simple conversion and
+applications, B. Am. Meteorol. Soc., 86, 225–233, 2005.
+Lawson, R. P., Stewart, R. E., and Angus, L. J.: Observations and
+numerical simulations of the origin and development of very
+large snowﬂakes, J. Atmos. Sci., 55, 3209–3229, 1998.
+Lawson, R. P., O’Connor, D., Zmarzly, P., Weaver, K., Baker, B. A.,
+Mo, Q., and Jonsson, H.: The 2D-S (Stereo) probe: Design and
+preliminary tests of a new airborne, high-speed, high-resolution
+imaging probe, J. Atmos. Ocean. Tech., 23, 1462–1477, 2006.
+LeBlanc, S. E., Redemann, J., Flynn, C., Pistone, K., Kacenelen-
+bogen, M., Segal-Rosenheimer, M., Shinozuka, Y., Dunagan, S.,
+Dahlgren, R. P., Meyer, K., Podolske, J., Howell, S. G., Freitag,
+S., Small-Griswold, J., Holben, B., Diamond, M., Wood, R., For-
+menti, P., Piketh, S., Maggs-Kölling, G., Gerber, M., and Nam-
+woonde, A.: Above-cloud aerosol optical depth from airborne
+observations in the southeast Atlantic, Atmos. Chem. Phys., 20,
+1565–1590, https://doi.org/10.5194/acp-20-1565-2020, 2020.
+Mardi, A. H., Dadashazar, H., MacDonald, A. B., Crosbie, E.,
+Coggon, M. M., Aghdam, M. A., Woods, R. K., Jonsson, H.
+H., Flagan, R. C., Seinfeld, J. H., and Sorooshian, A.: Effects
+of Biomass Burning on Stratocumulus Droplet Characteristics,
+Drizzle Rate, and Composition, J. Geophys. Res.-Atmos., 124,
+12301–12318, https://doi.org/10.1029/2019jd031159, 2019.
+Mauger, G. S. and Norris, J. R.: Meteorological bias in satellite es-
+timates of aerosol-cloud relationships, Geophys. Res. Lett., 34,
+L16824, https://doi.org/10.1029/2007GL029952, 2007.
+McComiskey, A. and Feingold, G.: The scale problem in quantify-
+ing aerosol indirect effects, Atmos. Chem. Phys., 12, 1031–1049,
+https://doi.org/10.5194/acp-12-1031-2012, 2012.
+McFarquhar, G. M., Finlon, J. A., Stechman, D. M., Wu, W., Jack-
+son, R. C., and Freer, M.: University of Illinois/Oklahoma Op-
+tical Array Probe (OAP) Processing Software, Zenodo [code],
+https://doi.org/10.5281/zenodo.1285969, 2018.
+Morrison, H. and Gettelman, A.: A new two-moment bulk
+stratiform
+cloud
+microphysics
+scheme
+in
+the
+commu-
+nity atmosphere model, version 3 (CAM3). Part I: De-
+scription and numerical tests, J. Climate, 21, 3642–3659,
+https://doi.org/10.1175/2008JCLI2105.1, 2008.
+O’Brien, J. R., Poellot, M., Delene, D., McFarquhar, G., Spanu,
+A., Gupta, S., Detwiler, A., and Miller, R.: The Impacts of Air-
+borne Cloud Microphysical Instrumentation Mounting Location
+on Measurements Made During the Observations of Aerosols
+and Clouds and Their Interactions (ORACLES) Project, in prepa-
+ration, 2022.
+ORACLES Science Team: Suite of Aerosol, Cloud, and Related
+Data Acquired Aboard P3 During ORACLES 2018, Ver-
+sion 2, NASA Ames Earth Science Project Ofﬁce [data set],
+https://doi.org/10.5067/Suborbital/ORACLES/P3/2018_V2,
+2020a.
+ORACLES Science Team: Suite of Aerosol, Cloud, and Related
+Data Acquired Aboard P3 During ORACLES 2017, Ver-
+sion 2, NASA Ames Earth Science Project Ofﬁce [data set],
+https://doi.org/10.5067/Suborbital/ORACLES/P3/2017_V2,
+2020b.
+ORACLES Science Team: Suite of Aerosol, Cloud, and Related
+Data Acquired Aboard P3 During ORACLES 2016, Ver-
+sion 2, NASA Ames Earth Science Project Ofﬁce [data set],
+https://doi.org/10.5067/Suborbital/ORACLES/P3/2016_V2,
+2020c.
+Oreopoulos, L. and Rossow, W. B.: The cloud radiative ef-
+fects of International Satellite Cloud Climatology Project
+weather
+states,
+J.
+Geophys.
+Res.-Atmos.,
+116,
+D12202,
+https://doi.org/10.1029/2010JD015472, 2011.
+Painemal,
+D.
+and
+Zuidema,
+P.:
+Assessment
+of
+MODIS
+cloud
+effective
+radius
+and
+optical
+thickness
+retrievals
+over
+the
+Southeast
+Paciﬁc
+with
+VOCALS-REx
+in
+situ
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+2792
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+measurements,
+J.
+Geophys.
+Res.-Atmos.,
+116,
+D24206,
+https://doi.org/10.1029/2011JD016155, 2011.
+Penner, J. E., Quaas, J., Storelvmo, T., Takemura, T., Boucher, O.,
+Guo, H., Kirkevåg, A., Kristjánsson, J. E., and Seland, Ø.: Model
+intercomparison of indirect aerosol effects, Atmos. Chem. Phys.,
+6, 3391–3405, https://doi.org/10.5194/acp-6-3391-2006, 2006.
+Pennypacker, S., Diamond, M., and Wood, R.: Ultra-clean and
+smoky marine boundary layers frequently occur in the same sea-
+son over the southeast Atlantic, Atmos. Chem. Phys., 20, 2341–
+2351, https://doi.org/10.5194/acp-20-2341-2020, 2020.
+Pistone, K., Redemann, J., Doherty, S., Zuidema, P., Burton,
+S., Cairns, B., Cochrane, S., Ferrare, R., Flynn, C., Freitag,
+S., Howell, S. G., Kacenelenbogen, M., LeBlanc, S., Liu,
+X., Schmidt, K. S., Sedlacek III, A. J., Segal-Rozenhaimer,
+M., Shinozuka, Y., Stamnes, S., van Diedenhoven, B., Van
+Harten, G., and Xu, F.: Intercomparison of biomass burning
+aerosol optical properties from in situ and remote-sensing instru-
+ments in ORACLES-2016, Atmos. Chem. Phys., 19, 9181–9208,
+https://doi.org/10.5194/acp-19-9181-2019, 2019.
+Pistone, K., Zuidema, P., Wood, R., Diamond, M., da Silva, A. M.,
+Ferrada, G., Saide, P. E., Ueyama, R., Ryoo, J.-M., Pﬁster, L.,
+Podolske, J., Noone, D., Bennett, R., Stith, E., Carmichael, G.,
+Redemann, J., Flynn, C., LeBlanc, S., Segal-Rozenhaimer, M.,
+and Shinozuka, Y.: Exploring the elevated water vapor signal as-
+sociated with the free tropospheric biomass burning plume over
+the southeast Atlantic Ocean, Atmos. Chem. Phys., 21, 9643–
+9668, https://doi.org/10.5194/acp-21-9643-2021, 2021.
+Platnick, S. and Twomey, S.: Determining the susceptibility of
+cloud albedo to changes in droplet concentration with the ad-
+vanced very high resolution radiometer, J. Appl. Meteor., 33,
+334–346, 1994.
+Possner, A., Eastman, R., Bender, F., and Glassmeier, F.: De-
+convolution of boundary layer depth and aerosol constraints
+on cloud water path in subtropical stratocumulus decks, At-
+mos. Chem. Phys., 20, 3609–3621, https://doi.org/10.5194/acp-
+20-3609-2020, 2020.
+Quaas, J., Arola, A., Cairns, B., Christensen, M., Deneke, H.,
+Ekman, A. M. L., Feingold, G., Fridlind, A., Gryspeerdt, E.,
+Hasekamp, O., Li, Z., Lipponen, A., Ma, P.-L., Mülmenstädt,
+J., Nenes, A., Penner, J. E., Rosenfeld, D., Schrödner, R., Sin-
+clair, K., Sourdeval, O., Stier, P., Tesche, M., van Diedenhoven,
+B., and Wendisch, M.: Constraining the Twomey effect from
+satellite observations: issues and perspectives, Atmos. Chem.
+Phys., 20, 15079–15099, https://doi.org/10.5194/acp-20-15079-
+2020, 2020.
+Rao S., Dey S.: Consistent signal of aerosol indirect and semi-
+direct effect on water clouds in the oceanic regions adja-
+cent to the Indian subcontinent, Atmos. Res., 232, 104677,
+https://doi.org/10.1016/j.atmosres.2019.104677, 2020.
+Redemann, J., Wood, R., Zuidema, P., Doherty, S. J., Luna, B.,
+LeBlanc, S. E., Diamond, M. S., Shinozuka, Y., Chang, I. Y.,
+Ueyama, R., Pﬁster, L., Ryoo, J.-M., Dobracki, A. N., da Silva,
+A. M., Longo, K. M., Kacenelenbogen, M. S., Flynn, C. J., Pis-
+tone, K., Knox, N. M., Piketh, S. J., Haywood, J. M., Formenti,
+P., Mallet, M., Stier, P., Ackerman, A. S., Bauer, S. E., Fridlind,
+A. M., Carmichael, G. R., Saide, P. E., Ferrada, G. A., How-
+ell, S. G., Freitag, S., Cairns, B., Holben, B. N., Knobelspiesse,
+K. D., Tanelli, S., L’Ecuyer, T. S., Dzambo, A. M., Sy, O. O.,
+McFarquhar, G. M., Poellot, M. R., Gupta, S., O’Brien, J. R.,
+Nenes, A., Kacarab, M., Wong, J. P. S., Small-Griswold, J. D.,
+Thornhill, K. L., Noone, D., Podolske, J. R., Schmidt, K. S.,
+Pilewskie, P., Chen, H., Cochrane, S. P., Sedlacek, A. J., Lang,
+T. J., Stith, E., Segal-Rozenhaimer, M., Ferrare, R. A., Burton,
+S. P., Hostetler, C. A., Diner, D. J., Seidel, F. C., Platnick, S.
+E., Myers, J. S., Meyer, K. G., Spangenberg, D. A., Maring, H.,
+and Gao, L.: An overview of the ORACLES (ObseRvations of
+Aerosols above CLouds and their intEractionS) project: aerosol–
+cloud–radiation interactions in the southeast Atlantic basin, At-
+mos. Chem. Phys., 21, 1507–1563, https://doi.org/10.5194/acp-
+21-1507-2021, 2021.
+Rogers, R. R. and Yau, M. K.: A Short Course in Cloud Physics, 3rd
+edn., International Series in Natural Philosophy, Butterworth-
+Heinemann, 290 pp., ISBN 9780750632157, 1989.
+Sakaeda,
+N.,
+Wood,
+R.,
+and
+Rasch,
+P.
+J.:
+Direct
+and
+semidirect
+aerosol
+effects
+of
+southern
+African
+biomass
+burning
+aerosol,
+J.
+Geophys.
+Res.,
+116,
+D12205,
+https://doi.org/10.1029/2010JD015540, 2011.
+Small, J. D., Chuang, P. Y., Feingold, G., and Jiang, H.: Can
+aerosol decrease cloud lifetime?, Geophys. Res. Lett., 36, 16806,
+https://doi.org/10.1029/2009GL038888, 2009.
+Sorooshian, A., Feingold, G., Lebsock, M. D., Jiang, H., and
+Stephens, G. L.: On the precipitation susceptibility of clouds
+to aerosol perturbations, Geophys. Res. Lett., 36, L13803,
+https://doi.org/10.1029/2009GL038993, 2009.
+Sorooshian, A., Feingold, G., Lebsock, M. D., Jiang, H.,
+and
+Stephens,
+G.:
+Deconstructing
+the
+precipitation
+sus-
+ceptibility
+construct:
+improving
+methodology
+for
+aerosol
+cloud precipitation studies, J. Geophys. Res., 115, D17201,
+https://doi.org/10.1029/2009JD013426, 2010.
+Sorooshian, A., Anderson, B., Bauer, S. E., Braun, R. A., Cairns,
+B., Crosbie, E., Dadashazar, H., Diskin, G., Ferrare, R., Fla-
+gan, R. C., Hair, J., Hostetler, C., Jonsson, H. H., Kleb, M.
+M., Liu, H. Y., MacDonald, A. B., McComiskey, A., Moore,
+R., Painemal, D., Russell, L. M., Seinfeld, J. H., Shook, M.,
+Smith, W. L., Thornhill, K., Tselioudis, G., Wang, H. L., Zeng,
+X. B., Zhang, B., Ziemba, L., and Zuidema, P.: Aerosol-Cloud-
+Meteorology Interaction Airborne Field Investigations: Using
+Lessons Learned from the US West Coast in the Design of ACTI-
+VATE off the US East Coast, B. Am. Meteorol. Soc., 100, 1511–
+1528, https://doi.org/10.1175/Bams-D-18-0100.1, 2019.
+Stephens, G. L., L’Ecuyer, T., Forbes, R., Gettlemen, A., Golaz, J.
+C., Bodas-Salcedo, A., Suzuki, K., Gabriel, P., and Haynes, J.:
+Dreary state of precipitation in global models, J. Geophys. Res.-
+Atmos., 115, D24211, https://doi.org/10.1029/2010jd014532,
+2010.
+Terai, C. R., Wood, R., Leon, D. C., and Zuidema, P.: Does pre-
+cipitation susceptibility vary with increasing cloud thickness in
+marine stratocumulus?, Atmos. Chem. Phys., 12, 4567–4583,
+https://doi.org/10.5194/acp-12-4567-2012, 2012.
+Toll, V., Christensen, M., Quaas, J., and Bellouin, N.: Weak average
+liquid-cloud-water response to anthropogenic aerosols, Nature,
+572, 51–55, https://doi.org/10.1038/s41586-019-1423-9, 2019.
+Trenberth, K. and Fasullo, J.: Global warming due to increas-
+ing absorbed solar radiation, Geophys. Res. Lett., 36, L07706,
+https://doi.org/10.1029/2009GL037527, 2009.
+Twomey, S.: Pollution and the Planetary Albedo, Atmos. Environ.,
+8, 1251–1256, 1974.
+Atmos. Chem. Phys., 22, 2769–2793, 2022
+https://doi.org/10.5194/acp-22-2769-2022
+S. Gupta et al.: Factors affecting precipitation formation and precipitation susceptibility
+2793
+Twomey, S.: The inﬂuence of pollution on the shortwave albedo of
+clouds, J. Atmos. Sci., 34, 1149–1152, 1977.
+Wilcox, E. M.: Stratocumulus cloud thickening beneath layers
+of absorbing smoke aerosol, Atmos. Chem. Phys., 10, 11769–
+11777, https://doi.org/10.5194/acp-10-11769-2010, 2010.
+Wood, R.: Stratocumulus Clouds, Mon. Weather Rev., 140, 2373–
+2423, https://doi.org/10.1175/MWR-D-11-00121.1, 2012.
+Wood, R. and Bretherton, C. S.: On the relationship between strat-
+iform low cloud cover and lower-tropospheric stability, J. Cli-
+mate, 19, 6425–6432, 2006.
+Wood, R. and Hartmann, D. L.: Spatial variability of liquid water
+path in marine low cloud: the importance of mesoscale cellular
+convection, J. Climate, 19, 1748–1764, 2006.
+Wood, R., Kubar, T. L., and Hartmann, D. L.: Understand-
+ing the Importance of Microphysics and Macrophysics for
+Warm Rain in Marine Low Clouds. Part II: Heuristic Mod-
+els of Rain Formation, J. Atmos. Sci., 66, 2973–2990,
+https://doi.org/10.1175/2009JAS3072.1, 2009.
+Xue, H. and Feingold, G.: Large eddy simulations of trade wind
+cumuli: investigation of aerosol indirect effects, J. Atmos. Sci.,
+63, 1605–1622, 2006.
+Zhang, Z. and Platnick, S.: An assessment of differences between
+cloud effective particle radius retrievals for marine water clouds
+from three MODIS spectral bands, J. Geophys. Res.-Atmos.,
+116, D20215, https://doi.org/10.1029/2011JD016216, 2011.
+Zuidema, P., Redemann, J., Haywood, J., Wood, R., Piketh, S.,
+Hipondoka, M. and Formenti, P.: Smoke and Clouds above
+the Southeast Atlantic: Upcoming Field Campaigns Probe Ab-
+sorbing Aerosol’s Impact on Climate, B. Am. Meteorol. Soc.,
+97, 1131–1135, https://doi.org/10.1175/BAMS-D-15-00082.1,
+2016.
+https://doi.org/10.5194/acp-22-2769-2022
+Atmos. Chem. Phys., 22, 2769–2793, 2022

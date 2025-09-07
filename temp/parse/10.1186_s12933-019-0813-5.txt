@@ -1,0 +1,1408 @@
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9  
+https://doi.org/10.1186/s12933-019-0813-5
+ORIGINAL INVESTIGATION
+Developmental trajectories of body mass 
+index from childhood into late adolescence 
+and subsequent late adolescence–young 
+adulthood cardiometabolic risk markers
+Kolade Oluwagbemigun1*  , Anette E. Buyken2, Ute Alexy1, Matthias Schmid3, Christian Herder4,5,6 
+and Ute Nöthlings1
+Abstract 
+Background:  Reports on body mass index (BMI) trajectories from childhood into late adolescence, their deter-
+minants, and subsequent cardiometabolic risk markers, particularly among European populations have been few. 
+Moreover, sex-specific investigation is necessary considering the sex difference in BMI, and the sex-specific association 
+between BMI and some cardiometabolic risk markers.
+Methods:  Using a sample from the DOrtmund Nutritional and Anthropometric Longitudinally Designed study, we 
+explored sex-specific trajectories of the BMI standard deviation score (SDS) from 4 to 18 years of age in 354 males and 
+335 females by latent (class) growth models. The determinants of trajectory were assessed by logistic regression. We 
+identified cardiometabolic risk markers that were highly associated with BMI SDS trajectory by random forest regres-
+sion, and finally we used generalized linear models to investigate differences in the identified cardiometabolic risk 
+markers between pairs of trajectories.
+Results:  We observed four: ‘low-normal weight’, ‘mid-normal weight’, ‘high-normal weight’, and ‘overweight’, and 
+three: ‘‘low-normal weight’, ‘mid-normal weight’, and ‘high-normal weight’ trajectories in males and females, respec-
+tively. Higher maternal prepregnancy BMI was associated with the ‘overweight’ trajectory, and with ‘high-normal 
+weight’ trajectory in both sexes. In addition, employed mothers and first-born status were associated with ‘high-
+normal weight’ trajectory in females. BMI SDS trajectory was associated with high-density lipoprotein-cholesterol 
+and interleukin-18 (IL-18) in males, and diastolic blood pressure and interleukin-6 (IL-6) in females. However, only 
+males following the ‘overweight’ trajectory had significantly higher IL-18 when compared to their ‘low-normal weight’ 
+counterpart.
+Conclusions:  We identified sex-specific distinct trajectories of BMI SDS from childhood into late adolescence, higher 
+maternal prepregnancy BMI as a common determinant of the ‘high-normal weight’ and ‘overweight’ trajectories, and 
+‘overweight’ trajectory being associated with elevated IL-18 in late adolescence–young adulthood. This study empha-
+sizes the role of maternal prepregnancy BMI in overweight, and highlights IL-18 as a cardiometabolic signature of 
+overweight across life.
+Keywords:  Body mass index, Trajectory, Latent (class) growth models, Maternal prepregnancy body mass index, 
+Cardiometabolic risk markers, Diastolic blood pressure, High-density lipoprotein cholesterol, IL-6, IL-18
+© The Author(s) 2019. This article is distributed under the terms of the Creative Commons Attribution 4.0 International License 
+(http://creat​iveco​mmons​.org/licen​ses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, 
+provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, 
+and indicate if changes were made. The Creative Commons Public Domain Dedication waiver (http://creat​iveco​mmons​.org/
+publi​cdoma​in/zero/1.0/) applies to the data made available in this article, unless otherwise stated.
+Open Access
+Cardiovascular Diabetology
+*Correspondence:  koluwagb@uni‑bonn.de 
+1 Nutritional Epidemiology, DONALD Study, Department of Nutrition 
+and Food Sciences, Rheinische Friedrich-Wilhelms-University Bonn, Bonn, 
+Germany
+Full list of author information is available at the end of the article
+Page 2 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+Background
+Overweight (including obesity), a condition of exces-
+sive body fat accumulation, is still a major health chal-
+lenge in modern societies. Individuals transiting from 
+late adolescence into young adulthood are at a signifi-
+cant risk of being overweight [1]. It is widely acknowl-
+edged that overweight status in late adolescence–young 
+adulthood extends back into childhood and adolescence 
+[1–3]. Ample evidence from different populations dem-
+onstrated that childhood and adolescence overweight 
+status indeed predict adult overweight status [4–8]. 
+These findings confirm that while overweight in young 
+adulthood is important, the age of onset and duration 
+should not be ignored. These three dimensions–intensity, 
+age of onset, and duration are usually captured through 
+developmental patterns (trajectories) [9]. Therefore, it 
+is important to identify groups of individuals following 
+similar trajectories, and a commonly used approach is 
+the latent (class) growth models (LCGM) [10]. Body mass 
+index (BMI) is correlated with body fat, and it is valua-
+ble in children and adolescents [11]. While many studies 
+have explored group-based BMI trajectories from child-
+hood into late adolescence–young adulthood [9, 12–20], 
+only two studies [9, 16] are among European populations. 
+Moreover, most of these studies have few measurement 
+occasions, a factor that negatively affects the accuracy of 
+trajectories [21].
+Exploring the trajectories of BMI enhances identifi-
+cation of their determinants and their association with 
+aspects of health later on in life [3]. Identification of 
+determinants allows anticipation of individuals at risk 
+for high BMI trajectories, and would provide the basis on 
+which effective intervention that could change these tra-
+jectories are implemented. High BMI is associated with 
+abnormalities in cardiometabolic risk markers such as 
+blood pressure (BP), high-density lipoprotein-cholesterol 
+(HDL-c), triglycerides, fasting plasma glucose (FPG), 
+and adipokines and other circulating proinflammatory 
+cytokines [22, 23]. Overweight-related cardiometabolic 
+risks are already evident in late adolescents–young adults 
+[24].
+Associations between high BMI at a single point of 
+measurement in childhood or adolescence and abnormal 
+cardiometabolic risk markers in late adolescence–young 
+adulthood are well-documented [25–41]. However, only 
+a few studies have examined associations between tra-
+jectories of BMI and cardiometabolic risk markers in late 
+adolescence–young adulthood [9, 12, 16, 19, 20]. These 
+studies observed associations between high BMI tra-
+jectories and high BP [9, 12, 16, 19, 20], reduced HDL-c 
+[16], elevated triglycerides [12, 16], and insulin resistance 
+[12, 16]. Admittedly, only a limited number of cardio-
+metabolic risk markers have been examined. Therefore, it 
+would be necessary to consider a broader range of cardio-
+metabolic risk markers. Importantly, it is difficult to con-
+clude from the above evidence that high BMI trajectory 
+confers additional risk beyond age-specific high BMI. 
+Intuitively, a clear distinction between these two might 
+reveal trajectory-specific cardiometabolic risk markers, 
+and unravel previously unappreciated links between adi-
+posity and cardiometabolic risk.
+There is a sex difference in body composition beginning 
+in childhood and continuing into adolescence [42], a sex 
+gap in overweight increasing with age, especially in ado-
+lescence [43], a significant interaction between trajecto-
+ries and sex for some cardiometabolic risk markers [16], 
+and sex difference in the association between BMI and 
+cardiovascular outcomes in adulthood [44]. Moreover, 
+prior research indicates that the relation between BMI 
+and cardiometabolic risk markers in late adolescence 
+may be sex-specific [45]. This evidence suggests investi-
+gations into sex-differential trajectory and sex-specific 
+trajectory–cardiometabolic risk markers association. In 
+addition, early life factors predict cardiometabolic risk 
+markers later in life [46], and late adolescents–young 
+adults often defer or discount healthy lifestyles [47]. Thus, 
+it would be necessary to determine whether the relation 
+between trajectory and cardiometabolic risk markers are 
+independent of these factors.
+Using annual anthropometric measurements from 
+childhood into late adolescents from a German cohort, 
+this study sought to: (1) identify and describe sex-specific 
+BMI trajectories using LCGM; (2) identify baseline deter-
+minants of these trajectories; (3) investigate whether 
+trajectory describes the relationship between BMI and 
+certain cardiometabolic risk markers in late adoles-
+cence–young adulthood beyond BMI at specific ages; 
+and (4) given the findings of aim 3, to investigate whether 
+individuals following different trajectories also have sig-
+nificantly different level of cardiometabolic risk mark-
+ers, that is independent of baseline determinants and late 
+adolescence–young adulthood lifestyle factors.
+Methods
+Study design
+The DOrtmund Nutritional and Anthropometric Lon-
+gitudinally Designed (DONALD) study is a longitudi-
+nal (open cohort) study, collecting detailed data on diet, 
+growth, development, and metabolism between infancy 
+and adulthood [48]. This study uses a convenient sam-
+pling scheme; hence, children from high socio-economic 
+families are over-represented [48]. Experienced nurses 
+conducted anthropometric measurements throughout 
+the follow-up period, which include annual measure-
+ments of height and body weight. Informed written con-
+sent was obtained from parents and from participants 
+Page 3 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+themselves on reaching adolescence. The Ethics Com-
+mittee of the University of Bonn, Germany approved the 
+study.
+Study participants
+The current study includes participants who were sin-
+gletons, full term (36 to 42  weeks) and birth weight 
+of ≥ 2500 g. For the present analysis, we used anthropo-
+metric measurements from age 4 to 18 years. Trajectory 
+analysis requires at least three measurements [49], there-
+fore we considered individuals with at least one meas-
+urement in childhood (4–9.9  years), early adolescence 
+(10–14.9 years), and late adolescence (15–18 years).
+Variable assessment
+Baseline parameters
+Baseline parameters such as gestational characteristics 
+and birth anthropometrics from was retrieved maternal 
+gestational record. These include sex, birth weight (g) 
+and length (cm), birth order (from first to fifth), mater-
+nal prepregnancy BMI (MppBMI, kilograms/meters 
+squared), gestational weight gain (GWG, kilograms). 
+Breastfeeding duration (weeks), and family and socioeco-
+nomic characteristics around birth were obtained from 
+maternal interview. Family and socioeconomic charac-
+teristics around birth include smoking household (non–
+smoking household, smoking in household (numbers of 
+smokers), maternal education (according to the German 
+education system: “Abitur”/“Fachhochschulreife” (tech-
+nical school/high school), “Realschulabschluss” (sec-
+ondary school), and “Hauptschulabschluss” (primary 
+school), maternal employment (full-time and part-time, 
+(early) retiree, unemployed, housewife, vocational trainee 
+(including students), temporary leave, and maternal 
+leave).
+Dietary intake and lifestyle factors in late adolescence–young 
+adulthood (18–39 years)
+Three-day weighed dietary records assessed dietary 
+intake. We calculated individual means of daily nutri-
+ent intake from these records, using our continuously 
+updated in-house food composition database. In addi-
+tion, participants reported alcohol consumption (drinker 
+or non-drinker) and smoking status (non-smokers or 
+smokers-daily, once a week, several times in a week, 
+seldom).
+Cardiometabolic risk markers in late adolescence–young 
+adulthood
+Participants underwent a medical examination that 
+included measurement of systolic blood pressure (SBP) 
+and diastolic blood pressure (DBP), and obtaining a fast-
+ing blood sampling [50]. We retrieved, processed, and 
+measured more cardiometabolic risk markers from fast-
+ing blood samples of participants who fulfilled the inclu-
+sion in the trajectory analysis. Serum cholesterol (total, 
+LDL-C and HDL-C) were measured at the Paediatric 
+Clinic Dortmund with the Advia 1650-Chemistry System 
+analyser (Siemens Healthcare Diagnostics, Eschborn, 
+Germany). We measured fasting plasma glucose (FPG) 
+on a Roche/Hitachi Cobas c 311 analyzer (Basel, Switzer-
+land). Triglycerides and high-sensitivity C-reactive pro-
+tein (CRP) with the Roche/Hitachi Cobas c311 analyser 
+(Roche diagnostics, Mannheim, Germany), interleukin 
+(IL)-6 with the Human IL-6 Quantikine HS ELISA (R&D 
+Systems, Wiesbaden, Germany), IL-18 with the Human 
+IL‐18 ELISA (Medical and Biological Laboratories, 
+Nagoya, Japan), adiponectin with the Human Total Adi-
+ponectin/Acrp30 Quantikine ELISA kit (R&D Systems), 
+chemerin with the Human Chemerin ELISA (BioVendor, 
+Brno, Czech Republic), and leptin with leptin Quantikine 
+ELISA (R&D System) as described [51, 52]. We consid-
+ered SBP, DBP, triglyceride, HDL-c, FPG, CRP, IL‐6, 
+IL‐18, adiponectin, chemerin, and leptin for the current 
+study.
+Statistical analysis
+Basic characteristics
+Continuous and categorical variables are presented as 
+median and interquartile range (IQR), and as counts (n) 
+and percentages (%), respectively. Comparisons between 
+sexes were performed using the Wilcoxon-Mann–Whit-
+ney test (continuous variables) and Chi square test (cat-
+egorical variables).
+Trajectory model building
+BMI was calculated from body weight and height in 
+each age year. We considered the latest measurement in 
+an age year when multiple measurements existed. For 
+trajectories, it is recommended that standard deviation 
+scores (SDS) are modelled since the variance of weight 
+increases rapidly with age in the first two decades of life 
+[19]. Therefore, we calculated the BMI SDS with the LMS 
+method based on age- and sex-specific median (M), coef-
+ficient of variation (S), and measure of skewness (L) val-
+ues of the national German reference [53].
+For each sex, we modelled trajectories of BMI SDS 
+using a version of the LCGM that ensures that trajectory 
+variation lies at the between-group level [54]. The proce-
+dure also assumes that attrition and group assignment 
+are independent [55], and it automatically incorporates 
+missing data under a missing at random assumption [56]. 
+We performed the LCGM with the Statistical Analytical 
+Software (SAS) function ‘proc traj’ [57]. We conducted 
+sensitivity analysis to investigate whether participants 
+who had complete BMI measurements differ from those 
+Page 4 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+who had one or more missing with respect to baseline 
+determinants.
+Without any a priori hypothesis, we investigated the 
+possible number of trajectories and their shapes. We 
+considered four shapes: cubic degree, quadratic degree, 
+linear, and constant polynomials. We began with a sin-
+gle model consisting of one group with a cubic, and then 
+increased the number of groups until the number of tra-
+jectories that best fit the data was identified using the 
+­logeBayes factor (≈ 2(∆Bayesian information criterion)) 
+of six and above, all trajectories sizes greater than 5%, and 
+average trajectory posterior probability (APP) greater 
+than 0.70 [56]. After identifying the number of trajecto-
+ries, we proceeded to identify their shape. Starting with 
+the first trajectory, we reduced the polynomial orders 
+until the highest order term for all trajectories resulted 
+in P ≤ 0.05. This resulted in a final trajectory model. This 
+final trajectory model was eventually used to describe 
+our data. Posterior trajectory membership probabilities 
+were calculated based on model parameter estimates 
+and the participant’s trajectory membership assignment 
+was based their highest posterior trajectory probability. 
+The trajectories were labelled according to World Health 
+Organisation SDS cut-offs [58].
+Baseline determinants of trajectories
+By fitting multinomial logistic regression using SAS 
+function ‘proc logistic’ and taking the largest trajectory 
+as the reference group, we regressed BMI SDS trajec-
+tory on birth weight and length (continuous), MppBMI 
+(continuous), GWG (continuous), breastfeeding dura-
+tion (continuous). Other variables were dichotomised: 
+birth order: into firstborn child (yes or no), maternal 
+education (high = technical school/high school and 
+low = secondary 
+school/primary 
+school), 
+maternal 
+employment (employed = full-time and part-time, and 
+not employed = others), and smoking household (yes or 
+no). We estimated the odds ratio (OR), the odds of each 
+determinant in other trajectory groups as compared to 
+the reference group, with a model comprising all these 
+determinants (multivariable adjusted).
+Handling of missing baseline determinants
+Baseline determinants were birth weight and length, 
+MppBMI, GWG, breastfeeding duration, birth order, 
+maternal education, maternal employment, and smok-
+ing household. All variables except birth weight and 
+length had missing values (range: four to 63% in males, 
+and two to 53% in females). There were 58 and 56 miss-
+ing data patterns in males and females, respectively. 
+These patterns did not show any specific/obvious struc-
+ture and were therefore considered arbitrary. Using 
+SAS function ‘proc mi’, we created a single imputed 
+dataset in one burn in iterations with the fully condi-
+tional method, linear regression for continuous vari-
+ables (MppBMI, GWG, and breastfeeding duration), 
+logistic regression for ordinal categorical variables 
+(birth order and smoking household), and discriminant 
+function for nominal categorical variables (maternal 
+education and maternal employment).
+Relevance of BMI SDS trajectory for cardiometabolic risk 
+markers
+An unbiased random forest regression (RFR) algorithm 
+based on conditional inference trees using the tree 
+building R function ‘cforest’ and the variable impor-
+tance calculating R function ‘varimpAUC’ were used 
+to build models for estimating the importance of BMI 
+SDS trajectory relative to age-specific BMI SDS for 
+each sex. We used all the 15 BMI SDS, along with BMI 
+SDS as independent variables for each cardiometabolic 
+risk marker and a pro-inflammatory score. The pro-
+inflammatory score was calculated as the average of 
+internally standardized (z-) scores of CRP, IL-6, IL-18, 
+chemerin, adiponectin, and leptin (CRP z-score + IL-6 
+z-score + IL-18 z-score + chemerin z-score + adiponec-
+tin z-score × (−1) + leptin z-score)/n, where n is the 
+number of available proinflammatory marker per indi-
+vidual). We used 500 decision trees and four independ-
+ent variables at each split in the RFR. We computed 
+importance scores of all independent variables as the 
+average of the area under the curve values. Due to the 
+expected correlations between these independent vari-
+ables, we estimated conditional importance scores. 
+These analyses included participants with available car-
+diometabolic risk markers (triglycerides: 185 males and 
+184 females; HDL-c: 190 males and 185 females; SBP 
+and DBP: 239 males and 228 females; FPG: 193 males 
+and 188 females; CRP: 159 males and 154 females; 
+IL-6: 154 males and 152 females; IL-18:156 males and 
+154 females; adiponectiin: 157 males and 153 females; 
+chemerin: 159 males and 154 females, leptin: 158 males 
+and 149 females; pro-inflammatory score: 154 males 
+and 152 females). Despite RFR being non-parametric, 
+it is advisable to adjust for non-normality and non-con-
+stant variation through transformation [59]. Thus, we 
+transformed each cardiometabolic risk marker with the 
+optimal exponent obtained from Box-Cox transforma-
+tion using the SAS function ‘proc transreg’ in models 
+without independent variables. We performed sensitiv-
+ity analysis to investigate whether participants with no 
+cardiometabolic risk marker, those with one to 10 car-
+diometabolic risk markers, and those with all 11 cardio-
+metabolic risk markers differ with respect to baseline 
+characteristics.
+Page 5 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+The association between BMI SDS trajectory 
+and cardiometabolic risk markers
+We investigated the association between BMI SDS trajec-
+tory and cardiometabolic risk markers by fitting general-
+ized linear models using the SAS function ‘proc glimmix’, 
+under a Gaussian distribution and associated link being 
+the previously derived Box-Cox exponent. We adjusted 
+for unequal variances across trajectories. The overall 
+effect of trajectory as well as linear trend was assessed. 
+Finally, we performed pairwise comparisons between 
+trajectories, and adjusted the 95% confidence interval 
+(CI) of their mean differences for multiple comparisons 
+with the Tukey–Kramer method. We considered P ≤ 0.05 
+as significant. Covariates to be included in the models 
+were baseline variables that are determinants of trajec-
+tories and that are also associated with cardiometabolic 
+risk markers, as well as their product term with trajec-
+tories, if P ≤ 0.05. In addition, we investigated whether 
+total energy intake, alcohol consumption, and smoking 
+status in late adolescence–young adulthood mediate any 
+observed difference between trajectories.
+Results
+Basic characteristics
+The basic characteristics of the participants, 354 males 
+and 335 females included in the present analysis are 
+shown in Table  1. At birth, females were lighter and 
+shorter than males. Females more frequently had moth-
+ers who were employed than males. There were no sex 
+differences with respect to other baseline characteris-
+tics. In late adolescence–young adulthood, daily energy 
+intake, SBP, DBP, and FPG were higher in males than 
+females, while the converse was the case for HDL-c, CRP, 
+adiponectin, chemerin, and leptin.
+Table  2 shows BMI development over the follow-up. 
+As expected, BMI increases with age. The highest preva-
+lence of overweight (including obesity) was about 10% in 
+males (age 17) and 8% (age four) in females, and obesity 
+alone was about 4% in males (age 18) and 3% (age four) in 
+females. Notably, the BMI SDS shows that females gener-
+ally had lower BMI SDS than males, particularly at ages 5, 
+6, 9, 10, 11, 17, and 18. These indicate an obvious sex dif-
+ferences and the need for sex-specific trajectories.
+Table 1  Basic characteristics of the study participants, 354 males and 335 females
+a   Median (interquartile range) and b n(%), n = count,  % = percentage, BMI body mass index. P-values of the difference between sexes were obtained from Wilcoxon-
+Mann–Whitney test for continuous variables, and Chi square test for categorical variables
+n (males, females)
+Male
+Female
+P value
+Baseline (prenatal, birth, and early life) parameters
+ Birth weight, ­ga
+354, 335
+3590 (610)
+3380 (560)
+< 0.01
+ Birth length, ­cma
+354, 335
+52 (3)
+51 (3)
+< 0.01
+ Maternal prepregnancy BMI, kg/m2a
+319, 304
+23.2 (4.6)
+22.7 (4.4)
+0.13
+ Maternal gestational weight gain, ­kga
+341, 327
+13 (5)
+12 (5)
+0.81
+ First-born ­childb
+290, 274
+161 (56)
+159 (58)
+0.45
+ Breastfeeding duration, ­weeksa
+288, 277
+26 (29)
+28 (31)
+0.36
+ Maternal education, ­highb
+131, 160
+119 (91)
+143 (89)
+0.36
+ Maternal empolyment, ­employedb
+130, 159
+27 (21)
+59 (37)
+< 0.01
+ Smoking ­householdb
+211, 204
+51 (24)
+52 (25)
+0.36
+Dietary intake and lifestyle in late adolescence-young adulthood (18–39 years)
+ Daily total energy intake, kcal/daya
+225, 217
+2417.9 (584.3)
+1816 (449)
+< 0.01
+ Alcohol ­drinkersb
+233, 221
+164 (70)
+160 (72)
+0.64
+ Smokersb
+223, 221
+40 (18)
+34 (15)
+0.47
+Cardiometabolic risk markers in late adolescence-young adulthood (18–39 years)
+ Serum triglycerides, mg/dLa
+185, 184
+79 (50)
+88 (49)
+0.14
+ Serum HDL cholesterol, mg/dLa
+190, 185
+50 (15)
+65 (18)
+< 0.01
+ Systolic blood pressure, ­mmHga
+239, 228
+118 (16)
+110 (15)
+< 0.01
+ Diastolic blood pressure, ­mmHga
+239, 228
+74 (12)
+70 (12)
+< 0.01
+ Fasting plasma glucose, mg/dLa
+193, 188
+94 (11)
+90 (9)
+< 0.01
+ C-reactive protein, mg/dLa
+159, 154
+0.1 (0.1)
+0.2 (0.3)
+< 0.01
+ Interleukin-6, pg/mLa
+154, 152
+0.7 (0.6)
+0.7 (0.6)
+0.72
+ Interleukin-18, pg/mLa
+156, 154
+255.1 (101.8)
+245.6 (96.7)
+0.29
+ Adiponectin, ng/mLa
+157, 153
+6030.3 (5198.3)
+8711.2 (5539.9)
+< 0.01
+ Chemerin, ng/mLa
+159, 154
+140.9 (35.6)
+166 (41.9)
+< 0.01
+ Leptin, pg/mLa
+158, 149
+2335.4 (3441.2)
+12666.5 (9517.4)
+< 0.01
+Page 6 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+BMI SDS trajectory model development
+There was a median of 14 (range: 5–15) BMI measure-
+ments. There were 67 and 68 missing BMI SDS patterns 
+in males and females, respectively. These patterns have 
+no specific/obvious structure and we therefore consid-
+ered them arbitrary. Thus, parameter estimates of the 
+trajectory models were unlikely to be biased. Sensitivity 
+analysis also showed that participants who had complete 
+BMI measurements were not different from those who 
+had one or more missing measurement with respect to 
+baseline determinants (Additional file 1: Table S1).
+Based on the logeBayes factors, APP, and trajectory 
+sizes, a four-trajectory group and a three-trajectory 
+group was the most optimal for males and females, 
+respectively. Figure  1 (left: males and right: females) 
+shows the graph of the predicted BMI SDS for each tra-
+jectory group across the 15  years of analysis. In males, 
+the first trajectory (red) consistently remained below 
+other trajectories. The trajectory was S-shaped, with BMI 
+SDS increasing from age 4 to 6, decreasing from age 6 to 
+15, and increasing from age 16 to 18. This group com-
+prised 19% of the males. The second trajectory (green) 
+comprised the largest (33%) proportion of males had rel-
+atively constant BMI SDS throughout the time of analy-
+sis, and the third trajectory (blue) accounting for 32% was 
+U-shaped, with peaks at ages 4 and 18 years. These three 
+Table 2  Development of body mass index and body mass index standard deviation scores over the follow-up according 
+to sex
+BMI body mass index, IQR interquartile range, SDS standard deviation scores, n = count,  % = percentage. *BMI > 90th and **BMI > 97th age- and sex-specific 
+percentile, according to the national German reference [53]. P-values of the difference between sexes were obtained from Wilcoxon-Mann–Whitney test
+Follow-up 
+age (years)
+n (males, females)
+BMI, kg/m2, median (IQR)
+% Overweight* 
+(males, females)
+% Obesity** 
+(males, females)
+BMI SDS, median (IQR)
+P-value
+Males
+Females
+Males
+Females
+4
+137, 120
+15.59 (1.58)
+15.25 (1.70)
+7.3, 8.3
+1.5, 2.5
+− 0.05 (1.32)
+− 0.20 (1.33)
+0.23
+5
+286, 267
+15.52 (1.41)
+15.21 (1.65)
+6.6, 5.2
+0.7, 0
+0.08 (1.00)
+− 0.15(1.21)
+0.04
+6
+300, 287
+15.48 (1.50)
+15.29 (1.85)
+6.3, 7.3
+2.3, 0.7
+0.00 (0.99)
+− 0.13 (1.27)
+0.04
+7
+311, 303
+15.66 (1.75)
+15.41 (2.07)
+5.5, 7.9
+1.9, 1.0
+− 0.06 (1.03)
+− 0.21 (1.24)
+0.19
+8
+330, 313
+15.91 (2.15)
+15.78 (2.43)
+5.8, 7.0
+1.8, 1.0
+− 0.13 (1.08)
+− 0.20 (1.26)
+0.13
+9
+350, 323
+16.48 (2.51)
+16.22 (2.60)
+6.3, 5.0
+0.6, 0.3
+− 0.09 (1.10)
+− 0.21 (1.21)
+0.04
+10
+350, 323
+17.12 (2.95)
+16.61 (3.18)
+6.0, 4.3
+0.3, 0.3
+− 0.07 (1.14)
+− 0.28 (1.31)
+0.01
+11
+345, 326
+17.66 (3.30)
+17.13 (3.46)
+7.0, 3.4
+0.6, 0
+− 0.12 (1.17)
+− 0.32 (1.29)
+0.02
+12
+343, 323
+18.36 (3.77)
+18.1 (3.89)
+6.1, 3.4
+1.7, 0
+− 0.14 (1.27)
+− 0.23 (1.35)
+0.15
+13
+340, 323
+19.16 (3.78)
+18.77 (3.76)
+5.8, 4.6
+1.5, 0
+− 0.13 (1.27)
+− 0.26 (1.29)
+0.40
+14
+337, 316
+19.76 (3.84)
+19.64 (3.80)
+6.2, 5.4
+1.5, 0.3
+− 0.17 (1.24)
+− 0.21 (1.31)
+0.39
+15
+335, 315
+20.34 (4.25)
+20.31 (3.74)
+8.7, 5.1
+1.2, 0
+− 0.18 (1.40)
+− 0.20 (1.29)
+0.50
+16
+314, 289
+21.07 (3.84)
+20.89 (3.55)
+9.6, 5.5
+2.5, 0.3
+− 0.10 (1.24)
+− 0.16 (1.23)
+0.14
+17
+287, 265
+21.78 (4.37)
+21.19 (3.66)
+10.1, 4.9
+2.4, 1.1
+0.03 (1.38)
+− 0.17 (1.27)
+0.01
+18
+265, 256
+22.21 (4.00)
+21.47 (3.83)
+9.1, 7.0
+3.8, 1.2
+0.13 (1.25)
+− 0.10 (1.33)
+< 0.01
+Fig. 1  Developmental trajectories of body mass index standard deviation scores, and its upper and lower confidence intervals among males (left) 
+and females (right) followed from ages 4 to 18. BMI SDS body mass index standard deviation scores
+Page 7 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+trajectories were within the normal weight BMI SDS 
+range (> − 2 to < + 1). Therefore, we named them ‘low-
+normal weight’, ‘mid-normal weight’, and ‘high-normal 
+weight’ trajectories, respectively. The fourth trajectory 
+(black) that accounted for 16% of the males had a BMI 
+SDS starting at overweight BMI SDS of 1.00, and BMI 
+continues to increase throughout follow-up. This group 
+was named as the ‘overweight’ trajectory.
+In females, the first trajectory (red) accounting for 28% 
+was U-shaped, with peaks at ages 4 and 18  years. The 
+second (green) which is composed of the largest (47%) 
+proportion of females had a relatively constant BMI SDS 
+throughout follow-up. The third (black) accounting for 
+25% of the population had S-shaped trajectory, with BMI 
+SDS increasing from age 4 to 8, decreasing from age 8 to 
+14, and increasing from age 15 to 18. All three trajecto-
+ries were within the normal weight range, and we named 
+them ‘low-normal weight’, ‘mid-normal weight’, and 
+‘high-normal weight’ trajectories, respectively.
+All trajectories were distinct without overlap at any 
+point. Their parameter estimates, associated standard 
+errors and P-values are presented in Additional file  2: 
+Table S2.
+Baseline determinants of BMI SDS trajectory
+As shown in Fig. 2 (left: males and right: females), sons 
+of mothers with a high BMI were more likely to follow 
+the ‘high-normal weight’ (adjusted OR = 1.14; 95% CI 
+1.05–1.24) and ‘overweight’ (adjusted OR = 1.22; 95% 
+CI 1.10–1.36) trajectories as compared to those whose 
+mothers had a lower BMI. Similarly, daughters of moth-
+ers with a high BMI were more likely to follow the ‘high-
+normal weight’ trajectory (adjusted OR = 1.10; 95% 
+CI 1.02–1.18). Compared to females who followed the 
+‘mid-normal weight’ trajectory, females who followed 
+the ‘high-normal weight’ trajectory were more likely to 
+be first-born (adjusted OR = 2.00; 95% CI 1.10–3.63) and 
+their mothers were more likely to be employed (adjusted 
+OR = 2.10; 95% CI 1.17–3.77).
+Relevance of BMI SDS trajectory for cardiometabolic risk 
+markers
+The relevance (importance) of BMI predictors of each 
+cardiometabolic risk marker are presented as heat maps 
+in Fig.  3 (left: males and right: females). After condi-
+tioning on all age-specific BMI SDS, BMI trajectory was 
+strongly associated with HDL-c and IL-18 in males and 
+with DBP and IL-6 in females. In males, BMI SDS at age 
+four was strongly associated with FPG, age five with CRP, 
+age seven with triglycerides, age 14 with leptin, age 17 
+with leptin, SBP and pro-inflammatory score, and age18 
+with DBP, IL-6, adiponectin, and chemerin. In females, 
+BMI SDS at age four was strongly associated with tri-
+glyceride and IL-18, age five with HDL-c, age 10 with 
+chemerin, age 11 with CRP, age 13 with SBP, age 16 with 
+FPG, age 17 with adiponectin, and age18 with leptin and 
+pro-inflammatory score.
+Sensitivity analysis showed that males without cardio-
+metabolic risk markers were breastfed longer, had the 
+lowest proportion of mothers with higher education, and 
+Fig. 2  Forest plot of the adjusted odds ratios of the baseline determinants of body mass index standard deviation scores trajectories among males 
+(left) and females (right). The odds ratio plot showing the point estimate of the odds ratio, and surrounding confidence intervals and a reference 
+line at 1 (tests of significance). The reference group is ‘mid-normal weight’ trajectory. OR  odds ratio, CI confidence interval, BMI body mass index. 
+OR per 100 g increase in birth weight, per 1 cm increase in birth length, per 1 kg/m2 increase in maternal prepregnancy BMI, per 1 kg increase in 
+gestational weight gain, and per 1 month increase in breastfeeding duration
+Page 8 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+the highest proportion of employed mothers. In addition, 
+females without cardiometabolic risk markers were heav-
+ier and taller (Additional file 3: Table S3).
+The association between BMI SDS trajectory 
+and cardiometabolic risk markers
+In males, trajectory had no significant overall asso-
+ciation with HDL-c (P = 0.43) but with IL-18 (P = 0.04) 
+whereas in females it was neither associated with DBP 
+(P = 0.27) nor with IL-6 (P = 0.11). Moreover, no linear 
+trend was observed for the four cardiometabolic risk 
+markers (HDL-c: ­Ptrend = 0.38, IL-18: ­Ptrend = 0.12, DBP: 
+­Ptrend = 0.19, and IL-6: ­Ptrend = 0.15).
+There was no significant difference between all pairs 
+of trajectories for HDL-c (Fig. 4, upper left) as well as 
+for DBP and IL-6 (Fig. 4, upper right and bottom right). 
+However, the mean IL-18 in the ‘overweight’ trajectory 
+was significantly higher than that in the ‘low-normal 
+weight’ trajectory (Fig.  4, bottom left), (mean differ-
+ence = 2.85 × 10−3 
+pg/mL 
+(0.14 × 10−3–5.55 × 10−3) 
+transformed scale; 81.31  pg/mL (33.62–196.24) origi-
+nal scale. The baseline determinants of trajectories: 
+MppBMI, maternal employment, and first-born status 
+were not associated with any of the four cardiometa-
+bolic risk markers. Their product terms with trajec-
+tory were also not significant. Therefore, adjustment 
+for these covariates was deemed unnecessary. Fur-
+thermore, total energy intake and smoking was neither 
+associated with trajectory nor with IL-18, however, 
+alcohol consumption was associated with BMI trajec-
+tory, but not with IL-18. Thus, the difference between 
+IL-18 in ‘overweight’ and ‘low-normal weight’ trajec-
+tories is unlikely to be explained by baseline factors or 
+dietary intake and lifestyle factors in late adolescence–
+young adulthood.
+Fig. 3  Heat maps showing the area under the curve-based conditional importance scores determined by random forest for males (left) and 
+females (right) for BMI SDS trajectory relative to BMI SDS at specific ages for cardiometabolic risk markers in late adolescence–young adulthood. 
+The colour order of magnitude of the importance scores is from yellow→orange→red (highest values are in red and lowest values are in yellow). 
+BMI SDS body mass index standard deviation scores. Analysis performed on transformed cardiometabolic risk markers. Transformation (exponents) 
+were: In males, triglycerides, IL-6 and leptin were transformed by natural logarithm; HDL-c by square root; pro-inflammatory score by cube root; 
+adiponectin by fourth root; SDP, CRP, and chemerin by inverse of fourth root; DBP and FPG by cube of fourth root; and IL-18 by inverse of the cube 
+of fourth root. In females, triglycerides, CRP, adiponectin, and leptin were transformed by natural logarithm; HDL-c and chemerin by square root, 
+pro-inflammatory score by cube root; DBP by cube of square root; and SBP, FPG, IL-6, IL-18 by inverse of fourth root
+Page 9 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+Fig. 4  Diffograms showing pairwise comparisons of body mass index standard deviation score trajectories for high-density lipoprotein cholesterol 
+and interleukin-18 in males (left), and for diastolic blood pressure and interleukin-6 in females (right) in late adolescence–young adulthood. The 
+dashed diagonal upward sloping reference line depicts equality. The horizontal and vertical lines emanating from the axes indicate the location of 
+the means of the four BMI trajectory groups. There are four vertical and four horizontal reference lines, and six pairwise comparisons of the means 
+in males. There are three vertical and three horizontal reference lines, and three pairwise comparisons of the means in females. Each solid circle at 
+the point of intersection of the horizontal and vertical lines shows the location of mean of two BMI trajectories and the associated diagonal line 
+segment represents the Tukey–Kramer adjusted 95% confidence interval for the difference between the means. A confidence interval that intersect 
+(red colour) the dashed diagonal line indicates that those two means are not statistically different and significant (blue colour) if otherwise. Mean 
+displayed on the diffogram are on the exponents of cardiometabolic risk markers. Exponents: square root for HDL-c, inverse of the cube of fourth 
+root for IL-18, cube of square root for DBP, and inverse of fourth root for IL-6
+Page 10 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+Discussion
+Using annual BMI measurements from childhood into 
+late adolescence (ages 4 to18) in a German cohort, we 
+identified four distinct BMI SDS trajectories in males–
+three in which BMI SDS remains within a normal weight 
+range (84%), and one ‘overweight’ trajectory (16%), and 
+in females–three trajectories, all within normal weight 
+range. The normal weight trajectories were named ‘low-
+normal weight’, ‘mid-normal weight’, and ‘high-normal 
+weight’ based on the intensity of BMI SDS. The MppBMI 
+was a determinant of the ‘overweight’ trajectory in males, 
+and a common determinant of ‘high-normal weight’ tra-
+jectory in both sexes. Additionally, employed mother 
+and first-born status were determinants of ‘high-normal’ 
+trajectories only in females. Furthermore, BMI SDS tra-
+jectory was highly associated with HDL-c and IL-18 in 
+males, and DBP and IL-6 in females. Importantly, circu-
+lating levels of IL-18 were elevated in males who followed 
+the ‘overweight’ trajectory when compared to males who 
+followed the ‘low-normal weight’ trajectory.
+BMI SDS trajectory model development
+Our findings of sex-specific trajectories, both in terms 
+of numbers and shapes is consistent with reports of sex 
+differences in BMI at specific periods in childhood and 
+adolescence [60], and particularly in the trajectories of 
+BMI [15, 20]. Thus, our study extends the previous lit-
+erature on male–female differences. Possible explana-
+tions for this finding include differences in sex hormones 
+[42], and differential exposure and vulnerability to obe-
+sogenic environments in males and females [60]. The fact 
+that our trajectories do not overlap is in accordance with 
+a recent analysis showing that adiposity status in Ger-
+man adolescents was already set in early childhood [7], 
+and that children and adolescents with increasing weight 
+gain usually continue on this path [4–8]. Therefore, it is 
+crucial that individuals who are overweight in childhood 
+and are persistently gaining weight like those captured by 
+our ‘overweight’ trajectory should be monitored, as these 
+individuals are prone to develop obesity later on. The 
+present study also extends the results from other studies 
+using LCGM [9, 11, 12, 15, 17, 19, 20], which have shown 
+the existence of three to four adiposity trajectories from 
+childhood into late adolescence.
+Baseline determinants of BMI SDS trajectory
+Our study demonstrated that MppBMI is a crucial deter-
+minant of high BMI trajectories being a common deter-
+minant in both sexes. There is compelling evidence that 
+high MppBMI is associated with high adiposity tra-
+jectories [9, 12, 15, 16, 61]. Genetic factors, early pro-
+gramming, and obesogenic environment are possible 
+explanations [60]. Indeed, this somewhat modifiable 
+early-life risk factor warrants attention. It is imperative to 
+advise women, particularly those who intend to become 
+pregnant of the need to have and maintain a normal BMI.
+In addition, we observed employed mothers and first-
+born status to increase the risk of females following the 
+‘high-normal’ trajectory. These factors have not been pre-
+viously linked to BMI trajectory. This maternal employ-
+ment patterning of BMI trajectory in females is in line 
+with evidence of greater parental influence on increased 
+adiposity in females [60], and socioeconomic differences 
+in adiposity in developed countries that is more obvi-
+ous among females than males [62]. This finding is also 
+consistent with a positive association between maternal 
+employment and offspring adiposity at specific phase 
+of life among well-educated populations [63, 64]. The 
+interrelationship of maternal employment, higher family 
+income, and children access to healthier lifestyles seems 
+obvious at first glance. However, maternal employment 
+also implies that an important role model in a child’s 
+adoption of healthy behaviours is available for a lesser 
+amount of time and that childcare is shifted to other car-
+ing parent, informal caregivers or formal providers. In 
+agreement with our finding, others have reported associ-
+ation between first‐born status and overweight in women 
+[65]. The underlying mechanisms for this finding is still 
+unknown, however in utero triggering events have been 
+speculated [65].
+The relevance of BMI SDS trajectory for cardiometabolic 
+risk markers
+BMI trajectory was strongly associated with HDL-c and 
+IL-18 in males, and DBP and IL-6 in females. This shows 
+that BMI trajectory confers additional cardiometabolic 
+risk beyond age-specific BMI. Interestingly, BMI trajec-
+tory was associated with cytokine levels in both sexes. 
+This suggests a strong impact of BMI trajectory on this 
+group of proinflammatory markers. Further, the sex-
+specific trajectory–cardiometabolic risk marker associa-
+tion is noteworthy. This suggests that sexual dimorphism 
+associated with some long-term health consequences 
+is related to events during childhood and adolescence. 
+Although a sex-specific trajectory–cardiometabolic risk 
+markers association has not been previously reported, 
+sex disparity in cross-sectional relation between BMI and 
+BP [27, 38], BMI and HDL-c [37, 45], BMI and IL-6 [33, 
+34], and BMI and IL-18 [33] in adolescents and young 
+adults is documented.
+The link between BMI trajectory and IL-18, and the 
+fact the ‘overweight’ and ‘low-normal weight’ trajectories 
+in males were distinguishable is intriguing, considering 
+the low prevalence of overweight among our study popu-
+lation when compared to the general German population 
+Page 11 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+[66]. IL-18 may represent a cardiometabolic signature 
+of ‘overweight’ trajectory in young adults. To the best of 
+our knowledge, differences in late adolescence–young 
+adulthood IL-18 with respect to BMI trajectories from 
+childhood into late adolescence have not been reported. 
+Nonetheless, there is evidence of a cross-sectional rela-
+tionship between BMI and late adolescence–young 
+adulthood IL-18 [27, 32]. This suggests that our finding 
+is unlikely to be spurious. Therefore, IL-18 might be a 
+useful marker of long-term overweight. In fact, it could 
+be clinically relevant considering the substantial differ-
+ence between the overweight and ‘low-normal weight’ 
+trajectories. Early identification and intervention for late 
+adolescents–young adults who are overweight and with a 
+history of persistent weight gain is imperative. IL-18 is a 
+unique proinflammatory cytokine, a member of the IL-1 
+family of cytokines that is produced by the adipocytes 
+[67], and other cell types such as macrophages, endothe-
+lial cells, vascular smooth muscle cells, dendritic cells and 
+Kupffer cells [68]. Human studies have consistently dem-
+onstrated that higher levels of IL-18 is an independent 
+risk factor for incident type 2 diabetes mellitus [68, 69], 
+and cardiovascular events [68, 70–73]. This indicates that 
+elevated IL-18 may put these young males following the 
+‘overweight’ trajectory at risk of future cardiometabolic 
+diseases.
+The current study cannot corroborate previous find-
+ings of lower levels of HDL-c in individuals following 
+the ‘higher BMI growth’ as compared to those follow-
+ing the ‘average BMI growth’ [16], and females in the 
+‘upward percentile crossing’ group having higher DBP 
+than other groups [12]. These divergent findings could 
+be attributable to differences in statistical approaches 
+for estimating trajectories, differences in modelled BMI 
+metrics, absence of a comparable ‘upward percentile 
+crossing’ group among our females, and our study may 
+be underpowered to detect minor between-trajectory 
+differences in HDL-c and DBP. Furthermore, circulating 
+retinol-binding protein-4 [74, 75] and plasminogen acti-
+vator inhibitor-1 [76] correlate with BMI and some car-
+diometabolic risk markers in children and adolescents, 
+and measures of HDL-c function as compared to HDL-c 
+levels provide a better assessment of cardiovascular risk 
+[77]. Therefore, these adipokines and measures of HDL-c 
+function should be considered in future studies.
+The strengths of this study are that we objectively 
+measured weight and weight at all ages; as such, we can 
+exclude misreporting. Moreover, the annual measure-
+ments over this relatively long period of follow-up sug-
+gests that the yielded trajectories are accurate. Our time 
+sequence of trajectory and cardiometabolic risk mark-
+ers also confirms cause-and-effect relationships of BMI 
+trajectory and IL-18. However, we acknowledge several 
+study limitations. First, our participants are mainly Cau-
+casians (Germans), residing in Dortmund and surround-
+ing regions, and most are children of well-educated 
+women, thus our findings are of limited generalizability. 
+We investigated all determinants at once around birth; 
+however, family and socioeconomic characteristics might 
+change over the life course. Participants who were not 
+included in the analyses for the cardiometabolic risk 
+markers may have had different associations between 
+BMI trajectories and IL-18. However, the fact that the 
+baseline factors that differentiate these groups were not 
+associated with trajectories suggest these findings are 
+unlikely to be biased. Importantly, other unmeasured fac-
+tors such as the gut microbiota may have influenced the 
+present findings. Finally, cardiometabolic risk markers 
+were collected once at the end of the follow-up. Assess-
+ment of cardiometabolic risk markers at few time-points 
+that coincides with BMI measurements and identifying 
+latent clusters of individuals with joint evolvement of 
+BMI and these markers might provide a deeper under-
+standing of association between developmental trajecto-
+ries of BMI and cardiometabolic risk markers.
+Conclusion
+In a group of individuals with low prevalence of over-
+weight, we observed distinct sex-specific trajectories of 
+BMI, MppBMI as a common determinant of high BMI 
+trajectories and IL-18 distinguished between males who 
+followed the ‘overweight’ and ‘low-normal’ trajectories. 
+Women maintaining normal pregravid weight might pre-
+vent their children following an ‘overweight’ trajectory. 
+IL-18 may represent a cardiometabolic signature of ‘over-
+weight’ trajectory in young adults. Given the increasing 
+prevalence of overweight among German young adults, 
+there is a need for confirmation of these findings in other 
+cohorts with a larger study sample.
+Additional files
+Additional file 1: Table S1. Comparison of study population with com-
+plete body mass index measurements and those who had one or more 
+missing measurements according to baseline characteristics. *Median 
+(interquartile range) and # n (%), n = count, % = percentage. P-values for 
+difference between groups were obtained from Wilcoxon-Mann-Whitney 
+test for continuous variables and chi-square test for categorical variables.
+Additional file 2: Table S2. The parameter estimates, standard errors, 
+P-values and average posterior probabilities of the four- and three-trajec-
+tory model in males and females. n = counts, BIC = Bayesian information 
+criterion.
+Additional file 3: Table S3. Comparison of study sample with no cardio-
+metabolic risk marker, those with one to 10 markers, and those with com-
+plete markers according to baseline characteristics. *Median (interquartile 
+range) and # n (%), n = count, % = percentage. P-values for difference 
+among groups were obtained from Kruskal Wallis test for continuous vari-
+ables and chi-square test for categorical variables.
+Page 12 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+Abbreviations
+APP: average trajectory posterior probability; BMI: body mass index; BP: blood 
+pressure; CI: confidence interval; DBP: diastolic blood pressure; DONALD: 
+DOrtmund Nutritional and Anthropometric Longitudinally Designed; FPG: 
+fasting plasma glucose; GWG​: gestational weight gain; HDL-c: high-density 
+lipoprotein-cholesterol; IQR: interquartile range; IL: interleukin; LCGM: latent 
+(class) growth models; L: measure of skewness; M: median; MppBMI: maternal 
+prepregnancy BMI; OR: odds ratio; RFR: random forest regression; S: coefficient 
+of variation; SAS: Statistical Analytical Software; SBP: systolic blood pressure; 
+SD: standard deviation; SDS: standard deviation scores.
+Authors’ contributions
+Study design: KO and UN; Data collection: UA, AEB, and CH; Data analysis: KO; 
+Data interpretation: all authors; Article drafting: KO; Article revision: all authors. 
+All authors read and approved the final manuscript.
+Author details
+1 Nutritional Epidemiology, DONALD Study, Department of Nutrition and Food 
+Sciences, Rheinische Friedrich-Wilhelms-University Bonn, Bonn, Germany. 
+2 Institute of Nutrition, Consumption and Health, Faculty of Natural Sciences, 
+University Paderborn, Paderborn, Germany. 3 Department of Medical Biometry, 
+Informatics and Epidemiology, University Hospital Bonn, Rheinische Friedrich-
+Wilhelms-University Bonn, Bonn, Germany. 4 Institute for Clinical Diabetology, 
+German Diabetes Center, Leibniz Center for Diabetes Research at Heinrich 
+Heine University Düsseldorf, Düsseldorf, Germany. 5 German Center for Diabe-
+tes Research (DZD), Partner Düsseldorf, Germany. 6 Medical Faculty, Heinrich 
+Heine University Düsseldorf, Düsseldorf, Germany. 
+Acknowledgements
+The authors would like to appreciate the DONALD study participants and 
+their families for the provision of data. We also acknowledge the support of 
+the staffs at the study centre for data collection and processing of the blood 
+samples. We thank Stefan Benda for his support in formatting the figures.
+Competing interests
+The authors declare that they have no competing interests.
+Availability of data and materials
+The datasets used and/or analysed during the current study are available 
+from the corresponding author on reasonable request and approval by the 
+principal investigator.
+Consent for publication
+Not applicable.
+Ethics approval and consent to participate
+This study was performed in accordance with the Declaration of Helsinki and 
+was approved by the Ethics Committee of the University of Bonn, Germany.
+Funding
+This work was supported through a “European Joint Programming Initia-
+tive “A Healthy Diet for a Healthy Life” (JPI HDHL)” Call for Joint Transnational 
+Research Proposals on “Biomarkers for Nutrition and Health”, ‘HEALTHMARK: 
+Metabolic HEALTH through nutrition, microbiota and tryptophan bioMARKers’; 
+by the Federal Ministry of Education and Research, Germany (grant number: 
+01EA1705A). The DONALD study is supported by the Ministry of Science and 
+Research of North Rhine Westphalia, Germany. Biomarker measurements were 
+funded by the German Research Association. The German Diabetes Center is 
+funded by the German Federal Ministry of Health and the Ministry of Culture 
+and Science of the State North Rhine-Westphalia. This study was also sup-
+ported in part by a grant from the German Federal Ministry of Education and 
+Research to the German Center for Diabetes Research (DZD e.V.)
+Publisher’s Note
+Springer Nature remains neutral with regard to jurisdictional claims in pub-
+lished maps and institutional affiliations.
+Received: 29 October 2018   Accepted: 10 January 2019
+References
+	1.	
+Dietz WH. Use of the body mass index (BMI) as a measure of overweight 
+in children and adolescents. J Pediatr. 1998;132:191–3.
+	2.	
+Singh AS, Mulder C, Twisk JW, Van Mechelen W, Chinapaw MJ. Tracking 
+of childhood overweight into adulthood: a systematic review of the 
+literature. Obes Rev. 2008;9:474–88.
+	3.	
+Howe LD, Firestone R, Tilling K, Lawlor DA. Trajectories and transitions in 
+childhood and adolescent obesity. In: Burton-Jeangros C, Cullati S, Sacker 
+A, Blane D, editors. A life course perspective on health trajectories and 
+transitions. Cham: Springer International Publishing; 2015. p. 19–37.
+	4.	
+Riedel C, von Kries R, Buyken AE, Diethelm K, Keil T, Grabenhenrich L, 
+et al. Overweight in adolescence can be predicted at age 6 years: a CART 
+analysis in German cohorts. PLoS ONE. 2014;9(3):e93581.
+	5.	
+Cheng G, Bolzenius K, Joslowski G, Gunther AL, Kroke A, Heinrich J, et al. 
+Velocities of weight, height and fat mass gain during potentially critical 
+periods of growth are decisive for adult body composition. Eur J Clin 
+Nutr. 2015;69(2):262–8.
+	6.	
+Simmonds M, Llewellyn A, Owen CG, Woolacott N. Predicting adult obe-
+sity from childhood obesity: a systematic review and meta-analysis. Obes 
+Rev. 2016;17(2):95–107.
+	7.	
+Geserick M, Vogel M, Gausche R, Lipek T, Spielau U, Keller E, et al. Accelera-
+tion of BMI in early childhood and risk of sustained obesity. N Engl J Med. 
+2018;379(14):1303–12.
+	8.	
+Balantekin KN, Hohman EE, Adams EL, Marini ME, Ventura AK, Birch 
+LL, et al. More rapid increase in BMI from age 5–15 is associated with 
+elevated weight status at age 24 among non-Hispanic white females. Eat 
+Behav. 2018;31:12–7. https​://doi.org/10.1016/j.eatbe​h.2018.07.007.
+	9.	
+Ziyab AH, Karmaus W, Kurukulaaratchy RJ, Zhang H, Arshad SH. Develop-
+mental trajectories of body mass index from infancy to 18 years of age: 
+prenatal determinants and health consequences. J Epidemiol Commu-
+nity Health. 2014;68(10):934–41. https​://doi.org/10.1136/jech-2014-20380​
+8.
+	10.	 Hoekstra T, Twisk JWR. The analysis of individual health trajectories across 
+the life course: Latent class growth models versus mixed models. In: 
+Burton-Jeangros C, Cullati S, Sacker A, et al., editors. A life course perspec-
+tive on health trajectories and transitions [Internet]. Cham (CH): Springer; 
+2015. Chapter 9. https​://www.ncbi.nlm.nih.gov/books​/NBK38​5363/ https​
+://doi.org/10.1007/978-3-319-20484​-0_9.
+	11.	 Lindsay RS, Hanson RL, Roumain J, Ravussin E, Knowler WC, Tataranni PA. 
+Body mass index as a measure of adiposity in children and adolescents: 
+relationship to adiposity by dual energy x-ray absorptiometry and to 
+cardiovascular risk factors. J Clin Endocrinol Metab. 2001;86(9):4061–7.
+	12.	 Ventura AK, Loken E, Birch LL. Developmental trajectories of girls’ 
+BMI across childhood and adolescence. Obesity (Silver Spring). 
+2009;17(11):2067–74. https​://doi.org/10.1038/oby.2009.123.
+	13.	 Huang DYC, Lanza HI, Wright-Volel K, Anglin MD. Developmental trajec-
+tories of childhood obesity and risk behaviors in adolescence. J Adolesc. 
+2013;36(1):139–48. https​://doi.org/10.1016/j.adole​scenc​e.2012.10.005.
+	14.	 Huang RC, Burrows S, Mori TA, Oddy WH, Beilin LJ. Lifecourse adiposity 
+and blood pressure between birth and 17 years old. Am J Hypertens. 
+2015;28(8):1056–63.
+	15.	 Tu AW, Mâsse LC, Lear SA, Gotay CC, Richardson CG. Body mass index 
+trajectories from ages 1 to 20: results from two nationally representative 
+Canadian longitudinal cohorts. Obesity. 2015;23:1703–11. https​://doi.
+org/10.1002/oby.21158​.
+	16.	 Araújo J, Severo M, Barros H, Mishra GD, Guimarães JT, Ramos E. Devel-
+opmental trajectories of adiposity from birth until early adulthood and 
+association with cardiometabolic risk factors. Int J Obes. 2015;39:1443.
+	17.	 Hao G, Wang X, Treiber FA, Harshfield G, Kapuku G, Su S. Body mass 
+index trajectories in childhood is predictive of cardiovascular risk: results 
+from the 23-year longitudinal Georgia Stress and Heart study. Int J Obes 
+(Lond). 2017. https​://doi.org/10.1038/ijo.2017.244.
+	18.	 Mustillo S, Worthman C, Erkanli A, Keeler G, Angold A, Costello EJ. 
+Obesity and psychiatric disorder: developmental trajectories. Pediatrics. 
+2003;111:851–9.
+	19.	 Tu Y-K, Tilling K, Sterne JAC, Gilthorpe MS. A critical evaluation of 
+statistical approaches to examining the role of growth trajectories 
+in the developmental origins of health and disease. Int J Epidemiol. 
+2013;42(5):1327–39.
+Page 13 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+	20.	 Munthali RJ, Kagura J, Lombard Z, Norris SA. Childhood adiposity trajec-
+tories are associated with late adolescent blood pressure: birth to twenty 
+cohort. BMC Public Health. 2016;16:665.
+	21.	 Duncan TE, Duncan SC, Strycker LA. Quantitative methodology series. 
+An introduction to latent variable growth curve modeling: concepts, 
+issues, and applications. 2nd ed. Mahwah: Lawrence Erlbaum Associates 
+Publishers; 2006.
+	22.	 Bays HE, Seger JC, Primack C, McCarthy W, Long J, Schmidt SL, et al. 
+Obesity algorithm, presented by the Obesity Medicine Association. 
+2016–2017. http://www.obesi​tyalg​orith​m.org. Accessed 1 June 2018.
+	23.	 Singla P, Bardoloi A, Parkash AA. Metabolic effects of obesity: a review. 
+World J Diabetes. 2010;1(3):76–88. https​://doi.org/10.4239/wjd.v1.i3.76.
+	24.	 Nichols GA, Horberg M, Koebnick C, et al. Cardiometabolic risk factors 
+among 1.3 million adults with overweight or obesity, but not diabetes, in 
+10 geographically diverse regions of the United States, 2012–2013. Prev 
+Chronic Dis. 2017;14:E22. https​://doi.org/10.5888/pcd14​.16043​8.
+	25.	 Sinaiko AR, Donahue RP, Jacobs DR, Prineas RJ. Relation of weight and 
+rate of increase in weight during childhood and adolescence to body 
+size, blood pressure, fasting insulin, and lipids in young adults. The Min-
+neapolis Children’s Blood Pressure Study. Circulation. 1999;99(11):1471–6.
+	26.	 Herder C, Schneitler S, Rathmann W, Haastert B, Schneitler H, Winkler H, 
+et al. Low-grade inflammation, obesity, and insulin resistance in adoles-
+cents. J Clin Endocrinol Metab. 2007;92(12):4569–74.
+	27.	 Syme C, Abrahamowicz M, Leonard GT, Perron M, Richer L, Veillette 
+S, et al. Sex differences in blood pressure and its relationship to body 
+composition and metabolism in adolescence. Arch Pediatr Adolesc Med. 
+2009;163(9):818–25.
+	28.	 Gamborg M, Andersen PK, Baker JL, Budtz-Jørgensen E, Jørgensen 
+T, Jensen G, et al. Life course path analysis of birth weight, child-
+hood growth, and adult systolic blood pressure. Am J Epidemiol. 
+2009;169(10):1167–78. https​://doi.org/10.1093/aje/kwp04​7.
+	29.	 Stea TH, Wandel M, Mansoor MA, Uglem S, Frølich W. BMI, lipid profile, 
+physical fitness and smoking habits of young male adults and the asso-
+ciation with parental education. Eur J Public Health. 2009;19(1):46–51. 
+https​://doi.org/10.1093/eurpu​b/ckn12​2.
+	30.	 Ramel A, Pumberger C, Martinéz AJ, Kiely M, Bandarra NM, Thorsdottir 
+I. Cardiovascular risk factors in young, overweight, and obese European 
+adults and associations with physical activity and omega-3 index. Nutr 
+Res. 2009;29(5):305–12. https​://doi.org/10.1016/j.nutre​s.2009.05.004.
+	31.	 Brenner DR, Tepylo K, Eny KM, Cahill LE, El-Sohemy A. Comparison of 
+body mass index and waist circumference as predictors of cardiometa-
+bolic health in a population of young Canadian adults. Diabetol Metab 
+Syndr. 2010;2(1):28. https​://doi.org/10.1186/1758-5996-2-28.
+	32.	 Jung C, Gerdes N, Fritzenwanger M, Figulla HR. Circulating levels of inter-
+leukin-1 family cytokines in overweight adolescents. Mediators Inflamm. 
+2010;2010:958403. https​://doi.org/10.1155/2010/95840​3.
+	33.	 Tam CS, Garnett SP, Cowell CT, Heilbronn LK, Lee JW, Wong M, et al. IL-6, 
+IL-8 and IL-10 levels in healthy weight and overweight children. Horm Res 
+Paediatr. 2010;73(2):128–34.
+	34.	 Kuo SM, Halpern MM. Lack of association between body mass index 
+and plasma adiponectin levels in healthy adults. Int J Obes (Lond). 
+2011;35(12):1487–94. https​://doi.org/10.1038/ijo.2011.20.
+	35.	 DeLoach S, Huan Y, Keith SW, Martinez Cantarin MP, Falkner B. Relation-
+ship of blood pressure and obesity with inflammatory cytokines among 
+African Americans. Ther Adv Cardiovasc Dis. 2011;5(3):149–57.
+	36.	 Lyngdoh T, Viswanathan B, van Wijngaarden E, Myers GJ, Bovet P. Cross-
+sectional and longitudinal associations between body mass index and 
+cardiometabolic risk factors in adolescents in a country of the African 
+region. Int J Endocrinol. 2013. https​://doi.org/10.1155/2013/80183​2.
+	37.	 Würtz P, Wang Q, Kangas AJ, Richmond RC, Skarp J, Tiainen M, et al. Meta-
+bolic signatures of adiposity in young adults: mendelian randomization 
+analysis and effects of weight change. PLoS Med. 2014;11(12):e1001765.
+	38.	 Chorin E, Hassidim A, Hartal M, Havakuk O, Flint N, Ziv-Baran T, et al. 
+Trends in adolescents obesity and the association between BMI and 
+blood pressure: a cross-sectional study in 714,922 healthy teenagers. Am 
+J Hypertens. 2015;28(9):1157–63.
+	39.	 Matia-Garcia I, Munoz-Valle JF, Reyes-Castillo Z, Garcia-Arellano S, 
+Salgado-Bernabe AB, Alarcon-Romero LD, et al. Correlation between 
+cytokine profile and metabolic abnormalities in young subjects. Int J Clin 
+Exp Med. 2016;9(8):16596–604.
+	40.	 Menezes AMB, Oliveira PD, Wehrmeister FC, Gonçalves H, Assunção MCF, 
+Tovo-Rodrigues L, et al. Association between interleukin-6, C-reactive 
+protein and adiponectin with adiposity: findings from the 1993 pelotas 
+(Brazil) birth cohort at 18 and 22 years. Cytokine. 2018;110:44–51. https​://
+doi.org/10.1016/j.cyto.2018.04.020.
+	41.	 Geng T, Smith CE, Li C, Huang T. Childhood BMI and adult type 2 
+diabetes, coronary artery diseases, chronic kidney disease, and cardio-
+metabolic traits: a mendelian randomization analysis. Diabetes Care. 
+2018;41(5):1089–96.
+	42.	 Power ML, Schulkin J. Sex differences in fat storage, fat metabolism, and 
+the health risks from obesity: possible evolutionary origins. Br J Nutr. 
+2008;99(5):931–40.
+	43.	 OECD Family Database. CO1.7: overweight at ages 11, 13 and 15, by sex. 
+http://www.oecd.org/els/famil​y/datab​ase.htm Accessed 1 Oct 2018.
+	44.	 Furer A, Afek A, Orr O, Gershovitz L, Landau Rabbi M, Derazne E, et al. 
+Sex-specific associations between adolescent categories of BMI with 
+cardiovascular and non-cardiovascular mortality in midlife. Cardiovasc 
+Diabetol. 2018;17(1):80.
+	45.	 Skinner AC, Perrin EM, Moss LA, Skelton JA. Cardiometabolic risks 
+and severity of obesity in children and young adults. N Engl J Med. 
+2015;373(14):1307–17. https​://doi.org/10.1056/NEJMo​a1502​821.
+	46.	 Power C, Atherton K, Strachan DP, Shepherd P, Fuller E, Davis A, et al. Life-
+course influences on health in British adults: effects of socio-economic 
+position in childhood and adulthood. Int J Epidemiol. 2007;36:532–9.
+	47.	 Alberga AS, Sigal RJ, Goldfield G, Prud’homme D, Kenny GP. Overweight 
+and obese teenagers: why is adolescence a critical period? Pediatr Obes. 
+2012;7(4):261–73. https​://doi.org/10.1111/j.2047-6310.2011.00046​.x.
+	48.	 Kroke A, Manz F, Kersting M, Remer T, Sichert-Hellert W, Alexy U, et al. The 
+DONALD Study. History, current status and future perspectives. Eur J Nutr. 
+2004;43:45–54.
+	49.	 Kwon S, Janz KF, Letuchy EM, Burns TL, Levy SM. Association between 
+body mass index percentile trajectories in infancy and adiposity in child-
+hood and early adulthood. Obesity. 2017;25(1):166–71.
+	50.	 Buyken AE, Alexy U, Kersting M, Remer T. Die DONALD Kohorte. 
+Bundesgesundheitsblatt Gesundheitsforschung Gesundheitsschutz. 
+2012;55(6):875–84.
+	51.	 Goletzke J, Buyken AE, Joslowski G, Bolzenius K, Remer T, Carstensen 
+M, et al. Increased intake of carbohydrates from sources with a higher 
+glycemic index and lower consumption of whole grains during puberty 
+are prospectively associated with higher IL-6 concentrations in younger 
+adulthood among healthy individuals. J Nutr. 2014;144(10):1586–93.
+	52.	 Diederichs T, Herder C, Rossbach S, Roden M, Wudy SA, Nothlings U, et al. 
+Carbohydrates from sources with a higher glycemic index during adoles-
+cence: is evening rather than morning intake relevant for risk markers of 
+type 2 diabetes in young adulthood? Nutrients. 2017;9(6):591.
+	53.	 Kromeyer-Hauschild K, Wabitsch M, Kunze D, Geller F, Geiß HC, Hesse V, 
+et al. Percentiles of body mass index in children and adolescents evalu-
+ated from different regional German studies. Monatsschr Kinderheilkd. 
+2001;149:807–18. https​://doi.org/10.1007/s0011​20170​107.
+	54.	 Nagin DS. Group-based modeling of development. Cambridge: Harvard 
+University Press; 2005.
+	55.	 Haviland AM, Jones BL, Nagin DS. Group-based trajectory modeling 
+extended to account for non-random participant attrition. Sociol Meth-
+ods Res. 2011;40:367–90.
+	56.	 Andruff H, Carrari N, Thompson A, Gaudreau P, Louvet B. Latent 
+class growth modelling: a tutorial. Tutorials Quant Methods Psychol. 
+2009;5:11–24.
+	57.	 Jones BL, Nagin DS, Roeder K. A SAS procedure based on mixture 
+models for estimating developmental trajectories. Sociol Methods Res. 
+2001;29:374–93.
+	58.	 Growth Reference for school-aged children and adolescents. http://www.
+who.int/growt​href/en. Accessed 17 Apr 2018.
+	59.	 De’ath G, Fabricius KE. Classification and regression trees: a pow-
+erful yet simple technique for ecological data analysis. Ecology. 
+2000;81(11):3178–92.
+	60.	 Sweeting HN. Sexed dimensions of obesity in childhood and adoles-
+cence. Nutr J. 2008;7:1. https​://doi.org/10.1186/1475-2891-7-1.
+	61.	 Stettler N, Tershakovec AM, Zemel BS. Early risk factors for increased adi-
+posity: a cohort study of African American subjects followed from birth 
+to young adulthood. Am J Clin Nutr. 2000;72:378–83.
+Page 14 of 14
+Oluwagbemigun et al. Cardiovasc Diabetol            (2019) 18:9 
+•
+ 
+fast, convenient online submission
+ 
+•
+  
+thorough peer review by experienced researchers in your ﬁeld
+• 
+ 
+rapid publication on acceptance
+• 
+ 
+support for research data, including large and complex data types
+•
+  
+gold Open Access which fosters wider collaboration and increased citations 
+ 
+maximum visibility for your research: over 100M website views per year 
+•
+  
+At BMC, research is always in progress.
+Learn more biomedcentral.com/submissions
+Ready to submit your research ?  Choose BMC and benefit from: 
+	62.	 Wardle J, Brodersen NH, Cole TJ, Jarvis MJ, Boniface DR. Development 
+of adiposity in adolescence: five year longitudinal study of an ethnically 
+and socioeconomically diverse sample of young people in Britain. BMJ. 
+2006;332(7550):1130–5.
+	63.	 von Hinke Kessler Scholder S. Maternal employment and overweight 
+children: does timing matter? Health Econ. 2008;17:889–906.
+	64.	 Hawkins SS, Cole TJ, Law C, The Millennium Cohort Study Child Health 
+Group. Maternal employment and early childhood overweight: findings 
+from the UK Millennium Cohort Study. Int J Obes. 2008;32(1):30–8. https​
+://doi.org/10.1038/sj.ijo.08036​82.
+	65.	 Derraik JGB, Ahlsson F, Lundgren M, Jonsson B, Cutfield WS. First-borns 
+have greater BMI and are more likely to be overweight or obese: a study 
+of sibling pairs among 26 812 Swedish women. J Epidemiol Community 
+Health. 2016;70(1):78–81. https​://doi.org/10.1136/jech-2014-20536​8.
+	66.	 Brettschneider A-K, Schaffrath Rosario A, Kuhnert R, Schmidt S, Wiegand 
+S, Ellert U, et al. Updated prevalence rates of overweight and obesity in 
+11- to 17-year-old adolescents in Germany. Results from the telephone-
+based KiGGS Wave 1 after correction for bias in self-reports. BMC Public 
+Health. 2015;15:1101.
+	67.	 Skurk T, Kolb H, Muller-Scholze S, Rohrig K, Hauner H, Herder C. The 
+proatherogenic cytokine interleukin-18 is secreted by human adipocytes. 
+Eur J Endocrinol. 2005;152(6):863–8.
+	68.	 Trøseid M, Seljeflot I, Arnesen H. The role of interleukin-18 in the meta-
+bolic syndrome. Cardiovasc Diabetol. 2010;9(1):11.
+	69.	 Thorand B, Kolb H, Baumert J, Koenig W, Chambless L, Meisinger C, et al. 
+Elevated levels of interleukin-18 predict the development of type 2 
+diabetes: results from the MONICA/KORA Augsburg Study, 1984-2002. 
+Diabetes. 2005;54(10):2932–8.
+	70.	 Jefferis BJ, Papacosta O, Owen CG, Wannamethee SG, Humphries SE, 
+Woodward M, et al. Interleukin 18 and coronary heart disease: prospec-
+tive study and systematic review. Atherosclerosis. 2011;217(1):227–33.
+	71.	 Kaptoge S, Seshasai SR, Gao P, Freitag DF, Butterworth AS, Borglykke A, 
+et al. Inflammatory cytokines and risk of coronary heart disease: new pro-
+spective study and updated meta-analysis. Eur Heart J. 2014;35(9):578–89.
+	72.	 Jin DY, Liu CL, Tang JN, Zhu ZZ, Xuan XX, Zhu XD, et al. Interleukin-18, 
+matrix metalloproteinase-22 and -29 are independent risk factors of 
+human coronary heart disease. J Zhejiang Univ Sci B. 2017;18(8):685–95. 
+https​://doi.org/10.1631/jzus.B1700​073.
+	73.	 Zhou L, Zhu X, Wang J, Cheng Y, Ma A, Pan X. Association between inter-
+leukin-18 (137G/C and 607C/A) gene polymorphisms and risk of ischemic 
+stroke: a meta-analysis. Neuroreport. 2018;30:89–94.
+	74.	 Kotnik P, Fischer-Posovszky P, Wabitsch M. RBP4: a controversial adi-
+pokine. Eur J Endocrinol. 2011;165(5):703–11. https​://doi.org/10.1530/
+EJE-11-0431.
+	75.	 Li G, Esangbedo IC, Xu L, Fu J, Li L, Feng D, et al. Childhood retinol-
+binding protein 4 (RBP4) levels predicting the 10-year risk of insulin resist-
+ance and metabolic syndrome: the BCAMS study. Cardiovasc Diabetol. 
+2018;17(1):69. https​://doi.org/10.1186/s1293​3-018-0707-y.
+	76.	 González M, del Mar Bibiloni M, Pons A, Llompart I, Tur JA. Inflammatory 
+markers and metabolic syndrome among adolescents. Eur J Clin Nutr. 
+2012;66(10):1141–5. https​://doi.org/10.1038/ejcn.2012.112.
+	77.	 Heier M, Borja MS, Brunborg C, Seljeflot I, Margeirsdottir HD, Hanssen KF, 
+et al. Reduced HDL function in children and young adults with type 1 
+diabetes. Cardiovasc Diabetol. 2017;16(1):85.

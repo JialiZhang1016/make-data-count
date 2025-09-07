@@ -1,0 +1,901 @@
+RESEARCH ARTICLE
+One size does not fit all: Caste and sex
+differences in the response of bumblebees
+(Bombus impatiens) to chronic oral
+neonicotinoid exposure
+Melissa W. Mobley, Robert J. GegearID*
+Department of Biology and Biotechnology, Worcester Polytechnic Institute, Worcester, Massachusetts,
+United States of America
+* rgegear@wpi.edu
+Abstract
+Neonicotinoid insecticides have been implicated in the rapid global decline of bumblebees
+over recent years, particularly in agricultural and urban areas. While there is much known
+about neonicotinoid toxicity effects at the colony stage of the bumblebee annual cycle, far
+less is known about such effects at other stages critical for the maintenance of wild popula-
+tions. In the present work, individual-based feeding assays were used to show that chronic
+consumption of the widely used neonicotinoid clothianidin at a field-realistic average rate of
+3.6 and 4.0 ng/gbee/day reduces survival of queen and male bumblebees, respectively,
+within a 7-day period. In contrast, worker survival was unaffected at a similar consumption
+rate of 3.9 ng/gbee/day. To test the hypothesis that males have a lower tolerance for oral
+clothianidin exposure than workers due to their haploid genetic status, RNAseq analysis
+was used to compare the transcriptomic responses of workers and males to chronic intake
+of clothianidin at a sub-lethal dose of 0.37ng/bee/day for 5 days. Surprisingly, clothianidin
+consumption only altered the expression of 19 putative detoxification genes in a sex-specific
+manner, with 11/19 genes showing increased expression in workers. Sub-lethal clothianidin
+exposure also altered the expression of 40 genes associated with other major biological
+functions, including locomotion, reproduction, and immunity. Collectively, these results sug-
+gest that chronic oral toxicity effects of neonicotinoids are greatest during mating and nest
+establishment phases of the bumblebee life cycle. Chronic oral toxicity testing on males and
+queens is therefore required in order to fully assess the impact of neonicotinoids on wild
+bumblebee populations.
+Introduction
+Bumblebees have rapidly declined in abundance, species richness, and geographic distribution
+on a global scale over recent years [1, 2]. In North America alone, nearly half of the bumblebee
+species have reached historically low numbers [3–5], including one species, Bombus affinis,
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+1 / 16
+a1111111111
+a1111111111
+a1111111111
+a1111111111
+a1111111111
+OPEN ACCESS
+Citation: Mobley MW, Gegear RJ (2018) One size
+does not fit all: Caste and sex differences in the
+response of bumblebees (Bombus impatiens) to
+chronic oral neonicotinoid exposure. PLoS ONE 13
+(10): e0200041. https://doi.org/10.1371/journal.
+pone.0200041
+Editor: Wulfila Gronenberg, University of Arizona,
+UNITED STATES
+Received: June 7, 2018
+Accepted: September 24, 2018
+Published: October 8, 2018
+Copyright: © 2018 Mobley, Gegear. This is an open
+access article distributed under the terms of the
+Creative Commons Attribution License, which
+permits unrestricted use, distribution, and
+reproduction in any medium, provided the original
+author and source are credited.
+Data Availability Statement: Microarray data are
+available from https://doi.org/10.5061/dryad.
+f8c5r7q.
+Funding: This work was funded by the National
+Science Foundation (grant #1501737). The funder
+had no role in study design, data collection and
+analysis, decision to publish, or preparation of the
+manuscript.
+Competing interests: The authors have declared
+that no competing interests exist.
+which was recently listed as an endangered species by the U.S. Fish and Wildlife Service. From
+an ecological perspective, these declines pose a significant threat to the function and diversity
+of temperate ecosystems due to the critical keystone role that bumblebees play as pollinators of
+native flowering plants. Reports of parallel reductions in bee-pollinated plant species suggest
+that pollinator decline-mediated effects on wildlife diversity at higher trophic levels may
+already be well underway [1, 6, 7]. It is therefore imperative that all anthropogenic stressors
+contributing to species decline in bumblebees be identified and mitigated as soon as possible.
+One stressor thought to contribute to wild bumblebee decline in urban and agricultural
+areas is a newly developed class of pesticides called ‘neonicotinoids’ [8]. From a pest manage-
+ment perspective, neonicotinoids are a highly effective form of insect control because they spe-
+cifically target nicotinic acetylcholine receptors in the insect central nervous system, leading to
+paralysis and death [9]. However, unlike most other pesticide classes, neonicotinoids are also
+systemic, meaning that they are readily taken up by the roots and distributed throughout the
+entire plant, thereby protecting it from pest damage over the entire growing season [10].
+Despite these benefits, neonicotinoids pose a significant threat to beneficial insects such as
+pollinators because they are translocated to floral nectar and pollen, presenting a route of oral
+exposure. Of particular concern to wild pollinator populations is the fact that neonicotinoids
+can be transported away from the area of application to adjacent natural areas [11, 12] and
+then contaminate wildflower resources [2, 13, 14]. For example, clothianidin, one of the newest
+and most potent neonicotinoid formulations, has been detected in numerous animal-polli-
+nated wildflower species at concentrations ranging from 4 to 215 ppb [2, 14]. Compounding
+this issue, neonicotinoid residues can persist in the soil for years after a single application [15–
+17], and increase in concentration with repeated annual application [18]. Wild bumblebees
+and other insect pollinators therefore have the potential to be orally exposed to neonicotinoids
+at life stages occurring outside of the blooming period and geographic location of the targeted
+plant species.
+Yet, the overwhelming majority of neonicotinoid toxicity studies on bumblebees to date
+have focused only on the colony stage, relying on metrics such as worker survival, larval
+growth, and reproductive output to estimate the potential impact of exposure on wild popula-
+tions [19]. While such colony-focused risk assessment protocols may be adequate in the con-
+text of crop pollination, determining the impact of widespread neonicotinoid use on
+threatened bumblebee species in an ecological context requires more comprehensive assess-
+ment protocols that consider potential impacts on queens and males, whose survival during
+mating, overwintering, and nest establishment stages of the life cycle has a direct effect on pop-
+ulation stability (Fig 1).
+Several morphological and physiological characteristics of queen, worker, and male bum-
+blebees suggest that individuals from each group may vary in their capacity to cope with
+chronic oral neonicotinoid exposure. For example, males and workers have a smaller body size
+than queens and therefore may experience mortality effects at lower neonicotinoid concentra-
+tions, as has been shown at the species level [20]. Males are also haploid whereas queens and
+workers are diploid, which may limit gene products available for males to detoxify neonicoti-
+noids. Such ‘haploid susceptibility’ is known to occur in the context of immunocompetence
+[21], but has yet to be studied in the context of metabolic resistance to pesticides. Alternatively,
+males and queens have greater energetic demands due to their reproductive status [22, 23] and
+therefore may have fewer resources available for detoxification processes than sterile workers.
+To explore these possibilities, the present study uses a novel individual-based feeding assay
+to directly compare the mortality response of queen, worker, and male Bombus impatiens to
+chronic consumption of the widely used neonicotinoid clothianidin at field-realistic concen-
+trations of 5-10ppb. Assaying bumblebee test populations at the individual level provides a
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+2 / 16
+much more robust estimate of chronic lethality level than more traditional assays on small
+groups (e.g. microcolonies) because drug intake rates can be directly monitored in all test indi-
+viduals and then easily standardized by adjusting for individual variation in body size and
+daily intake [24].
+The results of our initial feeding experiments revealed that chronic lethality effects of
+clothianidin are much greater in males than workers even when controlling for differences in
+body size. To test the potential role of male haploidy in driving this sex-specific response to
+clothianidin exposure, we then used RNAseq analysis to compare the transcriptomic responses
+of workers and males to consumption of clothianidin at a sub-lethal daily dose over a 5-day
+period. Following previous work on bumblebees by [25], putative genes related to clothianidin
+detoxification were identified and classified based on the two well-characterized xenobiotic
+detoxification phases in insects, with Phase 1 processes metabolizing the xenobiotic to less
+toxic compounds through oxidation, hydrolysis, and reduction reactions, and Phase 2 pro-
+cesses breaking down the metabolites produced from Phase 1 processes through conjugation
+reactions. Based on the findings of [25] that another bumblebee species (B. huntii) has fewer
+constitutively expressed detoxification genes than workers, it was predicted that male Bombus
+Fig 1. Annual cycle of social bumblebees. The cycle begins when mated queens emerge from their overwintering sites in early spring and search for suitable
+nest sites. Once a suitable nest site has been found, the queen collects and stores floral resources (nectar and pollen) to raise the first brood of workers, which
+emerges in late spring. A subset of the workers emerging become ‘foragers’ and leave the nest to collect floral resources for the queen and the rest of the
+workers in the colony. The number of workers (foragers and nest bees) in the colony continues to grow over the summer months. From late summer into the
+fall, the colony starts to produce new queens and males (reproductives) instead of workers. Reproductives leave the nest soon after emergence and search for
+a suitable mate until late fall. Once mated, queens search for an overwintering site and once located, reside there until the spring. Males and colonies
+(founding queen and workers) do not survive the winter, thus completing the cycle.
+https://doi.org/10.1371/journal.pone.0200041.g001
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+3 / 16
+impatiens would have fewer and/or lower expression of inducible detoxification genes com-
+pared to workers.
+Materials and methods
+Experimental design
+Bumble bees. Virgin queens, workers, and males were obtained from commercial Bombus
+impatiens colonies (Biobest Biological Systems, Leamington, Canada). Colonies initially con-
+tained approximately 100 workers and were subsequently supplied with 30% (stock) sugar
+solution (Grade A pure honey mixed with distilled water to the desired concentration, mea-
+sured with a Bellingham & Stanley hand-held refractometer (Suwanee, USA)) and wildflower
+pollen ad libitum to facilitate continued production of workers and later production of queens
+and males. Multiple colonies were used across experimental trials to control for potential
+inter-colony differences in clothianidin sensitivity.
+For chronic oral toxicity tests, queen, worker and male bees were collected and placed in a
+4˚C refrigerator. Once immobile, individuals were weighed to the nearest milligram, marked
+with acrylic paint for identification, and then placed in a 16oz plastic housing container with a
+screen lid for ventilation (Fig 2).
+Fig 2. Schematic of setup for individual feeding assay. Bees were isolated from the colony and housed in a 16oz
+plastic container with a feeding cup positioned directly under an open vent in the screen lid. Test sugar solutions were
+delivered through a hole in the lid with a micropipette. Individuals were supplied with pollen ad libitum.
+https://doi.org/10.1371/journal.pone.0200041.g002
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+4 / 16
+Each lid had a circular opening with a removable plastic plug that was positioned directly
+above a plastic ‘feeding bowl’ fastened to the bottom of the container. In this way, test solutions
+could be dispensed into the bowls with minimal disturbance to the bee. Each container was
+also supplied with 1–1.5 grams of a pollen paste (a dough-like mixture of and stock sugar solu-
+tion), which was replaced as necessary.
+All housing containers were kept in Percival Scientific environmental chambers (Perry,
+USA) set to 22–25˚C, 50% humidity, and a 12 hour light/dark cycle. Workers and males were
+fed 75 μL and queens were fed 200 μL of untreated stock sugar solution once daily within 3
+hours of the start of the light cycle. Preliminary experiments with stock sugar solution deter-
+mined that these volumes are completely consumed by individuals over a 24-hour period
+while having no effect on survival or activity level. All handling of housing containers was con-
+ducted under red light in order to minimize additional stress on test bees.
+Clothianidin solutions.
+Analytical-grade clothianidin (Sigma-Aldrich, USA) was dis-
+solved in dimethyl sulfoxide (DMSO), as has been done in other neonicotinoid toxicity studies
+[26], to a concentration of 5 x 106 ng/mL or ppb (parts per billion) and serially diluted down to
+5 x 102 or 5 x 101 ppb. Diluted clothianidin solution was added to stock sugar solution to con-
+centrations of 10, 7, and 5 ppb (ng/mL). These concentrations of clothianidin were selected
+because they are well within the range found under field conditions [27]. Drug mixtures were
+prepared within 2 days of the start of a trial, stored in conical tubes in the dark at 4˚C and only
+taken out for immediate use.
+To confirm that test solutions contained the correct amount of clothianidin, fresh samples
+of 0 (stock sugar solution alone), 5, 7, and 10 ppb test solutions were sent to the U.S.D.A. Agri-
+cultural Marketing Service’s National Science Laboratories Testing Division (Gastonia, USA)
+for analysis. Clothianidin residues were measured using Mass Spectrometry with a LOQ of 5
++/- 1 ppb. Although the 5ppb test solution was below the minimal level of detection by the U.
+S.D.A. equipment, 7 and 10 ppb test solutions (3 technical replicates each) yielded mean values
+(+/-SE) of 4.1 +/- 3.5 and 7.3 +/-1.4 ppb, respectively.
+Test procedure for feeding experiments
+Prior to each trial, all bees were fed stock sugar solution at the previously described volumes
+daily until there were no observed deaths over a 48-hour period. Individuals not consuming all
+of the sugar solution within a 24 hour period were removed.
+After the 48-hour acclimation period, individuals were assigned to either the 0 ppb (con-
+trol), 5 ppb, 7ppb, or 10ppb treatment group, with colony origin and bee size balanced among
+groups. Location of housing containers within and between shelves inside the environmental
+chamber was randomized in order to control for potential positional effects on survival. Total
+number of bees tested at each clothianidin concentration was as follows: 208 at 0ppb (88 work-
+ers, 58 queens, 62 males), 178 at 5ppb (70 workers, 58 queens, 50 males), 178 at 7 ppb (70
+workers, 58 queens, 50 males), and 264 at 10 ppb (108 workers, 84 queens, 72 males). These
+numbers were obtained through 11 independent worker, 8 queen, and 12 male trials, with bees
+in each trial obtained from at least two colonies. Given queens required a greater volume of
+test solution than workers and males (200 μL vs 75 μL, respectively) to remain active than
+workers and males due to their larger body size, we standardized exposure level for each group
+by expressing it as ng clothianidin consumed per gram of bee per day (ng/gbee/day). Daily
+intake for queens = 2 ng/bee (10ppb), 1.4 ng/bee (7ppb), 1 ng/bee (5ppb); workers and
+males = 0.75 ng/bee (10ppb), 0.525 ng/bee (7ppb), and 0.375 ng/bee (5ppb). Mean (±SD) mass
+in grams of queens = 0.58±0.12 g; workers = 0.15±0.05 g; males = 0.14±0.04 g. In this way, we
+could directly test for sex and caste differences in clothianidin sensitivity.
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+5 / 16
+Each day over a 7-day testing period, individual housing containers were removed from the
+environmental chamber within three hours after to the beginning of the light cycle, and the
+number of dead bees was recorded. In the rare case that a test individual was not dead but
+showed inverted orientation, extremity spasms, and unresponsiveness, it was recorded as dead
+and euthanized. Presence/absence of test solutions was also checked daily and feeding bowls
+were replenished when necessary. Immediately following data collection, bees were returned
+to the environmental chamber.
+To confirm that consumption of dimethyl sulfoxide (DMSO) at the concentration used in
+experiments had no effect on survival of queens, workers and males, additional feeding trials
+were conducted with stock sugar solution containing 1.4% DMSO. As in the clothianidin test
+trials, workers and males were fed 75 μL of solution per day and queens were fed 200 μL/day
+over a 7-day period. Survival in the control (0ppb) group (see above for numbers in each
+group) was then compared to survival in the 1.4% DMSO group for queens (24 treated individ-
+uals), workers (55 treated individuals), and males (87 treated individuals). Results of Mantel-
+Cox Log-rank analyses revealed that consuming 1.4% DMSO for seven days had no effect on
+survival of queens (X2 = 0.61, df = 1, P = 0.43), workers (X2 = 0.26, df = 1, P = 0.60) and males
+(X2 = 0.08, df = 1, P = 0.77).
+Statistical analysis.
+Survival data from queens, workers, and males were compiled for the
+full 7-day trial period. All remaining survivors were censored. For each clothianidin concen-
+tration, Kaplan-Meier survival curves [28] were generated for queens, workers, and males in
+GraphPad Prism 6 (La Jolla, USA) and a Mantel-Cox Log-rank analysis was used to test for dif-
+ferences in survival between treatment groups and when significant, survival between a single
+clothianidin concentration and the 0ppb control.
+Test procedure for RNAseq analysis
+To test the hypothesis that males in our feeding experiments showed greater mortality rates
+than workers because they have fewer inducible gene products available to detoxify clothianidin
+than workers (haploid susceptibility), RNAseq analysis was used to conduct genome-wide tran-
+scriptome analysis of workers and males after consumption of 75uL of either the 5ppb test solu-
+tion (0.374ng/bee; 3 workers and 3 males; Test group) or 1.4% DMSO in stock sugar solution (3
+workers and 3 males; Vehicle Control group) once a day for 5 consecutive days. This clothiani-
+din dose was selected because it did not reduce worker and male survival in our feeding experi-
+ments. This approach allowed us to isolate changes in gene expression induced by clothianidin
+consumption from changes induced by the consumption of DMSO, which is a xenobiotic and
+therefore has the potential to induce expression of genes involved in detoxification processes.
+Treatment and sample preparation.
+Individuals were euthanized at -20˚C 24 hours after
+the last dose (day 6), immediately dissected on ice by removing legs, wings, and proboscis, and
+transferred to -80˚C until ready for extraction. (This entire process was performed as quickly
+as possible to minimize RNA degradation, usually completed within 5 minutes.) Individual
+sample extractions were completed in an RNA-specified biosafety cabinet by crushing the bee
+body through pestle homogenization in Trizol (ThermoFischer Scientific, USA) following the
+suppliers recommendations for RNA isolation followed by chloroform phase separation. The
+aqueous phase containing RNA was collected, then purified using a PureLink RNA Mini Kit
+(ThermoFischer Scientific, USA), ending with a 30 uL elution step. Concentration and purity
+(A260/280 and A260/230) were measured using Nanodrop. Purified RNA was stored at -80˚C
+until use.
+RNA sequencing.
+Purified RNA samples were diluted to 100ng/uL in sterile, DNase-free,
+RNase-free water and then shipped to Quick Biology (Pasadena, USA) for processing.
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+6 / 16
+Libraries for RNA-Seq were prepared with a KAPA Stranded RNA-Seq Kit. The workflow con-
+sisted of mRNA enrichment, cDNA generation, and end repair to generate blunt ends, A-tail-
+ing, adaptor ligation and PCR amplification. Different adaptors were used for multiplexing
+samples in one lane. Sequencing was performed on Illumina Hiseq3000/4000 for a pair end
+150 run. Data quality check was done on an Illumina SAV (San Diego, USA). De-multiplexing
+was performed with Illumina Bcl2fastq2 v 2.17 program. Reads were first mapped to the latest
+UCSC transcript set using STAR version 2.4.1d and the gene expression level was quantified
+using an E/M algorithm in Partek Genomics Suite (Partek, Inc. USA). Gene expression levels
+were normalized to total counts.
+All four experimental groups produced a similar number of mean total reads: worker con-
+trols 4.951106 ± 1.845105, worker clothianidin 5.147106 ± 4.004105, male controls
+5.520106 ± 8.654104, and male clothianidin 5.889106 ± 1.168105. Reads were aligned to the
+BIMP_2.0 genome [29], resulting a high mean percentage of alignment in all four groups:
+worker control 73.20% ± 3.35, worker clothianidin 80.41% ± 1.573, male control 79.15% ±
+1.511, male clothianidin 77.58% ± 1.938, corresponding with 15,896 identified genes. RNA
+sequencing data quality and alignment for sex and treatment are shown in S1 Table.
+Statistical analysis.
+Normalized gene expression levels were compared between groups
+using the differential gene expression algorithm (GSA) in Partek Flow (Partek, Inc., USA).
+GSA identifies the best statistical model among many that is the best for a specific gene, and
+then uses it to calculate p-value and fold change. All genes induced by clothianidin consump-
+tion were first isolated separately for each sex by comparing gene expression levels Test and
+Vehicle Control groups separately. In this initial screening process, a gene was considered to
+be differentially expressed if it had both a p-value (uncorrected) less than 0.05 and a fold
+change greater than 1.5. All differentially expressed genes in workers and males were then
+pooled to create a list of clothianidin-sensitive candidate genes.
+To test for sex differences in the number and expression of detoxification genes induced by
+oral exposure to clothianidin, GSA analysis in Partek Flow was then used to compare normal-
+ized read counts for each clothianidin-sensitive candidate gene between workers and males in
+the Test group. A similar comparison of workers and males from the Vehicle Control group
+was not performed because there was no oral exposure to clothianidin. For this comparison, a
+false-discovery rate (FDR) approach was used to correct for multiple testing [30]. Genes with
+FDR step up values (corrected p-values) less than 0.1 were deemed to be significantly different.
+Each differentially expressed gene was then categorized as being involved in either Phase I
+(oxidation, hydrolysis and reduction) or Phase II (conjugation with sugars, glutathione, amino
+acids, etc.) detoxification or assigned to some other biological process based on information
+from the UniProt online gene database (http://www.uniprot.org/). This method of identifying
+and categorizing putative detoxification genes has been used previously in bumblebees and
+other insects [25] and [31]. A heat map of all differentially expressed detoxification genes was
+generated using the online web tool ClustVis (http://biit.cs.ut.ee/clustvis/). In ClustVis, the
+Eucledian method was applied for clustering on gene and sample sets.
+Results
+Chronic oral toxicity effects of clothianidin differ among queen, worker,
+and male bumblebees
+Chronic consumption of clothianidin at field-realistic concentrations increased mortality rates
+in all test bumblebee populations (Fig 3); however, the chronic exposure level needed to pro-
+duce such mortality effects varied in a sex and caste dependent manner. Table 1 shows the
+responses of queen, worker, and male test populations to daily consumption of clothianidin
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+7 / 16
+A)  QUEENS
+B) WORKERS
+C) MALES
+**
+**
+**
+**
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+8 / 16
+controlling for differences in body size and daily volume of test solution consumed. Compared
+to untreated controls, queens consuming clothianidin at mean intake rate ± SD = 3.61±0.71
+ng/gbee/day had reduced survival over the 7-day test period (Fig 3; X2 = 15.6, df = 1,
+P<0.0001). In contrast, workers showed reduced survival at mean intake rate ± SD = 5.48
+±1.95 ng/gbee/day (Fig 3; X2 = 54.7, df = 1, P<0.0001), with the test population reaching 50%
+mortality at day 5. Interestingly, although an intake rate of 3.61 ng/gbee/day was sufficient to
+reduce queen survival, a similar intake rate of of 3.85 (±1.6) ng/gbee/day (Table 1) had no
+effect of worker survival, indicating that workers are better able to cope with chronic oral
+clothianidin exposure than queens.
+Similar to queens a mean intake rate ± SD = 4.01 ±1.08 ng/gbee/day was sufficient to
+reduce survival in males (Fig 3; X2 = 38.8, df = 1, P<0.0001), with test populations reaching
+50% mortality after 6 days. Virtually all surviving queens, workers, and males in test groups
+fully consumed the clothianidin solutions over the 7-day period (S2 Table), indicating that the
+observed caste and sex differences in clothianidin-induced mortality level were caused by drug
+toxicity rather than starvation (i.e., bees refusing to consume sugar solutions because they
+were distasteful).
+Sex differences in the transcriptomic response of bumblebees to sub-lethal
+doses of clothianidin
+Initial comparisons of gene expression levels between Test and Vehicle Control groups within
+each sex yielded a total of 147 genes in workers and 200 genes in males that met our differential
+expression criterion of p <0.05 and a 1.5 or greater fold change. Of these 347 genes 15 were
+present in both sexes, yielding a total of 332 unique clothianidin-inducible genes. Only 59 of
+the 332 clothianidin-inducible genes were differentially expressed between workers and males
+in the Test group based on an FDR cut-off of 0.1: 34 genes had higher expression in exposed
+workers and 25 genes had higher expression in exposed males. Of these 59 genes, 19 were asso-
+ciated with detoxification processes: 11 had higher expression in exposed workers (7 Phase 1
+and 4 Phase 2) and 8 had higher expression in exposed males (8 Phase 1 and 0 Phase 2;
+Table 2; Fig 4).
+Of the remaining 40 genes associated with biological functions other than detoxification, 23
+had higher expression in workers and 17 had higher expression in males (S3 Table). Biological
+functions, fold changes, and accession numbers for these 40 genes are shown in S3 Table.
+Although many of these genes may play some as yet unknown functional role in detoxification,
+Fig 3. Kaplan-Meier survival plots for Bombus impatiens (A) queens, (B) workers, and (C) males, orally exposed
+to test solutions containing different concentrations of clothianidin daily for 7 days. Black = 0ppb; red = 5 ppb;
+green = 7 ppb; blue = 10ppb. A Mantel-Cox Log-rank analysis was used to test for differences in survival between each
+treatment group relative to the 0ppb control group over the 7-day period. , p<0.0001.
+https://doi.org/10.1371/journal.pone.0200041.g003
+Table 1. Response of queen, worker, and male bumblebees (Bombus impatiens) to chronic clothianidin exposure controlling for differences in body size and daily
+dose. Workers and males consumed 75 μL of solution per day and due to their larger size, queens consumed 200 μL of each solution per day. Yellow shading = no effect
+on survival; blue shading = reduced survival. All values are shown as mean ± SD.
+Concentration of clothianidin solution
+5ppb(ng/mL)
+7ppb(ng/mL)
+10ppb(ng/mL)
+Body mass (g)
+Intake rate (ng/g.bee/day)
+Body mass(g)
+Intake rate (ng/g.bee/day)
+Body mass (g)
+Intake rate (ng/g.bee/day)
+Queens
+0.58±0.13
+1.79±0.39
+0.59±0.11
+2.45±0.48
+0.57±0.11
+3.61±0.71
+Workers
+0.16±0.05
+2.60±0.83
+0.15±0.04
+3.85±1.6
+0.15±0.04
+5.48±1.95
+Males
+0.14±0.04
+2.94±0.86
+0.14±0.04
+4.01±1.08
+0.13±0.03
+6.05±1.35
+https://doi.org/10.1371/journal.pone.0200041.t001
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+9 / 16
+currently known biological functions include immunity, learning and memory, reproduction,
+and signal transduction. We also found 12 genes whose function we could not identify based
+on current databases. Information for the 273/332 clothianidin-inducible genes with con-
+served expression between workers and males is provided in S4 Table.
+Discussion
+The present study shows that chronic consumption of field-realistic doses of the widely used
+neonicotinoid pesticide clothianidin has differential effects on the survival of queen, worker,
+and male bumblebees. Controlling for body size, queens and males consuming clothianidin at
+an average intake rate of 3.6 and 4.0 ng clothianidin/gbee/day, respectively, had reduced sur-
+vival over a 7-day period whereas a similar average consumption rate in workers (3.9 ng/gbee/
+day) had no mortality effect. However, only male test populations reached 50% mortality at
+this clothianidin intake rate (Fig 2) suggesting that they are slightly more sensitive to clothiani-
+din toxicity effects than queens. The observed sex and caste differences in chronic oral toxicity
+of clothianidin cannot be attributed to a starvation effect as food avoidance and vomiting
+behaviors were not observed during the testing period. Collectively, these findings demon-
+strate that bumblebee reproductives (queens and males) are much more vulnerable to clothia-
+nidin toxicity effects than workers, highlighting the importance of incorporating queen and
+Table 2. Sex-specific expression of inducible detoxification genes in bumblebee workers and males orally exposed to clothianidin at a sub-lethal daily dose over 5
+consecutive days. Phase 1 detoxification processes include oxidation, hydrolysis, and reduction reactions while Phase 2 processes include conjugation reactions. Expres-
+sion levels were determined through RNAseq analysis. Upper portion = genes with increased expression in workers; lower portion = genes with increased expression in
+males. Clothianidin-inducible genes were initially identified by comparing transcriptomic expression patterns between individuals fed either 5ppb clothianidin solution or
+the same volume of solution containing 1.4% DMSO (vehicle control) solution separately for each sex and then pooling genes with significantly altered expression
+together.
+DETOXIFICATION GENES: INCREASED EXPRESSION IN WORKERS VERSUS MALES
+Gene ID
+Pa
+Fold increase
+Annotation
+Phase
+BIMP10198
+0.000006
+6.07
+cytochrome P450 6k1-like
+1
+BIMP19106
+0.03
+1.84
+fatty-acid amide hydrolase 2-like
+1
+BIMP23510
+0.04
+2.45
+cytochrome P450 306a1
+1
+BIMP18394
+0.06
+1.69
+N-sulphoglucosamine sulphohydrolase
+1
+BIMP24166
+0.07
+1.71
+U6 snRNA phosphodiesterase
+1
+BIMP11124
+0.09
+1.63
+probable cation-transporting ATPase 13A3
+1
+BIMP16960
+0.09
+1.49
+retinol dehydrogenase 12-like
+1
+BIMP12444
+0.005
+3.12
+hydroxymethylglutaryl-CoA synthase 1
+2
+BIMP10339
+0.02
+3.25
+probable serine/threonine-protein kinase yakA
+2
+BIMP18546
+0.02
+2.12
+putative glycerol kinase 5
+2
+BIMP18798
+0.09
+1.67
+probable deoxyhypusine synthase
+2
+DETOXIFICATION GENES: INCREASED EXPRESSION IN MALES VERSUS WORKERS
+Gene ID
+Pa
+Fold increase
+Annotation
+Phase
+BIMP23965
+0.005
+5.65
+lysozyme 2-like
+1
+BIMP21241
+0.006
+4.86
+phospholipase A2-like
+1
+BIMP18778
+0.04
+1.86
+endoglucanase 19-like
+1
+BIMP17003
+0.04
+3.47
+cytochrome P450 6k1-like
+1
+BIMP20243
+0.049
+5.60
+alkaline phosphatase 4-like
+1
+BIMP16635
+0.06
+3.97
+probable cytochrome P450 304a1
+1
+BIMP14716
+0.08
+1.80
+venom acid phosphatase Acph-1-like
+1
+BIMP23899
+0.09
+1.62
+sarcosine dehydrogenase mitochondrial
+1
+aFDR adjusted p-value
+https://doi.org/10.1371/journal.pone.0200041.t002
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+10 / 16
+male survival assays into current colony-focused ‘higher tier’ protocols for assessing the poten-
+tial risk of various neonicotinoid formulations to wild bumblebee populations [19]. In addi-
+tion, the observed reductions in survival in B. impatiens workers chronically consuming
+clothianidin at a concentration of 10ppb is notably less than the 20ppb chronic lethality thresh-
+old reported for worker honeybees [32] as well as the 25ppb threshold reported for workers of
+the European bumblebee species B. terrestris [33], indicating that chronic oral lethality effects
+of clothianidin are relatively high in B. impatiens. Our findings thus add to the rapidly growing
+body of evidence that neonicotinoid oral toxicity effects can vary considerably among insect
+pollinator species [34–38], and further show that toxicity effects can vary considerably within
+species as well.
+In addition to increasing mortality, chronic oral exposure to clothianidin over a short time
+period (5 days) was found to have profound sub-lethal effects on workers and males at the
+genomic level, altering expression of a total of 332 genes associated with a wide variety of bio-
+logical functions, including immunity, neuronal signal transduction, locomotion,
+BIMP18798 (P2)
+BIMP24166 (P1)
+BIMP19106 (P1)
+BIMP10198 (P1)
+BIMP18394 (P1)
+BIMP18546 (P2)
+BIMP16960 (P1)
+BIMP23510 (P1)
+BIMP11124 (P1)
+BIMP10339 (P2)
+BIMP12444 (P2)
+BIMP17003 (P1)
+BIMP18778 (P1)
+BIMP21241 (P1)
+BIMP20243 (P1)
+BIMP23899 (P1)
+BIMP16635 (P1)
+BIMP23965 (P1)
+BIMP14716 (P1)
+Worker3
+Worker2
+Worker1
+Male1
+Male3
+Male2
+−1.5
+−1
+−0.5
+0
+0.5
+1
+1.5
+Fig 4. Heatmap showing the 25 putative detoxification genes that were differentially expressed between workers and males after 5 consecutive days of oral
+exposure to clothianidin. Phase 1 (P1) detoxification processes include oxidation, hydrolysis, and reduction reactions while Phase 2 (P2) processes include
+conjugation reactions. Legend on the right shows relative fold change corresponding to each color.
+https://doi.org/10.1371/journal.pone.0200041.g004
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+11 / 16
+reproduction, and several fundamental cellular processes (Table 2, S3 and S4 Tables). These
+results are consistent with several studies at the organismal level showing that neonicotinoids
+can have substantial sub-lethal effects on bees [39–43]. For example, we found that neonicoti-
+noid consumption induced changes to several genes associated with reproduction such as
+outer dense fiber protein 3-like and lutropin-choriogonadotropic hormone receptor-like (S3
+Table), which is consistent with previous work showing that oral exposure to neonicotinoids
+reduces sperm viability in males honeybees by 50% [44]. Under natural conditions, chronic
+exposure to low doses of clothianidin in wildflower nectar thus has the potential to negatively
+impact the dynamics of wild bumblebee populations by reducing male and queen reproductive
+capacity and at slightly higher doses, reducing the number of mating individuals in the fall and
+the number of queens establishing nests in the spring.
+Somewhat surprisingly, the genomic response of workers and males to sub-lethal clothiani-
+din doses did not provide unequivocal evidence that the haploid genetic status of males ren-
+ders them less able to cope with oral clothianidin exposure. Indeed, males and queens, which
+are diploid, responded similarly to clothianidin consumption in our feeding experiments
+(Table 1). Of the 332 clothianidin-sensitive genes that were identified, 273 had a similar
+expression level in workers and males. These similarly expressed genes included many ‘classic’
+detoxification genes such as cytochrome P450s, glutathione S-transferases, and carboxyles-
+terases [45]. There was, however, some support for the haploid susceptibility hypothesis for
+the 19 clothianidin-induced detoxification genes found to differ between workers and males.
+Compared to males, workers had higher expression of all differentially expressed genes associ-
+ated with Phase 2 conjugation reactions. This finding, combined with the finding that workers
+and males had a similar number of highly expressed Phase 1 genes related to oxidation-reduc-
+tion reactions, suggests that are were equally capable of initially breaking down clothianidin
+into intermediate metabolites, but may differ in the capacity to subsequently transform such
+metabolites into less toxic compounds (Phase 2 reactions). This interpretation is consistent
+with reports that workers have more than twice as many constitutively expressed conjugation
+genes than males in a related bumblebee species, B. huntii [25]. However, it must be noted that
+B. huntii workers had more than twice as many constitutively expressed Phase 1 genes than
+males as well. Thus, despite the fact that there was a substantial difference in the mortality
+response of workers and males to oral clothianidin exposure, it was not strongly correlated
+with the number and expression of inducible detoxification genes. Of course it is possible that
+haploidy in males results in the reduced expression of few key genes in the clothianidin detoxi-
+fication pathway. For example, clothianidin-exposed workers showed a more than 6-fold
+increase in the expression of a cytochrome P450 6k1-like gene (Table 1), which may play an
+integral role in neonicotinoid detoxification. We plan to explore this possibility in future
+work.
+The present study demonstrates the potential conservation benefits of using a genomic
+approach to investigate the effects of extremely low doses of neonicotinoids on pollinator
+health, an idea that has been recently advocated by others [46]. Currently, one of the major
+problems with studying neonicotinoid effects on wild bee populations is that individual tissue
+samples have concentrations that are too low to be quantified with a high level of accuracy and
+reliability using conventional methodology and instrumentation. Indeed, the main laboratory
+at the United States Department of Agriculture responsible for measuring neonicotinoid levels
+in tissue samples was unable to detect clothianidin in our 5ppb in test solution, yet it produced
+a robust genetic response in both males and workers. To circumvent this problem, we have
+identified a set of clothianidin-induced genes in bumblebees that could potentially be used to
+develop highly sensitive ‘eco-tools’ for assessing neonicotinoid exposure levels under field con-
+ditions. Such tools could also be used to test for sub-lethal effects on behavior (e.g. reduced
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+12 / 16
+cognitive function) and physiology (e.g. reduced sperm production), which are often difficult
+to assess in the field at the organismal level. Comparative genomic approaches would also pro-
+vide unique insight into why chronic oral toxicity levels for neonicotinoids vary considerably
+among (and within) wild bees species [37], greatly accelerating efforts to determine the impact
+of neonicotinoid use on wild pollinators and the global biodiversity that they ultimately
+support.
+Supporting information
+S1 Table. RNA sequencing results and quality control.
+(DOCX)
+S2 Table. Percent of alive queens, workers and males consuming test solutions (clothiani-
+din concentration given in ppb) over the 7-day testing period.
+(DOCX)
+S3 Table. List of clothianidin-induced non-detoxification genes with increased expression
+in worker (W) and male (M) Bombus impatiens.
+(DOCX)
+S4 Table. List of clothianidin-induced genes showing a similar expression level in worker
+(W) and male (M) Bombus impatiens.
+(DOCX)
+Acknowledgments
+General: We thank C. Emery and J. Letourneau for assistance with feeding and data
+collection.
+Author Contributions
+Conceptualization: Melissa W. Mobley, Robert J. Gegear.
+Data curation: Melissa W. Mobley, Robert J. Gegear.
+Formal analysis: Robert J. Gegear.
+Funding acquisition: Robert J. Gegear.
+Investigation: Robert J. Gegear.
+Methodology: Melissa W. Mobley, Robert J. Gegear.
+Project administration: Robert J. Gegear.
+Resources: Robert J. Gegear.
+Supervision: Robert J. Gegear.
+Validation: Robert J. Gegear.
+Writing – original draft: Robert J. Gegear.
+Writing – review & editing: Melissa W. Mobley, Robert J. Gegear.
+References
+1.
+Goulson D, Lye GC, Darvill B. Decline and conservation of bumble bees. Annu Rev Entomol. 2008;
+53:191–208. https://doi.org/10.1146/annurev.ento.53.103106.093454 PMID: 17803456
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+13 / 16
+2.
+David A, Botı´as C, Abdul-Sada A, Nicholls E, Rotheray EL, Hill EM, et al. Widespread contamination of
+wildflower and bee-collected pollen with complex mixtures of neonicotinoids and fungicides commonly
+applied to crops. Environment international. 2016; 88:169–78. https://doi.org/10.1016/j.envint.2015.12.
+011 PMID: 26760714
+3.
+Cameron SA, Lozier JD, Strange JP, Koch JB, Cordes N, Solter LF, et al. Patterns of widespread
+decline in North American bumble bees. Proceedings of the National Academy of Sciences. 2011; 108
+(2):662–7.
+4.
+Colla SR, Packer L. Evidence for decline in eastern North American bumblebees (Hymenoptera: Api-
+dae), with special focus on Bombus affinis Cresson. Biodiversity and Conservation. 2008; 17(6):1379–
+91. https://doi.org/10.1007/s10531-008-9340-5 WOS:000256754200006.
+5.
+Grixti JC, Wong LT, Cameron SA, Favret C. Decline of bumble bees (Bombus) in the North
+American Midwest. Biological Conservation. 2009; 142(1):75–84. https://doi.org/10.1016/j.biocon.
+2008.09.027.
+6.
+Biesmeijer J, Roberts S, Reemer M, Ohlemu¨ller R, Edwards M, Peeters T, et al. Parallel declines in pol-
+linators and insect-pollinated plants in Britain and the Netherlands. Science. 2006; 313(5785):351–4.
+https://doi.org/10.1126/science.1127863 PMID: 16857940
+7.
+Memmott J, Waser NM, Price MV. Tolerance of pollination networks to species extinctions. Proc R Soc
+B-Biol Sci. 2004; 271(1557):2605–11. https://doi.org/10.1098/rspb.2004.2909
+WOS:000226419100011. PMID: 15615687
+8.
+Wood TJ, Goulson D. The environmental risks of neonicotinoid pesticides: a review of the evidence
+post 2013. Environmental Science and Pollution Research. 2017; 24(21):17285–325. https://doi.org/10.
+1007/s11356-017-9240-x WOS:000406479200003. PMID: 28593544
+9.
+Sheets LP, Li AA, Minnema DJ, Collier RH, Creek MR, Peffer RC. A critical review of neonicotinoid
+insecticides for developmental neurotoxicity. Critical reviews in toxicology. 2016; 46(2):153–90. https://
+doi.org/10.3109/10408444.2015.1090948 PMID: 26513508
+10.
+Dively GP, Kamel A. Insecticide residues in pollen and nectar of a cucurbit crop and their potential expo-
+sure to pollinators. Journal of agricultural and food chemistry. 2012; 60(18):4449–56. https://doi.org/10.
+1021/jf205393x PMID: 22452667
+11.
+Whiting SA, Strain KE, Campbell LA, Young BG, Lydy MJ. A multi-year field study to evaluate the envi-
+ronmental fate and agronomic effects of insecticide mixtures. Science of The Total Environment. 2014;
+497–498:534–42. http://dx.doi.org/10.1016/j.scitotenv.2014.07.115. PMID: 25163650
+12.
+Main AR, Michel NL, Cavallaro MC, Headley JV, Peru KM, Morrissey CA. Snowmelt transport of neoni-
+cotinoid insecticides to Canadian Prairie wetlands. Agriculture, Ecosystems & Environment. 2016;
+215:76–84. http://dx.doi.org/10.1016/j.agee.2015.09.011.
+13.
+Pecenka JR, Lundgren JG. Non-target effects of clothianidin on monarch butterflies. Science of Nature.
+2015; 102(3–4). https://doi.org/10.1007/s00114-015-1270-y WOS:000355942200007.
+14.
+Gels JA, Held DW, Potter DA. Hazards of insecticides to the bumble bees Bombus impatiens (Hyme-
+noptera: Apidae) foraging on flowering white clover in turf. Journal of Economic Entomology. 2002; 95
+(4):722–8. https://doi.org/10.1603/0022-0493-95.4.722 WOS:000177448000010. PMID: 12216812
+15.
+Blacquiere T, Smagghe G, Van Gestel CA, Mommaerts V. Neonicotinoids in bees: a review on concen-
+trations, side-effects and risk assessment. Ecotoxicology. 2012; 21(4):973–92. https://doi.org/10.1007/
+s10646-012-0863-x PMID: 22350105
+16.
+Krupke CH, Hunt GJ, Eitzer BD, Andino G, Given K. Multiple routes of pesticide exposure for honey
+bees living near agricultural fields. PLoS One. 2012; 7(1):e29268. https://doi.org/10.1371/journal.pone.
+0029268 PMID: 22235278
+17.
+Bonmatin J-M, Giorio C, Girolami V, Goulson D, Kreutzweiser DP, Krupke C, et al. Environmental fate
+and exposure; neonicotinoids and fipronil. Environmental Science and Pollution Research. 2015; 22
+(1):35–67. https://doi.org/10.1007/s11356-014-3332-7 PMID: 25096486
+18.
+de Perre C, Murphy TM, Lydy MJ. Fate and effects of clothianidin in fields using conservation practices.
+Environmental toxicology and chemistry / SETAC. 2015; 34(2):258–65. Epub 2014/11/08. https://doi.
+org/10.1002/etc.2800 25376402. PMID: 25376402
+19.
+Cabrera AR, Almanza MT, Cutler GC, Fischer DL, Hinarejos S, Lewis G, et al. Initial recommendations
+for higher-tier risk assessment protocols for bumble bees, Bombus spp. (Hymenoptera: Apidae). Inte-
+grated Environmental Assessment and Management. 2016; 12(2):222–9. https://doi.org/10.1002/ieam.
+1675 PMID: 26108565
+20.
+Devillers J, Decourtye A, Budzinski H, Pham-Delègue MH, Cluzeau S, Maurin G. Comparative toxicity
+and hazards of pesticides to Apis and non-Apis bees. A chemometrical study. SAR and QSAR in Envi-
+ronmental Research. 2003; 14(5–6):389–403. https://doi.org/10.1080/10629360310001623980 PMID:
+14758982
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+14 / 16
+21.
+O’Donnell S. The role of male disease susceptibility in the evolution of haplodiploid insect societies Pro-
+ceedings of the Royal Society B: Biological Sciences. 2004; 271(1542):979–83. https://doi.org/10.1098/
+rspb.2004.2685 PMID: 15255054
+22.
+Heinrich B. Bumblebee Economics: Harvard University Press; 1979.
+23.
+Heinrich B, Heinrich MJE. Size and Caste in Temperature Regulation by Bumblebees. Physiological
+Zoology. 1983; 56(4):552–62.
+24.
+Thompson HM, Wilkins S, Harkin S, Milner S, Walters KFA. Neonicotinoids and bumblebees (Bombus
+terrestris): effects on nectar consumption in individual workers. Pest Management Science. 2015; 71
+(7):946–50. https://doi.org/10.1002/ps.3868 PMID: 25132051
+25.
+Xu J, Strange JP, Welker DL, James RR. Detoxification and stress response genes expressed in a
+western North American bumble bee, Bombus huntii (Hymenoptera: Apidae). BMC Genomics. 2013;
+14:874. Epub 2013/12/18. https://doi.org/10.1186/1471-2164-14-874 PMID: 24330608; PubMed Cen-
+tral PMCID: PMCPMC3878831.
+26.
+de Oliveira IM, Nunes BVF, Barbosa DR, Pallares AM, Faro LRF. Effects of the neonicotinoids thiame-
+toxam and clothianidin on in vivo dopamine release in rat striatum. Toxicology Letters. 2010; 192
+(3):294–7. http://dx.doi.org/10.1016/j.toxlet.2009.11.005. PMID: 19900516
+27.
+Arce AN, David TI, Randall EL, Rodrigues AR, Colgan TJ, Wurm Y, et al. Impact of controlled neonicoti-
+noid exposure on bumblebees in a realistic field setting. J Appl Ecol. 2017; 54(4):1199–208. https://doi.
+org/10.1111/1365-2664.12792 WOS:000405534500020.
+28.
+Kaplan EL, Meier P. Nonparametric Estimation from Incomplete Observations. Journal of the American
+Statistical Association. 1958; 53(282):457–81. https://doi.org/10.2307/2281868
+29.
+Sadd BM, Barribeau SM, Bloch G, de Graaf DC, Dearden P, Elsik CG, et al. The genomes of two key
+bumblebee species with primitive eusocial organization. Genome Biol. 2015; 16. ARTN 76 https://doi.
+org/10.1186/s13059-015-0623-3 WOS:000353676700001. PMID: 25908251
+30.
+Benjamini Y, Hochberg Y. Controlling the False Discovery Rate: A Practical and Powerful Approach to
+Multiple Testing. Journal of the Royal Statistical Society Series B (Methodological). 1995; 57(1):289–
+300.
+31.
+Schro¨der P, Collins C. Conjugating Enzymes Involved in Xenobiotic Metabolism of Organic Xenobiotics
+in Plants. International Journal of Phytoremediation. 2002; 4(4):247–65. https://doi.org/10.1080/
+15226510208500086
+32.
+Alkassab AT, Kirchner WH. Impacts of chronic sublethal exposure to clothianidin on winter honeybees.
+Ecotoxicology. 2016; 25(5):1000–10. https://doi.org/10.1007/s10646-016-1657-3 PMID: 27090425
+33.
+Spurgeon D, Hesketh H, Lahive E, Svendsen C, Baas J, Robinson A, et al. Chronic oral lethal and sub-
+lethal toxicities of different binary mixtures of pesticides and contaminants in bees (Apis mellifera,
+Osmia bicornis and Bombus terrestris). EFSA Supporting Publications. 2016; 13(9):1076E–n/a. https://
+doi.org/10.2903/sp.efsa.2016.EN-1076
+34.
+Abbott V, Nadeau J, Higo H, Winston M. Lethal and sublethal effects of imidacloprid on Osmia lignaria
+and clothianidin on Megachile rotundata (Hymenoptera: Megachilidae). Journal of Economic Entomol-
+ogy. 2008; 101(3):784–96. https://doi.org/10.1603/0022-0493(2008)101[784:LASEOI]2.0.CO;2 PMID:
+18613579
+35.
+Scott-Dupree CD, Conroy L, Harris C. Impact of currently used or potentially useful insecticides for
+canola agroecosystems on Bombus impatiens (Hymenoptera: Apidae), Megachile rotundata (Hymen-
+toptera: Megachilidae), and Osmia lignaria (Hymenoptera: Megachilidae). Journal of Economic Ento-
+mology. 2009; 102(1):177–82. PMID: 19253634
+36.
+Cresswell JE, Desneux N, vanEngelsdorp D. Dietary traces of neonicotinoid pesticides as a cause of
+population declines in honey bees: an evaluation by Hill’s epidemiological criteria. Pest management
+science. 2012; 68(6):819–27. https://doi.org/10.1002/ps.3290 PMID: 22488890
+37.
+Arena M, Sgolastra F. A meta-analysis comparing the sensitivity of bees to pesticides. Ecotoxicology.
+2014; 23(3):324–34. https://doi.org/10.1007/s10646-014-1190-1 PMID: 24435220
+38.
+Manjon C, Troczka BJ, Zaworra M, Beadle K, Randall E, Hertlein G, et al. Unravelling the Molecular
+Determinants of Bee Sensitivity to Neonicotinoid Insecticides. Current Biology. 2018; 28(7):1137–43.
+e5. https://doi.org/10.1016/j.cub.2018.02.045. PMID: 29576476
+39.
+Di Prisco G, Cavaliere V, Annoscia D, Varricchio P, Caprio E, Nazzi F, et al. Neonicotinoid clothianidin
+adversely affects insect immunity and promotes replication of a viral pathogen in honey bees. Proceed-
+ings of the National Academy of Sciences of the United States of America. 2013; 110(46):18466–71.
+https://doi.org/10.1073/pnas.1314923110 WOS:000326830900045. PMID: 24145453
+40.
+Fauser-Misslin A, Sadd BM, Neumann P, Sandrock C. Influence of combined pesticide and parasite
+exposure on bumblebee colony traits in the laboratory. J Appl Ecol. 2014; 51(2):450–9. https://doi.org/
+10.1111/1365-2664.12188 WOS:000332835600018.
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+15 / 16
+41.
+Wu JY, Anelli CM, Sheppard WS. Sub-lethal effects of pesticide residues in brood comb on worker
+honey bee (Apis mellifera) development and longevity. PloS one. 2011; 6(2):e14720. https://doi.org/10.
+1371/journal.pone.0014720 PMID: 21373182
+42.
+Rabhi KK, Esancy K, Voisin A, Crespin L, Le Corre J, Tricoire-Leignel H, et al. Unexpected effects of
+low doses of a neonicotinoid insecticide on behavioral responses to sex pheromone in a pest insect.
+PLoS One. 2014; 9(12):e114411. Epub 2014/12/18. https://doi.org/10.1371/journal.pone.0114411
+PMID: 25517118; PubMed Central PMCID: PMCPMC4269385.
+43.
+Decourtye A, Devillers J, Genecque E, Le Menach K, Budzinski H, Cluzeau S, et al. Comparative suble-
+thal toxicity of nine pesticides on olfactory learning performances of the honeybee Apis mellifera.
+Archives of environmental contamination and toxicology. 2005; 48(2):242–50. https://doi.org/10.1007/
+s00244-003-0262-7 PMID: 15750780
+44.
+Chaimanee V, Evans JD, Chen Y, Jackson C, Pettis JS. Sperm viability and gene expression in honey
+bee queens (Apis mellifera) following exposure to the neonicotinoid insecticide imidacloprid and the
+organophosphate acaricide coumaphos. Journal of Insect Physiology. 2016; 89:1–8. http://dx.doi.org/
+10.1016/j.jinsphys.2016.03.004. PMID: 26979384
+45.
+Li X, Schuler MA, Berenbaum MR. Molecular Mechanisms of Metabolic Resistance to Synthetic and
+Natural Xenobiotics. Annual Review of Entomology. 2007; 52(1):231–53. https://doi.org/10.1146/
+annurev.ento.51.110104.151104 PMID: 16925478.
+46.
+Woodard SH, Lozier JD, Goulson D, Williams PH, Strange JP, Jha S. Molecular tools and bumble bees:
+revealing hidden details of ecology and evolution in a model system. Molecular Ecology. 2015; 24
+(12):2916–36. https://doi.org/10.1111/mec.13198 PMID: 25865395
+Effect of chronic oral neonicotinoid exposure on bumblebee health
+PLOS ONE | https://doi.org/10.1371/journal.pone.0200041
+October 8, 2018
+16 / 16

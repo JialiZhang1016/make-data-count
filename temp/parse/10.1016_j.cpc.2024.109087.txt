@@ -1,0 +1,2020 @@
+H-wave – A Python package for the Hartree-Fock approximation and the
+random phase approximation
+Tatsumi Aoyamaa,∗, Kazuyoshi Yoshimia, Kota Idoa, Yuichi Motoyamaa, Taiki Kawamurab, Takahiro
+Misawaa, Takeo Katoa, Akito Kobayashib
+aInstitute for Solid State Physics, University of Tokyo, Chiba 277-8581, Japan
+bDepartment of Physics, Nagoya University, Nagoya 464-8602, Japan
+Abstract
+H-wave is an open-source software package for performing the Hartree–Fock approximation (HFA) and ran-
+dom phase approximation (RPA) for a wide range of Hamiltonians of interacting fermionic systems. In HFA
+calculations, H-wave examines the stability of several symmetry-broken phases, such as anti-ferromagnetic
+and charge-ordered phases, in the given Hamiltonians at zero and finite temperatures. Furthermore, H-wave
+calculates the dynamical susceptibilities using RPA to examine the instability toward the symmetry-broken
+phases. By preparing a simple input file for specifying the Hamiltonians, users can perform HFA and RPA
+for standard Hamiltonians in condensed matter physics, such as the Hubbard model and its extensions.
+Additionally, users can use a Wannier90-like format to specify fermionic Hamiltonians. A Wannier90
+format is implemented in RESPACK to derive ab initio Hamiltonians for solids. HFA and RPA for the ab
+initio Hamiltonians can be easily performed using H-wave. In this paper, we first explain the basis of HFA
+and RPA, and the basic usage of H-wave, including download and installation. Thereafter, the input file for-
+mats implemented in H-wave, including the Wannier90-like format for specifying the interacting fermionic
+Hamiltonians, are discussed. Finally, we present several examples of H-wave such as zero-temperature HFA
+calculations for the extended Hubbard model on a square lattice, finite-temperature HFA calculations for
+the Hubbard model on a cubic lattice, and RPA in the extended Hubbard model on a square lattice.
+Keywords:
+Quantum lattice models; Mean field approximation; Random phase approximation
+PROGRAM SUMMARY
+Program Title: H-wave
+CPC Library link to program files:
+Developer’s
+repository
+link:
+https://github.com/
+issp-center-dev/H-wave
+Code Ocean capsule:
+Licensing provisions:
+GNU General Public License
+version 3
+Programming language: Python3
+External routines/libraries:
+NumPy,
+SciPy,
+Tomli,
+Requests.
+Nature of problem:
+Physical properties of strongly
+correlated electrons are examined such as ground state
+phase structure and response functions at zero and
+∗Corresponding author.
+Email addresses: aoym@issp.u-tokyo.ac.jp (Tatsumi
+Aoyama), k-yoshimi@issp.u-tokyo.ac.jp (Kazuyoshi
+Yoshimi)
+finite temperatures.
+Solution method:
+Calculations based on the unre-
+stricted Hartree-Fock approximation and the random
+phase approximation are performed for the quantum
+lattice models such as the Hubbard model and its
+extensions.
+1. Introduction
+Clarifying how electron correlations in solids in-
+duce several symmetry-broken phases has long been
+a crucial issue in the field of condensed matter
+physics [1, 2].
+Although deriving tight-binding
+models from ab initio calculations is now a stan-
+dard daily procedure [3–5], solving the obtained ef-
+fective models by considering the effects of Coulomb
+interactions remains as a non-trivial problem. To
+Preprint submitted to Computer Physics Communications
+January 23, 2024
+arXiv:2308.00324v2  [cond-mat.str-el]  20 Jan 2024
+solve effective models numerically, various numeri-
+cal algorithms such as the exact diagonalization [6],
+quantum Monte Carlo [7], and tensor network [8–
+10] methods have been developed to date [11, 12].
+However, these algorithms frequently incur high
+computational cost because they consume a signif-
+icant amount of memory or execution time.
+Numerical algorithms based on the Hartree–
+Fock approximation (HFA) have long been used
+in condensed matter physics [13, 14]. Unrestricted
+HFA (UHFA), which is a simple and fundamental
+method for treating electronic states in molecules
+and solids, is used to examine the stability of or-
+dered phases.
+For example, the HFA has been
+used for analyzing the ordered phases in the Hub-
+bard model [15, 16], spin and orbital orderings in
+3d transition-metal oxides [17], and the spin and
+charge ordered phases in organic compounds [18].
+Similarly, random phase approximation (RPA),
+which is an algorithm for calculating response func-
+tions consistent with the UHFA [13, 19, 20], is
+used for detecting instability toward ordered phases
+through the divergence of susceptibility. In compar-
+ison with other sophisticated algorithms, the main
+advantage of the UHFA and the RPA is low numer-
+ical cost. Therefore, they are suitable for clarifying
+general trends in ordered phases in correlated elec-
+tron systems.
+Program codes for UHFA and RPA have been im-
+plemented and maintained by researchers for spe-
+cific lattice models. To our knowledge, there are
+no widely used packages for UHFA and RPA, ex-
+cept for a supplementary RPA package included in
+triqs [21, 22] and the supplementary real-space UHF
+package included in mVMC [23]. Recently, HF and
+RPA analyses combined with first-principles calcu-
+lations have become popular in treating real mate-
+rials. When handling such complex models derived
+from the first-principles calculations, it will take
+much time to modify existing packages or to newly
+implement programs. For an easy application of the
+UHFA and RPA to such complex models, the de-
+velopment of a software package that treats various
+effective models of solids in a simple format is de-
+sirable. Recently, H-wave was released as an open-
+source Python package with a simple and flexible
+user interface [24].
+Using H-wave, users can per-
+form calculations by applying UHFA and RPA to
+widely studied quantum lattice models by preparing
+only one input file with less than ten lines. H-wave
+can treat the Wannier90-like format and has inter-
+faces for smooth connection with mVMC [23] and
+HΦ [25], which are program packages for more ac-
+curate calculation taking into account electron cor-
+relations.
+In this paper, we introduce H-wave version 1.0.0.
+The remainder of this paper is organized as fol-
+lows.
+Models that can be treated using H-wave
+are explained in Sec. 2.1. The basis of the UHFA
+and RPA is discussed in Secs. 2.2 and 2.3, respec-
+tively. In Sec. 3, the basic usage of H-wave, for ex-
+ample, downloading, installing, and running opera-
+tions, is explained. The formats of the input files,
+including the Wannier90-like format for specify-
+ing the Hamiltonians, are elaborated. Three appli-
+cations of H-wave are demonstrated in Sec. 4, such
+as the ground-state UHFA calculations of the ex-
+tended Hubbard model on a square lattice, finite-
+temperature UHFA calculations of the Hubbard
+model on a cubic lattice, and RPA calculations of
+the extended Hubbard model on a square lattice.
+Section 5 presents a summary of the study.
+2. Model and Algorithm
+2.1. Model
+In H-wave,
+the following extended Hubbard
+model can be treated:
+H = H0 + Hint,
+(1)
+H0 =
+X
+⟨iα;jβ⟩
+
+tαβ
+ij c†
+iαcjβ + H.c.
+
+,
+(2)
+HInt =
+X
+i,j,k,l
+X
+α,α′,β,β′
+Iαα′ββ′
+ijkl
+c†
+iαcjα′c†
+kβclβ′, (3)
+where i, j, k, and l (∈0, · · · , Nsite −1) denote the
+lattice points with Nsite being the number of lat-
+tice sites, and α, α′, β, and β′ specify the gen-
+eral orbitals including the orbitals and spins in a
+unit cell. c†
+iα (ciα) is the creation (annihilation) op-
+erator for an electron with a general orbital α at
+the ith site. ⟨iα; jβ⟩and tαβ
+ij
+represent the bond
+pair and the hopping integral between sites (i, α)
+and (j, β), respectively. HInt is a general two-body
+Hamiltonian and the two-body interaction satisfies
+Iαα′ββ′
+ijkl
+=
+h
+Iβ′βα′α
+lkji
+i∗
+for satisfying the Hermiticity.
+2.2. Unrestricted Hartree–Fock approximation
+In the unrestricted Hartree-Fock approximation
+(UHFA), we can decouple the general two-body in-
+2
+teractions as
+c†
+IcJc†
+KcL = −c†
+Ic†
+KcJcL + c†
+IcLδJ,K
+∼−⟨c†
+IcL⟩c†
+KcJ −c†
+IcL⟨c†
+KcJ⟩+ ⟨c†
+IcJ⟩c†
+KcL
++c†
+IcJ⟨c†
+KcL⟩+
+ ⟨c†
+IcL⟩⟨c†
+KcJ⟩−⟨c†
+IcJ⟩⟨c†
+KcL⟩
+
++ c†
+IcLδJ,K,
+(4)
+where we adopt I ≡(i, α), J ≡(j, α′), K ≡(k, β′),
+and L ≡(l, β) as notations for brevity, and the
+Kronecker’s delta is denoted as δJ,K.
+Using the
+UHFA, the Hamiltonian is generally denoted as
+HUHFA =
+X
+I,J
+c†
+IHIJcJ = c†Hc,
+(5)
+where H denotes a matrix with elements repre-
+sented as HIJ, and c (c†) represents a column (row)
+vector with elements denoted as cI (c†
+I). Since H
+is an Hermite matrix, the Hamiltonian can be di-
+agonalized by the unitary matrix U as
+HUHFA = UΛU †,
+Λ = diag(λ0, λ1, . . . )
+(6)
+where λn represents the nth eigenvalue of H. By
+defining d = U †c, HUHFA can be rewritten as
+HUHFA = d†Λd =
+X
+n
+λnd†
+ndn.
+(7)
+Thus, the free energy from the UHFA can be ex-
+pressed as
+F = µNe −1
+β
+X
+n
+ln [1 + exp(−β(λn −µ))]
++
+X
+I,J,K,L
+IIJKL
+
+⟨c†
+IcL⟩⟨c†
+KcJ⟩−⟨c†
+IcJ⟩⟨c†
+KcL⟩
+
+,
+(8)
+where β denotes the inverse temperature, Ne is
+the total number of particles, and µ represents the
+chemical potential.
+In the UHFA calculations, we start from the ini-
+tial one-body Green’s functions, which are then up-
+dated as
+⟨c†
+IcJ⟩=
+X
+n
+U ∗
+InUJn ⟨d†
+ndn⟩=
+X
+n
+U ∗
+InUJn
+1 + eβ(λn−µ) .
+(9)
+In the canonical calculation in which the number of
+particles is fixed to Ne, µ is determined to satisfy
+the relation Ne = P
+I⟨c†
+IcI⟩at every step. In H-
+wave, the simple-mixing algorithm is employed to
+update the one-body Green’s functions, which are
+defined as
+⟨c†
+IcJ⟩(n+1) ←(1−αmix) ⟨c†
+IcJ⟩(n)+αmix ⟨c†
+IcJ⟩(n+1) ,
+(10)
+where ⟨c†
+IcJ⟩(n) represents the Green’s functions at
+the nth step and αmix denotes a parameter between
+0 and 1. The iterations are repeated until the con-
+vergence condition is satisfied in which the residue
+R becomes smaller than a given criterion ε, such
+that
+R =
+1
+2N 2
+site
+sX
+IJ
+⟨c†
+IcJ⟩(n+1) −⟨c†
+IcJ⟩(n)
+
+2
+< ε.
+(11)
+The calculation is unsuccessful or fails if the conver-
+gence condition is not met within a specified num-
+ber of iterations. In Fig. 1, a schematic flow of the
+calculation of the UHFA calculation is shown for
+convenience.
+At the 1st step,
+Set initial one-body Green’s functions.
+From the 2nd step,
+Update one-body Green’s function [Eq. (10)]
+Calculate a Hamiltonian by UHFA [Eq. (5)]
+Diagonalize the Hamiltonian [Eq. (6)]
+Determine a chemical potential [using Eq. (9)]
+Calculate one-body Green’s function [Eq. (9)]
+Check the convergence condition [Eq. (11)]
+Finish Calculation
+Converged
+Not
+Converged
+Figure 1: Schematic flow of the UHFA calculation.
+3
+2.2.1. Hartree–Fock approximation in the momen-
+tum space
+When a two-body Hamiltonian satisfies the
+translational symmetry, we can efficiently perform
+the HFA calculation in the momentum space. In
+the following, the translational-invariant two-body
+Hamiltonian below is considered instead of Eq. (3)
+HInt ≡
+X
+ij
+X
+α,α′,β,β′
+W αα′ββ′
+ij
+c†
+iαciα′c†
+jβcjβ′,
+(12)
+where a two-body interactions satisfies W αα′ββ′
+ij
+=
+h
+W β′βα′α
+ji
+i∗
+for the Hermiticity. The Fourier trans-
+formations of the operator are defined as
+criα =
+1
+√Nsite
+X
+k
+eik·rickα,
+(13)
+c†
+riα =
+1
+√Nsite
+X
+k
+e−ik·ric†
+kα,
+(14)
+where Nsite denotes the number of the sites and ri
+is a position vector at the ith site. The one-body
+Hamiltonian in the real space is rewritten as
+h0 =
+X
+k,α,β
+c†
+kαhαβ(k)ckβ.
+(15)
+Since the system has a translational symmetry, the
+coefficients depend only on the translation vectors,
+rij = rj −ri and hαβ(k) = P
+j ˜tαβ
+0j e−ik·r0j, where
+˜tαβ
+0j includes tαβ
+0j and the decoupled two-body in-
+teraction terms.
+As the Hamiltonian is diagonal
+with respect to the wave number k, the eigen-
+value and eigenvector calculations are simplified
+from the diagonalization of the matrix of the size
+NsiteNorbit × NsiteNorbit to that of Nsite matrices of
+the size Norbit × Norbit, where Norbit denotes the
+number of orbitals, including the spin degrees of
+freedom. Thus, the calculation costs are reduced.
+2.3. Random Phase Approximation
+The random phase approximation (RPA) is used
+for calculating the response functions, such as
+charge/spin susceptibility. By examining the tem-
+perature dependence of the charge/spin suscepti-
+bility, the instability of charge/spin ordered phases
+can be detected.
+In H-wave, RPA can be imple-
+mented in momentum space and users can obtain
+the dynamical susceptibility χ(q, iνn), where νn
+represents the bosonic Matsubara frequency, νn =
+2nπkBT (n = −Nω/2, · · · , Nω/2−1) with the even
+cutoff integer Nω. Here, T is the temperature and
+kB is the Boltzmann constant, and for simplicity,
+we set kB = 1 in the following. We note that it is
+necessary to perform the analytical continuation to
+obtaining the real-frequency dynamical susceptibil-
+ity χ(q, ω), which can be measured by experiments.
+In this section, we briefly introduce the method for
+calculating the dynamical susceptibility using the
+RPA.
+By applying Fourier transformation to the two-
+body Hamiltonian HInt defined in Eq. (12), the
+Hamiltonian can be rewritten as
+HInt =
+1
+2Nsite
+X
+k,k′,q
+X
+α,α′,β,β′
+W αα′ββ′
+q
+× c†
+k+q,αck,α′c†
+k′−q,βck′,β′.
+(16)
+In the RPA, the scattering processes by the inter-
+action are considered on the basis of eigenvectors of
+the non-interacting Hamiltonian H0. On this basis,
+the two-body interaction operator can be approxi-
+mated as
+c†
+k+q,α ck,α′ c†
+k′−q,β ck′,β′
+∼
+X
+γ,γ′
+u∗
+αγ,k+q uα′γ,k u∗
+βγ′,k′−q uβ′γ′,k′
+× d†
+k+q,γdk,γd†
+k′−q,γ′dk′,γ′,
+(17)
+where ck,α = P
+γ uαγ,kdk,γ, and dk,γ denotes the
+annihilation operator that diagonalizes H0. (γ de-
+notes the eigenvalue index.) Then, the irreducible
+one-body Green’s function can be expressed as
+G(0)αβ
+γ
+(k, iωn) = uαγ(k)u∗βγ(k)
+iωn −ξγ(k) + µ,
+(18)
+where ωn represents the fermionic Matsubara fre-
+quency ωn = (2n+1)πT. Generally, the irreducible
+susceptibility in non-interacting systems can be ex-
+pressed as
+χ(0)αα′,β′β(q, iνn) =
+−
+T
+Nsite
+Norbit
+X
+γ=1
+X
+k,m
+G(0)αβ
+γ
+(k + q, iωm + iνn)
+× G(0)β′α′
+γ
+(k, iωm).
+(19)
+By using the irreducible susceptibility, the dynam-
+ical susceptibility from the RPA, χαα′,β′β(q, iνn),
+4
+can be obtained as
+χαα′,β′β(q) = χ(0)αα′,β′β(q)
+−
+X
+α′
+1β′
+1
+χ(0)αα′,β′
+1β1(q) W α1α′
+1β′
+1β1
+q
+χα1α′
+1,β′β(q),
+(20)
+where we define q ≡(q, iνn) for simplicity. Here,
+the index α includes the orbital and spin degrees of
+freedom. By combining indices into one index, for
+example, a = α × α′, Eq. (20) can be rewritten in
+a matrix form as
+χ(q) = χ(0)(q) −χ(0)(q)W (q)χ(q)
+=
+h
+I + χ(0)(q)W (q)
+i−1
+χ(0)(q),
+(21)
+where I denotes the identity matrix. Here, for de-
+scribing the equation in matrix notation, we define
+the two-body interaction [W (q)]ab ≡W ba
+q .
+The
+dimensions of the susceptibilities χ(0)αα′β′β(q, iνn)
+and χαα′,β′β(q, iνn) are given by N 4
+orbitNsiteNω.
+The size of the multidimensional array of suscep-
+tibilities can be reduced by separating orbitals and
+spins. When the spin-orbital coupling does not ex-
+ist and H does not include terms that mix spin and
+orbital, the orbital and spin Hilbert spaces become
+independent. In this case, the two-body interaction
+can be rewritten as
+W
+ασσ′βσ1σ′
+1
+q
+c†
+k+q,ασck,ασ′c†
+k′−q,βσ1ck′,βσ′
+1, (22)
+where ασσ′ ≡ασασ′ and βσ1σ′
+1 ≡βσ1βσ′
+1. Since
+the scattering processes occur only on the same di-
+agonalized general orbitals, the irreducible suscep-
+tibility can be expressed as
+χ(0)α,β
+σσ′σ′
+1σ1(q, iνn) =
+−
+T
+Nsite
+Norb
+X
+γ=1
+X
+k,m
+G(0)αβ
+σσ′
+1,γ(k + q, iωm + iνn)
+× G(0)βα
+σ1σ′,γ(k, iωm).
+(23)
+Here,
+the
+array
+size
+can
+be
+reduced
+to
+N 2
+orbN 4
+spinNsiteNω
+where
+Norb
+and
+Nspin
+de-
+note the number of the orbital and spin degrees of
+freedom, respectively. Then, the susceptibility can
+be obtained as
+χα,β
+σσ′σ′
+1σ1(q) = χ(0)α,β
+σσ′σ′
+1σ1(q)
+−
+X
+α2α3
+X
+σ2,σ′
+2
+X
+σ3,σ′
+3
+χ(0)α,α2
+σσ′σ′
+2σ2(q)
+× W
+α3σ3σ′
+3
+α2σ′
+2σ2
+q
+χα3,β
+σ3σ′
+3,σ′
+1σ1(q).
+(24)
+Like as deriving Eq. (20), if ασσ′ is represented as a
+single index, it can be inserted into a matrix form,
+and for generalized orbitals it can be denoted as
+χ(q) = χ(0)(q) −χ(0)(q)W (q)χ(q)
+=
+h
+I + χ(0)(q)W (q)
+i−1
+χ(0)(q).
+(25)
+In the above formula, it is necessary to store
+G(0)βα
+σ1σ′,γ(k, iωn) and align the indices of γ for
+G(0)βα
+σ1σ′,γ(k, iωn) before the summation of γ. How-
+ever,
+these procedures increase the
+numerical
+cost.
+To reduce the numerical cost, in previ-
+ous studies [26–33] the one-body Green’s func-
+tion is simply calculated as G(0)αβ
+σσ′
+(k, iωn)
+=
+PNorb
+γ=1 G(0)αβ
+σσ′,γ (k, iωn).
+Therefore, the irreducible
+susceptibility is calculated as
+χ(0)α,β
+σσ′σ1σ′
+1(q, iνn) =
+−
+T
+Nsite
+X
+k,m
+G(0)αβ
+σσ′
+1 (k + q, iνn + iωm)
+× G(0)βα
+σ1σ′ (k, iωm).
+(26)
+Since
+additional
+terms,
+G(0)αβ
+σσ′
+1,γ(k + q, iνm +
+iωn)G(0)βα
+σ1σ′,γ′(k, iωn) for γ ̸= γ′ are included, it can
+lead to quantitatively different results.
+Although
+this treatment is an approximation of the original
+RPA equations defined in Eq. (25), we adopted this
+approach. We note that when this approximation
+is applied to orbitals that are clearly independent, a
+qualitative difference appears because it takes into
+account the hybridization of orbitals that do not
+originally exist. After performing the block diago-
+nalization, it is expected to closely agree with the
+exact RPA when only specific modes are essential,
+such as near the transition point. However, quan-
+titative deviations will occur away from the transi-
+tion point. In the next version of the software, a
+mode for the correct handling of the Green’s func-
+tions and susceptibilities to examine the accuracy
+of the approximation method will be implemented.
+5
+Finally, for convenience, a schematic flow of the
+RPA calculation is presented in Fig. 2.
+(Option) Set one-body Green’s functions
+Calculate and diagonalize a one-body Hamiltonian
+Determine a chemical potential [using Eq. (9)]
+Calculate one-body Green’s function [Eq. (18)]
+Calculate irreducible susceptibility [Eq. (19)]
+Calculate susceptibility matrix [Eq. (21)]
+Figure 2: Schematic flow of the RPA calculation.
+3. Usage
+3.1. Installing H-wave
+H-wave is implemented in Python3 and requires
+several external libraries, such as NumPy [34, 35],
+SciPy [36, 37], tomli [38], and requests [39].
+Since H-wave is registered to the Python Package
+Index (PyPI) repository [40], users can install H-
+wave using the command-line tool pip as
+$ python3 -m pip install h-wave
+Additionally, the required libraries are installed.
+The source code for H-wave is available in the
+GitHub repository [41].
+The users can download
+the zipped file from the release page, or clone the
+repository to obtain the latest version. After un-
+packing the zipped source files and changing the
+current directory to the top of the source tree, users
+can install H-wave by executing the following com-
+mand.
+$ python3 -m pip install .
+Subsequently, H-wave and the required libraries are
+installed, and the executable file hwave is placed
+in the specified installation path. Further details
+are provided in the installation section of the man-
+ual [42].
+stan.in
+input.toml
+StdFace
+RESPACK
+etc
+UHFr
+mode
+RPA
+mode
+UHFk
+mode
+fij
+energy
+green
+rpa
+chi0q
+chiq
+eigen
+output
+files
+Expert mode
+Wannier90 format
+H-wave
+Input parameter file
+Interaction definition files
+Figure 3:
+Schematic flow of calculations. First, the users
+prepare an input parameter file (input.toml) and a set
+of interaction definition files.
+The interaction definition
+files can be generated by StdFace from a simple defini-
+tion file (stan.in), or the output of other software such as
+RESPACK[43] can be used. Then, H-wave is run in a cho-
+sen mode. The results are provided as output in the files
+according to the input parameters.
+3.2. Using H-wave
+To
+use
+H-wave,
+a
+toml-format
+file
+(e.g.,
+input.toml) and input files that specify the pa-
+rameters in the Hamiltonians have to be prepared.
+Figure 3 shows the schematic flow of the calcula-
+tions. In the toml file, the calculation parameters
+and the names of the input files for the Hamilto-
+nian are specified.
+For standard models such as
+the Hubbard model on a square lattice, users can
+use the StdFace library [44] to generate the input
+files that specify the Hamiltonians. Users can run
+H-wave by executing the following command.
+$ hwave input.toml
+When the calculations are complete, the results are
+provided as outputs to the files, which are specified
+by input.toml.
+3.2.1. Input parameter file
+The input parameter file is written in the toml-
+format [45] text file. In the toml format, the value
+of a parameter is specified in the form parameter
+= value, where the value can be a string, number,
+Boolean value, array, or table (associative array). A
+set of parameters can be classified into a toml ta-
+ble structure and labeled by a name within a square
+bracket, which we call a section hereafter. An ex-
+ample of input.toml is presented below:
+6
+[log]
+print_level = 1
+print_step = 10
+[mode]
+mode = "UHFk"
+[mode.param]
+2Sz = 0
+Ncond = 16
+IterationMax = 1000
+EPS = 12
+Mix = 0.5
+RndSeed = 123456789
+ene_cutoff = 1.0e+2
+T = 0.0
+CellShape = [ 4, 4, 1 ]
+SubShape = [ 2, 2, 1 ]
+[file]
+[file.input]
+path_to_input = ""
+[file.input.interaction]
+path_to_input = "./"
+Geometry = "geom.dat"
+Transfer = "transfer.dat"
+CoulombIntra = "coulombintra.dat"
+[file.output]
+path_to_output = "output"
+energy = "energy.dat"
+eigen = "eigen"
+green = "green"
+Important sections used in input.toml, such as
+[mode], [mode.param], [log], [file.input], and
+[file.output] are discussed in this paper. Fur-
+ther details have been provided in the manual of
+H-wave [42].
+[mode]— In the mode section, the calculation
+mode is specified as
+[mode]
+mode = "UHFk"
+As aforementioned, H-wave implements three meth-
+ods, UHFA in real space (mode="UHFr"), UHFA
+in wave-number space (mode="UHFk"), and RPA
+(mode="RPA"). During the UHFA calculations, de-
+cision to include the Fock term can be specified us-
+ing flag fock. In the wave-number space UHFA
+and RPA calculations, enable spin orbital can
+be used to allow the hopping integrals that break
+the total Sz conservation. If the total Sz is con-
+served, the calculation cost of RPA can be signifi-
+cantly reduced. See Sec. 4.2.2 of the H-wave manual
+“CellShape”
+[4,4,1]
+“SubShape”
+[2,2,1]
+orbitals
+unit cell
+Figure 4: The definitions of the overall lattice (CellShape)
+and the sublattice structure (SubShape) are depicted with
+examples.
+for the index rule of the orbitals and spins when the
+enable spin orbital is set to true.
+[mode.param]—In the mode.param section, the
+parameters concerning the calculation conditions
+can be specified. The lattice size (the number of
+sites) is specified using CellShape (Nsite).
+For
+the wave-number space UHFA and RPA calcula-
+tions, a sub-lattice structure can be introduced us-
+ing SubShape, as depicted in Fig. 4. The temper-
+ature is denoted by T. The number of electrons is
+specified using Ncond or by filling ratio to the
+total number of states. In the UHFA calculations,
+the total spin can be specified using 2Sz, or it can
+be left free.
+The
+mean-field
+approximation
+is
+iteratively
+solved using the convergence criterion given by the
+EPS parameter.
+For the RPA calculations, the
+number of Matsubara frequencies is specified using
+Nmat. For sufficiently large Matsubara frequency,
+the Green’s function behaves like 1/iωn. The high-
+energy tail of the Green’s functions along the Mat-
+subara frequencies can be improved by subtracting
+a/iωn, which can be treated analytically. The co-
+efficient of the subtraction term a can be specified
+through coeff tail. Basically, the default value
+a = 1 works well, but for more precise work, it may
+be better to select a as iωnmaxG(iωnmax).
+[log]— In the log section, the conditions of
+calculation logs can be specified. print level is
+used to specify the verbosity of the log outputs.
+In the UHFA calculations, the interval between the
+residue outputs during the iterations can be set us-
+ing print step. When specified, the residues are
+written to the files given by print check.
+[file.input]— In the file.input section, the
+input files can be specified. The files that define
+the Hamiltonians are specified in a separate sub-
+section [file.input.interaction], as described
+7
+in Sec. 3.2.2. In this section, the file name of the ini-
+tial Green’s function can be specified using initial
+parameter. In the RPA calculations, the interaction
+term approximated using the UHFA can be consid-
+ered for the initial configuration.
+The coefficient
+of the modified hopping term f
+H0 = P f
+tαβ
+ij c†
+iαcjβ +
+H.c., where
+f
+tαβ
+ij = tαβ
+ij +
+X
+k,γ,γ′
+W γγ′,αβ
+ik
+⟨c†
+kγ′ckγ⟩δij,
+(27)
+can be read from a file specified by trans mod. The
+input file can be generated through a wave-number
+space UHFA calculation using the rpa output op-
+tion. An option for using the irreducible suscepti-
+bility χ(0)(q) specified by chi0q, which is obtained
+from the former calculation, is available for the cal-
+culation of the susceptibility matrix.
+[file.output]— In the file.output section,
+the output files for the calculation results can be
+specified. The items as output for each calculation
+mode are described in Sec. 3.2.3.
+3.2.2. Interaction definition files
+H-wave supports a set of interaction definition
+files that define the Hamiltonian. They are spec-
+ified in the [file.input.interaction] section of
+the parameter file with keywords and associated
+file names.
+These files consist of geometry infor-
+mation (labeled as Geometry), transfer integral (la-
+beled as Trans for UHFr or Transfer for UHFk
+and RPA), and two-body interaction terms with
+names based on the convention adopted in other
+software for quantum lattice models, HΦ [46, 47]
+and mVMC [48], as listed in Table 1. For the RPA
+calculations, an external field to the one-body in-
+teraction term can be introduced using the keyword
+Extern. The form of the term added to the transfer
+term Tασ,βσ′(r) reads
+Tασ,βσ′(r) →Tασ,βσ′(r) + h(σz)σσ′Bαβ(r), (28)
+where Bαβ(r) is the external field given in the file
+specified by Extern keyword, h is the coefficient
+specified by extern coeff parameter, and σz is the
+z-component of the Pauli matrix.
+The file format of the interaction definition files
+for the UHFr calculations follows the Expert-mode
+format of HΦ, which is a text-based format with
+header lines, followed by content in which the in-
+dices i and j and the value of the coefficient, for
+example, Jij, are listed for the interaction term.
+Table 1: Keywords for the interaction types and their de-
+scriptions are summarized. c†
+iα↑(↓) and ciα↑(↓) denote the
+creation and annihilation operators, respectively, of elec-
+trons at site i and orbital α with spin-up (spin-down).
+Niα↑(↓) = c†
+iα↑(↓)ciα↑(↓), and Niα = Niα↑+ Niα↓. Sν
+iα =
+1
+2
+P
+σ,σ′ c†
+iασσν
+σσ′ciασ′ where σk is the Pauli matrix, and
+σ± = 1
+2 (σx ± iσy).
+Keyword
+Description
+Transfer (or
+Trans)
+Transfer
+term
+denoted
+by
+Tiαjβ c†
+iασcjβσ
+(spin orbital
+=
+False), or Ti(α,σ)j(β,σ′) c†
+i(α,σ)cj(β,σ′)
+(spin orbital = True)
+InterAll
+A general two-body interaction term of
+the form Iijklσ1σ2σ3σ4 c†
+iσ1cjσ2c†
+kσ3clσ4
+(only for UHFr),
+CoulombIntra
+On-site Coulomb interaction denoted
+by Uiα Niα↑Niα↓
+CoulombInter
+Off-site Coulomb interaction denoted
+by Viαjβ NiαNjβ
+Hund
+Hund coupling interaction denoted by
+JHund
+iαjβ (Niα↑Njβ↑+ Niα↓Njβ↓)
+Ising
+Ising
+interaction
+denoted
+by
+JIsing
+iαjβ Sz
+iαSz
+jβ
+Exchange
+Exchange
+interaction
+denoted
+by
+JEx
+iαjβ S+
+iαS−
+jβ
+PairLift
+The
+interaction
+denoted
+by
+JPairLift
+iαjβ
+c†
+iα↑ciα↓c†
+jβ↑cjβ↓
+PairHop
+The
+interaction
+denoted
+by
+JPairHop
+iαjβ
+c†
+iα↑cjβ↑c†
+iα↓cjβ↓
+(only
+for
+UHFr mode)
+Further details have been provided in the manuals
+of HΦ [25] and mVMC [23].
+For the UHFk and RPA calculations, a Wan-
+nier90-like format [3] is adopted for the interac-
+tion definition because translational symmetry is
+assumed in these methods. In this format, the co-
+efficient of the interaction term Jiαjβ = Jαβ(rij)
+can be expressed by the components of the three-
+dimensional translation vector rij, the orbital in-
+dices α and β, and the value in each line. H-wave
+allows zero components to be omitted. A few exam-
+ples of the interaction definition files for the UHFk
+calculations are presented in the following.
+The Transfer term can be expressed as
+Transfer in Wannier90-like format for uhfk
+8
+1
+9
+1 1 1 1 1 1 1 1 1
+-1
+0
+0
+1
+1
+-1.000
+0.000
+0
+-1
+0
+1
+1
+-1.000
+0.000
+0
+1
+0
+1
+1
+-1.000
+0.000
+1
+0
+0
+1
+1
+-1.000
+0.000
+The on-site Coulomb interaction (CoulombIntra)
+can be expressed as
+CoulombIntra in Wannier90-like format for uhfk
+1
+1
+1
+0
+0
+0
+1
+1
+4.000
+0.000
+The geometry definition (Geometry) can be ex-
+pressed as
+1.000
+0.000
+0.000
+0.000
+1.000
+0.000
+0.000
+0.000
+1.000
+1
+0.000e+00
+0.000e+00
+0.000e+00
+The file specifications section of the H-wave man-
+ual [42] can be referred to for details on the file
+formats.
+Such files can be generated from a simple input
+using the StdFace library [44]. An example of the
+input file (stan.in) has been provided
+model
+= "Hubbard"
+lattice
+= "square"
+W
+= 4
+L
+= 4
+t
+= 1.0
+U
+= 4.0
+calcmode
+= "uhfk"
+exportall = 0
+3.2.3. Output
+H-wave outputs the calculation results to the
+files according to the settings specified in the
+[file.output] section of the input parameter
+file.
+A brief overview of the main parameters in
+[file.output] is discussed.
+In real space UHFA calculations, the following
+keywords can be used.
+• energy: The total energy and its components
+for each interaction term, the number of elec-
+trons, and the value of Sz are written to a text
+file in the item=value format.
+• eigen: The eigenvalues and eigenvectors are
+provided as outputs in NumPy zip files [49].
+For a fixed Sz, the spin-up and spin-down
+components are stored in separate files with
+spin-up or spin-down prefix. Otherwise, the
+eigenvalues and eigenvectors are provided as
+outputs in a single file with a prefix sz-free.
+• green: The Green’s function is provided as an
+output in a text file with indices specified in
+the OnebodyG file.
+• fij: In real-space UHFA calculations, the co-
+efficients of the pair-product wave functions
+fij, which are equivalent to the converged one-
+body wave functions, are provided as outputs.
+They are written to a text-format file specified
+by fij. Further details on the relationship be-
+tween the HFA solutions and the pair-product
+wave functions have been provided in Ref. [48].
+In the UHFk calculations, the following keywords
+can be used.
+• energy:
+The value of the total energy and
+its components for each interaction term, the
+number of electrons, and the value of Sz are
+written to a text file in the item=value for-
+mat. An example output of energy is shown
+below.
+Energy_Total
+= -12.56655452028271
+Energy_Band
+= -4.507491115073952
+Energy_CoulombIntra = -8.059063405208757
+NCond
+= 15.999999999999996
+Sz
+= -7.239267874048494e-08
+• eigen: The eigenvalues and eigenvectors are
+provided as outputs in a NumPy zip file.
+• green: The Green’s function is provided as an
+output in a NumPy zip file.
+• rpa:
+The modified Transfer term represent-
+ing the approximated one-body Hamiltonian is
+provided as an output in a NumPy zip file for
+an initial value of the RPA calculation.
+In the RPA calculations, the following keywords
+can be used.
+• chi0q: The irreducible susceptibility matrix
+χ(0)(q, iνn) is provided as an output in a
+NumPy zip file.
+• chiq:
+The susceptibility matrix χ(q, iνn) is
+provided as an output in a NumPy zip file.
+9
+4. Applications
+In this section, three examples of H-wave have
+been introduced, which include methods to calcu-
+late a ground-state phase diagram at zero tempera-
+ture (zero-temperature UHFk), finite-temperature
+physical quantities (finite-temperature UHFk), and
+charge and spin susceptibilities at finite tempera-
+tures (RPA). Tutorials on H-wave have been up-
+loaded to a repository [50], which includes several
+other samples of H-wave and examples presented in
+this paper.
+4.1. Ground state of the extended Hubbard model
+on a square lattice
+As a simple application of the UHFk calculation
+at zero temperature, the ground states of the ex-
+tended Hubbard model on a square lattice at half-
+filling were considered. In the extended Hubbard
+model, a first-order quantum phase transition is ex-
+pected from the antiferromagnetic (AF) phase to
+the charge-ordered (CO) phase by changing the off-
+site Coulomb interactions. The extended Hubbard
+model is defined as
+H = −t
+X
+⟨i,j⟩
+X
+σ=↑↓
+h
+c†
+iσcjσ + c†
+jσciσ
+i
++ U
+X
+i
+Ni↑Ni↓+ V
+X
+⟨i,j⟩
+NiNj,
+(29)
+where ⟨i, j⟩means the nearest neighbor pairs on the
+square lattice, Niσ = c†
+iσciσ represents the number
+operator of the spin σ at the site i, Ni = Ni↑+Ni↓,
+and U and V denote the onsite and offsite Coulomb
+repulsion. The hopping constant t was used as the
+unit of energy.
+(Hereafter, t = 1.)
+The case of
+half-filling was considered, in which the number of
+electrons was taken to be equal to the number of
+sites.
+Two phases are expected to appear as the
+ground states (Fig. 5(a)).
+For V/U ≲1/4, the
+AF phase where the neighboring spins align in op-
+posite directions to each other emerges. The AF
+phase is characterized by the staggered magnetiza-
+tion defined as S(Q) = P
+i Sz
+i exp(−iQ · ri)/Ncell
+with Q = (π, π), where Sz
+i = (Ni↑−Ni↓)/2 and
+the summation runs over sites in the unit cell, and
+Ncell is the number of sites in the unit cell.
+For
+V/U ≳1/4, the CO phase becomes the ground
+state where the doubly occupied sites are arranged
+in a checkerboard pattern. The CO phase is charac-
+terized by the staggered density defined as N(Q) =
+P
+i(Ni↑+ Ni↓) exp(−iQ · ri)/Ncell.
+ 0
+ 0.25
+ 0.5
+ 0.75
+ 1
+ 0
+ 0.5
+ 1
+ 1.5
+ 2
+AF
+CO
+(a)
+(b)
+Figure 5:
+(a) Expected phase diagram of the extended Hub-
+bard model on the square lattice at half-filling in the strong
+coupling limit. (b) V dependencies of the staggered magne-
+tization S(π, π) (green circles) and the staggered charge den-
+sity N(π, π) (blue squares) of the extended Hubbard model
+on the square lattice with U = 4 at half-filling calculated
+by the UHFk mode of H-wave. A first-order phase transi-
+tion between the AF phase and the CO phase occurs around
+V/U = 1/4.
+Figure 5 (b) shows the V dependence of S(π, π)
+and N(π, π).
+As expected, the first-order phase
+transition between the AF and the CO phases was
+observed at V/t = 1(= U/4t). A sample script is
+available in samples/UHFk/CDW SDW directory of the
+tutorial repository. By executing the script run.py,
+the results shown in Figure 5 (b) can be reproduced.
+4.2. Finite-temperature properties of the Hubbard
+model on a cubic lattice
+H-wave supports finite-temperature mean-field
+calculations. In this section, a typical simple exam-
+ple involving the estimation of N´eel temperature for
+the Hubbard model on a cubic lattice at half-filling
+has been discussed. The model was defined as
+H =
+X
+r
+"
+−t
+X
+ν,σ
+X
+δ=±aν
+c†
+rσcr+δ,σ + UNr↑Nr↓
+#
+,
+(30)
+10
+where aν denotes the translation vector along the
+α-axis, and ν = x, y, and z.
+Figure 6(a) shows the dependency of magnetiza-
+tion on temperature for the Hubbard model on a
+cubic lattice at half-filling. The magnetization pre-
+sented along the z axis was defined as
+mz =
+1
+2Nsite
+X
+r
+| ⟨nr↑−nr↓⟩| .
+(31)
+The number of sites Nsite was denoted as Nsite =
+L3, where L denotes the linear dimensions of a cubic
+structure. The magnetization was observed to be
+finite at the critical temperature TN´eel.
+For this
+study, TN´eel was regarded as the lowest temperature
+at which mz had a value lesser than 10−4.
+Figure 6 (b) shows the interaction dependence of
+N´eel temperature TN´eel. The results suggested that
+TN´eel monotonically increased with the interaction
+U/t. However, this tendency was a well-known ar-
+tifact of the HFA. For a strong-coupling limit, TN´eel
+is expected to decrease with increase in U/t [51–53]
+because it is governed by super-exchange interac-
+tions J = 4t2/U.
+To correctly reproduce such a
+tendency, many-body correlations beyond the HFA
+must necessarily be included.
+4.3. Charge and spin susceptibilities of the extended
+Hubbard model on a square lattice
+In this sub-section, charge and spin susceptibil-
+ities of the extended Hubbard model on a square
+lattice defined in Eq. (29) using the RPA are dis-
+cussed. In order to reproduce the numerical results
+shown in Fig. 1 of Ref. [54], the electron filling was
+set as 3/4 and T = 0.01. The cell size was set to
+Lx = Ly = 128. Sample files and scripts were used
+from the samples/RPA/kobayashi_2004 directory
+of the tutorial repository.
+Figure 7 shows spin and charge susceptibilities
+χs(q, 0), χc(q, 0) at (U, V ) = (3.7, 0) and (0, 0.8),
+respectively, where χs(q, 0) and χc(q, 0) are de-
+fined as 1/2 P
+σσ′ σσ′χσσ′(q, 0) with σ = +(−)
+for ↑(↓) and 1/2 P
+σσ′ χσσ′(q, 0), respectively. At
+(U, V ) = (3.7, 0), χs(q, 0) showed a sharp peak
+around Qnest = (π, π/2) due to the nesting con-
+dition as shown in the inset of Fig. 7.
+This
+peak developed with increasing U and diverged
+when the spin-density-wave transition occurred. At
+(U, V ) = (0, 0.8), χc(q, 0) exhibited sharp peaks
+around (π, π/2) and (π/2, π/2).
+The first peak
+originated from the nesting condition, whereas the
+second peak originated from the anisotropy of Vq,
+ 0
+ 0.1
+ 0.2
+ 0.3
+ 0.4
+ 0.5
+ 0
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 0
+ 1
+ 2
+ 3
+ 4
+ 0
+ 4
+ 8
+ 12
+ 16
+(b)
+(a)
+PM
+AF
+Figure 6: Magnetic properties of the Hubbard model on the
+cubic lattice at half-filling for L = 12. (a) Temperature de-
+pendence of the magnetic moment along the z-axis.
+Red
+circles, green squares, blue triangles, and purple diamonds
+denote the mean-field results for U/t = 4, 8, 12, and 16,
+respectively.
+(b) Interaction dependence of the N´eel tem-
+perature TN´eel.
+Red circles denote the mean-field results.
+Insets represent schematics of paramagnetic (PM) and anti-
+ferromagnetic (AF) states.
+which had a negative peak at (π, π), in addition
+to the nesting conditions. The latter peak devel-
+oped with an increase in V and diverged when a
+charge-density wave (or charge ordering) transition
+occurred. The obtained results aligned with those
+shown in Fig. 1 of Ref. [54].
+5. Summary
+In this paper, we introduced H-wave, which can
+perform the unrestricted Hartree–Fock approxima-
+tion (UHFA) and the random phase approximation
+(RPA). UHFA and RPA in wave-number space en-
+able numerical analyses of electron correlation ef-
+fects in periodic electron systems within fluctua-
+tions up to the first order at a low computational
+11
+ 0
+ 0.5
+ 1
+ 1.5
+ (0, 0)
+(π, 0)
+(π, π)
+ (0, 0)
+q
+χs(q, 0)
+χc(q, 0)
+χs(q, 0)
+χc(q, 0)
+(U, V) = (3.7, 0)
+(U, V) = (0, 0.8)
+-π
+π
+0
+kx
+-π
+π
+0
+ky
+Qnest
+Figure 7: Spin and charge susceptibilities of the extended
+Hubbard model at T = 0.01.
+The interaction parameters
+are set as (U, V ) = (3.7, 0) and (0, 0.8), respectively. The
+inset shows the Fermi surface (solid line) and the nesting
+vector Qnest ≡(π, π/2).
+cost. H-wave is open-source software with simple
+and flexible user interface. Users can execute UHFA
+and RPA for widely studied quantum lattice models
+such as the Hubbard model by preparing only one
+input file with less than ten lines.
+Furthermore,
+the input files of one- and two-body interactions
+describing effective models can be imported from
+first principles calculations using the Wannier90
+format such as RESPACK. This enables a high-
+throughput connection between the first principles
+calculations and H-wave. The resulting files can be
+used as input files for softwares that handle strong
+correlation effects, such as mVMC [48]. H-wave is
+included in MateriApps LIVE! [55, 56], an environ-
+ment for computational materials science, and Ma-
+teriApps Installer [56, 57], a collection of scripts
+for installing materials science calculation software.
+These provide the environment to easy application
+of H-wave.
+In the future, we plan to develop the following
+functions based on the experience gained from our
+previous works; (a) function to calculate the quanti-
+ties corresponding to the experimentally measured
+dynamic susceptibilities, such as magnetic suscep-
+tibility and spin-lattice relaxation rate for nuclear
+magnetic resonance and conductivity [58–61], (b)
+function to solve the linear Eliashberg equation
+evaluating the superconducting transition temper-
+ature and order parameters by considering pairing
+interactions mediated by charge and spin fluctua-
+tions [26, 29, 54, 62], and (c) function to treat ap-
+proximations beyond RPA such as fluctuation ex-
+change approximation (FLEX) and vertex correc-
+tions [63–67].
+Acknowledgments
+H-wave
+is
+developed
+under
+the
+support
+of
+“Project for Advancement of Software Usability in
+Materials Science” in the fiscal year 2022 by The
+Institute for Solid State Physics, The University of
+Tokyo. This work was supported by JSPS KAK-
+ENHI Grant Numbers 21H01041 and 22K03526.
+References
+[1] M. Imada, A. Fujimori, Y. Tokura, Metal-insulator
+transitions, Rev. Mod. Phys. 70 (1998) 1039–1263.
+doi:10.1103/RevModPhys.70.1039.
+URL
+https://link.aps.org/doi/10.1103/
+RevModPhys.70.1039
+[2] P. Fazekas (Ed.), Lecture Notes on Electron Correlation
+and Magnetism (Series in Modern Condensed Matter
+Physics), World Scientific, 1999. doi:10.1142/2945.
+URL https://www.worldscientific.com/doi/abs/10.
+1142/2945
+[3] G. Pizzi, V. Vitale, R. Arita, S. Bl¨ugel, F. Freimuth,
+G. G´eranton,
+M. Gibertini,
+D. Gresch,
+C. John-
+son, T. Koretsune, J. Iba˜nez-Azpiroz, H. Lee, J.-M.
+Lihm, D. Marchand, A. Marrazzo, Y. Mokrousov,
+J. I. Mustafa, Y. Nohara, Y. Nomura, L. Paulatto,
+S. Ponc´e, T. Ponweiser, J. Qiao, F. Th¨ole, S. S. Tsirkin,
+M. Wierzbowska, N. Marzari, D. Vanderbilt, I. Souza,
+A. A. Mostofi, J. R. Yates, Wannier90 as a community
+code: new features and applications, J. Phys. Condens.
+Matter 32 (2020) 165902.
+doi:10.1088/1361-648X/
+ab51ff.
+URL https://dx.doi.org/10.1088/1361-648X/ab51ff
+[4] F. Aryasetiawan, M. Imada, A. Georges, G. Kotliar,
+S. Biermann, A. I. Lichtenstein, Frequency-dependent
+local interactions and low-energy effective models from
+electronic structure calculations, Phys. Rev. B 70 (2004)
+195104. doi:10.1103/PhysRevB.70.195104.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+70.195104
+[5] M. Imada, T. Miyake, Electronic structure calcula-
+tion by first principles for strongly correlated elec-
+tron systems, Journal of the Physical Society of Japan
+79 (11) (2010) 112001.
+arXiv:https://doi.org/10.
+1143/JPSJ.79.112001, doi:10.1143/JPSJ.79.112001.
+URL https://doi.org/10.1143/JPSJ.79.112001
+[6] E. Dagotto, Correlated electrons in high-temperature
+superconductors, Rev. Mod. Phys. 66 (1994) 763–840.
+doi:10.1103/RevModPhys.66.763.
+URL
+https://link.aps.org/doi/10.1103/
+RevModPhys.66.763
+[7] J. Gubernatis, N. Kawashima, P. Werner (Eds.), Quan-
+tum Monte Carlo Methods,
+Cambridge University
+Press, 2016. doi:10.1017/CBO9780511902581.
+12
+[8] U.
+Schollw¨ock,
+The
+density-matrix
+renormaliza-
+tion group,
+Rev. Mod. Phys. 77 (2005) 259–315.
+doi:10.1103/RevModPhys.77.259.
+URL
+https://link.aps.org/doi/10.1103/
+RevModPhys.77.259
+[9] Rom´an
+Or´us,
+A
+practical
+introduction
+to
+tensor
+networks:
+Matrix product states and projected en-
+tangled pair states, Ann. Phys. 349 (2014) 117–158.
+doi:10.1016/j.aop.2014.06.013.
+URL
+https://www.sciencedirect.com/science/
+article/pii/S0003491614001596
+[10] R. Or´us, Tensor networks for complex quantum sys-
+tems, Nature Reviews Physics 1 (9) (2019) 538–550.
+doi:10.1038/s42254-019-0086-7.
+[11] H. Fehske, R. Schneider, Weiße (Eds.), Computational
+Many-Particle Physics, Springer, 2008. doi:10.1007/
+978-3-540-74686-7.
+[12] A. Avella, F. Mancini (Eds.), Strongly Correlated Sys-
+tems, Springer Berlin Heidelberg, 2013. doi:10.1007/
+978-3-642-35106-8.
+URL https://doi.org/10.1007/978-3-642-35106-8
+[13] G. D. Mahan (Ed.), Many-Particle Physics, 3rd Edition,
+Springer, 2000. doi:10.1007/978-1-4757-5714-9.
+[14] P. Ring, P. Schuck, The nuclear many-body problem,
+Springer Berlin, Heidelberg, 1980.
+[15] J. E. Hirsch, Two-dimensional Hubbard model: Numer-
+ical simulation study, Phys. Rev. B 31 (1985) 4403–
+4419. doi:10.1103/PhysRevB.31.4403.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+31.4403
+[16] D. R. Penn, Stability theory of the magnetic phases
+for a simple model of the transition metals, Phys. Rev.
+142 (1966) 350–365. doi:10.1103/PhysRev.142.350.
+URL
+https://link.aps.org/doi/10.1103/PhysRev.
+142.350
+[17] T. Mizokawa, A. Fujimori, Electronic structure and
+orbital ordering in perovskite-type 3d transition-metal
+oxides studied by Hartree-Fock band-structure calcula-
+tions, Phys. Rev. B 54 (1996) 5368–5380. doi:10.1103/
+PhysRevB.54.5368.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+54.5368
+[18] H. Seo, C. Hotta, H. Fukuyama, Toward Systematic
+Understanding of Diversity of Electronic Properties in
+Low-Dimensional Molecular Solids, Chem. Rev. 104
+(2004) 5005–5036, pMID: 15535640.
+doi:10.1021/
+cr030646k.
+URL https://doi.org/10.1021/cr030646k
+[19] A. L. Fetter, J. D. Walecka, Quantum Theory of Many-
+Particle Systems, McGraw-Hill, Boston, 1971.
+[20] L. P. Kadanoff, G. Baym (Eds.), Quantum Statistical
+Mechanics: Green’s Function Methods in Equilibrium
+and Nonequilibrium Problems, Westview Press, 1994.
+[21] TRIQS (Toolbox for Research on Interacting Quantum
+Systems), https://triqs.github.io/triqs/latest/.
+[22] O. Parcollet, M. Ferrero, T. Ayral, H. Hafermann,
+I. Krivenko, L. Messio, P. Seth, Triqs: A toolbox for re-
+search on interacting quantum systems, Comput. Phys.
+Commun. 196 (2015) 398 – 415. doi:http://dx.doi.
+org/10.1016/j.cpc.2015.04.023.
+[23] https://issp-center-dev.github.io/mVMC/doc/
+master/en/index.html.
+[24] H-wave: a Python package for performing unrestricted
+Hartree-Fock calculations and random phase approx-
+imation calculations for itinerant electron systems,
+https://www.pasums.issp.u-tokyo.ac.jp/h-wave/en.
+[25] https://issp-center-dev.github.io/HPhi/manual/
+master/en/html/index.html.
+[26] A. Kobayashi, S. Katayama, K. Noguchi, Y. Suzu-
+mura, Superconductivity in Charge Ordered Organic
+Conductor —α-(ET)2I3 Salt—, Journal of the Physi-
+cal Society of Japan 73 (11) (2004) 3135–3148.
+doi:
+10.1143/JPSJ.73.3135.
+URL https://doi.org/10.1143/JPSJ.73.3135
+[27] T. Takimoto, T. Hotta, K. Ueda, Strong-coupling
+theory of superconductivity in a degenerate Hubbard
+model, Phys. Rev. B 69 (2004) 104504. doi:10.1103/
+PhysRevB.69.104504.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+69.104504
+[28] K. Kubo, T. Hotta, Orbital-controlled superconductiv-
+ity in f-electron systems, Journal of the Physical Soci-
+ety of Japan 75 (8) (2006) 083702. arXiv:https://doi.
+org/10.1143/JPSJ.75.083702, doi:10.1143/JPSJ.75.
+083702.
+URL https://doi.org/10.1143/JPSJ.75.083702
+[29] K. Yoshimi, M. Nakamura, H. Mori, Superconduc-
+tivity in the vicinity of charge ordered state in or-
+ganic conductor β-(meso-DMBEDT-TTF)2PF6, Jour-
+nal of the Physical Society of Japan 76 (2) (2007)
+024706.
+arXiv:https://doi.org/10.1143/JPSJ.76.
+024706, doi:10.1143/JPSJ.76.024706.
+URL https://doi.org/10.1143/JPSJ.76.024706
+[30] A. Kobayashi, Y. Suzumura, M. Higa, R. Kondo,
+S. Kagoshima, H. Nishikawa, Charge ordered metal
+and pressure-induced superconductivity in the two-
+dimensional
+organic
+conductor
+β′′-(DODHT)2PF6,
+Journal of Physics: Condensed Matter 20 (12) (2008)
+125205. doi:10.1088/0953-8984/20/12/125205.
+URL https://dx.doi.org/10.1088/0953-8984/20/12/
+125205
+[31] S. Graser, T. A. Maier, P. J. Hirschfeld, D. J. Scalapino,
+Near-degeneracy of several pairing channels in multi-
+orbital models for the Fe pnictides, New Journal of
+Physics 11 (2) (2009) 025016. doi:10.1088/1367-2630/
+11/2/025016.
+URL
+https://dx.doi.org/10.1088/1367-2630/11/2/
+025016
+[32] H. Kontani, T. Saito, S. Onari, Origin of orthorhom-
+bic transition, magnetic transition, and shear-modulus
+softening in iron pnictide superconductors:
+Analysis
+based on the orbital fluctuations theory, Phys. Rev. B
+84 (2011) 024528. doi:10.1103/PhysRevB.84.024528.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+84.024528
+[33] M. Altmeyer, D. Guterding, P. J. Hirschfeld, T. A.
+Maier, R. Valent´ı, D. J. Scalapino, Role of vertex correc-
+tions in the matrix formulation of the random phase ap-
+proximation for the multiorbital Hubbard model, Phys.
+Rev. B 94 (2016) 214515. doi:10.1103/PhysRevB.94.
+214515.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+94.214515
+[34] C. R. Harris, K. J. Millman, S. J. van der Walt, R. Gom-
+mers, P. Virtanen, D. Cournapeau, E. Wieser, J. Tay-
+lor, S. Berg, N. J. Smith, R. Kern, M. Picus, S. Hoyer,
+M. H. van Kerkwijk, M. Brett, A. Haldane, J. F.
+del R´ıo, M. Wiebe, P. Peterson, P. G´erard-Marchant,
+K. Sheppard, T. Reddy, W. Weckesser, H. Abbasi,
+C. Gohlke, T. E. Oliphant, Array programming with
+13
+NumPy, Nature 585 (7825) (2020) 357–362.
+doi:10.
+1038/s41586-020-2649-2.
+URL https://doi.org/10.1038/s41586-020-2649-2
+[35] https://numpy.org/.
+[36] P. Virtanen, R. Gommers, T. E. Oliphant, M. Haber-
+land, T. Reddy, D. Cournapeau, E. Burovski, P. Pe-
+terson, W. Weckesser, J. Bright, S. J. van der Walt,
+M. Brett, J. Wilson, K. J. Millman, N. Mayorov,
+A. R. J. Nelson, E. Jones, R. Kern, E. Larson, C. J.
+Carey, ˙I. Polat, Y. Feng, E. W. Moore, J. Vander-
+Plas, D. Laxalde, J. Perktold, R. Cimrman, I. Hen-
+riksen, E. A. Quintero, C. R. Harris, A. M. Archibald,
+A. H. Ribeiro, F. Pedregosa, P. van Mulbregt, SciPy
+1.0 Contributors, SciPy 1.0: Fundamental Algorithms
+for Scientific Computing in Python, Nature Methods 17
+(2020) 261–272. doi:10.1038/s41592-019-0686-2.
+[37] https://scipy.org/.
+[38] https://github.com/hukkin/tomli.
+[39] https://requests.readthedocs.io/en/latest/.
+[40] https://pypi.org/.
+[41] https://github.com/issp-center-dev/H-wave.
+[42] https://issp-center-dev.github.io/H-wave/
+manual/main/en/html/index.html.
+[43] K. Nakamura, Y. Yoshimoto, Y. Nomura, T. Tadano,
+M.
+Kawamura,
+T.
+Kosugi,
+K.
+Yoshimi,
+T.
+Mis-
+awa, Y. Motoyama, Respack:
+An ab initio tool for
+derivation
+of
+effective
+low-energy
+model
+of
+mate-
+rial,
+Comput. Phys. Commun. 261 (2021) 107781.
+doi:https://doi.org/10.1016/j.cpc.2020.107781.
+URL
+https://www.sciencedirect.com/science/
+article/pii/S001046552030391X
+[44] https://github.com/issp-center-dev/StdFace.
+[45] https://toml.io/.
+[46] M. Kawamura, K. Yoshimi, T. Misawa, Y. Yamaji,
+S. Todo, N. Kawashima, Quantum lattice model solver
+HΦ, Computer Physics Communications 217 (2017)
+180–192. doi:10.1016/j.cpc.2017.04.006.
+URL
+https://www.sciencedirect.com/science/
+article/pii/S0010465517301200
+[47] K. Ido, M. Kawamura, Y. Motoyama, K. Yoshimi,
+Y. Yamaji, S. Todo, N. Kawashima, T. Misawa, Up-
+date of HΦ: Newly added functions and methods in
+versions 2 and 3 (2023). arXiv:2307.13222.
+[48] T. Misawa, S. Morita, K. Yoshimi, M. Kawamura,
+Y. Motoyama, K. Ido, T. Ohgoe, M. Imada, T. Kato,
+mVMC—Open-source software for many-variable vari-
+ational Monte Carlo method, Comput. Phys. Commun.
+235 (2019) 447–462. doi:10.1016/j.cpc.2018.08.014.
+URL
+https://www.sciencedirect.com/science/
+article/pii/S0010465518303102
+[49] https://numpy.org/devdocs/reference/generated/
+numpy.lib.format.html.
+[50] https://isspns-gitlab.issp.u-tokyo.ac.jp/
+hwave-dev/hwave-gallery.
+[51] Y. Kakehashi, H. Hasegawa, Magnetic phase diagram
+of the half-filled Hubbard model for a simple cubic lat-
+tice, Phys. Rev. B 36 (1987) 4066–4069. doi:10.1103/
+PhysRevB.36.4066.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+36.4066
+[52] G. Rohringer, A. Toschi, A. Katanin, K. Held, Critical
+properties of the half-filled Hubbard model in three
+dimensions,
+Phys.
+Rev.
+Lett.
+107
+(2011)
+256402.
+doi:10.1103/PhysRevLett.107.256402.
+URL
+https://link.aps.org/doi/10.1103/
+PhysRevLett.107.256402
+[53] A. Mukherjee, N. D. Patel, S. Dong, S. Johnston,
+A. Moreo,
+E. Dagotto,
+Testing the Monte Carlo–
+mean field approximation in the one-band Hubbard
+model, Phys. Rev. B 90 (2014) 205133. doi:10.1103/
+PhysRevB.90.205133.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+90.205133
+[54] A.
+Kobayashi,
+Y.
+Tanaka,
+M.
+Ogata,
+Y.
+Suzu-
+mura,
+Charge-Fluctuation-Induced
+Superconducting
+State in Two-Dimensional Quarter-Filled Electron Sys-
+tems, Journal of the Physical Society of Japan 73 (5)
+(2004) 1115–1118. doi:10.1143/JPSJ.73.1115.
+URL https://doi.org/10.1143/JPSJ.73.1115
+[55] MateriApps
+LIVE!:
+an
+environment
+for
+compu-
+tational materials science., http://cmsi.github.io/
+MateriAppsLive/.
+[56] Y.
+Motoyama,
+K.
+Yoshimi,
+T.
+Kato,
+S.
+Todo,
+MateriApps LIVE! and MateriApps Installer:
+En-
+vironment
+for
+starting
+and
+scaling
+up
+materials
+science
+simulations,
+SoftwareX
+20
+(2022)
+101210.
+doi:10.1016/j.softx.2022.101210.
+URL
+https://www.sciencedirect.com/science/
+article/pii/S2352711022001285
+[57] MateriApps Installer: a script collection for installation
+of computational materials science programs., https:
+//github.com/wistaria/MateriAppsInstaller.
+[58] R. Kubo, Statistical-mechanical theory of irreversible
+processes. I. General theory and simple applications
+to magnetic and conduction problems,
+Journal of
+the Physical Society of Japan 12 (6) (1957) 570–
+586.
+arXiv:https://doi.org/10.1143/JPSJ.12.570,
+doi:10.1143/JPSJ.12.570.
+URL https://doi.org/10.1143/JPSJ.12.570
+[59] T. Moriya, The effect of electron-electron interaction
+on the nuclear spin relaxation in metals, Journal of
+the Physical Society of Japan 18 (4) (1963) 516–
+520.
+arXiv:https://doi.org/10.1143/JPSJ.18.516,
+doi:10.1143/JPSJ.18.516.
+URL https://doi.org/10.1143/JPSJ.18.516
+[60] T. Imai, Analysis of nuclear relaxation experiments in
+high Tc oxides based on Mila-Rice Hamiltonian, Journal
+of the Physical Society of Japan 59 (7) (1990) 2508–
+2521. arXiv:https://doi.org/10.1143/JPSJ.59.2508,
+doi:10.1143/JPSJ.59.2508.
+URL https://doi.org/10.1143/JPSJ.59.2508
+[61] D. Ohki,
+K. Yoshimi,
+A. Kobayashi,
+Interaction-
+induced quantum spin Hall insulator in the organic
+Dirac electron system α-(BEDT-TSeF)2I3, Phys. Rev.
+B 105 (2022) 205123.
+doi:10.1103/PhysRevB.105.
+205123.
+URL
+https://link.aps.org/doi/10.1103/PhysRevB.
+105.205123
+[62] H. J. Vidberg, J. W. Serene, Solving the Eliashberg
+equations by means of N-point Pad´e approximants,
+Journal of Low Temperature Physics 29 (3) (1977) 179–
+192. doi:10.1007/BF00655090.
+URL https://doi.org/10.1007/BF00655090
+[63] N.
+Bickers,
+D.
+Scalapino,
+Conserving
+approxima-
+tions
+for
+strongly
+fluctuating
+electron
+systems.
+I.
+Formalism
+and
+calculational
+approach,
+Annals
+of
+Physics
+193
+(1)
+(1989)
+206–251.
+doi:https:
+//doi.org/10.1016/0003-4916(89)90359-X.
+URL
+https://www.sciencedirect.com/science/
+article/pii/000349168990359X
+14
+[64] N. E. Bickers, D. J. Scalapino, S. R. White, Conserving
+approximations for strongly correlated electron sys-
+tems: Bethe-Salpeter equation and dynamics for the
+two-dimensional Hubbard model, Phys. Rev. Lett. 62
+(1989) 961–964. doi:10.1103/PhysRevLett.62.961.
+URL
+https://link.aps.org/doi/10.1103/
+PhysRevLett.62.961
+[65] K. Yoshimi, T. Kato, H. Maebashi, Enhanced spin
+susceptibility toward the charge-ordering transition in
+a two-dimensional extended Hubbard model, Jour-
+nal of the Physical Society of Japan 78 (10) (2009)
+104002.
+arXiv:https://doi.org/10.1143/JPSJ.78.
+104002, doi:10.1143/JPSJ.78.104002.
+URL https://doi.org/10.1143/JPSJ.78.104002
+[66] K. Yoshimi, T. Kato, H. Maebashi, Fermi surface
+deformation near charge-ordering transition, Journal
+of
+the
+Physical
+Society
+of
+Japan
+80
+(12) (2011)
+123707.
+arXiv:https://doi.org/10.1143/JPSJ.80.
+123707, doi:10.1143/JPSJ.80.123707.
+URL https://doi.org/10.1143/JPSJ.80.123707
+[67] K. Yoshimi, H. Maebashi, Coulomb frustrated phase
+separation in quasi-two-dimensional organic conduc-
+tors
+on
+the
+verge
+of
+charge
+ordering,
+Journal
+of
+the
+Physical
+Society
+of
+Japan
+81
+(6)
+(2012)
+063003.
+arXiv:https://doi.org/10.1143/JPSJ.81.
+063003, doi:10.1143/JPSJ.81.063003.
+URL https://doi.org/10.1143/JPSJ.81.063003
+15

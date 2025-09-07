@@ -1,0 +1,4125 @@
+ 
+ 
+1 
+Evolutionary dynamics of transposable elements in bdelloid rotifers 
+1 
+ 
+2 
+Reuben W. Nowell1,2,*, Christopher G. Wilson1,2, Pedro Almeida2,3, Philipp H. Schiffer4, Diego 
+3 
+Fontaneto5, Lutz Becks6,7, Fernando Rodriguez8, Irina R. Arkhipova8, and Timothy G. 
+4 
+Barraclough1,2,* 
+5 
+ 
+6 
+1Department of Zoology, University of Oxford, 11a Mansfield Road, Oxford, United Kingdom. 2Department of Life 
+7 
+Sciences, Imperial College London, Silwood Park Campus, Ascot, Berkshire, United Kingdom.3Division of 
+8 
+Biosciences, University College London, London, United Kingdom. 4Institute of Zoology, Section Developmental 
+9 
+Biology, Wormlab, University of Cologne, Köln, Germany. 5National Research Council of Italy, Water Research 
+10 
+Institute, Verbania Pallanza, Italy. 6Community Dynamics Group, Department of Evolutionary Ecology, Max Planck 
+11 
+Institute for Evolutionary Biology, Plön, Germany. 7Aquatic Ecology and Evolution, University of Konstanz, 
+12 
+Germany. 8Josephine Bay Paul Center for Comparative Molecular Biology and Evolution, Marine Biological 
+13 
+Laboratory, Woods Hole, MA 
+14 
+ 
+15 
+*Corresponding authors: RWN: reubennowell@gmail.com; TGB: tim.barraclough@zoo.ox.ac.uk 
+16 
+ 
+17 
+ORCID numbers: 
+18 
+ 
+19 
+RWN: 0000-0001-7546-6495 
+20 
+CGW: 0000-0001-7649-5255 
+21 
+PA: 0000-0001-6790-8687 
+22 
+PHS: 0000-0001-6776-0934 
+23 
+DF: 0000-0002-5770-0353 
+24 
+LB: 0000-0002-3885-5253 
+25 
+FR: 0000-0003-4044-8734 
+26 
+IRA: 0000-0002-4805-1339 
+27 
+TGB: 0000-0002-8084-2640 
+28 
+ 
+29 
+ 
+30 
+Abstract 
+31 
+ 
+32 
+Transposable elements (TEs) are selfish genomic parasites whose ability to spread autonomously 
+33 
+is facilitated by sexual reproduction in their hosts. If hosts become obligately asexual, TE 
+34 
+frequencies and dynamics are predicted to change dramatically, but the long-term outcome is 
+35 
+unclear. Here, we test current theory using whole-genome sequence data from eight species of 
+36 
+bdelloid rotifers, a class of invertebrates where males are thus far unknown. Contrary to 
+37 
+expectations, we find a diverse range of active TEs in bdelloid genomes, at an overall frequency 
+38 
+within the range seen in sexual species. We find no evidence that TEs are spread by cryptic 
+39 
+recombination or restrained by unusual DNA repair mechanisms, but we report that bdelloids 
+40 
+share a large and unusual expansion of genes involved in RNAi-mediated TE suppression. This 
+41 
+suggests that enhanced cellular defence mechanisms might mitigate the deleterious effects of 
+42 
+active TEs and compensate for the consequences of long-term asexuality. 
+43 
+ 
+44 
+ 
+45 
+Introduction 
+46 
+ 
+47 
+Transposable elements (TEs) are repeated sequences of DNA that can mobilize and replicate 
+48 
+themselves within genomes [1–3]. TEs are divided into two major categories: class I 
+49 
+retrotransposons, which use a ‘copy-and-paste’ replication mechanism via a reverse-transcribed 
+50 
+RNA intermediate, and class II DNA transposons, which use ‘cut-and-paste’ replication with a 
+51 
+DNA intermediate. Both classes are ancient and diverse—retrotransposons are found in some 
+52 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+2 
+bacteria and nearly all eukaryotes, while DNA transposons are found across the tree of life [4–6]. 
+53 
+Although TE replications are occasionally beneficial [7], the vast majority are deleterious for the 
+54 
+host [8,9]. Costs include insertional mutations that disrupt genes [10], cellular costs of replicating 
+55 
+and expressing excess DNA [11], and increased risk of chromosomal abnormalities due to 
+56 
+ectopic recombination between homologous TE sequences interspersed through the genome 
+57 
+[12,13]. Despite this, by replicating autonomously as selfish elements, TEs can accumulate to 
+58 
+large numbers within genomes—for example, TEs comprise 46% of the human genome, 
+59 
+including over 1 million (~11%) nonautonomous Alu retroelements [14,15]. TE numbers vary 
+60 
+greatly, however, even between closely related species. In vertebrates, for example, TEs span an 
+61 
+order of magnitude, from below 6% to over 50% of the genome [16], with similarly large 
+62 
+variation observed within and between other groups such as arthropods [17], nematodes [18], 
+63 
+and fungi [19]. Explaining this variation is vital to understanding the mechanisms affecting TE 
+64 
+spread and control. 
+65 
+ 
+66 
+Sexual reproduction has long been thought to play a major role in TE dynamics within 
+67 
+eukaryotes. On the one hand, sexual reproduction and outcrossing decouples the fate of TEs from 
+68 
+other host genes, allowing them to jump into new genomic backgrounds and to behave as selfish 
+69 
+genomic parasites [1,2,20]. On the other hand, sex enables the efficient removal of deleterious 
+70 
+insertions from populations through recombination and segregation [21–23]. The risk of 
+71 
+chromosome abnormalities due to ectopic recombination, arguably the main cost of high TE 
+72 
+loads in eukaryotes [9,24], also occurs during chromosome pairing at meiosis. Sex therefore 
+73 
+plays opposing roles—it permits spread and selfish behaviour of TEs, and yet it facilitates and 
+74 
+strengthens selection against high loads. Variation in TE content among taxa might thus result 
+75 
+from shifts in the balance of these different opposing forces. 
+76 
+ 
+77 
+By this logic, the loss of sexual reproduction should affect TE dynamics dramatically. Since 
+78 
+asexual lineages generally arise from sexual species [25], it is likely that they initially harbor 
+79 
+many active TEs [26,27]. All else being equal, the loss of recombination will limit the ability of 
+80 
+selection to remove deleterious insertions from a fully linked host genome, and so the load of 
+81 
+TEs should accumulate. At the same time, the fate of TEs is immediately coupled to that of the 
+82 
+host genome, resulting in intensified selection for inactivation, excision or domestication of the 
+83 
+elements [2,22,27–29]. The genomes of asexual lineages whose TEs continued to replicate 
+84 
+unchecked would become overrun, potentially leading to extinction of the lineage and the TEs 
+85 
+themselves. While some TEs could be maintained by horizontal transfer between species  
+86 
+(especially class II DNA elements [6,30]) or by having beneficial effects (as in bacteria, [31,32]), 
+87 
+other TEs—particularly the class I LINE-like (i.e. non–long terminal repeat [LTR]) 
+88 
+retrotransposons—are thought to be transmitted almost exclusively vertically [5,33,34], and 
+89 
+therefore depend strongly on sex for their persistence. 
+90 
+ 
+91 
+Models of the population genetics of vertically transmitted TEs in asexuals predict one of two 
+92 
+outcomes: either TEs accumulate within lineages faster than they can be removed, overrunning 
+93 
+each lineage in turn and driving the population extinct, or, conversely, TE removal outweighs 
+94 
+proliferation and the population eventually purges itself entirely of deleterious TEs [27,35,36]. 
+95 
+These predictions are difficult to test empirically, however, because the time required for a 
+96 
+population to arrive at either extinction or redemption is expected to be on the order of millions 
+97 
+of generations [27], too long to observe directly and beyond the lifespan of most asexual lineages 
+98 
+[37,38]. 
+99 
+ 
+100 
+Here, we test these ideas in a well-known group of asexual animals, the bdelloid rotifers. These 
+101 
+microscopic invertebrates appear to have reproduced without males or meiosis for tens of 
+102 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+3 
+millions of years, diversifying into hundreds of species within limno-terrestrial and freshwater 
+103 
+habitats globally [39,40]. Bdelloids sampled from nature (and those reared in the laboratory) 
+104 
+consist entirely of parthenogenetic females, and neither males nor hermaphrodites are described 
+105 
+for any species despite centuries of close observation by naturalists [39,41,42]. Genetic and 
+106 
+genomic evidence for their proposed ancient and obligate asexuality remains uncertain, however. 
+107 
+Initial evidence of long-term asexuality [43,44] has been refuted by later studies or confounded 
+108 
+by alternative explanations [45–47]. Some recent studies have proposed alternative modes of 
+109 
+inter-individual genetic exchange, but these suggestions would require exotic mechanisms 
+110 
+unknown in other animals [44,48], or rates of sex that are difficult to reconcile with the lack of 
+111 
+observed males [49]. While the precise nature of reproduction in bdelloids remains an open 
+112 
+question, nonetheless they provide a unique test-case for models of TE evolution when 
+113 
+conventional sex is absent or strikingly rare. 
+114 
+ 
+115 
+Initial PCR-based surveys of five bdelloid genomes found no evidence of class I 
+116 
+retrotransposons from either the LTR or LINE-like superfamilies, but did reveal a diverse array 
+117 
+of class II DNA transposons, mostly at low copy number [50]. The presence of class II TEs in 
+118 
+bdelloids might be explained by horizontal transfer, which is thought to occur more frequently 
+119 
+for class II TEs with DNA intermediates [6,30,33,34] (but see [51]). The apparent lack of 
+120 
+retrotransposons contrasted sharply, however, with their near ubiquity in other taxa. At the time, 
+121 
+the absence of class I TEs appeared consistent with the view that long-term asexual evolution in 
+122 
+bdelloids had caused the loss of parasitic elements that depended on sexual transmission 
+123 
+[22,27,50,52]. 
+124 
+ 
+125 
+Another unusual aspect of bdelloid physiology was suggested to contribute to their seemingly 
+126 
+low TE complement. In most bdelloid species (but not all), individuals can survive complete 
+127 
+desiccation at any life stage via a process called anhydrobiosis (‘life without water’). Desiccation 
+128 
+causes double-strand breakages (DSBs) in DNA, but bdelloids are able to repair these and 
+129 
+recover to an unusual degree [53–55]. It was proposed that anhydrobiosis might influence TE 
+130 
+evolution in two ways [27,52,56]. First, DSB repair could aid TE removal, either via gene 
+131 
+conversion from a homologous chromosome lacking the TE insertion, or excision of mis-paired 
+132 
+regions. Second, the pairing of homologous chromosomes, if required during DSB-repair, could 
+133 
+provide a context for ongoing selection against chromosomal abnormalities caused by ectopic 
+134 
+recombination. In either case, anhydrobiosis would decrease the number of TEs, potentially 
+135 
+helping to explain the low overall TE content encoded in bdelloid genomes. 
+136 
+ 
+137 
+These early ideas were transformed by more detailed studies of the model bdelloid species 
+138 
+Adineta vaga, which used refined methods and genome-scale data to discover a variety of 
+139 
+retrotransposon families. These include an endonuclease-deficient Penelope-like element (PLE) 
+140 
+designated Athena [57,58], which is itself incorporated within much larger and highly unusual 
+141 
+retroelements called Terminons [59]; another PLE that has retained its endonuclease [60], LTR 
+142 
+retrotransposons (Juno, Vesta, TelKA and Mag [61,62]), and LINE-like retrotransposons (R4, R9, 
+143 
+Hebe, RTE, Tx1 and Soliton [44,63,64]). In total, TEs accounted for 2.2% of the 217 Mb genome 
+144 
+(~4.8 Mb) [44], rising to ~4% on inclusion of the recently discovered giant Terminon elements 
+145 
+[59]. The conclusion that bdelloids lack class I TEs therefore no longer holds, and the predicted 
+146 
+effects of asexuality and anhydrobiosis on TE evolution remain open questions that are amenable 
+147 
+to testing with comparative genomics. Specifically, the comparison of desiccating species with 
+148 
+those few bdelloid rotifer lineages that are unable to survive desiccation would indicate whether 
+149 
+anhydrobiosis does limit TE numbers as hypothesized. Also, comparisons within populations 
+150 
+could shed light on the activity of TEs and whether bdelloids possess cryptic forms of 
+151 
+recombination that could aid in TE removal or facilitate TE spread. 
+152 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+4 
+ 
+153 
+Here, we test the predicted effects of asexuality and anhydrobiosis on TE evolution by 
+154 
+comparing 42 rotifer genomes belonging to 15 taxonomic species. Our sample includes both 
+155 
+desiccating and nondesiccating bdelloids, and eight monogonont rotifers [65–67], a separate 
+156 
+class that alternates sexual and asexual reproduction and cannot survive desiccation as adults. 
+157 
+Results are set in context by comparison to published genomes from an acanthocephalan [68] 
+158 
+(now classified with rotifers in the Phylum Syndermata) and a range of other animal phyla. We 
+159 
+ask six questions raised by theory. (1) How does the abundance and diversity of TEs in bdelloids 
+160 
+differ from that in other animals, including sexual rotifers? (2) Are TEs recently and currently 
+161 
+active in all bdelloids? (3) Can we detect signatures of recombination affecting bdelloid TEs, as 
+162 
+might be expected if bdelloids do have cryptic forms of sexual reproduction? (4) Do desiccating 
+163 
+species contain fewer TEs than nondesiccating species, as previously theorized? (5) Are TEs in 
+164 
+bdelloids under the same selective constraints as in other taxa? (6) Finally, do bdelloids possess 
+165 
+alternative molecular mechanisms that might help to keep their TEs under control, as might be 
+166 
+expected if the ability to control TEs by sexual reproduction is absent or reduced? 
+167 
+ 
+168 
+ 
+169 
+Results and Discussion 
+170 
+ 
+171 
+High-quality population genomics data for bdelloid rotifers. To quantify variation in repeat 
+172 
+content within and between bdelloid species, we generated de novo whole-genome assemblies 
+173 
+for 31 rotifer samples encompassing nine species (Fig 1a; Table 1; S1 Data). Three of these 
+174 
+assemblies were generated using 10x Genomics linked-read data (for Adineta steineri, Rotaria 
+175 
+sordida, and Rotaria sp. ‘Silwood-1’), while 26 are from single-individual samples. In order to 
+176 
+capture as many potential repeats as possible, we generated two assemblies for each sample: a 
+177 
+‘reference’ assembly, with a focus on quality and contiguity, and a ‘maximum haplotype’ 
+178 
+(maxhap) assembly that included small or highly similar contigs that might be derived from 
+179 
+recent TE duplications or other sources of copy number variation, at the expense of contiguity. 
+180 
+ 
+181 
+Reference genomes showed an expected scaffold size (AU, see Materials and methods) ranging 
+182 
+from 21.1 kb (Didymodactylos carnosus) to 702.3 kb (R. sp. ‘Silwood-1’) and BUSCO scores 
+183 
+that indicated 89–98% of 303 core eukaryote genes were completely recovered, increasing to 96–
+184 
+99% if fragmented copies are included (Table 1). General genome characteristics such as 
+185 
+genome size (assembly span), the proportion of G + C nucleotides (GC%), the number of coding 
+186 
+genes (CDS), and the level of homologous divergence (number of SNPs identified within CDS) 
+187 
+were within the range expected from previous analyses of bdelloid genomes [44,46] (Fig 1b–c; 
+188 
+Table 1; S1 Fig). Intragenomic collinearity and synonymous divergence of coding regions in the 
+189 
+A. steineri, R. sordida and R. sp. ‘Silwood-1’ maximum haplotype assemblies reveal the 
+190 
+characteristic signature of degenerate tetraploidy that has been found in all bdelloid species 
+191 
+examined to date (Fig 1d). 
+192 
+ 
+193 
+Compared to the reference set, maxhap assemblies generally showed increased span (mean 
+194 
+increase = 17.9 Mb ± 21.5 standard deviation [SD]) and were substantially more fragmented, as 
+195 
+expected (S1 Table). Nonetheless, BUSCO completeness scores remained high, with 76% to 
+196 
+98% of genes completely recovered (increasing to 95–98% if fragmented copies are included), 
+197 
+indicating that the majority of core genes are successfully captured (S1 Table). The BUSCO 
+198 
+duplication metric (‘D’) does not increase greatly between reference and maxhap assemblies, 
+199 
+which shows that the additional sequences retained in the maxhap assemblies do not contain 
+200 
+complete extra copies of core genes. Thus, the maxhap assemblies are not fully haplotype-
+201 
+resolved representations of the genome, except in the case of the three 10x assemblies. 
+202 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+5 
+Table 1. Assembly statistics for one monogonont and 30 bdelloid rotifer reference assemblies presented in this study. 
+203 
+ 
+204 
+Sample ID 
+Species name 
+SZ 
+(Mb) 
+NN 
+N50 
+(kb) 
+L50 
+AU 
+(kb) 
+GC 
+(%) 
+Gaps 
+(kb) 
+Coverage 
+(X) 
+Genome BUSCO score 
+CDS 
+Proteome BUSCO score 
+GenBank 
+accession 
+Bc_PSC1 
+Brachionus 
+calyciflorus 
+(Monogonont) 
+116.7 
+14,869 
+18.5 
+1,692 
+26.6 
+25.6 
+78 
+186 
+C:96%[S:93%,D:3%],F:2% 
+24,404 
+C:98%[S:93%,D:5%],F:1% 
+GCA_904009505.1 
+Ar_ARIC003 
+Adineta ricciae 
+135.6 
+4,302 
+283.8 
+129 
+388 
+35.5 
+65 
+89 
+C:97%[S:58%,D:39%],F:2% 
+49,015 
+C:97%[S:52%,D:45%],F:1% 
+GCA_904047305.1 
+As_10x_p 
+Adineta steineri 
+171.1 
+8,257 
+200.1 
+163 
+394.5 
+29 
+206 
+198 
+C:95%[S:67%,D:33%],F:2% 
+50,321 
+C:97%[S:58%,D:38%],F:2% 
+ 
+As_ASTE804 
+Adineta steineri 
+160.3 
+9,359 
+158.1 
+265 
+214.9 
+29.1 
+152 
+62 
+C:95%[S:74%,D:22%],F:2% 
+47,222 
+C:98%[S:74%,D:24%],F:2% 
+GCA_904047245.1 
+As_ASTE805 
+Adineta steineri 
+156.3 
+9,008 
+169.6 
+245 
+226.4 
+29.2 
+129 
+65 
+C:98%[S:77%,D:21%],F:1% 
+43,986 
+C:99%[S:72%,D:26%],F:1% 
+GCA_904047255.1 
+As_ASTE806 
+Adineta steineri 
+160.3 
+7,597 
+168.2 
+257 
+222.5 
+29.2 
+145 
+82 
+C:96%[S:72%,D:24%],F:2% 
+45,930 
+C:98%[S:74%,D:24%],F:2% 
+GCA_904047275.1 
+Dc_DCAR505 
+Didymodactylos 
+carnosus 
+323.6 
+87,048 
+7.8 
+11,656 
+10.5 
+33.5 
+41 
+21 
+C:86%[S:69%,D:17%],F:8% 
+46,286 
+C:88%[S:71%,D:18%],F:9% 
+GCA_904047325.1 
+Dc_DCAR706 
+Didymodactylos 
+carnosus 
+368.8 
+78,356 
+12 
+7,695 
+19.1 
+33.5 
+13 
+76 
+C:95%[S:70%,D:25%],F:2% 
+46,863 
+C:95%[S:71%,D:25%],F:2% 
+GCA_904053135.1 
+Rd_10x_p 
+Rotaria sordida 
+272.5 
+16,571 
+64.5 
+843 
+193.8 
+30.8 
+395 
+91 
+C:94%[S:77%,D:19%],F:2% 
+44,299 
+C:95%[S:69%,D:26%],F:2% 
+ 
+Rd_RSOR408 
+Rotaria sordida 
+252.9 
+20,315 
+57.6 
+1,246 
+75.5 
+30.4 
+291 
+39 
+C:94%[S:76%,D:19%],F:3% 
+40,501 
+C:97%[S:73%,D:24%],F:2% 
+GCA_904053145.1 
+Rd_RSOR410 
+Rotaria sordida 
+252.6 
+19,518 
+60.9 
+1,179 
+80 
+30.4 
+252 
+42 
+C:95%[S:77%,D:18%],F:3% 
+40,474 
+C:98%[S:74%,D:24%],F:2% 
+GCA_904053495.1 
+Rd_RSOR504 
+Rotaria sordida 
+251.3 
+22,067 
+53.1 
+1,338 
+69.8 
+30.4 
+369 
+39 
+C:94%[S:78%,D:16%],F:3% 
+41,085 
+C:96%[S:73%,D:23%],F:3% 
+GCA_904047315.1 
+Rg_MAG1 
+Rotaria 
+magnacalcarata 
+178.7 
+19,184 
+42 
+1,077 
+62.4 
+32 
+402 
+58 
+C:97%[S:81%,D:16%],F:1% 
+40,318 
+C:99%[S:76%,D:22%],F:1% 
+GCA_903995865.1 
+Rg_MAG2 
+Rotaria 
+magnacalcarata 
+181.1 
+22,216 
+39.7 
+1,141 
+61 
+32 
+433 
+63 
+C:98%[S:81%,D:17%],F:1% 
+40,289 
+C:99%[S:74%,D:26%],F:0% 
+GCA_903995855.1 
+Rg_MAG3 
+Rotaria 
+magnacalcarata 
+180.9 
+22,132 
+40.7 
+1,142 
+60 
+32 
+508 
+60 
+C:96%[S:80%,D:17%],F:1% 
+40,740 
+C:99%[S:77%,D:22%],F:0% 
+GCA_903995845.1 
+Rg_RM15 
+Rotaria 
+magnacalcarata 
+174 
+18,391 
+46.5 
+966 
+67.3 
+32 
+430 
+55 
+C:96%[S:80%,D:16%],F:2% 
+38,283 
+C:99%[S:77%,D:22%],F:1% 
+GCA_903995885.1 
+Rg_RM9 
+Rotaria 
+magnacalcarata 
+173.8 
+19,520 
+44 
+999 
+64.7 
+31.9 
+594 
+51 
+C:96%[S:80%,D:16%],F:1% 
+38,404 
+C:98%[S:76%,D:22%],F:1% 
+GCA_903995825.1 
+Rp_RPSE411 
+Rotaria sp. 
+‘Silwood-2’ 
+296.5 
+30,050 
+102.5 
+381 
+691.1 
+31 
+247 
+35 
+C:93%,[S:72%,D:21%],F:4% 
+48,378 
+C:95%[S:72%,D:23%],F:4% 
+GCA_904053095.1 
+Rp_RPSE503 
+Rotaria sp. 
+‘Silwood-2’ 
+285.6 
+33,174 
+78.3 
+449 
+627.2 
+31.3 
+446 
+34 
+C:91%,[S:75%,D:17%],F:5% 
+48,269 
+C:92%[S:72%,D:20%],F:7% 
+GCA_904053125.1 
+Rp_RPSE809 
+Rotaria sp. 
+‘Silwood-2’ 
+271.1 
+28,589 
+101.6 
+350 
+681.4 
+31 
+377 
+27 
+C:93%,[S:76%,D:17%],F:4% 
+47,010 
+C:95%[S:74%,D:22%],F:4% 
+GCA_904053085.1 
+Rp_RPSE812 
+Rotaria sp. 
+‘Silwood-2’ 
+264.1 
+34,498 
+80.8 
+403 
+616.2 
+31.1 
+428 
+27 
+C:89%,[S:74%,D:15%],F:8% 
+47,040 
+C:90%[S:73%,D:17%],F:8% 
+GCA_904053105.1 
+Rs_AK11 
+Rotaria socialis 
+149.2 
+6,303 
+111.3 
+370 
+150.2 
+31.8 
+442 
+39 
+C:97%,[S:80%,D:17%],F:1% 
+34,844 
+C:99%[S:75%,D:24%],F:1% 
+GCA_903995835.1 
+Rs_AK15 
+Rotaria socialis 
+147.4 
+5,030 
+134.7 
+305 
+177.6 
+31.8 
+423 
+37 
+C:96%,[S:79%,D:18%],F:1% 
+34,140 
+C:98%[S:76%,D:23%],F:1% 
+GCA_903995795.1 
+Rs_AK16 
+Rotaria socialis 
+147.4 
+4,720 
+139.5 
+296 
+180.3 
+31.8 
+332 
+43 
+C:97%,[S:80%,D:18%],F:0% 
+33,717 
+C:99%[S:76%,D:23%],F:1% 
+GCA_903995805.1 
+Rs_AK27 
+Rotaria socialis 
+149.9 
+5,952 
+123.7 
+343 
+159.8 
+31.8 
+458 
+36 
+C:97%,[S:80%,D:17%],F:0% 
+34,369 
+C:99%[S:75%,D:24%],F:1% 
+GCA_903995815.1 
+Rs_RS1 
+Rotaria socialis 
+151.1 
+6,254 
+124.9 
+334 
+166.2 
+31.8 
+490 
+40 
+C:97%,[S:80%,D:17%],F:0% 
+33,937 
+C:99%[S:77%,D:22%],F:1% 
+GCA_903995875.1 
+ 
+ 
+6 
+Rw_10x_p 
+Rotaria sp. 
+‘Silwood-1’ 
+310.4 
+16,995 
+211.8 
+211 
+126.2 
+31.1 
+534 
+53 
+C:95%,[S:76%,D:20%],F:1% 
+44,241 
+C:97%[S:73%,D:24%],F:1% 
+ 
+Rw_RSIL801 
+Rotaria sp. 
+‘Silwood-1’ 
+268.4 
+28,548 
+136.5 
+288 
+687.3 
+30.8 
+472 
+45 
+C:94%,[S:77%,D:17%],F:4% 
+41,574 
+C:95%[S:75%,D:21%],F:5% 
+GCA_904053155.1 
+Rw_RSIL802 
+Rotaria sp. 
+‘Silwood-1’ 
+249.9 
+21,286 
+153.4 
+238 
+702.3 
+30.7 
+451 
+42 
+C:92%,[S:76%,D:16%],F:4% 
+39,577 
+C:94%[S:76%,D:18%],F:4% 
+GCA_904053505.1 
+Rw_RSIL804 
+Rotaria sp. 
+‘Silwood-1’ 
+247.6 
+25,643 
+118.3 
+287 
+660.4 
+30.8 
+667 
+34 
+C:94%,[S:78%,D:16%],F:3% 
+41,139 
+C:96%[S:78%,D:19%],F:3% 
+GCA_904053115.1 
+Rw_RSIL806 
+Rotaria sp. 
+‘Silwood-1’ 
+294.1 
+29,968 
+132.4 
+333 
+681.9 
+30.8 
+500 
+31 
+C:95%,[S:79%,D:16%],F:2% 
+48,259 
+C:97%[S:78%,D:19%],F:2% 
+GCA_904054495.1 
+ 
+205 
+Sequence statistics codes: SZ, total sequence length (Mb); NN, number of sequences; N50, N50 scaffold length (kb); L50, N50 index; AU, expected scaffold size (area under ‘Nx’ curve, kb). 
+206 
+Gaps: Undetermined bases (Ns) introduced during scaffolding. 
+207 
+BUSCO score based on eukaryote set (n = 303); BUSCO codes: C, complete; S, complete and single copy; D, complete and duplicated; F, fragmented.  
+208 
+Abbreviations: GC, guanine + cytosine; BUSCO, Benchmarking Universal Single-Copy Orthologs. 
+209 
+ 
+ 
+7 
+To these new data, we added published genomes for seven monogonont taxa (one from the 
+210 
+Brachionus calyciflorus species complex [65] and six from four species of the Brachionus 
+211 
+plicatilis species complex, namely B. asplanchnoidis, B. plicatilis sensu stricto (HYR1), B. 
+212 
+rotundiformis, and B. sp. ‘Tiscar’ [66,67]) and four bdelloids (A. vaga, Adineta ricciae, Rotaria 
+213 
+magnacalcarata and Rotaria macrura [44,46]), yielding a total of 42 rotifer genomes. Of these, 
+214 
+11 samples belong to nondesiccating bdelloid species (five individuals each from R. 
+215 
+magnacalcarata and Rotaria socialis, and the previously published genome of R. macrura). 
+216 
+ 
+217 
+ 
+218 
+ 
+219 
+ 
+220 
+Fig 1. Genome properties of sequenced rotifers. (a) Bdelloid rotifer morphology; scale bar indicates 
+221 
+100 µm. (i) Individual from an undescribed species of Rotaria (R. sp. ‘Silwood-1’), showing eyes (E) and 
+222 
+foot (F) with two spurs and three toes. (ii) Further image of R. sp. ‘Silwood-1’ with anterior–posterior (A–P) 
+223 
+axis marked. (iii) Two individuals of A. steineri in phase contrast. (b) Cumulative assembly span for six 
+224 
+bdelloid species with population genomics data (n > 2). 10x Genomics haploid (‘pseudohap’) and diploid 
+225 
+(‘megabubbles’) assemblies for A. steineri, R. sordida and R. sp. ‘Silwood-1’ are indicated with diamond 
+226 
+and circle symbols, respectively. The four previously published genomes for A. vaga (‘Av2013’, GenBank 
+227 
+accession GCA_000513175.1) and A. ricciae (‘Ar2018’, GCA_900240375.1), R. macrura (‘Rc2018’, 
+228 
+GCA_900239685.1) and R. magnacalcarata (‘Rg2018’, GCA_900239745.1) are indicated in grey, for 
+229 
+comparison. (c) Intragenomic divergence, measured as the number of SNPs detected in coding regions 
+230 
+(CDS). Boxplots show the median (band), interquartile range (box) and minimum/maximum values 
+231 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+8 
+(whiskers). Underlying data are shown as jittered points. Desiccation-tolerant species are in orange, 
+232 
+intolerant species in blue. Species abbreviations: As, A. steineri; Rd, R. sordida; Rw, R. sp. ‘Silwood-1’; 
+233 
+Rp, Rotaria sp. ‘Silwood-2’; Rg, R. magnacalcarata; Rs, R. socialis. (d) Genome structure in A. steineri, 
+234 
+R. sordida and R. sp. ‘Silwood-1’ haplotype-resolved (‘megabubbles’) assemblies. Each point represents 
+235 
+a collinear block of genes, plotted by average pairwise synonymous (KS, X-axis) and collinearity score 
+236 
+(see Materials and methods and S1 note) on the Y-axis. Separation into two distinct clusters representing 
+237 
+homologous (squares) and homoeologous (circles) relationships among gene copies is consistent with 
+238 
+ancestral tetraploidy, with homoeologous copies derived from a putative ancient genome duplication. 
+239 
+ 
+240 
+ 
+241 
+Abundant and diverse TEs in bdelloid genomes. To ascertain the repeat content of bdelloid 
+242 
+genomes relative to other taxa in a consistent manner, we used the RepeatModeler and 
+243 
+RepeatMasker pipelines to identify and classify repeats across genomes. The total proportion of 
+244 
+the genome classified as repetitive ranged from ~19% to 45% across bdelloid genera, with 
+245 
+variation within and between species (Fig 2a; S2 Fig; S3 Fig; S2 Data; S3 Data). Most of these 
+246 
+are simple or unclassified repeats that do not belong to major TE superfamilies. While the 
+247 
+precise nature of these unclassified repeats is not elucidated, an appreciable fraction (~7–27%, 
+248 
+mean = 17%) are also annotated as protein-coding and thus may be derived from gene 
+249 
+expansions or other duplications, while a further small fraction (< 1%) are accounted for by an 
+250 
+additional survey of small, nonautonomous class II TEs called miniature inverted-repeats 
+251 
+(MITEs) (S2 Data). The proportion of the genome accounted for by known TEs was much 
+252 
+smaller, ranging from 2.4% to 7.3% (mean = 4.9% ± 1.2 standard deviations [SD], median = 
+253 
+5.1%) in bdelloids. Broken down by class and superfamily, the mean values are: class I total = 
+254 
+2.09% ± 0.75 (PLEs = 0.59% ± 0.14; LTRs = 0.68% ± 0.26; and LINEs = 0.82% ± 0.47); class II 
+255 
+total = 2.79 ± 0.8 (DNA transposons = 2.49% ± 0.77; rolling circles = 0.30 ± 0.11). These results 
+256 
+are in broad agreement with previous estimates of TE content in bdelloids [44,46,47,59]. 
+257 
+ 
+258 
+We first compare these values to closely related sexual lineages in the phylum Syndermata, the 
+259 
+monogonont rotifers and acanthocephalans. The most striking difference relates to the recently 
+260 
+published genome of the obligately sexual acanthocephalan Pomphorhynchus laevis [68], which 
+261 
+encodes a substantially greater proportion of repeats than either bdelloids or monogononts. In 
+262 
+agreement with Mauer et al., we find ~66% of the P. laevis genome to be composed of repeats. 
+263 
+The large majority are class I retrotransposons (~71% of the total TE content) from the LINE 
+264 
+(~52%) and PLE (~15%) superfamilies, and there are relatively few DNA transposons (~1.3%) 
+265 
+(Fig 2b). There is increasing evidence that acanthocephalans may be the closest relatives to the 
+266 
+Class Bdelloidea [69–71]. However, all members of the Acanthocephala (also known as the 
+267 
+thorny-headed worms) are obligate endoparasites and are highly differentiated in both 
+268 
+morphological and molecular terms from other syndermatans. It is unclear whether these features 
+269 
+may contribute to the high repeat content and other unusual genome characteristics of P. laevis 
+270 
+[68]. 
+271 
+ 
+272 
+In monogononts, the mean values for class I TEs is 5.2% ± 1.5 SD and for class II TEs it is 2.5% 
+273 
+± 1.0 SD. Thus, monogononts are slightly more TE-rich than bdelloids, but also substantially 
+274 
+more variable between species (Fig 2a; S3 Fig). Repeat content differs between bdelloids and 
+275 
+monogononts in two main ways, both in regard to the composition of class I retrotransposons. 
+276 
+First, monogononts encode substantially more LINE-like retroelements than bdelloids, making 
+277 
+up (on average) approximately 50% and 16% of the total TE content in each clade respectively. 
+278 
+The frequency of LINEs is of particular interest, because this class of TEs is thought to be least 
+279 
+likely to undergo horizontal transfer and thus the most dependent on sex for transmission 
+280 
+[5,33,34]. Second, Penelope-like elements (PLEs) have increased in proportion in all bdelloids 
+281 
+relative to monogononts, from ~1% in monogononts to ~12% in bdelloids on average. 
+282 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+9 
+Interestingly, a high proportion of PLEs is also seen in the acanthocephalan P. laevis, while a 
+283 
+high proportion of LINEs is found in both D. carnosus isolates (~35% of total TE content), a 
+284 
+deeply branching lineage sister to all other bdelloid taxa included in the analyses. Thus, 
+285 
+assuming that acanthocephalans are the closest relatives to bdelloids, the most parsimonious 
+286 
+explanation for these broad-scale patterns is that the expansion of PLEs occurred in the ancestor 
+287 
+to bdelloids and acanthocephalans, whereas the contraction of LINEs has occurred more 
+288 
+recently, confined to a subset of bdelloid genera.  
+289 
+ 
+290 
+To put these differences in TE content among rotifers in a broader context, we applied the same 
+291 
+repeat-finding pipeline to animals from a range of more distantly related protostome phyla: three 
+292 
+insects, a nematode, two tardigrades, five molluscs, two annelids, a brachiopod, platyhelminth 
+293 
+and orthonectid [72–83] (S2 Table). As expected, both the abundance and diversity of TEs varied 
+294 
+widely across taxa (Fig 2b). Total TE content ranged from 0.8% (the insect Polypedilum 
+295 
+vanderplanki) to ~24% (octopus and platyhelminth). Although the acanthocephalan genome 
+296 
+appears to be particularly rich in TEs, bdelloids (except for D. carnosus) have modest amounts 
+297 
+of TEs, including class I TEs specifically, while in monogononts these amounts vary greatly 
+298 
+among species. All bdelloids encode relatively more TEs than both Polypedilum species but 
+299 
+fewer than Drosophila melanogaster, Caenorhabditis elegans, annelid worms and some 
+300 
+molluscs, and are intermediate with respect to other taxa. Note that TE proportion in molluscs, 
+301 
+nematodes and flatworms is known to be highly variable (e.g. [18]), while bdelloids display 
+302 
+much less variability barring the early-branching D. carnosus. 
+303 
+ 
+304 
+ 
+305 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+10 
+ 
+306 
+ 
+307 
+Fig 2. Repeat content and diversity in rotifer genomes. (a) Maximum likelihood phylogeny of eight 
+308 
+monogonont (square symbols on tips) and 34 bdelloid (circles) genomes based on the concatenated 
+309 
+alignment of a subset of core eukaryotic (BUSCO) genes. Orange and blue tip colours indicate 
+310 
+desiccating and nondesiccating taxa, respectively. Species codes in tip names are: Bc, Brachionus 
+311 
+Bdelloid (desiccating)
+Bdelloid (nondesiccating)
+Monogonont (nondesiccating)
+Rw_10x_p
+Rw_RSIL801
+Rw_RSIL802
+Rw_RSIL804
+Rw_RSIL806
+Rp_RPSE411
+Rp_RPSE503
+Rp_RPSE812
+Rp_RPSE809
+Rd_RSOR408
+Rd_RSOR504
+Rd_RSOR410
+Rd_10x_p
+Rc_Rc2018
+Rg_MAG1
+Rg_MAG2
+Rg_Rg2018
+Rg_MAG3
+Rg_RM15
+Rg_RM9
+Rs_AK15
+Rs_AK11
+Rs_AK27
+Rs_AK16
+Rs_RS1
+As_ASTE806
+As_ASTE804
+As_ASTE805
+As_10x_p
+Ar_ARIC003
+Ar_Ar2018
+Av_Av2013
+Dc_DCAR505
+Dc_DCAR706
+Bp_Tokyo1
+Bp_HYR1
+Ba_OHJ82
+Ba_OHJ22
+Br_Italy2
+Bt_SM28
+Bc_PSC1
+Bc_v0.6
+0
+10
+20
+30
+40
+50
+Proportion of genome (%)
+Repeat type
+DNA
+RC
+PLE
+LTR
+LINE
+SINE
+Satellite
+Simple
+Low complex
+Unclassified
+0
+20
+40
+60
+80
+100
+Relative proportion of total TEs (%)
+a
+Intoshia linei
+Schistosoma haematobium
+Capitella teleta
+Helobdella robusta
+Lingula anatina
+Biomphalaria glabrata
+Aplysia californica
+Octopus bimaculoides
+Lottia gigantea
+Crassostrea gigas
+Pomphorhynchus laevis
+Ramazzottius varieornatus
+Hypsibius exemplaris
+Caenorhabditis elegans
+Polypedilum vanderplanki
+Polypedilum nubifer
+Drosophila melanogaster
+0
+10
+20
+30
+40
+50
+60
+70
+Proportion of genome (%)
+D
+ND
+D
+ND
+0
+20
+40
+60
+80
+100
+Relative proportion of total TEs (%)
+b
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+11 
+calyciflorus; Br, B. rotundiformis; Bt, B. sp. ‘Tiscar’; Bp, B. plicatilis HYR1; Ba, B. asplanchnoidis; Dc, 
+312 
+Didymodactylos carnosus; Av, Adineta vaga; Ar, A. ricciae; As, A. steineri; Rs, Rotaria socialis; Rg, R. 
+313 
+magnacalcarata; Rc, R. macrura; Rd, R. sordida; Rw, R. sp. ‘Silwood-1’; Rp, R. sp. ‘Silwood-2’. Repeat 
+314 
+content is shown as the genome proportion (%) broken down by TE superfamily (middle panel), and 
+315 
+relative proportion (%) of total known (i.e., classified) TEs (right panel), where colours represent TE 
+316 
+superfamilies (see legend) and shades of colour represent different TE families within each superfamily. 
+317 
+(b) Equivalent repeat content analysis in 17 protostome animal genomes, including the model species D. 
+318 
+melanogaster and C. elegans, the recently published acanthocephalan rotifer P. laevis, and selected 
+319 
+other species from across the protostome group. Two further examples of desiccating (orange ‘D’) and 
+320 
+nondesiccating (blue ‘ND’) species pairs are shown: the insects P. nubifer and P. vanderplanki and the 
+321 
+tardigrades H. exemplaris and R. varieornatus. 
+322 
+ 
+323 
+ 
+324 
+These results show that bdelloid species encode an abundant diversity of both class I and II TEs, 
+325 
+and, set against the repeat content of other rotifers and animals, do not appear particularly 
+326 
+deficient or unusual with regard to the proportion of nucleotides encoding transposable elements. 
+327 
+Although the bdelloids do have lower frequencies of class I TEs (~16% of total TE content) than 
+328 
+the monogononts (~50%) or the acanthocephalan (~52%), as predicted by theory for elements 
+329 
+dependent on vertical transmission, they still possess them in numbers that are comparable to  
+330 
+sexual organisms (e.g. C. elegans). Furthermore, the basally divergent bdelloid D. carnosus did 
+331 
+not show the same magnitude of decrease in LINEs (~35%), indicating that different dynamics 
+332 
+may be at play in different lineages. Thus, it is clear that the most simplistic expectations of TE 
+333 
+evolution under the hypothesis of long-term asexuality (i.e., either runaway proliferation or 
+334 
+complete elimination) are not met, necessitating an evaluation of possible explanations that may 
+335 
+align theory with observation. 
+336 
+ 
+337 
+TE transposition is recent and ongoing. One possible explanation is that TEs in bdelloid 
+338 
+genomes do not replicate autonomously or are otherwise inactivated or ‘fossilised’ within their 
+339 
+host genome. To investigate this, we first generated divergence ‘landscapes’ for identified TE 
+340 
+copies within each genome, using the de novo RepeatMasker results. TE landscapes measure the 
+341 
+amount of sequence divergence between each TE copy and a consensus derived from all copies 
+342 
+in its family [84]. Histograms of the resulting Kimura distances (K-values [85]) provide insights 
+343 
+into the evolutionary history of TE activity [16,86,87]. 
+344 
+ 
+345 
+TE landscapes for the three diploid (10x Genomics) assemblies of A. steineri, R. sp. ‘Silwood-1’ 
+346 
+and R. sordida show that TE divergence is bimodal but strongly zero-inflated (Fig 3). A large 
+347 
+number of TE copies have very low or no divergence from the consensus (K-value ≤ 1%). 
+348 
+Assuming a molecular clock for nucleotide substitutions within duplicated TEs, such elements 
+349 
+represent recent duplications that are highly similar to their progenitor copy, consistent with 
+350 
+recent transposition of an active element. In proportion, most of these belong to class II DNA 
+351 
+transposon superfamilies (in red), but the spike of zero divergence is also present for class I 
+352 
+retrotransposons (in blue and green). An older, broader mode is seen around a K-value of 20–
+353 
+30% that probably reflects historical TE transpositions and/or a signal from the tetraploid 
+354 
+genome structure present in all bdelloids sequenced to date. The same pattern was observed in 
+355 
+the haplotype-resolved assemblies of A. vaga [44] and A. ricciae [46] (Fig 3b; S4 Fig), and was 
+356 
+generally present but less pronounced in the other ‘maxhap’ assemblies depending on the repeat 
+357 
+pipeline applied (S4 Fig; S5 Fig). 
+358 
+ 
+359 
+ 
+360 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+12 
+ 
+361 
+ 
+362 
+Fig 3. TE divergence landscapes for selected genomes. The X-axes show the level of divergence 
+363 
+(Kimura substitution level, CpG adjusted) between each identified TE copy and the consensus sequence 
+364 
+for that TE family (the inferred ancestral copy). Thus, if newly arising TE copies evolve neutrally, the 
+365 
+amount of divergence is a proxy for the time since its duplication, with older copies accumulating more 
+366 
+substitutions and appearing further to the right. The Y-axis shows the proportion of the genome occupied 
+367 
+by each bin. Colours represent TE superfamilies (see legend) and shades of colour represent different TE 
+368 
+families within each superfamily. Data are shown for the 10x Genomics diploid (‘megabubbles’) 
+369 
+assemblies of A. steineri, R. sp. ‘Silwood-1’ and R. sordida compared to the published genome of A. 
+370 
+vaga. Note different scales on some Y-axes. 
+371 
+ 
+372 
+ 
+373 
+To evaluate recent TE activity further, we developed a simple method to identify insertion sites 
+374 
+for LTR retrotransposons (LTR-Rs) and assess their presence or absence in related individuals. 
+375 
+Because most LTR-Rs insert into random genome locations [5,8], the neighbouring genome 
+376 
+sequence provides a unique marker for a given insertion event [88]. We constructed a library of 
+377 
+such insertion markers (‘LTR-tags’) for all ‘full-length’ LTR-Rs (i.e. those with long-terminal 
+378 
+repeats present at both the 5’ and 3’ ends of the element) detected in our genomes, and then 
+379 
+searched for their presence or absence in the other samples. For a given LTR-tag identified in 
+380 
+genome A, the presence of a contiguous alignment in genome B indicates that the same insertion 
+381 
+is shared between A and B.  
+382 
+ 
+383 
+For a set of 161 high-confidence and non-redundant LTR-Rs identified in the single-individual 
+384 
+samples, alignment contiguity for each LTR-tag versus each of the other genomes was scored 
+385 
+using a read-mapping approach (see Materials and methods), resulting in a pairwise matrix of 
+386 
+presence/absence scores (Fig 4a; S4 Data). High scores for LTR insertion-site presence 
+387 
+A. steineri
+Divergence (Kimura distance)
+Genome span (%)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+0
+10
+20
+30
+40
+50
+Repeat type
+DNA transposon
+Rolling circle
+PLE
+LTR
+LINE
+a
+A. vaga
+Divergence (Kimura distance)
+Genome span (%)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+0
+10
+20
+30
+40
+50
+b
+R. sordida
+Divergence (Kimura distance)
+Genome span (%)
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0
+10
+20
+30
+40
+50
+c
+R. sp. 'Silwood−1'
+Divergence (Kimura distance)
+Genome span (%)
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0
+10
+20
+30
+40
+50
+d
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+13 
+correlated strongly with the phylogeny, resulting in an average score of ~0.9 within species 
+388 
+compared to < 0.1 between species and a clear visual signal along the diagonal of Fig 4a. Very 
+389 
+few LTR insertion sites were shared between bdelloid species. While some absences could 
+390 
+reflect loss rather than gain, the restriction of nearly all LTR insertion sites to single species 
+391 
+indicates that they have been gained during the separate evolutionary history of that species.  
+392 
+ 
+393 
+LTR-R insertions also vary between individuals within the same species, indicating recent 
+394 
+transposition events and the potential for ongoing fitness consequences for the host. One case-
+395 
+study is illustrated for R. magnacalcarata (Fig 4b; S6 Fig). The individuals RM9 and RM15 
+396 
+share an LTR-R insertion that is not present in conspecifics. Aligning the regions of the genome 
+397 
+assemblies containing these LTR-tags indicates that an 8.1 kb LTR-R has inserted into a protein-
+398 
+coding sequence in the lineage leading to RM9 and RM15. It has introduced a premature stop 
+399 
+codon to a gene that encodes a protein (7,479 residues) of unknown function but with partial 
+400 
+similarity to midasin, an ATPase essential to ribosome biosynthesis in several model eukaryotes 
+401 
+[89,90]. In RM9 and RM15, the predicted product is substantially truncated (to 6,025 residues) 
+402 
+by the element insertion. Despite the potential fitness consequences, RM9 and RM15 have 
+403 
+evidently persisted for some time since, because they differ at approximately 0.5% of single-
+404 
+nucleotide sites across the 8.1 kb LTR element itself. A possible explanation is that both the 
+405 
+RM9 and RM15 assemblies also contain a scaffold with an empty insertion site, indicating an 
+406 
+intact version of the coding sequence spanned by the LTR insertion (represented in Fig. 4b by 
+407 
+the partial matches on scaffolds 16719 and 07127, respectively). If the insertion is hemizygous, 
+408 
+an uninterrupted homologous copy of the affected gene might mask or reduce the effect of the 
+409 
+mutation. Given the degenerate tetraploid structure of bdelloid genomes, further homoeologous 
+410 
+copies (i.e. derived from whole-genome duplication) might provide additional functional 
+411 
+redundancy and help perform critical functions of interrupted genes. 
+412 
+ 
+413 
+ 
+414 
+ 
+415 
+ 
+416 
+Fig 4. LTR insertion-site polymorphism in bdelloid species. (a) Columns represent 161 LTR-Rs 
+417 
+identified across bdelloid samples, arranged by genome of origin (see colours at bottom and side). 
+418 
+Support for the presence of a given LTR-R at a specific insertion site in each genome is scored from 0 
+419 
+(absent, yellow) to 1 (present, dark blue), where a score < 0.5 is strong evidence for absence (see 
+420 
+Materials and methods for details). Arrows demark the location of the LTR-R example shown in b. (b) 
+421 
+Nucleotide alignment of region around an LTR-R insertion (blue) identified in RM9 (scaffold 05348) and 
+422 
+RM15 (scaffold 07890), alongside their putative homologous scaffolds (scaffolds 16719 and 07127 
+423 
+respectively) that do not show the insertion. Scaffolds from Rg2018 (RMAG00928) and MAG1 are also 
+424 
+shown for comparison. Predicted CDS with similarity to Pol and Env proteins are shown in red and light 
+425 
+blue. The LTR-R is most likely a member of the TelKA family, based on sequence similarity. 
+426 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+14 
+ 
+427 
+ 
+428 
+Thus, these data contradict the idea that bdelloid TEs are inactive. All TE superfamilies in other 
+429 
+bdelloids show a substantial fraction of copies at low-divergence, indicative of recent 
+430 
+proliferation. Moreover, there are multiple cases of insertion-site polymorphism within species, 
+431 
+and at least one case where a recent retroelement insertion into a protein-coding sequence seems 
+432 
+likely to have potential fitness consequences.  
+433 
+ 
+434 
+No evidence that cryptic recombination helps to limit the spread of LTR-Rs. Another 
+435 
+possible explanation for the apparent discrepancy between bdelloid TE profiles and theory is that 
+436 
+bdelloids in fact possess cryptic inter-individual recombination, either through undetected sex or 
+437 
+some alternative form of gene transfer. We therefore tested for a signature of recombination 
+438 
+among polymorphic LTR-R insertion sites within species. Under strict clonality, the pattern of 
+439 
+presence and absence across LTR-R loci should be nested and compatible with only mutational 
+440 
+gain and loss at each site. In contrast, in a sexual, outcrossing population, variation should be 
+441 
+shuffled among loci. LTR-Rs provide a powerful test of these predictions because random 
+442 
+insertion makes independent origins of the same LTR-R insertion site highly unlikely.  
+443 
+ 
+444 
+In every species with multiple samples, we found that variation in polymorphic TEs is perfectly 
+445 
+nested, with a consistency index in parsimony reconstruction of 1. Furthermore, in the two 
+446 
+species with multiple parsimony-informative characters, R. socialis and R. magnacalcarata, we 
+447 
+found a significantly positive index of association of presence and absences among LTR-R 
+448 
+insertion sites, as expected with clonal inheritance (S3 Table; S6 Fig). Approximate Bayesian 
+449 
+Computation with simulations of expected patterns under varying frequencies of sexual 
+450 
+reproduction showed that strictly clonal evolution could not be rejected (S7 Fig). While this test 
+451 
+uses a restricted set of markers, and so should not be viewed as a test of recombination for the 
+452 
+whole genome or species, it does support clonal inheritance of LTR-R loci and finds no evidence 
+453 
+that inter-individual recombination helps to limit their spread. Nevertheless, local LTR-LTR 
+454 
+recombination within genomes, leading to solo LTR formation, may act to bring the copy 
+455 
+number down [44]. 
+456 
+ 
+457 
+No evidence for lower TE loads in desiccating bdelloids. The desiccation hypothesis posits 
+458 
+that TE numbers may be kept in check via the action of DSB-repair processes during recovery 
+459 
+from desiccation. Our study includes 11 nondesiccating bdelloid samples encompassing three 
+460 
+obligately aquatic species (R. macrura, R. magnacalcarata and R. socialis), while the remaining 
+461 
+samples were isolated from ephemeral ponds or moss and must undergo frequent cycles of 
+462 
+desiccation and rehydration to survive. Contrary to the prediction that TE load should be reduced 
+463 
+in desiccating species, there is little overall difference in TE proportions between desiccating and 
+464 
+nondesiccating lineages (mean = 4.8% ± 1.3% vs. 5.0% ± 0.9% respectively). Broken down by 
+465 
+TE superfamily, desiccating taxa have relatively more DNA transposons, simple, low complexity 
+466 
+and unclassified repeats, and relatively fewer PLE, LTR and LINE-like retroelements (S3 Fig; 
+467 
+S8a Fig), with the biggest differences seen between Rotaria lineages (S8b Fig). However, 
+468 
+perhaps unsurprisingly given only two independent shifts in desiccation ability within our sample 
+469 
+(see phylogeny in Fig 2a), results from a Bayesian mixed-effects modelling approach that 
+470 
+controlled for phylogenetic relationships showed no significant correlations between desiccation 
+471 
+ability and TE load, for either overall proportion or for any individual TE superfamily (S4 
+472 
+Table). For most TE superfamilies the strength of the phylogenetic signal (λ) was close to 1 (S9 
+473 
+Fig), consistent with a high fit of the data to the phylogeny under a Brownian motion model as 
+474 
+would be expected if TE load evolves neutrally along branches of the phylogeny. 
+475 
+ 
+476 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+15 
+Two further comparisons of desiccating versus nondesiccating species among our wider sample 
+477 
+of animals also present contrasting results. In chironomid midges, the desiccation-tolerant P. 
+478 
+vanderplanki encodes substantially fewer TEs than its nondesiccating sister species P. nubifer, as 
+479 
+predicted (0.8% and 2.2% respectively, although this rises to ~11% in both species when all 
+480 
+repeats are included). In tardigrades, however, the desiccation tolerant Ramazzottius 
+481 
+varieornatus encodes a greater proportion of TEs than Hypsibius exemplaris (4.3% and 2.8%, 
+482 
+respectively), which does not survive desiccation without extensive conditioning [81], although 
+483 
+the trend is reversed when all repeats are included due to a large fraction of simple repeats in H. 
+484 
+exemplaris. We therefore find no consistent evidence for the hypothesised link between 
+485 
+anhydrobiosis and TE load in bdelloids or beyond. The overall effect of desiccation on TEs 
+486 
+might be dual: while repair of a DSB within a TE via non-homologous end-joining would likely 
+487 
+result in its inactivation (thus acting to reduce TE load), an efficient DSB repair system would 
+488 
+enhance repair of DSBs that arise during transposition of cut-and-paste DNA TEs that leave a 
+489 
+DSB behind upon excision (thus allowing an increased TE load). 
+490 
+ 
+491 
+Bdelloids experience similar selective constraints on TEs as do other species. A fourth 
+492 
+hypothesis is that the selective environment for TEs is different in bdelloids than in other 
+493 
+animals, thereby shifting their TE profiles compared to simple theory. For instance, bdelloids 
+494 
+might tolerate insertions within genes unusually well, owing to redundancy arising from 
+495 
+tetraploidy or multiple gene copies [45,91,92]. First, we explored the genomic ‘environment’ of 
+496 
+TE insertions and their potential effects on genome function. Differences in the location of TE 
+497 
+insertions might reveal differential costs and benefits compared to other taxa. To do this, we first 
+498 
+compiled a high-confidence list of class I retrotransposons by searching for proteins with 
+499 
+significant similarity to the reverse transcriptase (RT) domain found in all retrotransposons. 
+500 
+Phylogenies of the resulting alignments showed a diverse array of RTs in all species, most of 
+501 
+them full-length (in terms of conserved subdomain presence) and clustered within the three 
+502 
+primary retrotransposon superfamilies of PLEs, LTRs and LINEs (Fig 5a; S10 Fig; S5 Data). 
+503 
+Many (but not all) clustered within families previously identified in A. vaga. The elevated LINE 
+504 
+content in D. carnosus in comparison to other bdelloids is mostly due to the expanded Soliton 
+505 
+clade and to the presence of CR1-Zenon and Tad/I/Outcast clades, the latter being characterized 
+506 
+by the presence of the RNase H domain. 
+507 
+ 
+508 
+We then characterised surrounding genome features for these TEs. In 50 kb windows 
+509 
+surrounding each class I TE identified above, we counted the occurrence and span of three 
+510 
+features of interest: other (non-TE) genes, other (non-focal) TEs, and the telomeric repeat 
+511 
+“TGTGGG” (identified from A. vaga [58] and supported in other rotifers, see S2 Note). Relative 
+512 
+to a set of core metazoan (BUSCO) genes, the regions surrounding PLE, LINE and LTR TEs all 
+513 
+showed significant decreases in gene density, but significant increases in both TE and sub-
+514 
+telomeric repeat density (Fig 5b–d; S5 Table). In contrast, using a linear mixed-effects 
+515 
+modelling approach (see Materials and methods), there were no significant differences between 
+516 
+the monogonont B. calyciflorus and bdelloids, or between desiccating and nondesiccating 
+517 
+bdelloid species (S5 Table). These results are consistent with previous findings that TEs are 
+518 
+mainly confined to sub-telomeric regions of bdelloid genomes [56], a bias that is presumably due 
+519 
+to either selection against insertions at or near functioning genes and/or strong specificity in TE 
+520 
+insertion site. Thus, it appears that most TE insertions are costly in bdelloid rotifers, as in other 
+521 
+taxa, and that selection leads to their concentration outside of gene-rich regions. 
+522 
+ 
+523 
+ 
+524 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+16 
+ 
+525 
+ 
+526 
+Fig 5. Phylogenetic diversity and genomic context of reverse transcriptase genes. (a) For each 
+527 
+phylogeny, coloured branches represent identified rotifer-encoded RT copies and grey branches 
+528 
+represent the core RT sequences from which the HMM was built (see Materials and methods and S9 Fig 
+529 
+for core RT tree details). Colours indicated the major superfamilies. Previously characterised 
+530 
+retrotransposons are indicated on the A. vaga tree (He, Hebe; So, Soliton; RTE, RTE; Tx1, Tx1; R9/4, R9 
+531 
+and R4; Ve, Vesta; Ju, Juno; Te, TelKA; Ma, Mag; At, Athena; Pe, Penelope). All phylogenies are rooted 
+532 
+on the branch separating the bacterial retrons. Scale bar represents 0.6 amino acid substitutions per site. 
+533 
+Desiccating and nondesiccating species are indicated with orange and blue, as previously. Species 
+534 
+codes: Bc, B. calyciflorus PSC1; Dc, D. carnosus DCAR706, Av, A. vaga Av2013; Ar, A. ricciae 
+535 
+ARIC003; As, A. steineri ASTE805; Rg, R. magnacalcarata MAG3; Rs, R. socialis AK11; Rc, R. macrura 
+536 
+Rc2018; Rd, R. sordida RSOR408; Rw, R. sp. ‘Silwood-1’ RSIL806; Rp, R. sp. ‘Silwood-2’ RPSE503. 
+537 
+The genomic context in which RT genes reside is then described based on proximity to three other 
+538 
+features: (b) ‘other’ genes (that do not overlap with any TE annotation), (c) other TEs, and (d) telomeric 
+539 
+repeats (“TGTGGG”; that do not overlap with any coding region) as identified in A. vaga. For each plot, a 
+540 
+25 kb window is drawn around the focal RT gene and the total span (kb) of each feature within the 
+541 
+window is counted, broken down per sample ID (coloured boxes) per TE superfamily (X-axis groups). 
+542 
+Boxplots show the median (band), interquartile range (box) and minimum/maximum values (whiskers; 
+543 
+outliers not plotted). The equivalent data for BUSCO genes (metazoan set) are also shown for 
+544 
+comparison. The same representative samples are used in (b–d) as for (a). 
+545 
+ 
+546 
+ 
+547 
+Bc
+Dc
+Av
+Ar
+As
+Rg
+Rs
+Rc
+Rd
+Rw
+Rp
+0.6
+He
+So
+RTE
+Tx1
+R9/4
+Ve
+Ju
+Te
+Ma
+At
+Pe
+a
+Other TEs (kb)
+Telomeric 6-mer (kb)
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+17 
+As a second source of selective constraints, we tested for evidence of selection against ectopic 
+548 
+recombination (ER). ER is argued to be a major cost of TEs in sexual taxa, but its effects derive 
+549 
+from chromosomal abnormalities during meiosis, which should be lacking in bdelloids. Because 
+550 
+the rate of ER increases with both the number of elements and their length [12], the strength of 
+551 
+selection is expected to be strongest against longer TEs at higher copy number [9,24,93]. Two 
+552 
+testable predictions arise: first, that bdelloids should have longer TEs than sexual taxa (under the 
+553 
+hypothesis that ER is absent in bdelloids because of a lack of meiosis), and second, that 
+554 
+nondesiccating bdelloids should have longer TEs than desiccating bdelloids (under the 
+555 
+hypothesis that ER may still occur when chromosomes pair during the repair of DSBs). 
+556 
+However, comparisons of TE length distributions provide no evidence for these predictions—
+557 
+there was no significant difference between monogononts and bdelloids, or between desiccating 
+558 
+and nondesiccating bdelloids (Fig 6a; S6 Table; S6 Data). Thus, while the precise estimation of 
+559 
+TE lengths will no doubt improve with increasing assembly contiguity, our current data do not 
+560 
+show any indication of changes in TE length linked to asexuality (when compared to 
+561 
+monogononts) or desiccation ability within bdelloids. It is interesting to note that this finding 
+562 
+also applies to the PLEs, which include the Athena elements that comprise the unusually large 
+563 
+and complex Terminon elements found at bdelloid telomeres [59,94]. In this case, it is possible 
+564 
+that selection may still act on individual Athena elements but does not affect Terminons per se 
+565 
+because their structural diversity and genomic location does not make them targets of ER. 
+566 
+ 
+567 
+A final prediction of selection against ER is that there should be a negative correlation between 
+568 
+TE frequency and length, as is observed in Drosophila [24] and humans [93]. For both 
+569 
+monogononts and bdelloids, the majority of identified TEs are short (< 1 kb), which are 
+570 
+presumably partial matches or degraded copies. Nonetheless, we observe a sharp decline in copy 
+571 
+number as mean TE length increases above ~0.5 kb, and a distinct lack of longer elements at 
+572 
+higher copy numbers (Fig 6b). In vertebrates, previous work has suggested a lower threshold of 
+573 
+~0.6–1 kb under which ectopic recombination does not operate [93,95]. Thus, the observed 
+574 
+patterns in rotifers are consistent with the hypothesis that longer elements above a certain length 
+575 
+threshold are selected against more strongly due to the deleterious effects of ectopic 
+576 
+recombination. This finding is contrary to a similar analysis performed on TEs in nematodes, 
+577 
+which did not recover the expected relationship [18]. However, the pattern is the same in both 
+578 
+desiccating and nondesiccating bdelloid representatives as well as the monogonont B. 
+579 
+calyciflorus, and to some extent the acanthocephalan P. laevis (S11 Fig), suggesting that 
+580 
+selection against longer TEs at higher copy number is a general feature in Syndermata, 
+581 
+regardless of desiccation ability. 
+582 
+ 
+583 
+ 
+584 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+18 
+ 
+585 
+ 
+586 
+Fig 6. TE length dynamics. (a) Distribution of TE length for selected syndermatan samples decomposed 
+587 
+into the major TE superfamilies (DNA transposons, LINE-like, LTR and PLE retrotransposons). Boxplots 
+588 
+show the median (band), interquartile range (box) and minimum/maximum values (whiskers; outliers are 
+589 
+shown in grey). Species codes: Bc, B. calyciflorus PSC1 (monogonont); Dc, D. carnosus DCAR706; As, 
+590 
+A. steineri ASTE804; Av, A. vaga Av2013; Ar, A. ricciae Ar2018; Rd, R. sordida RSOR408; Rp, R. sp. 
+591 
+‘Silwood-2’ RPSE411; Rw, R. sp. ‘Silwood-1’ RSIL801 (desiccating bdelloids); Rc, R. macrura Rc2018; 
+592 
+Rg, R. magnacalcarata MAG1; Rs, R. socialis AK11 (nondesiccating bdelloids). An equivalent plot 
+593 
+including the acanthocephalan P. laevis is shown in S10 Fig. (b) Relationship between mean TE length 
+594 
+per TE family (X-axis) and copy number (i.e., the number of TEs identified within each family; Y-axis). The 
+595 
+same set of individuals are shown as for (a). A dashed line is drawn at 0.6 kb, given as the length 
+596 
+threshold under which the rate of homologous ectopic recombination is negligible in mice. 
+597 
+ 
+598 
+ 
+599 
+Large expansion of TE silencing pathways in bdelloids. Having rejected a range of hypotheses 
+600 
+to reconcile theory and observation of TE levels in bdelloid rotifers, we finally looked for 
+601 
+expansions and/or diversifications in the molecular pathways that defend against TEs. We 
+602 
+characterised copy number variation for three well-known gene families with direct roles in TE 
+603 
+suppression via RNA interference (RNAi). (1) Argonaute proteins of both the Ago and Piwi 
+604 
+subfamilies, the core effectors of RNAi gene-silencing that form complexes with various classes 
+605 
+of small RNA [96,97]; (2) Dicer, an RNase III–family protein that cleaves double-stranded RNA 
+606 
+(dsRNA) molecules from ‘target’ genes into shorter fragments that are subsequently incorporated 
+607 
+into Argonaute complexes [98,99]; and (3) RNA-dependent RNA polymerase (RdRP), an RNA 
+608 
+replicase that synthesises secondary small interfering RNAs (siRNAs) that amplify the silencing 
+609 
+response [98,100]. 
+610 
+ 
+611 
+Based on hidden Markov model (HMM) matches of key domains to the predicted proteomes of 
+612 
+the Illumina maxhap assemblies (in which homologous copies are largely collapsed), we detect 
+613 
+an average of 21.5 putative Argonaute copies, 3.9 Dicer copies and 37.3 RdRP copies in bdelloid 
+614 
+genomes (Fig 7a; S4 Data). These expansions are substantially larger than previously uncovered 
+615 
+from the diploid assembly of A. vaga (eight Dicers, 23 Ago/Piwi, 20 RdRP per diploid genome) 
+616 
+[44], particularly after correcting for the assembly resolution (i.e. diploid vs haploid assembly; 
+617 
+see Materials and methods), perhaps due to the increased sensitivity of the HMM-based 
+618 
+approach, or to different degrees of pseudogenization and/or homolog collapse. Phylogenies of 
+619 
+identified copies revealed a number of divergent clades, particularly in the Argonaute and RdRP 
+620 
+families (Fig 7b–d; S12 Fig; S7 Data; S8 Data), that might indicate both expansion and 
+621 
+-2
+-1
+0
+1
+2
+3
+Log10 TE length (kb)
+DNA
+LINE
+LTR
+PLE
+Sample ID
+Bc
+Dc
+As
+Av
+Ar
+Rd
+Rp
+Rw
+Rc
+Rg
+Rs
+a
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+0
+200
+400
+600
+800
+1000
+Mean TE length (kb)
+TE count
+Sample ID
+Bc
+Av
+Ar
+Rc
+Dc
+As
+Rd
+Rp
+Rw
+Rg
+Rs
+b
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+19 
+diversification of these proteins. Even accounting for degenerate tetraploidy in bdelloids, the 
+622 
+RdRP domain in particular is significantly expanded relative to monogononts and other 
+623 
+eukaryotes (Fig 7e–g; S9 Data). This expansion is not found in the monogononts B. calyciflorus 
+624 
+or B. plicatilis HYR1, nor is there evidence for it in the (unannotated) acanthocephalan genome 
+625 
+(S4 Data), suggesting that the expansions seen in Ago and (particularly) RdRP are unique to 
+626 
+bdelloids, including the basally divergent D. carnosus. 
+627 
+ 
+628 
+The expansion of bdelloid-specific Ago genes (denoted ‘BDAGOs’ in Fig 7) is comparable to 
+629 
+the ‘worm-specific’ Ago clade (WAGOs) found in nematodes [101–103]. Intriguingly, the 
+630 
+majority of nematode species (although not C. elegans) have apparently lost their Piwi-like 
+631 
+orthologue, the branch of the Argonaute family that is usually involved in TE suppression in 
+632 
+most other animals [104], but instead mediate TE silencing using a Dicer/RdRP pathway [105]. 
+633 
+The primary function of RdRP is to amplify RNAi responses via the production of small 
+634 
+interfering RNAs (siRNAs) [98], but this family is found only rarely in animal genomes [100]. In 
+635 
+C. elegans, RdRP-generated siRNAs (known as ‘22G-RNAs’) also play important roles in the 
+636 
+recognition of ‘self’ versus ‘non-self’ RNA and multigenerational (i.e., inherited) epigenetic 
+637 
+memory [103,106]. However, an analysis of TE variation across the nematode phylum found no 
+638 
+effect of RNAi pathway differences (in terms of presence/absence of RNAi genes) among 
+639 
+species, concluding that TE content is mediated primarily by the stochastic action of genetic drift 
+640 
+[18]. 
+641 
+ 
+642 
+Why do bdelloids possess such a marked expansion of gene silencing machinery? One 
+643 
+explanation may be that it was required as part of the successful long-term transition to 
+644 
+asexuality, if other mechanisms usually acting in sexual populations were no longer operating. 
+645 
+Intriguingly, it has been shown in A. vaga that piwi-interacting small RNAs (piRNAs) target 
+646 
+both TEs and putatively ‘foreign’ genes (i.e. non-metazoan genes gained via horizontal gene 
+647 
+transfer [HGT]) [107], the latter of which are unusually frequent in bdelloid genomes 
+648 
+[44,46,108–110]. Thus, it may be the case that bdelloids have an enhanced RNAi system to 
+649 
+defend against invasion from horizontally transferred TEs, particularly if the level of exposure or 
+650 
+rate of import is higher relative to other animals. Furthermore, the ability of some RNAi 
+651 
+pathways to distinguish self from non-self may be needed to maintain genome integrity over 
+652 
+longer timescales, if such mechanisms are operating. Further work on the precise functions of the 
+653 
+divergent Ago and RdRP clades is required to explore these possibilities. 
+654 
+ 
+655 
+ 
+656 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+20 
+ 
+657 
+ 
+658 
+Fig 7. Expansion of TE silencing pathways in bdelloid rotifers. (a) Copy number variation for RNAi 
+659 
+gene families Argonaute (Ago/Piwi, red), RNA-dependent RNA polymerase (RdRP, blue) and Dicer 
+660 
+(green) in bdelloids compared to other protostome groups. Proteins are identified based on the presence 
+661 
+of key identifying domains (see Materials and methods). Species codes for rotifers: Bc, B. calyciflorus; 
+662 
+Bp, B. plicatilis HYR1; Dc, D. carnosus; As, A. steineri; Rg, R. magnacalcarata; Rs, R. socialis; Rc, R. 
+663 
+macrura; Rd, R. sordida; Rw, R. sp. ‘Silwood-1’; Rp, R. sp. ‘Silwood-2’. Maximum likelihood unrooted 
+664 
+phylogenies are then shown for (b) Argonaute, (c) RdRP and (d) Dicer gene copies identified in A. 
+665 
+steineri, R. sordida and R. sp. ‘Silwood-1’ 10x haploid (‘pseudohap’) assemblies, aligned with orthologs 
+666 
+from representative species from across the eukaryotes. Blue symbols indicate copies identified in the 
+667 
+monogonont B. plicatilis, and letters on tips show selected reference species to aid visual orientation: ‘C’, 
+668 
+C. elegans; ‘H’, human; ‘D’, D. melanogaster; ‘N’ N. crassa; ‘A’, A. thaliana. Some clade names are also 
+669 
+shown where relevant; ‘WAGO’ indicates the worm-specific cluster of Ago genes in the Argonaute 
+670 
+phylogeny. ‘BDAGO’ I and II and ‘RDR’ I and II indicate putative bdelloid-specific clades of Argonaute and 
+671 
+RdRP proteins, respectively. (e) Comparative protein-domain abundance plot. Each point represents a 
+672 
+Pfam domain ID, with (log) average abundance (i.e., count) in the reference eukaryote set shown on the 
+673 
+X-axis and (log) abundance in the monogonont B. plicatilis on the Y-axis (see Materials and methods). 
+674 
+The positions of the PAZ, PIWI (red up/down triangles), RdRP (blue square) and Dicer (green circle) 
+675 
+domains are highlighted. Dashed line indicates the 1-1 relationship. (f) Equivalent plot for bdelloids, 
+676 
+As
+Dc
+Rc
+Rd
+Rg
+Rp
+Rs
+Rw
+Bc
+Bp
+Fly
+Nematode
+Tardigrade
+Mollusc
+Number of genes
+0
+10
+20
+30
+40
+50
+Gene name
+Argonaute
+RdRP
+Dicer
+a
+1
+C
+CC
+C
+C
+CC
+CC
+C
+C
+C
+C
+C
+C
+D
+DD
+D
+D
+H
+H
+H
+H
+H
+HHH
+Piwi
+WAGO
+BDAGO I
+BDAGO II
+Species ID
+As
+Rd
+Rp
+Monog.
+b
+CCC
+C
+AA
+A
+A
+A
+A
+N
+N
+N
+RDRa
+RDRb
+RDRg
+RDR I
+RDR II
+c
+C
+D
+D
+H
+A
+A
+A
+N
+N
+Dicer1
+Dicer2
+Plant Dicers
+d
+−2
+0
+2
+4
+6
+8
+−2
+0
+2
+4
+6
+8
+Ln Count eukaryote
+Ln Count monogonont
+e
+−2
+0
+2
+4
+6
+8
+−2
+0
+2
+4
+6
+8
+Ln Count eukaryote
+Ln Count bdelloid
+f
+Ln Abundance score
+Frequency
+−4
+−2
+0
+2
+4
+0
+200
+400
+600
+800
+Domain
+PAZ
+PIWI
+RdRP
+Dicer
+g
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+21 
+where the Y-axis shows the (log) average abundance for the A. steineri, R. sordida and R. sp. ‘Silwood-1’ 
+677 
+10x haploid assemblies. Note that the average abundance for all Pfam entries is shifted above the 1-1 
+678 
+line due to the ancient genome duplication in all bdelloids, such that many genes are found in double 
+679 
+copy (i.e., homoeologs) even in a ‘haploid’ representation. (g) Comparative protein–domain abundance 
+680 
+plot for bdelloids versus eukaryotes (see Materials and methods). Entries to the right of the distribution 
+681 
+are overrepresented in bdelloids with respect to eukaryotes. The shaded area represents the 5% and 
+682 
+95% quantiles of the distribution, and the scores for the PAZ, PIWI, Dicer and RdRP domains are 
+683 
+indicated (see legend). 
+684 
+ 
+685 
+ 
+686 
+Conclusions 
+687 
+ 
+688 
+We show that all bdelloids encode a rich diversity of TEs from both class I (retroelements) and 
+689 
+class II (DNA transposons), and thus reject the idea that bdelloids are deficient or unusual in 
+690 
+their TE content or diversity. Moreover, a substantial fraction of these elements has been active 
+691 
+relatively recently within populations. This finding is at odds with the original predictions of 
+692 
+population genetic theory for TEs in asexuals. One possible resolution is that theory is missing 
+693 
+some component or assumption. It is possible that parameter space exists that permits 
+694 
+intermediate levels of TEs in an asexual population, perhaps sustained by high rates of horizontal 
+695 
+transfer, which there is evidence for in bdelloids. The HGT idea has some support from the 
+696 
+increased prevalence of class II DNA transposons in bdelloids, given their greater propensity for 
+697 
+horizontal transfer, but we found that the basally divergent lineage leading to D. carnosus had a 
+698 
+profile more like the monogonont rotifers with regard to non-LTR retrotransposon abundance, 
+699 
+despite sharing other features with the rest of bdelloids. Alternatively, some TEs might have 
+700 
+been co-opted to provide beneficial functions, which is hypothesised to explain the unusually 
+701 
+large and complex Terminon repeats. Other TEs may have evolved strong site-specificity to 
+702 
+neutral genome regions to mitigate negative effects of transposition. This idea is supported by 
+703 
+the preference shown for insertions into gene-poor regions that are probably at or near the 
+704 
+telomeres, although it seems unlikely that the full complement of bdelloid TEs have accumulated 
+705 
+in this way. 
+706 
+ 
+707 
+We also ask what forces may be acting to suppress TE activity in bdelloid populations. A major 
+708 
+finding is that an abundance and diversity of RNAi gene silencing pathways, characterised by a 
+709 
+large expansion of Argonaute and RdRP genes, appears to be a unique feature of bdelloid 
+710 
+genomes. The precise origins and functions of these divergent Ago and RdRP clades are yet to 
+711 
+be elucidated, but it seems likely that such an extended arsenal of TE defence genes offers 
+712 
+enhanced protection against the deleterious effects of TE activity, particularly if bdelloid 
+713 
+populations cannot keep TEs in check through sexual processes but are still exposed to new 
+714 
+invasions via HGT. This enhanced RNAi system may then provide a more deterministic action 
+715 
+against TEs, as opposed to stochastic forces (such as genetic drift) that may predominate in other 
+716 
+animal groups and may potentially explain the greater uniformity of TE proportions in bdelloids 
+717 
+relative to monogononts. 
+718 
+ 
+719 
+An alternative resolution is that the assumption of no recombination and strict clonality is not 
+720 
+met in bdelloids. Previous work, for example, proposed that intra-individual recombination 
+721 
+during the repair of DSBs caused by desiccation could provide a mechanism to keep TE numbers 
+722 
+in check. We found no evidence here that overall TE loads were lower in desiccating species 
+723 
+than nondesiccating species, a finding not limited to bdelloids, or for differences in activity or 
+724 
+rate of turnover between them. It remains possible that an equivalent mechanism, such as mitotic 
+725 
+recombination, or unusual DNA repair mechanisms operating in nondesiccating species as well, 
+726 
+could still act to limit TE proliferation and facilitate elimination of inserted copies, maintaining 
+727 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+22 
+an equilibrium between TE spread and removal by excision and selection. Finally, there could be 
+728 
+some hidden mechanism of inter-individual recombination that facilitates TE removal. We found 
+729 
+no evidence for its action here, but further work is needed for a final answer on the conundrum 
+730 
+of bdelloid asexuality. 
+731 
+ 
+732 
+ 
+733 
+Materials and methods  
+734 
+ 
+735 
+Rotifer sampling and culture. For most samples, individual rotifers were collected from 
+736 
+permanent and temporary freshwater habitats around Imperial College London’s Silwood Park 
+737 
+campus, Ascot, UK between May 2015 and February 2019. Three samples (R. magnacalcarata 
+738 
+RM9 and RM15, and R. socialis RS1) were collected from a freshwater spring in Fontaneto 
+739 
+d’Agogna, Italy in 2016 (see S1 Data for details). Although we focused on the genera Adineta 
+740 
+and Rotaria, we also included two individuals from the desiccation-tolerant species 
+741 
+Didymodactylos carnosus. Preliminary phylogenetic data had identified this as a distant outgroup 
+742 
+to the focal genera, useful in rooting phylogenetic trees and as a further independent datapoint to 
+743 
+test the generality of conclusions about bdelloids. A total of 26 samples were submitted for 
+744 
+single-individual, whole genome sequencing; for these, DNA was extracted using either a Chelex 
+745 
+preparation (Bio-Rad InstaGene Matrix) or a QIAamp DNA Micro Kit (Qiagen), and whole-
+746 
+genome amplified using a REPLI-g Single Cell kit (Qiagen) before sequencing on either 
+747 
+Illumina NextSeq500 at the Department of Biochemistry, University of Cambridge (Cambridge, 
+748 
+UK), or Illumina HiSeq X at Edinburgh Genomics, University of Edinburgh (Edinburgh, UK). 
+749 
+For A. ricciae ARIC003, DNA was extracted from ~200 animals descended from a single 
+750 
+individual before whole-genome amplification. For B. calyciflorus PSC1, individuals for DNA 
+751 
+extractions were derived from an individual isolate from a laboratory stock population previously 
+752 
+isolated from field-collected resting eggs [111]. DNA was extracted from ~5000 starved 
+753 
+individuals using a phenol-chloroform protocol and sequenced on the Illumina NextSeq500 at 
+754 
+the Max Planck Institute for Evolutionary Biology. Three 10x Genomics Chromium ‘linked 
+755 
+reads’ libraries were generated for A. steineri, Rotaria sp. ‘Silwood-1’ and R. sordida; for these, 
+756 
+high molecular weight DNA was extracted from thousands of animals reared clonally from a 
+757 
+single wild-caught animal, without whole-genome amplification, using the Chromium 
+758 
+Demonstrated Protocol “HMW gDNA Extraction from Single Insects” 
+759 
+(https://support.10xgenomics.com/permalink/7HBJeZucc80CwkMAmA4oQ2). Linked-read 
+760 
+libraries were constructed at the Centre for Genomics Research, Liverpool, UK, before 
+761 
+sequencing on the HiSeq X at Edinburgh Genomics. Further details on rotifer sampling, DNA 
+762 
+extraction and sequencing are provided in S1 Data. 
+763 
+ 
+764 
+Biological replicates. To check the repeatability of the whole-genome amplification (WGA), 
+765 
+sequencing, assembly and analysis pipelines, we included several samples that were either 
+766 
+biological replicates of the same rotifer clone, or where high-quality genomes were available for 
+767 
+the same clone from unamplified source material. Specifically, for Rotaria sp. ‘Silwood-2’ we 
+768 
+isolated two consecutive offspring from the same wild-caught mother and conducted WGA, 
+769 
+sequencing, assembly and analysis for these sisters independently (as Rp_RPSE411 and 
+770 
+Rp_RPSE503). From the same clonal laboratory line of Rotaria sp. ‘Silwood-1’ that was used 
+771 
+for 10x Genomics DNA preparation, we isolated two more individuals and processed each 
+772 
+independently using the WGA workflow (as Rw_RSIL801 and Rw_RSIL802). Finally, we 
+773 
+applied the WGA method to DNA from A. ricciae, for which a previous assembly was available 
+774 
+from unamplified DNA [46] on the same clonal culture and included this replicate in 
+775 
+downstream analyses alongside the earlier reference assembly. 
+776 
+ 
+777 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+23 
+Data filtering and genome assembly. We generated two assembly versions for each of the 
+778 
+single-individual rotifer samples. The ‘reference’ assemblies were scaffolded and polished to 
+779 
+result in haploid assemblies with improved contiguity. The ‘maximum haplotig’ (‘maxhap’) 
+780 
+assemblies instead retained highly similar contigs that might otherwise be removed during 
+781 
+assembly polishing. Our pipeline is outlined as follows. 
+782 
+ 
+783 
+For the Illumina libraries, raw sequence data were filtered for low quality bases and adapter 
+784 
+sequence using BBTools v38.73 ‘bbduk’ (https://sourceforge.net/projects/bbmap/), and error 
+785 
+corrected using BBTools ‘tadpole’. Data quality was inspected manually using FastQC v0.11.5 
+786 
+[112] aided by MultiQC [113] visualisation. For the A. steineri, R. sp. ‘Silwood-1’ and R. 
+787 
+sordida linked-read libraries, data were assembled into haploid (‘pseudohap’) and diploid 
+788 
+(‘megabubbles’) genome representations using the 10x Genomics proprietary software 
+789 
+Supernova v2.1.1 [114] and further scaffolded with ARKS v1.0.4 [115]. All raw sequencing data 
+790 
+are deposited in the relevant International Nucleotide Sequence Database Collaboration (INSDC) 
+791 
+databases under the Study ID PRJEB39843 (see S1 Data for run accessions and counts for raw 
+792 
+and filtered data). 
+793 
+ 
+794 
+For the single-individual samples, an initial assembly was generated using SPAdes v3.13.0 [116] 
+795 
+with default settings. Contaminating reads from non–target organisms, identified based on 
+796 
+aberrant GC content, read coverage and/or taxonomic annotation, were then identified and 
+797 
+removed using BlobTools v1.1.1 [117,118]. For R. magnacalcarata and R. socialis samples, 
+798 
+resultant haplotigs were then collapsed using Redundans [119] with default settings before 
+799 
+scaffolding and gap filling with SSPACE v3.0 and GapCloser v1.12 respectively [120,121]. For 
+800 
+A. steineri, R. sp. ‘Silwood-1’ and R. sordida single-individual samples, the scaffolding step was 
+801 
+performed with RaGOO v1.1 [122,123], using the matching 10x Genomics ‘pseudohap’ 
+802 
+assembly as a reference (contigs from R. sp. ‘Silwood-2’ were scaffolded using the R. sp. 
+803 
+‘Silwood-1’ 10x reference), specifying the ‘-C’ parameter to prevent concatenation of unaligned 
+804 
+contigs. Scaffolded assemblies were subjected to further rounds of BlobTools to remove any 
+805 
+additional sequences derived from non-target organisms. These assemblies were designated the 
+806 
+reference set described above. 
+807 
+ 
+808 
+For the maxhap assemblies, filtered fastq files were first generated by mapping the original 
+809 
+(trimmed and error-corrected) sequencing reads to each reference genome, using the 
+810 
+‘outm=filtered_R#.fq’ functionality of BBTools ‘bbmap’, and then reassembled with SPAdes, 
+811 
+increasing the final kmer value to 121. Assembly metrics were summarised using ‘calN50.js’ 
+812 
+(https://github.com/lh3/calN50), which reports the ‘expected scaffold size’ (AU) as an alternative 
+813 
+metric of assembly contiguity that is less biased than N50 (defined as the area under the 
+814 
+cumulative genome span versus contig length graph, equivalent to the expected scaffold size for 
+815 
+a randomly chosen assembly location [124]). Gene-completeness scores for core eukaryotic (n = 
+816 
+303) and metazoan (n = 978) genes were calculated for all assemblies using BUSCO v3.0.2 
+817 
+[125] with default settings. Reference and maxhap assemblies for B. calyciflorus PSC1 and D. 
+818 
+carnosus are the same, due to a lack of appropriate data for scaffolding.  
+819 
+ 
+820 
+Gene prediction. Gene prediction was performed on reference assemblies using one of three 
+821 
+approaches, depending on the availability of RNA-seq data. For B. calyciflorus, A. ricciae, and 
+822 
+all R. magnacalcarata, R. socialis, and R. sordida assemblies, published RNA-seq data 
+823 
+[109,110,126] were downloaded from NCBI Sequence Read Archive (SRA), quality-trimmed 
+824 
+using BBTools ‘bbduk’ with default settings and aligned to the genomic scaffolds using STAR 
+825 
+v2.7.3a [127] with the option ‘--twoPassMode Basic’. Aligned BAM files were then provided to 
+826 
+BRAKER v2.1.2 [128–132] with default settings for gene prediction. For A. steineri, R. sp. 
+827 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+24 
+‘Silwood-1’ and R. sp. ‘Silwood-2’ assemblies, RNA-seq data from a related species (A. ricciae 
+828 
+and R. magnacalcarata respectively) were used instead, aligned using BBTools ‘bbmap’ with the 
+829 
+options ‘maxindel=200k minid=0.5’, before gene prediction with BRAKER as above. Finally, 
+830 
+for the distantly related D. carnosus, BRAKER was run using gene-model parameters estimated 
+831 
+from BUSCO analysis of the genomic scaffolds. The quality of predicted proteins was assessed 
+832 
+using BUSCO in protein mode. Intragenomic divergence between homologous gene copies and 
+833 
+collinearity was calculated as for Nowell et al. (2018) and described in S1 Note. Genome 
+834 
+assemblies and gene predictions were converted to EMBL format using EMBLmyGFF3 v2 
+835 
+[133], and are deposited at DDBJ/ENA/GenBank under the Study ID PRJEB39843 (see Table 1 
+836 
+and S1 Table for individual GenBank accessions). 
+837 
+ 
+838 
+Rotifer phylogeny. Evolutionary relationships among new genomes and published genomes of 
+839 
+rotifers were determined using a core-genome phylogenomics approach based on the BUSCO 
+840 
+eukaryotic gene set. For genomes from species with very high intragenomic homologous 
+841 
+divergence (A. ricciae and A. vaga), redundancy was removed by selecting the copy with the 
+842 
+highest BUSCO score for all BUSCO genes with multiple copies, using the script 
+843 
+BUSCO_collapse_multicopy.pl’ (https://github.com/reubwn/scripts). One-to-one co-orthologs 
+844 
+found in at least 95% of the samples were then identified using the script 
+845 
+‘BUSCO_phylogenomics.py’ (https://github.com/jamiemcg/BUSCO_phylogenomics). Protein 
+846 
+sequences were aligned using Clustalo [134] and concatenated in Geneious R9 [135]. The full 
+847 
+alignment was checked by eye and sections with ambiguous alignment within the bdelloid clade 
+848 
+were removed across all sequences to avoid aligning potential paralogs or homoeologs. 
+849 
+Translation errors arising from annotation issues in specific bdelloid genomes were identified by 
+850 
+obvious mismatches to the consensus of closely related genomes, and the affected residues were 
+851 
+deleted in the affected genome only. Potential alignment issues within the monogonont clade 
+852 
+were less obvious owing to the substantial genetic divergence from bdelloids and the smaller 
+853 
+number of genomes and replicates, so corrections were less stringent. A maximum-likelihood 
+854 
+phylogeny was then estimated using IQ-TREE v1.6.12, with automatic model selection 
+855 
+(VT+F+I+G4) [136,137]. Branching support was assessed using SH-aLRT and ultrafast 
+856 
+bootstrap sampling (‘-alrt 1000 -bb 5000’) [138,139]. 
+857 
+ 
+858 
+Repeat annotation and TE dynamics. TEs and other repeats were identified using the 
+859 
+RepeatModeler and RepeatMasker pipelines. For each sample, a de novo repeat library was 
+860 
+generated directly from the assembled nucleotides using RepeatModeler2 [140] and combined 
+861 
+with a database of 12,662 protostome repeats from Repbase v23.08 [141] and 278 additional TEs 
+862 
+manually curated from the A. vaga genome [44]. Repeats and TEs were then detected and 
+863 
+classified using RepeatMasker v4.1.0 [84], and resultant outputs were post-processed using the 
+864 
+‘One code to find them all’ Perl script [142]. The breakdown of TE superfamilies in the final 
+865 
+database was 4,145 DNA transposons (including 300 rolling circles), 5,523 LTRs, 2,583 LINEs 
+866 
+(including SINEs), 227 PLEs, and 165 simple or low-complexity repeats. TE content (expressed 
+867 
+as a proportion of genome size) was mapped onto the phylogeny using ‘contMap’ in the Phytools 
+868 
+v0.6-99 package in R v3.6.0 [143,144]. There is no module for the detection of class II MITEs in 
+869 
+RepeatMasker; for these, the separate program Generic Repeat Finder (GRF) was run using 
+870 
+default parameters. TE dynamics were investigated by constructing Kimura 2-parameter 
+871 
+divergence [85] landscapes using the utility scripts in the RepeatMasker package and plotted 
+872 
+using custom scripts (see below). Selected assemblies were also submitted to the REPET v2.5 
+873 
+‘TEdenovo’ [145,146] TE detection and annotation pipeline with default parameters, for 
+874 
+comparison. In addition, for D. carnosus and R. sordida (using 10x Genomics) reference 
+875 
+assemblies, we increased the parameter ‘minNbSeqPerGroup’ from 3 to 5 to evaluate 
+876 
+contribution from tetraploid genes, which was judged to be negligible. Although 
+877 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+25 
+REPETdenovo TE consensus sequences are automatically classified using Wicker’s TE 
+878 
+classification [147], RepeatMasker was additionally applied for further TE classification, 
+879 
+detection and landscape divergence plot building. 
+880 
+ 
+881 
+The presence or absence of specific LTR retrotransposon (LTR-R) insertions in our population 
+882 
+data was inferred using a read-mapping approach. Specifically, the presence of a given insertion 
+883 
+was scored based on the alignment score of the ‘best’ read that mapped continuously and 
+884 
+contiguously across the LTR-genome boundary. First, full-length LTR-Rs (i.e. those with 
+885 
+annotated 5’ and 3’ LTR regions) were identified from each reference assembly using 
+886 
+LTR_retriever v2.8 [148]. Three filters were then applied to remove false positives. Candidates 
+887 
+that showed an overlap with a predicted gene in the 5’ or 3’ LTR itself or an ‘N’ base within 150 
+888 
+bases upstream or downstream of its genomic location that might indicate local mis-assembly 
+889 
+were removed. Candidates also required supporting evidence of LTR homology from a separate 
+890 
+RepeatMasker annotation of the reference assembly. For each remaining LTR-R, a library of 
+891 
+‘LTR-tags’ was then generated by extracting a 100 bp sequence that spanned 50 bases into the 
+892 
+genomic (i.e., non-TE) region of the insertion site from both the 5’ and 3’ terminal repeated 
+893 
+regions. Thus, each pair of ‘LTR-tags’ represents an insertion of a particular LTR into a specific 
+894 
+location in the focal genome, and a score is calculated based on the alignment information 
+895 
+contained in the CIGAR string of the ‘best’ read (i.e. with the highest number of alignment 
+896 
+matches) from the SAM mapping file: Si = ((MLi − XLi ) + (MRi − XRi ))/200, where MLi is the 
+897 
+number of alignment matches for the left-hand tag for LTR i, penalised by the number of 
+898 
+mismatches XLi, with equivalent scoring for the right-hand tag. Since tag length is 100 bases, the 
+899 
+maximum score for a perfect alignment is 200, or 1 after normalisation. The number of mapped 
+900 
+reads is also recorded to provide an estimate of coverage (but note that Si is taken from the best 
+901 
+read only). Sequencing reads from all single-individual rotifer samples were aligned to the 
+902 
+filtered LTR-tag set using BBTools ‘bbmap’ with the parameters ‘minid=0.5 local=t’ and scored 
+903 
+using the above system. Because orthologous LTR-Rs may be identified from searches started in 
+904 
+different genomes, we identified these cases by reconstructing the phylogeny of the LTR-tags 
+905 
+and any with pairwise sequence divergence less than 0.1 were collapsed to yield a condensed 
+906 
+final matrix. 
+907 
+ 
+908 
+The LTR-tag case-study in Fig. 4b was selected for closer investigation in the draft assemblies 
+909 
+after consideration of several examples, because it illustrates variability for an element insertion 
+910 
+site within a species and indicates that Class I TEs can insert in coding regions, with potential 
+911 
+fitness consequences. The LTR-tags were mapped to the RM15 draft assembly using Geneious 
+912 
+Prime v2020.1.2 [135], and were found to match an element annotated by LTR_retriever, 
+913 
+containing four predicted genes. In the RM9 draft assembly, only the left-hand tag was mapped, 
+914 
+as the scaffold ended before the inserted element was fully assembled. For the same reason, the 
+915 
+element in RM9 had not been annotated as such by LTR_retriever, but the sequence is nearly 
+916 
+identical (99.7%) to the insertion in RM15 along its aligned length (except that the annotations 
+917 
+predicted three element-associated genes rather than four). The scaffolds were trimmed to the 
+918 
+focal gene and aligned, and the region was used as a BLASTn query against local databases for 
+919 
+two other R. magnacalcarata reference genomes where the LTR-tag was absent: MAG1 and 
+920 
+Rg2018. In each case, this provided the location of a closely similar but uninterrupted copy of 
+921 
+the focal gene, although the annotations of the gene’s structure differed slightly among genomes. 
+922 
+These scaffolds were trimmed and aligned against the copies from RM9 and RM15, using the 
+923 
+Geneious alignment tool with default settings, except that the gap extension penalty was reduced 
+924 
+from 3 to 0.2 to enable the algorithm to handle the element insertion. Local features were 
+925 
+manually reannotated to illustrate the interpretation provided in the text. To investigate the 
+926 
+potential function of the interrupted gene, the copy from MAG1 (g37061) was translated and 
+927 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+26 
+used as a BLASTp query against the NCBI RefSeq Protein Database [149]. A region of 
+928 
+approximately 1000 residues was found to have weak similarity (~25% pairwise identity) to 
+929 
+proteins annotated as midasins, from a range of eukaryotes. As a final step, the intact gene from 
+930 
+MAG1 was used as a BLASTn query against the full draft genomes of RM9 and RM15, which 
+931 
+revealed a separate scaffold in each case, containing a partial copy of the gene in which the 
+932 
+coding sequence was intact across the junction spanned by the LTR-tag, and the element 
+933 
+insertion was absent. 
+934 
+ 
+935 
+Recombination analyses. We tested sexual versus clonal patterns of variation in LTR presence 
+936 
+and absences. First, we calculated consistency indices (CI) with parsimony reconstruction of the 
+937 
+binary matrix. LTR-tags with scores > 0.875 were coded as present (i.e. no more than half of the 
+938 
+genome context or LTR region from both left and right LTR-tags was missing) and < 0.875 
+939 
+coded as absent (alternative thresholds led to the same qualitative results). A CI = 1 indicates 
+940 
+perfect nesting with no homoplasy, whereas a score less than 1 is expected if variation is shuffled 
+941 
+among loci and not tree-like. Next, we calculated the index of association and ran permutations 
+942 
+to test for significant linkage disequilibrium of the LTR-tag data relative to a null model of 
+943 
+random shuffling (expected in a fully outcrossing sexual population). We used the modified 
+944 
+index of association by Agapow and Burt (2001) [150] that corrects for an effect of the number 
+945 
+of loci on the index, and ran permutations using the ‘ia’ function in the Poppr v2.8.5 library 
+946 
+[151] in R. Data were coded as diploid and codominant presence/absence data (because of the 
+947 
+lack of diploid assemblies in the population-level data). Finally, for R. magnacalcarata and R. 
+948 
+socialis we ran simulations with the FacSexCoalescent simulator of Hartfield et al. (2018) [152] 
+949 
+to generate 50000 datasets with the same number of individuals and sampled binary loci as 
+950 
+observed, but with frequencies of sexual versus asexual reproduction within the populations 
+951 
+varying from 10-7 (i.e. negligible) to 1 (i.e. obligate sexual). We estimate the posterior 
+952 
+distribution of the frequency of sex for our observed samples using Approximate Bayesian 
+953 
+Computation on the simulated datasets implemented in the abc package in R.  
+954 
+ 
+955 
+Reverse transcriptase survey. A hidden Markov model (HMM) approach was used to survey 
+956 
+the predicted rotifer proteomes for proteins encoding the reverse transcriptase (RT) domain 
+957 
+(Pfam ID PF00078). First, a HMM was constructed from an alignment of 51 RT domains from 
+958 
+across the tree of life [57], supplemented with 67 bdelloid-specific retroelements 
+959 
+[44,57,58,61,63,64] (S9 Fig). Alternative transcripts were first removed from predicted 
+960 
+proteomes and proteins with a significant match (E-value ≤ 1e−5) were identified and inserted 
+961 
+into the core RT alignment using HMMER v3.2.1 ‘hmmsearch’ and ‘hmmalign’, respectively 
+962 
+(http://hmmer.org/). Maximum likelihood phylogenies were then constructed using IQ-TREE as 
+963 
+above, specifying the root of the phylogeny to be on the branch leading to the bacterial retrons 
+964 
+[57]. Trees were manipulated using FigTree v1.4.4 (https://github.com/rambaut/figtree), 
+965 
+colouring the identified RT-encoding rotifer proteins based on their phylogenetic position. The 
+966 
+span accounted for by genome ‘features’ (other genes, other TEs and telomeric repeats) in a 25 
+967 
+kb window around each identified RT-containing protein was summarised using BEDTools 
+968 
+v2.29.2 ‘intersect’ and ‘groupby’ [153]. Other genes were counted as predicted coding regions 
+969 
+that did not overlap with any TE annotation. Genomic locations of the telomeric hexamer 
+970 
+‘TGTGGG’ [58] were identified using EMBOSS ‘fuzznuc’ [154], excluding any hexamer that 
+971 
+overlapped with a predicted CDS. Note that the telomeric repeat for Brachionus is not known, 
+972 
+but the sequence above was among the most frequent G-rich hexamers identified in the PSC1 
+973 
+genome (see S2 Note). 
+974 
+ 
+975 
+TE silencing machinery survey. A similar HMM based approach was used to characterise gene 
+976 
+copy evolution of three key pathways involved in RNAi gene-silencing. Putative Argonaute 
+977 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+27 
+proteins were identified based on the presence of both the PAZ and PIWI domains (Pfam IDs 
+978 
+PF02170 and PF02171 respectively), putative Dicer proteins were identified based on the 
+979 
+presence of both PAZ and Dicer (PF03368) domains, and putative RdRP proteins were identified 
+980 
+based on the presence of the RdRP domain (PF05183). Stockholm files were downloaded from 
+981 
+Pfam [155] and aligned to the proteomes using HMMER (E-value ≤ 1e−5) as above. Reference 
+982 
+proteomes from a selection of eukaryotic species to represent the diversity and distribution of 
+983 
+Argonaute, Dicer and RdRP proteins were downloaded (June 2020) from UniProt and subjected 
+984 
+to the same procedure: Arabidopsis thaliana (UP000006548), Oryza sativa (UP000007015), 
+985 
+Neurospora crassa (UP000001805), Schizosaccharomyces pombe (UP000002485), Laccaria 
+986 
+bicolor (UP000001194), Dictyostelium discoideum (UP000002195), D. melanogaster 
+987 
+(UP000000803), C. elegans (UP000001940), H. exemplaris (UP000192578), H. robusta 
+988 
+(UP000015101), L. gigantea (UP000030746), S. haematobium (UP000054474), B. plicatilis 
+989 
+(UP000276133), Branchiostoma floridae (UP000001554) and Homo sapiens UP000005640. 
+990 
+Proteins were aligned using either ‘hmmalign’ from the HMMER package or Clustalo, and ML 
+991 
+phylogenies were constructed using IQ-TREE as above.  
+992 
+ 
+993 
+Comparative protein–domain abundance plots were constructed using counts of Pfam entries 
+994 
+parsed directly from InterProScan5 [156] annotation of predicted proteomes. The ‘abundance 
+995 
+score’ was computed as the (log) ratio of domain counts in bdelloids divided by the domain 
+996 
+counts in eukaryotes, corrected for inflation in bdelloids due to the ancient whole-genome 
+997 
+duplication by dividing the former by two. This correction is likely to be conservative, since 
+998 
+many loci have lost one branch of the ancient duplication (i.e. tetraploidy is degenerate). To 
+999 
+check that the putative RdRP expansion was indeed eukaryotic in origin, rather than viral, the 
+1000 
+HMMs for four viral RdRP families (PF00680, PF00978, PF00998 and PF02123) were 
+1001 
+downloaded from Pfam and submitted to the same search protocol, with zero hits to bdelloid 
+1002 
+proteomes recorded. 
+1003 
+ 
+1004 
+Statistical analyses. To assess differences in TE content between desiccating and non-
+1005 
+desiccating rotifer species, we ran Bayesian linear mixed-effects models of TE content (as a 
+1006 
+percentage of genome span) including desiccation as a two-level fixed factor and sample ID as a 
+1007 
+random intercept term. The BUSCO gene phylogeny was used to account for non-independence 
+1008 
+among species. A separate model was run for each TE superfamily (including ‘unclassified’ TEs) 
+1009 
+as well as for all TEs combined. Inverse-Wishart priors were used for the random and residual 
+1010 
+variances, and models were run for 42,0000 iterations with a burn-in of 20,000 and a thinning 
+1011 
+interval of 200. This resulted in 2,000 stored samples of the posterior with minimal 
+1012 
+autocorrelation in all cases (< 0.2) [157]. Models were run using the MCMCglmm v2.29 [158] 
+1013 
+package in R. The phylogenetic signal, defined as the proportion of the total variance in TE 
+1014 
+content attributable to the phylogeny [159], was estimated from the MCMCglmm model output 
+1015 
+using the formula: λ = σP2/(σP2 + σR2). 
+1016 
+ 
+1017 
+The density of genomic features surrounding BUSCO genes versus RT-containing genes were 
+1018 
+compared using linear mixed effects models with species as a random effect and gene class 
+1019 
+(BUSCO, PLE, LINE or LTR) as a fixed effect, run using lme4 [160] v1.1-21 in R. TE length 
+1020 
+distributions were compared using the same approach, with species as a random effect and 
+1021 
+binary factors specifying monogononts versus bdelloid, and desiccating versus nondesiccating 
+1022 
+species.  
+1023 
+ 
+1024 
+Code availability. All TE analysis scripts used in this study are available at 
+1025 
+https://github.com/reubwn/te-evolution. 
+1026 
+ 
+1027 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+28 
+ 
+1028 
+Acknowledgements 
+1029 
+ 
+1030 
+Genome sequencing was performed by the UK Natural Environment Research Council (NERC) 
+1031 
+Biomolecular Analysis Facility at the Centre for Genomic Research (CGR) at the University of 
+1032 
+Liverpool (NBAF-Liverpool) and the DNA Sequencing Facility in the Biochemistry Department 
+1033 
+at the University of Cambridge. The authors wish to thank the following: Christiane Hertz-
+1034 
+Fowler, Pia Koldkjær and John Kenny (CGR), Shilo Dickens and Nataliya Scott (Cambridge). 
+1035 
+Matthew Arno and Colin Sharp (Edinburgh), and Steven Van Belleghem (University of Puerto 
+1036 
+Rico) for support with the planning and execution of various aspects of genome sequencing 
+1037 
+and/or assembly, Tom Smith and Anita Kristiansen for rotifer sampling, and Mike Tristem for 
+1038 
+helpful discussions on detecting LTR polymorphisms. 
+1039 
+ 
+1040 
+ 
+1041 
+References 
+1042 
+ 
+1043 
+1.  
+Orgel LE, Crick FH. Selfish DNA: the ultimate parasite. Nature. 1980;284: 604–607. doi:10.1038/284604a0 
+1044 
+2.  
+Hickey DA. Selfish DNA: a sexually-transmitted nuclear parasite. Genetics. 1982;101: 519–531. 
+1045 
+3.  
+Charlesworth B, Charlesworth D. The population dynamics of transposable elements. Genet Res. 1983;42: 1–
+1046 
+27. doi:10.1017/S0016672300021455 
+1047 
+4.  
+Doolittle RF, Feng D-F, Johnson MS, McClure MA. Origins and evolutionary relationships of retroviruses. Q 
+1048 
+Rev Biol. 1989;64: 1–30. 
+1049 
+5.  
+Eickbush TH, Malik HS. Origins and Evolution of Retrotransposons. In: Craig NL, Lambowitz AM, Craigie 
+1050 
+R, Gellert M, editors. Mobile DNA II. American Society of Microbiology; 2002. pp. 1111–1144. 
+1051 
+doi:10.1128/9781555817954.ch49 
+1052 
+6.  
+Robertson HM. Evolution of DNA Transposons in Eukaryotes. In: Craig NL, Lambowitz AM, Craigie R, 
+1053 
+Gellert M, editors. Mobile DNA II. American Society of Microbiology; 2002. pp. 1093–1110. 
+1054 
+doi:10.1128/9781555817954.ch48 
+1055 
+7.  
+Capy P, Gasperi G, Biémont C, Bazin C. Stress and transposable elements: co-evolution or useful parasites? 
+1056 
+Heredity. 2000;85 (Pt 2): 101–106. doi:10.1046/j.1365-2540.2000.00751.x 
+1057 
+8.  
+Burt A, Trivers R. Genes in Conflict: The Biology of Selfish Genetic Elements. Harvard University Press; 
+1058 
+2009. 
+1059 
+9.  
+Bourgeois Y, Boissinot S. On the Population Dynamics of Junk: A Review on the Population Genomics of 
+1060 
+Transposable Elements. Genes. 2019;10. doi:10.3390/genes10060419 
+1061 
+10.  Finnegan DJ. Transposable elements. Curr Opin Genet Dev. 1992;2: 861–867. 
+1062 
+11.  Nuzhdin SV. Sure facts, speculations, and open questions about the evolution of transposable element copy 
+1063 
+number. Genetica. 1999;107: 129–137. 
+1064 
+12.  Montgomery E, Charlesworth B, Langley CH. A test for the role of natural selection in the stabilization of 
+1065 
+transposable element copy number in a population of Drosophila melanogaster. Genet Res . 1987;49: 31–41. 
+1066 
+doi:10.1017/s0016672308009634 
+1067 
+13.  Langley CH, Montgomery E, Hudson R, Kaplan N, Charlesworth B. On the role of unequal exchange in the 
+1068 
+containment of transposable element copy number. Genet Res. 1988;52: 223–235. 
+1069 
+doi:10.1017/s0016672300027695 
+1070 
+14.  Lander ES, Linton LM, Birren B, Nusbaum C, Zody MC, Baldwin J, et al. Initial sequencing and analysis of 
+1071 
+the human genome. Nature. 2001;409: 860–921. doi:10.1038/35057062 
+1072 
+15.  Craig NL. A Moveable Feast: An Introduction to Mobile DNA. In: Craig NL, Chandler M, Gellert M, 
+1073 
+Lambowitz AM, Rice PA, Sandmeyer S, editors. Mobile DNA III. American Society of Microbiology; 2015. 
+1074 
+pp. 3–39. doi:10.1128/microbiolspec.MDNA3-0062-2014 
+1075 
+16.  Chalopin D, Naville M, Plard F, Galiana D, Volff J-N. Comparative analysis of transposable elements 
+1076 
+highlights mobilome diversity and evolution in vertebrates. Genome Biol Evol. 2015;7: 567–580. 
+1077 
+doi:10.1093/gbe/evv005 
+1078 
+17.  Petersen M, Armisén D, Gibbs RA, Hering L, Khila A, Mayer G, et al. Diversity and evolution of the 
+1079 
+transposable element repertoire in arthropods with particular reference to insects. BMC Evol Biol. 2019;19: 
+1080 
+11. doi:10.1186/s12862-018-1324-9 
+1081 
+18.  Szitenberg A, Cha S, Opperman CH, Bird DM, Blaxter ML, Lunt DH. Genetic drift, not life history or RNAi, 
+1082 
+determine long-term evolution of transposable elements. Genome Biol Evol. 2016;8: 2964–2978. 
+1083 
+doi:10.1093/gbe/evw208 
+1084 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+29 
+19.  Castanera R, López-Varas L, Borgognone A, LaButti K, Lapidus A, Schmutz J, et al. Transposable elements 
+1085 
+versus the fungal genome: Impact on whole-genome architecture and transcriptional profiles. PLoS Genet. 
+1086 
+2016;12: e1006108. doi:10.1371/journal.pgen.1006108 
+1087 
+20.  Doolittle WF, Sapienza C. Selfish genes, the phenotype paradigm and genome evolution. Nature. 1980;284: 
+1088 
+601–603. doi:10.1038/284601a0 
+1089 
+21.  Charlesworth B, Langley CH. The population genetics of Drosophila transposable elements. Annu Rev Genet. 
+1090 
+1989;23: 251–287. doi:10.1146/annurev.ge.23.120189.001343 
+1091 
+22.  Wright S, Finnegan D. Genome evolution: sex and the transposable element. Curr Biol. 2001;11: R296-9. 
+1092 
+doi:10.1016/S0960-9822(01)00168-3 
+1093 
+23.  Schaack S, Choi E, Lynch M, Pritham EJ. DNA transposons and the role of recombination in mutation 
+1094 
+accumulation in Daphnia pulex. Genome Biol. 2010;11: R46. doi:10.1186/gb-2010-11-4-r46 
+1095 
+24.  Petrov DA, Aminetzach YT, Davis JC, Bensasson D, Hirsh AE. Size matters: non-LTR retrotransposable 
+1096 
+elements and ectopic recombination in Drosophila. Mol Biol Evol. 2003;20: 880–892. 
+1097 
+doi:10.1093/molbev/msg102 
+1098 
+25.  Schwander T, Crespi BJ. Twigs on the tree of life? Neutral and selective models for integrating 
+1099 
+macroevolutionary patterns with microevolutionary processes in the analysis of asexuality. Mol Ecol. 2009;18: 
+1100 
+28–42. doi:10.1111/j.1365-294X.2008.03992.x 
+1101 
+26.  Charlesworth B, Langley CH. The evolution of self-regulated transposition of transposable elements. 
+1102 
+Genetics. 1986;112: 359–383. 
+1103 
+27.  Dolgin ES, Charlesworth B. The fate of transposable elements in asexual populations. Genetics. 2006;174: 
+1104 
+817–827. doi:10.1534/genetics.106.060434 
+1105 
+28.  Bast J, Jaron KS, Schuseil D, Roze D, Schwander T. Asexual reproduction reduces transposable element load 
+1106 
+in experimental yeast populations. Elife. 2019;8. doi:10.7554/eLife.48548 
+1107 
+29.  Fujita MK, Singhal S, Brunes TO, Maldonado JA. Evolutionary Dynamics and Consequences of 
+1108 
+Parthenogenesis in Vertebrates. Annu Rev Ecol Evol Syst. 2020. doi:10.1146/annurev-ecolsys-011720-
+1109 
+114900 
+1110 
+30.  Schaack S, Gilbert C, Feschotte C. Promiscuous DNA: horizontal transfer of transposable elements and why it 
+1111 
+matters for eukaryotic evolution. Trends Ecol Evol. 2010;25: 537–546. doi:10.1016/j.tree.2010.06.001 
+1112 
+31.  Basten CJ, Moody ME. A branching-process model for the evolution of transposable elements incorporating 
+1113 
+selection. J Math Biol. 1991;29: 743–761. doi:10.1007/bf00160190 
+1114 
+32.  Edwards RJ, Brookfield JFY. Transiently beneficial insertions could maintain mobile DNA sequences in 
+1115 
+variable environments. Mol Biol Evol. 2003;20: 30–37. doi:10.1093/molbev/msg001 
+1116 
+33.  Silva JC, Loreto EL, Clark JB. Factors that affect the horizontal transfer of transposable elements. Curr Issues 
+1117 
+Mol Biol. 2004;6: 57–71. 
+1118 
+34.  Peccoud J, Loiseau V, Cordaux R, Gilbert C. Massive horizontal transfer of transposable elements in insects. 
+1119 
+Proc Natl Acad Sci U S A. 2017. doi:10.1073/pnas.1621178114 
+1120 
+35.  Boutin TS, Le Rouzic A, Capy P. How does selfing affect the dynamics of selfish transposable elements? Mob 
+1121 
+DNA. 2012;3: 5. doi:10.1186/1759-8753-3-5 
+1122 
+36.  Startek M, Le Rouzic A, Capy P, Grzebelus D, Gambin A. Genomic parasites or symbionts? Modeling the 
+1123 
+effects of environmental pressure on transposition activity in asexual populations. Theor Popul Biol. 2013;90: 
+1124 
+145–151. doi:10.1016/j.tpb.2013.07.004 
+1125 
+37.  Neiman M, Meirmans S, Meirmans PG. What can asexual lineage age tell us about the maintenance of sex? 
+1126 
+Ann N Y Acad Sci. 2009;1168: 185–200. doi:10.1111/j.1749-6632.2009.04572.x 
+1127 
+38.  Jaron KS, Bast J, Nowell RW, Rhyker Ranallo-Benavidez T, Robinson-Rechavi M, Schwander T. Genomic 
+1128 
+features of asexual animals. bioRxiv. 2019. p. 497495. doi:10.1101/497495 
+1129 
+39.  Mark Welch DB, Ricci C, Meselson M. Bdelloid Rotifers: Progress in Understanding the Success of an 
+1130 
+Evolutionary Scandal. Lost Sex. Springer, Dordrecht; 2009. pp. 259–279. doi:10.1007/978-90-481-2770-2_13 
+1131 
+40.  Robeson MS, King AJ, Freeman KR, Birky CW Jr, Martin AP, Schmidt SK. Soil rotifer communities are 
+1132 
+extremely diverse globally but spatially autocorrelated locally. Proc Natl Acad Sci U S A. 2011;108: 4406–
+1133 
+4410. doi:10.1073/pnas.1012678108 
+1134 
+41.  Hudson CT, Gosse PH. The Rotifera or wheel-animalcules. Longmans, Green; 1886. 
+1135 
+42.  Donner J. Ordnung Bdelloidea. Akademie Verlag, Berlin; 1965. p. 297. 
+1136 
+43.  Mark Welch D, Meselson M. Evidence for the evolution of bdelloid rotifers without sexual reproduction or 
+1137 
+genetic exchange. Science. 2000;288: 1211–1215. doi:10.1126/science.288.5469.1211 
+1138 
+44.  Flot J-F, Hespeels B, Li X, Noel B, Arkhipova I, Danchin EGJ, et al. Genomic evidence for ameiotic 
+1139 
+evolution in the bdelloid rotifer Adineta vaga. Nature. 2013;500: 453–457. doi:10.1038/nature12326 
+1140 
+45.  Mark Welch DB, Mark Welch JL, Meselson M. Evidence for degenerate tetraploidy in bdelloid rotifers. Proc 
+1141 
+Natl Acad Sci U S A. 2008;105: 5145–5149. doi:10.1073/pnas.0800972105 
+1142 
+46.  Nowell RW, Almeida P, Wilson CG, Smith TP, Fontaneto D, Crisp A, et al. Comparative genomics of 
+1143 
+bdelloid rotifers: Insights from desiccating and nondesiccating species. PLoS Biol. 2018;16: e2004830. 
+1144 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+30 
+doi:10.1371/journal.pbio.2004830 
+1145 
+47.  Simion P, Narayan J, Houtain A, Derzelle A, Baudry L, Nicolas E, et al. Homologous chromosomes in 
+1146 
+asexual rotifer Adineta vaga suggest automixis. bioRxiv. 2020. p. 2020.06.16.155473. 
+1147 
+doi:10.1101/2020.06.16.155473 
+1148 
+48.  Signorovitch A, Hur J, Gladyshev E, Meselson M. Allele sharing and evidence for sexuality in a 
+1149 
+mitochondrial clade of bdelloid rotifers. Genetics. 2015;200: 581–590. doi:10.1534/genetics.115.176719 
+1150 
+49.  Vakhrusheva OA, Mnatsakanova EA, Galimov YR, Neretina TV, Gerasimov ES, Ozerova SG, et al. 
+1151 
+Recombination in a natural population of the bdelloid rotifer Adineta vaga. bioRxiv. 2018. p. 489393. 
+1152 
+doi:10.1101/489393 
+1153 
+50.  Arkhipova I, Meselson M. Transposable elements in sexual and ancient asexual taxa. Proc Natl Acad Sci U S 
+1154 
+A. 2000;97: 14473–14477. doi:10.1073/pnas.97.26.14473 
+1155 
+51.  Zhang H-H, Peccoud J, Xu M-R-X, Zhang X-G, Gilbert C. Horizontal transfer and evolution of transposable 
+1156 
+elements in vertebrates. Nat Commun. 2020;11: 1362. doi:10.1038/s41467-020-15149-4 
+1157 
+52.  Arkhipova I, Meselson M. Deleterious transposable elements and the extinction of asexuals. Bioessays. 
+1158 
+2005;27: 76–85. doi:10.1002/bies.20159 
+1159 
+53.  Ricci C. Anhydrobiotic capabilities of bdelloid rotifers. Hydrobiologia. 1998;387–388: 321–326. 
+1160 
+doi:10.1023/A:1017086425934 
+1161 
+54.  Gladyshev E, Meselson M. Extreme resistance of bdelloid rotifers to ionizing radiation. Proc Natl Acad Sci U 
+1162 
+S A. 2008;105: 5139–5144. doi:10.1073/pnas.0800966105 
+1163 
+55.  Hespeels B, Knapen M, Hanot-Mambres D, Heuskin A-C, Pineux F, Lucas S, et al. Gateway to genetic 
+1164 
+exchange? DNA double-strand breaks in the bdelloid rotifer Adineta vaga submitted to desiccation. J Evol 
+1165 
+Biol. 2014;27: 1334–1345. doi:10.1111/jeb.12326 
+1166 
+56.  Gladyshev EA, Arkhipova IR. Genome structure of bdelloid rotifers: shaped by asexuality or desiccation? J 
+1167 
+Hered. 2010;101 Suppl 1: S85-93. doi:10.1093/jhered/esq008 
+1168 
+57.  Arkhipova IR, Pyatkov KI, Meselson M, Evgen’ev MB. Retroelements containing introns in diverse 
+1169 
+invertebrate taxa. Nat Genet. 2003;33: 123–124. doi:10.1038/ng1074 
+1170 
+58.  Gladyshev EA, Arkhipova IR. Telomere-associated endonuclease-deficient Penelope-like retroelements in 
+1171 
+diverse eukaryotes. Proc Natl Acad Sci U S A. 2007;104: 9352–9357. doi:10.1073/pnas.0702741104 
+1172 
+59.  Arkhipova IR, Yushenova IA, Rodriguez F. Giant reverse transcriptase-encoding transposable elements at 
+1173 
+telomeres. Mol Biol Evol. 2017. doi:10.1093/molbev/msx159 
+1174 
+60.  Arkhipova IR, Yushenova IA, Rodriguez F. Endonuclease-containing Penelope retrotransposons in the 
+1175 
+bdelloid rotifer Adineta vaga exhibit unusual structural features and play a role in expansion of host gene 
+1176 
+families. Mob DNA. 2013;4: 19. doi:10.1186/1759-8753-4-19 
+1177 
+61.  Gladyshev EA, Meselson M, Arkhipova IR. A deep-branching clade of retrovirus-like retrotransposons in 
+1178 
+bdelloid rotifers. Gene. 2007;390: 136–145. doi:10.1016/j.gene.2006.09.025 
+1179 
+62.  Rodriguez F, Kenefick AW, Arkhipova IR. LTR-retrotransposons from bdelloid rotifers capture additional 
+1180 
+ORFs shared between highly diverse retroelement types. Viruses. 2017;9. doi:10.3390/v9040078 
+1181 
+63.  Gladyshev EA, Arkhipova IR. Rotifer rDNA-specific R9 retrotransposable elements generate an exceptionally 
+1182 
+long target site duplication upon insertion. Gene. 2009;448: 145–150. doi:10.1016/j.gene.2009.08.016 
+1183 
+64.  Gladyshev EA, Arkhipova IR. A subtelomeric non-LTR retrotransposon Hebe in the bdelloid rotifer Adineta 
+1184 
+vaga is subject to inactivation by deletions but not 5’ truncations. Mob DNA. 2010;1: 12. doi:10.1186/1759-
+1185 
+8753-1-12 
+1186 
+65.  Kim H-S, Lee B-Y, Han J, Jeong C-B, Hwang D-S, Lee M-C, et al. The genome of the freshwater 
+1187 
+monogonont rotifer Brachionus calyciflorus. Mol Ecol Resour. 2018;18: 646–655. doi:10.1111/1755-
+1188 
+0998.12768 
+1189 
+66.  Han J, Park JC, Choi B-S, Kim M-S, Kim H-S, Hagiwara A, et al. The genome of the marine monogonont 
+1190 
+rotifer Brachionus plicatilis: Genome-wide expression profiles of 28 cytochrome P450 genes in response to 
+1191 
+chlorpyrifos and 2-ethyl-phenanthrene. Aquat Toxicol. 2019;214: 105230. doi:10.1016/j.aquatox.2019.105230 
+1192 
+67.  Blommaert J, Riss S, Hecox-Lea B, Mark Welch DB, Stelzer CP. Small, but surprisingly repetitive genomes: 
+1193 
+transposon expansion and not polyploidy has driven a doubling in genome size in a metazoan species 
+1194 
+complex. BMC Genomics. 2019;20: 466. doi:10.1186/s12864-019-5859-y 
+1195 
+68.  Mauer K, Hellmann SL, Groth M, Fröbius AC, Zischler H, Hankeln T, et al. The genome, transcriptome, and 
+1196 
+proteome of the fish parasite Pomphorhynchus laevis (Acanthocephala). PLoS One. 2020;15: e0232973. 
+1197 
+doi:10.1371/journal.pone.0232973 
+1198 
+69.  Wey-Fabrizius AR, Herlyn H, Rieger B, Rosenkranz D, Witek A, Welch DBM, et al. Transcriptome data 
+1199 
+reveal Syndermatan relationships and suggest the evolution of endoparasitism in Acanthocephala via an 
+1200 
+epizoic stage. PLoS One. 2014;9: e88618. doi:10.1371/journal.pone.0088618 
+1201 
+70.  Sielaff M, Schmidt H, Struck TH, Rosenkranz D, Mark Welch DB, Hankeln T, et al. Phylogeny of 
+1202 
+Syndermata (syn. Rotifera): Mitochondrial gene order verifies epizoic Seisonidea as sister to endoparasitic 
+1203 
+Acanthocephala within monophyletic Hemirotifera. Mol Phylogenet Evol. 2016;96: 79–92. 
+1204 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+31 
+doi:10.1016/j.ympev.2015.11.017 
+1205 
+71.  Laumer CE, Fernández R, Lemer S, Combosch D, Kocot KM, Riesgo A, et al. Revisiting metazoan phylogeny 
+1206 
+with genomic sampling of all phyla. Proc Biol Sci. 2019;286: 20190831. doi:10.1098/rspb.2019.0831 
+1207 
+72.  C. elegans Sequencing Consortium. Genome sequence of the nematode C. elegans: a platform for 
+1208 
+investigating biology. Science. 1998;282: 2012–2018. doi:10.1126/science.282.5396.2012 
+1209 
+73.  Adams MD, Celniker SE, Holt RA, Evans CA, Gocayne JD, Amanatides PG, et al. The genome sequence of 
+1210 
+Drosophila melanogaster. Science. 2000;287: 2185–2195. doi:10.1126/science.287.5461.2185 
+1211 
+74.  Young ND, Jex AR, Li B, Liu S, Yang L, Xiong Z, et al. Whole-genome sequence of Schistosoma 
+1212 
+haematobium. Nat Genet. 2012;44: 221–225. doi:10.1038/ng.1065 
+1213 
+75.  Zhang G, Fang X, Guo X, Li L, Luo R, Xu F, et al. The oyster genome reveals stress adaptation and 
+1214 
+complexity of shell formation. Nature. 2012;490: 49–54. doi:10.1038/nature11413 
+1215 
+76.  Simakov O, Marletaz F, Cho S-J, Edsinger-Gonzales E, Havlak P, Hellsten U, et al. Insights into bilaterian 
+1216 
+evolution from three spiralian genomes. Nature. 2013;493: 526–531. doi:10.1038/nature11696 
+1217 
+77.  Gusev O, Suetsugu Y, Cornette R, Kawashima T, Logacheva MD, Kondrashov AS, et al. Comparative 
+1218 
+genome sequencing reveals genomic signature of extreme desiccation tolerance in the anhydrobiotic midge. 
+1219 
+Nat Commun. 2014;5: 4784. doi:10.1038/ncomms5784 
+1220 
+78.  Albertin CB, Simakov O, Mitros T, Wang ZY, Pungor JR, Edsinger-Gonzales E, et al. The octopus genome 
+1221 
+and the evolution of cephalopod neural and morphological novelties. Nature. 2015;524: 220–224. 
+1222 
+doi:10.1038/nature14668 
+1223 
+79.  Luo Y-J, Takeuchi T, Koyanagi R, Yamada L, Kanda M, Khalturina M, et al. The Lingula genome provides 
+1224 
+insights into brachiopod evolution and the origin of phosphate biomineralization. Nat Commun. 2015;6: 8301. 
+1225 
+doi:10.1038/ncomms9301 
+1226 
+80.  Mikhailov KV, Slyusarev GS, Nikitin MA, Logacheva MD, Penin AA, Aleoshin VV, et al. The genome of 
+1227 
+Intoshia linei affirms orthonectids as highly simplified spiralians. Curr Biol. 2016;26: 1768–1774. 
+1228 
+doi:10.1016/j.cub.2016.05.007 
+1229 
+81.  Hashimoto T, Horikawa DD, Saito Y, Kuwahara H, Kozuka-Hata H, Shin-I T, et al. Extremotolerant 
+1230 
+tardigrade genome and improved radiotolerance of human cultured cells by tardigrade-unique protein. Nat 
+1231 
+Commun. 2016;7: 12808. doi:10.1038/ncomms12808 
+1232 
+82.  Yoshida Y, Koutsovoulos G, Laetsch DR, Stevens L, Kumar S, Horikawa DD, et al. Comparative genomics of 
+1233 
+the tardigrades Hypsibius dujardini and Ramazzottius varieornatus. PLoS Biol. 2017;15: e2002266. 
+1234 
+doi:10.1371/journal.pbio.2002266 
+1235 
+83.  Adema CM, Hillier LW, Jones CS, Loker ES, Knight M, Minx P, et al. Whole genome analysis of a 
+1236 
+schistosomiasis-transmitting freshwater snail. Nat Commun. 2017;8: 15451. doi:10.1038/ncomms15451 
+1237 
+84.  Smit AFA, Hubley R, Green P. RepeatMasker Open-4.0. 2013-2015. Available: http://www.repeatmasker.org 
+1238 
+85.  Kimura M. A simple method for estimating evolutionary rates of base substitutions through comparative 
+1239 
+studies of nucleotide sequences. J Mol Evol. 1980;16: 111–120. doi:10.1007/BF01731581 
+1240 
+86.  Kapusta A, Suh A. Evolution of bird genomes-a transposon’s-eye view. Ann N Y Acad Sci. 2017;1389: 164–
+1241 
+185. doi:10.1111/nyas.13295 
+1242 
+87.  Shao F, Han M, Peng Z. Evolution and diversity of transposable elements in fish genomes. Sci Rep. 2019;9: 
+1243 
+15399. doi:10.1038/s41598-019-51888-1 
+1244 
+88.  Belshaw R, Pereira V, Katzourakis A, Talbot G, Paces J, Burt A, et al. Long-term reinfection of the human 
+1245 
+genome by endogenous retroviruses. Proc Natl Acad Sci U S A. 2004;101: 4894–4899. 
+1246 
+doi:10.1073/pnas.0307800101 
+1247 
+89.  Garbarino JE, Gibbons IR. Expression and genomic analysis of midasin, a novel and highly conserved AAA 
+1248 
+protein distantly related to dynein. BMC Genomics. 2002;3: 18. doi:10.1186/1471-2164-3-18 
+1249 
+90.  Li P-C, Li K, Wang J, Zhao C-Z, Zhao S-Z, Hou L, et al. The AAA-ATPase MIDASIN 1 functions in 
+1250 
+ribosome biogenesis and is essential for embryo and root development. Plant Physiol. 2019;180: 289–304. 
+1251 
+doi:10.1104/pp.18.01225 
+1252 
+91.  Hur JH, Van Doninck K, Mandigo ML, Meselson M. Degenerate tetraploidy was established before bdelloid 
+1253 
+rotifer families diverged. Mol Biol Evol. 2009;26: 375–383. doi:10.1093/molbev/msn260 
+1254 
+92.  Eyres I, Frangedakis E, Fontaneto D, Herniou EA, Boschetti C, Carr A, et al. Multiple functionally divergent 
+1255 
+and conserved copies of alpha tubulin in bdelloid rotifers. BMC Evol Biol. 2012;12: 148. doi:10.1186/1471-
+1256 
+2148-12-148 
+1257 
+93.  Song M, Boissinot S. Selection against LINE-1 retrotransposons results principally from their ability to 
+1258 
+mediate ectopic recombination. Gene. 2007;390: 206–213. doi:10.1016/j.gene.2006.09.033 
+1259 
+94.  Arkhipova IR, Yushenova IA. Giant transposons in eukaryotes: Is bigger better? Genome Biol Evol. 2019;11: 
+1260 
+906–918. doi:10.1093/gbe/evz041 
+1261 
+95.  Cooper DM, Schimenti KJ, Schimenti JC. Factors affecting ectopic gene conversion in mice. Mamm Genome. 
+1262 
+1998;9: 355–360. doi:10.1007/s003359900769 
+1263 
+96.  Höck J, Meister G. The Argonaute protein family. Genome Biol. 2008;9: 210. doi:10.1186/gb-2008-9-2-210 
+1264 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+32 
+97.  Juliano C, Wang J, Lin H. Uniting germline and stem cells: the function of Piwi proteins and the piRNA 
+1265 
+pathway in diverse organisms. Annu Rev Genet. 2011;45: 447–469. doi:10.1146/annurev-genet-110410-
+1266 
+132541 
+1267 
+98.  Ghildiyal M, Zamore PD. Small silencing RNAs: an expanding universe. Nat Rev Genet. 2009;10: 94–108. 
+1268 
+doi:10.1038/nrg2504 
+1269 
+99.  de Jong D, Eitel M, Jakob W, Osigus H-J, Hadrys H, Desalle R, et al. Multiple dicer genes in the early-
+1270 
+diverging metazoa. Mol Biol Evol. 2009;26: 1333–1340. doi:10.1093/molbev/msp042 
+1271 
+100.  Zong J, Yao X, Yin J, Zhang D, Ma H. Evolution of the RNA-dependent RNA polymerase (RdRP) genes: 
+1272 
+duplications and possible losses before and after the divergence of major eukaryotic groups. Gene. 2009;447: 
+1273 
+29–39. doi:10.1016/j.gene.2009.07.004 
+1274 
+101.  Yigit E, Batista PJ, Bei Y, Pang KM, Chen C-CG, Tolia NH, et al. Analysis of the C. elegans Argonaute 
+1275 
+family reveals that distinct Argonautes act sequentially during RNAi. Cell. 2006;127: 747–757. 
+1276 
+doi:10.1016/j.cell.2006.09.033 
+1277 
+102.  Shi Z, Montgomery TA, Qi Y, Ruvkun G. High-throughput sequencing reveals extraordinary fluidity of 
+1278 
+miRNA, piRNA, and siRNA pathways in nematodes. Genome Res. 2013;23: 497–508. 
+1279 
+doi:10.1101/gr.149112.112 
+1280 
+103.  Buck AH, Blaxter M. Functional diversification of Argonautes in nematodes: an expanding universe. Biochem 
+1281 
+Soc Trans. 2013;41: 881–886. doi:10.1042/BST20130086 
+1282 
+104.  Aravin AA, Hannon GJ, Brennecke J. The Piwi-piRNA pathway provides an adaptive defense in the 
+1283 
+transposon arms race. Science. 2007;318: 761–764. doi:10.1126/science.1146484 
+1284 
+105.  Sarkies P, Selkirk ME, Jones JT, Blok V, Boothby T, Goldstein B, et al. Ancient and novel small RNA 
+1285 
+pathways compensate for the loss of piRNAs in multiple independent nematode lineages. PLoS Biol. 2015;13: 
+1286 
+e1002061. doi:10.1371/journal.pbio.1002061 
+1287 
+106.  Shirayama M, Seth M, Lee H-C, Gu W, Ishidate T, Conte D Jr, et al. piRNAs initiate an epigenetic memory of 
+1288 
+nonself RNA in the C. elegans germline. Cell. 2012;150: 65–77. doi:10.1016/j.cell.2012.06.015 
+1289 
+107.  Rodriguez F, Arkhipova IR. Multitasking of the piRNA silencing machinery: targeting transposable elements 
+1290 
+and foreign genes in the bdelloid rotifer Adineta vaga. Genetics. 2016;203: 255–268. 
+1291 
+doi:10.1534/genetics.116.186734 
+1292 
+108.  Gladyshev EA, Meselson M, Arkhipova IR. Massive horizontal gene transfer in bdelloid rotifers. Science. 
+1293 
+2008;320: 1210–1213. doi:10.1126/science.1156407 
+1294 
+109.  Boschetti C, Carr A, Crisp A, Eyres I, Wang-Koh Y, Lubzens E, et al. Biochemical diversification through 
+1295 
+foreign gene expression in bdelloid rotifers. PLoS Genet. 2012;8: e1003035. 
+1296 
+doi:10.1371/journal.pgen.1003035 
+1297 
+110.  Eyres I, Boschetti C, Crisp A, Smith TP, Fontaneto D, Tunnacliffe A, et al. Horizontal gene transfer in 
+1298 
+bdelloid rotifers is ancient, ongoing and more frequent in species from desiccating habitats. BMC Biol. 
+1299 
+2015;13: 90. doi:10.1186/s12915-015-0202-9 
+1300 
+111.  Becks L, Agrawal AF. The effect of sex on the mean and variance of fitness in facultatively sexual rotifers. J 
+1301 
+Evol Biol. 2011;24: 656–664. doi:10.1111/j.1420-9101.2010.02199.x 
+1302 
+112.  Andrews S. FastQC: A quality-control tool for high-throughput sequence data. 2015. Available: 
+1303 
+http://www.bioinformatics.babraham.ac.uk/projects/fastqc/ 
+1304 
+113.  Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and 
+1305 
+samples in a single report. Bioinformatics. 2016;32: 3047–3048. doi:10.1093/bioinformatics/btw354 
+1306 
+114.  Weisenfeld NI, Kumar V, Shah P, Church DM, Jaffe DB. Direct determination of diploid genome sequences. 
+1307 
+Genome Res. 2017;27: 757–767. doi:10.1101/gr.214874.116 
+1308 
+115.  Coombe L, Zhang J, Vandervalk BP, Chu J, Jackman SD, Birol I, et al. ARKS: chromosome-scale scaffolding 
+1309 
+of human genome drafts with linked read kmers. BMC Bioinformatics. 2018;19: 234. doi:10.1186/s12859-
+1310 
+018-2243-x 
+1311 
+116.  Bankevich A, Nurk S, Antipov D, Gurevich AA, Dvorkin M, Kulikov AS, et al. SPAdes: a new genome 
+1312 
+assembly algorithm and its applications to single-cell sequencing. J Comput Biol. 2012;19: 455–477. 
+1313 
+doi:10.1089/cmb.2012.0021 
+1314 
+117.  Buchfink B, Xie C, Huson DH. Fast and sensitive protein alignment using DIAMOND. Nat Methods. 
+1315 
+2015;12: 59–60. doi:10.1038/nmeth.3176 
+1316 
+118.  Laetsch DR, Blaxter ML. BlobTools: Interrogation of genome assemblies. F1000Res. 2017;6. 
+1317 
+doi:10.12688/f1000research.12232.1 
+1318 
+119.  Pryszcz LP, Gabaldón T. Redundans: an assembly pipeline for highly heterozygous genomes. Nucleic Acids 
+1319 
+Res. 2016;44: e113. doi:10.1093/nar/gkw294 
+1320 
+120.  Boetzer M, Henkel CV, Jansen HJ, Butler D, Pirovano W. Scaffolding pre-assembled contigs using SSPACE. 
+1321 
+Bioinformatics. 2011;27: 578–579. doi:10.1093/bioinformatics/btq683 
+1322 
+121.  Luo R, Liu B, Xie Y, Li Z, Huang W, Yuan J, et al. SOAPdenovo2: an empirically improved memory-
+1323 
+efficient short-read de novo assembler. Gigascience. 2012;1: 18. doi:10.1186/2047-217X-1-18 
+1324 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+33 
+122.  Li H. Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics. 2018;34: 3094–3100. 
+1325 
+doi:10.1093/bioinformatics/bty191 
+1326 
+123.  Alonge M, Soyk S, Ramakrishnan S, Wang X, Goodwin S, Sedlazeck FJ, et al. RaGOO: fast and accurate 
+1327 
+reference-guided scaffolding of draft genomes. Genome Biol. 2019;20: 224. doi:10.1186/s13059-019-1829-6 
+1328 
+124.  Salzberg SL, Phillippy AM, Zimin A, Puiu D, Magoc T, Koren S, et al. GAGE: A critical evaluation of 
+1329 
+genome assemblies and assembly algorithms. Genome Res. 2012;22: 557–567. doi:10.1101/gr.131383.111 
+1330 
+125.  Simão FA, Waterhouse RM, Ioannidis P, Kriventseva EV, Zdobnov EM. BUSCO: assessing genome 
+1331 
+assembly and annotation completeness with single-copy orthologs. Bioinformatics. 2015;31: 3210–3212. 
+1332 
+doi:10.1093/bioinformatics/btv351 
+1333 
+126.  Hanson SJ, Stelzer C-P, Welch DBM, Logsdon JM Jr. Comparative transcriptome analysis of obligately 
+1334 
+asexual and cyclically sexual rotifers reveals genes with putative functions in sexual reproduction, dormancy, 
+1335 
+and asexual egg production. BMC Genomics. 2013;14: 412. doi:10.1186/1471-2164-14-412 
+1336 
+127.  Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, et al. STAR: ultrafast universal RNA-seq 
+1337 
+aligner. Bioinformatics. 2013;29: 15–21. doi:10.1093/bioinformatics/bts635 
+1338 
+128.  Stanke M, Schöffmann O, Morgenstern B, Waack S. Gene prediction in eukaryotes with a generalized hidden 
+1339 
+Markov model that uses hints from external sources. BMC Bioinformatics. 2006;7: 62. doi:10.1186/1471-
+1340 
+2105-7-62 
+1341 
+129.  Stanke M, Diekhans M, Baertsch R, Haussler D. Using native and syntenically mapped cDNA alignments to 
+1342 
+improve de novo gene finding. Bioinformatics. 2008;24: 637–644. doi:10.1093/bioinformatics/btn013 
+1343 
+130.  Barnett DW, Garrison EK, Quinlan AR, Strömberg MP, Marth GT. BamTools: a C++ API and toolkit for 
+1344 
+analyzing and managing BAM files. Bioinformatics. 2011;27: 1691–1692. doi:10.1093/bioinformatics/btr174 
+1345 
+131.  Hoff KJ, Lange S, Lomsadze A, Borodovsky M, Stanke M. BRAKER1: Unsupervised RNA-Seq-Based 
+1346 
+Genome Annotation with GeneMark-ET and AUGUSTUS. Bioinformatics. 2016;32: 767–769. 
+1347 
+doi:10.1093/bioinformatics/btv661 
+1348 
+132.  Hoff KJ, Lomsadze A, Borodovsky M, Stanke M. Whole-Genome Annotation with BRAKER. Methods Mol 
+1349 
+Biol. 2019;1962: 65–95. doi:10.1007/978-1-4939-9173-0_5 
+1350 
+133.  Norling M, Jareborg N, Dainat J. EMBLmyGFF3: a converter facilitating genome annotation submission to 
+1351 
+European Nucleotide Archive. BMC Res Notes. 2018;11: 584. doi:10.1186/s13104-018-3686-x 
+1352 
+134.  Sievers F, Wilm A, Dineen D, Gibson TJ, Karplus K, Li W, et al. Fast, scalable generation of high-quality 
+1353 
+protein multiple sequence alignments using Clustal Omega. Mol Syst Biol. 2011;7: 539. 
+1354 
+doi:10.1038/msb.2011.75 
+1355 
+135.  Kearse M, Moir R, Wilson A, Stones-Havas S, Cheung M, Sturrock S, et al. Geneious Basic: an integrated and 
+1356 
+extendable desktop software platform for the organization and analysis of sequence data. Bioinformatics. 
+1357 
+2012;28: 1647–1649. doi:10.1093/bioinformatics/bts199 
+1358 
+136.  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ. IQ-TREE: a fast and effective stochastic algorithm for 
+1359 
+estimating maximum-likelihood phylogenies. Mol Biol Evol. 2015;32: 268–274. doi:10.1093/molbev/msu300 
+1360 
+137.  Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS. ModelFinder: fast model selection 
+1361 
+for accurate phylogenetic estimates. Nat Methods. 2017;14: 587–589. doi:10.1038/nmeth.4285 
+1362 
+138.  Guindon S, Dufayard J-F, Lefort V, Anisimova M, Hordijk W, Gascuel O. New algorithms and methods to 
+1363 
+estimate maximum-likelihood phylogenies: assessing the performance of PhyML 3.0. Syst Biol. 2010;59: 
+1364 
+307–321. doi:10.1093/sysbio/syq010 
+1365 
+139.  Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS. UFBoot2: Improving the Ultrafast Bootstrap 
+1366 
+Approximation. Mol Biol Evol. 2018;35: 518–522. doi:10.1093/molbev/msx281 
+1367 
+140.  Flynn JM, Hubley R, Goubert C, Rosen J, Clark AG, Feschotte C, et al. RepeatModeler2 for automated 
+1368 
+genomic discovery of transposable element families. Proc Natl Acad Sci U S A. 2020;117: 9451–9457. 
+1369 
+doi:10.1073/pnas.1921046117 
+1370 
+141.  Bao W, Kojima KK, Kohany O. Repbase Update, a database of repetitive elements in eukaryotic genomes. 
+1371 
+Mob DNA. 2015;6: 11. doi:10.1186/s13100-015-0041-9 
+1372 
+142.  Bailly-Bechet M, Haudry A, Lerat E. “One code to find them all”: a perl tool to conveniently parse 
+1373 
+RepeatMasker output files. Mob DNA. 2014;5: 13. doi:10.1186/1759-8753-5-13 
+1374 
+143.  Revell LJ. phytools: an R package for phylogenetic comparative biology (and other things). Methods Ecol 
+1375 
+Evol. 2012;3: 217–223. doi:10.1111/j.2041-210X.2011.00169.x 
+1376 
+144.  R Core Team. R: A language and environment for statistical computing. 2016. Available: https://www.R-
+1377 
+project.org/ 
+1378 
+145.  Quesneville H, Bergman CM, Andrieu O, Autard D, Nouaud D, Ashburner M, et al. Combined evidence 
+1379 
+annotation of transposable elements in genome sequences. PLoS Comput Biol. 2005;1: 166–175. 
+1380 
+doi:10.1371/journal.pcbi.0010022 
+1381 
+146.  Flutre T, Duprat E, Feuillet C, Quesneville H. Considering transposable element diversification in de novo 
+1382 
+annotation approaches. PLoS One. 2011;6: e16526. doi:10.1371/journal.pone.0016526 
+1383 
+147.  Wicker T, Sabot F, Hua-Van A, Bennetzen JL, Capy P, Chalhoub B, et al. A unified classification system for 
+1384 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
+ 
+ 
+34 
+eukaryotic transposable elements. Nat Rev Genet. 2007;8: 973–982. doi:10.1038/nrg2165 
+1385 
+148.  Ou S, Jiang N. LTR_retriever: A Highly Accurate and Sensitive Program for Identification of Long Terminal 
+1386 
+Repeat Retrotransposons. Plant Physiol. 2018;176: 1410–1422. doi:10.1104/pp.17.01310 
+1387 
+149.  Pruitt KD, Tatusova T, Maglott DR. NCBI reference sequences (RefSeq): a curated non-redundant sequence 
+1388 
+database of genomes, transcripts and proteins. Nucleic Acids Res. 2007;35: D61-5. doi:10.1093/nar/gkl842 
+1389 
+150.  Agapow P-M, Burt A. Indices of multilocus linkage disequilibrium. Mol Ecol Notes. 2001;1: 101–102. 
+1390 
+doi:10.1046/j.1471-8278.2000.00014.x 
+1391 
+151.  Kamvar ZN, Tabima JF, Grünwald NJ. Poppr: an R package for genetic analysis of populations with clonal, 
+1392 
+partially clonal, and/or sexual reproduction. PeerJ. 2014;2: e281. doi:10.7717/peerj.281 
+1393 
+152.  Hartfield M, Wright SI, Agrawal AF. Coalescence and Linkage Disequilibrium in Facultatively Sexual 
+1394 
+Diploids. Genetics. 2018;210: 683–701. doi:10.1534/genetics.118.301244 
+1395 
+153.  Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 
+1396 
+2010;26: 841–842. doi:10.1093/bioinformatics/btq033 
+1397 
+154.  Rice P, Longden I, Bleasby A. EMBOSS: the European Molecular Biology Open Software Suite. Trends 
+1398 
+Genet. 2000;16: 276–277. doi:10.1016/s0168-9525(00)02024-2 
+1399 
+155.  El-Gebali S, Mistry J, Bateman A, Eddy SR, Luciani A, Potter SC, et al. The Pfam protein families database in 
+1400 
+2019. Nucleic Acids Res. 2019;47: D427–D432. doi:10.1093/nar/gky995 
+1401 
+156.  Jones P, Binns D, Chang H-Y, Fraser M, Li W, McAnulla C, et al. InterProScan 5: genome-scale protein 
+1402 
+function classification. Bioinformatics. 2014;30: 1236–1240. doi:10.1093/bioinformatics/btu031 
+1403 
+157.  Garamszegi LZ, editor. Modern Phylogenetic Comparative Methods and Their Application in Evolutionary 
+1404 
+Biology: Concepts and Practice. Springer, Berlin, Heidelberg; 2014. doi:10.1007/978-3-662-43550-2 
+1405 
+158.  Hadfield JD. MCMC Methods for Multi-Response Generalized Linear Mixed Models: The MCMCglmm R 
+1406 
+Package. J Stat Softw. 2010;33. doi:10.18637/jss.v033.i02 
+1407 
+159.  de Villemereuil P, Nakagawa S. General Quantitative Genetic Methods for Comparative Biology. In: 
+1408 
+Garamszegi LZ, editor. Modern Phylogenetic Comparative Methods and Their Application in Evolutionary 
+1409 
+Biology: Concepts and Practice. Berlin, Heidelberg: Springer Berlin Heidelberg; 2014. pp. 287–303. 
+1410 
+doi:10.1007/978-3-662-43550-2_11 
+1411 
+160.  Bates D, Mächler M, Bolker B, Walker S. Fitting Linear Mixed-Effects Models Using lme4. Journal of 
+1412 
+Statistical Software, Articles. 2015;67: 1–48. doi:10.18637/jss.v067.i01 
+1413 
+.
+CC-BY-ND 4.0 International license
+perpetuity. It is made available under a
+preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in 
+The copyright holder for this
+this version posted September 16, 2020. 
+; 
+https://doi.org/10.1101/2020.09.15.297952
+doi: 
+bioRxiv preprint 
