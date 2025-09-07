@@ -38,15 +38,32 @@ def main(pred_path: str, truth_path: str, output_path: str) -> None:
           .alias('cat_id')
     ).drop(['sources', 'is_truth', 'is_pred'])
 
+    # Group for article_id: per (article_id)
+    article_id_grouped = all_df.select(['article_id', 'source']).unique().group_by(['article_id']).agg(
+        pl.col('source').unique().alias('sources')
+    ).with_columns(
+        pl.col('sources').list.contains('truth').alias('is_truth'),
+        pl.col('sources').list.contains('pred').alias('is_pred')
+    ).with_columns(
+        pl.when(pl.col('is_truth') & pl.col('is_pred')).then(pl.lit('TP'))
+          .when(pl.col('is_truth')).then(pl.lit('FN'))
+          .when(pl.col('is_pred')).then(pl.lit('FP'))
+          .alias('cat_article_id')
+    ).drop(['sources', 'is_truth', 'is_pred'])
+
     # Join cat_id to the type-level DF
     final_df = type_grouped.join(id_grouped, on=['article_id', 'dataset_id'], how='left')
-    final_df = final_df.select(['article_id', 'dataset_id', 'type_true', 'type_pred', 'cat_id', 'cat_type'])
+    
+    # Join cat_article_id to the final DF
+    final_df = final_df.join(article_id_grouped, on=['article_id'], how='left')
+    
+    final_df = final_df.select(['article_id', 'dataset_id', 'type_true', 'type_pred', 'cat_id', 'cat_type', 'cat_article_id'])
 
     # Write to output
     final_df.write_csv(output_path)
 
 if __name__ == '__main__':
-    pred_path = './temp/submission_xml.csv'
+    pred_path = './temp/submission_xml_4.csv'
     truth_path = './data/train_labels.csv'  # Assume this is the path to the ground truth CSV; adjust as needed
     output_path = './temp/F1_details_xml.csv'
     main(pred_path, truth_path, output_path)
