@@ -157,76 +157,6 @@ def tidy_extraction(df) -> pl.DataFrame:
         r")"
     )
 
-
-    # # REGEX_IDS FN (False Negative): 遗漏的数量可以达到0
-    # REGEX_IDS = (
-    #     r"(?i)\b(?:"
-    #     # Original Patterns
-    #     r"CHEMBL\d+|"
-    #     r"E-(?:GEOD|PROT|MTAB|MEXP)-\d+|EMPIAR-\d+|"
-    #     r"ENS[A-Z]+\d+|" # More general Ensembl pattern
-    #     r"EPI_ISL_\d{5,}|EPI\d{6,7}|"
-    #     r"HPA\d+|CP\d{6,}|IPR\d{6}|PF\d{5}|BX\d{6}|KX\d{6}|K0\d{4}|CAB\d{6}|"
-    #     r"NC_\d{6,}\.\d+|NM_\d{6,}|" # Loosened length constraints
-    #     r"PRJNA\d+|PRJEB\d+|PRJDB\d+|PXD\d+|SAMN\d+|"
-    #     r"GSE\d+|GSM\d+|"
-    #     r"(?:PDB\s?)?[1-9][A-Z0-9]{3}|HMDB\d+|" # Made "PDB" prefix optional
-    #     r"dryad\.[^\s\"<>]+|pasta\/[^\s\"<>]+|"
-    #     r"(?:SR[RPAX]|STH|ERR|DRR|DRX|DRP|ERP|ERX)\d+|"
-    #     r"CVCL_[A-Z0-9]{4}|"
-        
-    #     # === New Patterns based on train_labels.csv analysis ===
-    #     r"rs\d+|"                     # dbSNP IDs, e.g., rs33912345
-    #     r"HGNC:\d+|"                  # HGNC IDs, e.g., HGNC:13735
-        
-    #     # MODIFIED: Changed \d{1,3} to \d+ to allow more digits in CATH IDs
-    #     r"\d+\.\d+\.\d+\.\d+|" 
-        
-    #     r"[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|" # UniProt IDs
-    #     r"MODEL\d+|"                  # BioModels ID
-    #     r"SRP\d+|"                    # SRA Project
-    #     r"GDS\d+"                     # GEO Datasets
-
-    #     # === Final additions for edge cases ===
-    #     r"NCT\d+|"          # ClinicalTrials.gov ID
-    #     r"[A-Z]{2}\d{6,}|"   # GenBank accession format (e.g., AF123456)
-    #     r"GPL\d+|"           # GEO Platform ID
-        
-    #     # NEW: Added to support IDs like D10700 (single letter + 5 or more digits)
-    #     r"[A-Z]\d{5,}"
-        
-    #     r")"
-    # )
-    
-    # WHITELIST_ACC_PATTERNS = (
-    #     r"(?i)^(?:"
-    #     r"STH\d{5,}|SR[RPAX]\d{6,}|ERR\d{6,}|DRR\d{6,}|DRX\d{6,}|DRP\d{6,}|ERP\d{6,}|ERX\d{6,}|"
-    #     r"SRP\d{6,}|"
-    #     r"SAMN\d{8,}|"
-    #     r"rs\d{6,}|"
-    #     r"[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|"
-    #     r"PXD\d{6,}|"
-    #     r"PRJNA\d{5,}|"
-    #     r"PF\d{5}|"
-    #     r"NM_\d{6,}|NC_\d{6,}\.\d+|"
-    #     r"MODEL\d{10,}|"
-    #     r"[A-Z]{2}\d{6,8}|"
-    #     r"K0\d{4}|"
-    #     r"IPR\d{6}|"
-    #     r"HPA\d{6,}|"
-    #     r"GSE\d{5,}|"
-    #     r"EPI_ISL_\d{5,}|EPI\d{6,7}|"
-    #     r"ENS[A-Z]{3,5}\d{8,}|"
-    #     r"EMPIAR-\d{5,}|"
-    #     r"E-(?:GEOD|PROT|MTAB|MEXP)-\d{4,}|"
-    #     r"CVCL_[A-Z0-9]{4}|"
-    #     r"CHEMBL\d{4,}|"
-    #     r"CAB\d{6}|"
-    #     r"(?:PDB\s?)?[1-9][A-Z0-9]{3}|"
-    #     r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
-    #     r")$"
-    # )
-
     acc_df = (
         df.with_columns(
             pl.col('text').str.extract_all(REGEX_IDS).alias('match')
@@ -253,11 +183,6 @@ def tidy_extraction(df) -> pl.DataFrame:
               .otherwise('dataset_id')
               .alias('dataset_id')
         )
-        # # 应用白名单过滤：只保留完全匹配白名单模式的accession IDs
-        # .filter(
-        #     ~pl.col('dataset_id').str.starts_with(DOI_LINK) &  # 排除DOI链接
-        #     pl.col('dataset_id').str.contains(WHITELIST_ACC_PATTERNS)  # 必须完全匹配白名单模式
-        # )
     )
 
     df = pl.concat([doi_df, acc_df])
