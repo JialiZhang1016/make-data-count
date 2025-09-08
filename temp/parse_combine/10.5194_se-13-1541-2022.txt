@@ -1,0 +1,2003 @@
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+© Author(s) 2022. This work is distributed under
+the Creative Commons Attribution 4.0 License.
+Common-mode signals and vertical velocities in
+the greater Alpine area from GNSS data
+Francesco Pintori1,2, Enrico Serpelloni1,2, and Adriano Gualandi1
+1Osservatorio Nazionale Terremoti, Istituto Nazionale di Geoﬁsica e Vulcanologia (INGV), Rome, 00143, Italy
+2Istituto Nazionale di Geoﬁsica e Vulcanologia (INGV), Bologna, 40128, Italy
+Correspondence: Francesco Pintori (francesco.pintori@ingv.it)
+Received: 26 October 2021 – Discussion started: 17 November 2021
+Revised: 6 September 2022 – Accepted: 8 September 2022 – Published: 11 October 2022
+Abstract. We study the time series of vertical ground dis-
+placements from continuous global navigation satellite sys-
+tem (GNSS) stations located in the European Alps. Our goal
+is to improve the accuracy and precision of vertical ground
+velocities and spatial gradients across an actively deform-
+ing orogen, investigating the spatial and temporal features of
+the displacements caused by non-tectonic geophysical pro-
+cesses. We apply a multivariate statistics-based blind source
+separation algorithm to both GNSS displacement time se-
+ries and ground displacements modeled from atmospheric
+and hydrological loading, as obtained from global reanaly-
+sis models. This allows us to show that the retrieved geodetic
+vertical deformation signals are inﬂuenced by environment-
+related processes and to identify their spatial patterns. Atmo-
+spheric loading is the most important process, reaching am-
+plitudes larger than 2 cm, but hydrological loading is also im-
+portant, with amplitudes of about 1 cm, causing the peculiar
+spatial features of GNSS ground displacements: while the
+displacements caused by atmospheric and hydrological load-
+ing are apparently spatially uniform, our statistical analysis
+shows the presence of N–S and E–W displacement gradients.
+We ﬁlter out signals associated with non-tectonic defor-
+mation from the GNSS time series to study their impact on
+both the estimated noise and linear rates in the vertical di-
+rection. Taking into account the long time span of the time
+series considered in this work, while the impact of ﬁltering
+on rates appears rather limited, the uncertainties estimated
+from ﬁltered time series assuming a power law plus white
+noise model are signiﬁcantly reduced, with an important in-
+crease in white noise contributions to the total noise budget.
+Finally, we present the ﬁltered velocity ﬁeld and show how
+vertical ground velocity spatial gradients are positively cor-
+related with topographic features of the Alps.
+1
+Introduction
+The increasing availability of global navigation satellite sys-
+tem (GNSS) observations, from both geophysical and non-
+geophysical networks, pushed forward the use of ground dis-
+placement measurements to study active geophysical pro-
+cesses on land and ice and in the atmosphere, with appli-
+cations for a broad range of Earth science disciplines (e.g.,
+Blewitt et al., 2018). Studies on active mountain building
+in particular can now beneﬁt from the use of GNSS vertical
+ground motion rates to get new insights into the contribution
+of the different processes at work to the formation and evolu-
+tion of mountain reliefs (e.g., Faccenna et al., 2014a; Sternai
+et al., 2019; Dal Zilio et al., 2021; Ching et al., 2011). Pro-
+posed mechanisms of rock uplift rate include isostatic adjust-
+ment to deglaciation, tectonic shortening, isostatic response
+to erosion and sediment redistribution, isostatic response to
+lithospheric structural changes, and dynamic adjustment due
+to sub-lithospheric mantle ﬂow (e.g., Faccenna et al., 2014b).
+All of these processes come together to contribute to the ac-
+tual vertical ground motion rates estimated from GNSS dis-
+placement time series, and constraining their relative contri-
+bution to mountain dynamics is challenging because of the
+different spatial and temporal scales involved and the short
+observational time period with respect to the characteristic
+timescales of the mentioned processes.
+The availability of long-lasting (i.e., > 8 years) GNSS po-
+sition time series minimizes the impact of transient and sea-
+sonal signals in the vertical rate estimates (Masson et al.,
+2019). However, it is worth considering that GNSS measure-
+ments record ground displacements due to a variety of mul-
+tiscale processes (from continental-scale geodynamics and
+loading to local-scale hydrology and tectonics), resulting in
+Published by Copernicus Publications on behalf of the European Geosciences Union.
+1542
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+the presence of several deformation signals superimposed on
+the main linear trend, which is commonly associated with
+geodynamic processes at the scale of the current (decadal)
+geodetic observation window.
+Excluding tectonic and volcanological processes, and once
+the effect of tides associated with solid earth, the poles
+and the ocean is removed, variations in atmospheric pres-
+sure loading and ﬂuid redistribution in the Earth’s crust are
+the main cause of vertical ground displacement recorded by
+GNSS stations worldwide (Liu et al., 2015). Atmospheric
+pressure and mass changes cause time-variable displacement
+because of the elastic response of the Earth’s surface to these
+load variations, with vertical displacements usually being
+signiﬁcantly larger than the horizontal ones, which appear
+as spatially correlated signals with a dominant 1-year period
+(e.g., Fu and Freymueller, 2012; Fu et al., 2012). Seasonal
+displacements are also caused by non-tidal sea surface ﬂuc-
+tuations. This process is of particular relevance in areas near
+the oceans, while inland its effect is signiﬁcantly reduced
+(van Dam et al., 2012).
+The presence of spatially correlated signals in GNSS
+time series can result from either the aforementioned large-
+scale processes, generally described as common-mode sig-
+nals (CMS), or processing errors, generally described as
+common-mode error (CME), like the mismodeling of dis-
+placements caused by solid Earth, ocean and atmosphere and
+satellite orbit mismodeling, which induces draconitic signals
+(Dong et al., 2006).
+In the literature, the distinction between CMS and CME
+is not always clear, and spatially correlated signals are often
+removed from the time series as CME without attempts at
+interpretation (e.g., He et al., 2017; Hou et al., 2019; Serpel-
+loni et al., 2013; Kreemer and Blewitt, 2021). Depending on
+the pursued goal, this approach can be fair. For example, if
+we were interested in the study of long-term linear deforma-
+tion, we might consider CMS as CME, but it is worth noting
+that the “CME” deﬁnition for signals clearly associated with
+geophysical processes might be misleading. The removal of
+CME and CMS in GNSS position time series, which is also
+known as time series ﬁltering, can help improve the preci-
+sion of the estimated linear velocities. Moreover, a better un-
+derstanding of CMS and CME origin can also provide new
+information about other deformation mechanisms.
+Here we use the European Alps as a natural laboratory to
+investigate the spatial and temporal contribution of different
+geophysical processes, which we identify through a varia-
+tional Bayesian independent component analysis (vbICA),
+on the vertical ground displacements recorded by a dense
+and spatially uniform network of continuous GNSS stations
+in the 2010–2020 time span. The Alps represent the highest
+and most extensive mountain range in Europe (see Fig. 1).
+We focus on the vertical component, which is nominally less
+accurate and precise than the horizontal component, because
+this mountain belt is characterized by signiﬁcant ground up-
+lift and spatial vertical velocity gradients that are correlated
+with topography (Serpelloni et al., 2013). The present-day
+convergence between Adria and the Eurasian plate is largely
+accommodated in the eastern Southern European Alps (e.g.,
+Serpelloni et al., 2016), where the Adriatic lithosphere un-
+derthrusts the Alpine mountain belt, and here part of the ob-
+served vertical uplift is associated with active tectonics (An-
+derlini et al., 2020). Conversely, in other Alpine domains,
+positive vertical velocities most likely derive from a com-
+plex interplay of deep-seated geodynamic and isostatic pro-
+cesses (e.g., Sternai et al., 2019). In the Alpine framework,
+more accurate and precise measurements of geodetic verti-
+cal ground motion rates can provide new constraints on the
+dynamics contributing to the ongoing vertical rates and their
+spatial variations, with implications for the study of moun-
+tain building processes, responses to deglaciation and active
+tectonics.
+The structure of this work is as follows. In Sect. 2 we
+present methods commonly used for extracting spatially cor-
+related signals in GNSS time series. In Sect. 3 we describe
+the data and methods used in this work. In Sect. 4 we charac-
+terize the spatiotemporal behavior of three different indepen-
+dent datasets (GNSS vertical displacements and atmospheric
+and hydrological loading model displacement time series)
+applying a vbICA decomposition to each of them and study-
+ing how they are related. This allows us to spatially and tem-
+porally characterize the signals contributing to the measured
+GNSS displacement time series and associate them with geo-
+physical processes. We also estimate the vertical velocities
+and the noise features of the GNSS stations after removing
+the non-tectonic signals identiﬁed with the vbICA analysis.
+In Sect. 5 we compare the results of different ﬁltering meth-
+ods and use the results of our time series analyses in order
+to evaluate the effects of the signal ﬁltering on the accuracy
+and precision of the vertical velocities of the study region,
+which are of particular importance to better characterize the
+processes generating the Alpine uplift.
+2
+Methods for the extraction of spatially correlated
+signals in GNSS time series
+Two widely used techniques for extracting CMS from a
+GNSS network are the stacking ﬁltering method (SFM,
+Wdowinski et al., 1997) and the weighted stacking ﬁltering
+method (WSFM, Nikolaidis, 2002), which differs from the
+ﬁrst because of a weighting factor based on the uncertainty
+associated with the GNSS data at each epoch.
+Examples of time series ﬁltering with the WSFM are pro-
+vided by Ghasemi Khalkhali et al. (2021) in northwestern
+Iran, Jiang et al. (2018) in California and Zhang et al. (2020)
+in China. The networks of the aforementioned studies span
+less than 1000 km. However, when considering networks
+covering larger areas, the assumption that the CMS has uni-
+form spatial distribution throughout the network is not valid
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1543
+Figure 1. Map of the study area showing the location of GNSS stations. Colored circles show GNSS stations considered in the time series
+analysis, with colors representing the length of the time interval for which data are available at each station (0–25 years). The grey circles
+show GNSS stations not included in the time series analysis to reduce contamination of deformation processes not associated with the Alps.
+Dark grey lines represent mapped faults from the Geodynamic Map of the Mediterranean (Morelli and Barrier, 2004). The dashed box
+includes GNSS stations affected by anthropogenic deformation signals (Palano et al., 2020).
+(Dong et al., 2006; Tian and Shen, 2016; Ming et al., 2017),
+and the stacking methods become imprecise.
+To take into account spatial heterogeneities, Tian and
+Shen (2016) propose an alternative stacking approach: the
+correlation-weighted spatial ﬁltering (CWSF) method. Un-
+like the SFM, CWSF includes the spatial variability of CMS
+through a weighting factor, which depends on the correlation
+coefﬁcient between the residual position time series and the
+distance between the stations. Zhu et al. (2017) use CWSF
+to estimate the CMS of the Crustal Movement Observation
+Network of China and discuss the effects of the thermal
+expansion and environmental loading, which include atmo-
+spheric pressure loading, non-tidal ocean loading and conti-
+nental water storage. They ﬁnd that while vertical CMS are
+mainly associated with environmental loading, thermal ex-
+pansion plays a minor role.
+A ﬁltering method similar to CWSF, called CMC imaging,
+has been developed and used by Kreemer and Blewitt (2021)
+in western Europe to extract common-mode components that
+are as local as possible. The main difference between CWSF
+and CMC imaging is that the former uses both the distance
+and the correlation coefﬁcient among the stations as weight-
+ing factors, while the latter only uses the correlation coefﬁ-
+cient, showing that it is representative of the distance among
+the stations. While the authors do not explore the nature of
+the extracted CMS, they show that the CMC imaging method
+is very effective at ﬁltering out CMS from GNSS time series,
+increasing the accuracy and precision of the velocity estima-
+tion. In particular, they show that the minimum length of a
+time series needed to retrieve the long-term velocity, within
+a given conﬁdence limit, is almost halved after the ﬁltering.
+Multivariate statistical techniques like principal compo-
+nent analysis (PCA) and independent component analysis
+(ICA) are ﬁltering techniques based on a completely differ-
+ent approach than stacking. Since they allow researchers to
+take into account the spatial variability of CMS (Dong et
+al., 2006), ICA and PCA are used to characterize and inter-
+pret them. Multivariate statistics techniques are also applied
+to study spatially correlated seasonal displacements, which
+have been the target of several pieces of research in the last
+few years.
+In California, Tiampo et al. (2004) associate a seasonal
+signal, extracted through the Karhunen–Loeve expansion
+technique, with the combined effect of groundwater and pres-
+sure loading. In Taiwan, Kumar et al. (2020) ﬁnd a close re-
+lationship between atmospheric loading and CMS, extracted
+using a PCA, while Liu et al. (2017) apply a ICA to show
+that annual vertical displacements are associated with atmo-
+spheric and hydrological loading in the Nepalese Himalaya
+region.
+Yuan et al. (2018) use three principal components (PCs)
+for CMS ﬁltering over China because of the presence of spa-
+tial gradients related to the large extension of the study re-
+gion. In that work, the authors show that environmental load-
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1544
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+ing is one of the sources of the CMS and that vertical GNSS
+velocity uncertainties are signiﬁcatively reduced (54 %) af-
+ter CMS ﬁltering. Pan et al. (2019) ﬁnd that the precision of
+the GNSS velocities, especially in the vertical component,
+increases after removing spatially correlated signals related
+to draconitic errors and to climate oscillation (La Niña–El
+Niño). The spatially correlated signals are identiﬁed by ap-
+plying a PCA to the GNSS time series where the linear trend
+and the seasonal signals are removed. Pan et al. (2019) is
+a good example of how vertical displacements are more af-
+fected by climate-related processes and data processing er-
+rors than the horizontal displacements, demonstrating that
+the vertical component is particularly worth analyzing with
+care.
+The application of the ICA also proved effective for time
+series ﬁltering, as shown by Hou et al. (2019): they identify
+spatially correlated signals, and even though they do not pro-
+vide an interpretation, they classify them as CME and show
+that the precision of the time series signiﬁcantly increases af-
+ter the ﬁltering by ICA. Liu et al. (2015) use both the PCA
+and FastICA algorithms (Hyvärinen and Oja, 1997) to ex-
+tract and interpret CMS as caused by atmospheric and soil
+moisture loading in the UK and the Sichuan–Yunnan region
+in China.
+Other examples of the inﬂuence of the non-tectonic pro-
+cesses on vertical velocity estimation are provided by Riddell
+et al. (2020), who study the vertical velocities of the GNSS
+stations in Australia to estimate the contribution of the glacial
+isostatic adjustment. One of the results of Riddel’s work is
+the reduction of the vertical velocity uncertainty, achieved
+by ﬁrst subtracting the displacements associated with atmo-
+spheric, hydrological and non-tidal ocean loading from the
+GNSS time series and then ﬁltering the residuals by apply-
+ing both PCA and ICA.
+The vbICA method uses a multivariate statistics-based
+blind source separation algorithm (Choudrey, 2002) imple-
+mented by Gualandi et al. (2016) for solving the problem
+of blind source separation of deformation signals in GNSS
+position times series and has been successfully used to ex-
+tract tectonic and hydrological transient deformation signals
+in (e.g., Gualandi et al., 2017a, b; Serpelloni et al., 2018).
+Larochelle et al. (2018) applied vbICA to study the relation-
+ship between GNSS and Gravity Recovery and Climate Ex-
+periment (GRACE)-derived displacements in the Nepalese
+Himalaya and Arabian Peninsula, with the goal of extracting
+seasonal signals and identifying the processes that generate
+them. Serpelloni et al. (2018) and Pintori et al. (2021a) use
+vbICA to characterize hydrological deformation signals as-
+sociated with the hydrological cycle at a spatial scale not
+resolvable by GRACE observations, separating groundwa-
+ter storage signals from other surface mass loading signals,
+while Silverii et al. (2021) perform a vbICA decomposition
+on GNSS time series in the Long Valley Caldera region (Cal-
+ifornia, USA) to separate volcanic-related signals from other
+deformation processes, in particular those associated with
+hydrology. This method has also recently been applied to
+interferometric synthetic aperture radar (InSAR) data (Gua-
+landi and Liu, 2021) to estimate the displacement caused by
+sediment compaction in San Joaquin Valley (California) and
+to separate a seasonal signal from the tectonic loading in the
+central San Andreas Fault zone.
+3
+Data and methods
+3.1
+GNSS dataset and time series analysis
+Particularly over the European plate, GNSS networks man-
+aged by national and regional agencies provide a rather uni-
+form spatial coverage (e.g., https://epnd.sgo-penc.hu/ and
+https://gnss-epos.eu/, last access: 1 September 2021). Fig-
+ure 1 shows the distribution of continuous GNSS stations
+operating across the great Alpine area where, excluding
+Switzerland for which raw observations are not accessible,
+GNSS stations cover, rather uniformly, both the mountain
+range and the European and Adriatic forelands. We analyze
+the raw GPS observations using the GAMIT/GLOBK (ver-
+sion 10.71) software (Herring et al., 2018), following the
+standard procedures of the repro2 IGS reprocessing scheme
+(http://acc.igs.org/reprocess2.html, last access: 1 Septem-
+ber 2021). This is part of a large processing effort, including
+> 4000 stations in the Euro-Mediterranean and African re-
+gions (Serpelloni et al., 2022), where sub-networks, made up
+of < 50 stations dynamically and optimally selected based
+on daily data availability, are processed independently with
+GAMIT and later tied together using common sub-net tie
+sites and IGb14 core stations using the GLOBK software.
+The details of the processing are given in Sect. S1 in the
+Supplement. The result of our analysis is a set of ground
+displacement time series, realized in the IGb14 reference
+frame (ftp://igs-rf.ign.fr/pub/IGb14, last access: 1 Septem-
+ber 2021). The resulting position time series (hereinafter
+IGb14 time series) have been then analyzed in order to es-
+timate and correct instrumental offsets due to changes in
+the station’s equipment setup, as extracted from sitelog or
+RINEX ﬁle headers.
+We consider the vertical displacement time series of the
+stations between longitude 0–21◦and latitude 42–50◦N (see
+colored circles in Fig. 1) in the 2010–2020 time span, ex-
+cluding the sites on the northern Adriatic coast, known to be
+affected by anthropogenic deformation signals (dashed box
+in Fig. 1) due to gas extraction (Palano et al., 2020) and the
+stations located in the northern and central Apennines, where
+other tectonic and geodynamic processes are going on. We
+focus on the last decade in order to have the most uniform
+set of continuous measurements possible over at least a 10-
+year time span. We acknowledge that some of the stations
+shown in Fig. 1 have much longer time series, but this time
+interval maximizes the number of simultaneous observations
+at many stations.
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1545
+The IGb14 vertical displacement time series are analyzed
+with the blind source separation algorithm based on vbICA
+(Choudrey and Roberts, 2003; Gualandi et al., 2016). This
+technique falls under the umbrella of the so-called unsuper-
+vised learning approaches, and it aims to ﬁnd statistically
+independent patterns that can be linearly combined to re-
+construct the original dataset. Differently from other com-
+monly used ICA approaches, like for example FastICA (Hy-
+varinen and Oja, 1999), the adopted vbICA is a modeling
+approach that uses a mix of Gaussians to reproduce the prob-
+ability density functions (PDFs) of the underlying sources.
+The variational Bayesian approach introduces an approxi-
+mating PDF for the posterior parameters of the model, and
+the cost function to be maximized is the negative free en-
+ergy of the model, which can be explicitly calculated once
+a speciﬁc form for the approximating posterior PDF is cho-
+sen. This framework is particularly advantageous because it
+allows for more ﬂexibility in the description of the sources’
+PDF, giving researchers a chance to model multimodal dis-
+tributions and to take into account missing data in the input
+time series.
+The input time series contains a secular motion, roughly
+representing the vertical rate in the IGb14 reference frame,
+which is superimposed by a variety of signals of different
+temporal and spatial signatures. The ﬁrst step of our analy-
+sis is to estimate a linear component to represent the secular
+motion and remove it from the time series. This is required
+by the fact that the vbICA is more effective in separating the
+sources when the temporal correlation in the dataset is low.
+Here, rather than using a classic trajectory model (e.g., Be-
+vis and Brown, 2014) to model and detrend the original time
+series, in order to avoid biases in the estimates of station ve-
+locities due to the short length of the time series and the pos-
+sible presence of strong nonlinear signals, we take this step in
+a multivariate sense as in Pintori et al. (2021a). We perform
+a ﬁrst ICA decomposition considering eight components (or
+ICs). The number of components is determined by applying
+an F test to establish whether a more complicated model is
+supported by the data at a 0.05 signiﬁcance level (Kositsky
+and Avouac, 2010). The results of this analysis are reported
+in Fig. S1 in the Supplement and show that one component,
+nominally IC2, contains a linear trend, with some cross-talk
+with a seasonal (annual) signal, as shown in Fig. 2.
+Before discussing the vbICA results, we brieﬂy explain
+how to interpret the temporal evolution and the spatial distri-
+bution of the ICs to make it possible to retrieve the displace-
+ments associated with them. The color of each GNSS site
+in Fig. 2 represents the IC2 spatial response (U2), which in-
+dicates the maximum displacement associated with the IC2,
+while the temporal function V2 is normalized between 0 and
+1. The displacement associated with IC2 between two epochs
+(e.g., t1 and t2, with t2 > t1) at the station n is computed as
+V1(t2)·U1n −V1(t1)·U1n(t1), where V1(t2) is the value as-
+sociated with the temporal evolution of the IC at the epoch
+t2. U1n depends on the site but not on the epoch; its unit of
+measurement is millimeters, while V has no units of mea-
+surement. As a result, V1 · U1n is in millimeters. It follows
+that if U1n is positive, as we observe for each station, and
+V1 is increasing (V1(t2) > V1(t1)), the stations move up-
+ward during the t2 −t1 time interval. On the other hand, if
+V1(t2) < V1(t1), the stations move downward during t2 −t1.
+As regards Fig. 2, assuming t1 = 2010.0 and t2 = 2020.0,
+the displacements associated with IC2 are ∼30 mm upward
+at the red GNSS stations, ∼30 mm downward at the blue
+GNSS stations and ∼0 mm at the white GNSS stations.
+We ﬁt a linear trend to the temporal evolution of IC2 (V2)
+using the following function:
+V2(t) = q + m · t + A · sin(2π · t + ϕ).
+(1)
+Once we have estimated m and q from Eq. (1) via a non-
+linear least-squares approach, we compute the displacements
+associated with IC2, considering as its temporal evolution the
+function y= q + m · t. Following this, we remove the com-
+puted displacements from each original IGb14 time series,
+obtaining the detrended dataset used in the subsequent de-
+composition step. The advantage of this approach compared
+to a trajectory model is that it is not necessary to assume any
+temporal evolution of the deformation signals a priori, except
+for the limited number of functions that make up Eq. (1). This
+is particularly advantageous in cases where either transients
+of unknown origin or amplitude or phase ﬂuctuations of the
+seasonalities are affecting some stations and could lead to a
+mismodeling by a trajectory model. Notice in particular how
+signals potentially biassing the linear trend, like the multi-
+annual ones in case of short time series, are separated from
+the IC representing the stations’ velocities.
+The results of the vbICA applied to the detrended time
+series are shown and discussed in Sect. 4.1.
+3.2
+Meteo-climatic datasets
+The results of the decomposition of the geodetic dataset
+are compared with the results obtained from the analysis
+of displacement time series associated with different meteo-
+climate forcings. In particular, here we consider hydrologi-
+cal atmospheric loading and precipitation from global grid-
+ded models. These time series are analyzed with the vbICA
+method already used for the geodetic dataset, and the results
+are compared in Sect. 3.2.
+The Land Surface Discharge Model (LSDM), developed
+by Dill (2008), simulates global water storage variations of
+surface water in rivers, lakes, wetlands, soil moisture, and
+water stored as snow and ice. The LSDM is forced with pre-
+cipitation, evaporation and temperature from an atmospheric
+model developed by the European Centre for Medium-Range
+Weather Forecasts (ECMWF). Using the Green’s function
+approach, Dill and Dobslaw (2013) compute daily surface
+displacements at 0.5◦global grids caused by LSDM-based
+continental hydrology (hereinafter HYDL) and by non-tidal
+atmospheric surface pressure variations (hereinafter NTAL).
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1546
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 2. Temporal evolution and spatial response of the IC2 of the GNSS decomposition. Time series have been corrected only for instru-
+mental offsets.
+We also considered the École et observatoire des sciences
+de la terre (EOST) loading service, which provides a model
+for the atmospheric and hydrological-loading-induced dis-
+placements. Ground displacements are computed using the
+load Love Numbers estimate from a spherical Earth model
+(Gegout et al., 2010). The atmospheric loading is modeled
+using the data of the ECMWF surface pressure, assuming an
+Inverted Barometer ocean response; the hydrological load-
+ing includes soil moisture and snow height estimated from
+the Global Land Data Assimilation System (GLDAS/Noah;
+Rodell et al., 2004). All the datasets we have considered are
+provided in the center of ﬁgure reference frame, have daily
+temporal resolution and spatial resolution of 0.5◦. It is worth
+noting that neither LSDM-based nor EOST models consider
+deep groundwater variations. GRACE data are often used
+to study hydrologically induced deformation associated with
+groundwater; in fact, through the analysis of the gravity ﬁeld
+variations, it is possible to retrieve changes through time of
+the water masses. GRACE has the advantage of being inﬂu-
+enced by groundwater variations, which are not taken into
+account by the HYDL model, but at the cost of a lower tem-
+poral (i.e., monthly) and spatial (∼300 km) resolution.
+The precipitation data we use are provided by the NASA
+Goddard Earth Sciences Data and Information Services Cen-
+ter (Huffman et al., 2019), and they are daily with a spatial
+resolution of 0.1◦.
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1547
+4
+Results
+4.1
+Decomposition of GNSS time series
+Figure 3 shows the result of the vbICA decomposition on the
+detrended displacement time series, using seven components
+as suggested by the F test.
+IC1 is a spatially uniform signal characterized by an an-
+nual temporal signature, as shown by the power spectral den-
+sity (PSD) plot in Fig. 3a.
+The mean of the maximum amplitudes is 26 mm, while
+the histogram showing the distribution of displacement am-
+plitudes is shown in Fig. S4a.
+IC2 shows a spatial response characterized by a clear E–
+W gradient, but (differently from IC1) its temporal evolution
+has not a dominant frequency. The spatial response U2 of
+the eastern stations (in blue) is mainly negative, while the
+U2 of the western stations (in red) is mainly positive. This
+means that when V2 is increasing the western (red) stations
+move up, while the eastern (blue) ones move down. The sites
+in the central portion of the study area (in white) are very
+slightly affected by the IC2 component. The features of IC3
+are analogous to those of the IC2, with the exception that a
+N–S gradient is present. The mean of the amplitude of the
+absolute value of IC2 spatial distribution is 6.7 mm, and it is
+5.6 mm for IC3. The histogram showing the distribution of
+the absolute value is shown in Fig. S4b and c.
+IC4 is an annual signal like IC1 but has a heterogeneous
+spatial response: while some stations move upward, others
+move downward. The mean of the absolute amplitude value
+of the displacements is 2.7 mm; the relative histogram is
+shown in Fig. S4d. The distribution of stations displaced with
+this phase difference seems to be mostly affected by geo-
+graphical features: the stations located in mountain regions
+subside when V3 increases, whereas the stations far from
+relief move upward. The remaining three components are
+likely associated with local processes and discussed in the
+Sect. S3.
+4.2
+GNSS vs. environmental-related displacements
+As discussed in Sect. 1, atmospheric and hydrological load-
+ing are likely the main sources of vertical displacement in the
+greater Alpine region. Since they are both uniform in terms
+of spatial response, showing smooth spatial variations, we
+decided to check if the ﬁrst three ICs of the GNSS decompo-
+sition are associated with displacements due to atmospheric
+and hydrological loading and their pattern of variability.
+The vbICA analysis separates the data into statistically in-
+dependent signals, which is useful because independent sig-
+nals are often caused by different and independent sources
+of deformation. Nonetheless, a single source of deformation,
+such as atmospheric or hydrological loading, can be spatially
+heterogeneous and characterized by peculiar spatiotemporal
+patterns. In this case, the vbICA separates a single source of
+deformation into different components associated with dif-
+ferent spatiotemporal patterns. As a consequence, we de-
+cided to apply a vbICA decomposition to HYDL and NTAL
+model displacement time series in order to check if they
+show any pattern and if they resemble the spatial distribu-
+tion of IC1, IC2 and IC3 for GNSS decomposition. NTAL
+and HYDL data have not been detrended.
+We analyze the HYDL- and NTAL-induced ground dis-
+placement models (EOST- and LSDM-based) with vbICA
+in order to characterize the spatial pattern and temporal re-
+sponse associated with these deformation sources and study
+any possible link with the geodetic deformation signals de-
+scribed in Sect. 4.1. We use the results of the global models to
+estimate the hydrological loading, even though we are aware
+that some local effects might not be captured. In fact, consid-
+ering the extension of the study area, it is very complicated
+to take into account the local features needed to estimate the
+hydrological loading with a better precision than the one pro-
+vided by the global models.
+In particular, in this section we show the results obtained
+using the LSDM-based models because they take into ac-
+count the water stored in rivers, lakes and wetlands, while the
+EOST models do not. The results obtained using the EOST
+models are presented in the Sect. S2. Figures 4 and 5 show
+the spatial response, the temporal evolution and the PSD of
+the ICs obtained using three components to the NTAL (4) and
+HYDL (5) ground displacements. We decided to use three
+components to reproduce the displacement patterns of IC1,
+IC2 and IC3 for the GNSS decomposition.
+The ﬁrst IC of both NTAL and HYDL shows a uniform
+spatial response, as with IC1 of the GNSS dataset (Fig. 3a).
+The maximum displacements associated with NTAL are very
+similar to GNSS both in terms of mean and median ampli-
+tude (Table S1a in the Supplement) and distribution (Fig. 6a),
+while for the HYDL model the amplitude is about 2 times
+smaller than NTAL.
+IC2 and IC3 of both NTAL and HYDL show E–W and
+N–S gradients in the spatial response, respectively, as ob-
+served for IC2 and IC3 of the GNSS dataset (Fig. 3b, d).
+Since the IC spatial responses of the NTAL and HYDL
+decomposition are very similar, we also consider the sum
+of the displacement associated with NTAL and HYDL
+models, which can be considered “environmental loading”:
+we use the notation NTAL + HYDL_ICn to indicate the
+sum of the displacement associated with the nth compo-
+nent of the NTAL and HYDL decomposition. The am-
+plitude of NTAL + HYDL_IC1, NTAL + HYDL_IC2 and
+NTAL + HYDL_IC3 are only slightly lower than the ones of
+GNSS_IC1, GNSS_IC2 and GNSS_IC3, as shown in Fig. 6g,
+h and i and in Table S1a.
+Concerning the temporal evolution, IC1 of the HYDL
+model is an annual signal, while the IC2 and IC3 PSD plots
+indicate the presence of multi-annual signals. Unlike the
+HYDL decomposition, all the ICs of the NTAL decomposi-
+tion contain the annual frequency (especially IC2), whereas
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1548
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 3. Temporal evolution, power spectral density and spatial response of (a) IC1, (b) IC2, (c) IC3 and (d) IC4.
+IC3 also contains semiannual frequencies. It is also worth
+noting that the temporal evolution of the ICs associated with
+the NTAL model are much more scattered than the ones re-
+sulting from HYDL, clearly indicating that the displacements
+due to atmospheric pressure variations can show large ﬂuc-
+tuations at a daily timescale.
+We also perform a vbICA decomposition on both datasets
+using two and four components, and this is presented in the
+Supplement (Figs. S6 and S7). When using only two ICs, the
+results obtained (Fig. S6) are very similar to the ﬁrst two ICs
+of the three-component decomposition. The ﬁrst three ICs of
+the four-component decompositions (Fig. S7) have both tem-
+poral evolution and spatial distribution that are very similar
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1549
+to what is shown in Figs. 4 and 5. IC4 of the NTAL model
+has an annual signature and an E–W gradient with a shorter
+wavelength compared to IC2, while IC4 of the HYDL de-
+composition has a NW–SE gradient. This suggests that the
+N–S and E–W spatial patterns associated with the meteo-
+climatic datasets are a robust feature, being insensitive to
+the number of components chosen in the decomposition. It
+is also worth noting that the decompositions of the NTAL
+and HYDL models explain 98.89 % and the 97.03 % of the
+total variance when using three ICs, suggesting that increas-
+ing the number of the ICs is not necessary. As a result, in the
+following discussion we refer to the results obtained from
+the three-component decomposition using the LSDM-based
+models, but the results obtained using the EOST models are
+fully comparable (Sect. S2).
+In order to quantify the agreement between the displace-
+ments associated with the hydrological and atmospheric
+pressure loading and the ICs of the GNSS dataset displaying
+consistent spatial patterns (IC1, IC2, IC3), we compute, for
+each GNSS station, the Lin concordance correlation coefﬁ-
+cient (Lin, 1989) between the displacement reconstructed by
+the ICs associated with the different LSDM-based models.
+Unlike Pearson’s correlation coefﬁcient, Lin’s takes into ac-
+count similarities regarding both the amplitudes and shapes
+of the two time series.
+The IC1 of the GNSS decomposition (GNSS_IC1) is com-
+pared with the ﬁrst component of both NTAL (NTAL_IC1)
+and HYDL (HYDL_IC1) datasets by associating each GNSS
+site with the nearest grid point where NTAL and HYDL dis-
+placements are computed.
+When considering the NTAL_IC1, we observe (Fig. S8a)
+a high temporal correlation with GNSS_IC1, while the
+correlation between GNSS_IC1 and HYDL_IC1 is signif-
+icantly lower (Fig. S9a). In both cases the value of the
+Lin correlation coefﬁcient is quite uniform in the dataset
+(∼0.59 for NTAL_IC1 and ∼0.35 for HYDL_IC1). The
+Pearson correlation is similar to Lin’s (0.60 for NTAL_IC1
+and 0.35 for HYDL_IC1), indicating that the amplitude
+of both NTAL_IC1 and HYDL_IC1 is similar to the
+GNSS_IC1 amplitude. It is worth noting that if we con-
+sider NTAL + HYDL_IC1, the correlation with GNSS_IC1
+increases to ∼0.73 (Fig. 7a). As a result, we can inter-
+pret GNSS_IC1 as the combined contribution of NTAL and
+HYDL, where NTAL plays the dominant role.
+When considering IC2, we observe similar correlations
+between GNSS_IC2 and either NTAL_IC2 or HYDL_IC2
+(Fig. S8b, b). Nonetheless, in this case the correlation pat-
+terns are less uniform than the IC1 case, and a few sta-
+tions are even negatively correlated with both NTAL_IC2
+and HYDL_IC2 displacements. The sites where GNSS_IC2
+displacements are negatively or weakly correlated with
+NTAL_IC2 are the ones with the lowest IC2 amplitude.
+In fact, if we consider the stations whose maximum dis-
+placements associated with GNSS_IC2 are larger than 3 mm,
+which are 411 out of 545, their mean Lin correlation
+with NTAL_IC2 is 0.52, while the stations with amplitudes
+smaller than 3 mm have a mean correlation of 0.17. This is
+due to the fact that, given the low displacements associated at
+these stations, the correlation is more sensitive to noise. The
+agreement between the GNSS_IC2 and NTAL_IC2 is also
+conﬁrmed by the Pearson correlation coefﬁcient between
+the temporal evolution of the two ICs, which is 0.63, while
+the Pearson correlation between GNSS_IC2 and HYDL_IC2
+is 0.28. The same pattern is observed when comparing
+GNSS_IC2 with NTAL+HYDL_IC2 (Fig. 7b): using 3 mm
+as threshold between large and small GNSS_IC2 maximum
+displacements, the mean correlation is 0.57 for the stations
+most affected by this signal and 0.14 for the remaining ones.
+This suggests that GNSS_IC2 is also likely related to NTAL
+and HYDL loading processes.
+The
+Lin
+correlation
+between
+GNSS_IC3
+and
+NTAL + HYDL_IC3
+resembles
+what
+was
+just
+shown
+for IC2 (Fig. 7c): at sites where the GNSS_IC3 maximum
+amplitude is larger than 3 mm, which are 414 out of 545,
+the mean correlation with NTAL + HYDL_IC3 is 0.44,
+while it is 0.10 for the remaining ones. As for IC1, both
+GNSS_IC2 and IC3 displacements are best reproduced when
+considering the combined effect of NTAL and HYDL (see
+Figs. S8c, S9c compared to Fig. 7). The Pearson correlation
+between GNSS_IC3 and NTAL_IC3 is 0.47, while between
+GNSS_IC3 and HYDL_IC3 is 0.30.
+To summarize, the three common-mode signals compo-
+nents of the GNSS decomposition (IC1, IC2, IC3) are likely
+due to the combined effect of the atmospheric and hydro-
+logical loading. Due to the similarity between the spatial re-
+sponse of displacements associated with these two processes,
+it is possible that the vbICA technique is not able to separate
+them in the geodetic data; nonetheless, it highlights their spa-
+tial variability through IC2 and IC3.
+Examples of comparisons between climate-related dis-
+placements reconstructed at two different sites and the GNSS
+decomposition are shown in Fig. 8.
+Concerning IC4 of the GNSS decomposition, it describes
+vertical motions in phase and is very well correlated with
+the daily mean temperature of the investigated area (Fig. 9).
+Temperature data are provided by the E-OBS dataset from
+the EU-FP6 project UERRA (https://www.uerra.eu, last ac-
+cess: 21 December 2020; Cornes et al., 2018). From the point
+of view of the spatial distribution of this component, most
+of the stations located in the mountain chain subside when
+the temperature increases, while the remaining stations uplift
+as the temperature increases. Figure S15 shows some cross
+sections plotting the maximum vertical displacements asso-
+ciated with IC4 together with topography, showing this pe-
+culiar spatial pattern.
+4.3
+Vertical ground motion rates and noise analysis
+We show the impact of the ﬁltering on GNSS displacement
+rates and uncertainties, where the ﬁltered time series are the
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1550
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 4. Temporal evolution, power spectral density and spatial response of IC1, IC2 and IC3 of the NTAL model.
+result of subtracting the combined displacement associated
+with the ﬁrst four ICs discussed in Sect. 4.1, which represent
+the combined effect of the seasonal processes in phase with
+temperature and of the atmospheric and hydrological load-
+ing, from the IGb14 time series. We refer to these corrected
+time series as IC-ﬁltered time series.
+Velocities and uncertainties are estimated using the Hector
+software (Bos et al., 2013) assuming a priori noise models.
+Noise is commonly described as a power law process
+Px(f ) = P0(f/f0)k,
+(2)
+where Px is the power spectrum, f the temporal frequency;,
+P0 and f0 are constants, and k is the spectral index and indi-
+cates the noise type.
+If the power spectrum is ﬂat (i.e., all frequencies have the
+same power), then the errors are statistically uncorrelated
+from one another, the spectral index is zero and the noise
+is called “white”. Otherwise the noise shows a dependency
+with the frequency content and is referred to as “colored”. In
+GNSS time series the presence of noise with a reduced power
+spectrum at high frequencies has been typically observed,
+with the most popular models being a mix of random walk or
+“red” noise (k = −2) and ﬂicker or “pink” noise (k = −1).
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1551
+Figure 5. Temporal evolution, power spectral density and spatial response of IC1, IC2 and IC3 of the HYDL model.
+Red noise is typically associated with station-dependent ef-
+fects, while pink noise can be associated with mismodeling
+in GNSS satellites orbits, earth orientation parameters (Klos
+et al., 2018), and spatially correlated large-scale processes of
+atmospheric or hydrospheric origin (Bogusz and Klos, 2016).
+A ﬂicker plus white noise model is commonly used in the
+analysis of GNSS time series (e.g., Ghasemi Khalkhali et al.,
+2021 and references therein).
+In order to select the best noise model for the input time
+series, we test different combinations of noise models, choos-
+ing the one with the lowest value of the Akaike informa-
+tion criterion (AIC) and of the Bayesian information criterion
+(BIC). In particular we consider the following combinations:
+– ﬂicker plus white noise,
+– a general power law (k not assigned) plus white noise
+(PL + WN),
+– ﬂicker plus random walk plus white noise.
+Following the AIC and BIC criteria, the preferred noise
+model is PL + WN, where the parameters of the noise model
+(i.e., the spectral index k) are estimated by the software using
+the maximum likelihood estimation (MLE) method. MLE is
+also used to estimate the station’s rates and the associated
+uncertainties.
+We then compare the vertical velocities and their uncer-
+tainties, as obtained before and after IC ﬁltering (Fig. 10).
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1552
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 6. Histogram of the maximum displacements associated with (a) IC1 of the NTAL decomposition (orange) compared with the IC1 of
+the GNSS decomposition (blue). Panel (b) is the same as (a) but referring to IC2. Panel (c) is the same as (a) but referring to IC3. (d) IC1 of
+the HYDL decomposition (orange) compared with the IC1 of the GNSS decomposition (blue). Panel (e) is the same as (d) but referring to
+IC2. Panel (f) is the same as (d) but referring to IC3. (g) IC1 of the NTAL + HYDL decomposition (orange) compared with the IC1 of the
+GNSS decomposition (blue). Panel (h) is the same as (g) but referring to IC2. Panel (i) is the same as (g) but referring to IC3.
+Although annual and semi-annual signals are often included
+in the time series modeling, the displacements associated
+with the ﬁrst four ICs already contain these seasonal terms
+(Fig. 3). Consequently, the IC-ﬁltered time series are mod-
+eled only with the linear trend plus temporally correlated
+noise, while in the unﬁltered time series modeling annual and
+semi-annual terms are also included.
+Figure 11a shows histograms representing the differences
+in the vertical velocity estimates obtained from ﬁltered and
+unﬁltered time series. The differences are spatially quite ho-
+mogeneous and of the order of tenths of a millimeter per year,
+with a median value of −0.15 mm yr−1. The velocity differ-
+ences are almost entirely caused by the displacements associ-
+ated with IC1, which have a median rate of −0.12 mm yr−1.
+Concerning the uncertainties associated with the vertical
+velocity, the impact from IC ﬁltering is much more important
+(Figs. 10f and S17): the initial median error is 0.30 mm yr−1,
+and the ﬁnal error is 0.17 mm yr−1.
+The IC ﬁltering also has a strong impact on the noise char-
+acteristics. In fact, while in the unﬁltered time series the per-
+centage of white noise of the PL+WN model is negligible in
+most of the stations, it becomes dominant in the ﬁltered ones
+(Fig. 12). This indicates that a large portion of the power law
+noise is associated with the displacements described by the
+ﬁrst four ICs, i.e., the atmospheric and hydrological loading
+and temperature-related processes.
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1553
+Figure 7. Lin correlation coefﬁcients between (a) GNSS-IC1 and NTAL + HYDL_IC1, (b) GNSS_IC2 and NTAL + HYDL_IC2, and
+(c) GNSS-IC3 and NTAL + HYDL_IC3. Histograms of the correlation coefﬁcients are also reported.
+5
+Discussion
+5.1
+Displacement time series ﬁltering
+Our goal is to estimate the vertical velocity of the GNSS
+stations associated with long-term geodynamic and tectonic
+processes. Following this, we seek to remove signals asso-
+ciated with meteo-climatic processes. Instead of subtracting
+the modeled displacements from the IGb14 time series, such
+as those made available through loading services like GFZ,
+we prefer to subtract the displacements associated with the
+ICs. This approach minimizes biases due to the mismatch be-
+tween the actual signal caused by atmospheric and hydrolog-
+ical loading and the modeled ones. Larochelle et al. (2018)
+reached similar conclusions by comparing GRACE measure-
+ments and the results from ICA decompositions of GNSS
+displacements, which turned out to be more accurate in
+correcting GNSS from seasonal displacements than remov-
+ing GRACE displacements, which smooths local effects in
+the data acquisition and processing. In order to support the
+approach followed, we estimated the scatter of the GNSS
+displacement time series by computing the mean standard
+deviation of (1) the time series given as input to vbICA
+(IGb14-time series), (2) the IGb14 time series minus the
+combined displacement associated with the ﬁrst three ICs
+and (3) the IGb14 time series minus the displacements due
+to HYDL + NTAL from GFZ models. The resulting standard
+deviation is 5.32, 4.10 and 4.73, respectively. This demon-
+strates that removing the displacement associated with the
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1554
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 8. Comparison at the GNSS LYSH site (lat: 49.55◦; long: 18.45◦) between the displacements associated with (a) GNSS_IC1 and
+NTAL + HYDL_IC1, (b) GNSS_IC2 and NTAL + HYDL_IC2, and (c) GNSS_IC3 and NTAL + HYDL_IC3. Panels (d), (e) and (f) are the
+same as (a), (b) and (c), respectively, for the STV2 (lat: 44.57◦; long: 6.11◦) site. A 30 d moving average ﬁlter is applied to better visualize
+the data.
+Figure 9. Comparison between the daily mean temperature of the
+study area (orange) and the temporal evolution of IC4 (black dots).
+The shaded area represents the time interval associated with the
+maximum displacements shown in Fig. S15.
+ﬁrst three ICs is more effective at reducing the scatter than
+removing the HYDL + NTAL contribution. Furthermore, in
+Fig. S19 we show that the ﬁltering with HYDL + NTAL re-
+sults in a smaller increase in the white noise percentage in
+the time series compared to the IC ﬁltering.
+Considering that the stacking methods are widely used to
+estimate and remove CMS and CME from GNSS time series
+(see Sect. 2), we compare the results obtained adopting the
+SFM and WSFM methods with the output of vbICA, in par-
+ticular with the displacements associated with IC1 (Fig. 3a),
+which is clearly a CMS, given its homogeneity in its spatial
+response. CMS with the stacking methods is estimated using
+the GNSS_TS_NRS code (He et al., 2020), and it is com-
+pared with the displacements associated with IC1 estimat-
+ing the Lin correlation coefﬁcient. Figure 13 shows that there
+is an almost-perfect agreement between the IC1-related dis-
+placements and the CMS extracted with both stacking meth-
+ods, suggesting that even simple approaches, such as SFM
+and WSFM, perform well at the scale of the study area.
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1555
+Figure 10. (a) Vertical velocities from the unﬁltered GNSS time series. (b) Vertical velocities from IC-ﬁltered time series, obtained after
+subtracting the displacements associated with the ﬁrst four ICs. (c) Difference between the velocities of (a) minus velocities of (b). Panels (d),
+(e) (f) are the same as (a), (b) and (c), respectively, but showing the error associated with the vertical velocities.
+We also estimate the vertical velocities of the GNSS sta-
+tions after ﬁltering the CMS using the two stacking methods.
+The rate differences between unﬁltered and ﬁltered time se-
+ries have a median value of −0.15 and −0.10 mm yr−1, using
+the WSFM and SFM, respectively (Fig. 11b, c). These values
+are close to the rates associated with IC1 displacements (me-
+dian = −0.12 mm yr−1), which are the primary cause of the
+velocity difference obtained from IGb14 and IC-ﬁltered time
+series, suggesting that the rate difference does not strongly
+depend on the ﬁltering method adopted. As already shown
+in Sect. 4.3, the errors associated with the velocities of the
+unﬁltered and ﬁltered time series, which have median values
+of 0.30 and 0.17 mm yr−1, respectively, have about the same
+value of the velocity difference between ﬁltered and unﬁl-
+tered time series. It follows that the velocity differences are,
+from a statistical point of view, barely signiﬁcant. Nonethe-
+less, it is worth considering that, according to the LSDM-
+based model, the displacements resulting from the combined
+effect of hydrological and atmospheric loading have a nega-
+tive rate (median = −0.11 mm yr−1; Fig. S16c) in agreement
+with the rate observed for IC1 (V1 in Fig. 3), suggesting
+that environmental loading may cause a small subsidence,
+at least in the observed time span, which is captured by IC1.
+However, the rates of the displacements due to hydrologi-
+cal loading are model dependent: according to LSDM, they
+show a negative linear trend (Fig. S16b), as opposed to what
+is observed using the EOST model (Fig. S16e). As a result,
+the rates of the displacements due to atmospheric and hy-
+drological loading computed using the EOST model are not
+in agreement with the rates of the IC1 displacements. This
+is most likely a consequence of the differences in modeling
+the hydrological-loading-induced displacements; in particu-
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1556
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 11. Histogram of the difference between the velocity of the unﬁltered time series and the ﬁltered ones using (a) the displacements
+associated with the ﬁrst four ICs, (b) the weighted stacking ﬁltering method and (c) the stacking ﬁltering method.
+lar, the EOST model takes into account only water stored as
+snow and soil moisture, whereas the LSDM model also in-
+cludes the contribution of rivers, lakes and wetlands.
+The stacking methods used to estimate the CMS are easier
+and faster to implement than the vbICA analysis. Depending
+on the research target, these common-mode signals might be
+worth removing in order to obtain a more precise, and even-
+tually accurate, estimation of the GNSS linear velocities or
+retained to study, for example, seasonal deformation. Multi-
+variate statistics and/or source separation algorithms applied
+to ground displacement time series allow one to extract and
+interpret them in terms of the physics behind them through a
+comparison with other displacement datasets or models. Fur-
+thermore, time series can be ﬁltered not only from CMS but
+also from signals associated with spatially uncorrelated pro-
+cesses, as we did in Sect. 4.3 estimating the vertical veloc-
+ities ﬁltered from non-tectonic processes related to the ﬁrst
+four ICs.
+In Sect. 4.3 we also show that the colored noise in the time
+series is signiﬁcantly reduced by the IC ﬁltering. This result
+is in agreement with the results of recent studies conducted in
+other regions, such as Antarctica (Li et al., 2019) and China
+(Yuan et al., 2018). Both studies show that ICA or PCA ﬁl-
+tering of GNSS time series suppress the colored noise ampli-
+tudes but have little inﬂuence on the amplitude of the white
+noise. Furthermore, Klos et al. (2021) analyzes the effect of
+atmospheric loading on the noise of GNSS stations in the Eu-
+ropean plate, ﬁnding that the noise is whitened when NTAL
+contribution is removed.
+The description of atmospheric processes at the scale of
+the Alps can be seen as small scale when compared, for ex-
+ample, to the circulation in the Northern Hemisphere. Small-
+scale processes are usually interpreted as noise, but they may
+affect the large-scale dynamics (e.g., Faranda et al., 2017).
+It follows that these small-scale processes should be repre-
+sented with an appropriate stochastic formulation. Since the
+CMS are typically characterized by PL + WN noise, the link
+that we ﬁnd between CMS and atmospheric and hydrologi-
+cal signals could provide a hint as to the type of noise that
+is more suitable to describe such small-scale perturbations
+when modeling the large-scale dynamics of the atmosphere.
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1557
+Figure 12. Histograms of (a) white noise percentage in the unﬁltered time series and (b) ﬁltered time series. Panels (c) and (d) are the same
+as (a) and (b) but for the spectral index. The ﬁltering is done by subtracting the displacements associated with the ﬁrst four ICs.
+5.2
+ICs interpretation
+Our analysis supports the interpretation that the displace-
+ments associated with IC1, IC2 and IC3 are likely due to
+the combined effect of the hydrological and atmospheric
+loading, whose spatial responses are not homogeneous over
+the study area. In support of this interpretation we can re-
+fer to Brunetti et al. (2006), who applied a PCA to pre-
+cipitation data in the greater Alpine area. They highlighted
+the presence of N–S and E–W gradients in the spatial re-
+sponse of meteo-climate forcing processes. The authors sug-
+gest that the main cause of the spatial and temporal vari-
+ability of the precipitation is the North Atlantic Oscillation
+(NAO), which also causes ﬂuctuation of the atmospheric
+pressure (Vicente-Serrano and López-Moreno, 2008). It is
+then likely that weather regimes like the NAO and the At-
+lantic Ridge inﬂuence both NTAL and HYDL, which is
+mainly forced by precipitation, meaning that the spatial pat-
+terns of the ICs associated with atmospheric and hydrolog-
+ical loading are the same for the NAO (N–S) and Atlantic
+Ridge (E–W). The vbICA algorithm is not able to separate
+NTAL and HYDL because they are not independent from a
+mathematical point of view. This emerges also from the re-
+cent work by Tan et al. (2022), who performed an ICA on
+GNSS time series in Yunnan Province in China and inter-
+preted IC1 as the average effects of the joint patterns from
+soil moisture and atmospheric-induced annual surface defor-
+mations. Let us consider for example the case of IC2_NTAL
+and IC2_HYDL. They have two different temporal evolu-
+tions (V2_NTAL and V2_HYDL), but the spatial distribu-
+tions (U2_NTAL and U2_HYDL) have the same pattern, i.e.,
+they only differ for a weighting factor k. Thus, we can write
+U2_NTAL = k · U2_HYDL.
+The displacement d resulting from the combined effect of
+IC2_NTAL and IC2_HYDL is then
+d = IC2_NTAL + IC2_HYDL
+= U2_NTAL · V2_NTAL + U2_HYDL · V2_HYDL
+= U2_HYDL · (k · V2_NTAL + V2_HYDL).
+As
+a
+result,
+the
+displacement
+due
+to
+IC2_NTAL + IC2_HYDL is identiﬁed by a single spa-
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1558
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 13. Comparison between the displacement associated with IC1 at the GNSS ZYWI site and the CME estimated with the stacking
+ﬁltering method (a) and the weighted stacking ﬁltering method (c). We also show the histogram representing the Lin correlation between
+the displacements associated with the IC1 and the CME estimated with the stacking ﬁltering method (b) and the weighted stacking ﬁltering
+method (d) at each site. We point out that the CME computed with the aforementioned methods is, by deﬁnition, the same at each station,
+whereas the displacements associated with IC1 have the same temporal evolution but (slightly) different amplitudes. We plot the station
+ZYWI as an example.
+tial distribution U2_HYDL and a temporal evolution
+k · V2_NTAL + V2_HYDL. Thus, if we do not make any
+prior assumptions about V2_NTAL and V2_HYDL, it is
+not possible to separate IC2_NTAL and IC2_HYDL from a
+statistical point of view.
+In Sect. 4.2 we show that not only IC2_NTAL and
+IC2_HYDL have very similar spatial patterns but that
+IC1_NTAL and IC1_HYDL, as well as IC3_NTAL and
+IC3_HYDL, also have similar spatial responses. Thus, the
+GNSS time series decomposition in the Alpine area does not
+allow for separating the effect of the hydrological loading
+from the atmospheric loading with an ICA approach.
+We also performed a vbICA analysis on precipitation
+data (RAIN) recorded over the study region using three ICs
+(Fig. 14). The spatial pattern of the ICs is analogous to the
+ones associated with NTAL and HYDL (Figs. 4 and 5).
+This supports the hypothesis that precipitation, atmo-
+spheric pressure, hydrological loading and ground displace-
+ment are somehow interconnected and characterized by a
+common climate-related forcing, whose characteristics of
+spatial variability are described by the NAO and Atlantic
+Ridge weather regimes.
+We point out that HYDL, NTAL and GNSS are models or
+measurements of vertical displacements, which are positive
+when upward and negative when downward, while RAIN is
+the amount of fallen rain per unit area.
+Let us consider for the sake of simplicity the IC1 case, but
+what we are going to discuss holds true also for IC2 and IC3.
+The temporal evolution of NTAL_IC1 (NTAL_V1) is
+correlated with the temporal evolution of RAIN_IC1
+(RAIN_V1,
+Fig.
+15g–i)
+and
+anti-correlated
+with
+the
+time derivative of the temporal evolution of HYDL_IC1
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1559
+Figure 14. IC1, IC2 and IC3 of the RAIN decomposition.
+(HYDL_V1, Fig. 15a–c). HYDL_V1 is also highly anti-
+correlated with RAIN_IC1 (Fig. 15d–f).
+Our interpretation of the correlations discussed above and
+schematically represented in Fig. 16 is as follows: when the
+weather goes from a low-pressure regime to a high-pressure
+regime, the increasing pressure causes a downward dis-
+placement of the ground (Fig. S8). Regardless, low-pressure
+regimes are often associated with precipitation, which is why
+IC1_RAIN and IC1_NTAL are correlated. It follows that
+when we go from high-pressure conditions to low-pressure
+conditions, the ground motion, if we assume a pure elas-
+tic process, is affected by two forces acting in opposite di-
+rections: the decreasing atmospheric pressure induces uplift,
+while the precipitation load causes downward motion. Rain
+also affects hydrological loading, increasing it and causing a
+downward ground motion. As a consequence, the temporal
+derivative of HYDL_IC1, which is more sensitive to small
+but fast variation of hydrological loading than HYDL itself,
+is negative and anti-correlated with IC1_RAIN.
+Atmospheric pressure variations happen at fast temporal
+scales, and thus the switch from high- to low-pressure con-
+ditions (and vice versa) can happen in a few days and cause
+quite large (centimetric) ground vertical displacements. Hy-
+drological loading acts at longer timescales, and there are
+several factors to consider besides precipitation, in particular
+the temperature, which causes evapotranspiration. Nonethe-
+less, computing the time derivative of the hydrological load-
+ing allows us to detect “fast” variations due to the change of
+the atmospheric pressure and the precipitation events often
+associated with it.
+The interpretation of IC4 is less straightforward, and the
+pattern we see in the Alps (Fig. S15) is not easy to explain.
+Air temperature increase can induce both positive and neg-
+ative vertical displacements. One possible mechanism to ex-
+plain negative vertical displacements associated with temper-
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1560
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 15. (a) Cross correlation between the temporal evolution of the IC1 of the NTAL decomposition and the time derivative of the
+temporal evolution of the IC1 obtained by decomposing HYDL. Panel (b) is the same as (a) but referring to IC2. Panel (c) is the same as (a)
+but referring to IC3. (d) Cross correlation between the temporal evolution of the IC1 of the precipitation data decomposition and the time
+derivative of the temporal evolution of the IC1 obtained by decomposing HYDL. Panel (e) is the same as (d) but referring to IC2. Panel (f) is
+the same as (d) but referring to IC3. (g) Cross correlation between the temporal evolution of the IC1 of the NTAL decomposition and the
+temporal evolution of the IC1 of the precipitation data decomposition. Panel (h) is the same as (g) but referring to IC2. Panel (i) is the same
+as (g) but referring to IC3.
+Figure 16. Schematic representation of the ground vertical displacement due to elastic deformation during high-pressure (a) and low-
+pressure (b) conditions. Yellow arrows reﬂect displacements associated with atmospheric pressure, and blue arrows reﬂect displacements
+associated with precipitation and evapotranspiration.
+ature increase is that in the Alpine valleys the water content
+increases as the temperature increases because of the snow
+and ice melting. It follows that in those areas the elastic
+response to hydrological load is higher during summertime
+than winter, as observed by Capodaglio et al. (2017), mean-
+ing that negative vertical displacements are measured when
+the temperature increases. Thus, it is not surprising that in the
+Alpine valleys the stations affected by large IC4-related dis-
+placements move downward as temperature increases. This
+may be an example of a small-scale hydrological process
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1561
+that is likely badly reproduced by the HYDL displacement
+dataset, which does not have a spatial resolution ﬁne enough
+to represent hydrological loading displacements at the scale
+of the Alpine valleys. Other site-dependent processes that
+can potentially induce uplift during winter are the ice for-
+mation and subsequent melting in the antenna and antenna
+mount (Koulali and Clarke, 2020) and soil freezing (Beck et
+al., 2015).
+Conversely, positive vertical displacements as the temper-
+ature increases can be caused by monument or bedrock ther-
+mal expansion and the drying of the soil because of the re-
+duction of the hydrological load. While HYDL takes into ac-
+count the drying of the soil, we cannot exclude that some
+local, unmodeled, environmental conditions can amplify this
+effect at some sites. This might explain why most of the sites
+affected by uplift during temperature increases are located in
+plain areas, like the northern sector of the Paris Basin and in
+the Po Valley, instead of the mountainous ones. The relation
+between IC4 and local processes is also suggested by the het-
+erogeneity of this signal in terms of its spatial distribution,
+sign, amplitude and relevance in explaining the data vari-
+ance. In fact, while ∼50 % of the stations have U4 < 2 mm
+(Fig. S3d) and explain < 1 % of the data variance, meaning
+that IC4 is almost not useful to reproduce the original data,
+there are a non-negligible number of stations (∼10 %) ex-
+plaining > 10 % of the data variance and with U4 > 6 mm.
+Finally, possible sources of this seasonal signal might be sys-
+tematic errors in GNSS observations and in their modeling
+(Chanard et al., 2020). In Sect. 1 we mentioned the effects of
+the non-tidal ocean loading on the vertical displacements and
+both LSDM-based and EOST models provide estimation of
+them. In the study region, this process induces displacements
+that are signiﬁcantly smaller than both atmospheric and hy-
+drological loading, due to the distance from the oceans of the
+study area, and thus we do not take it into account. According
+to the estimation of the LSDM-based model, the maximum
+amplitude of the spatial mean over the study region of the dis-
+placements associated with it is 4.3 mm, while the maximum
+amplitude of the displacements associated with atmospheric
+and hydrological loading are 23.8 and 12.2 mm, respectively.
+Figure S5 provides a comparison of the spatial mean of the
+displacements associated with the three deformation mecha-
+nisms.
+5.3
+Vertical velocity gradients across the Alps
+The vertical velocity ﬁeld of the IGb14 time series and of
+the IGb14 time series with the contribution of the ﬁrst four
+ICs removed (IC-ﬁltered data) do not differ much in terms
+of uplift and subsidence patterns (see Fig. 11), with both
+showing the belt of continuous uplift on the order of 1–
+2 mm yr−1 along the Alpine mountain chain. As shown in
+Fig. 11c, the vertical velocities from ﬁltered time series show
+barely faster positive rates, mainly as an effect of ﬁltering out
+hydrological and atmospheric displacements of IC1, as dis-
+cussed above. Figure 17 shows the continuous vertical veloc-
+ity ﬁeld obtained from the discrete values adopting the multi-
+scale, wavelet-based approach described in Tape et al. (2009)
+and some vertical velocity and topographic proﬁles running
+across the great Alpine area. The same ﬁgure obtained us-
+ing velocities and uncertainties from unﬁltered time series is
+shown in the Supplement (Fig. S20). Despite the similarity in
+the velocity patterns, the improvements in both the precision
+and consistencies of vertical spatial gradients are apparent in
+cross-sectional view. Proﬁle E–E′ in Fig. 17 shows positive
+vertical rates increasing from W to E, with the maximum up-
+lift rates in the central Alps, and the positive correlation with
+the topography along the chain axis, with decreasing rates
+toward the east, changing to subsidence east of ∼14.5◦E,
+while entering the Pannonian Basin domain. The correlation
+with topography is also clear in the chain-normal proﬁles (A–
+A′, B–B′, C–C′ and D–D′). In the Western and Central Alps
+(A–A′ and B–B′) the maximum uplift rates are located in
+correspondence with the maximum elevation, whereas in the
+Eastern Alps (C–C′ and D–D′) the maximum uplift rates are
+shifted southward. The eastern Southern European Alps is
+the region where the largest part of the Adria–Eurasia con-
+verge is accommodated (1–3 mm yr−1) through active thrust
+faults and shortening (Serpelloni et al., 2016). Here, maxi-
+mum uplift rates are likely due to interseismic deformation,
+and their position across the belt is driven by thrust fault
+geometries, slip rates and locking depths (Anderlini et al.,
+2020). Concerning the southern Alpine foreland in the Po
+Valley and Venetian Plain, Fig. 17 shows a decrease in the
+vertical velocities from west to east, with barely positive rates
+in the western Po Valley and increasing subsidence rates in
+the northern Adriatic and the northern Apennines foreland.
+In the Alpine foreland, positive sub-millimeter-per-year
+velocities are present in the Jura Mountains and the Molasse
+Basin, but uplift extends further northward into the Black
+Forest and the Franconian Platform in southern Germany and
+into the southern part of the Bohemian Massif. Overall, in
+the portion of central Europe investigated in this work, we
+see two different patterns: prevalent stable to slowly subsid-
+ing sites (< 1 mm yr−1) are present west of the Rhine graben,
+whereas a prevalence of slowly uplifting sites (< 1 mm yr−1)
+is present east of it. Proﬁle F–F′ in Fig. 17 better highlights
+this pattern. Across the Upper Rhine Graben, the weak uplift
+signal in the graben’s shoulders, the Vosges Mountains and
+Black Forest, is associated with subsidence of stations lo-
+cated within the graben, according to Henrion et al. (2020).
+To the east, uplift in the Franconian Platform and the Bo-
+hemian Massif is only partially correlated with topography.
+It is still debated whether uplifted regions across NW Europe
+attest to lithospheric buckling in front of the Alpine arc or
+were randomly produced by a swarm of baby plumes. Uplift
+propagation by interferences with the western Carpathians
+and possible mantle processes, as suggested by the positive
+dynamic and residual topography (Faccenna et al., 2014b),
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1562
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Figure 17. Vertical velocities from ﬁltered time series (colored circles), a continuous velocity ﬁeld, and topographic and swath proﬁles
+across the greater Alpine area. Each proﬁle (green line) encompasses a 50 + 50 km swath. BG stands for Bresse Graben, JM stands for Jura
+Mountains, VG stands for Vosges Mountains, BF stands for Black Forest, URG stands for Upper Rhine Graben, FP stands for Franconian
+Platform, and MB stands for Molasse Basin.
+may contribute to the observed uplift in the Bohemian Mas-
+sif.
+Sternai et al. (2019) investigated the possible relative con-
+tribution of different geophysical and geological processes in
+the actual vertical velocity budget over the Alps, suggesting
+that the interaction among tectonic and surface mass redis-
+tribution processes, rather than an individual forcing, better
+explains vertical deformation in the Alps. Mey et al. (2016)
+suggested that ∼90 % of the present-day uplift of the Alpine
+belt is due to the melting of the Last Glacial Maximum
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1563
+(LGM) ice cap. While it is difﬁcult to independently con-
+strain the patterns and magnitude of mantle contributions
+to ongoing Alpine vertical displacements at present, litho-
+spheric adjustment to deglaciation and erosion are by far the
+most important ongoing process, but other authors suggest
+that other processes are currently shaping the vertical ground
+motion pattern. In the Western and Central Alps, active con-
+vergence is inactive or limited, and the residual uplift rates,
+after correction from isostatic contributions, are likely due to
+deep-seated mantle processes, including detachment of the
+western European slab and dynamic contributions related to
+sub-lithospheric mantle ﬂow (Chery et al., 2016; Nocquet
+et al., 2016; Sternai et al., 2019). A tectonic contribution
+to the ongoing uplift is instead more likely in the Eastern
+Alps, and in the eastern Southern Alps in particular, where
+the Adria–Europe convergence is accommodated. However,
+Anderlini et al. (2020) observed that more accurate glacio-
+isostatic models would be needed when interpreting tectonic
+contributions to uplift at the edge of ice caps, as in the eastern
+Southern European Alps.
+6
+Conclusions
+The application of a blind source separation algorithm to ver-
+tical displacement time series obtained from a network of
+GNSS stations in the Great Alpine Area allows us to iden-
+tify the main sources of vertical ground deformation. Be-
+sides the linear trend, vertical displacements are inﬂuenced
+by (1) atmospheric pressure loading, (2) hydrological load-
+ing and (3) seasonal processes in phase with temperature.
+The analysis of displacement time series of environmental
+loading shows that the largest vertical motions are related to
+variations in atmospheric pressure, in particular when con-
+sidering daily or weekly timescales. Seasonal displacements
+are more clearly associated with hydrological loading and
+processes in phase with temperature. However, while defor-
+mation associated with temperature is well isolated, we were
+not able to clearly separate the atmospheric and hydrological
+loading signals in the GNSS displacement time series.
+We use the results of the time series decomposition to ﬁlter
+the IGb14 time series and study the effect of removing sig-
+nals associated with environmental loading and temperature-
+related processes on the vertical velocities and uncertainties.
+Removing these signals causes a quite uniform but limited
+(∼0.1 mm yr−1) increase in the velocities, which we inter-
+pret as being due to the small negative linear trend associ-
+ated with the atmospheric and hydrological loading-induced
+displacements. It is worth noting that the procedure used in
+this work to estimate the station velocities does not allow us
+to distinguish the tectonic velocities from the contribution to
+the velocity induced by climate-related processes, in partic-
+ular if the linear trend associated with NTAL and/or HYDL
+time series is large. Furthermore, the ﬁltering almost halves
+the uncertainties associated with the velocities and changes
+the noise spectra, increasing the white noise percentage to
+the detriment of the colored one.
+Although providing a geological and geophysical expla-
+nation for the observed vertical velocity pattern is out of the
+scope of this work, we can conclude that more precise and
+accurate vertical velocities, such as the one presented in this
+work, can be obtained by careful signal detection and ﬁlter-
+ing. This can help develop better spatially resolved models
+that are aimed at a more effective understanding of the rel-
+ative contribution of the different ongoing geodynamic and
+tectonic processes shaping the present-day topography of the
+Alps.
+Code and data availability. The MATLAB code for vbICA decom-
+position is available from https://doi.org/10.17632/n92vwbg8zt.1
+(Gualandi and Pintori, 2020). Global datasets used for the
+hydrological, atmospheric and ocean load models are taken
+from http://loading.u-strasbg.fr/ (EOST model; Boy, 2021) and
+http://rz-vm115.gfz-potsdam.de:8080/repository/entry/show?
+entryid=24aacdfe-f9b0-43b7-b4c4-bdbe51b6671b
+(LSDM-based
+model; Thomas et al., 2021). Precipitation data are available
+from
+https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDF_06/
+summary (NASA GES DISC, 2020). Temperature data are avail-
+able from https://www.ecad.eu/download/ensembles/download.php
+(E-OBS, 2020), and IGb14 GPS time series are available at
+https://doi.org/10.1594/PANGAEA.938422 (Pintori et al., 2021b).
+Supplement. The supplement related to this article is available on-
+line at: https://doi.org/10.5194/se-13-1541-2022-supplement.
+Author contributions. FP conceived and led the paper, ES coordi-
+nated the study and analyzed GNSS data, and AG supervised the
+vbICA analysis of GNSS displacements. All the authors discussed
+the content of the paper and shared the writing.
+Competing interests. The contact author has declared that none of
+the authors has any competing interests.
+Disclaimer. Publisher’s note: Copernicus Publications remains
+neutral with regard to jurisdictional claims in published maps and
+institutional afﬁliations.
+Special issue statement. This article is part of the special issue
+“New insights into the tectonic evolution of the Alps and the ad-
+jacent orogens”. It is not associated with a conference.
+Acknowledgements. We thank Enrico Scoccimarro and Mat-
+teo Zampieri for fruitful suggestions on the interpretation of meteo-
+climatic data. We acknowledge the E-OBS dataset from the EU-
+FP6 project UERRA https://www.uerra.eu, last access: 21 Decem-
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1564
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+ber 2020), the Copernicus Climate Change Service and the data
+providers in the ECA&D project (https://www.ecad.eu, last ac-
+cess: 21 December 2020). We are grateful to the many agencies,
+companies and networks that have made GNSS data available.
+We speciﬁcally thank the following public networks and institu-
+tions for raw RINEX data: IGS, EUREF-EPN, AGROS (Serbia),
+CZEPOS (Czech Republic), GPS-EMILIA ROMAGNA (Italy),
+InOGS-FREDNET (Italy), Rete GNSS Marussi FVG (Italy), ASI-
+GEODAF (Italy), GEONAS (Czech Republic), GFZ (Germany),
+GREF (Germany), Leica-Geosystem HXGN-SmartNeT (Italy),
+GNSS LIGURIA (Italy), Topcon Positioning Italy NETGEO (Italy),
+OLGGPS (Austria), RENAG (France), RGP (France), INGV-RING
+(Italy), SIGNAL (Slovenia), SONEL, SPINGNSS (Italy), STPOS
+(BZ, Italy), TPOS (TN, Italy), GPS-VENETO (Italy), and VESOG
+(Czech Republic). ORPHEON data were provided to the authors for
+scientiﬁc use in the framework of the GEODATA-INSU-CNRS con-
+vention. We acknowledge Echtzeit Positionierung Austria for pro-
+viding access to the EPOSA data. SAPOS networks are operated by
+various German States (Landesamt für Digitalisierung, Breitband
+und Vermessung Baden-Württemberg).
+Financial support. Francesco Pintori has been supported by the
+project “Multiparametric and mUltiscale Study of Earthquake
+preparatory phase in the central and northern Apennines (MUSE)”,
+funded by the Istituto Nazionale di Geoﬁsica e Vulcanologia
+(INGV). Adriano Gualandi has been supported by European Re-
+search Council, H2020 Research Infrastructures (TECTONIC,
+grant no. 835012). This study has been developed in the framework
+of the projects MUSE and KINDLE, funded by the “Pianeta Dinam-
+ico” INGV institutional project.
+Review statement. This paper was edited by Christian Sue and re-
+viewed by three anonymous referees.
+References
+Anderlini, L., Serpelloni, E., Tolomei, C., De Martini, P. M., Pezzo,
+G., Gualandi, A., and Spada, G.: New insights into active tec-
+tonics and seismogenic potential of the Italian Southern Alps
+from vertical geodetic velocities, Solid Earth, 11, 1681–1698,
+https://doi.org/10.5194/se-11-1681-2020, 2020.
+Beck, I., Ludwig, R., Bernier, M., Strozzi, T., and Boike, J.: Vertical
+movements of frost mounds in subarctic permafrost regions an-
+alyzed using geodetic survey and satellite interferometry, Earth
+Surf. Dynam., 3, 409–421, https://doi.org/10.5194/esurf-3-409-
+2015, 2015.
+Bevis, M. and Brown, A.: Trajectory models and reference
+frames for crustal motion geodesy, J. Geodesy, 88, 283–311,
+https://doi.org/10.1007/s00190-013-0685-5, 2014.
+Blewitt, G., Hammond, W., and Kreemer, C.: Harnessing the
+GPS data explosion for interdisciplinary science, EOS, 99,
+https://doi.org/10.1029/2018EO104623, 2018.
+Bogusz, J. and Klos, A.: On the signiﬁcance of periodic signals in
+noise analysis of GPS station coordinates time series, GPS Solut.,
+20, 655–664, https://doi.org/10.1007/s10291-015-0478-9, 2016.
+Bos, M. S., Fernandes, R. M. S., Williams, S. D. P., and
+Bastos, L.: Fast error analysis of continuous GNSS ob-
+servations
+with
+missing
+data,
+J.
+Geodesy,
+87, 351–360,
+https://doi.org/10.1007/s00190-012-0605-0, 2013.
+Boy, J.-P.: Displacements due to hydrological and atmospheric load-
+ing, EOST [data set], http://loading.u-strasbg.fr/, last access:
+1 December 2021.
+Brunetti, M., Maugeri, M., Nanni, T., Auer, I., Böhm, R., and
+Schöner, W.: Precipitation variability and changes in the greater
+Alpine region over the 1800–2003 period, J. Geophys. Res., 111,
+D11107, https://doi.org/10.1029/2005JD006674, 2006.
+Capodaglio, P., Naldi, M., and Simonetto, F.: Hydrogeological char-
+acterization throughout deep geophysical investigations in the
+Verrès plain (Aosta Valley, north-western Italian Alps), Acque
+Sott., 6, 35–45, https://doi.org/10.7343/as-2017-262, 2017.
+Chanard, K., Métois, M., Rebischung, P., and Avouac, J. P.: A warn-
+ing against over-interpretation of seasonal signals measured by
+the Global Navigation Satellite System, Nat. Commun. Mar., 13,
+1375, https://doi.org/10.1038/s41467-020-15100-7, 2020.
+Chery, J., Genti, M., and Vernant, P.: Ice cap melting and
+low-viscosity crustal root explain the narrow geodetic uplift
+of the Western Alps, Geophys. Res. Lett., 43, 3193–3200,
+https://doi.org/10.1002/2016GL067821, 2016.
+Ching, K.-E., Hsieh, M.-L., Johnson, K. M., Chen, K.-H., Rau, R.-
+J., and Yang, M.: Modern vertical deformation rates and moun-
+tain building in Taiwan from precise leveling and continuous
+GPS observations, 2000–2008, J. Geophys. Res., 116, B08406,
+https://doi.org/10.1029/2011JB008242, 2011.
+Choudrey, R. A.: Variational Methods for Bayesian Independent
+Component Analysis. Pattern analysis and machine learning –
+robotics research group, PhD thesis, University of Oxford, 2002.
+Choudrey, R. A. and Roberts, S. J.: Variational mixture of Bayesian
+independent component analyzers, Neural Comput., 15, 213–
+252, https://doi.org/10.1162/089976603321043766, 2003.
+Cornes, R. C., van der Schrier, G., van den Besselaar, E. J. M.,
+and Jones, P. D.: An Ensemble Version of the E-OBS Temper-
+ature and Precipitation Data Sets, J. Geophys. Res.-Atmos., 123,
+9391–9409, https://doi.org/10.1029/2017JD028200, 2018.
+Dal Zilio, L., Hetényi, G., Hubbard, J., and Bollinger, L: Build-
+ing the Himalaya from tectonic to earthquake scales, Nat. Rev.
+Earth Environ., 2, 251–268, https://doi.org/10.1038/s43017-021-
+00143-1, 2021.
+Dill, R.: Hydrological model LSDM for operational Earth rotation
+and gravity ﬁeld variations, Deutsches GeoForschungsZentrum
+GFZ [data set], https://doi.org/10.2312/gfz.b103-08095, 2008.
+Dill,
+R.
+and
+Dobslaw,
+H.:
+Numerical
+simulations
+of
+global-scale
+high-resolution
+hydrological
+crustal
+defor-
+mations,
+J.
+Geophys.
+Res.-Sol.
+Ea.,
+118,
+5008–5017,
+https://doi.org/10.1002/jgrb.50353, 2013.
+Dong, D., Fang, P., Bock, Y., Webb, F., Prawirodirdjo, L., Kedar, S.,
+and Jamason, P.: Spatiotemporal ﬁltering using principal com-
+ponent analysis and Karhunen-Loeve expansion approaches for
+regional GPS network analysis, J. Geophys. Res., 111, B03405,
+https://doi.org/10.1029/2005JB003806, 2006.
+E-OBS: Daily mean temperature, ECA&D [data set], https://www.
+ecad.eu/download/ensembles/download.php, last access: 21 De-
+cember 2020.
+Faccenna, C., Becker, T. W., Miller, M. S., Serpelloni, E., and Wil-
+lett, S. D.: Isostasy, dynamic topography, and the elevation of
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1565
+the Apennines of Italy, Earth Planet. Sc. Lett., 407, 163–174,
+https://doi.org/10.1016/j.epsl.2014.09.027, 2014a.
+Faccenna, C., Becker, T. W., Auer, L., Billi, A., Boschi, L., Brun, J.
+P., Capitanio, F. A., Funiciello, F., Horvàth, F., Jolivet, L., Piro-
+mallo, C., Royden, L., Rossetti, F., and Serpelloni, E.: Mantle
+dynamics in the Mediterranean, Rev. Geophys., 52, 283–332,
+https://doi.org/10.1002/2013RG000444, 2014b.
+Faranda, D., Sato, Y., Saint-Michel, B., Wiertel, C., Padilla,
+V.,
+Dubrulle,
+B.,
+and
+Daviaud,
+F.:
+Stochastic
+chaos
+in
+a turbulent swirling ﬂow, Phys. Rev. Lett., 119, 014502,
+https://doi.org/10.1103/PhysRevLett.119.014502, 2017.
+Fu, Y. and Freymueller, J. T.: Seasonal and long-term verti-
+cal deformation in the Nepal Himalaya constrained by GPS
+and GRACE measurements, J. Geophys. Res., 117, B03407,
+https://doi.org/10.1029/2011JB008925, 2012.
+Fu,
+Y.,
+Freymueller,
+J.
+T.,
+and
+Jensen,
+T.:
+Seasonal
+hy-
+drological
+loading
+in
+southern
+Alaska
+observed
+by
+GPS
+and
+GRACE,
+Geophys.
+Res.
+Lett.,
+39,
+L15310,
+https://doi.org/10.1029/2012GL052453, 2012.
+Gegout, P., Boy, J. P., Hinderer, J., and Ferhat, G.: Model-
+ing and Observation of Loading Contribution to Time-Variable
+GPS Sites Positions, in Gravity, Geoid and Earth Obser-
+vation: IAG Commission 2: Gravity Field, Chania, Crete,
+Greece, 23–27 June 2008, Vol. 135, edited by: Mertikas, S.
+P., 651–659, Springer Berlin Heidelberg, Berlin, Heidelberg,
+https://doi.org/10.1007/978-3-642-10634-7_86, 2010.
+Ghasemi Khalkhali, S. A., Ardalan, A., and Karimi, R.: A
+time series analysis of permanent GNSS stations in the
+northwest network of Iran, Ann. Geophys.-Italy, 64, GD218,
+https://doi.org/10.4401/ag-8450, 2021.
+Gualandi, A. and Liu, Z.: Variational bayesian independent com-
+ponent analysis for insar displacement time-series with applica-
+tion to central california, USA, J. Geophys. Res.-Sol. Ea., 126,
+e2020JB020845, https://doi.org/10.1029/2020JB020845, 2021.
+Gualandi, A. and Pintori, F.: vbICA code, Mendeley [code],
+https://doi.org/10.17632/n92vwbg8zt.1, 2020.
+Gualandi, A., Serpelloni, E., and Belardinelli, M. E.: Blind source
+separation problem in GPS time series, J. Geodesy, 90, 323–341,
+https://doi.org/10.1007/s00190-015-0875-4, 2016.
+Gualandi, A., Nichele, C., Serpelloni, E., Chiaraluce, L., Anderlini,
+L., Latorre, D., Belardinelli, M. E., and Avouac, J. P.: Aseis-
+mic deformation associated with an earthquake swarm in the
+northern Apennines (Italy), Geophys. Res. Lett., 44, 7706–7714,
+https://doi.org/10.1002/2017GL073687, 2017a.
+Gualandi, A., Perfettini, H., Radiguet, M., Cotte, N., and Kos-
+toglodov, V.: GPS deformation related to the M 7.3, 2014, Pa-
+panoa earthquake (Mexico) reveals the aseismic behavior of
+the Guerrero seismic gap, Geophys. Res. Lett., 44, 6039–6047,
+https://doi.org/10.1002/2017GL072913, 2017b.
+He, M., Shen, W., Pan, Y., Chen, R., Ding, H., and Guo,
+G.:
+Temporal-Spatial
+Surface
+Seasonal
+Mass
+Changes
+and Vertical Crustal Deformation in South China Block
+from GPS and GRACE Measurements, Sensors, 18, 99,
+https://doi.org/10.3390/s18010099, 2017.
+He, X., Yu, K., Montillet, J.-P., Xiong, C., Lu, T., Zhou,
+S., Ma, X., Cui, H., and Ming, F.: GNSS-TS-NRS: An
+Open-Source
+MATLAB-Based
+GNSS
+Time
+Series
+Noise
+Reduction
+Software,
+Remote
+Sens.
+(Basel),
+12,
+3532,
+https://doi.org/10.3390/rs12213532, 2020.
+Henrion, E., Masson, F., Doubre, C., Ulrich, P., and Meghraoui,
+M.: Present-day deformation in the Upper Rhine Graben
+from
+GNSS
+data,
+Geophys.
+J.
+Int.,
+223,
+599–611,
+https://doi.org/10.1093/gji/ggaa320, 2020.
+Herring, T. A., King, R. W., Floyd, M. A., and McClusky, S. C.:
+Introduction to GAMIT/GLOBK, Release 10.7, http://geoweb.
+mit.edu/gg/Intro_GG.pdf (last access: 1 September 2021), 2018.
+Hou, Z., Guo, Z., and Du, J.: Analysis of the regional GNSS coor-
+dinate time series by ICA-weighted spatio-temporal ﬁltering, J.
+Earth Syst. Sci., 128, 191, https://doi.org/10.1007/s12040-019-
+1214-6, 2019.
+Huffman, G. J., Stocker, E. F., Bolvin, D. T., Nelkin, E. J.,
+and Jackson, T.: GPM IMERG Final Precipitation L3 1
+day 0.1 degree × 0.1 degree V06, edited by: Savtchenko,
+A.,
+Greenbelt,
+MD,
+Goddard
+Earth
+Sciences
+Data
+and
+Information
+Services
+Center
+(GES
+DISC)
+[data
+set],
+https://doi.org/10.5067/GPM/IMERGDF/DAY/06, 2019.
+Hyvärinen, A. and Oja, E.: A Fast Fixed-Point Algorithm for Inde-
+pendent Component Analysis, Neural Comput., 9, 1483–1492,
+https://doi.org/10.1162/neco.1997.9.7.1483, 1997.
+Jiang, W., Ma, J., Li, Z., Zhou, X., and Zhou, B.: Effect of removing
+the common mode errors on linear regression analysis of noise
+amplitudes in position time series of a regional GPS network &
+a case study of GPS stations in Southern California, Adv. Space
+Res., 61, 2521–2530, https://doi.org/10.1016/j.asr.2018.02.031,
+2018.
+Klos, A., Olivares, G., Teferle, F. N., Hunegnaw, A., and Bo-
+gusz, J.: On the combined effect of periodic signals and
+colored noise on velocity uncertainties, GPS Solut., 22, 1,
+https://doi.org/10.1007/s10291-017-0674-x, 2018.
+Klos, A., Dobslaw, H., Dill, R., and Bogusz, J.: Identifying the
+sensitivity of GPS to non-tidal loadings at various time resolu-
+tions: examining vertical displacements from continental Eura-
+sia, GPS Solut., 25, 89, https://doi.org/10.1007/s10291-021-
+01135-w, 2021.
+Kositsky,
+A.
+P.
+and
+Avouac,
+J.
+P.:
+Inverting
+geodetic
+time
+series
+with
+a
+principal
+component
+analysis-based
+inversion
+method,
+J.
+Geophys.
+Res.,
+115,
+B03401,
+https://doi.org/10.1029/2009JB006535, 2010.
+Koulali, A. and Clarke, P. J.: Effect of antenna snow intrusion on
+vertical GPS position time series in Antarctica, J. Geodesy, 94,
+101, https://doi.org/10.1007/s00190-020-01403-6, 2020.
+Kreemer, C. and Blewitt, G.: Robust estimation of spatially varying
+common-mode components in GPS time-series, J. Geodesy, 95,
+13, https://doi.org/10.1007/s00190-020-01466-5, 2021.
+Kumar, U., Chao, B. F., and Chang, E. T. Y.: What causes
+the
+common-mode
+error
+in
+array
+GPS
+displacement
+ﬁelds: case study for taiwan in relation to atmospheric
+mass
+loading,
+Earth
+Space
+Sci.,
+7,
+e2020EA001159,
+https://doi.org/10.1029/2020EA001159, 2020.
+Larochelle, S., Gualandi, A., Chanard, K., and Avouac, J. P.: Identi-
+ﬁcation and extraction of seasonal geodetic signals due to surface
+load variations, J. Geophys. Res.-Sol. Ea., 123., 11031–11047,
+https://doi.org/10.1029/2018JB016607, 2018.
+Li, W., Li, F., Zhang, S., Lei, J., Zhang, Q., and Yuan, L.: Spatiotem-
+poral Filtering and Noise Analysis for Regional GNSS Network
+in Antarctica Using Independent Component Analysis, Remote
+Sens (Basel), 11, 386, https://doi.org/10.3390/rs11040386, 2019.
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022
+1566
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+Lin,
+L.
+I.:
+A
+concordance
+correlation
+coefﬁcient
+to
+evaluate
+reproducibility,
+Biometrics,
+45,
+255–268,
+https://doi.org/10.2307/2532051, 1989.
+Liu, B., Dai, W., Peng, W., and Meng, X.: Spatiotemporal
+analysis of GPS time series in vertical direction using in-
+dependent component analysis, Earth Planet. Sp., 67, 189,
+https://doi.org/10.1186/s40623-015-0357-1, 2015.
+Liu, B., Dai, W., and Liu, N.: Extracting seasonal deformations of
+the Nepal Himalaya region from vertical GPS position time se-
+ries using Independent Component Analysis, Adv. Space Res.,
+60, 2910–2917, https://doi.org/10.1016/j.asr.2017.02.028, 2017.
+Masson, C., Mazzotti, S., and Vernant, P.: Precision of continu-
+ous GPS velocities from statistical analysis of synthetic time
+series, Solid Earth, 10, 329–342, https://doi.org/10.5194/se-10-
+329-2019, 2019.
+Mey, J., Scherler, D., Wickert, A. D., Egholm, D. L., Tesauro,
+M., Schildgen, T. F., and Strecker, M. R.: Glacial iso-
+static uplift of the European Alps, Nat. Commun., 7, 13382,
+https://doi.org/10.1038/ncomms13382, 2016.
+Ming, F., Yang, Y., Zeng, A., and Zhao, B.: Spatiotempo-
+ral ﬁltering for regional GPS network in China using in-
+dependent component analysis, J. Geodesy, 91, 419–440,
+https://doi.org/10.1007/s00190-016-0973-y, 2017.
+Morelli, A. and Barrier, E.: Geodynamic Map of the Mediterranean,
+coordinated by: Cadet, J.-P. and Funiciello, R., Commission
+for the Geological Map of the World, http://ccgm.org/en/maps/
+107-carte-geodynamique-de-la-mediterranee.html (last access:
+27 September 2022), 2004.
+NASA GES DISC: GPM IMERG Final Precipitation L3 1
+day
+0.1
+degree × 0.1
+degree
+(GPM_3IMERGDF),
+NASA
+GES DISC [data set], https://disc.gsfc.nasa.gov/datasets/GPM_
+3IMERGDF_06/summary, last access: 9 September 2020.
+Nikolaidis, R.: Observation of geodetic and seismic deformation
+with the Global Positioning System, PhD thesis, Univ. of Calif.,
+San Diego, 2002.
+Nocquet, J.-M., Sue, C., Walpersdorf, A., Tran, T., Lenôtre, N., Ver-
+nant, P., Cushing, M., Jouanne, F., Masson, F., Baize, S., Chéry,
+J., and van der Beek, P. A.: Present-day uplift of the western Alps,
+Sci. Rep.-UK, 6, 28404, https://doi.org/10.1038/srep28404,
+2016.
+Palano, M., Pezzo, G., Serpelloni, E., Devoti, R., D’Agostino, N.,
+Gandolﬁ, S., Sparacino, F., Anderlini, L., Poluzzi, L., Tavasci,
+L., Macini, P., Pietrantonio, G., Riguzzi, F., Antoncecchi, I., Ci-
+ccone, F., Rossi, G., Avallone, A., and Selvaggi, G.: Geoposi-
+tioning time series from offshore platforms in the Adriatic Sea,
+Sci. Data, 7, 373, https://doi.org/10.1038/s41597-020-00705-w,
+2020.
+Pan, Y., Chen, R., Ding, H., Xu, X., Zheng, G., Shen, W., Xiao,
+Y., and Li, S.: Common Mode Component and Its Potential Ef-
+fect on GPS-Inferred Three-Dimensional Crustal Deformations
+in the Eastern Tibetan Plateau, Remote Sens. (Basel), 11, 1975,
+https://doi.org/10.3390/rs11171975, 2019.
+Pintori, F., Serpelloni, E., Longuevergne, L., Garcia, A., Faenza,
+L., D’Alberto, L., Gualandi, A., and Belardinelli, M. E.: Me-
+chanical response of shallow crust to groundwater storage vari-
+ations: inferences from deformation and seismic observations in
+the eastern southern alps, italy, J. Geophys. Res.-Sol. Ea., 126,
+e2020JB020586, https://doi.org/10.1029/2020JB020586, 2021a.
+Pintori, F., Serpelloni, E., and Gualandi, A.: Vertical displacement
+time series from GNSS stations in the great Alpine area, PAN-
+GAEA [data set], https://doi.org/10.1594/PANGAEA.938422,
+2021b.
+Riddell, A. R., King, M. A., and Watson, C. S.: Present-day vertical
+land motion of Australia from GPS observations and geophys-
+ical models, J. Geophys. Res.-Sol. Ea., 125, e2019JB018034,
+https://doi.org/10.1029/2019JB018034, 2020.
+Rodell, M., Houser, P. R., Jambor, U., Gottschalck, J., Mitchell,
+K., Meng, C. J., Arsenault, K., Cosgrove, B., Radakovich, J.,
+Bosilovich, M., Entin, J. K., Walker, J. P., Lohmann, D., and Toll,
+D.: The global land data assimilation system, B. Am. Meteo-
+rol. Soc., 85, 381–394, https://doi.org/10.1175/BAMS-85-3-381,
+2004.
+Serpelloni,
+E.,
+Faccenna,
+C.,
+Spada,
+G.,
+Dong,
+D.,
+and
+Williams, S. D. P.: Vertical GPS ground motion rates in
+the Euro-Mediterranean region: New evidence of velocity
+gradients at different spatial scales along the Nubia-Eurasia
+plate boundary, J. Geophys. Res.-Sol. Ea., 118, 6003–6024,
+https://doi.org/10.1002/2013JB010102, 2013.
+Serpelloni, E., Vannucci, G., Anderlini, L., and Bennett, R.
+A.: Kinematics, seismotectonics and seismic potential of
+the eastern sector of the European Alps from GPS and
+seismic
+deformation
+data,
+Tectonophysics,
+688,
+157–181,
+https://doi.org/10.1016/j.tecto.2016.09.026, 2016.
+Serpelloni, E., Pintori, F., Gualandi, A., Scoccimarro, E., Cav-
+aliere, A., Anderlini, L., Belardinelli, M. E., and Tode-
+sco, M.: Hydrologically Induced Karst Deformation: In-
+sights From GPS Measurements in the Adria-Eurasia Plate
+Boundary Zone, J. Geophys. Res.-Sol. Ea., 123, 4413–4430,
+https://doi.org/10.1002/2017JB015252, 2018.
+Serpelloni, E., Cavaliere, A., Martelli, L., Pintori, F., Anderlini, L.,
+Borghi, A., Randazzo, D., Bruni, S., Devoti, R., Perfetti, P., and
+Cacciaguerra, S.: Surface velocities and strain-rates in the Euro-
+Mediterranean region from massive GPS data processing, Front.
+Earth Sci., 10, 1–21, https://doi.org/10.3389/feart.2022.907897,
+2022.
+Silverii, F., Pulvirenti, F., Montgomery-Brown, E. K., Borsa, A.
+A., and Neely, W. R.: The 2011–2019 Long Valley Caldera in-
+ﬂation: New insights from separation of superimposed geodetic
+signals and 3D modeling, Earth Planet. Sc. Lett., 569, 117055,
+https://doi.org/10.1016/j.epsl.2021.117055, 2021.
+Sternai, P., Sue, C., Husson, L., Serpelloni, E., Becker, T.
+W., Willett, S. D., Faccenna, C., Di Giulio, A., Spada, G.,
+Jolivet, L., Valla, P., Petit, C., Nocquet, J.-M., Walpers-
+dorf,
+A.,
+and
+Castelltort,
+S.:
+Present-day
+uplift
+of
+the
+European
+Alps:
+Evaluating
+mechanisms
+and
+models
+of
+their relative contributions, Earth-Sci. Rev., 190, 589–604,
+https://doi.org/10.1016/j.earscirev.2019.01.005, 2019.
+Tan, W., Dong, D., and Chen, J.: Application of independent
+component analysis to GPS position time series in Yunnan
+Province, southwest of China, Adv. Space Res., 69, 4111–4122,
+https://doi.org/10.1016/j.asr.2022.03.016, 2022.
+Tape, C., Musé, P., Simons, M., Dong, D., and Webb, F.: Multiscale
+estimation of GPS velocity ﬁelds, Geophys. J. Int., 179, 945–971,
+https://doi.org/10.1111/j.1365-246X.2009.04337.x, 2009.
+Solid Earth, 13, 1541–1567, 2022
+https://doi.org/10.5194/se-13-1541-2022
+F. Pintori et al.: Common-mode signals and vertical velocities in the greater Alpine area from GNSS data
+1567
+Thomas, M., Dill, R., and Dobslaw, H.: Non-tidal Atmospheric
+Loading (CF) and Hydrological Loading (CF), GFZ [data set],
+http://rz-vm115.gfz-potsdam.de:8080/repository/entry/show?
+entryid=24aacdfe-f9b0-43b7-b4c4-bdbe51b6671b, 21 Septem-
+ber 2021.
+Tiampo, K. F., Rundle, J. B., Klein, W., Ben-Zion, Y., and McGin-
+nis, S.: Using eigenpattern analysis to constrain seasonal signals
+in southern california, Pure Appl. Geophys., 161, 1991–2003,
+https://doi.org/10.1007/s00024-004-2545-y, 2004.
+Tian, Y. and Shen, Z.: Extracting the regional common-mode com-
+ponent of GPS station position time series from dense con-
+tinuous network, J. Geophys. Res.-Sol. Ea., 121, 1080–1096,
+https://doi.org/10.1002/2015JB012253, 2016.
+van Dam, T., Collilieux, X., Wuite, J., Altamimi, Z., and
+Ray, J.: Nontidal ocean loading: amplitudes and potential ef-
+fects in GPS height time series, J. Geodesy, 86, 1043–1057,
+https://doi.org/10.1007/s00190-012-0564-5, 2012.
+Vicente-Serrano,
+S.
+M.
+and
+López-Moreno,
+J.
+I.:
+Nonsta-
+tionary
+inﬂuence
+of
+the
+North
+Atlantic
+Oscillation
+on
+European
+precipitation,
+J.
+Geophys.
+Res.,
+113,
+D20120,
+https://doi.org/10.1029/2008JD010382, 2008.
+Wdowinski, S., Bock, Y., Zhang, J., Fang, P., and Genrich, J.: South-
+ern California permanent GPS geodetic array: Spatial ﬁltering
+of daily positions for estimating coseismic and postseismic dis-
+placements induced by the 1992 Landers earthquake, J. Geophys.
+Res., 102, 18057–18070, https://doi.org/10.1029/97JB01378,
+1997.
+Yuan, P., Jiang, W., Wang, K., and Sneeuw, N.: Effects of
+spatiotemporal ﬁltering on the periodic signals and noise in
+the GPS position time series of the crustal movement ob-
+servation network of china, Remote Sens. (Basel), 10, 1472,
+https://doi.org/10.3390/rs10091472, 2018.
+Zhang,
+K.,
+Wang,
+Y.,
+Gan,
+W.,
+and
+Liang,
+S.:
+Impacts
+of local effects and surface loads on the common mode
+error
+ﬁltering
+in
+continuous
+GPS
+measurements
+in
+the
+northwest of yunnan province, china, Sensors, 20, 5408,
+https://doi.org/10.3390/s20185408, 2020.
+Zhu, Z., Zhou, X., Deng, L., Wang, K., and Zhou, B.: Quantita-
+tive analysis of geophysical sources of common mode compo-
+nent in CMONOC GPS coordinate time series, Adv. Space Res.,
+60, 2896–2909, https://doi.org/10.1016/j.asr.2017.05.002, 2017.
+https://doi.org/10.5194/se-13-1541-2022
+Solid Earth, 13, 1541–1567, 2022

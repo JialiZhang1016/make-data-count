@@ -1,0 +1,3646 @@
+Journal of the American Statistical Association
+ISSN: (Print) (Online) Journal homepage: www.tandfonline.com/journals/uasa20
+A Hierarchical Framework for Correcting Under-
+Reporting in Count Data
+Oliver Stoner, Theo Economou & Gabriela Drummond Marques da Silva
+To cite this article: Oliver Stoner, Theo Economou & Gabriela Drummond Marques da Silva
+(2019) A Hierarchical Framework for Correcting Under-Reporting in Count Data, Journal of the
+American Statistical Association, 114:528, 1481-1492, DOI: 10.1080/01621459.2019.1573732
+To link to this article:  https://doi.org/10.1080/01621459.2019.1573732
+© 2019 The Author(s). Published with
+license by Taylor and Francis Group, LLC.
+View supplementary material 
+Published online: 30 Apr 2019.
+Submit your article to this journal 
+Article views: 7619
+View related articles 
+View Crossmark data
+Citing articles: 22 View citing articles 
+Full Terms & Conditions of access and use can be found at
+https://www.tandfonline.com/action/journalInformation?journalCode=uasa20
+JOURNAL OF THE AMERICAN STATISTICAL ASSOCIATION
+2019, VOL. 114, NO. 528, 1481–1492: Applications and Case Studies
+https://doi.org/10.1080/01621459.2019.1573732
+A Hierarchical Framework for Correcting Under-Reporting in Count Data
+Oliver Stonera, Theo Economoua, and Gabriela Drummond Marques da Silvab
+aDepartment of Mathematics, University of Exeter, Exeter, UK; bUniversity of Brasí­lia, Brasília, Brazil
+ABSTRACT
+Tuberculosis poses a global health risk and Brazil is among the top 20 countries by absolute mortality.
+However, this epidemiological burden is masked by under-reporting, which impairs planning for effective
+intervention. WepresentacomprehensiveinvestigationandapplicationofaBayesianhierarchicalapproach
+to modeling and correcting under-reporting in tuberculosis counts, a general problem arising in observa-
+tional count data. The framework is applicable to fully under-reported data, relying only on an informative
+prior distribution for the mean reporting rate to supplement the partial information in the data. Covariates
+are used to inform both the true count-generating process and the under-reporting mechanism, while also
+allowing for complex spatio-temporal structures. We present several sensitivity analyses based on simula-
+tion experiments to aid the elicitation of the prior distribution for the mean reporting rate and decisions
+relating to the inclusion of covariates. Both prior and posterior predictive model checking are presented, as
+well as a critical evaluation of the approach. Supplementary materials for this article, including a standard-
+ized description of the materials available for reproducing the work, are available as an online supplement.
+ARTICLE HISTORY
+Received November 2017
+Accepted January 2019
+KEYWORDS
+Bayesian methods;
+Censoring; Tuberculosis;
+Under-detection;
+Under-recording.
+1. Introduction
+In a variety of fields, such as epidemiology and natural hazards,
+count data arise which may not be a full representation of
+the quantity of interest. In many cases, the counts are under-
+reported: the recorded value is less than the true value, some-
+times substantially. Quite often, this is due to the observation
+process being flawed, for instance failing to reach some indi-
+viduals in a population at risk from infectious disease such as
+tuberculosis or TB, which is the motivating application here. It
+is then a missing data challenge and from a statistical point of
+view, a prediction problem.
+The TB surveillance system in Brazil is responsible for detect-
+ing disease occurrence and for providing information about its
+patterns and trends. The notification of TB is mandatory and
+the data are available in the Notifiable Diseases Information
+System (SINAN), which provides information about the disease
+at national, state, municipal, and other regional levels. Despite
+the high spatial coverage of SINAN, the system is not able
+to report all TB cases. Using inventory studies (World Health
+Organization 2012), the overall TB detection rate for Brazil was
+estimated as 91%, 84%, and 87% for the years 2012–2014 (World
+Health Organization 2017).
+Under-reporting is an issue because it can lead to biased
+statistical inference, and therefore poorly informed decisions.
+This bias will affect parameter estimates, predictions and
+associated uncertainty. Conventional approaches to quantifying
+risk, for instance by estimating the spatio-temporal disease rate
+per unit population, are liable to under-estimate the risk if
+under-reporting is not allowed for. This has serious societal
+CONTACT Oliver Stoner
+ors203@exeter.ac.uk
+Department of Mathematics, University of Exeter, Exeter, UK.
+Color versions of one or more of the figures in the article can be found online at www.tandfonline.com/r/JASA.
+Supplementary materials for this article are available online. Please go to www.tandfonline.com/r/JASA.
+These materials were reviewed for reproducibility.
+implications—an estimated 7300 deaths were caused by TB
+in Brazil in 2016 (World Health Organization 2017), and this
+epidemiological burden is masked by under-reporting, which
+impairs planning of public policies for timely and effective
+intervention. An alternative system to improve the detection
+rate has been the active search for cases, especially in high-
+risk groups, including homeless and incarcerated people.
+However, these activities require local resources, resulting in
+databases with different detection rates depending on the socio-
+economic characteristics and the management capacity of the
+municipalities. It is therefore crucial to estimate and quantify
+the uncertainty of the detection rates on a finer scale, to allow
+better informed decisions about the distribution of resources.
+In this article, we investigate a general framework for correct-
+ing under-reporting, suitable to a wide range of spatio-temporal
+count data, and apply it to counts of TB cases in Brazil. All
+counts can be potentially assumed under-reported (unlike other
+approaches) so that the severity of under-reporting is estimated
+and potentially informed by available covariates that relate to the
+under-reporting mechanism. The model is implemented in the
+Bayesian framework which allows great flexibility and leads to
+complete predictive distributions for the true counts, therefore
+quantifying the uncertainty in correcting the under-reporting.
+The article is structured as follows: Section 2 discusses
+approaches to modeling under-reporting, including the hierar-
+chical framework we will ultimately use, as well as how we seek
+to resolve the incompleteness of the information provided by the
+data. Section 3 presents the application to Brazilian TB data, as
+© 2019 The Authors. Published with license by Taylor & Francis Group, LLC.
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution,
+and reproduction in any medium, provided the original work is properly cited.
+1482
+O. STONER, T. ECONOMOU, AND G. DRUMMOND MARQUES DA SILVA
+well as some simulation experiments designed to investigate the
+sensitivity of the model’s ability to quantify uncertainty. Further
+simulation experiments can be found in the appendix, which
+address issues such as the sensitivity of the model to the strength
+of under-reporting covariates. Finally, Section 4 presents a
+critical evaluation of our approach, particularly compared to
+existing methods.
+2. Background
+Let yi,t,s be the number of events (e.g., TB cases) occurring in
+units of space s ∈S, time t ∈T and any other grouping
+structures i that the counts might be aggregated into. If yi,t,s is
+believed to have been perfectly observed, the counts are con-
+ventionally modeled by an appropriate conditional distribution
+p(yi,t,s | θ), usually either Poisson or Negative Binomial. Here, θ
+represents random effects allowing for various dependency and
+grouping structures (e.g., space and time), as well as parameters
+associated with relevant covariates. Inference is then based on
+the conditional likelihood function (assuming independence in
+the yi,t,s given θ):
+p(y | θ) =
+
+i,t,s
+p(yi,t,s | θ).
+(1)
+Under-reporting is conceptually a form of unintentional
+missing data (Gelman et al. 2014, chap. 8) where, in some or
+potentially all cases, we have not observed the actual number of
+events yi,t,s. Instead, we have observed under-reported counts
+zi,t,s, which represent lower bounds of yi,t,s. This implies that
+using Equation (1) for all observed counts, under-reported
+or otherwise, will lead to biased inference. Rather, we should
+acknowledge the uncertainty caused by the missing yi,t,s, whilst
+incorporating the partial information provided by the recorded
+counts zi,t,s. More generally, the data collection mechanism
+should be included in the analysis and this is especially true
+for missing data problems. A conceptual framework for this
+(Gelman et al. 2014, chap. 8) is one where both the completely
+observed (true) data and the mechanism determining which
+of them are missing are given probability models. Relating
+this more specifically to under-reporting, an indicator random
+variable Ii,t,s is introduced, to index the data into fully observed
+or under-reported. In what follows, we review approaches to
+under-reporting that can be broadly classified into ones that
+treat Ii,t,s as known, and ones that treat it as latent and therefore
+attempt to model it.
+2.1. Censored Likelihood
+A common approach to correcting under-reporting is to base
+inference on the censored likelihood. This is the product of the
+evaluation of Equation (1) for the fully observed (uncensored)
+counts yi,t,s and the joint probability of the missing yi,t,s exceed-
+ing or equaling the recorded (censored) counts zi,t,s:
+p(y | z, θ) =
+
+Ii,t,s=1
+p(yi,t,s | θ)
+
+Ii,t,s=0
+p(yi,t,s ≥zi,t,s | θ).
+(2)
+In this framework, the indicator Ii,t,s for which data are under-
+reported is binary (where Ii,t,s
+=
+1 when zi,t,s=yi,t,s). The
+strength of this approach is that all of the observed counts
+contribute to the inference and, by accounting for the under-
+reporting in the model design, a more reliable inference on θ
+is possible. However, information on which counts are under-
+reported is not always readily available, introducing the chal-
+lenge of having to determine or estimate this classification.
+The approach in Bailey et al. (2005) accounts for under-
+reporting in counts of leprosy cases in the Brazilian region of
+Olinda, to arrive at a more accurate estimate of leprosy preva-
+lence. They use prior knowledge on the relationship between
+leprosy occurrence rate and a measure of social deprivation
+to decide the values of Ii,t,s a priori: A fixed value of social
+deprivation is chosen as a threshold, above which observations
+are deemed to be under-reported. However, the choice of this
+threshold is subjective and not always obvious. The approach
+can in principle be extended to include estimation of the thresh-
+old, however in many cases, the threshold model may be a poor
+description of the under-reporting mechanism which could, for
+example, be related to more than one covariate.
+Oliveira, Loschi, and Assunção (2017) presented an alterna-
+tive to this approach, which treats the binary under-reporting
+indicator Ii,t,s as unobserved and therefore random. The classi-
+fication of the data is characterized by Ii,t,s ∼Bernoulli(πi,t,s),
+such that πi,t,s is the probability of any data point suffering from
+under-reporting, which is potentially informed by covariates.
+Although a more general approach in the sense of modeling
+the under-reporting classification, like any other censored likeli-
+hood method it lacks a way of quantifying the severity of under-
+reporting. This makes it unsuitable for our TB application,
+where we would like to learn about the under-reporting rate on a
+micro-regional level. Moreover, the predictive inference for the
+unobserved yi,t,s is limited, amounting to
+p(yi,t,s | zi,t,s, θ) = p(yi,t,s | yi,t,s ≥zi,t,s, θ).
+(3)
+This is because the recorded counts zi,t,s are treated as con-
+stants, as opposed to random quantities arising jointly from the
+yi,t,s process and the under-reporting process. Therefore, the
+severity of under-reporting does not contribute to the predictive
+inference.
+2.2. Hierarchical Count Framework
+A potentially more flexible approach is to consider the under-
+reporting indicator variable Ii,t,s as continuous in the range
+[0, 1], to be interpreted as the proportion of true counts that
+have been reported. This way, the severity of under-reporting is
+quantified and estimated when Ii,t,s is assumed unknown. One
+way of achieving this is a hierarchical framework consisting
+of a Binomial model for the recorded counts zi,t,s and a latent
+Poisson model for the true counts yi,t,s. This approach, often
+called the Poisson-Logistic (Winkelmann and Zimmermann
+1993) or Pogit model, has been used across a variety of fields
+including economics (Winkelmann 2008, 1996), criminology
+(Moreno and Girón 1998), natural hazards (Stoner 2018) and
+epidemiology (Greer, Stamey, and Young 2011; Dvorzak and
+Wagner 2016; Shaweno et al. 2017). The observed count zi,t,s is
+assumed a Binomial realization out of an unobserved total (true)
+count yi,t,s. The basic form of the model (extended in Section 3
+JOURNAL OF THE AMERICAN STATISTICAL ASSOCIATION
+1483
+to include spatial random effects) is given by
+zi,t,s | yi,t,s ∼Binomial(πi,t,s, yi,t,s),
+(4)
+log
+
+πi,t,s
+1 −πi,t,s
+
+= β0 +
+J
+
+j=1
+βjw(j)
+i,t,s,
+(5)
+yi,t,s ∼Poisson(λi,t,s),
+(6)
+log
+
+λi,t,s
+
+= α0 +
+K
+
+k=1
+αkx(k)
+i,t,s.
+(7)
+All the data can be assumed to be (potentially) under-
+reported by treating yi,t,s as a latent Poisson variable in a hier-
+archical Binomial model for zi,t,s. Assuming that all individual
+occurrences have equal chance of being independently reported,
+πi,t,s can be interpreted as the probability that each occurrence
+is reported, and is effectively the aforementioned indicator vari-
+able Ii,t,s. Relevant under-reporting covariates W = {w(j)
+i,t,s} (e.g.
+related to TB detection), enter the model through the linear pre-
+dictor in the logistic transformation of πi,t,s. This allows infer-
+ence on the severity of under-reporting and what it relates to.
+The true counts yi,t,s are modeled as a latent Poisson variable
+with mean λi,t,s, characterized (at the log-scale) as a linear
+combination of covariates X
+=
+{x(k)} associated with the
+process giving rise to the counts. These are the covariates we
+would like to capture the effect of, or are known to influence
+yi,t,s, including offsets such as population counts. In modeling
+TB incidence these include social deprivation indicators at a
+particular location. It is assumed that W and X are composed of
+different variables so that the w(k)
+i,t,s are unrelated to the process
+generating the counts.
+Vectors α = (α0, . . . , αK) and β = (β0, . . . , βJ) are param-
+eters to be estimated. Using mean-centered covariates (column
+means of X and W are zero) implies that α0 and β0 are respec-
+tively interpreted as the mean of yi,t,s on the log scale, and the
+mean reporting rate on the logistic scale, when the covariates are
+at their means. The framework allows the inclusion of random
+effects in both Equations (5) and (7). Random effects allow
+for overdispersion in count models (Agresti 2002, chap. 12),
+and their inclusion here may be desirable to introduce extra
+variation and thus flexibility in the model for the true counts,
+including capturing effects from unobserved covariates. Alter-
+natively, yi,t,s can be NegBin(λi,t,s, θ): a Negative Binomial with
+mean λi,t,s and dispersion parameter θ (Winkelmann 1998).
+Moreover, some of the coefficients αk could be assumed random
+to further increase model flexibility.
+Considering the true counts as a latent variable aids in
+mitigating bias in estimating α from under-reported data.
+The model is straightforward to implement in the conditional
+form (Equations (4)–(7)), by sampling yi,t,s using Markov chain
+Monte Carlo (MCMC). However, doing so will likely result
+in slow-mixing MCMC chains that must be run for a large
+number of iterations to achieve a desired effective sample
+size. Conveniently, the following two results are achieved by
+integration and use of Bayes’ rule:
+zi,t,s ∼Poisson(πi,t,sλi,t,s),
+(8)
+yi,t,s −zi,t,s ∼Poisson((1 −πi,t,s)λi,t,s).
+(9)
+If yi,t,s ∼NegBin(λi,t,s, θ), then zi,t,s ∼NegBin(πi,t,sλi,t,s, θ).
+The consequence of this is that the model in Equation (8)
+is much more efficient in terms of effective sample size per
+second, while samples of y can be generated using Monte Carlo
+simulation of Equation (9). This also means that a complete
+predictive inference on the true counts yi,t,s is possible, deriving
+information jointly from the mean rate of yi,t,s, the reporting
+probability πi,t,s and the recorded counts zi,t,s.
+However, Equation (8) suggests that the same observed
+counts zi,t,s could arise from either a high λi,t,s value combined
+with a low πi,t,s, or vice versa, so that the likelihood function
+of zi,t,s is constant over the level curves of πi,t,sλi,t,s. This means
+that, in the absence of any completely reported observations,
+there is a lack of identifiability between the two intercepts
+α0 and β0. Additionally, as illustrated in Appendix A.3, the
+framework cannot automatically identify whether a given
+covariate is associated with the under-reporting or the count
+generating process. This means that care must be taken when
+deciding which part of the model a covariate belongs in.
+Nonidentifiability for models where the mean is a product of
+an exponential and logistic term is discussed in greater detail by
+Papadopoulos and Silva (2012), with discussion more specific
+to under-reporting in Papadopoulos and Silva (2008).
+To conduct meaningful inference on the true counts yi,t,s,
+the partial information in the data must be supplemented with
+extra information to differentiate between under-reporting and
+the true incidence rate. One potential source of information is
+to utilize a set of completely reported observations alongside
+the potentially under-reported observations, an approach used
+by Dvorzak and Wagner (2016) and Stamey, Young, and Boese
+(2006). For these counts, the reporting probability πi,t,s (and
+hence the indicator variable Ii,t,s) is known a priori to equal 1.
+In practice, this can be implemented by replacing (5) with
+πi,t,s = ci,t,s + (1 −ci,t,s) exp
+
+ηi,t,s
+1 + ηi,t,s
+	
+.
+(10)
+Here, ci,t,s is an indicator variable, where ci,t,s = 1 when zi,t,s
+is completely reported (πi,t,s = 1) and 0 otherwise (πi,t,s is
+unknown), and ηi,t,s is the right-hand side of Equation (5). For
+some applications, however, such as historical counts of natural
+hazards (Stoner 2018), it is often impractical and even impos-
+sible to obtain completely observed data. For the application
+to Brazilian TB data in Section 3, complete counts of cases are
+not available on a micro-regional level. An alternative source of
+information (Moreno and Girón 1998) is to employ informative
+prior distributions to differentiate between πi,t,s and λi,t,s, which
+is the approach we adopt in modeling TB. In Appendix A.1, we
+examine the effects of either source of information on prediction
+uncertainty using simulation experiments.
+Recently, Shaweno et al. (2017) applied a version of this
+framework to TB data in Ethiopia, without any data identified as
+completely observed. However, vague uniform priors are used
+for regression coefficients, including the intercepts α0 and β0.
+Because of this ambiguity as to whether in practice it is necessary
+to use an informative prior distribution, we also conduct a
+thorough investigation of the sensitivity of the framework to the
+choice of prior distributions using simulated data, in Section 3.1.
+In summary, the strengths of the hierarchical count frame-
+work over the more traditional censored likelihood approach are
+1484
+O. STONER, T. ECONOMOU, AND G. DRUMMOND MARQUES DA SILVA
+that it allows both for varying severity of under-reporting across
+data points and for a more complete predictive inference on the
+true counts.
+3. Model Application
+Let yt,s and zt,s denote, respectively, the true and recorded counts
+of TB cases in micro region s ∈{1, . . . , 557} (spanning all of
+Brazil), and year t ∈{2012, 2013, 2014}. Figure 1 illustrates
+the recorded TB incidence rate. A spatial structure is apparent,
+with generally higher TB rates in the north-west than in the
+south-east. Some of this variability may be attributed to spatial
+covariates affecting TB incidence. In particular, high-risk popu-
+lations include poorly integrated groups due to poverty-related
+issues, such as homelessness and incarceration. To allow for this,
+various social deprivation indicators for each micro-region were
+considered as covariates. These were x(1)
+s
+= unemployment (the
+proportion of economically active adults without employment);
+x(2)
+s
+= urbanization (the proportion of people living in an urban
+setting); x(3)
+s
+= density (the mean number of people living per
+room in a dwelling); and x(4)
+s
+= indigenous (the proportion of
+the population made up by indigenous groups).
+Furthermore, the covariate us = treatment timeliness (the
+proportion of TB cases for which treatment begins within
+one day) was considered in the characterization of the under-
+reporting mechanism. Having already controlled for social
+deprivation through x(j)
+s , us acts as a proxy for how well a local
+TB surveillance program is resource. The model is specified
+(conditionally on random effects) as follows:
+zt,s | yt,s, γt,s ∼Binomial
+
+πs, yt,s
+
+,
+(11)
+log
+
+πs
+1 −πs
+
+= β0 + g(us) + γt,s,
+(12)
+yt,s|φs, θs ∼Poisson(λt,s),
+(13)
+log
+
+λt,s
+
+= log(Pt,s) + a0 + f1(x(1)
+s ) + f2(x(2)
+s )
++ f3(x(3)
+s ) + f4(x(4)
+s ) + φs + θs.
+(14)
+Functions g(·), f1(·), . . . , f4(·) are orthogonal polynomials of
+degrees 3, 2, 2, 2, and 1, respectively. Compared to raw polyno-
+mials, these reduce multiple-collinearity between the monomial
+terms (Kennedy and Gentle 1980), and were set up using the
+“poly” function in R (R Core Team 2018). The polynomials
+are defined such that f (x) = 0 when x =
+¯x, so that (at
+the logistic scale) β0 is the mean reporting rate for a region
+with mean treatment timeliness. The term log(Pt,s), where Pt,s
+is population, is an offset to allow for varying population and
+ensure the covariates act on the incidence rate.
+Additive effects from a spatially unstructured random effect
+θs and a spatially structured one, φs are assumed to capture any
+residual spatial variation in the incidence of TB. An intrinsic
+Gaussian conditional autoregressive (ICAR) model (Besag,
+York, and Mollié 1991) was assumed for φs, with variance
+parameter ν2, to capture dependence between neighboring
+micro-regions. Here, a neighbor of s was defined as any s′ ̸= s
+sharing a geographical boundary with s. The N(0, σ 2) effect
+θs was included to afford extra spatial residual variability. An
+additional unstructured N(0, ϵ2) effect γt,s was included in
+Figure1. TotalnewTBcasesforeachmainlandmicroregionofBrazil,overtheyears
+2012–2014, per 100,000 inhabitants.
+the model for the reporting rate (12), to allow for the effect
+of potential unobserved covariates on the detection rate of TB,
+as well as the case that us may only be a proxy for the appropriate
+(true) under-reporting covariate.
+The prior distribution for α0 was assumed N(−8, 1), chosen
+by using prior predictive checking to reflect our belief that very
+high values (such as over 1 million) for the total number of
+cases are unlikely. The priors for αj (j = 1, . . . , 7) and βk
+(k = 1, 2, 3) were specified as N(0, 102), which were chosen
+to be relatively noninformative. Finally, the priors for variance
+parameters σ, ν and ϵ were specified as zero-truncated N(0, 1),
+to reflect the belief that low variance values are more likely
+than higher ones, but that these effects are likely to capture
+at least some of the variance. As discussed in Section 2.2, in
+the absence of any completely reported TB counts, we must
+specify an informative prior distribution for β0 to supplement
+the partial information in the data. As an aid in doing so, we
+investigate the sensitivity of the model to this prior through
+simulation experiments presented in the following subsection.
+All models were implemented using NIMBLE (de Valpine
+et al. 2017), a facility for flexible implementations of MCMC
+models in conjunction with R (R Core Team 2018). Specifically,
+we made use of the Automated Factor Slice Sampler (AFSS)
+which can be an efficient way of sampling vectors of highly
+correlated parameters (Tibbits et al. 2014), such as α0 and β0.
+The associated code and data are provided as supplementary
+material.
+3.1. Simulation experiments
+For the simulation study, we consider counts which vary in space
+in the following way:
+zs|ys ∼Binomial(πs, ys),
+(15)
+JOURNAL OF THE AMERICAN STATISTICAL ASSOCIATION
+1485
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+0
+50
+100
+150
+200
+250
+−1.0
+−0.5
+0.0
+0.5
+1.0
+Process Covariate (xs)
+True Count (ys)
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+0
+50
+100
+150
+200
+250
+−1.0
+−0.5
+0.0
+0.5
+1.0
+Under−Reporting Covariate (ws)
+True Count (ys)
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+0
+50
+100
+150
+−1.0
+−0.5
+0.0
+0.5
+1.0
+Under−Reporting Covariate (ws)
+Observed Count (zs)
+Figure 2. Scatterplots of simulated data, showing the process covariate xs against the true counts ys (left), the under-reporting covariate ws against ys (center) and ws
+against the recorded counts zs (right).
+log
+
+πs
+1 −πs
+
+= β0 + β1ws,
+(16)
+ys|φs ∼Poisson(λs),
+(17)
+log (λs) = α0 + α1xs + φs
+(18)
+with β0 = 0, β1 = 2, α0 = 4, α1 = 1 and ν = 0.5. A total of
+s = 1, . . . , 100 data points were simulated with both covariates
+xs and ws being sampled from a Unif(−1, 1) distribution. The
+ICAR(ν2) spatial effect φs was simulated over a regular 10x10
+lattice. Figure 2 shows the simulated data. Note there are clear
+positive relationships between xs and ys, and between ws and zs,
+while there is no clear relationship between ws and ys. One goal
+for this simulation is to investigate the sensitivity of the model to
+the specification of the Gaussian prior distribution for β0. This
+was achieved by repeatedly applying the model whilst varying
+the mean and standard deviation for this prior. The prior for α0
+was N(0, 102), with all other priors the same as in the TB model.
+To make the experiment more realistic, we mimic the case
+where the true under-reporting covariate ws is not available, and
+instead we only have access to (proxy) covariates vs,2, . . . , vs,6.
+These are simulated such that they have decreasing correlation
+with ws. As the variation in πs is no longer fully captured by
+vs,2, . . . , vs,6, we include a random quantity γs ∼N(0, ϵ2) in
+(16).
+An important aspect of model performance to consider is
+the proportion of true counts that lie in their corresponding
+95% posterior prediction intervals (PIs), known as the cover-
+age. In the context of nonidentifiability, we would expect the
+coverage to remain high as long as the true value of β0 is not
+extreme with respect to its prior. Figure 3 shows the coverage
+when the covariate vs,3 (correlation 0.6 with ws) is used (which
+incidentally has a similar correlation value with the recorded
+counts as treatment timeliness in the TB data). The plot suggests
+that the model is able to quantify uncertainty well, as long as
+a strong prior distribution is not specified well away from the
+true value (lower corners). The inclusion of γs implies that using
+a “weaker” under-reporting covariate should have little impact
+on coverage (the PIs of ys would simply widen). Indeed, more
+detailed results in Appendix A.2 show that mean coverage did
+not change systematically when weakening the covariate.
+As an illustrative example of model performance, Figure 4
+shows various results based on simulated data using vs,3 as the
+under-reporting covariate, and a N(0.6, 0.62) prior for β0. This
+Figure 3. Coverage of the 95% PIs for ys, when the under-reporting covariate vs,3,
+which has a theoretical correlation of 0.6 with the true covariate ws, is used.
+represents the case where the prior distribution overestimates
+the reporting probability but not to an extreme extent. The top
+left and central plots show posterior densities for α0 and α1,
+indicating substantial learning of these parameters compared to
+the flat priors also shown. The top right plot compares the mean
+predicted spatial effects to their corresponding true values, sug-
+gesting these are captured well. The lower-left plot shows the
+posterior for β0 has shifted in the direction of the true value.
+This illustrates that, at least in this idealized setting, the model
+is not entirely at the mercy of the accuracy of this prior, despite
+nonidentifiability. The bottom central plot shows the mean pre-
+dicted effect of the imperfect covariate vs,3 on the reporting
+probability, with associated 95% credible interval (CrI). The
+effect is quite uncertain, reflecting the relative weakness of the
+covariate. Finally, the lower-right plot shows the lower (blue)
+and upper (green) limits of the 95% PIs for ys, suggesting that the
+model is able to systematically predict well the true unobserved
+counts.
+This sensitivity analysis is by no means exhaustive, but it does
+appear to suggest that the model with no completely observed
+values is robust in terms of quantifying uncertainty, as long as
+the practitioner specifies a prior for β0 that is informative but
+not too strong. With this in mind, we return to the task of spec-
+ifying this prior distribution for the TB model. The information
+available are WHO inventory study-derived estimates (World
+Health Organization 2012) of the overall TB detection rate in
+1486
+O. STONER, T. ECONOMOU, AND G. DRUMMOND MARQUES DA SILVA
+Figure 4. The top-left, top-central and lower-left plots show density estimates of prior (black) and posterior (colored) samples for parameters α0, α1 and β0, respectively,
+with vertical lines representing their true values. The top-right plot shows the mean predicted spatial effect (φs) against the true values. The lower-central plot shows the
+predicted relationship (solid line) between the under-reporting covariate vs,3 and the reporting probability πs, with associated 95% CrI. The lower-right plot shows the
+lower (blue) and upper (green) limits of the 95% PIs for the true counts ys.
+Brazil for 2012–2014. The 2017 point estimates for these years,
+with associated 95% confidence intervals were 91% (78%,100%),
+84% (73%,99%), and 87% (75%,100%) (World Health Organi-
+zation 2017). Normal distributions were used to approximate
+each rate at the logistic level. We inferred mean and standard
+deviation parameter values by attempting to match the quoted
+point estimates and confidence intervals. The mean of the three
+rates is most variable when they are positively correlated, so
+to account for this we simulated and sorted into ascending
+order samples from each approximate distribution, before com-
+puting the mean of each sample of three rates. This resulted
+in a distribution which was approximately N(2, 0.42). Figure 3
+suggests that the mean of this prior can only be slightly wrong
+(less than 0.5 away) before coverage begins to drop below ideal
+levels (95%). For this reason, and because the incorporation of
+the WHO uncertainty is only approximate, we opt for a more
+conservative standard deviation of 0.6, which allows the mean to
+deviate more from the truth before PIs become less trustworthy.
+3.2. Model Checking
+As well as inspecting trace plots of MCMC samples, convergence
+was assessed by computing the potential scale reduction factor
+(PSRF) for each parameter (Brooks and Gelman 1998), which
+compares the between-chain and within-chain variances. If the
+chains have not converged, the between-chain variance should
+exceed the within-chain variance and the PSRF will be substan-
+tially greater than 1. Using different initial values and random
+number seeds for each chain gives the best assurance that the
+chains have converged to the whole posterior, rather than a
+local mode. Four chains were used, each ran for a total of 800K
+iterations. After discarding 400K iterations as burn-in, the PSRF
+was computed as less than 1.05 for all regression coefficients and
+variance parameters. These were deemed sufficiently close to 1
+to indicate convergence.
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●●●
+●
+●
+●●
+●
+●●●
+●
+●●●
+●
+●
+●●
+●
+●
+●
+●
+●●●
+●●●
+●
+●●
+●
+●
+●
+●●
+●
+●
+●●
+●●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●●
+●●
+●
+●●
+●
+●●
+●●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●●●
+●●
+●●
+●
+●●●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●●●
+●●
+●●●
+●
+●
+●●
+●
+●
+●●
+●●
+●●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●●
+●
+●●
+●●
+●
+●●●
+●
+●
+●
+●
+●●●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●●●
+●
+●
+●
+●
+●●●●●
+●●●
+●
+●
+●
+●●●
+●
+●
+●●
+●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●●●
+●●
+●●
+●●
+●
+●●●
+●
+●●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●●●●
+●●
+●
+●
+●●
+●
+●
+●
+●●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●●
+●●●●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●●
+●●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●●
+●
+●●
+●●●
+●
+●●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●●
+●
+●●
+●
+●●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●●
+●●
+●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●●●
+●●
+●
+●●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●●●●
+●●●
+●
+●●●
+●
+●
+●
+●●
+●
+●●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●●●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●●
+●
+●●
+●●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●●
+●●
+●
+●●●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●●●
+●
+●
+●●
+●●●
+●●●●
+●●
+●
+●
+●●●
+●
+●
+●●
+●
+●●
+●
+●●●
+●
+●●
+●
+●
+●●
+●
+●
+●●
+●
+●●
+●●●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●●
+●●
+●●
+●●
+●●
+●●●●
+●●●
+●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●●
+●●
+●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●●
+●
+●●●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●●●
+●●
+●●●
+●
+●
+●
+●●
+●●
+●
+●●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●●
+●
+●●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●●
+●●●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●●●
+●
+●
+●●●
+●
+●●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●●
+●●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●●●
+●
+●
+●
+●●
+●●
+●●
+●●●
+●
+●●
+●
+●
+●
+●
+●●●
+●
+●●
+●●●●
+●●
+●
+●●●
+●
+●
+●●●
+●
+●●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●●
+●
+●●●
+●
+●●●
+●●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●●●
+●●●
+●
+●
+●
+●●●●
+●●●
+●
+●
+●●
+●
+●
+●●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●●
+●●●●●
+●●
+●●●●
+●
+●●●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●●
+●●
+●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●●●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●●
+●
+●
+●●
+●
+●
+●●
+●
+●●●
+●
+●●●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●●
+●
+●
+●
+●●
+●●
+●●
+●●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●●
+●●
+●
+●●
+●
+●●
+●●
+●●
+●
+●
+●
+●●●
+●
+●
+●
+●●●
+●●
+●●
+●
+●●●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●●
+●●●
+●●
+●●●●
+●
+●
+●●
+●
+●
+●●
+●●
+●●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●●
+●
+●●
+●●
+●
+●●●
+●
+●
+●
+●
+●●●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●●●
+●
+●
+●
+●
+●●●●●
+●●●
+●
+●
+●
+●●●
+●
+●
+●●
+●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●●●●
+●●
+●●
+●●
+●
+●●●
+●
+●●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●
+●●
+●●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●●
+●●●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●●
+●
+●●
+●●
+●
+●
+●●●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●●
+●
+●●
+●
+●●●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●●
+●●
+●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●●●
+●
+●
+●
+●●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●●
+●●●●
+●●●●
+●
+●●●
+●
+●
+●
+●●
+●
+●●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●●●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●●
+●
+●●
+●●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●●
+●●
+●
+●●●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●
+●●●
+●
+●
+●●
+●●
+●
+●●●●
+●●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●●
+●
+●
+●●
+●
+●
+●●
+●
+●●
+●●●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●●
+●●
+●●
+●●
+●●
+●●●●●
+●●●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●●●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●●●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●●
+●
+●●●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●●
+●
+●●
+●
+●
+●
+●
+●●
+●●●
+●●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●●
+●
+●●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●●
+●●●
+●
+●
+●
+●
+●●
+●
+●●
+●
+●
+●●●
+●
+●
+●●●
+●
+●●
+●
+●
+●●
+●
+●●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●●
+●●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●●●
+●
+●
+●
+●
+●●
+●●
+●●
+●●●
+●
+●●
+●
+●
+●
+●
+●●●
+●
+●●
+●●●●
+●●
+●
+●●●
+●
+●
+●●●
+●
+●●
+●●●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●●
+●
+●●●
+●
+●●●
+●●
+●
+●●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●●●
+●●●
+●
+●
+●
+●●●●
+●●●
+●
+●
+●●
+●
+●
+●
+●●
+●●
+●
+●
+●
+●●
+●
+●
+●
+●●●
+●●●●●
+●●
+●●●●●
+●
+●●●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●●
+●
+●
+●
+●●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●
+●●
+●●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●
+●
+●
+●●
+●●
+●
+●●●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●●
+●●
+●
+●●
+●
+●
+●●●
+●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●●●
+●
+●
+●●●●
+●
+●
+●●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●
+●
+●●●
+●
+●●
+●
+●●●
+●●
+●
+●
+●●
+●
+●
+●
+●
+●
+●●●
+●
+●
+●●
+●
+●●
+●
+●
+●
+●
+●●
+●●
+●
+●
+−300
+−200
+−100
+0
+100
+200
+2500
+5000
+7500
+10000
+Observed Number of Cases zt,s
+Predicted z~
+t,s − Observed zt,s
+Recorded Tuberculosis Cases
+Figure 5. Scatterplot of differences between the lower (blue) and upper (green)
+limits of the 95% PIs of ˜zt,s and the observed values zt,s.
+A natural way of assessing whether the model fits the data
+well is to conduct posterior predictive model checking (Gelman
+et al. 2014, chap. 6). More specifically, one can look at the dis-
+crepancy between the data z and posterior predictive replicates
+of this data from the fitted model. Define the posterior predictive
+distribution for a replicate ˜zt,s, of observed number of TB cases
+zt,s, as p(˜zt,s | z). The question is then whether the actual
+observation zt,s is an extreme value with respect to p(˜zt,s | z)
+and if so, this indicates poor model performance.
+Figure 5 shows a scatterplot of the difference between the
+lower (blue) and upper (green) limits of the 95% posterior PIs
+of ˜zt,s and the corresponding observed values zt,s. The PIs are
+symmetrically centered on the observed values, suggesting that
+the model has no systematic issue (under or over-prediction)
+with fitting observed values. The coverage of the 95% PIs was
+approximately 99.6%.
+JOURNAL OF THE AMERICAN STATISTICAL ASSOCIATION
+1487
+Figure6. Prior(top row) and posterior(bottom row) predictivedistributionsof thesamplemean (left column), samplevariance(central column) and thelog-mean squared
+error from the recorded counts zi,t,s (right column), of the replicates ˜zt,s. Observed statistics are plotted as vertical lines.
+Figure 7. Posterior mean predictions (solid lines) of the effects of unemployment, indigenous, density and urbanization on the rate of TB incidence, with associated 95%
+CrIs.
+Furthermore, we can assess whether summary statistics of
+the original data are captured well by the model through the
+replicates. Given this is count data, we want to ensure that
+both the sample mean and variance are captured well. As the
+prior distributions used for regression coefficients were quite
+broad, it is important to also assess whether substantial learning
+has occurred, with respect to both the predictive error of the
+observed counts zt,s and the distributions of these statistics.
+Otherwise, it is possible that the data are well captured in the
+posterior predictions because they were contained within the
+prior predictions.
+The left and central columns of Figure 6 show the prior (top)
+and posterior (bottom) predictive distributions of the sample
+mean and variance. The corresponding observed quantities are
+in the bulk suggesting that the prior and posterior models
+capture these well. The posterior predictive distributions are far
+more precise, indicating that the uncertainty in the parameters
+has been reduced significantly by the data. This is emphasized
+1488
+O. STONER, T. ECONOMOU, AND G. DRUMMOND MARQUES DA SILVA
+by the right column, which compares the posterior and prior
+predictive distributions of the mean squared difference between
+each ˜zt,s and zt,s. The mean-squared error is several orders of
+magnitude smaller in the posterior model, implying far greater
+prediction accuracy.
+3.3. Results
+The effect of unemployment on λt,s is shown in the upper-left
+panel of Figure 7, indicating a strong (based on the width of
+the 95% CrIs) positive relationship with TB incidence. This is
+likely because areas with high unemployment often also have
+high rates of homelessness and incarceration, two important
+risk factors for TB. The range of this effect is approximately
+0.8 on the log scale, suggesting incidence rate is over twice
+as high in micro-regions with high unemployment (>15%),
+compared to areas with low unemployment (<5%). The lower-
+left panel shows that urbanized proportion is also strongly
+positively related to TB incidence. The range of this effect
+is also approximately 0.8, meaning that highly urbanized
+(>90%) micro-regions are predicted to have over double the
+TB incidence of micro-regions with low urbanization (<40%).
+This could be due to the increased population density of highly
+urbanized areas, which may promote the spread of the disease.
+The effect of dwelling density is less pronounced: the polynomial
+increases monotonically for most of the range covered by the
+data (x(3)
+s
+<1), before decreasing for higher values. This suggests
+that TB incidence is actually lower in micro-regions with the
+highest levels of dwelling density. Alternatively, it may be that
+further under-reporting of TB is present in such areas, which is
+not being captured by this model. Data at these upper values are
+quite sparse, as reflected by widening of the 95% CrIs. Finally,
+the lower-right panel of Figure 7 shows the effect of indigenous
+proportion. Recall that this relationship was constrained to be
+linear in Equation (14) and the 95% CrI on the slope suggests
+the effect is strongly positive.
+Figure 8 illustrates the predicted residual spatial variability in
+the TB incidence rate (φs +θs). There is substantial clustering of
+negative values in the center of Brazil, surrounding the states
+of Goiás and Tocantins, while there is clustering of positive
+values in the North West, including the Amazon rainforest.
+Interestingly, this seems to align well with estimates of the
+spatial distribution of human development index (HDI) (see for
+instance Atlas (2013)), where high estimates of HDI coincide
+with low values from the spatial effect. This could indicates that
+there exist other effects of human development on TB incidence,
+such as health-care infrastructure, which are not captured by
+the covariates. Several big cities, including Rio de Janeiro and
+São Paulo appear to buck this trend, with positive spatial effects
+despite relatively high HDI estimates, which could be due to the
+effect of features unique to big cities, such as high population
+density, which are not included in the model. The effect of
+the spatially structured φs is visible by the clustering of similar
+colors and we found it dominated the unstructured effect θs,
+explaining a predicted 94% of their combined variation. The
+range of values of the combined effect is not dissimilar to the
+effects of any of the individual covariates, implying that the
+covariates are driving most of the variability in the true counts
+yt,s.
+Figure 8. Combination of structured spatial effect φs and unstructured effect θs.
+Figure 9. Posterior mean predicted effect of treatment timeliness on the reporting
+probability of TB, with associated 95% CrI.
+Figure 10. Bar plot showing, for each year, the recorded total number of TB cases in
+Brazil, as well as the 5%, 50%, and 95% quantiles of the predicted true total number
+of TB cases.
+Figure 9 shows a clear, monotonically increasing (estimated)
+relationship between treatment timeliness and the probability
+of reporting πt,s. The 95% CrI does not incorporate a horizontal
+line, which would imply no relationship. Overall, micro-regions
+with very low timeliness (<10%) have approximately two-thirds
+the reporting probability of ones with very high timeliness
+JOURNAL OF THE AMERICAN STATISTICAL ASSOCIATION
+1489
+(>90%), indicating a clear disparity in the performance of the
+surveillance programs.
+Finally, Figure 10 shows, for each year, the total observed
+TB count, alongside the 5%, 50%, and 95% quantiles of the
+predicted true total number of unreported cases. The plot sug-
+gests that potentially tens of thousand of cases went unreported
+each year. Combined with the results seen in Figure 9, this
+presents a strong case for providing additional resources to
+the surveillance programs in those micro-regions with lower
+values of treatment timeliness. The R code and data needed to
+reproduce these results are provided as supplementary material.
+4. Discussion
+A flexible modeling framework for analyzing potentially under-
+reported count data was presented. This approach can accom-
+modate a situation where all the data are potentially under-
+reported, by using informative priors on model parameters
+which are easily interpretable. It also readily allows for random
+effects for both the disease incidence process and the under-
+reporting process, something which simulation experiments
+revealed alleviates the use of proxy covariates to determine
+under-reporting rates. It was applied to correcting under-
+reporting in TB incidence in Brazil using well-established
+MCMC software, incorporating a spatially structured model
+which highlights its flexibility. Simulation experiments were
+conducted to investigate prior sensitivity and to provide a guide
+for choosing a prior distribution for the mean reporting rate.
+Naturally, care should be taken. Indeed, it is likely that a
+different prior distribution for β0 in the TB application might
+result in different inference on the under-reporting rate, and
+consequently the corrected counts. The simulation experiments
+indicated that if the specified prior information on the overall
+under-reporting rate turns out to be wildly different from the
+truth, then the corrected counts will also likely be inaccurate.
+Therefore, particular attention should be paid to the elicitation
+of this prior information, such that the prior uncertainty is fully
+quantified and reflected in predictive inference. Further simula-
+tion experiments also highlighted the risk posed by incorrectly
+classifying covariates as either belonging in the under-reporting
+mechanism or the model of the true count. In many cases, strong
+prior information about this classification may be available,
+so we suggest future research is directed at combining prior
+uncertainty with methods such as Bayesian model averaging.
+This could more rigorously quantify the uncertainty associated
+with this classification and its effect on the predictive inference
+for the corrected counts.
+The subjective nature of the solution to completely under-
+reported data is not unique; in Bailey et al. (2005) for example,
+a different choice of threshold for the variable used to identify
+under-reported counts could have lead to different predictions.
+Only the usage of a validation study (e.g., Stamey, Young, and
+Boese (2006)) could be considered a less subjective approach
+depending on the quality, quantity and experimental design
+of collecting the validation data. In many cases, however, the
+elicitation of an informative prior distribution for one parameter
+is simply a more feasible solution. In the application to TB, an
+existing estimate from the WHO of the overall reporting rate
+in Brazil was available, from which a prior distribution was
+derived.
+The framework investigated here has two key advantages
+over the approaches based on censored likelihood discussed
+in Section 2.1. First, modeling the severity of under-reporting,
+through the reporting probability, presents the opportunity to
+reduce under-reporting in the future, by informing decision-
+making about where additional resources for surveillance
+programs would be most effective. Second, by modeling the
+under-reported counts, a more complete predictive inference on
+corrected counts is made available, informed by the reporting
+probability, the rate of the count-generating process and the
+recorded count. The results in Section 3, for instance, provide
+predictions of the under-reporting rate at a micro-regional level,
+meaning that resources could be intelligently applied to the
+worst-performing areas.
+Appendix A: Further Simulation Experiments
+A.1. Informative Prior Versus Completely Observed Counts
+In Section 2, we discussed the need to supplement the lack of informa-
+tion in the data, in order to distinguish between the under-reporting
+rate and incidence rate. This is done by either providing an informative
+prior distribution for β0, the mean reporting rate at the logistic scale, or
+by utilizing some completely reported counts, or both. In this experi-
+ment, we investigate the effect of varying the strength of the informative
+prior and the number of completely observed counts, on predictive
+uncertainty.
+The model was applied to simulated data, as in Section 3.1, using
+different values for the prior standard deviation, to reflect varying levels
+of prior certainty about the reporting rate, and including completely
+reported counts for varying proportions of the data. Predictive uncer-
+tainty was quantified using the logarithm of the mean-squared error of
+ys, computed for each posterior sample, which we summarize using the
+mean. Figure A.1 shows how this uncertainty varies with prior variabil-
+ity in β0 and the number of completely reported counts. The left-most
+column shows that predictive uncertainty decreases with increasing
+prior precision when there are no completely reported counts. In this
+case, practitioners must trade-off predictive uncertainty with the risk
+of systematic bias posed by specifying an overly strong prior away
+from the true value, seen in Section 3.1. While predictive uncertainty
+does decrease with increasing prior strength, we can also see that it
+Figure A.1. Mean values of the posterior predictive log-mean squared errors for
+each modeling scenario.
+1490
+O. STONER, T. ECONOMOU, AND G. DRUMMOND MARQUES DA SILVA
+Figure A.2. Scatterplots comparing covariates vs,2, . . . , vs,6 to the reporting probability πs.
+Figure A.3. Scatterplots comparing the correlation of the under-reporting covariate used, from the set vs,1, . . . , vs,6, to 95% PI coverage for the true counts ys (left), the
+mean error of log (λs) (center) and the square root of the mean squared error of log (λs) (right).
+decreases more substantially by increasing the proportion of counts
+which are known to be completely reported. This implies that the use
+of completely observed counts is worthwhile, if possible.
+A.2. Strength of Under-reporting Covariate
+In Section 3.1, we varied the strength of relationship between the
+under-reporting covariate and the true under-reporting covariate. Fig-
+ure A.2 shows the relationship between the different “proxy” covariates
+and the reporting probability πs. This section presents the effect of
+using these proxies instead of the true under-reporting covariate ws.
+While the full results can be found in the Supplementary Material,
+the three plots in Figure A.3 summarize the effect that varying the
+strength of this covariate has on the performance of the model, using
+locally weighted scatterplot smoothing (LOESS). The left plot shows
+the 95% PI coverage. As discussed in Section 3.1, coverage should not
+decrease with covariate strength, and indeed there is very little evidence
+of any change. The central plot shows the mean error of log (λs). Again,
+the plot shows little evidence that this changes with covariate strength,
+which is reassuring as it suggests that using a weaker covariate does not
+necessarily introduce any systematic bias. Finally, the right plot shows
+a substantial effect of covariate strength on the predictive accuracy
+of log (λs), with stronger covariates translating to higher predictive
+accuracy, which is expected.
+This experiment suggests that gains in predictive accuracy can
+be achieved by using covariates that are only proxies of the under-
+reporting process, compared to not including them, without necessarily
+introducing bias. However, this relies on those covariates being cor-
+rectly identified as being related to the under-reporting mechanism.
+The following section illustrates the risks associated with this classi-
+fication.
+A.3. Classification of Covariates
+In the application to TB data, the classification of covariates into those
+that relate to the under-reporting mechanism and those related to
+the true count-generating process was relatively straightforward. In
+general, this can be more challenging and in this section we present
+the effects of incorrectly classifying covariates.
+The experiment begins by using simulated data from the model in
+Section 3.1, with the exception of an additional unstructured random
+effect in the model for λ. The prior distributions are the same, with
+JOURNAL OF THE AMERICAN STATISTICAL ASSOCIATION
+1491
+Figure A.4. Scatterplots comparing the true simulated counts ys to the median predicted counts from the model where the covariates are classified correctly (left) and
+incorrectly (right), and the model where the covariates are not included (center).
+a N(0, 0.62) prior on β0. In the first instance, the model is correctly
+informed that covariate xs belongs in the model for λs and ws belongs
+in the model for πs. In the second instance, these are swapped. For
+comparison, the model is also applied with no covariates included.
+Figure A.4 shows scatterplots for each case, comparing median
+predicted values for ys to their corresponding true values. The left plot
+shows that when the covariates are correctly classified, the model is able
+to detect the unobserved ys values very well. When the covariates are
+incorrectly classified (right), the model performs very poorly. In fact,
+in this case the model performs even worse than a model where no
+covariates are included and the only random effects are relied upon to
+improve predictions (center).
+This experiment highlights the sensitivity of the framework to the
+classification of covariates, which represents an informative choice. In
+our view, if there is substantial doubt about whether a covariate likely
+relates to the under-reporting mechanism or to the true count process,
+it may be wiser to not include it in the model, which in this experiment
+results in better predictive performance.
+Acknowledgments
+This article is dedicated to Nicholas G. R. Briggs (1955-2019). The associate
+editor and two anonymous reviewers also contributed substantially to
+making this article more comprehensive.
+Funding
+The authors gratefully acknowledge the funding of this research in part
+by the Engineering and Physical Sciences Research Council (EPSRC) and
+in part by a GW4+ Doctoral Training Partnership Studentship from the
+Natural Environment Research Council [NE/L002434/1].
+Supplementary Material
+All supplementary files are contained within an archive which is available
+to download as a single file.
+Master: This is the master script which the other scripts may be run from
+to produce all figures in the article. (R script)
+Simulation: This script produces simulated data as in Section 3.1. (R
+script)
+Experiments: This file reproduces the simulation experiments found in
+Section 3.1 and the Appendix. (R script)
+Tuberculosis: This script contains the necessary code to run the tuber-
+culosis model (whilst also using the Data workspace), reproducing the
+results found in Sections 3.2 and 3.3. (R script)
+Functions: This script contains miscellaneous functions needed for the
+analysis. (R script)
+Data: This file contains the data needed to execute code in the Tuberculo-
+sis script. (R workspace)
+Definitions: Descriptions and sources of the variables included in the TB
+data. (PDF document)
+References
+Agresti, A. (2002), Categorical Data Analysis, New York: Wiley. [1483]
+Atlas (2013), “The Brazilian Municipal Human Development Index,” Tech-
+nical report. [1488]
+Bailey, T., Carvalho, M., Lapa, T., Souza, W., and Brewer, M. (2005), “Mod-
+eling of Under-detection of Cases in Disease Surveillance,” Annals of
+Epidemiology, 15, 335 – 343. [1482,1489]
+Besag, J., York, J., and Mollié, A. (1991), “Bayesian Image Restoration, With
+Two Applications in Spatial Statistics,” Annals of the Institute of Statistical
+Mathematics, 43, 1–20. [1484]
+Brooks, S. P., and Gelman, A. (1998), “General Methods for Monitoring
+Convergence of Iterative Simulations,” Journal of Computational and
+Graphical Statistics, 7, 434–455. [1486]
+de Valpine, P., Turek, D., Paciorek, C. J., Anderson-Bergman, C., Lang, D. T.,
+and Bodik, R. (2017), “Programming With Models: Writing Statistical
+Algorithms for General Model Structures With Nimble,” Journal of
+Computational and Graphical Statistics, 26, 403–413. [1484]
+Dvorzak, M., and Wagner, H. (2016), “Sparse Bayesian Modelling of Under-
+reported Count Data,” Statistical Modelling, 16, 24–46. [1482,1483]
+Gelman, A., Carlin, J., Stern, H., Dunson, D., Vehtari, A., and Rubin,
+D.
+(2014), Bayesian Data Analysis (Chapman and Hall/CRC Texts
+in Statistical Science) (Third ed.), London: Chapman and Hall/CRC.
+[1482,1486]
+Greer, B. A., Stamey, J. D., and Young, D. M. (2011), “Bayesian Interval
+Estimation for the Difference of Two Independent Poisson Rates Using
+Data Subject to Under-Reporting,” Statistica Neerlandica, 65, 259–274.
+[1482]
+Kennedy, W., and Gentle, J. (1980), Statistical Computing, New York: Marcel
+Dekker. [1484]
+Moreno, E., and Girón, J. (1998). “Estimating With Incomplete Count Data
+a Bayesian Approach,” Journal of Statistical Planning and Inference, 66,
+147–159. [1482,1483]
+Oliveira, G. L., Loschi, R. H., and Assunção, R. M.(2017), “A Random-
+Censoring Poisson Model for Underreported Data,” Statistics in
+Medicine, 36, 4873–4892. [1482]
+Papadopoulos, G., and Silva, J. M. C. S. (2008), “Identification Issues in
+Models for Underreported Counts,” Discussion Paper Series, Depart-
+ment of Economics, University of Essex (657). [1483]
+1492
+O. STONER, T. ECONOMOU, AND G. DRUMMOND MARQUES DA SILVA
+Papadopoulos, G., and Silva, J. S. (2012), “Identification Issues in Some
+Double-Index Models for Non-Negative Data,” Economics Letters, 117,
+365–367. [1483]
+R Core Team (2018). R: A Language and Environment for Statistical
+Computing. Vienna, Austria: R Foundation for Statistical Computing.
+[1484]
+Shaweno, D., Trauer, J. M., Denholm, J. T., and McBryde, E. S. (2017), “A
+Novel Bayesian Geospatial Method for Estimating Tuberculosis Inci-
+dence Reveals Many Missed TB Cases in Ethiopia,” BMC Infectious
+Diseases, 17, 662. [1482,1483]
+Stamey, J. D., Young, D. M., and Boese, D. (2006), “A Bayesian Hierarchi-
+cal Model for Poisson Rate and Reporting-probability Inference Using
+Double Sampling,” Australian and New Zealand Journal of Statistics, 48,
+201–212. [1483,1489]
+Stoner, O. (2018). “Correcting Under-Reporting in Historical Volcano
+Data,” Proceedings of the 33rd International Workshop on Statistical
+Modelling, 1, 288–292. [1482,1483]
+Tibbits, M. M., Groendyke, C., Haran, M., and Liechty, J. C. (2014), “Auto-
+mated Factor Slice Sampling,” Journal of Computational and Graphical
+Statistics, 23, 543–563. [1484]
+Winkelmann, R. (1996), “Markov Chain Monte Carlo Analysis of Under-
+reported Count Data With an Application to Worker Absenteeism,”
+Empirical Economics, 21, 575–587. [1482]
+(1998), “Count Data Models With Selectivity,” Econometric
+Reviews, 17, 339–359. [1483]
+(2008), Econometric Analysis of Count Data (5th ed.). Springer
+Publishing Company, Incorporated. [1482]
+Winkelmann, R., and Zimmermann, K. F. (1993), “Poisson-logistic Regres-
+sion,” Discussion Papers, Department of Economics, University of
+Munich, 93(18). [1482]
+World Health Organization (2012), Assessing Tuberculosis Under-reporting
+Through Inventory Studies. Geneva, Switzerland. [1481,1485]
+(2017), Global Tuberculosis Report, Geneva, Switzerland.
+[1481,1486]

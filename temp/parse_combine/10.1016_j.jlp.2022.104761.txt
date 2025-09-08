@@ -1,0 +1,1429 @@
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+Available online 22 March 2022
+0950-4230/© 2022 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+Numerical study of premixed gas explosion in a 1-m channel partly filled 
+with 18650 cell-like cylinders with experiments 
+M. Henriksen a,*, K. Vaagsaether a, J. Lundberg a, S. Forseth b, D. Bjerketvedt a 
+a Faculty of Technology, Natural Sciences and Maritime Sciences, University of South-Eastern Norway, Kjølnes Ring 56, Porsgrunn, 3901, Norway 
+b Norwegian Defence Research Establishment (FFI), Oslo, Norway   
+A R T I C L E  I N F O   
+Keywords: 
+Li-ion battery safety 
+Open-source software 
+OpenFOAM 
+Explosion simulation 
+Premixed combustion 
+A B S T R A C T   
+Abused and defective Li-ion cells can cause a catastrophic failure of a Li-ion battery (LIB), leading to severe fires 
+and explosions. In recent years, several numerical and experimental studies have been conducted on the ex­
+plosion hazard related to the vented combustible gases from failed Li-ion cells. Experimentally quantifying 
+fundamental properties for failing LIBs is essential for understanding safety issues; however, it can be costly, 
+time-consuming, and can be partly incomplete. Computational fluid dynamic (CFD) simulations have been an 
+essential tool for studying the risk and consequences in the process industry. In this study, the prediction ac­
+curacy of the open-source CFD combustion model/solver XiFoam was evaluated by comparing numerical sim­
+ulations and experiments of premixed gas explosions in a 1-m explosion channel partly filled with 18650 cell-like 
+cylinders. The prediction accuracy was determined by calculating the mean geometric bias and variance for the 
+temporal pressure evolution, maximum pressure peak, positive impulse, spatial flame front velocity for two 
+different channel geometries, in addition to two gas compositions at several fuel-air equivalence ratios. From this 
+method, the XiFoam model/solver gave an overall acceptable model performance for both geometries and gas 
+composition.   
+1. Introduction 
+Over the last decade, several fires and explosions have been caused 
+by failing Li-ion batteries (LIBs). For example, in Texas, USA, in April 
+2017, a train car carrying discarded LIBs for recycling caused an ex­
+plosion, which shattered windows 350 feet from the incident (Sophia 
+Beausoleil, 2017). In April 2019, a Li-ion battery energy storage system 
+(BESS) caught fire in Arizona, USA. Three hours after the fire suppres­
+sant had extinguished the fire, firefighters entered the BESS, shortly 
+after that, an explosion occurred. The BESS was severely damaged, and 
+several firefighters were injured (Hill, 2020). Similarly, in September 
+2020, there was a fire in a 20 MWh BESS in Liverpool, UK. The BESS was 
+already well alight when the firefighters arrived, and residents in the 
+vicinity reported hearing an explosion (Andy Colthorpe, 2020; Ben 
+Turner, 2020). In April 2021, a fire occurred in a solar panel installation 
+with 25 MWh of lithium-iron-phosphate (LFP) LIB on the rooftop of a 
+shopping mall in Beijing, China. While the firefighters tried to extinguish 
+the fire, an explosion occurred. The explosion led to the death of two 
+firefighters. Due to limiting accidental information, the definite cause of 
+the explosion is not known (CTIF - International Association of Fire and 
+Rescue Services, 2021). 
+If Li-ion cells are over-charged, over-discharged, short-circuited, 
+deformed, punctured, or exposed to heat, there is a possibility for a 
+catastrophic failure (Lian et al., 2019; Mikolajczak et al., 2011; Wang 
+et al., 2019). A failing LIB can release gases such as hydrogen (H2), 
+carbon monoxide (CO), carbon dioxide (CO2), methane (CH4), electro­
+lyte solvents, and toxic species (Fernandes et al., 2018; Golubkov et al., 
+2014, 2015; Lammer et al., 2017; Nedjalkov et al., 2016; Roth et al., 
+2004; Somandepalli et al., 2014; Wang et al., 2019). When combustible 
+gases mix with air, they can cause explosions and fires (Bjerketvedt 
+et al., 1997). 
+In recent years, researchers have experimentally and numerically 
+investigated the explosion hazard abused LIBs pose by determining the 
+released gas composition, gas release rates, and combustion properties 
+of the gas vented (Wang et al., 2019; Fernandes et al., 2018; Johnsplass 
+et al., 2017; Henriksen et al., 2019, 2020; Baird et al., 2020; M. Hen­
+riksen et al., 2021; Kennedy et al., 2021). Fernandes et al. (2018) 
+determined the gas composition and total amount of released gas from 
+commercial Li-ion cells abused by overcharge. The study showed that 
+the abused cells mainly released electrolyte solvent, along with 
+* Corresponding author. 
+E-mail address: mathias.henriksen@usn.no (M. Henriksen).  
+Contents lists available at ScienceDirect 
+Journal of Loss Prevention in the Process Industries 
+journal homepage: www.elsevier.com/locate/jlp 
+https://doi.org/10.1016/j.jlp.2022.104761 
+Received 19 August 2021; Received in revised form 14 February 2022; Accepted 28 February 2022   
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+2
+hydrogen and other hydrocarbons. Henriksen et al. (Henriksen et al., 
+2019, 2020) experimentally determined the explosion characteristics of 
+several Li-ion electrolyte solvents and the laminar burning velocity 
+(LBV) for the solvent dimethyl carbonate (DMC). The Li-ion electrolyte 
+solvents had similar explosion characteristics as propane, whereas DMC 
+had a slightly lower LBV than propane. 
+Moreover, Baird et al. (2020) numerically estimated the lower 
+explosive limit, explosion pressure, rate of explosion pressure rise, and 
+the LBV for various vented Li-ion gas compositions found in the litera­
+ture. The study showed that LBV ranged from 0.3 m/s to 1.1 m/s, 
+depending on the state of charge (SOC) and cell chemistry. Kennedy 
+et al. (2021) studied the release rates, total volume released, and gas 
+composition from a single cell to an array of five and ten cells. The study 
+showed that the venting speed, the total amount of gas released, and cell 
+to cell propagation increased as the SOC increased. For a more 
+compressive literature study, we suggest the articles by Fernandes et al. 
+(2018), Wang et al. (2019), and Baird et al. (2020). 
+Experimentally quantifying fundamental properties for failing LIBs is 
+essential for understanding safety issues; however, it can be costly and 
+time-consuming and can be partly incomplete. Computational fluid 
+dynamics (CFD) simulations have become essential for evaluating ex­
+plosion consequences and risks, especially in the process industry 
+(Diakow et al., 2018; Hansen et al., 2010; Hansen and Middha, 2008; 
+Shen et al., 2020). Using CFD tools such as FLACS, OpenFOAM, and 
+ANSYS Fluent to predict explosion pressures, blast loads (impulse), and 
+gas dispersion can significantly improve the safety of a design. Most CFD 
+simulations related to LIBs are on single-cell failure, single-cell thermal 
+runaway characterization, and cell-to-cell propagation (Kim et al., 2007, 
+2021; Srinivasan et al., 2020). In a report by DNV GL (Helgesen, 2019), 
+the LIB explosion hazard was investigated by CFD simulations of gas 
+dispersion and gas explosions in maritime LIB installations. DNV GL 
+reported explosion pressures between 90 kPa (gauge) and 270 kPa 
+(gauge) in a partly confined geometry depending on the Li-ion gas 
+release profile. 
+The benefits from simulations are heavily dependent on the predic­
+tion accuracy of the CFD models. Therefore, this study explores the 
+prediction accuracy of the XiFoam combustion model/solver in the 
+open-source CFD toolbox OpenFOAM (CFD Direct, 2021; H. G. Weller 
+et al., 1998). More specifically, we analyze prediction accuracy of the 
+temporal evolution of the pressure, maximum pressure peak, positive 
+impulse, and the spatial evolution of the flame front for two gas com­
+positions in a 1-m-long explosion channel, partly filled with 18650 
+cell-like cylinders. In addition, two different channel geometries were 
+studied by varying the location of an identical set of 40 18650 cell-like 
+cylinders. The prediction accuracy with an early-onset for turbulent 
+flame propagation was investigated with the cylinders close to the ig­
+nitions source. Whereas with the cylinders in the center, i.e., further 
+away from the ignition source, the prediction accuracy with an initial 
+laminar flame propagation stage could be examined. 
+Finally, in addition to two gas compositions and the two geometries, 
+the CFD simulations were compared at three different fuel-air equiva­
+lence ratios (φ) 0.8, 1.0, and 1.2, resulting in a total of 12 simulation 
+cases. The numerical and experimental condition was typical atmo­
+spheric conditions, 293 K and 101.3 kPa (absolute). 
+Fig. 1. Photo and schematic illustration of the 1-m explosion channel. a): Photo of explosion channel with the Li-ion 18650 cell-like cylinders in the center of the 
+channel; b): Schematic illustration of the experimental setup with dimensions. 
+Table 1 
+The gas compositions analyzed numerically and experimentally in this study in 
+volume percentage.  
+Name of fuel mixture 
+H2 [%] 
+CO [%] 
+CO2 [%] 
+CH4 [%] 
+C2H4 [%] 
+High LBV Li-ion gas 
+42.8 
+37.1 
+10.0 
+7.1 
+3.0 
+Simplified Li-ion gas 
+35.0 
+[-] 
+[-] 
+65.0 
+[-]  
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+3
+Fig. 2. Images of the geometry and computational mesh used in numerical 
+simulations. a) Side view of the entire CAD geometry with boundary conditions. 
+b) Side view of the computational mesh. c) Horizontal cross-section view of the 
+computational mesh cell geometry. 
+Table 2 
+List of variables with the applied wall and open boundary conditions.  
+Variable 
+Wall boundary 
+Open boundary 
+Temperature (T) 
+Adiabatic walls (zero 
+gradient) (293 K) 
+Zero gradient outlet fixed 
+value inlet (T = 293) 
+Temperature 
+unburnt (Tu) 
+Adiabatic walls (zero 
+gradient) (293 K) 
+Zero gradient outlet fixed 
+value inlet (Tu) = 293) 
+Pressure (p) 
+Zero gradient at the wall 
+A constant total pressure, 
+dynamic + static pressure 
+equals 101.3 kPa. 
+Velocity (U) 
+Zero velocity at the wall 
+(noSlip) 
+Zero gradient outlet; inlet 
+value based on flux normal to 
+the boundary surface 
+LBV (Su) 
+Zero gradient at the wall 
+Zero gradient at the 
+boundary surface 
+Subgrid turbulent 
+kinetic energy (k) 
+Zero gradient at the wall 
+Zero gradient at the 
+boundary surface 
+Turbulent, LBV 
+ratio (Xi) 
+Zero gradient at the wall 
+Zero gradient at the 
+boundary surface 
+regress variable (b) 
+Zero gradient at the wall 
+Zero gradient at the 
+boundary surface 
+Fuel mixture 
+fraction (ft) 
+Zero gradient at wall 
+Zero gradient outlet fixed 
+value inlet (ft = 0) 
+Turbulent viscosity 
+(nut) 
+Calculated based on the 
+turbulent kinetic energy 
+Calculated based on the 
+turbulent properties 
+Turbulent thermal 
+diffusivity 
+(alphat) 
+Calculated based on the 
+turbulent viscosity for 
+compressible flow 
+Calculated based on the 
+turbulent viscosity  
+Table 3 
+List of all experiments with the corresponding CFD simulations.  
+Experiment 
+case number 
+Gas 
+composition 
+Fuel-Air 
+Equivalence 
+ratio (φ) 
+Channel 
+geometry 
+CFD case 
+name 
+Case 01. 
+High LBV Li- 
+ion gas 
+0.79 
+Inner 
+High CFD 
+0.8 Inner 
+Case 02. 
+High LBV Li- 
+ion gas 
+0.89 
+Inner 
+None 
+Case 03. 
+High LBV Li- 
+ion gas 
+1.00 
+Inner 
+High CFD 
+1.0 Inner 
+Case 04. 
+High LBV Li- 
+ion gas 
+1.09 
+Inner 
+None 
+Case 05. 
+High LBV Li- 
+ion gas 
+1.18 
+Inner 
+High CFD 
+1.2 Inner 
+Case 06. 
+High LBV Li- 
+ion gas 
+1.18 
+Inner 
+High CFD 
+1.2 Inner 
+Case 07. 
+High LBV Li- 
+ion gas 
+1.29 
+Inner 
+None 
+Case 08. 
+High LBV Li- 
+ion gas 
+1.29 
+Inner 
+None 
+Case 09. 
+High LBV Li- 
+ion gas 
+1.38 
+Inner 
+None 
+Case 10. 
+High LBV Li- 
+ion gas 
+1.38 
+Inner 
+None 
+Case 11. 
+High LBV Li- 
+ion gas 
+1.47 
+Inner 
+None 
+Case 12. 
+High LBV Li- 
+ion gas 
+1.47 
+Inner 
+None 
+Case 13. 
+Simplified Li- 
+ion gas 
+0.69 
+Inner 
+None 
+Case 14. 
+Simplified Li- 
+ion gas 
+0.69 
+Inner 
+None 
+Case 15. 
+Simplified Li- 
+ion gas 
+0.79 
+Inner 
+Simple 
+CFD 0.8 
+Inner 
+Case 16. 
+Simplified Li- 
+ion gas 
+0.79 
+Inner 
+Simple 
+CFD 0.8 
+Inner 
+Case 17. 
+Simplified Li- 
+ion gas 
+0.90 
+Inner 
+None 
+Case 18. 
+Simplified Li- 
+ion gas 
+0.90 
+Inner 
+None 
+Case 19. 
+Simplified Li- 
+ion gas 
+0.90 
+Inner 
+None 
+Case 20. 
+Simplified Li- 
+ion gas 
+0.97 
+Inner 
+Simple 
+CFD 1.0 
+Inner 
+Case 21 
+Simplified Li- 
+ion gas 
+0.97 
+Inner 
+Simple 
+CFD 1.0 
+Inner 
+Case 22. 
+Simplified Li- 
+ion gas 
+1.01 
+Inner 
+Simple 
+CFD 1.0 
+Inner 
+Case 23. 
+Simplified Li- 
+ion gas 
+1.01 
+Inner 
+Simple 
+CFD 1.0 
+Inner 
+Case 24. 
+Simplified Li- 
+ion gas 
+1.08 
+Inner 
+None 
+Case 25. 
+Simplified Li- 
+ion gas 
+1.10 
+Inner 
+None 
+Case 26. 
+Simplified Li- 
+ion gas 
+1.10 
+Inner 
+None 
+Case 27. 
+Simplified Li- 
+ion gas 
+1.19 
+Inner 
+Simple 
+CFD 1.2 
+Inner 
+Case 28. 
+Simplified Li- 
+ion gas 
+1.19 
+Inner 
+Simple 
+CFD 1.2 
+Inner 
+Case 29. 
+Simplified Li- 
+ion gas 
+1.26 
+Inner 
+None 
+Case 30. 
+Simplified Li- 
+ion gas 
+1.29 
+Inner 
+None 
+Case 31. 
+Simplified Li- 
+ion gas 
+1.37 
+Inner 
+None 
+Case 32. 
+Simplified Li- 
+ion gas 
+1.39 
+Inner 
+None 
+(continued on next page) 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+4
+2. Materials and methods 
+2.1. Experimental setup 
+The explosion channel’s length, width, and height are 1000.0 mm, 
+65.0 mm, and 116.5 mm, respectively. Two different channel setups 
+were analyzed. The channel setup referred to as the inner channel ge­
+ometry had 40 18650 cell-like cylinders near the closed end of the 
+channel, whereas the channel setup referred to as the center channel 
+geometry had 40 18650 cell-like cylinders approximately in the center 
+of the channel. Each cylinder has a diameter of 18 mm and a length of 
+650 mm, the same dimensions as a 18650 Li-ion cell. Furthermore, the 
+distance between the cells in the vertical and horizontal direction is 4.6 
+mm (±0.1 mm), creating a 0.5 void ratio and maximum blockage ratio of 
+0.77 in the obstructed part of the channel. For the inner channel ge­
+ometry, the center of the first column of cylinders was 40 mm from the 
+closed end of the channel. The center of the first column of cells was 400 
+mm from the closed end of the channel for the center channel geometry. 
+Fig. 1 a) shows a photo of the explosion channel with the center channel 
+geometry, and Fig. 1 b) shows a schematic illustration of the experi­
+mental setup with dimensions. 
+The premixed fuel-air inlet is located 50 mm from the closed end of 
+the channel. With a porous lid attached to the open end of the channel, 
+the channel’s volume was exchanged eight times to ensure a homoge­
+nous mixture. After filling, there was a 1-min delay before ignition to 
+reduce convective flow. Moreover, the ignition duration was 0.02 s, 
+which gives two sparks generated from an AC transformer with an 
+output voltage of 10 kV and a current of 20 mA. At the top of the 
+channel, four Kistler pressure transducers spaced 250, 450, 650, and 
+850 mm from the closed end of the channel recorded the explosion 
+pressure. A Photron SA-1 high-speed camera records the flame propa­
+gation with frame rates ranging from 10 000 and 22 500 frames per 
+second, depending on the flame propagation speed. 
+The gas compositions shown in Table 1 are taken from a previously 
+published study by Henriksen et al. (M. Henriksen et al., 2021). The 
+High LBV Li-ion gas composition has a relatively high LBV compared to 
+other published Li-ion vent gas compositions (Baird et al., 2020; M. 
+Henriksen et al., 2021), and the Simplified Li-ion gas composition is a 
+pseudo/simplified Li-ion vent gas, which has an LBV in the same range 
+as several different types of LIBs (M. Henriksen et al., 2021). The High 
+LBV Li-ion gas was supplied from a premixed gas bottle prepared by a 
+supplier, whereas two separate gas bottles supplied the hydrogen and 
+methane for the Simplified Li-ion gas. Furthermore, the φ and the fuel 
+ratio in the Simplified Li-ion gas were controlled by adjusting separate 
+rotameters for the fuel and air. All the gas bottles had a purity above 
+99.95%. 
+The flame front position and velocity were determined using an in- 
+house developed image processing code from the high-speed video. 
+The pressure data, flame front position, and velocity were post- 
+processed by a Savitzky-Golay filter (Savitzky and Golay, 1964) before 
+further analysis. 
+Table 3 (continued) 
+Experiment 
+case number 
+Gas 
+composition 
+Fuel-Air 
+Equivalence 
+ratio (φ) 
+Channel 
+geometry 
+CFD case 
+name 
+Case 33. 
+High LBV Li- 
+ion gas 
+0.79 
+Center 
+High CFD 
+0.8 Center 
+Case 34. 
+High LBV Li- 
+ion gas 
+0.89 
+Center 
+None 
+Case 35. 
+High LBV Li- 
+ion gas 
+0.89 
+Center 
+None 
+Case 36. 
+High LBV Li- 
+ion gas 
+0.97 
+Center 
+High CFD 
+1.0 Center 
+Case 37. 
+High LBV Li- 
+ion gas 
+0.98 
+Center 
+High CFD 
+1.0 Center 
+Case 38. 
+High LBV Li- 
+ion gas 
+0.98 
+Center 
+High CFD 
+1.0 Center 
+Case 39. 
+High LBV Li- 
+ion gas 
+1.08 
+Center 
+None 
+Case 40. 
+High LBV Li- 
+ion gas 
+1.09 
+Center 
+None 
+Case 41. 
+High LBV Li- 
+ion gas 
+1.09 
+Center 
+None 
+Case 42. 
+High LBV Li- 
+ion gas 
+1.18 
+Center 
+High CFD 
+1.2 Center 
+Case 43. 
+High LBV Li- 
+ion gas 
+1.18 
+Center 
+High CFD 
+1.2 Center 
+Case 44. 
+High LBV Li- 
+ion gas 
+1.29 
+Center 
+None 
+Case 45. 
+High LBV Li- 
+ion gas 
+1.29 
+Center 
+None 
+Case 46. 
+High LBV Li- 
+ion gas 
+1.38 
+Center 
+None 
+Case 47. 
+High LBV Li- 
+ion gas 
+1.38 
+Center 
+None 
+Case 48. 
+High LBV Li- 
+ion gas 
+1.47 
+Center 
+None 
+Case 49. 
+High LBV Li- 
+ion gas 
+1.47 
+Center 
+None 
+Case 50. 
+Simplified Li- 
+ion gas 
+0.69 
+Center 
+None 
+Case 51. 
+Simplified Li- 
+ion gas 
+0.69 
+Center 
+None 
+Case 52. 
+Simplified Li- 
+ion gas 
+0.79 
+Center 
+Simple 
+CFD 0.8 
+Center 
+Case 53. 
+Simplified Li- 
+ion gas 
+0.79 
+Center 
+Simple 
+CFD 0.8 
+Center 
+Case 54. 
+Simplified Li- 
+ion gas 
+0.79 
+Center 
+Simple 
+CFD 0.8 
+Center 
+Case 55. 
+Simplified Li- 
+ion gas 
+0.90 
+Center 
+None 
+Case 56. 
+Simplified Li- 
+ion gas 
+0.90 
+Center 
+None 
+Case 57. 
+Simplified Li- 
+ion gas 
+1.01 
+Center 
+Simple 
+CFD 1.0 
+Center 
+Case 58. 
+Simplified Li- 
+ion gas 
+1.01 
+Center 
+Simple 
+CFD 1.0 
+Center 
+Case 59. 
+Simplified Li- 
+ion gas 
+1.10 
+Center 
+None 
+Case 60. 
+Simplified Li- 
+ion gas 
+1.10 
+Center 
+None 
+Case 61. 
+Simplified Li- 
+ion gas 
+1.10 
+Center 
+None 
+Case 62. 
+Simplified Li- 
+ion gas 
+1.19 
+Center 
+Simple 
+CFD 1.2 
+Center 
+Case 63. 
+Simplified Li- 
+ion gas 
+1.19 
+Center 
+None 
+Case 64. 
+Simplified Li- 
+ion gas 
+1.19 
+Center 
+None 
+Case 65. 
+Simplified Li- 
+ion gas 
+1.26 
+Center 
+None 
+Case 66. 
+Simplified Li- 
+ion gas 
+1.26 
+Center 
+None  
+Table 3 (continued) 
+Experiment 
+case number 
+Gas 
+composition 
+Fuel-Air 
+Equivalence 
+ratio (φ) 
+Channel 
+geometry 
+CFD case 
+name 
+Case 67. 
+Simplified Li- 
+ion gas 
+1.26 
+Center 
+None 
+Case 68. 
+Simplified Li- 
+ion gas 
+1.37 
+Center 
+None 
+Case 69. 
+Simplified Li- 
+ion gas 
+1.37 
+Center 
+None 
+Case 70. 
+Simplified Li- 
+ion gas 
+1.37 
+Center 
+None  
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+5
+2.2. CFD simulation 
+The XiFoam model/solver, part of the OpenFOAM toolbox’s (CFD 
+Direct, 2021; H. G. Weller et al., 1998) official release, was used for all 
+simulations. In XiFoam, the flame is modeled as a laminar flamelet, 
+which assumes that the turbulent premixed flame comprises a group of 
+laminar flamelets (Peters, 1988). With the laminar flamelet approach, a 
+regress variable (b) can express the flame propagation. Eq. (1) shows the 
+transport equation for regress variable b implemented in the XiFoam 
+model. 
+∂
+∂t (ρb) + ∇.(ρUb) + ∇.(ρD∇b) = −ρuSuΞ|∇b|
+(1)  
+where: b – reaction regress variable [-], ρ – density [kg/m3], U – velocity 
+vector [m/s], D – diffusion coefficient [m2/s], Su – laminar burning 
+velocity (LBV) [m/s], Ξ – turbulent and laminar flame speed ratio [-]. 
+The LBV (Su) in the source term in Eq. (1) is calculated from the 
+Gülder equation (Gülder, 1984). Ξ models the contribution which the 
+subgrid turbulence has on the flame speed. Eq. (2) shows the transport 
+equation for Ξ. Additional information about the XiFoam combustion 
+model can be found in the original publications by Weller et al. (H.G. 
+Weller et al., 1998; Weller et al., 1991). 
+∂Ξ
+∂t + U
+⏞⏟⏟⏞
+s ⋅∇Ξ = GΞ −R(Ξ −1) + ( σs −σt)Ξ
+(2)  
+where: Ξ is the subgrid wrinkling factor; Us is the surface filter velocity; 
+G is the turbulence generation rate; R is the turbulence removal rate; σs is 
+the surface-filtered strain rate; σt is the resolved strain rate. 
+To determine the discretized schemes and model parameters to apply 
+for all simulations, we simulated the High LBV Li-ion gas at φ equal to 
+Fig. 3. Comparison of the temporal evolution of the pressure for the four pressure sensors (PS1, PS2, PS3, and PS4) for Case 38 and the simulated case High CFD 
+1.0 center. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+6
+1.0 with the center channel geometry and compared the results to an 
+experiment with similar conditions (case 38). For the comparison, the 
+focus was on the flame propagation and explosion pressure in pressure 
+sensor 1 (PS1). This comparison led to the following discretized schemes 
+and models presented. 
+The time integration was discretized using the second-order Crank- 
+Nicolson scheme with a ratio of 0.6 forward Euler and 0.4 Crank- 
+Nicolson. For the gradient and Laplacian/diffusion terms, the second- 
+order linear scheme was used. Furthermore, the three different 
+second-order schemes, linear, linear-upwind, and limited-linear, were 
+used for the divergence schemes. The discretized equations are solved 
+using the PIMPLE algorithm, a combination of PISO (Pressure Implicit 
+with Splitting Operators) and SIMPLE (Semi-Implicit Method for 
+Pressure-Linked Equations). 
+Large-eddy simulation (LES) was chosen as the turbulence approach, 
+using the subgrid model proposed by Akira Yoshizawa (1986) for 
+compressible turbulent shear flows. The Van-Driest dampening function 
+was used for wall turbulence treatment, with the A+ coefficient and ΔC 
+equal 26 and 0.158, respectively. 
+The combustion, transport, and thermodynamic properties were 
+generated using the mech2Foam code (Henriksen and Bjerketvedt, 
+2021a, p. 2). mech2Foam generates the NASA polynomial (McBride 
+et al., 1993), Sutherland (1893), and Gülder coefficients using a speci­
+fied reaction mechanism. A study by Henriksen et al. (M. Henriksen 
+et al., 2021) has demonstrated that the GRI-Mech 3.0 reaction mecha­
+nism accurately predicts the LBV for the two gas compositions in 
+Table 1, and therefore use in this study. 
+Two computer-aided design (CAD) geometries were drawn, with the 
+exact dimensions as the experimental channel geometries. The initial 
+cell size is set by the background mesh generated in the utility bloch­
+Mesh, with the initial cell size in the channel of 4 mm in all directions. At 
+the open end of the channel, the cell size expands linearly in all di­
+rections to 8 mm, creating a rectangular frustum with a length of 500 
+mm outside the rectangular channel, as illustrated in Fig. 2 a). Using the 
+snappyHexMesh utility in OpenFOAM, the background mesh is snapped 
+to the CAD drawing and refined to three layers with half the initial cell 
+size at the channel walls. At the cylinder/cell walls, the first three layers 
+have a fourth of the initial cell size, followed by an additional three 
+Fig. 4. Comparison of experimental Case 38 and the simulation case High CFD 1.0 center. a): Comparison of the temporal evolution of the flame front position; b): 
+Comparison of the temporal evolution of the flame front velocity; c): Comparison of the spatial evolution of the flame front velocity. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+7
+layers with half the initial cell size, as shown in Fig. 2 c). The total 
+amount of cells for the inner and center channel geometry was 944 849 
+and 945 843, respectively. 
+Fig. 2 a) shows that the boundaries are divided into two domains, 
+wall boundaries and open boundaries. Typical wall boundary conditions 
+(grey part of Fig. 2 a)) were set on the channel walls, and typical open 
+boundary conditions (black part of Fig. 2 a)) were set on the boundaries 
+outside the channel. A volume outside the channel was included in the 
+computational domain to reduce errors caused by the outlet boundary 
+conditions. Inside the channel, the species were premixed fuel and air, 
+and outside of the channel, there was only air. The atmospheric condi­
+tions for the simulations were 293 K and 101.3 kPa (absolute), similar to 
+the overall experimental conditions. Table 2 lists all the wall and open 
+boundary conditions used for each variable in the simulations. 
+Finally, we referred to the OpenFOAM user guide to further explain 
+the boundary conditions and discretization schemes (CFD Direct, 2021). 
+The CFD base case is given in the supplementary materials. 
+In Table 3, all the experimental cases are listed, with gas composi­
+tion, φ, channel geometry, and the corresponding CFD simulation case 
+name. 
+3. Results 
+The model parameters and discretization schemes used for all sim­
+ulations were determined by comparing the experimental Case 38 and 
+the High CFD 1.0 center simulation case. Fig. 3 compares the recorded 
+pressure from the four pressure sensors (PS) for these two cases. The 
+simulated explosion pressure at PS1 was used as one of the target pa­
+rameters in the optimization, and therefore has the lowest deviation of 
+the four pressure sensors. PS4 had the highest difference in the 
+maximum pressure peak of 117 kPa and a relative deviation of 61%. 
+Fig. 4 shows the comparison of Case 38 and the simulation case High 
+CFD 1.0 center for the temporal flame front position and flame front 
+velocity and the spatial flame front velocity. The flame front position in 
+Fig. 4 a) shows a good agreement between the simulated and experi­
+mental results. Fig. 4b) and c) shows that the simulated flame acceler­
+ation is under-predicted after the flame reaches the cylinders. 
+Fig. 5 shows the numerical and experimental maximum pressure 
+peaks for each pressure sensor recorded in the inner channel geometry 
+for the High LBV Li-ion gas and the Simplified Li-ion gas. The highest 
+maximum pressure for the High LBV Li-ion gas was 156 kPa (gauge), 
+recorded at PS3 in case 10 (φ = 1.38). In the numerical simulations, the 
+highest maximum pressure of 89 kPa (gauge) was in the High CFD 1.2 
+Fig. 5. The maximum pressure peak for each pressure sensor for the inner channel geometry High LBV Li-ion gas and the Simplified Li-ion gas experiments and 
+numerical simulations. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+8
+Inner case. Furthermore, the average absolute deviation between the 
+experimental and simulated maximum pressures for the High LBV Li-ion 
+gas is 38 kPa, with a maximum absolute deviation of 64 kPa for case 05 
+(at PS4). 
+For the Simplified Li-ion gas experiments, the highest maximum 
+pressure peak was 56 kPa (gauge) (at PS1) in case 26 (φ = 1.10). The 
+highest simulated maximum pressure was 77 kPa (gauge) (at PS2) in the 
+Simple CFD 1.0 Inner case. Finally, the average absolute deviation be­
+tween the experiments and simulations for the Simplified Li-ion gas was 
+14 kPa, with a maximum deviation of 28 kPa for case 21 (at PS2). 
+Fig. 6 shows the simulated and experimental maximum pressure 
+peaks from the center channel geometry for each pressure sensor. For 
+the High LBV Li-ion gas, the highest experimental maximum pressure of 
+223 kPa (gauge) was measured at PS3 for case 41 (φ = 1.09), and the 
+highest simulated maximum pressure of 94 kPa (gauge) was measured at 
+PS1 for the High CFD 1.2 Center case. Moreover, the average absolute 
+deviance between the experimental and numerical results was 64 kPa, 
+with a maximum absolute deviation of 137 kPa for case 43 (at PS3). 
+The highest maximum pressure peaks for the Simplified Li-ion gas 
+were 55 kPa (gauge) measured at PS1 in case 58 (φ = 1.01) and 119 kPa 
+(gauge) at PS1 in simulation case Simple CFD 1.0 Center. The average 
+absolute deviation was 50 kPa, and the maximum absolute deviation 
+was 97 kPa PS1 for case 62. 
+Fig. 7 shows the positive impulses for each pressure sensor for the 
+inner channel geometry experiments and simulations. The positive im­
+pulse was calculated by numerically integrating the maximum pressure 
+peak, with the upper and lower integral limits set to one-tenth of the 
+maximum pressure. All maximum values for the experimental and 
+simulated positive impulses were recorded on the first pressure sensor 
+(PS1) for both gas compositions. 
+The maximum experimental positive impulse was 188 kPa ms and 
+160 kPa ms for the High LBV Li-ion gas (case 11, φ = 1.47) and the 
+Simplified Li-ion gas (case 26, φ = 1.10) in the inner channel geometry, 
+respectively. In the simulations, the maximum positive impulse was 313 
+kPa ms (High CFD 1.2 Inner) and 280 kPa ms (Simple CFD 1.0 Inner) for 
+the High LBV Li-ion gas and the Simplified Li-ion gas, respectively. The 
+absolute average deviation between simulation and experimental posi­
+tive impulse results for the High LBV Li-ion gas was 100 kPa ms, whereas 
+82 kPa ms for the Simplified Li-ion gas. Furthermore, the maximum 
+absolute deviation was 171 kPa ms (case 06, at PS2) and 144 kPa ms 
+Fig. 6. The maximum pressure peak for each pressure sensor for the center channel geometry High LBV Li-ion gas and the Simplified Li-ion gas experiments and 
+numerical simulations. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+9
+(case 20, at PS1) for the High LBV Li-ion gas and Simplified Li-ion gas, 
+respectively. 
+Fig. 8 shows the experimental and numerically positive impulses for 
+each pressure sensor for all center channel geometry cases. All 
+maximum positive impulses were recorded on the first pressure sensor 
+(PS1) for both gas compositions in the experiments and numerical 
+simulations, like the inner channel geometry cases. For the High LBV Li- 
+ion gas, the experimental maximum positive impulse was 591 kPa ms 
+(case 42, φ = 1.18), whereas in the simulation, 666 kPa ms for case High 
+CFD 1.2 Center. The absolute average deviation between the simulation 
+and experiments for the High LBV Li-ion gas was 100 kPa ms, with a 
+maximum absolute deviation of 243 kPa ms for case 36 (at PS2). 
+For the Simplified Li-ion gas, the experimental maximum positive 
+impulse was 324 kPa ms (case 58, φ = 1.01). In the simulation, the 
+maximum positive impulse was 743 kPa ms measured in the Simple CFD 
+1.0 Center case. Moreover, the absolute average deviation between the 
+experimental and numerical positive impulse is 206 kPa ms, with a 
+maximum absolute deviation of 532 kPa ms in case 62 (at PS1). 
+Further quantification of the model performance was done by 
+calculating the statistical quantities, mean geometric variance (VG), and 
+mean geometric bias (MG) for the temporal pressure evolution, 
+maximum pressure, positive impulse, and spatial evolution of the flame 
+front velocity. Table 4 presents the criteria used to assess the model 
+performance, taken from the model evaluation protocol for the HySEA 
+project (Hisken et al., 2020), which is based upon the MEGGE protocol 
+(Model Evaluation Group Gas Explosion, 1996). 
+Fig. 9 shows the MG and VG values for the inner channel geometry 
+High LBV Li-ion gas and Simplified Li-ion gas cases. The calculated VG 
+and MG values for the temporal pressure evolution are within the limit 
+for excellent model performance, as shown in Fig. 9 a). For the MG and 
+VG values in Fig. 9 b) (maximum pressure peak), only case 42 had an MG 
+value slightly above the limit for excellent model performance. The MG 
+and VG values shown in Fig. 9a) and b) indicate that the XiFoam model 
+predicted the maximum pressure peaks and temporal pressure evolution 
+accurately for both gas compositions in the inner channel geometry. For 
+several cases, the MG values for the positive impulse were outside the 
+acceptable limit. The spatial flame front velocity MG and VG values were 
+within the acceptable limits for all, except case 15. 
+The overall XiFoam model performance was evaluated by equally 
+weighting the arithmetic mean MG and VG values of the temporal 
+pressure evolution, maximum pressure peaks, positive impulse, and 
+spatial evolution of the flame front velocity. For the inner channel ge­
+ometry, the overall average MG and VG were 0.96 and 1.26 for the High 
+LBV Li-ion gas, respectively, whereas the overall average MG and VG for 
+the Simplified Li-ion gas were 0.89 and 1.36, respectively. Both the 
+overall averaged MG and VG for the two gas compositions are within the 
+acceptable performance criteria. 
+Fig. 10 shows the MG and VG values for the center channel geometry 
+Fig. 7. The positive impulse for each pressure sensor for the inner channel geometry High LBV Li-ion gas and the Simplified Li-ion gas experiments and numerical 
+simulations. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+10
+cases. The MG and VG values for the temporal pressure evolution and 
+the maximum pressure are all within the acceptable criteria for both gas 
+compositions. The positive impulse MG and VG values for the High LBV 
+Li-ion cases are all within the excellent performance criterion. However, 
+for the Simplified Li-ion gas, only case 57 is within the MG acceptable 
+criterion. This poor model performance is reflected in the predicted 
+positive impulse of the Simplified Li-ion gas in Fig. 8. For all cases, the 
+spatial evolution of the flame front velocity MG and VG values are 
+within the acceptable criteria for both gas compositions, with seven out 
+of ten within the excellent criteria. 
+The overall averaged MG and VG values were 1.10 and 1.14 for the 
+High LBV Li-ion gas, respectively. For the Simplified Li-ion gas, the 
+overall average MG and VG values were 0.80 1.86, respectively. 
+Furthermore, the overall average MG and VG values were within the 
+excellent performance criteria for the High LBV Li-ion gas. For the 
+Simplified Li-ion gas, the overall average MG and VG were within 
+acceptable model performance criteria. 
+For the unfiltered experimental results, we refer to the dataset Ex­
+periments of Premixed Gas Explosion in a 1-m Channel Partly Filled with 
+18650 Cell Geometry (Henriksen and Bjerketvedt (2021b)). 
+4. Discussion 
+4.1. Variance in the experimental results 
+Figs. 5 and 6 shows that parallel experiments can give significantly 
+different maximum pressures peaks. These differences in the results are 
+especially noticeable for the center channel geometry High LBV Li-ion 
+gas experiments at pressure sensors 2, 3, and 4. The differences in the 
+maximum pressure peaks can be as high as 60–70 kPa, which is in the 
+same range as the more significant deviations between the simulation 
+and experimental results. Although minor differences were noticed in 
+the flame front velocity and surface in parallel experiments, no phe­
+nomena or measured parameter could be attributed to the experiments 
+with an increased or reduced maximum pressure peak. It is common to 
+compare simulated and experimental maximum pressure peaks results 
+Fig. 8. The positive impulse for each pressure sensor for the center channel geometry High LBV Li-ion gas and the Simplified Li-ion gas experiments and numerical 
+simulations. 
+Table 4 
+Criteria for evaluating model performance for a specific variable from the model 
+evaluation protocol for the HySEA project (Hisken et al., 2020).  
+The scale of model performance 
+MG and VG limits 
+Excellent 
+0.7 < MG < 1.3 
+[Solid vertical lines] 
+VG < 1.6 
+[Solid horizontal line] 
+Acceptable 
+0.5 < MG < 2.0 
+[Dashed vertical lines] 
+VG < 3.3 
+[Dashed horizontal line] 
+Poor 
+0.5 > MG > 2.0  
+VG > 3.3   
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+11
+(Diakow et al., 2018; Shen et al., 2020); however, it may not be an ideal 
+comparable parameter due to potential variance between parallel ex­
+periments as observed in this study. 
+4.2. Model performance 
+Based on the overall average MG and VG values, the XiFoam model 
+performed acceptable for the Simplified Li-ion gas and performed 
+excellently for the High LBV Li-ion gas for both channel geometries. 
+XiFoam had the highest model performance for the High LBV Li-ion gas 
+in the center channel geometry, which is expected since the model pa­
+rameters were adjusted to this configuration at a φ equal to 1.0. How­
+ever, the model showed discrepancies in predict the maximum pressure 
+peaks recorded at PS3 and PS4, as seen in Fig. 6. In the simulations, the 
+flame thickness grows as it propagates through the geometry. This in­
+crease in flame thickness probably dampens the maximum pressure 
+peaks caused by the rapid increase in flame acceleration when the flame 
+passes through the cylinders. Although the model does not predict the 
+maximum pressure peaks at these sensors, the positive impulse is 
+predicated with less deviation. 
+The XiFoam model performance for the Simplified Li-ion gas was 
+lower than for the High LBV Li-ion gas, based on the MG and VG values. 
+Although the overall average model performance for the center channel 
+geometry Simplified Li-ion gas cases were within the acceptable criteria, 
+only one case was within acceptable performance criteria for positive 
+impulse, as seen in Fig. 10 c). Additionally, there is a significant 
+discrepancy between the simulated and experimental flame front posi­
+tion before the flame reaches the cylinders for these cases. This 
+Fig. 9. The mean geometric bias and the mean geometric variance for the High LBV Li-ion gas and the Simplified Li-ion gas in the inner channel geometry; a) 
+Temporal pressure evolution; b) Maximum pressure; c) Positive impulse; d) Spatial evolution of the flame front velocity. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+12
+discrepancy reveals that the flame accelerates more rapidly in the initial 
+stages in the simulation compared to the experiments. The higher flame 
+acceleration leads to the higher maximum pressure peaks, as seen in 
+Fig. 6a) and b) for the Simplified Li-ion gas. Conversely, the experi­
+mental and simulated flame acceleration is in the same range for the 
+inner channel geometry Simplified Li-ion gas cases, resulting in better 
+model performance. 
+4.3. Model parameters and discretization 
+There are many different model parameters and discretization 
+schemes to adjust and choose from in the OpenFOAM toolbox. Our focus 
+was on the XiFoam combustion parameters and the discretization of 
+time and divergence terms to limit the number of parameters and set­
+tings. However, other model parameters or discretization schemes could 
+also significantly impact the simulation performance than those chosen 
+in this study. 
+The Xi (Ξ) variable in Eq. (1) and Eq. (2) is the ratio between laminar 
+and turbulent burning velocity. Xi, cannot be lower than one and will 
+thus only increase or not affect the propagation velocity. For the center 
+channel geometry, the initial flame acceleration was slightly higher in 
+most simulation cases compared to the experiments. This discrepancy in 
+flame acceleration was especially noticeable for the Simplified Li-ion gas 
+cases. In the combustion property file, three variables can be adjusted to 
+affect the value of Xi, XiCoef, XiShapeCoef, and uPrimeCoef. Using the Xi 
+transport model, only changes to the uPrimeCoef significantly altered 
+flame acceleration. uPrimeCoef is multiplied with the turbulent kinetic 
+energy (k) used to evaluate the Xi value. Initially, the uPrimeCoef coef­
+ficient was set to 0.6, which has given good results in previous simula­
+tions and fitted reasonably well for the High CFD 1.0 Center validation 
+Fig. 10. The mean geometric bias and the mean geometric variance for the High LBV Li-ion gas and the Simplified Li-ion gas in the center channel geometry; a) 
+Temporal pressure evolution; b) Maximum pressure; c) Positive impulse; d) Spatial evolution of the flame front velocity. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+13
+case. However, for the center channel geometry Simplified Li-ion gas 
+simulation cases, a lower value of the uPrimeCoef coefficient would have 
+reduced flame acceleration and thus lower maximum pressure peaks. 
+For example, altering the uPrimeCoef coefficient to 0.1 in the Simple CFD 
+1.0 Center simulation case will result in a maximum pressure peak of 25 
+kPa (gauge). Changes to uPrimeCoef could lead to an odd-shaped flame 
+surface compared to experiments and previous simulations, as depicted 
+in Fig. 11 c). The odd-shaped flame surface can cause significant changes 
+to the predicted flame front position and velocity. 
+Different discretization schemes were tested to analyze if they had 
+any significant effect on the solution. Discretizing time using first-order 
+forward Euler resulted in numerically stable simulations, with little to 
+no effect when changing the discretization schemes for the divergence 
+terms. However, changing the time discretization scheme to second- 
+order backward Euler or Crank-Nicolson significantly impacted the 
+flame propagation. Using the second-order backward scheme would 
+lead to convergence errors. Using the Crank-Nicolson scheme, the 
+intended simulation time was achieved (for most cases) with a Crank- 
+Nicolson coefficient between 0.1 and 0.6. The larger Crank-Nicolson 
+coefficient usually increased the flame acceleration and thus the 
+maximum pressure peak. For example, by increasing the coefficient to 
+0.6 for the High CFD 1.0 Center simulation case, the maximum pressure 
+peak was 450 kPa (gauge), 300 kPa higher than for the simulation case 
+using a coefficient of 0.4. Although a higher coefficient increased the 
+flame acceleration, it could also lead to similar odd-shaped flames, as 
+shown in Fig. 11 c). Numerical instabilities probably cause the odd- 
+shaped flame surfaces. Thus, a linearUpwind discretization scheme 
+was used to minimize the numerical instability and retain second-order 
+accuracy for most divergence terms. 
+Adjusting the value of uPrimeCoef and the Crank-Nicolson coefficient 
+in post-analysis for each simulation case, it is possible to predict the 
+desired target parameter fairly accurately, whether it be flame acceler­
+ation or maximum pressure peak, or positive impulse. However, accu­
+rately predicting all three of these parameters in the same simulation 
+with the XiFoam model is proven to be challenging. 
+Finally, one of the reasons that the XiFoam was chosen as the com­
+bustion model was its capability to simulate both small-scale (Mathias 
+Henriksen et al., 2021) and large-scale (Li et al., 2021) case­
+s/geometries. Although the XiFoam model gives an overall acceptable 
+model performance for the two geometries and gas mixtures, it is un­
+certain how well XiFoam will perform for large-scale Li-ion battery in­
+cidents. Validating CFD combustion models with small/laboratory-scale 
+experiments is not uncommon (Elshimy et al., 2021; Hansen et al., 2005; 
+Middha et al., 2007; Oran and Gamezo, 2007); however, it does not 
+remove the necessity of large-scale experiment comparison. As of now, 
+there are few large-scale experiments relevant for Li-ion battery 
+incidents CFD comparison. The comparison in this study is a step for­
+ward, showing the capability of predicting small-scale Li-ion battery 
+explosions and addressing some of the challenges encountered using the 
+XiFoam combustion model. To improve the XiFoam model confidence 
+further, the focus should be on large-scale experiments of battery in­
+cidents in future research. 
+4.4. Final observations 
+In the simulations, the pressure peaks are broader than in most ex­
+periments, making it impossible to predict both the maximum pressure 
+peak and the positive impulse with extreme precision. In the simula­
+tions, the flame thickness is initially thin with the thickness of a few 
+cells, but as it propagates, it broadens and can grow to a thickness larger 
+than 200 mm. However, the flame thickness of an actual flame is at least 
+a hundred times thinner than this. Since the numerical flame thickness is 
+large, the total heat of combustion is released over a larger volume than 
+the actual experimental flame, and thus generating a broader pressure 
+peak. A possible solution for this issue in the XiFoam model could be to 
+reduce the cell size; unfortunately, this could not be investigated further 
+due to limited computational resources. 
+For the experimental center channel geometry Simplified Li-ion gas 
+cases, only the cases with a φ below 1.19 (case 50 to 61) would prop­
+agate through the cylinders without quenching. Most cases would 
+completely quench within the cylinders in the experiments with φ 1.19 
+and above (case 62 to 70). However, a few experiments (case 63, 67, 68, 
+and 69) eventually propagated through, although the time from no 
+visible flame to visible flame in the high-speed video was on average 
+0.21 s. By contrast, the average time for the flame to reach the cylinders 
+after ignition for these cases was 0.05 s. A common occurrence for cases 
+63, 67, 68, and 69, the first visible flame after “quenching,” was always 
+in the top part of the channel. 
+Case 62, which had a φ of 1.19, propagated past the cylinders similar 
+to those experimental cases with a φ below 1.19. For case 62, the flame 
+was partly quenched while propagated in the center of the cylinders. 
+However, the flame continued to propagate without quenching in the 
+top and bottom of the channel. Since case 62 propagated through the 
+cylinders, similarly to the experiments with φ below 1.19, it was the only 
+experimental case compared to the Simple CFD 1.2 Center simulation 
+case. 
+Conversely, all the center channel geometry High LBV Li-ion gas 
+cases propagated through without any indication of quenching. The LBV 
+for the High LBV Li-ion gas is more than twice that of the Simplified Li- 
+ion gas at similar φ (M. Henriksen et al., 2021), which is an essential 
+parameter for this phenomenon. The quenching may be caused by a 
+highly turbulent flow, which may be violating the XiFoam laminar 
+Fig. 11. Examples of images of the experimental and simulated flame propagation in the center channel geometry. a): Image from the high-speed video; b): Typical 
+numerical flame surface (isosurface of the regress variable b at 0.5); c) Odd-shaped flame surface due to changes in the numerical schemes or combustion parameters 
+(isosurface regress variable b at 0.5). 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+14
+flamelet assumption. Further investigation is needed to explain this 
+phenomenon more deeply, which is beyond the scope of this study. 
+5. Conclusion 
+This study examined the XiFoam model performance, a combustion 
+solver part of the open-source CFD toolbox OpenFOAM. The XiFoam 
+model performance was evaluated by comparing numerical simulations 
+and experiments of premixed gas explosions in a 1-m explosion channel 
+partly filled with 18650 cell-like cylinders. In addition to comparing two 
+geometries with different locations of the 40 18650 cell-like cylinders, 
+two gas compositions with significantly different LBV at several φ were 
+compared. The model performance was based on the prediction accu­
+racy of the temporal pressure evolution, maximum pressure peak, pos­
+itive impulse, and spatial evolution of the flame front velocity. 
+Based upon the overall average MG and VG values and the model 
+performance criteria in Table 4, the XiFoam had an overall acceptable 
+model performance. XiFoam had the highest prediction accuracy for the 
+center channel geometry High LBV Li-ion gas cases; however, this was 
+expected since one of these cases was used to determine the combustion 
+model parameters and discretization schemes. XiFoam had the lowest 
+prediction accuracy for the center channel geometry Simplified Li-ion 
+gas cases. The lower prediction accuracy was mainly due to an over- 
+predicted flame acceleration in the initial laminar flame propagation 
+stage. 
+Adjusting the combustion parameter uPrimeCoef and the Crank- 
+Nicolson coefficient for the time discretization would significantly 
+change the flame propagation and thus the simulation results. By 
+adjusting these parameters in post-analysis for each simulation, one can 
+increase the prediction accuracy significantly. However, predicting with 
+high precision the maximum pressure peak and positive impulse in the 
+same simulation is difficult with the XiFoam combustion model. 
+Although the XiFoam overall prediction accuracy for the two gas 
+mixtures with the channel geometries was within the acceptable model 
+performance criteria, it is uncertain the XiFoam model would perform 
+for large-scale and more realistic geometry, like a BESS. In future 
+research, the XiFoam model should be compared with large-scale ex­
+periments of battery incidents to improve on the XiFoam model 
+assessment done in this study. 
+Credit author statement 
+Mathias Henriksen: Conceptualization, Methodology, Formal anal­
+ysis, Writing – original draft, Writing – review & editing. Knut Vaag­
+saether: Conceptualization, Methodology, Formal analysis, Writing – 
+review & editing, Supervision, Funding acquisition. Joachim Lundberg: 
+Conceptualization, Methodology, Formal analysis, Writing – review & 
+editing, Supervision, Funding acquisition. Sissel Forseth: Formal anal­
+ysis, Conceptualization, Writing – review & editing, Supervision, 
+Funding acquisition. Dag Bjerketvedt: Conceptualization, Methodology, 
+Formal analysis, Writing – review & editing, Supervision, Funding 
+acquisition. 
+Declaration of competing interest 
+The authors declare that they have no known competing financial 
+interests or personal relationships that could have appeared to influence 
+the work reported in this paper. 
+Acknowledgement 
+This work was performed within MoZEES, a Norwegian Center for 
+Environment-friendly Energy Research (FME), co-sponsored by the 
+Research Council of Norway (project number 257653) and 40 partners 
+from research, industry and public sector. 
+Appendix A. Supplementary data 
+Supplementary data to this article can be found online at https://doi. 
+org/10.1016/j.jlp.2022.104761. 
+References 
+Andy, Colthorpe, 2020. Fire at 20MW UK battery storage plant in Liverpool [WWW 
+Document]. Energy Storage News. URL. https://www.energy-storage.news/news/f 
+ire-at-20mw-uk-battery-storage-plant-in-liverpool. 
+Baird, A.R., Archibald, E.J., Marr, K.C., Ezekoye, O.A., 2020. Explosion hazards from 
+lithium-ion battery vent gas. J. Power Sources 446, 227257. https://doi.org/ 
+10.1016/j.jpowsour.2019.227257. 
+Beausoleil, Sophia, 2017. Lithium Batteries Causes Train Car Explosion in NE Houston. 
+KPRC, Click2Houston.  
+Bjerketvedt, D., Bakke, J.R., Van Wingerden, K., 1997. Gas explosion handbook. 
+J. Hazard Mater. 52, 1–150. 
+CFD Direct, 2021. OpenFOAM v7 user guide [WWW Document]. OpenFOAM v7 User 
+Guide. URL. https://cfd.direct/openfoam/user-guide-v7/. 
+CTIF - International Association of Fire and Rescue Services, 2021. Accident Analysis of 
+the Beijing Lithium Battery Explosion Which Killed Two Firefighters [WWW 
+Document]. URL. https://www.ctif.org/news/accident-analysis-beijing-lithium-ba 
+ttery-explosion-which-killed-two-firefighters. 
+Diakow, P.A., Thomas, J.K., Vivanco, E., 2018. Comparison of large-scale vented 
+deflagration tests to CFD simulations for partially congested enclosures. J. Loss Prev. 
+Process. Ind. 56, 147–154. https://doi.org/10.1016/j.jlp.2018.07.012. 
+Elshimy, M., Ibrahim, S., Malalasekera, W., 2021. LES – DFSD modelling of vented 
+hydrogen explosions in a small-scale combustion chamber. J. Loss Prev. Process. Ind. 
+72, 104580. https://doi.org/10.1016/j.jlp.2021.104580. 
+Fernandes, Y., Bry, A., de Persis, S., 2018. Identification and quantification of gases 
+emitted during abuse tests by overcharge of a commercial Li-ion battery. J. Power 
+Sources 389, 106–119. https://doi.org/10.1016/j.jpowsour.2018.03.034. 
+Golubkov, A.W., Fuchs, D., Wagner, J., Wiltsche, H., Stangl, C., Fauler, G., Voitic, G., 
+Thaler, A., Hacker, V., 2014. Thermal-runaway experiments on consumer Li-ion 
+batteries with metal-oxide and olivin-type cathodes. RSC Adv. 4, 3633–3642. 
+https://doi.org/10.1039/C3RA45748F. 
+Golubkov, A.W., Scheikl, S., Planteu, R., Voitic, G., Wiltsche, H., Stangl, C., Fauler, G., 
+Thaler, A., Hacker, V., 2015. Thermal runaway of commercial 18650 Li-ion batteries 
+with LFP and NCA cathodes – impact of state of charge and overcharge. RSC Adv. 5, 
+57171–57186. https://doi.org/10.1039/C5RA05897J. 
+Gülder, ¨O.L., 1984. Correlations of laminar combustion data for alternative S.I. Engine 
+fuels. In: Presented at the West Coast International Meeting and Exposition. https:// 
+doi.org/10.4271/841000. 
+Hansen, O.R., Middha, P., 2008. CFD-based risk assessment for hydrogen applications. 
+Proc. Safety prog 27, 29–34. https://doi.org/10.1002/prs.10213. 
+Hansen, O., Renoult, J., Sherman, M., Tieszen, S., 2005. Validation of FLACS-Hydrogen 
+CFD consequence prediction model against large scale H2 explosion experiments in 
+the FLAME facility. In: Presented at the International Conference on Hydrogen 
+Safety. 
+Hansen, O.R., Hinze, P., Engel, D., Davis, S., 2010. Using computational fluid dynamics 
+(CFD) for blast wave predictions. J. Loss Prev. Process. Ind. 23, 885–906. https:// 
+doi.org/10.1016/j.jlp.2010.07.005. 
+Helgesen, H., 2019. Technical Reference for Li-Ion Battery Explosion Risk and Fire 
+Suppression (Technical No. 2019–1025) (DNV GL, Norway.  
+Henriksen, M., Bjerketvedt, D., 2021a. mech2Foam - Generating Transport, Combustion, 
+and Thermodynamic Properties for the CFD Solver XiFoam. University of South- 
+Eastern Norway. https://doi.org/10.23642/USN.13721134.V3. 
+Henriksen, M., Bjerketvedt, D., 2021b. Experiments of Premixed Gas Explosion in a 1- 
+meter Channel Partly Filled with 18650 Cell Geometry. https://doi.org/10.23642/ 
+USN.15134442.V1. 
+Henriksen, M., Vaagsaether, K., Lundberg, J., Forseth, S., Bjerketvedt, D., 2019. 
+Explosion characteristics for Li-ion battery electrolytes at elevated temperatures. 
+J. Hazard Mater. 371, 1–7. https://doi.org/10.1016/j.jhazmat.2019.02.108. 
+Henriksen, M., Gaathaug, A.V., Vaagsaether, K., Lundberg, J., Forseth, S., 
+Bjerketvedt, D., 2020. Laminar burning velocity of the dimethyl carbonate-air 
+mixture formed by the Li-ion electrolyte solvent. Combust. Explos. Shock Waves 56, 
+383–393. https://doi.org/10.1134/S0010508220040024. 
+Henriksen, M., Vaagsaether, K., Lundberg, J., Forseth, S., Bjerketvedt, D., 2021. Laminar 
+burning velocity of gases vented from failed Li-ion batteries. J. Power Sources 506, 
+230141. https://doi.org/10.1016/j.jpowsour.2021.230141. 
+Henriksen, Mathias, Vaagsaether, K., Lundberg, J., Forseth, S., Bjerketvedt, D., 2021. 
+Simulation of a premixed explosion of gas vented during Li-ion battery failure. Fire 
+Saf. J. 103478. https://doi.org/10.1016/j.firesaf.2021.103478. 
+Hill, D., 2020. McMicken Battery Energy Storage System Event Technical Analysis and 
+Recommendations (Technical No. 10209302- HOU- R- 01) (DNV-GL.  
+Hisken, H., Lakshmipathy, S., Atanga, G., Skjold, T., 2020. Model Evaluation Protocol for 
+HySEA (Gexcon AS.  
+Johnsplass, J., Henriksen, M., Vaagsaether, K., Lundberg, J., Bjerketvedt, D., 2017. 
+Simulation of Burning Velocities in Gases Vented from Thermal Run-A-Way Lithium 
+Ion Batteries, pp. 157–161. https://doi.org/10.3384/ecp17138157. 
+Kennedy, R.W., Marr, K.C., Ezekoye, O.A., 2021. Gas release rates and properties from 
+Lithium Cobalt Oxide lithium ion battery arrays. J. Power Sources 487, 229388. 
+https://doi.org/10.1016/j.jpowsour.2020.229388. 
+M. Henriksen et al.                                                                                                                                                                                                                             
+Journal of Loss Prevention in the Process Industries 77 (2022) 104761
+15
+Kim, G.-H., Pesaran, A., Spotnitz, R., 2007. A three-dimensional thermal abuse model for 
+lithium-ion cells. J. Power Sources 170, 476–489. https://doi.org/10.1016/j. 
+jpowsour.2007.04.018. 
+Kim, J., Mallarapu, A., Finegan, D.P., Santhanagopalan, S., 2021. Modeling cell venting 
+and gas-phase reactions in 18650 lithium ion batteries during thermal runaway. 
+J. Power Sources 489, 229496. https://doi.org/10.1016/j.jpowsour.2021.229496. 
+Lammer, M., K¨onigseder, A., Hacker, V., 2017. Holistic methodology for characterisation 
+of the thermally induced failure of commercially available 18650 lithium ion cells. 
+RSC Adv. 7, 24425–24429. https://doi.org/10.1039/C7RA02635H. 
+Li, Z., Chen, L., Yan, H., Fang, Q., Zhang, Y., Xiang, H., Liu, Y., Wang, S., 2021. Gas 
+explosions of methane-air mixtures in a large-scale tube. Fuel 285, 119239. https:// 
+doi.org/10.1016/j.fuel.2020.119239. 
+Lian, T., Vie, P.J.S., Gilljam, M., Forseth, S., 2019. Changes in thermal stability of cyclic 
+aged commercial lithium-ion cells. ECS Trans. 89, 73–81. https://doi.org/10.1149/ 
+08901.0073ecst. 
+McBride, B.J., Gordon, S., Reno, M.A., 1993. Coefficients for Calculating Thermodynamic 
+and Transport Properties of Individual Species (Technical No. NASA TM-4513). 
+NASA. 
+Middha, P., Hansen, O.R., Groethe, M., Arntzen, B.J., 2007. Hydrogen Explosion Study in 
+a Confined Tube: FLACS CFD Simulations and Experiments 6. 
+Mikolajczak, C., Kahn, M., White, K., Long, R.T., 2011. Lithium-Ion Batteries Hazard and 
+Use Assessment. Springer US, Boston, MA. https://doi.org/10.1007/978-1-4614- 
+3486-3.  
+Model Evaluation Group Gas Explosion, 1996. Gas Explosion Model Evaluation Protocol. 
+No. Version 1.  
+Nedjalkov, A., Meyer, J., K¨ohring, M., Doering, A., Angelmahr, M., Dahle, S., Sander, A., 
+Fischer, A., Schade, W., 2016. Toxic gas emissions from damaged lithium ion 
+batteries—analysis and safety enhancement solution. Batteries 2, 5. https://doi.org/ 
+10.3390/batteries2010005. 
+Oran, E.S., Gamezo, V.N., 2007. Origins of the deflagration-to-detonation transition in 
+gas-phase combustion. Combust. Flame 148, 4–47. https://doi.org/10.1016/j. 
+combustflame.2006.07.010. 
+Peters, N., 1988. Laminar flamelet concepts in turbulent combustion. Symp. (Int.) 
+Combust. 21, 1231–1250. https://doi.org/10.1016/S0082-0784(88)80355-2. 
+Roth, E.P., Crafts, C.C., Doughty, D.H., McBreen, James, 2004. Advanced Technology 
+Development Program for Lithium-Ion Batteries : Thermal Abuse Performance of 
+18650 Li-Ion Cells. https://doi.org/10.2172/918751. No. SAND2004- 0584, 
+918751.  
+Savitzky, A., Golay, M.J.E., 1964. Smoothing and differentiation of data by simplified 
+least squares procedures. Anal. Chem. 36, 1627–1639. https://doi.org/10.1021/ 
+ac60214a047. 
+Shen, R., Jiao, Z., Parker, T., Sun, Y., Wang, Q., 2020. Recent application of 
+Computational Fluid Dynamics (CFD) in process safety and loss prevention: a review. 
+J. Loss Prev. Process. Ind. 67, 104252. https://doi.org/10.1016/j.jlp.2020.104252. 
+Somandepalli, V., Marr, K., Horn, Q., 2014. Quantification of combustion hazards of 
+thermal runaway failures in lithium-ion batteries. SAE Int. J. Alternative Powertrains 
+3, 98–104. https://doi.org/10.4271/2014-01-1857. 
+Srinivasan, R., Thomas, M.E., Airola, M.B., Carkhuff, B.G., Frizzell-Makowski, L.J., 
+Alkandry, H., Reuster, J.G., Oguz, H.N., Green, P.W., La Favors, J., Currano, L.J., 
+Demirev, P.A., 2020. Preventing cell-to-cell propagation of thermal runaway in 
+lithium-ion batteries. J. Electrochem. Soc. 167, 020559 https://doi.org/10.1149/ 
+1945-7111/ab6ff0. 
+Sutherland, W., 1893. LII. The viscosity of gases and molecular force. Lond. Edinbur. Dublin 
+Philosoph. Mag. J. Sci. 36, 507–531. https://doi.org/10.1080/ 
+14786449308620508. 
+Ben Turner, 2020. Live updates as fire rips through Carnegie Road electrical unit [WWW 
+Document]. Liverp. Echo. URL. https://www.liverpoolecho.co.uk/news/liver 
+pool-news/live-updates-fire-rips-through-18934842. 
+Wang, Q., Mao, B., Stoliarov, S.I., Sun, J., 2019. A review of lithium ion battery failure 
+mechanisms and fire prevention strategies. Prog. Energy Combust. Sci. 73, 95–131. 
+https://doi.org/10.1016/j.pecs.2019.03.002. 
+Weller, H.G., Marooney, C.J., Gosman, A.D., 1991. A new spectral method for calculation 
+of the time-varying area of a laminar flame in homogeneous turbulence. Symp. (Int.) 
+Combust. 23, 629–636. https://doi.org/10.1016/S0082-0784(06)80310-3. 
+Weller, H.G., Tabor, G., Gosman, A.D., Fureby, C., 1998. Application of a flame- 
+wrinkling les combustion model to a turbulent mixing layer. Symp. (Int.) Combust. 
+27, 899–907. https://doi.org/10.1016/S0082-0784(98)80487-6. 
+Weller, H.G., Tabor, G., Jasak, H., Fureby, C., 1998. A tensorial approach to 
+computational continuum mechanics using object-oriented techniques. Comput. 
+Phys. 12, 620. https://doi.org/10.1063/1.168744. 
+Yoshizawa, A., 1986. Statistical theory for compressible turbulent shear flows, with the 
+application to subgrid modeling. Phys. Fluids 29, 2152. https://doi.org/10.1063/ 
+1.865552. 
+M. Henriksen et al.                                                                                                                                                                                                                             

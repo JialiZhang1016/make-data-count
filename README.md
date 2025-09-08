@@ -201,7 +201,8 @@ mkdir -p data/PDF temp/train_parse output logs
 
 **1. 提取文本**
 `python parse.py ./temp/parse` # pdf to txt
-`python parse_xml.py # xml to txt`
+`python parse_xml.py` # xml to txt
+`python parse_xml.py` # pdf + xml to txt 最新
 
 **2. 验证解析质量**
 `python check_parse.py`      # 验证PDF/XML解析结果
@@ -211,47 +212,10 @@ misses_XML: 25 dataset_ids
 **3. 提取数据集ID**
 
 `python getid.py`  # 从解析后的文本中提取数据集标识符以及context with window=100
-
-格式说明： [TP/FP/FN] 其中：
-
-TP (True Positive): 正确识别的数量
-
-FP (False Positive): 错误识别的数量
-
-FN (False Negative): 遗漏的数量
-
-**XML**
-
----
-
-INFO 2025-09-06 20:47:50  [getid.py:194 - main()] all - f1: 0.3244 [495/1838/224]
-INFO 2025-09-06 20:47:50  [getid.py:194 - main()] doi - f1: 0.1475 [144/1483/181]
-INFO 2025-09-06 20:47:50  [getid.py:194 - main()] acc - f1: 0.6382 [351/355/43]
-
----
-
-INFO 2025-09-06 20:47:50  [getid.py:197 - main()] all - f1: 0.2720 [415/1918/304]
-INFO 2025-09-06 20:47:50  [getid.py:197 - main()] doi - f1: 0.1127 [110/1517/215]
-INFO 2025-09-06 20:47:50  [getid.py:197 - main()] acc - f1: 0.5545 [305/401/89]
-
-**pdf**
-
----
-
-INFO 2025-09-06 21:24:22  [getid.py:194 - main()] all - f1: 0.5508 [507/615/212]
-INFO 2025-09-06 21:24:22  [getid.py:194 - main()] doi - f1: 0.4344 [164/266/161]
-INFO 2025-09-06 21:24:22  [getid.py:194 - main()] acc - f1: 0.6317 [343/349/51]
-
----
-
-INFO 2025-09-06 21:24:22  [getid.py:197 - main()] all - f1: 0.4606 [424/698/295]
-INFO 2025-09-06 21:24:22  [getid.py:197 - main()] doi - f1: 0.3338 [126/304/199]
-INFO 2025-09-06 21:24:22  [getid.py:197 - main()] acc - f1: 0.5488 [298/394/96]
+`python getid_xml_5.py` 目前最新版本
 
 **4. 详细F1结果**
-`python F1.py`
-
-结果存储到 `temp/F1_details_xml.csv`
+`python F1.py` 结果存储到 `temp/F1_details_xml.csv`
 
 **LLM验证**
 
@@ -268,9 +232,106 @@ assum_type function: A vs B
 
 1. [X] xml to txt, parse_xml.py
 2. [X] txt result check, check_parse_xml.py
-3. [ ] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`, 写在 getid_xml.py 文件，增大TP，减小FN
-4. [ ] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter.py , helpers.py 的逻辑，写在 getid_xml.py 文件，减小FP. 如果dataset_id,
-5. [ ] getid.py 目前拆分正文和附录的逻辑是根据PDF文件写的，需要修改成对应的xml文件
-6. [ ] 把目前的内容放到kaggle上面运行一遍
-7. [ ] saperate data and paper
-8. [ ] saperate primary and second
+3. [X] getid.py 目前拆分正文和附录的逻辑是根据PDF文件写的，需要修改成对应的xml文件
+4. [X] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`, 写在 getid_xml.py 文件，增大TP，减小FN. getid_xml_3.py
+5. [X] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter.py 的逻辑，增加黑名单，减小doi-FP. getid_xml_5.py
+6. [X] 根据 `temp/F1_details_xml.csv`，修改正则表达式，减小acc-FP.
+    Processed 524 PDF files.
+    Processed 400 XML files.
+    Overwrote 400 text files from XML conversions.
+7. [ ] 把目前的内容放到kaggle上面运行一遍
+8. [ ] saperate data and paper
+9. [ ] saperate primary and second
+
+### 0908修改结果汇总
+
+```
+格式说明： [TP/FP/FN] 其中：
+TP (True Positive): 正确识别的数量
+FP (False Positive): 错误识别的数量
+FN (False Negative): 遗漏的数量
+
+
+# 原始：getid_xml.py
+
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml.py"
+
+---
+
+INFO 2025-09-07 23:49:11  [getid_xml.py:194 - main()] all - f1: 0.3244 [495/1838/224]
+INFO 2025-09-07 23:49:11  [getid_xml.py:194 - main()] doi - f1: 0.1475 [144/1483/181]
+INFO 2025-09-07 23:49:11  [getid_xml.py:194 - main()] acc - f1: 0.6382 [351/355/43]
+
+---
+
+INFO 2025-09-07 23:49:11  [getid_xml.py:197 - main()] all - f1: 0.2720 [415/1918/304]
+INFO 2025-09-07 23:49:11  [getid_xml.py:197 - main()] doi - f1: 0.1127 [110/1517/215]
+INFO 2025-09-07 23:49:11  [getid_xml.py:197 - main()] acc - f1: 0.5545 [305/401/89]
+
+# 原始：getid_xml_3.py
+
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_3.py"
+
+---
+
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] all - f1: 0.0591 [614/19436/105]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] doi - f1: 0.0293 [224/14751/101]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] acc - f1: 0.1426 [390/4685/4]
+
+---
+
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] all - f1: 0.0472 [490/19560/229]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] doi - f1: 0.0193 [148/14827/177]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] acc - f1: 0.1251 [342/4733/52]
+
+# 修改1：getid_xml_5.py - 针对DOI, 加入post_filter.py的黑名单过滤规则
+# 结果：从14751降低到378
+
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_5.py"
+
+---
+
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] all - f1: 0.1425 [617/7322/102]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] doi - f1: 0.4816 [223/378/102]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] acc - f1: 0.1019 [394/6944/0]
+
+---
+
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] all - f1: 0.1139 [493/7446/226]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] doi - f1: 0.3175 [147/454/178]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] acc - f1: 0.0895 [346/6992/48]
+
+# 修改2：getid_xml_5.py - 针对acc，修改REGEX_IDS
+# 结果：从FN (False Negative): 遗漏的数量从43降低到34
+
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_5.py"
+
+---
+
+INFO 2025-09-08 00:11:41  [getid_xml_5.py:392 - main()] all - f1: 0.5646 [583/763/136]
+INFO 2025-09-08 00:11:41  [getid_xml_5.py:392 - main()] doi - f1: 0.4816 [223/378/102]
+INFO 2025-09-08 00:11:41  [getid_xml_5.py:392 - main()] acc - f1: 0.6321 [360/385/34]
+
+---
+
+INFO 2025-09-08 00:11:41  [getid_xml_5.py:395 - main()] all - f1: 0.4465 [461/885/258]
+INFO 2025-09-08 00:11:41  [getid_xml_5.py:395 - main()] doi - f1: 0.3175 [147/454/178]
+INFO 2025-09-08 00:11:41  [getid_xml_5.py:395 - main()] acc - f1: 0.5514 [314/431/80]
+
+# 修改3: parse_combine.py，把xml和pdf的txt合并到一起
+
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_5.py"
+
+---
+
+INFO 2025-09-08 00:40:33  [getid_xml_5.py:392 - main()] all - f1: 0.5710 [643/890/76]
+INFO 2025-09-08 00:40:33  [getid_xml_5.py:392 - main()] doi - f1: 0.5178 [283/485/42]
+INFO 2025-09-08 00:40:33  [getid_xml_5.py:392 - main()] acc - f1: 0.6212 [360/405/34]
+
+---
+
+INFO 2025-09-08 00:40:33  [getid_xml_5.py:395 - main()] all - f1: 0.4405 [496/1037/223]
+INFO 2025-09-08 00:40:33  [getid_xml_5.py:395 - main()] doi - f1: 0.3330 [182/586/143]
+INFO 2025-09-08 00:40:33  [getid_xml_5.py:395 - main()] acc - f1: 0.5418 [314/451/80]
+
+```

@@ -140,47 +140,92 @@ def tidy_extraction(df) -> pl.DataFrame:
         .filter(~pl.col('dataset_id').map_elements(is_paper_prefix_func, return_dtype=pl.Boolean))
     )
 
-
-    # 建议替换的 REGEX_IDS
     REGEX_IDS = (
         r"(?i)\b(?:"
-        # Original Patterns
         r"CHEMBL\d+|"
-        r"E-(?:GEOD|PROT|MTAB|MEXP)-\d+|EMPIAR-\d+|"
-        r"ENS[A-Z]+\d+|" # More general Ensembl pattern
+        r"E-GEOD-\d+|E-PROT-\d+|E-MTAB-\d+|E-MEXP-\d+|EMPIAR-\d+|"
+        r"ENS[A-Z]+\d+|"
         r"EPI_ISL_\d{5,}|EPI\d{6,7}|"
-        r"HPA\d+|CP\d{6,}|IPR\d{6}|PF\d{5}|BX\d{6}|KX\d{6}|K0\d{4}|CAB\d{6}|"
-        r"NC_\d{6,}\.\d+|NM_\d{6,}|" # Loosened length constraints
+        r"HPA\d+|CP\d{6}|IPR\d{6}|PF\d{5}|BX\d{6}|KX\d{6}|K0\d{4}|CAB\d{6}|"
+        r"NC_\d{6}\.\d{1}|NM_\d{9}|"
         r"PRJNA\d+|PRJEB\d+|PRJDB\d+|PXD\d+|SAMN\d+|"
         r"GSE\d+|GSM\d+|"
-        r"(?:PDB\s?)?[1-9][A-Z0-9]{3}|HMDB\d+|" # Made "PDB" prefix optional
+        r"PDB\s?[1-9][A-Z0-9]{3}|HMDB\d+|"
         r"dryad\.[^\s\"<>]+|pasta\/[^\s\"<>]+|"
         r"(?:SR[RPAX]|STH|ERR|DRR|DRX|DRP|ERP|ERX)\d+|"
-        r"CVCL_[A-Z0-9]{4}|"
-        
-        # === New Patterns based on train_labels.csv analysis ===
-        r"rs\d+|"                     # dbSNP IDs, e.g., rs33912345
-        r"HGNC:\d+|"                  # HGNC IDs, e.g., HGNC:13735
-        
-        # MODIFIED: Changed \d{1,3} to \d+ to allow more digits in CATH IDs
-        r"\d+\.\d+\.\d+\.\d+|" 
-        
-        r"[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|" # UniProt IDs
-        r"MODEL\d+|"                  # BioModels ID
-        r"SRP\d+|"                    # SRA Project
-        r"GDS\d+"                     # GEO Datasets
-
-        # === Final additions for edge cases ===
-        r"NCT\d+|"          # ClinicalTrials.gov ID
-        r"[A-Z]{2}\d{6,}|"   # GenBank accession format (e.g., AF123456)
-        r"GPL\d+|"           # GEO Platform ID
-        
-        # NEW: Added to support IDs like D10700 (single letter + 5 or more digits)
-        r"[A-Z]\d{5,}"
-        
+        r"CVCL_[A-Z0-9]{4}"
         r")"
     )
+
+
+    # # REGEX_IDS FN (False Negative): 遗漏的数量可以达到0
+    # REGEX_IDS = (
+    #     r"(?i)\b(?:"
+    #     # Original Patterns
+    #     r"CHEMBL\d+|"
+    #     r"E-(?:GEOD|PROT|MTAB|MEXP)-\d+|EMPIAR-\d+|"
+    #     r"ENS[A-Z]+\d+|" # More general Ensembl pattern
+    #     r"EPI_ISL_\d{5,}|EPI\d{6,7}|"
+    #     r"HPA\d+|CP\d{6,}|IPR\d{6}|PF\d{5}|BX\d{6}|KX\d{6}|K0\d{4}|CAB\d{6}|"
+    #     r"NC_\d{6,}\.\d+|NM_\d{6,}|" # Loosened length constraints
+    #     r"PRJNA\d+|PRJEB\d+|PRJDB\d+|PXD\d+|SAMN\d+|"
+    #     r"GSE\d+|GSM\d+|"
+    #     r"(?:PDB\s?)?[1-9][A-Z0-9]{3}|HMDB\d+|" # Made "PDB" prefix optional
+    #     r"dryad\.[^\s\"<>]+|pasta\/[^\s\"<>]+|"
+    #     r"(?:SR[RPAX]|STH|ERR|DRR|DRX|DRP|ERP|ERX)\d+|"
+    #     r"CVCL_[A-Z0-9]{4}|"
+        
+    #     # === New Patterns based on train_labels.csv analysis ===
+    #     r"rs\d+|"                     # dbSNP IDs, e.g., rs33912345
+    #     r"HGNC:\d+|"                  # HGNC IDs, e.g., HGNC:13735
+        
+    #     # MODIFIED: Changed \d{1,3} to \d+ to allow more digits in CATH IDs
+    #     r"\d+\.\d+\.\d+\.\d+|" 
+        
+    #     r"[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|" # UniProt IDs
+    #     r"MODEL\d+|"                  # BioModels ID
+    #     r"SRP\d+|"                    # SRA Project
+    #     r"GDS\d+"                     # GEO Datasets
+
+    #     # === Final additions for edge cases ===
+    #     r"NCT\d+|"          # ClinicalTrials.gov ID
+    #     r"[A-Z]{2}\d{6,}|"   # GenBank accession format (e.g., AF123456)
+    #     r"GPL\d+|"           # GEO Platform ID
+        
+    #     # NEW: Added to support IDs like D10700 (single letter + 5 or more digits)
+    #     r"[A-Z]\d{5,}"
+        
+    #     r")"
+    # )
     
+    # WHITELIST_ACC_PATTERNS = (
+    #     r"(?i)^(?:"
+    #     r"STH\d{5,}|SR[RPAX]\d{6,}|ERR\d{6,}|DRR\d{6,}|DRX\d{6,}|DRP\d{6,}|ERP\d{6,}|ERX\d{6,}|"
+    #     r"SRP\d{6,}|"
+    #     r"SAMN\d{8,}|"
+    #     r"rs\d{6,}|"
+    #     r"[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}|"
+    #     r"PXD\d{6,}|"
+    #     r"PRJNA\d{5,}|"
+    #     r"PF\d{5}|"
+    #     r"NM_\d{6,}|NC_\d{6,}\.\d+|"
+    #     r"MODEL\d{10,}|"
+    #     r"[A-Z]{2}\d{6,8}|"
+    #     r"K0\d{4}|"
+    #     r"IPR\d{6}|"
+    #     r"HPA\d{6,}|"
+    #     r"GSE\d{5,}|"
+    #     r"EPI_ISL_\d{5,}|EPI\d{6,7}|"
+    #     r"ENS[A-Z]{3,5}\d{8,}|"
+    #     r"EMPIAR-\d{5,}|"
+    #     r"E-(?:GEOD|PROT|MTAB|MEXP)-\d{4,}|"
+    #     r"CVCL_[A-Z0-9]{4}|"
+    #     r"CHEMBL\d{4,}|"
+    #     r"CAB\d{6}|"
+    #     r"(?:PDB\s?)?[1-9][A-Z0-9]{3}|"
+    #     r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
+    #     r")$"
+    # )
 
     acc_df = (
         df.with_columns(
@@ -208,6 +253,11 @@ def tidy_extraction(df) -> pl.DataFrame:
               .otherwise('dataset_id')
               .alias('dataset_id')
         )
+        # # 应用白名单过滤：只保留完全匹配白名单模式的accession IDs
+        # .filter(
+        #     ~pl.col('dataset_id').str.starts_with(DOI_LINK) &  # 排除DOI链接
+        #     pl.col('dataset_id').str.contains(WHITELIST_ACC_PATTERNS)  # 必须完全匹配白名单模式
+        # )
     )
 
     df = pl.concat([doi_df, acc_df])
@@ -347,9 +397,13 @@ def main(input_dir: str, parquet_dir: str, output_dir: str) -> None:
 
 if __name__=='__main__': 
 
-    input_dir = './temp/parse_xml'
-    parquet_dir = './temp/extracted.parquet_xml'
-    output_dir = './temp/submission_xml_5.csv'
+    # input_dir = './temp/parse_xml'
+    # parquet_dir = './temp/extracted.parquet_xml_5'
+    # output_dir = './temp/submission_xml_5.csv'
+
+    input_dir = './temp/parse_combine'
+    parquet_dir = './temp/extracted.parquet_combine'
+    output_dir = './temp/submission_xml_combine.csv'
 
     main(input_dir, parquet_dir, output_dir)
 
@@ -358,40 +412,5 @@ if __name__=='__main__':
 TP (True Positive): 正确识别的数量
 FP (False Positive): 错误识别的数量
 FN (False Negative): 遗漏的数量
-"""
-
-
-#是在原先代码的基础上修改的
-#针对xml转换后的txt:修改正则与过滤规则，可得到600多一点的正确值，但是误识别达到将近两万条
-#针对pdf转换后的txt:修改正则与过滤规则，可得到650多一点的正确值，但是误识别达到一万五千条
-#注意看一下文件存储的路径是否正确
-
-"""
-# 原始：getid_xml_3.py
-(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_3.py"
-**********
-INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] all - f1: 0.0591 [614/19436/105]
-INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] doi - f1: 0.0293 [224/14751/101]
-INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] acc - f1: 0.1426 [390/4685/4]
-**********
-INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] all - f1: 0.0472 [490/19560/229]
-INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] doi - f1: 0.0193 [148/14827/177]
-INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] acc - f1: 0.1251 [342/4733/52]
-
-# 修改：getid_xml_5.py - 针对DOI, 加入post_filter.py的黑名单过滤规则
-# 结果：从14751降低到378
-(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_5.py"
-**********
-INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] all - f1: 0.1425 [617/7322/102]
-INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] doi - f1: 0.4816 [223/378/102]
-INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] acc - f1: 0.1019 [394/6944/0]
-**********
-INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] all - f1: 0.1139 [493/7446/226]
-INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] doi - f1: 0.3175 [147/454/178]
-INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] acc - f1: 0.0895 [346/6992/48]
-
-
-# 修改：getid_xml_5.py - 针对acc，加入白名单过滤规则
-
 """
 
