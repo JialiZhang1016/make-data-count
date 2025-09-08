@@ -1,511 +1,336 @@
-RESEARCH ARTICLE
-Automated identification of piglet brain tissue
-from MRI images using Region-based
-Convolutional Neural Networks
-Kayla L. Stanke1, Ryan J. LarsenID1*, Laurie Rund1, Brian J. Leyshon2, Allison Y. Louie3,
-Andrew J. Steelman1,3,4,5
-1 Department of Animal Sciences, University of Illinois Urbana-Champaign, Champaign, Illinois, United
-States of America, 2 Abbott Nutrition, Discovery Research, Columbus, Ohio, United States of America,
-3 Division of Nutritional Sciences, University of Illinois Urbana-Champaign, Champaign, Illinois, United States
-of America, 4 Neuroscience Program, University of Illinois Urbana-Champaign, Champaign, Illinois, United
-States of America, 5 Carl R. Woese Institute for Genomic Biology, University of Illinois Urbana-Champaign,
-Champaign, Illinois, United States of America
-* larsen@illinois.edu
-Abstract
-Magnetic resonance imaging is an important tool for characterizing volumetric changes of
-the piglet brain during development. Typically, an early step of an imaging analysis pipeline
-is brain extraction, or skull stripping. Brain extractions are usually performed manually; how-
-ever, this approach is time-intensive and can lead to variation between brain extractions
-when multiple raters are used. Automated brain extractions are important for reducing the
-time required for analyses and improving the uniformity of the extractions. Here we demon-
-strate the use of Mask R-CNN, a Region-based Convolutional Neural Network (R-CNN), for
-automated brain extractions of piglet brains. We validate our approach using Nested Cross-
-Validation on six sets of training/validation data drawn from 32 pigs. Visual inspection of the
-extractions shows acceptable accuracy, Dice coefficients are in the range of 0.95–0.97, and
-Hausdorff Distance values in the range of 4.1–8.3 voxels. These results demonstrate that
-R-CNNs provide a viable tool for skull stripping of piglet brains.
-Introduction
-Piglets are an important translational model for measuring the effect of nutrition on brain
-development. Not only do piglet brain stages of development correlate with human infant
-development, but their nutritional requirements are also comparable [1]. Magnetic resonance
-imaging (MRI) is an important technique for obtaining non-invasive measurements of brain
-volumes. An early step in volumetric analysis is the identification or “extraction” of the brain
-from the surrounding tissue. Manual tracing has been the gold standard for brain extraction
-and is performed by creating an outline that separates the surrounding skull, muscles, tissues,
-and fat from the brain [1–6]. However, the method is not ideal when working with large data
-sets because it is time intensive and is subject to inconsistencies between raters/evaluators.
-Automated brain extraction techniques are needed to overcome these limitations. However,
-PLOS ONE
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-1 / 11
-a1111111111
-a1111111111
-a1111111111
-a1111111111
-a1111111111
-OPEN ACCESS
-Citation: Stanke KL, Larsen RJ, Rund L, Leyshon
-BJ, Louie AY, Steelman AJ (2023) Automated
-identification of piglet brain tissue from MRI
-images using Region-based Convolutional Neural
-Networks. PLoS ONE 18(5): e0284951. https://doi.
-org/10.1371/journal.pone.0284951
-Editor: Zhishun Wang, Columbia University,
-UNITED STATES
-Received: December 2, 2021
-Accepted: April 12, 2023
-Published: May 11, 2023
-Peer Review History: PLOS recognizes the
-benefits of transparency in the peer review
-process; therefore, we enable the publication of
-all of the content of peer review and author
-responses alongside final, published articles. The
-editorial history of this article is available here:
-https://doi.org/10.1371/journal.pone.0284951
-Copyright: © 2023 Stanke et al. This is an open
-access article distributed under the terms of the
-Creative Commons Attribution License, which
-permits unrestricted use, distribution, and
-reproduction in any medium, provided the original
-author and source are credited.
-Data Availability Statement: All relevant data have
-been uploaded to the Illinois Data Bank: https://doi.
-org/10.13012/B2IDB-5784165_V1.
-reports of automated extractions of pig brains are limited. A graph theory approach that
-makes use of prior information of anatomical structures has been used to perform automated
-extraction of piglet brains [7]. However, deep learning technologies offer the possibility of
-automating the training of anatomical structures to enable brain extractions [8–10]. A U-Net
-model trained on humans, non-human primates, and 3 pig scans has been shown to success-
-fully perform brain extractions on 2 pig scans [11]. Also, a patch-based 3D U-Net trained on
-piglets has been used for successful brain extractions of piglets of multiple ages, via transfer
-learning [12]. An alternative segmentation tool is Mask R-CNN, a Region-based Convolu-
-tional Neural Network (R-CNN). This tool has been used to create a mouse brain atlas that is
-generalizable across developmental ages and imaging modalities [10]. These results suggest
-that Mask R-CNN may be effective for piglet brain extraction. Here we demonstrate the use of
-Mask R-CNN for automated brain extractions of piglet brains.
-Methods
-Animals and care practices
-All animal care and handling procedures were approved by the University of Illinois Institu-
-tional Animal Care and Use Committee (Protocol #18256) and were in accordance with fed-
-eral guidelines. Male and female average-for-gestational age, Yorkshire crossbred, full-term,
-naturally-delivered piglets were obtained from University of Illinois Swine Farm at postnatal
-day 2 to allow for colostrum consumption. All piglets remained intact but did undergo routine
-processing on the farm including iron dextran (Henry Schein Animal Health, Dublin, OH,
-USA) and antibiotic injection (EXCEDE1, Zoetis, Parsippany, NJ 07054, USA) per routine
-farm practice and according to label. Four groups of piglets were placed individually into a
-caging system under standard conditions as described in a previous publication [13] and ran-
-domly assigned to five diet treatment groups. The control group of piglets remained with the
-sow until day 28 of age with free access to suckle and were weighed daily. The current study
-does not distinguish between diet groups.
-Sow-raised piglets were handled daily, as were the artificially raised animals to diminish dif-
-ferences between the two types of rearing. After arrival at the Edward R. Madigan Laboratory
-(ERML) Animal Facility, experimental piglets received one dose of antibiotic: the first of two
-cohorts received SpectraguardTM (Bimeda, Inc, Oakbrook Terrace, IL 60181) on postnatal day
-2 and the second cohort received Baytril1 (Bayer healthcare LLC Shawnee Mission, KS
-66201) on postnatal day 4. Additional doses of antibiotic were administered during the experi-
-ment only under the direction of the staff veterinarian. Animals were individually housed in
-racks of metabolism cages specifically designed to artificially rear neonatal piglets under con-
-stant 12-h light/dark cycles. Piglet housing at ERML was as follows: space allowance for indi-
-vidual piglets was 30" deep, 23" wide, and 18.5" high, providing 4.8 square feet of floor space
-per piglet. Each piglet was supplied with a heating pad, toy, and blanket. Room temperatures
-were kept at 85–95˚F using space heaters. Animals were also offered water or BlueLite1 elec-
-trolyte solution ad libitum. Cages and heating pads were disinfected, and toys and blankets
-replaced daily. Animal care protocols were in accordance with National Institutes of Health
-Guidelines for Care and Use of Laboratory Animals and were approved by the University of
-Illinois Laboratory Animal Care and Use Committee.
-MRI acquisition
-MRI data were acquired using 3 T Prisma scanner (Siemens, Erlangen) housed at the Biomedi-
-cal Imaging Center at the University of Illinois. Pigs were anesthetized using TKX (combina-
-tion of 2.5 ml of xylazine (100 mg/ml) and 2.5 ml of ketamine (100mg/ml) added to a Telazol
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-2 / 11
-Funding: The study was funded by Abbott
-Nutrition, www.abbott.com, grant number
-00490326 to A.S. The funder aided with study
-design, data analysis, decision to publish, and
-preparation of the manuscript.
-Competing interests: The authors have declared
-that no competing interests exist.
-vial and administered at a dosage of 0.02–0.03 ml/kg IM) then maintained on isofluorane (1–
-3%) throughout the imaging. Animals were scanned in the supine position using a specialized
-piglet head coil (Rapid Biomed, Rimpar). During scanning, the respiration rate, heart rate and
-blood oxygen levels were monitored using a LifeWindow LW9x monitor (Digicare, Boynton
-Beach, FL).
-MRI Structural Imaging: Our structural MRI scan consisted of a 3D MPRAGE acquisition
-(voxel size = 0.6 x 0.6 x 0.6 mm3, FOV = 173 x 173 mm2, 256 slices, GRAPPA—GeneRalized
-Autocalibrating Partial Parallel Acquisition—acceleration factor R = 2; TR = 2060 ms,
-TI = 1060 ms, flip angle = 9⁰, for an overall scan time of 5:21 min).
-Manual brain extraction
-Manual brain extraction was facilitated by first performing a rigid alignment of T1-weighted
-images from all piglets to the brain atlas [14]. This was done using SPM12 imaging analysis
-software. First, we performed a manual rotation to approximately align the T1-weighted
-images with 28-day piglet template [14], without resampling. We then used the “coregistra-
-tion” function of SPM12 to further align the T1-weighted images to the template, again without
-resampling. The resulting alignment was accurate for all piglets, even though it was performed
-without first performing brain extraction, as shown by a representative image in Fig 1.
-An atlas-based brain mask was then resampled into the native space of each piglet, provid-
-ing initial estimates of the brain masks for each piglet. These initial estimates were then modi-
-fied to create individualized brain masks using Slicer3D, as shown in Fig 2. Most revisions
-were done in the sagittal plane, but all three orthogonal views were reviewed and modified for
-improved precision. All extractions were performed by one rater to minimize variability. No
-image intensity normalization was performed prior to manual or automated brain extraction.
-Fig 1. Results of coregistration of piglet brain to the average brain template. The top row shows images from a
-representative piglet brain and bottom row shows the same slices from the average brain template. Blue lines within
-each image indicate the locations of the perpendicular slices. The consistency of two sets of images confirms a good
-approximate alignment of the T1-weighted image with the average brain template.
-https://doi.org/10.1371/journal.pone.0284951.g001
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-3 / 11
-Automated brain extraction
-This study uses a deep learning instance segmentation neural network using object detection
-model Mask R-CNN with Inception Resnet v2 architecture [15], pretrained on the COCO
-2017 data set [16]. Our model uses a Tensor Flow 2.4.0 implementation of Mask R-CNN [15],
-with feature extractor Faster R-CNN [17]. Faster R-CNN utilizes a Region Proposal Network
-(RPN) to select object proposals from a backbone, which for our study was generated using a
-combined ResNet101 and Feature Pyramid Network (FPN) [18].
-Training was performed using a single NVIDIA GeForce GTX 1070 Ti GPU, with NVIDIA
-developer driver 465.21, CUDA 11.0, and CUDNN library 8.0.4. The network was trained with
-a cosine decay learning rate of 0.008 and a momentum optimizer value of 0.9, and a batch size
-of two images, or slices, per iteration. We performed 200,000 iterations, or 48.8 epochs. The
-training and segmentation were performed only in 2D sagittal planes. During evaluation, pre-
-dicted masks were binarized at a confidence parameter threshold of 0.5. The masks created
-from the 2D slices were then combined into 3D datasets for final cleaning. This involved larg-
-est connected component (LCC) filtering to remove several small and spurious masks, typi-
-cally occurring in slices that did not include brain. Cleaning was done by first using the Matlab
-function “bwconncomp” to identify all isolated masks, consisting of one or more connected
-voxels, where connected voxels are defined as those with touching faces. Then we discarded all
-but the largest mask, or brain mask.
-Validation
-Nested Cross-Validation was used to evaluate the performance of the training models. This
-method has been shown to produce unbiased performance estimates, even in small datasets
-[19]. We randomly assigned each of the 32 pigs to one of six test groups. Four of the test groups
-consisted of five pigs, and two of the test groups consisted of six pigs. For each test group, a
-Fig 2. Demonstration of the creation of manually-defined brain mask via modification of the template brain mask. A
-representative T1-weighted image is overlayed with the template brain mask, creating a brighter region. The green outline shows the
-manual-designated brain mask. The manual brain mask was created by editing the template brain mask for each individual piglet.
-https://doi.org/10.1371/journal.pone.0284951.g002
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-4 / 11
-training model was generated using the remaining pigs, beginning with the same architec-
-ture which was naïve to the test images. Validation of the test groups was performed by
-comparing the machine-generated masks with the manually generated masks by visual
-inspection, by computing Dice coefficients, 3D Hausdorff Distance (HD) values, and Pear-
-son correlations between the manual and machine-generated masks. Dice coefficients were
-calculated using the formula 2|X\Y|/(|X|+|Y|), where |. . .| indicates the number of voxels
-within the mask, \ indicates the union, and X and Y indicate the manual and machine-gen-
-erated masks. Dice coefficients were calculated before and after LCC filtering. We calculated
-3D Hausdorff Distance (HD) values, using the freely-available “EvaluateSegmentation”
-command-line tool (https://github.com/Visceral-Project/EvaluateSegmentation) [20].
-Because HD values are sensitive to outliers eliminated by LCC filtering, HD values were
-only calculated after LCC filtering [20].
-Results
-Visual inspection of the brain extractions reveals good accuracy of automatic brain extractions
-(Fig 3). The six models were labelled with letters from A to F. We found that Model D failed to
-identify the brain within several sagittal slices of one of the test pigs, as shown in Fig 4(A) and
-4(B). These slices included an unusually bright region in the subcutaneous fat layer near the
-superior area of the head (see Fig 4(B)). This bright region was removed by manually outlining
-it in one of the slices, and then removing the traced voxels from all the slices (see Fig 4(D)).
-The modified structural images were then re-evaluated using the same model, producing a
-more accurate brain mask (see Fig 4(C) and 4(D)). This manual correction boosted the Dice
-coefficient of the pre-LCC filtered images from 0.91 to 0.96. The brain mask from the modified
-images was used for subsequent validation.
-Fig 3. Sample extractions from two piglets. The overlay that creates a brighter region indicates machine extractions,
-and the green outline shows the manual brain masks. The top row shows a piglet tested using Model A, and the bottom
-row shows a piglet tested using Model B.
-https://doi.org/10.1371/journal.pone.0284951.g003
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-5 / 11
-Visual inspection of the results also revealed that the LCC filter was important for one of
-the pigs, for which the automated brain extraction inaccurately identified large brain patches
-within 5 slices outside of the head. This pig exhibited a Dice coefficient of 0.92, which
-improved to 0.957 after LCC filtration. The LCC filter improved Dice coefficients for all other
-pigs as well. However, this benefit was smaller due to the lower volumes of outlier voxels; for
-the remaining 31 pigs, the maximum improvement in Dice coefficient was 0.008 and the mean
-improvement was 0.001. The final brain extractions, after application of the LCC filter, exhib-
-ited Dice coefficients in the range of 0.95–0.97 (mean: 0.961, standard deviation: 0.0036, see
-histogram in Fig 5(A)), and HD values in the range of 4.1–8.3 voxels (mean: 5.48, standard
-deviation: 1.16, see histogram in Fig 5(B)), or 2.5–5.0 mm (mean: 3.3, standard deviation: 0.7).
-The Pearson correlation coefficient, R, of the volumes, Vmanual and Vmachine, of the manual and
-machine-generated masks was R = 0.90, with p<0.001 (see Fig 6).
-Fig 4. A segmentation error generated by Model D that was subsequently corrected. Panels (a) and (b) show the
-inaccurate mask, indicated by green lines, and panels (c) and (d) show the mask generated by the same model after
-image modification, with the same views and the same slices. Axial slices are shown in (a) and (c); sagittal slices are
-shown in (b) and (d). The yellow lines in the axial views, (a) and (c), show the location of the sagittal view and the red
-lines in the sagittal views, (b) and (d), show the location of the axial views. For the inaccurate mask there are several
-sagittal slices in which no brain regions were identified, as shown in (a). These slices included a bright region in the fat
-layer of the superior region of the head, as shown in (b). The bright region was manually traced and removed from the
-same voxels of all sagittal slices as shown in (d). A re-evaluation of the edited images using the same model, Model D,
-produced an accurate brain extraction, as shown in (c) and (d).
-https://doi.org/10.1371/journal.pone.0284951.g004
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-6 / 11
-Fig 5. Histograms of (a) Dice coefficients and (b) Hausdorff Distance (HD) values calculated from each of the 32 test cases after LCC filtration.
-https://doi.org/10.1371/journal.pone.0284951.g005
-Fig 6. The consistency of brain volumes, Vmanual and Vmachine, from manual and machine brain extractions,
-respectively. The solid line indicates unity and the colors denote the models used. Brain volume units are cubic
-centimeters.
-https://doi.org/10.1371/journal.pone.0284951.g006
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-7 / 11
-Discussion
-We have shown that Mask R-CNN trained on manually generated masks can be used to per-
-form accurate piglet brain extractions. However, for one of the 32 test cases, a model failed to
-identify brain tissue within several slices. This problem was eliminated when the evaluation
-was repeated after the removal of an unusually bright region of subcutaneous fat from the
-images. It is possible that that problem could have been avoided by using more training data,
-or by performing a bias field correction, or intensity normalization, before training. Image
-intensity normalization is often important for automated segmentation [21, 22]. We did not
-perform this step before brain extraction, because in SPM, a bias field correction is typically
-done simultaneous to tissue segmentation [23]. However, incorporation of a normalization
-before brain extraction might improve the generalization of our model to other scanning con-
-ditions, such as different scanners and coils.
-Dice coefficients were >0.95 and HD values were <5 mm; these are similar to values that
-have been achieved by neural networks for the skull-stripping of non-human primates [11],
-rodents [24, 25], and piglets [12]. In contrast to our study, Ref [12] employed a 3D patch-
-based U-net architecture. The potential strength of a 3D patch is that the added depth dimen-
-sion enhances the local information available to the neural network. However, because of the
-higher memory demands of using 3D images, the model training and inference steps in
-Ref. [12] were performed on cubic patches of 323 voxels. A potential disadvantage of this
-approach is that the segmented patches from the test images must be aggregated and recon-
-ciled. By contrast, a potential strength of a 2D approach is the potential to train on complete
-slices, thereby simplifying post-processing. In Ref. [12] the Dice coefficients from the final
-method, including post-processing, were in the range of 0.94–0.96 (mean 0.952, standard devi-
-ation: 0.0069), slightly lower than the Dice coefficients observed in our study (0.95–0.97,
-mean: 0.961, standard deviation: 0.0036). Similarly, HD values from Ref. [12] were 5.4–14.3
-voxels (mean: 8.51, standard deviation: 2.20), slightly higher than the HD values of our study
-(4.1–8.3 voxels, mean: 5.48, standard deviation: 1.16). The higher Dice coefficients and lower
-HD values of our study could be influenced by multiple factors, including image quality differ-
-ences, which are sensitive to factors such as age differences in piglets, equipment used, and
-acquisition times. Clearly, a quantitatively accurate comparison of brain extraction methods
-would require use of the same MRI data. It is possible that the differences in performance met-
-rics were driven by the choice of network architecture. Direct comparisons of Mask R-CNN
-and U-Net architectures have favored U-Net architectures for segmentation [26] and Mask
-R-CNN object detection [27, 28]; giving rise to a hybrid methods that exploit the relative
-strengths of both methods [29], or that improve upon segmentation abilities of Mask R-CNN
-[30]. Despite the potential drawbacks of Mask R-CNN for segmentation, our results demon-
-strate that it can be suitable for this application.
-Improvements to our approach could be implemented in a variety of ways. Training with a
-larger sample size is expected to increase performance and accuracy of machine learning algo-
-rithms [31]. Performance may also be improved by hyperparameter tuning and optimization
-[32, 33]. Improved performance might have been obtained by using 3D Mask R-CNN; how-
-ever we employed 2D Mask R-CNN to obtain shorter training times [34]. The use of 3D, or
-2.5D, segmentation has the potential to create a brain mask with greater smoothness at the
-edge of the brain between adjacent slices. However, the non-smoothness of the automated seg-
-mentations is similar to that seen with manual brain extractions, which are also performed in
-2D. Also, any inaccuracies due to non-smoothness appear to be localized in the CSF layer sur-
-rounding the brain and unlikely to influence the results of automated segmentation of grey
-matter on the edge of the brain, performed on the extracted brain images. Brain exaction
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-8 / 11
-performance may also be improved by using quantitative imaging techniques, such as MT sat-
-uration [35, 36], to improve the contrast between brain and non-brain tissues. Further
-research is required to access whether network architectures such as U-Net [37], may improve
-upon results obtained with Mask R-CNN.
-In summary, the use of automated brain extraction has the potential to reduce analysis time
-because it requires minimal supervision. This process is scalable to a high number of piglets,
-avoiding complications and inconsistencies that might arise from having multiple raters per-
-form manual brain extractions. The effectiveness of Mask R-CNN for performing piglet brain
-extractions implies that it may be a useful tool for segmenting sub-regions of the brain. Further
-research is needed to assess whether such an approach may compliment or improve upon
-existing methods for volumetric analysis of piglet brain MRI data [4, 23, 38].
-Acknowledgments
-This work was conducted in part at the Biomedical Imaging Center of the Beckman Institute
-for Advanced Science and Technology at the University of Illinois Urbana-Champaign
-(UIUC-BI-BIC).
-Author Contributions
-Conceptualization: Kayla L. Stanke, Ryan J. Larsen, Brian J. Leyshon.
-Data curation: Kayla L. Stanke, Ryan J. Larsen.
-Formal analysis: Kayla L. Stanke, Ryan J. Larsen.
-Funding acquisition: Ryan J. Larsen, Laurie Rund, Brian J. Leyshon, Andrew J. Steelman.
-Investigation: Kayla L. Stanke, Ryan J. Larsen, Laurie Rund, Brian J. Leyshon, Allison Y.
-Louie.
-Methodology: Kayla L. Stanke, Ryan J. Larsen.
-Project administration: Ryan J. Larsen, Laurie Rund, Brian J. Leyshon.
-Resources: Ryan J. Larsen, Laurie Rund, Allison Y. Louie.
-Software: Kayla L. Stanke, Ryan J. Larsen.
-Supervision: Ryan J. Larsen, Laurie Rund, Brian J. Leyshon, Andrew J. Steelman.
-Validation: Kayla L. Stanke, Ryan J. Larsen.
-Visualization: Kayla L. Stanke, Ryan J. Larsen.
-Writing – original draft: Kayla L. Stanke, Ryan J. Larsen.
-Writing – review & editing: Kayla L. Stanke, Ryan J. Larsen, Brian J. Leyshon, Andrew J.
-Steelman.
-References
-1.
-Mudd AT, Dilger RN. Early-Life Nutrition and Neurodevelopment: Use of the Piglet as a Translational
-Model. Advances in Nutrition. 2017; 8(1):92–104. https://doi.org/10.3945/an.116.013243 PMID:
-28096130
-2.
-Bokde AL, Teipel SJ, Schwarz R, Leinsinger G, Buerger K, Moeller T, et al. Reliable manual segmenta-
-tion of the frontal, parietal, temporal, and occipital lobes on magnetic resonance images of healthy sub-
-jects. Brain Res Brain Res Protoc. 2005; 14(3):135–45. https://doi.org/10.1016/j.brainresprot.2004.10.
-001 PMID: 15795167
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-9 / 11
-3.
-Conrad MS, Dilger RN, Nickolls A, Johnson RW. Magnetic resonance imaging of the neonatal piglet
-brain. Pediatr Res. 2012; 71(2):179–84. https://doi.org/10.1038/pr.2011.21 PMID: 22258129
-4.
-Gan H, Zhang Q, Zhang H, Chen Y, Lin J, Kang T, et al. Development of new population-averaged stan-
-dard templates for spatial normalization and segmentation of MR images for postnatal piglet brains.
-Magn Reson Imaging. 2014; 32(10):1396–402. https://doi.org/10.1016/j.mri.2014.08.036 PMID:
-25179132
-5.
-Mudd AT, Alexander LS, Berding K, Waworuntu RV, Berg BM, Donovan SM, et al. Dietary Prebiotics,
-Milk Fat Globule Membrane, and Lactoferrin Affects Structural Neurodevelopment in the Young Piglet.
-Front Pediatr. 2016; 4:4. https://doi.org/10.3389/fped.2016.00004 PMID: 26870719
-6.
-Leyshon BJ, Radlowski EC, Mudd AT, Steelman AJ, Johnson RW. Postnatal Iron Deficiency Alters
-Brain Development in Piglets. J Nutr. 2016; 146(7):1420–7. https://doi.org/10.3945/jn.115.223636
-PMID: 27281804
-7.
-Durandeau AF J.-B.; Bloch I.; Mazerand E.; Menei P.; Montero-Menei C.; Dinomais M., editor Structural
-information and (hyper)graph matching for MRI piglet brain extraction. International Conference on Pat-
-tern Recognition Systems; 2019 8–10 July 2019; Tours, France.
-8.
-Akkus Z, Galimzianova A, Hoogi A, Rubin DL, Erickson BJ. Deep Learning for Brain MRI Segmentation:
-State of the Art and Future Directions. J Digit Imaging. 2017; 30(4):449–59. https://doi.org/10.1007/
-s10278-017-9983-4 PMID: 28577131
-9.
-Hurtz S, Chow N, Watson AE, Somme JH, Goukasian N, Hwang KS, et al. Automated and manual hip-
-pocampal segmentation techniques: Comparison of results, reproducibility and clinical applicability.
-Neuroimage Clin. 2019; 21:101574. https://doi.org/10.1016/j.nicl.2018.10.012 PMID: 30553759
-10.
-Iqbal A, Khan R, Karayannis T. Developing a brain atlas through deep learning. Nature Machine Intelli-
-gence. 2019; 1(6):277–87.
-11.
-Wang X, Li XH, Cho JW, Russ BE, Rajamani N, Omelchenko A, et al. U-net model for brain extraction:
-Trained on humans for transfer to non-human primates. Neuroimage. 2021; 235:118001. https://doi.
-org/10.1016/j.neuroimage.2021.118001 PMID: 33789137
-12.
-Coupeau P, Fasquel JB, Mazerand E, Menei P, Montero-Menei CN, Dinomais M. Patch-based 3D U-
-Net and transfer learning for longitudinal piglet brain segmentation on MRI. Comput Meth Prog Bio.
-2022;214. https://doi.org/10.1016/j.cmpb.2021.106563 PMID: 34890993
-13.
-Rytych JL, Elmore MR, Burton MD, Conrad MS, Donovan SM, Dilger RN, et al. Early life iron deficiency
-impairs spatial cognition in neonatal piglets. J Nutr. 2012; 142(11):2050–6. https://doi.org/10.3945/jn.
-112.165522 PMID: 23014488
-14.
-Conrad MS, Sutton BP, Dilger RN, Johnson RW. An in vivo three-dimensional magnetic resonance
-imaging-based averaged brain collection of the neonatal piglet (Sus scrofa). PLoS One. 2014; 9(9):
-e107650. https://doi.org/10.1371/journal.pone.0107650 PMID: 25254955
-15.
-He KM, Gkioxari G, Dollar P, Girshick R. Mask R-CNN. Ieee I Conf Comp Vis. 2017:2980–8.
-16.
-Lin T-Y, Maire M, Belongie S, Hays J, Perona P, Ramanan D, et al., editors. Microsoft COCO: Common
-Objects in Context2014; Cham: Springer International Publishing.
-17.
-Ren SQ, He KM, Girshick R, Sun J. Faster R-CNN: Towards Real-Time Object Detection with Region
-Proposal Networks. Ieee T Pattern Anal. 2017; 39(6):1137–49. https://doi.org/10.1109/TPAMI.2016.
-2577031 PMID: 27295650
-18.
-Lin TY, Dollar P, Girshick R, He KM, Hariharan B, Belongie S. Feature Pyramid Networks for Object
-Detection. Proc Cvpr Ieee. 2017:936–44.
-19.
-Vabalas A, Gowen E, Poliakoff E, Casson AJ. Machine learning algorithm validation with a limited sam-
-ple size. PLoS One. 2019; 14(11):e0224365. https://doi.org/10.1371/journal.pone.0224365 PMID:
-31697686
-20.
-Taha AA, Hanbury A. Metrics for evaluating 3D medical image segmentation: analysis, selection, and
-tool. BMC Med Imaging. 2015; 15:29. https://doi.org/10.1186/s12880-015-0068-x PMID: 26263899
-21.
-Birenbaum A, Greenspan H. Longitudinal Multiple Sclerosis Lesion Segmentation Using Multi-view
-Convolutional Neural Networks. Lect Notes Comput Sc. 2016; 10008:58–67.
-22.
-Drozdzal M, Chartrand G, Vorontsov E, Shakeri M, Di Jorio L, Tang A, et al. Learning normalized inputs
-for iterative estimation in medical image segmentation. Med Image Anal. 2018; 44:1–13. https://doi.org/
-10.1016/j.media.2017.11.005 PMID: 29169029
-23.
-Ashburner J, Friston KJ. Unified segmentation. Neuroimage. 2005; 26(3):839–51. https://doi.org/10.
-1016/j.neuroimage.2005.02.018 PMID: 15955494
-24.
-Hsu LM, Wang S, Ranadive P, Ban W, Chao THH, Song S, et al. Automatic Skull Stripping of Rat and
-Mouse Brain MRI Data Using U-Net. Front Neurosci-Switz. 2020;14. https://doi.org/10.3389/fnins.2020.
-568614 PMID: 33117118
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-10 / 11
-25.
-Oguz I, Zhang H, Rumple A, Sonka M. RATS: Rapid Automatic Tissue Segmentation in rodent brain
-MRI. J Neurosci Methods. 2014; 221:175–82. https://doi.org/10.1016/j.jneumeth.2013.09.021 PMID:
-24140478
-26.
-Vuola AO, Akram SU, Kannala J, editors. Mask-RCNN and U-net ensembled for nuclei segmentation.
-2019 IEEE 16th international symposium on biomedical imaging (ISBI 2019); 2019: IEEE.
-27.
-Durkee MS, Abraham R, Ai J, Fuhrman JD, Clark MR, Giger ML, editors. Comparing Mask R-CNN and
-U-Net architectures for robust automatic segmentation of immune cells in immunofluorescence images
-of Lupus Nephritis biopsies. Imaging, Manipulation, and Analysis of Biomolecules, Cells, and Tissues
-XIX; 2021: SPIE.
-28.
-Pathan RK, Lim WL, Lau SL, Ho CC, Khare P, Koneru RB. Experimental Analysis of U-Net and Mask
-R-CNN for Segmentation of Synthetic Liquid Spray.
-29.
-Konopczyński T, Heiman R, Woźnicki P, Gniewek P, Duvernoy M-C, Hallatschek O, et al., editors.
-Instance segmentation of densely packed cells using a hybrid model of U-net and mask R-CNN. Artifi-
-cial Intelligence and Soft Computing: 19th International Conference, ICAISC 2020, Zakopane, Poland,
-October 12–14, 2020, Proceedings, Part I 19; 2020: Springer.
-30.
-Shu JH, Nian FD, Yu MH, Li X. An Improved Mask R-CNN Model for Multiorgan Segmentation. Math
-Probl Eng. 2020;2020.
-31.
-Jollans L, Boyle R, Artiges E, Banaschewski T, Desrivieres S, Grigis A, et al. Quantifying performance
-of machine learning methods for neuroimaging data. Neuroimage. 2019; 199:351–65. https://doi.org/
-10.1016/j.neuroimage.2019.05.082 PMID: 31173905
-32.
-Yang L, Shami A. On hyperparameter optimization of machine learning algorithms: Theory and practice.
-Neurocomputing. 2020; 415:295–316.
-33.
-Wu J, Chen X-Y, Zhang H, Xiong L-D, Lei H, Deng S-H. Hyperparameter Optimization for Machine
-Learning Models Based on Bayesian Optimizationb. Journal of Electronic Science and Technology.
-2019; 17(1):26–40.
-34.
-Jeong J, Lei Y, Kahn S, Liu T, Curran WJ, Shu HK, et al. Brain tumor segmentation using 3D Mask R-
-CNN for dynamic susceptibility contrast enhanced perfusion imaging. Phys Med Biol. 2020; 65(18).
-https://doi.org/10.1088/1361-6560/aba6d4 PMID: 32674075
-35.
-Helms G, Draganski B, Frackowiak R, Ashburner J, Weiskopf N. Improved segmentation of deep brain
-grey matter structures using magnetization transfer (MT) parameter maps. Neuroimage. 2009; 47
-(1):194–8. https://doi.org/10.1016/j.neuroimage.2009.03.053 PMID: 19344771
-36.
-Helms G, Dathe H, Kallenberg K, Dechent P. High-resolution maps of magnetization transfer with inher-
-ent correction for RF inhomogeneity and T1 relaxation obtained from 3D FLASH MRI. Magn Reson
-Med. 2008; 60(6):1396–407. https://doi.org/10.1002/mrm.21732 PMID: 19025906
-37.
-Ronneberger O, Fischer P, Brox T, editors. U-Net: Convolutional Networks for Biomedical Image Seg-
-mentation2015; Cham: Springer International Publishing.
-38.
-Radlowski EC, Conrad MS, Lezmi S, Dilger RN, Sutton B, Larsen R, et al. A neonatal piglet model for
-investigating brain and cognitive development in small for gestational age human infants. PLoS One.
-2014; 9(3):e91951. https://doi.org/10.1371/journal.pone.0091951 PMID: 24637829
-PLOS ONE
-Automated identification of piglet brain tissue using neural networks
-PLOS ONE | https://doi.org/10.1371/journal.pone.0284951
-May 11, 2023
-11 / 11
+pmc   PLoS One  PLoS One  plos  PLOS ONE   1932-6203  Public Library of Science  San Francisco, CA USA    10174584  10.1371/journal.pone.0284951  PONE-D-21-37916  Research Article   Biology and Life Sciences  Organisms  Eukaryota  Animals  Vertebrates  Amniotes  Mammals  Swine          Biology and Life Sciences  Zoology  Animals  Vertebrates  Amniotes  Mammals  Swine         Medicine and Health Sciences  Diagnostic Medicine  Diagnostic Radiology  Magnetic Resonance Imaging      Research and Analysis Methods  Imaging Techniques  Diagnostic Radiology  Magnetic Resonance Imaging      Medicine and Health Sciences  Radiology and Imaging  Diagnostic Radiology  Magnetic Resonance Imaging      Research and Analysis Methods  Animal Studies  Experimental Organism Systems  Animal Models  Pig Models       Computer and Information Sciences  Neural Networks    Biology and Life Sciences  Neuroscience  Neural Networks     Engineering and Technology  Industrial Engineering  Quality Control  Visual Inspection      Biology and Life Sciences  Anatomy  Musculoskeletal System  Skeleton  Skull       Medicine and Health Sciences  Anatomy  Musculoskeletal System  Skeleton  Skull       Research and Analysis Methods  Imaging Techniques  Neuroimaging     Biology and Life Sciences  Neuroscience  Neuroimaging     Biology and Life Sciences  Anatomy  Head     Medicine and Health Sciences  Anatomy  Head      Automated identification of piglet brain tissue from MRI images using Region-based Convolutional Neural Networks  Automated identification of piglet brain tissue using neural networks   Stanke  Kayla L.   Conceptualization  Data curation  Formal analysis  Investigation  Methodology  Software  Validation  Visualization  Writing – original draft  Writing – review & editing  1    https://orcid.org/0000-0003-0661-4321  Larsen  Ryan J.   Conceptualization  Data curation  Formal analysis  Funding acquisition  Investigation  Methodology  Project administration  Resources  Software  Supervision  Validation  Visualization  Writing – original draft  Writing – review & editing  1   *   Rund  Laurie   Funding acquisition  Investigation  Project administration  Resources  Supervision  1    Leyshon  Brian J.   Conceptualization  Funding acquisition  Investigation  Project administration  Supervision  Writing – review & editing  2    Louie  Allison Y.   Investigation  Resources  3    Steelman  Andrew J.   Funding acquisition  Supervision  Writing – review & editing  1   3   4   5     1  Department of Animal Sciences, University of Illinois Urbana-Champaign, Champaign, Illinois, United States of America   2  Abbott Nutrition, Discovery Research, Columbus, Ohio, United States of America   3  Division of Nutritional Sciences, University of Illinois Urbana-Champaign, Champaign, Illinois, United States of America   4  Neuroscience Program, University of Illinois Urbana-Champaign, Champaign, Illinois, United States of America   5  Carl R. Woese Institute for Genomic Biology, University of Illinois Urbana-Champaign, Champaign, Illinois, United States of America   Wang  Zhishun   Editor      Columbia University, UNITED STATES   Competing Interests: The authors have declared that no competing interests exist. 
+
+  * E-mail: larsen@illinois.edu    11  5  2023   2023   18  5  e0284951  2  12  2021   12  4  2023    © 2023 Stanke et al  2023  Stanke et al  https://creativecommons.org/licenses/by/4.0/  This is an open access article distributed under the terms of the Creative Commons Attribution License , which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.       Magnetic resonance imaging is an important tool for characterizing volumetric changes of the piglet brain during development. Typically, an early step of an imaging analysis pipeline is brain extraction, or skull stripping. Brain extractions are usually performed manually; however, this approach is time-intensive and can lead to variation between brain extractions when multiple raters are used. Automated brain extractions are important for reducing the time required for analyses and improving the uniformity of the extractions. Here we demonstrate the use of Mask R-CNN, a Region-based Convolutional Neural Network (R-CNN), for automated brain extractions of piglet brains. We validate our approach using Nested Cross-Validation on six sets of training/validation data drawn from 32 pigs. Visual inspection of the extractions shows acceptable accuracy, Dice coefficients are in the range of 0.95–0.97, and Hausdorff Distance values in the range of 4.1–8.3 voxels. These results demonstrate that R-CNNs provide a viable tool for skull stripping of piglet brains.
+
+  http://dx.doi.org/10.13039/100011947  Abbott Nutrition    00490326  Steelman  Andrew J.     The study was funded by Abbott Nutrition, www.abbott.com , grant number 00490326 to A.S. The funder aided with study design, data analysis, decision to publish, and preparation of the manuscript.           Data Availability  All relevant data have been uploaded to the Illinois Data Bank: https://doi.org/10.13012/B2IDB-5784165_V1 .      Data Availability  All relevant data have been uploaded to the Illinois Data Bank: https://doi.org/10.13012/B2IDB-5784165_V1 . 
+
+   Introduction  Piglets are an important translational model for measuring the effect of nutrition on brain development. Not only do piglet brain stages of development correlate with human infant development, but their nutritional requirements are also comparable [ 1 ]. Magnetic resonance imaging (MRI) is an important technique for obtaining non-invasive measurements of brain volumes. An early step in volumetric analysis is the identification or “extraction” of the brain from the surrounding tissue. Manual tracing has been the gold standard for brain extraction and is performed by creating an outline that separates the surrounding skull, muscles, tissues, and fat from the brain [  1 –  6 ]. However, the method is not ideal when working with large data sets because it is time intensive and is subject to inconsistencies between raters/evaluators. Automated brain extraction techniques are needed to overcome these limitations. However, reports of automated extractions of pig brains are limited. A graph theory approach that makes use of prior information of anatomical structures has been used to perform automated extraction of piglet brains [  7 ]. However, deep learning technologies offer the possibility of automating the training of anatomical structures to enable brain extractions [  8 –  10 ]. A U-Net model trained on humans, non-human primates, and 3 pig scans has been shown to successfully perform brain extractions on 2 pig scans [  11 ]. Also, a patch-based 3D U-Net trained on piglets has been used for successful brain extractions of piglets of multiple ages, via transfer learning [  12 ]. An alternative segmentation tool is Mask R-CNN, a Region-based Convolutional Neural Network (R-CNN). This tool has been used to create a mouse brain atlas that is generalizable across developmental ages and imaging modalities [  10 ]. These results suggest that Mask R-CNN may be effective for piglet brain extraction. Here we demonstrate the use of Mask R-CNN for automated brain extractions of piglet brains. 
+
+  Methods  Animals and care practices  All animal care and handling procedures were approved by the University of Illinois Institutional Animal Care and Use Committee (Protocol #18256) and were in accordance with federal guidelines. Male and female average-for-gestational age, Yorkshire crossbred, full-term, naturally-delivered piglets were obtained from University of Illinois Swine Farm at postnatal day 2 to allow for colostrum consumption. All piglets remained intact but did undergo routine processing on the farm including iron dextran (Henry Schein Animal Health, Dublin, OH, USA) and antibiotic injection (EXCEDE®, Zoetis, Parsippany, NJ 07054, USA) per routine farm practice and according to label. Four groups of piglets were placed individually into a caging system under standard conditions as described in a previous publication [ 13 ] and randomly assigned to five diet treatment groups. The control group of piglets remained with the sow until day 28 of age with free access to suckle and were weighed daily. The current study does not distinguish between diet groups. 
+
+ Sow-raised piglets were handled daily, as were the artificially raised animals to diminish differences between the two types of rearing. After arrival at the Edward R. Madigan Laboratory (ERML) Animal Facility, experimental piglets received one dose of antibiotic: the first of two cohorts received Spectraguard TM (Bimeda, Inc, Oakbrook Terrace, IL 60181) on postnatal day 2 and the second cohort received Baytril® (Bayer healthcare LLC Shawnee Mission, KS 66201) on postnatal day 4. Additional doses of antibiotic were administered during the experiment only under the direction of the staff veterinarian. Animals were individually housed in racks of metabolism cages specifically designed to artificially rear neonatal piglets under constant 12-h light/dark cycles. Piglet housing at ERML was as follows: space allowance for individual piglets was 30" deep, 23" wide, and 18.5" high, providing 4.8 square feet of floor space per piglet. Each piglet was supplied with a heating pad, toy, and blanket. Room temperatures were kept at 85–95°F using space heaters. Animals were also offered water or BlueLite® electrolyte solution ad libitum. Cages and heating pads were disinfected, and toys and blankets replaced daily. Animal care protocols were in accordance with National Institutes of Health Guidelines for Care and Use of Laboratory Animals and were approved by the University of Illinois Laboratory Animal Care and Use Committee. 
+
+  MRI acquisition  MRI data were acquired using 3 T Prisma scanner (Siemens, Erlangen) housed at the Biomedical Imaging Center at the University of Illinois. Pigs were anesthetized using TKX (combination of 2.5 ml of xylazine (100 mg/ml) and 2.5 ml of ketamine (100mg/ml) added to a Telazol vial and administered at a dosage of 0.02–0.03 ml/kg IM) then maintained on isofluorane (1–3%) throughout the imaging. Animals were scanned in the supine position using a specialized piglet head coil (Rapid Biomed, Rimpar). During scanning, the respiration rate, heart rate and blood oxygen levels were monitored using a LifeWindow LW9x monitor (Digicare, Boynton Beach, FL).
+
+ MRI Structural Imaging: Our structural MRI scan consisted of a 3D MPRAGE acquisition (voxel size = 0.6 x 0.6 x 0.6 mm 3 , FOV = 173 x 173 mm  2 , 256 slices, GRAPPA—GeneRalized Autocalibrating Partial Parallel Acquisition—acceleration factor R = 2; TR = 2060 ms, TI = 1060 ms, flip angle = 9⁰, for an overall scan time of 5:21 min). 
+
+  Manual brain extraction  Manual brain extraction was facilitated by first performing a rigid alignment of T 1 -weighted images from all piglets to the brain atlas [  14 ]. This was done using SPM12 imaging analysis software. First, we performed a manual rotation to approximately align the T  1 -weighted images with 28-day piglet template [  14 ], without resampling. We then used the “coregistration” function of SPM12 to further align the T  1 -weighted images to the template, again without resampling. The resulting alignment was accurate for all piglets, even though it was performed without first performing brain extraction, as shown by a representative image in  Fig 1 . 
+
+ 10.1371/journal.pone.0284951.g001  Fig 1  Results of coregistration of piglet brain to the average brain template.  The top row shows images from a representative piglet brain and bottom row shows the same slices from the average brain template. Blue lines within each image indicate the locations of the perpendicular slices. The consistency of two sets of images confirms a good approximate alignment of the T 1 -weighted image with the average brain template. 
+
+     An atlas-based brain mask was then resampled into the native space of each piglet, providing initial estimates of the brain masks for each piglet. These initial estimates were then modified to create individualized brain masks using Slicer3D, as shown in Fig 2 . Most revisions were done in the sagittal plane, but all three orthogonal views were reviewed and modified for improved precision. All extractions were performed by one rater to minimize variability. No image intensity normalization was performed prior to manual or automated brain extraction. 
+
+ 10.1371/journal.pone.0284951.g002  Fig 2  Demonstration of the creation of manually-defined brain mask via modification of the template brain mask.  A representative T 1 -weighted image is overlayed with the template brain mask, creating a brighter region. The green outline shows the manual-designated brain mask. The manual brain mask was created by editing the template brain mask for each individual piglet. 
+
+      Automated brain extraction  This study uses a deep learning instance segmentation neural network using object detection model Mask R-CNN with Inception Resnet v2 architecture [ 15 ], pretrained on the COCO 2017 data set [  16 ]. Our model uses a Tensor Flow 2.4.0 implementation of Mask R-CNN [  15 ], with feature extractor Faster R-CNN [  17 ]. Faster R-CNN utilizes a Region Proposal Network (RPN) to select object proposals from a backbone, which for our study was generated using a combined ResNet101 and Feature Pyramid Network (FPN) [  18 ]. 
+
+ Training was performed using a single NVIDIA GeForce GTX 1070 Ti GPU, with NVIDIA developer driver 465.21, CUDA 11.0, and CUDNN library 8.0.4. The network was trained with a cosine decay learning rate of 0.008 and a momentum optimizer value of 0.9, and a batch size of two images, or slices, per iteration. We performed 200,000 iterations, or 48.8 epochs. The training and segmentation were performed only in 2D sagittal planes. During evaluation, predicted masks were binarized at a confidence parameter threshold of 0.5. The masks created from the 2D slices were then combined into 3D datasets for final cleaning. This involved largest connected component (LCC) filtering to remove several small and spurious masks, typically occurring in slices that did not include brain. Cleaning was done by first using the Matlab function “bwconncomp” to identify all isolated masks, consisting of one or more connected voxels, where connected voxels are defined as those with touching faces. Then we discarded all but the largest mask, or brain mask.
+
+  Validation  Nested Cross-Validation was used to evaluate the performance of the training models. This method has been shown to produce unbiased performance estimates, even in small datasets [ 19 ]. We randomly assigned each of the 32 pigs to one of six test groups. Four of the test groups consisted of five pigs, and two of the test groups consisted of six pigs. For each test group, a training model was generated using the remaining pigs, beginning with the same architecture which was naïve to the test images. Validation of the test groups was performed by comparing the machine-generated masks with the manually generated masks by visual inspection, by computing Dice coefficients, 3D Hausdorff Distance (HD) values, and Pearson correlations between the manual and machine-generated masks. Dice coefficients were calculated using the formula 2|  X ∩  Y |/(|  X |+|  Y |), where |…| indicates the number of voxels within the mask, ∩ indicates the union, and  X and Y indicate the manual and machine-generated masks. Dice coefficients were calculated before and after LCC filtering. We calculated 3D Hausdorff Distance (HD) values, using the freely-available “EvaluateSegmentation” command-line tool (  https://github.com/Visceral-Project/EvaluateSegmentation ) [  20 ]. Because HD values are sensitive to outliers eliminated by LCC filtering, HD values were only calculated after LCC filtering [  20 ]. 
+
+   Results  Visual inspection of the brain extractions reveals good accuracy of automatic brain extractions ( Fig 3 ). The six models were labelled with letters from A to F. We found that Model D failed to identify the brain within several sagittal slices of one of the test pigs, as shown in  Fig 4(A) and 4(B) . These slices included an unusually bright region in the subcutaneous fat layer near the superior area of the head (see  Fig 4(B) ). This bright region was removed by manually outlining it in one of the slices, and then removing the traced voxels from all the slices (see  Fig 4(D) ). The modified structural images were then re-evaluated using the same model, producing a more accurate brain mask (see  Fig 4(C) and 4(D) ). This manual correction boosted the Dice coefficient of the pre-LCC filtered images from 0.91 to 0.96. The brain mask from the modified images was used for subsequent validation. 
+
+ 10.1371/journal.pone.0284951.g003  Fig 3  Sample extractions from two piglets.  The overlay that creates a brighter region indicates machine extractions, and the green outline shows the manual brain masks. The top row shows a piglet tested using Model A, and the bottom row shows a piglet tested using Model B.
+
+     10.1371/journal.pone.0284951.g004  Fig 4  A segmentation error generated by Model D that was subsequently corrected.  Panels (a) and (b) show the inaccurate mask, indicated by green lines, and panels (c) and (d) show the mask generated by the same model after image modification, with the same views and the same slices. Axial slices are shown in (a) and (c); sagittal slices are shown in (b) and (d). The yellow lines in the axial views, (a) and (c), show the location of the sagittal view and the red lines in the sagittal views, (b) and (d), show the location of the axial views. For the inaccurate mask there are several sagittal slices in which no brain regions were identified, as shown in (a). These slices included a bright region in the fat layer of the superior region of the head, as shown in (b). The bright region was manually traced and removed from the same voxels of all sagittal slices as shown in (d). A re-evaluation of the edited images using the same model, Model D, produced an accurate brain extraction, as shown in (c) and (d).
+
+     Visual inspection of the results also revealed that the LCC filter was important for one of the pigs, for which the automated brain extraction inaccurately identified large brain patches within 5 slices outside of the head. This pig exhibited a Dice coefficient of 0.92, which improved to 0.957 after LCC filtration. The LCC filter improved Dice coefficients for all other pigs as well. However, this benefit was smaller due to the lower volumes of outlier voxels; for the remaining 31 pigs, the maximum improvement in Dice coefficient was 0.008 and the mean improvement was 0.001. The final brain extractions, after application of the LCC filter, exhibited Dice coefficients in the range of 0.95–0.97 (mean: 0.961, standard deviation: 0.0036, see histogram in Fig 5(A) ), and HD values in the range of 4.1–8.3 voxels (mean: 5.48, standard deviation: 1.16, see histogram in  Fig 5(B) ), or 2.5–5.0 mm (mean: 3.3, standard deviation: 0.7). The Pearson correlation coefficient,  R , of the volumes,  V manual  and  V machine  , of the manual and machine-generated masks was R = 0.90, with p<0.001 (see  Fig 6 ). 
+
+ 10.1371/journal.pone.0284951.g005  Fig 5  Histograms of (a) Dice coefficients and (b) Hausdorff Distance (HD) values calculated from each of the 32 test cases after LCC filtration.
+
+     10.1371/journal.pone.0284951.g006  Fig 6  The consistency of brain volumes, V manual  and  V machine  , from manual and machine brain extractions, respectively.   The solid line indicates unity and the colors denote the models used. Brain volume units are cubic centimeters.
+
+      Discussion  We have shown that Mask R-CNN trained on manually generated masks can be used to perform accurate piglet brain extractions. However, for one of the 32 test cases, a model failed to identify brain tissue within several slices. This problem was eliminated when the evaluation was repeated after the removal of an unusually bright region of subcutaneous fat from the images. It is possible that that problem could have been avoided by using more training data, or by performing a bias field correction, or intensity normalization, before training. Image intensity normalization is often important for automated segmentation [ 21 ,  22 ]. We did not perform this step before brain extraction, because in SPM, a bias field correction is typically done simultaneous to tissue segmentation [  23 ]. However, incorporation of a normalization before brain extraction might improve the generalization of our model to other scanning conditions, such as different scanners and coils. 
+
+ Dice coefficients were >0.95 and HD values were <5 mm; these are similar to values that have been achieved by neural networks for the skull-stripping of non-human primates [ 11 ], rodents [  24 ,  25 ], and piglets [  12 ]. In contrast to our study, Ref [  12 ] employed a 3D patch-based U-net architecture. The potential strength of a 3D patch is that the added depth dimension enhances the local information available to the neural network. However, because of the higher memory demands of using 3D images, the model training and inference steps in Ref. [  12 ] were performed on cubic patches of 32  3 voxels. A potential disadvantage of this approach is that the segmented patches from the test images must be aggregated and reconciled. By contrast, a potential strength of a 2D approach is the potential to train on complete slices, thereby simplifying post-processing. In Ref. [  12 ] the Dice coefficients from the final method, including post-processing, were in the range of 0.94–0.96 (mean 0.952, standard deviation: 0.0069), slightly lower than the Dice coefficients observed in our study (0.95–0.97, mean: 0.961, standard deviation: 0.0036). Similarly, HD values from Ref. [  12 ] were 5.4–14.3 voxels (mean: 8.51, standard deviation: 2.20), slightly higher than the HD values of our study (4.1–8.3 voxels, mean: 5.48, standard deviation: 1.16). The higher Dice coefficients and lower HD values of our study could be influenced by multiple factors, including image quality differences, which are sensitive to factors such as age differences in piglets, equipment used, and acquisition times. Clearly, a quantitatively accurate comparison of brain extraction methods would require use of the same MRI data. It is possible that the differences in performance metrics were driven by the choice of network architecture. Direct comparisons of Mask R-CNN and U-Net architectures have favored U-Net architectures for segmentation [  26 ] and Mask R-CNN object detection [  27 ,  28 ]; giving rise to a hybrid methods that exploit the relative strengths of both methods [  29 ], or that improve upon segmentation abilities of Mask R-CNN [  30 ]. Despite the potential drawbacks of Mask R-CNN for segmentation, our results demonstrate that it can be suitable for this application. 
+
+ Improvements to our approach could be implemented in a variety of ways. Training with a larger sample size is expected to increase performance and accuracy of machine learning algorithms [ 31 ]. Performance may also be improved by hyperparameter tuning and optimization [  32 ,  33 ]. Improved performance might have been obtained by using 3D Mask R-CNN; however we employed 2D Mask R-CNN to obtain shorter training times [  34 ]. The use of 3D, or 2.5D, segmentation has the potential to create a brain mask with greater smoothness at the edge of the brain between adjacent slices. However, the non-smoothness of the automated segmentations is similar to that seen with manual brain extractions, which are also performed in 2D. Also, any inaccuracies due to non-smoothness appear to be localized in the CSF layer surrounding the brain and unlikely to influence the results of automated segmentation of grey matter on the edge of the brain, performed on the extracted brain images. Brain exaction performance may also be improved by using quantitative imaging techniques, such as MT saturation [  35 ,  36 ], to improve the contrast between brain and non-brain tissues. Further research is required to access whether network architectures such as U-Net [  37 ], may improve upon results obtained with Mask R-CNN. 
+
+ In summary, the use of automated brain extraction has the potential to reduce analysis time because it requires minimal supervision. This process is scalable to a high number of piglets, avoiding complications and inconsistencies that might arise from having multiple raters perform manual brain extractions. The effectiveness of Mask R-CNN for performing piglet brain extractions implies that it may be a useful tool for segmenting sub-regions of the brain. Further research is needed to assess whether such an approach may compliment or improve upon existing methods for volumetric analysis of piglet brain MRI data [ 4 ,  23 ,  38 ]. 
+
+   This work was conducted in part at the Biomedical Imaging Center of the Beckman Institute for Advanced Science and Technology at the University of Illinois Urbana-Champaign (UIUC-BI-BIC).
+
+  References  1  Mudd  AT  ,  Dilger  RN  .  Early-Life Nutrition and Neurodevelopment: Use of the Piglet as a Translational Model .  Advances in Nutrition .  2017 ;  8 (  1 ):  92 –  104 .  doi:  10.3945/an.116.013243  28096130    2  Bokde  AL  ,  Teipel  SJ  ,  Schwarz  R  ,  Leinsinger  G  ,  Buerger  K  ,  Moeller  T  ,  et al .  Reliable manual segmentation of the frontal, parietal, temporal, and occipital lobes on magnetic resonance images of healthy subjects .  Brain Res Brain Res Protoc .  2005 ;  14 (  3 ):  135 –  45 .  doi:  10.1016/j.brainresprot.2004.10.001  15795167    3  Conrad  MS  ,  Dilger  RN  ,  Nickolls  A  ,  Johnson  RW  .  Magnetic resonance imaging of the neonatal piglet brain .  Pediatr Res .  2012 ;  71 (  2 ):  179 –  84 .  doi:  10.1038/pr.2011.21  22258129    4  Gan  H  ,  Zhang  Q  ,  Zhang  H  ,  Chen  Y  ,  Lin  J  ,  Kang  T  ,  et al .  Development of new population-averaged standard templates for spatial normalization and segmentation of MR images for postnatal piglet brains .  Magn Reson Imaging .  2014 ;  32 (  10 ):  1396 –  402 .  doi:  10.1016/j.mri.2014.08.036  25179132    5  Mudd  AT  ,  Alexander  LS  ,  Berding  K  ,  Waworuntu  RV  ,  Berg  BM  ,  Donovan  SM  ,  et al .  Dietary Prebiotics, Milk Fat Globule Membrane, and Lactoferrin Affects Structural Neurodevelopment in the Young Piglet .  Front Pediatr .  2016 ;  4 :  4 .  doi:  10.3389/fped.2016.00004  26870719    6  Leyshon  BJ  ,  Radlowski  EC  ,  Mudd  AT  ,  Steelman  AJ  ,  Johnson  RW  .  Postnatal Iron Deficiency Alters Brain Development in Piglets .  J Nutr .  2016 ;  146 (  7 ):  1420 –  7 .  doi:  10.3945/jn.115.223636  27281804    7  Durandeau AF  J.-B.  ;  Bloch  I.  ;  Mazerand  E.  ;  Menei  P.  ;  Montero-Menei  C.  ;  Dinomais  M.  , editor  Structural information and (hyper)graph matching for MRI piglet brain extraction .  International Conference on Pattern Recognition Systems ;  2019  8–10  July  2019 ; Tours, France.    8  Akkus  Z  ,  Galimzianova  A  ,  Hoogi  A  ,  Rubin  DL  ,  Erickson  BJ  .  Deep Learning for Brain MRI Segmentation: State of the Art and Future Directions.  J Digit Imaging .  2017 ;  30 (  4 ):  449 –  59 .  doi:  10.1007/s10278-017-9983-4  28577131    9  Hurtz  S  ,  Chow  N  ,  Watson  AE  ,  Somme  JH  ,  Goukasian  N  ,  Hwang  KS  ,  et al .  Automated and manual hippocampal segmentation techniques: Comparison of results, reproducibility and clinical applicability .  Neuroimage Clin.  2019 ;  21 :  101574 .  doi:  10.1016/j.nicl.2018.10.012  30553759    10  Iqbal  A  ,  Khan  R  ,  Karayannis  T  .  Developing a brain atlas through deep learning .  Nature Machine Intelligence .  2019 ;  1 (  6 ):  277 –  87 .    11  Wang  X  ,  Li  XH  ,  Cho  JW  ,  Russ  BE  ,  Rajamani  N  ,  Omelchenko  A  ,  et al .  U-net model for brain extraction: Trained on humans for transfer to non-human primates .  Neuroimage .  2021 ;  235 :  118001 .  doi:  10.1016/j.neuroimage.2021.118001  33789137    12  Coupeau  P  ,  Fasquel  JB  ,  Mazerand  E  ,  Menei  P  ,  Montero-Menei  CN  ,  Dinomais  M  .  Patch-based 3D U-Net and transfer learning for longitudinal piglet brain segmentation on MRI .  Comput Meth Prog Bio .  2022 ;  214 .  doi:  10.1016/j.cmpb.2021.106563  34890993    13  Rytych  JL  ,  Elmore  MR  ,  Burton  MD  ,  Conrad  MS  ,  Donovan  SM  ,  Dilger  RN  ,  et al .  Early life iron deficiency impairs spatial cognition in neonatal piglets .  J Nutr .  2012 ;  142 (  11 ):  2050 –  6 .  doi:  10.3945/jn.112.165522  23014488    14  Conrad  MS  ,  Sutton  BP  ,  Dilger  RN  ,  Johnson  RW  .  An in vivo three-dimensional magnetic resonance imaging-based averaged brain collection of the neonatal piglet (Sus scrofa).  PLoS One .  2014 ;  9 (  9 ):  e107650 .  doi:  10.1371/journal.pone.0107650  25254955    15  He  KM  ,  Gkioxari  G  ,  Dollar  P  ,  Girshick  R  .  Mask R-CNN.  Ieee I Conf Comp Vis .  2017 :  2980 –  8 .    16  Lin  T-Y  ,  Maire  M  ,  Belongie  S  ,  Hays  J  ,  Perona  P  ,  Ramanan  D  ,  et al ., editors.  Microsoft COCO: Common Objects in Context2014 ;  Cham :  Springer International Publishing .    17  Ren  SQ  ,  He  KM  ,  Girshick  R  ,  Sun  J  .  Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks .  Ieee T Pattern Anal .  2017 ;  39 (  6 ):  1137 –  49 .  doi:  10.1109/TPAMI.2016.2577031  27295650    18  Lin  TY  ,  Dollar  P  ,  Girshick  R  ,  He  KM  ,  Hariharan  B  ,  Belongie  S  .  Feature Pyramid Networks for Object Detection .  Proc Cvpr Ieee .  2017 :  936 –  44 .    19  Vabalas  A  ,  Gowen  E  ,  Poliakoff  E  ,  Casson  AJ  .  Machine learning algorithm validation with a limited sample size .  PLoS One .  2019 ;  14 (  11 ):  e0224365 .  doi:  10.1371/journal.pone.0224365  31697686    20  Taha  AA  ,  Hanbury  A  .  Metrics for evaluating 3D medical image segmentation: analysis, selection, and tool.  BMC Med Imaging .  2015 ;  15 :  29 .  doi:  10.1186/s12880-015-0068-x  26263899    21  Birenbaum  A  ,  Greenspan  H  .  Longitudinal Multiple Sclerosis Lesion Segmentation Using Multi-view Convolutional Neural Networks .  Lect Notes Comput Sc.  2016 ;  10008 :  58 –  67 .    22  Drozdzal  M  ,  Chartrand  G  ,  Vorontsov  E  ,  Shakeri  M  ,  Di Jorio  L  ,  Tang  A  ,  et al .  Learning normalized inputs for iterative estimation in medical image segmentation .  Med Image Anal .  2018 ;  44 :  1 –  13 .  doi:  10.1016/j.media.2017.11.005  29169029    23  Ashburner  J  ,  Friston  KJ  .  Unified segmentation .  Neuroimage .  2005 ;  26 (  3 ):  839 –  51 .  doi:  10.1016/j.neuroimage.2005.02.018  15955494    24  Hsu  LM  ,  Wang  S  ,  Ranadive  P  ,  Ban  W  ,  Chao  THH  ,  Song  S  ,  et al .  Automatic Skull Stripping of Rat and Mouse Brain MRI Data Using U-Net.  Front Neurosci-Switz .  2020 ;  14 .  doi:  10.3389/fnins.2020.568614  33117118    25  Oguz  I  ,  Zhang  H  ,  Rumple  A  ,  Sonka  M  .  RATS: Rapid Automatic Tissue Segmentation in rodent brain MRI .  J Neurosci Methods .  2014 ;  221 :  175 –  82 .  doi:  10.1016/j.jneumeth.2013.09.021  24140478    26  Vuola  AO  ,  Akram  SU  ,  Kannala  J  , editors.  Mask-RCNN and U-net ensembled for nuclei segmentation .  2019 IEEE 16th international symposium on biomedical imaging (ISBI 2019) ;  2019 :  IEEE .    27  Durkee  MS  ,  Abraham  R  ,  Ai  J  ,  Fuhrman  JD  ,  Clark  MR  ,  Giger  ML  , editors.  Comparing Mask R-CNN and U-Net architectures for robust automatic segmentation of immune cells in immunofluorescence images of Lupus Nephritis biopsies .  Imaging, Manipulation, and Analysis of Biomolecules, Cells, and Tissues XIX ;  2021 :  SPIE .    28  Pathan  RK  ,  Lim  WL  ,  Lau  SL  ,  Ho  CC  ,  Khare  P  ,  Koneru  RB  .  Experimental Analysis of U-Net and Mask R-CNN for Segmentation of Synthetic Liquid Spray .    29  Konopczyński  T  ,  Heiman  R  ,  Woźnicki  P  ,  Gniewek  P  ,  Duvernoy  M-C  ,  Hallatschek  O  ,  et al ., editors.  Instance segmentation of densely packed cells using a hybrid model of U-net and mask R-CNN .  Artificial Intelligence and Soft Computing: 19th International Conference, ICAISC 2020, Zakopane, Poland, October 12–14, 2020, Proceedings, Part I 19 ;  2020 :  Springer .    30  Shu  JH  ,  Nian  FD  ,  Yu  MH  ,  Li  X  .  An Improved Mask R-CNN Model for Multiorgan Segmentation .  Math Probl Eng.  2020 ;  2020 .    31  Jollans  L  ,  Boyle  R  ,  Artiges  E  ,  Banaschewski  T  ,  Desrivieres  S  ,  Grigis  A  ,  et al .  Quantifying performance of machine learning methods for neuroimaging data .  Neuroimage .  2019 ;  199 :  351 –  65 .  doi:  10.1016/j.neuroimage.2019.05.082  31173905    32  Yang  L  ,  Shami  A  .  On hyperparameter optimization of machine learning algorithms: Theory and practice .  Neurocomputing .  2020 ;  415 :  295 –  316 .    33  Wu  J  ,  Chen  X-Y  ,  Zhang  H  ,  Xiong  L-D  ,  Lei  H  ,  Deng  S-H  .  Hyperparameter Optimization for Machine Learning Models Based on Bayesian Optimizationb .  Journal of Electronic Science and Technology .  2019 ;  17 (  1 ):  26 –  40 .    34  Jeong  J  ,  Lei  Y  ,  Kahn  S  ,  Liu  T  ,  Curran  WJ  ,  Shu  HK  ,  et al .  Brain tumor segmentation using 3D Mask R-CNN for dynamic susceptibility contrast enhanced perfusion imaging .  Phys Med Biol .  2020 ;  65 (  18 ).  doi:  10.1088/1361-6560/aba6d4  32674075    35  Helms  G  ,  Draganski  B  ,  Frackowiak  R  ,  Ashburner  J  ,  Weiskopf  N  .  Improved segmentation of deep brain grey matter structures using magnetization transfer (MT) parameter maps .  Neuroimage .  2009 ;  47 (  1 ):  194 –  8 .  doi:  10.1016/j.neuroimage.2009.03.053  19344771    36  Helms  G  ,  Dathe  H  ,  Kallenberg  K  ,  Dechent  P  .  High-resolution maps of magnetization transfer with inherent correction for RF inhomogeneity and T1 relaxation obtained from 3D FLASH MRI .  Magn Reson Med .  2008 ;  60 (  6 ):  1396 –  407 .  doi:  10.1002/mrm.21732  19025906    37  Ronneberger  O  ,  Fischer  P  ,  Brox  T  , editors.  U-Net: Convolutional Networks for Biomedical Image Segmentation2015 ;  Cham :  Springer International Publishing .    38  Radlowski  EC  ,  Conrad  MS  ,  Lezmi  S  ,  Dilger  RN  ,  Sutton  B  ,  Larsen  R  ,  et al .  A neonatal piglet model for investigating brain and cognitive development in small for gestational age human infants .  PLoS One .  2014 ;  9 (  3 ):  e91951 .  doi:  10.1371/journal.pone.0091951  24637829      10.1371/journal.pone.0284951.r001  Author response to previous submission   Submission Version  0     2 Dec 2021   Attachment  Submitted filename: response_to_reviewer.docx    Click here for additional data file.       10.1371/journal.pone.0284951.r002  Decision Letter 0   Wang  Zhishun   Academic Editor    © 2023 Zhishun Wang  2023  Zhishun Wang  https://creativecommons.org/licenses/by/4.0/  This is an open access article distributed under the terms of the Creative Commons Attribution License , which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.       Submission Version  0     16 Jul 2022   PONE-D-21-37916Automated identification of piglet brain tissue from MRI images using Region-Based Convolutional Neural NetworksPLOS ONE
+
+ Dear Dr. Larsen,  Thank you for submitting your manuscript to PLOS ONE. After careful consideration, we feel that it has merit but does not fully meet PLOS ONE’s publication criteria as it currently stands. Therefore, we invite you to submit a revised version of the manuscript that addresses the points raised during the review process.
+
+ Please submit your revised manuscript by Aug 20 2022 11:59PM. If you will need more time than this to complete your revisions, please reply to this message or contact the journal office at plosone@plos.org . When you're ready to submit your revision, log on to  https://www.editorialmanager.com/pone/ and select the 'Submissions Needing Revision' folder to locate your manuscript file. 
+
+ Please include the following items when submitting your revised manuscript: A rebuttal letter that responds to each point raised by the academic editor and reviewer(s). You should upload this letter as a separate file labeled 'Response to Reviewers'.
+
+  A marked-up copy of your manuscript that highlights changes made to the original version. You should upload this as a separate file labeled 'Revised Manuscript with Track Changes'.
+
+  An unmarked version of your revised paper without tracked changes. You should upload this as a separate file labeled 'Manuscript'.
+
+  
+
+ If you would like to make changes to your financial disclosure, please include your updated statement in your cover letter. Guidelines for resubmitting your figure files are available below the reviewer comments at the end of this letter.
+
+ If applicable, we recommend that you deposit your laboratory protocols in protocols.io to enhance the reproducibility of your results. Protocols.io assigns your protocol its own identifier (DOI) so that it can be cited independently in the future. For instructions see: https://journals.plos.org/plosone/s/submission-guidelines#loc-laboratory-protocols . Additionally, PLOS ONE offers an option for publishing peer-reviewed Lab Protocol articles, which describe protocols hosted on protocols.io. Read more information on sharing protocols at  https://plos.org/protocols?utm_medium=editorial-email&utm_source=authorletters&utm_campaign=protocols . 
+
+ We look forward to receiving your revised manuscript.
+
+ Kind regards,  Zhishun Wang, Ph.D.  Academic Editor  PLOS ONE  Journal Requirements:  When submitting your revision, we need you to address these additional requirements.
+
+ 1. Please ensure that your manuscript meets PLOS ONE's style requirements, including those for file naming. The PLOS ONE style templates can be found at
+
+ https://journals.plos.org/plosone/s/file?id=wjVg/PLOSOne_formatting_sample_main_body.pdf and 
+
+ https://journals.plos.org/plosone/s/file?id=ba62/PLOSOne_formatting_sample_title_authors_affiliations.pdf . 
+
+ 2. Thank you for stating the following in the Acknowledgments Section of your manuscript:
+
+ “The study was funded by Abbott Nutrition, www.abbott.com , grant number 00490326 to A.S. The funder aided with study design, data analysis, decision to publish, and preparation of the manuscript. We thank the staff members of the Biomedical Imaging Center at the Beckman Institute for Advanced Science and Technology for imaging support. “ 
+
+ We note that you have provided additional information within the Acknowledgements Section that is not currently declared in your Funding Statement. Please note that funding information should not appear in the Acknowledgments section or other areas of your manuscript. We will only publish funding information present in the Funding Statement section of the online submission form.
+
+ Please remove any funding-related text from the manuscript and let us know how you would like to update your Funding Statement. Currently, your Funding Statement reads as follows:
+
+ “The study was funded by Abbott Nutrition, www.abbott.com , grant number 00490326 to 
+
+ A.S. The funder aided with study design, data analysis, decision to publish, and
+
+ preparation of the manuscript.”  Please include your amended statements within your cover letter; we will change the online submission form on your behalf.
+
+ [Note: HTML markup is below. Please do not edit.]  Reviewers' comments:  Reviewer's Responses to Questions  Comments to the Author   1. Is the manuscript technically sound, and do the data support the conclusions?
+
+ The manuscript must describe a technically sound piece of scientific research with data that supports the conclusions. Experiments must have been conducted rigorously, with appropriate controls, replication, and sample sizes. The conclusions must be drawn appropriately based on the data presented.
+
+ Reviewer #1: Yes  Reviewer #2: Partly  **********  2. Has the statistical analysis been performed appropriately and rigorously?
+
+ Reviewer #1: N/A  Reviewer #2: No  **********  3. Have the authors made all data underlying the findings in their manuscript fully available?
+
+ The PLOS Data policy requires authors to make all data underlying the findings described in their manuscript fully available without restriction, with rare exception (please refer to the Data Availability Statement in the manuscript PDF file). The data should be provided as part of the manuscript or its supporting information, or deposited to a public repository. For example, in addition to summary statistics, the data points behind means, medians and variance measures should be available. If there are restrictions on publicly sharing data—e.g. participant privacy or use of data from a third party—those must be specified. 
+
+ Reviewer #1: Yes  Reviewer #2: No  **********  4. Is the manuscript presented in an intelligible fashion and written in standard English?
+
+ PLOS ONE does not copyedit accepted manuscripts, so the language in submitted articles must be clear, correct, and unambiguous. Any typographical or grammatical errors should be corrected at revision, so please note any specific errors here.
+
+ Reviewer #1: Yes  Reviewer #2: No  **********  5. Review Comments to the Author  Please use the space provided to explain your answers to the questions above. You may also include additional comments for the author, including concerns about dual publication, research ethics, or publication ethics. (Please upload your review as an attachment if it exceeds 20,000 characters)
+
+ Reviewer #1: Overall, the segmentation results appear to be very good, and the cross-fold validation study is rigorous. Splitting the folds over pigs (subject-wise split) avoids data contamination issues between training and testing, which is good.
+
+ However, I do not like how the outlier case of one pig was manually-corrected and then the segmentation values were used to report final Dice scores. Manual-correction is fine, but I feel that this is a biased presentation of results. Instead, I encourage you to report both the Dice overlap scores using the original data (that includes the failure case) as well as the results after manual correction for full transparency of results. Imaging artefacts happen all the time, and I think presenting these full results would be more useful for readers.
+
+ What form of image intensity normalization was performed? Intensity normalization for MR images is often a critical component. It might not be problem here since all images were from the same scanner, but it would be problem if different scanners were used (or the same scanner was used after any upgrades). Intensity normalization could also help to control for intensity outliers (as seen in your failure case). Please elaborate on any normalization methods used.
+
+ Largest connected component filtering was performed as a post-processing step. It would be helpful to report the Dice segmentation values prior to post-processing as well. This would give readers a sense of how well the original segmentation performed compared to how much the post-processing helped.
+
+ The inclusion of Dice overlap as similarity metric is good and gives a measure of overall segmentation performance. But, typically, Dice by itself is not the only metric used for segmentation evaluation. Other metrics that are commonly used are Harsdorff Distance (HD) and Mean Surface Distance. In particular, HD is of interest because this gives a measure of worst-case segmentation performance. Worst case segmentation performance is often of interest to readers. Please consider including HD (or its less extreme variant the 95-th percentile of HD).
+
+ Training and inference used 2D image slices. During inference, all 2D slices of a piglet were combined into a 3D volume. This has the potential to result in mask results that are not smooth at the boundary because each 2D slice is independent of its neighbors (this is where 2.5D or 3D processing would help). Please discuss the spatial consistency of results between neighboring slices within the 3D volume.
+
+ Grammar/Typographical:  Line 134: “all by the” -> “all but the”  Reviewer #2: I have the following concerns about this manuscript:
+
+ 1- This manuscript is written by a way different from usual known articles including sectioning and subsectioning, references ..etc.
+
+ 2- There is no mathematical or statistical analysis at all.
+
+ 3- The methodology used in training, validation, and testing the used model is unclear.
+
+ 4- The author should compare their results with related published references performing the segmentation task using the same data set without restriction themselves to the piglet MRI images.
+
+ **********  6. PLOS authors have the option to publish the peer review history of their article ( what does this mean? ). If published, this will include your full peer review and any attached files. 
+
+ If you choose “no”, your identity will remain anonymous but your review may still be made public.
+
+ Do you want your identity to be public for this peer review? For information about this choice, including consent withdrawal, please see our  Privacy Policy . 
+
+ Reviewer #1: No  Reviewer #2: Yes: Ashraf A. M. Khalaf   **********  [NOTE: If reviewer comments were submitted as an attachment file, they will be attached to this email and accessible via the submission site. Please log into your account, locate the manuscript record, and check for the action link "View Attachments". If this link does not appear, there are no attachment files.]
+
+ While revising your submission, please upload your figure files to the Preflight Analysis and Conversion Engine (PACE) digital diagnostic tool, https://pacev2.apexcovantage.com/ . PACE helps ensure that figures meet PLOS requirements. To use PACE, you must first register as a user. Registration is free. Then, login and navigate to the UPLOAD tab, where you will find detailed instructions on how to use the tool. If you encounter any issues or have any questions when using PACE, please email PLOS at  figures@plos.org . Please note that Supporting Information files do not need this step. 
+
+   10.1371/journal.pone.0284951.r003  Author response to Decision Letter 0     Submission Version  1     12 Dec 2022   Reviewer #1: Overall, the segmentation results appear to be very good, and the cross-fold validation study is rigorous. Splitting the folds over pigs (subject-wise split) avoids data contamination issues between training and testing, which is good.
+
+ However, I do not like how the outlier case of one pig was manually-corrected and then the segmentation values were used to report final Dice scores. Manual-correction is fine, but I feel that this is a biased presentation of results. Instead, I encourage you to report both the Dice overlap scores using the original data (that includes the failure case) as well as the results after manual correction for full transparency of results. Imaging artefacts happen all the time, and I think presenting these full results would be more useful for readers.
+
+ Response: We thank the reviewer for their helpful review. We agree with the reviewer and we have revised the manuscript to report Dices scores before and after this manual correction.
+
+ What form of image intensity normalization was performed? Intensity normalization for MR images is often a critical component. It might not be problem here since all images were from the same scanner, but it would be problem if different scanners were used (or the same scanner was used after any upgrades). Intensity normalization could also help to control for intensity outliers (as seen in your failure case). Please elaborate on any normalization methods used.
+
+ Response: We agree with the reviewer on the importance of intensity. We have revised the manuscript to state that we did not perform normalization, and to state that might have prevented the segmentation error mentioned by the reviewer, and that it would likely be important for use with data from other scanning conditions.
+
+ Largest connected component filtering was performed as a post-processing step. It would be helpful to report the Dice segmentation values prior to post-processing as well. This would give readers a sense of how well the original segmentation performed compared to how much the post-processing helped.
+
+ Response: We have updated the manuscript to include this information, and to quantify the improvements in Dice coefficients due to largest connected component filtering
+
+ The inclusion of Dice overlap as similarity metric is good and gives a measure of overall segmentation performance. But, typically, Dice by itself is not the only metric used for segmentation evaluation. Other metrics that are commonly used are Harsdorff Distance (HD) and Mean Surface Distance. In particular, HD is of interest because this gives a measure of worst-case segmentation performance. Worst case segmentation performance is often of interest to readers.
+
+ Response: We have updated the manuscript to report Hausdorff Distance measures.
+
+ Training and inference used 2D image slices. During inference, all 2D slices of a piglet were combined into a 3D volume. This has the potential to result in mask results that are not smooth at the boundary because each 2D slice is independent of its neighbors (this is where 2.5D or 3D processing would help). Please discuss the spatial consistency of results between neighboring slices within the 3D volume.
+
+ Response: We have updated the manuscript with a discussion of the potential advantages of 3D processing for improvement of consistency between slices.
+
+ Grammar/Typographical:  Line 134: “all by the” -> “all but the”  Response: Thank you for pointing this out; it has been corrected.
+
+ Reviewer #2: I have the following concerns about this manuscript:
+
+ 1- This manuscript is written by a way different from usual known articles including sectioning and subsectioning, references ..etc.
+
+ Response: We thank the reviewer for their review and comments. We believe that the sectioning is consistent with the usual pattern, including Introduction, Methods, Results, and Discussion. The Methods section is sub-sectioned into Animals and Care Practices, MRI Acquisition, Manual Brain Extraction, Automated Brain Extraction, and Validation.
+
+ 2- There is no mathematical or statistical analysis at all.
+
+ Response: We have updated the manuscript to include Hausdorff Distance values, and some descriptive statistics of them.
+
+ 3- The methodology used in training, validation, and testing the used model is unclear.
+
+ Response: We tested the model using nested cross-validation. We do not have a separate validation set because we did not perform hyperparameter tuning. The method of nested cross-validation and the potential usefulness of hyperparameter tuning is described in the paper.
+
+ 4- The author should compare their results with related published references performing the segmentation task using the same data set without restriction themselves to the piglet MRI images.
+
+ Response: We agree that the inclusion of more data could strengthen the manuscript; however, we believe that the inclusion of non-piglet MRI images is beyond the scope of the manuscript.
+
+ Attachment  Submitted filename: reviewer_comments_responses.docx 
+
+  Click here for additional data file.       10.1371/journal.pone.0284951.r004  Decision Letter 1   Wang  Zhishun   Academic Editor    © 2023 Zhishun Wang  2023  Zhishun Wang  https://creativecommons.org/licenses/by/4.0/  This is an open access article distributed under the terms of the Creative Commons Attribution License , which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.       Submission Version  1     26 Jan 2023   PONE-D-21-37916R1Automated identification of piglet brain tissue from MRI images using Region-based Convolutional Neural NetworksPLOS ONE
+
+ Dear Dr. Larsen,  Thank you for submitting your manuscript to PLOS ONE. After careful consideration, we feel that it has merit but does not fully meet PLOS ONE’s publication criteria as it currently stands. Therefore, we invite you to submit a revised version of the manuscript that addresses the points raised during the review process.
+
+ Please submit your revised manuscript by Mar 12 2023 11:59PM. If you will need more time than this to complete your revisions, please reply to this message or contact the journal office at plosone@plos.org . When you're ready to submit your revision, log on to  https://www.editorialmanager.com/pone/ and select the 'Submissions Needing Revision' folder to locate your manuscript file. 
+
+ Please include the following items when submitting your revised manuscript: A rebuttal letter that responds to each point raised by the academic editor and reviewer(s). You should upload this letter as a separate file labeled 'Response to Reviewers'.
+
+  A marked-up copy of your manuscript that highlights changes made to the original version. You should upload this as a separate file labeled 'Revised Manuscript with Track Changes'.
+
+  An unmarked version of your revised paper without tracked changes. You should upload this as a separate file labeled 'Manuscript'.
+
+  If you would like to make changes to your financial disclosure, please include your updated statement in your cover letter. Guidelines for resubmitting your figure files are available below the reviewer comments at the end of this letter. 
+
+ If applicable, we recommend that you deposit your laboratory protocols in protocols.io to enhance the reproducibility of your results. Protocols.io assigns your protocol its own identifier (DOI) so that it can be cited independently in the future. For instructions see: https://journals.plos.org/plosone/s/submission-guidelines#loc-laboratory-protocols . Additionally, PLOS ONE offers an option for publishing peer-reviewed Lab Protocol articles, which describe protocols hosted on protocols.io. Read more information on sharing protocols at  https://plos.org/protocols?utm_medium=editorial-email&utm_source=authorletters&utm_campaign=protocols . 
+
+ We look forward to receiving your revised manuscript.
+
+ Kind regards,  Zhishun Wang, Ph.D.  Academic Editor  PLOS ONE  Journal Requirements:  Please review your reference list to ensure that it is complete and correct. If you have cited papers that have been retracted, please include the rationale for doing so in the manuscript text, or remove these references and replace them with relevant current references. Any changes to the reference list should be mentioned in the rebuttal letter that accompanies your revised manuscript. If you need to cite a retracted article, indicate the article’s retracted status in the References list and also include a citation and full reference for the retraction notice.
+
+ [Note: HTML markup is below. Please do not edit.]  Reviewers' comments:  Reviewer's Responses to Questions  Comments to the Author   1. If the authors have adequately addressed your comments raised in a previous round of review and you feel that this manuscript is now acceptable for publication, you may indicate that here to bypass the “Comments to the Author” section, enter your conflict of interest statement in the “Confidential to Editor” section, and submit your "Accept" recommendation.
+
+ Reviewer #1: All comments have been addressed  Reviewer #2: (No Response)  **********  2. Is the manuscript technically sound, and do the data support the conclusions?
+
+ The manuscript must describe a technically sound piece of scientific research with data that supports the conclusions. Experiments must have been conducted rigorously, with appropriate controls, replication, and sample sizes. The conclusions must be drawn appropriately based on the data presented.
+
+ Reviewer #1: Partly  Reviewer #2: Partly  **********  3. Has the statistical analysis been performed appropriately and rigorously?
+
+ Reviewer #1: N/A  Reviewer #2: No  **********  4. Have the authors made all data underlying the findings in their manuscript fully available?
+
+ The PLOS Data policy requires authors to make all data underlying the findings described in their manuscript fully available without restriction, with rare exception (please refer to the Data Availability Statement in the manuscript PDF file). The data should be provided as part of the manuscript or its supporting information, or deposited to a public repository. For example, in addition to summary statistics, the data points behind means, medians and variance measures should be available. If there are restrictions on publicly sharing data—e.g. participant privacy or use of data from a third party—those must be specified. 
+
+ Reviewer #1: Yes  Reviewer #2: Yes  **********  5. Is the manuscript presented in an intelligible fashion and written in standard English?
+
+ PLOS ONE does not copyedit accepted manuscripts, so the language in submitted articles must be clear, correct, and unambiguous. Any typographical or grammatical errors should be corrected at revision, so please note any specific errors here.
+
+ Reviewer #1: Yes  Reviewer #2: No  **********  6. Review Comments to the Author  Please use the space provided to explain your answers to the questions above. You may also include additional comments for the author, including concerns about dual publication, research ethics, or publication ethics. (Please upload your review as an attachment if it exceeds 20,000 characters)
+
+ Reviewer #1: The authors have addressed my comments.
+
+ The main limitation of the paper’s evaluation is that the segmentation approach is not compared to alternative segmentation methods as a benchmark. For example, comparison to the 3D U-net approach in [12] using the data from this paper would be ideal. The method in [12] is another segmentation approach applied to very similar data, piglet brain MRI. The proposed approach to use Mask R-CNN would be rigorously justified with a direct head-to-head comparison with the 3D U-net using your dataset.
+
+ Absent this numerical comparison, additional discussion comparing to the U-net approach to the proposed approach would be helpful in the Discussion section. The performance of [12] is briefly mentioned in the Discussion (line 223), but a more thorough comparison to the proposed method (both strengths and weaknesses) may be warranted since it is a such a similar application area. However, this discussion must note that a true comparison cannot be made because the two approaches used different datasets.
+
+ Reviewer #2: It is the second time to review this manuscript, and almost all my concerns didn't addressed:
+
+ 1- This manuscript is written by a way different from usual known articles including
+
+ sectioning and subsectioning, references ..etc.  Response: We thank the reviewer for their review and comments. We believe that the
+
+ sectioning is consistent with the usual pattern, including Introduction, Methods,
+
+ Results, and Discussion. The Methods section is sub-sectioned into Animals and Care
+
+ Practices, MRI Acquisition, Manual Brain Extraction, Automated Brain Extraction, and
+
+ Validation.  Reviewer again: Where is the "Conclusion" section?
+
+ Please, see one of the papers published y PloS One:
+
+ Zhai Y, Davenport B, Schuetz K, Pappu HR (2022) An on-site adaptable test for rapid and sensitive detection of Potato mop-top virus, a soilborne virus of potato (Solanum tuberosum). PLoS ONE 17(8): e0270918.
+
+ https://doi.org/10.1371/journal.pone.0270918   ---------------------------------  2- There is no mathematical or statistical analysis at all.
+
+ Response: We have updated the manuscript to include Hausdorff Distance values, and
+
+ some descriptive statistics of them.  Reviewer again: Not addressed  The authors can say that they didn't have any mathematical analysis since they are doing empirical research, then the editorial staff take their decision.
+
+ 3- The methodology used in training, validation, and testing used in the model is unclear.
+
+ Response: We tested the model using nested cross-validation. We do not have a
+
+ separate validation set because we did not perform hyperparameter tuning. The
+
+ method of nested cross-validation and the potential usefulness of hyperparameter
+
+ tuning is described in the paper.  Reviewer again: point Addressed  4- The authors should compare their results with related published references
+
+ performing the segmentation task using the same data set without restriction
+
+ themselves to the piglet MRI images.  Reviewer again: Not addressed  My opinion is: The comparison with the state-of-the-art is necessary or at least the authors should describe why their approach gives sufficient results that will e an added value to this research area without evidences!. Especially the tool used in this research (Mask R-CNN) is not new!
+
+ -------------------  New sample comments:  A- Line 17, the first sentence in the "Abstract" : Magnetic Resonance Imaging.... >>> Magnetic Resonance Imaging (MRI)....
+
+ B- How can we evaluate the automated technique visually?
+
+ Line 158 : "Visual inspection of the brain extractions reveals good accuracy of automatic brain extractions
+
+ (Fig 3)....  **********  7. PLOS authors have the option to publish the peer review history of their article ( what does this mean? ). If published, this will include your full peer review and any attached files. 
+
+ If you choose “no”, your identity will remain anonymous but your review may still be made public.
+
+ Do you want your identity to be public for this peer review? For information about this choice, including consent withdrawal, please see our  Privacy Policy . 
+
+ Reviewer #1: No  Reviewer #2: No  **********  [NOTE: If reviewer comments were submitted as an attachment file, they will be attached to this email and accessible via the submission site. Please log into your account, locate the manuscript record, and check for the action link "View Attachments". If this link does not appear, there are no attachment files.]
+
+ While revising your submission, please upload your figure files to the Preflight Analysis and Conversion Engine (PACE) digital diagnostic tool, https://pacev2.apexcovantage.com/ . PACE helps ensure that figures meet PLOS requirements. To use PACE, you must first register as a user. Registration is free. Then, login and navigate to the UPLOAD tab, where you will find detailed instructions on how to use the tool. If you encounter any issues or have any questions when using PACE, please email PLOS at  figures@plos.org . Please note that Supporting Information files do not need this step. 
+
+   10.1371/journal.pone.0284951.r005  Author response to Decision Letter 1     Submission Version  2     21 Mar 2023   We have written our responses to the reviewers in the attached file, "Response to Reviewers".
+
+ Attachment  Submitted filename: Response to Reviewers.docx    Click here for additional data file.       10.1371/journal.pone.0284951.r006  Decision Letter 2   Wang  Zhishun   Academic Editor    © 2023 Zhishun Wang  2023  Zhishun Wang  https://creativecommons.org/licenses/by/4.0/  This is an open access article distributed under the terms of the Creative Commons Attribution License , which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.       Submission Version  2     13 Apr 2023   Automated identification of piglet brain tissue from MRI images using Region-based Convolutional Neural Networks
+
+ PONE-D-21-37916R2  Dear Dr. Larsen,  We’re pleased to inform you that your manuscript has been judged scientifically suitable for publication and will be formally accepted for publication once it meets all outstanding technical requirements.
+
+ Within one week, you’ll receive an e-mail detailing the required amendments. When these have been addressed, you’ll receive a formal acceptance letter and your manuscript will be scheduled for publication.
+
+ An invoice for payment will follow shortly after the formal acceptance. To ensure an efficient process, please log into Editorial Manager at http://www.editorialmanager.com/pone/ , click the 'Update My Information' link at the top of the page, and double check that your user information is up-to-date. If you have any billing related questions, please contact our Author Billing department directly at  authorbilling@plos.org . 
+
+ If your institution or institutions have a press office, please notify them about your upcoming paper to help maximize its impact. If they’ll be preparing press materials, please inform our press team as soon as possible -- no later than 48 hours after receiving the formal acceptance. Your manuscript will remain under strict press embargo until 2 pm Eastern Time on the date of publication. For more information, please contact onepress@plos.org . 
+
+ Kind regards,  Zhishun Wang, Ph.D.  Academic Editor  PLOS ONE  Additional Editor Comments (optional):  Reviewers' comments:  Reviewer's Responses to Questions  Comments to the Author   1. If the authors have adequately addressed your comments raised in a previous round of review and you feel that this manuscript is now acceptable for publication, you may indicate that here to bypass the “Comments to the Author” section, enter your conflict of interest statement in the “Confidential to Editor” section, and submit your "Accept" recommendation.
+
+ Reviewer #1: All comments have been addressed  Reviewer #2: All comments have been addressed  **********  2. Is the manuscript technically sound, and do the data support the conclusions?
+
+ The manuscript must describe a technically sound piece of scientific research with data that supports the conclusions. Experiments must have been conducted rigorously, with appropriate controls, replication, and sample sizes. The conclusions must be drawn appropriately based on the data presented.
+
+ Reviewer #1: Yes  Reviewer #2: Partly  **********  3. Has the statistical analysis been performed appropriately and rigorously?
+
+ Reviewer #1: N/A  Reviewer #2: No  **********  4. Have the authors made all data underlying the findings in their manuscript fully available?
+
+ The PLOS Data policy requires authors to make all data underlying the findings described in their manuscript fully available without restriction, with rare exception (please refer to the Data Availability Statement in the manuscript PDF file). The data should be provided as part of the manuscript or its supporting information, or deposited to a public repository. For example, in addition to summary statistics, the data points behind means, medians and variance measures should be available. If there are restrictions on publicly sharing data—e.g. participant privacy or use of data from a third party—those must be specified. 
+
+ Reviewer #1: Yes  Reviewer #2: Yes  **********  5. Is the manuscript presented in an intelligible fashion and written in standard English?
+
+ PLOS ONE does not copyedit accepted manuscripts, so the language in submitted articles must be clear, correct, and unambiguous. Any typographical or grammatical errors should be corrected at revision, so please note any specific errors here.
+
+ Reviewer #1: Yes  Reviewer #2: Yes  **********  6. Review Comments to the Author  Please use the space provided to explain your answers to the questions above. You may also include additional comments for the author, including concerns about dual publication, research ethics, or publication ethics. (Please upload your review as an attachment if it exceeds 20,000 characters)
+
+ Reviewer #1: While the authors have addressed my comments for the most part, I am a little disappointed that the effort was not made to train another network for comparison. Training and testing another network for benchmarking is standard practice in image analysis and it does not require tremendous resources in the case of a U-net. The discussion comparing to the alternative U-net is ok, but it is a lesser replacement for head-to-head comparison.
+
+ Reviewer #2: Almost all my previous comments in the previous review round have been addressed in this revised version.
+
+ **********  7. PLOS authors have the option to publish the peer review history of their article ( what does this mean? ). If published, this will include your full peer review and any attached files. 
+
+ If you choose “no”, your identity will remain anonymous but your review may still be made public.
+
+ Do you want your identity to be public for this peer review? For information about this choice, including consent withdrawal, please see our  Privacy Policy . 
+
+ Reviewer #1: No  Reviewer #2: Yes: Ashraf A. M. Khalaf   **********    10.1371/journal.pone.0284951.r007  Acceptance letter   Wang  Zhishun   Academic Editor    © 2023 Zhishun Wang  2023  Zhishun Wang  https://creativecommons.org/licenses/by/4.0/  This is an open access article distributed under the terms of the Creative Commons Attribution License , which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.        19 Apr 2023   PONE-D-21-37916R2  Automated identification of piglet brain tissue from MRI images using Region-based Convolutional Neural Networks
+
+ Dear Dr. Larsen:  I'm pleased to inform you that your manuscript has been deemed suitable for publication in PLOS ONE. Congratulations! Your manuscript is now with our production department.
+
+ If your institution or institutions have a press office, please let them know about your upcoming paper now to help maximize its impact. If they'll be preparing press materials, please inform our press team within the next 48 hours. Your manuscript will remain under strict press embargo until 2 pm Eastern Time on the date of publication. For more information please contact onepress@plos.org . 
+
+ If we can help with anything else, please email us at plosone@plos.org . 
+
+ Thank you for submitting your work to PLOS ONE and supporting open access.
+
+ Kind regards,  PLOS ONE Editorial Office Staff  on behalf of  Dr. Zhishun Wang  Academic Editor  PLOS ONE   
+

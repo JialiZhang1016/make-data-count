@@ -63,7 +63,7 @@ def main(pred_path: str, truth_path: str, output_path: str) -> None:
     final_df.write_csv(output_path)
 
 if __name__ == '__main__':
-    pred_path = './temp/submission_xml_5.csv'
+    pred_path = './temp/submission.csv'
     truth_path = './data/train_labels.csv'  # Assume this is the path to the ground truth CSV; adjust as needed
-    output_path = './temp/F1_details_xml.csv'
+    output_path = './temp/F1_details.csv'
     main(pred_path, truth_path, output_path)

@@ -1,1820 +1,272 @@
-RESEARCH
-Open Access
-Host-associated microbiomes are predicted
-by immune system complexity and climate
-Douglas C. Woodhams1,2*†
-, Molly C. Bletz1†, C. Guilherme Becker3, Hayden A. Bender1, Daniel Buitrago-Rosas1,2,
-Hannah Diebboll1, Roger Huynh1, Patrick J. Kearns1, Jordan Kueneman2, Emmi Kurosawa1, Brandon C. LaBumbard1,
-Casandra Lyons1, Kerry McNally4,5, Klaus Schliep1, Nachiket Shankar1, Amanda G. Tokash-Peters1,6,
-Miguel Vences7 and Ross Whetstone1
-Abstract
-Background: Host-associated microbiomes, the microorganisms occurring inside and on host surfaces,
-influence evolutionary, immunological, and ecological processes. Interactions between host and microbiome
-affect metabolism and contribute to host adaptation to changing environments. Meta-analyses of host-
-associated bacterial communities have the potential to elucidate global-scale patterns of microbial community
-structure and function. It is possible that host surface-associated (external) microbiomes respond more
-strongly to variations in environmental factors, whereas internal microbiomes are more tightly linked to host
-factors.
-Results: Here, we use the dataset from the Earth Microbiome Project and accumulate data from 50 additional
-studies totaling 654 host species and over 15,000 samples to examine global-scale patterns of bacterial
-diversity and function. We analyze microbiomes from non-captive hosts sampled from natural habitats and
-find patterns with bioclimate and geophysical factors, as well as land use, host phylogeny, and trophic level/
-diet. Specifically, external microbiomes are best explained by variations in mean daily temperature range and
-precipitation seasonality. In contrast, internal microbiomes are best explained by host factors such as
-phylogeny/immune complexity and trophic level/diet, plus climate.
-Conclusions: Internal microbiomes are predominantly associated with top-down effects, while climatic factors
-are stronger determinants of microbiomes on host external surfaces. Host immunity may act on microbiome
-diversity through top-down regulation analogous to predators in non-microbial ecosystems. Noting gaps in
-geographic and host sampling, this combined dataset represents a global baseline available for interrogation
-by future microbial ecology studies.
-Keywords: Biodiversity, Gut microbiome, Microbial ecology, Skin microbiome, Symbiosis, Wolbachia
-Background
-“A memory-based immune system may have evolved in
-vertebrates because of the need to recognize and manage
-complex communities of beneficial microbes.”—McFall-
-Ngai 2007 [1].
-While global patterns of diversity and biogeography
-have been extensively studied in animals and plants, they
-are much less understood in microbes. In soil micro-
-biomes, pH has been found to be a strong driver of eco-
-system type [2], while in another study, environmental
-microbiomes were primarily driven by salinity [3]. The
-recent Earth Microbiome Project found that host micro-
-biomes were distinct from environmental microbiomes,
-and for hosts, ecosystem type was an important driver.
-Microbiomes of plants and animals differed strongly,
-and
-host
-surfaces
-were
-different
-from
-digestive-
-associated microbiomes [4]. A large study examining
-© The Author(s). 2020, corrected publication 2020. Open Access This article is distributed under the terms of the Creative
-Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use,
-distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source,
-provide a link to the Creative Commons license, and indicate if changes were made. The Creative Commons Public Domain
-Dedication waiver (http://creativecommons.org/publicdomain/zero/1.0/) applies to the data made available in this article,
-unless otherwise stated.
-* Correspondence: dwoodhams@gmail.com
-†Douglas C. Woodhams and Molly C. Bletz are co-first authors.
-1Department of Biology, University of Massachusetts Boston, Boston, MA
-02125, USA
-2Smithsonian Tropical Research Institute, Roosevelt Ave. Tupper Building –
-401, 0843-03092 Panamá, Panama
-Full list of author information is available at the end of the article
-Woodhams et al. Genome Biology           (2020) 21:23 
-https://doi.org/10.1186/s13059-019-1908-8
-skin surface microbiomes across 205 amphibian species
-found strong correlations with bioclimatic factors [5],
-while digestive microbiomes of mammals were influenced
-by diet and gut morphology, and indeed distinct from en-
-vironmental microbiomes [6]. A substantial role of biotic
-interactions in shaping microbial communities was also
-obvious from a strong bacterial-fungal antagonism re-
-vealed by global patterns in topsoil and ocean micro-
-biomes [7], a pattern also revealed on hosts [8–11].
-These studies are foundational for understanding
-large-scale microbial ecology patterns. Here, we use
-data of host-associated bacterial communities from the
-Earth Microbiome Project and 50 additional studies
-that meet our criteria for inclusion to produce a large
-dataset for analysis through a standardized pipeline
-(Fig. 1a). We examine 654 non-captive host species in-
-cluding plants, and invertebrate and vertebrate animals
-and perform separate analyses for digestive-associated
-(internal)
-and
-surface-associated
-(external)
-micro-
-biomes from marine or terrestrial/aquatic habitats.
-With an increasing diversity of hosts examined for sym-
-biosis with microbes, mechanisms driving these host-
-microbe interactions will become clear [12]. We hy-
-pothesized that external host-associated microbiomes
-would most strongly correlate with global bioclimate or
-other abiotic factors, while internal microbiomes would
-be more strongly associated with host factors such as
-phylogeny, and trophic level or diet.
-Diverse microbial communities can assemble and
-coevolve with hosts and contribute important or even
-essential functions for host development, physiology,
-and health [13, 14]. Detrimental alterations in the
-host’s microbiome, or "dysbiosis", can lead to disease;
-thus, baseline descriptions of functional microbiomes
-are essential [15, 16]. In the future, personalized medi-
-cine may utilize the microbiome for biomarkers for
-conditions of disease or health [17], and disease pro-
-gression may be more readily predicted and described
-by changes in microbiota than by clinical symptoms or
-the presence of certain pathogenic agents [18, 19].
-Functional characterization may be more meaningful
-than identity in microbial community profiles due to
-functional redundancy among microbes [20, 21]. How-
-ever, characterizing core (prevalent among individuals)
-microbial communities may also be utilized to develop
-screening tools for host health or to understand eco-
-evolutionary dynamics [22, 23]. Here, we hypothesized
-that internal microbiomes may represent an extension
-of host phenotype; rather than functioning to reduce
-microbial diversity, complexity in host immune sys-
-tems may be correlated with microbiome diversity
-across taxa. Furthermore, host microbiomes may be
-more strongly differentiated by predicted community
-function than by community composition given a
-multitude
-of
-species
-with
-overlapping
-functional
-capacities.
-Meta-analysis of microbiomes through the growing
-body of next-generation sequencing data represents a
-new tool for ecologists and is a systematic approach to
-combining the results of multiple studies and synthesiz-
-ing relevant data to gain new insights [4, 24]. This tech-
-nique allows the synthesis of regional- and local-scale
-data to elucidate global-scale patterns of microbial com-
-munity structure, function, and interaction, with indica-
-tions for public health and extending to environmental
-policy [25]. Meta-analysis has been increasingly recog-
-nized as an important scientific approach, with many
-prominent researchers proposing standards for, and en-
-couraging, its continued widespread use [25–27]. Hu-
-man microbiomes have been the target of several meta-
-analyses, revealing insights that indicate microbial in-
-volvement in health as well as disease [28], and deter-
-mining core microbiota associated with body sites [29].
-Some meta-analyses have synthesized data in order to
-investigate disease, physiologic, and developmental states
-with large effect sizes [30, 31]. Meta-analyses of non-
-human host taxa have found a potential link of conver-
-gent microbial symbioses between fish and mammals
-with salinity and trophic level being important drivers of
-fish gut microbiomes [32]. While diet also impacts mam-
-mal gut microbiomes [6], a study of 18 wild non-human
-primates indicated that the influence of host physiology
-and phylogeny was much stronger than diet [33]. Host
-selection also was found to be more important than diet
-or captivity status in avian guts [34]. Some key questions
-for microbiome meta-analyses are featured in Table 1,
-and while host-microbiome datasets are accumulating
-with time (Fig. 2), knowledge gaps are identified includ-
-ing gaps in regions sampled (Fig. 1b) and host groups
-with unstudied microbiomes (Fig. 3). Importantly, the
-eukaryotic and viral components of the microbiome re-
-main a research frontier. The bacterial microbiome data-
-set and metadata accumulated here is a public resource
-and may provide future eco-evolutionary, veterinary, or
-medical insights. As an example, we investigate the bio-
-climatic correlates of the abundance of an arthropod
-symbiont that is increasingly important for disease vec-
-tor control (Wolbachia [59, 60]) across the global dataset
-we assembled.
-Results
-After combining microbiome datasets targeting the V4
-region of 16S rRNA gene obtained from Illumina plat-
-forms and using a standard analysis pipeline (Fig. 1a)
-[61]
-to
-identify
-sub-Operational
-Taxonomic
-Units
-(sOTUS), or unique sequence variants [27], we were able
-to compare data from 654 host species distributed glo-
-bally. Samples ranged from 46 countries in 7 biomes and
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 2 of 20
-from hosts including marine sponges 490 m below the
-sea surface to bar-headed geese at 3955 m elevation in
-the Himalayas. While representing a global sampling of
-hosts, visual inspection of the map of global distribution
-of samples suggests that hosts from much of Africa and
-Asia
-are
-underrepresented
-(Fig.
-1b),
-and
-many
-eukaryotic clades have not been sampled, thus providing
-ample opportunities for future research (Fig. 3). We sub-
-set the 15,790 samples into 3 non-overlapping groups
-for separate analyses: internal (N = 741 samples), exter-
-nal (N = 1193), and marine external microbiomes (N =
-266; Table 2, Fig. 1a). Given what has already been de-
-scribed by the Earth Microbiome Project, separate ana-
-lyses are warranted based on host ecosystem type
-(marine as distinct from terrestrial/aquatic) and host in-
-ternal or external body site [3].
-For marine organisms, our analysis was limited to avail-
-able external samples. For terrestrial/aquatic organisms,
-Fig. 1 Method schematic and geographic distribution of samples analyzed. a Method schematic for data attainment and compilation, data
-processing, and data splitting into three distinct subsets for subsequent analyses. b Map of the coverage of samples included in this study. Three
-types of host microbiome samples are represented: internal (squares), external (triangles), and marine external (circles). Sampling points are color-
-scaled by sub-Operational Taxonomic Unit (sOTU) richness. Areas with small territory size (such as Central America and Hawaiian Archipelago) and
-many sampling points with different types of samples (Madagascar) are shown zoomed-in in separate boxes. Map created with QGIS (Quantum
-GIS Development Team 2013) using a base global map from Natural Earth (naturalearthdata.com) with all geographic coordinates standardized to
-decimal degrees
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 3 of 20
-we divided analyses between internal and external sam-
-ples. Internal microbiomes were primarily associated with
-the digestive system or whole organism samples in the
-case of insects. While the microbial communities in in-
-sects can differ with surface or organ sampled, for the sake
-of our analysis, we classified whole organism tissues as in-
-ternal (Fig. 1a). This is consistent with descriptions of gut
-microbiomes driving the community structure of whole-
-organism samples [62], and the lower quantity of bacterial
-cells on human skin vs. large intestine, for example [63].
-External microbiomes were sampled from host surfaces
-including the skin, gill, or leaves, and analyzed separately.
-We assembled an extensive collection of metadata for
-each sampled host, including host taxonomy, life stage,
-trophic level, and body site sampled, as well as environ-
-mental factors for each sampling location such as
-macroclimate metrics of temperature and precipitation,
-land cover, and elevation. We then visualized the domin-
-ant microbial taxa from each host class separately by
-host habitat and body region (internal, external; Fig. 4,
-Additional file 1: Figure S3), and performed analyses of
-alpha and beta diversity metrics. Results of all analyses
-can be reproduced with the data included in Add-
-itional files 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12 (see the
-“Methods” section and Additional file 1 for a description
-of the data files provided), or re-analyzed in the future
-as bioinformatics techniques continue to improve.
-To analyze alpha diversity, including richness (num-
-ber of sOTUs) and phylogenetic diversity of sOTUs,
-we carried out model selection (Additional file 1:
-Table S1), resulting in a reduced set of variables for
-inclusion in downstream path analyses: a temperature
-metric and a precipitation metric, normalized differ-
-ence vegetation index (NDVI), and host phylogeny
-and trophic diet. Path analysis was used to test for
-the magnitude and significance of hypothesized causal
-connections and to determine direct vs. indirect influ-
-ences on alpha diversity. Separate path models were
-run to examine how variables interacted to impact
-microbiome phylogenetic diversity or richness and
-were performed separately for internal and external
-microbiomes (Fig. 5). Latitude was excluded from
-path analyses because of multicollinearity with cli-
-matic variables (analyzed separately in Additional file 1:
-Figure S2).
-Patterns of beta-diversity were analyzed by permuta-
-tional analysis of variance (PERMANOVA) to deter-
-mine variables of greatest importance in structuring
-the microbial communities (Additional file 1: Table
-S2).
-Internal
-microbiomes
-were
-most
-significantly
-structured by host class (explaining 14% of the vari-
-ation), as well as trophic diet, several bioclimatic fac-
-tors, latitude, elevation, and NDVI (Additional file 1:
-Table S2). A principal coordinates analysis illustrates
-clustering of internal microbiome by host class and
-depicts the higher microbial diversity found in sam-
-ples of mammals, amphibians, birds, and non-avian
-reptiles (crocodile and iguana) as compared to insects
-and carnivorous plants (Fig. 6a; Additional file 1: Ta-
-bles S2, S3). External microbiomes were structured
-most strongly by bioclimatic factors (bioclim2 and
-bioclim15 explaining 60% and 7% of variation, re-
-spectively), as well as external habitat type (5%) as
-compared
-to
-host
-class
-(not
-significant;
-Add-
-itional file 1: Table S2). Bioclim2 is a measure of
-mean diurnal temperature range and most signifi-
-cantly structured the external microbiome (Fig. 6b,
-Additional file 1: Figure S3). Because our dataset was
-heavily filtered to standardize sampling among host
-species
-and
-locales,
-we
-verified
-that
-we
-retained
-power to detect previously described patterns. For ex-
-ample, four human populations included in the data-
-set
-recapitulated
-previously
-described
-patterns
-including greater gut microbiome diversity in develop-
-ing countries ([64]; Additional file 1: Figure S4).
-Table 1 Outstanding questions in host-microbiome research.
-Host-microbiome research is an emerging field. Knowledge gaps
-include the eukaryotic and viral components of the microbiome
-[35–37], novel bacterial clades and uncultured microbes [38–40],
-and large gaps in the geography and host taxa sampled for
-microbiome studies. Most studies to date have focused on
-human or other mammalian gut microbiomes, agricultural plants,
-and fish studies focused on aquaculture, leaving other vertebrate
-and invertebrate hosts underrepresented. Wild samples are
-needed to overcome alterations due to captivity [41, 42]. Recent
-efforts to place microbiomes within a macroecology context
-described patterns across scales [43], or metacommunity or
-community ecology contexts to learn about microbial migration
-[44, 45], community assembly and succession [46], and functions
-for host health [12, 47–49]
-Frontiers in host-microbiome research
-1) Are there dormant and active microbiome subsets of the host
-microbiome, and how do these subsets change with environmental
-conditions [50]? How does microbial antagonism and interaction protect
-hosts or facilitate host invasion [11]?
-2) What are the effects of environmental change on colonization,
-dysbiosis, or adaptive microbiomes? Do abiotic conditions have stronger
-effects on ectotherms compared with endothermic hosts? Are microbial
-therapies effective [17, 51–53]?
-3) What is the significance of core (stable through time and prevalent
-among individuals) vs peripheral (transitory or rare) microbiomes or
-gene functions including metabolic pathways in host populations, and
-is there a trade-off or shift in core microbiome with host immunity,
-anatomy, life stage, or environmental conditions? Are core microbiomes
-likely to be of use in personalized medicine or disease diagnostics? Are
-core microbiomes, particularly of non-human hosts, lost with
-industrialization [31, 54, 55]?
-4) Metabolomics and functional analyses are a research frontier; do they
-require a renewed focus on culture-based research and genome se-
-quencing [56–58]?
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 4 of 20
-Because host class had the strongest association with
-the internal microbiome structure, we examined this re-
-lationship in greater detail, hypothesizing that predicted
-function may provide further discrimination. We used
-PICRUSt (Phylogenetic Investigation of Communities by
-Reconstruction of Unobserved States) to examine func-
-tional properties of the internal microbiome [21]. We
-characterized the accuracy of this tool by comparing the
-weighted Nearest Sequenced Taxon Index (weighted
-NSTI) score across host classes and filtering samples
-above the cutoff score of 0.06 (Additional file 1: Figure
-S5). The major functional categories across host taxa in-
-cluded membrane transport, amino acid metabolism,
-and carbohydrate metabolism (Additional file 1: Figure
-S6). Functional capacities of the internal microbiomes
-were structured by similar variables as the microbial
-communities including host class (explaining 13% of
-variation) as well as trophic diet, bioclimate variables,
-latitude, elevation, and NDVI (each explaining less than
-5% of variation; Additional file 1: Table S2). Trophic diet
-was a significant factor of ecological interest, though
-explaining little variation. Some host taxa including Am-
-phibia and Teleostei demonstrate developmental shifts
-in both trophic level and microbiome [46, 65–67]. A
-phylogenetic tree of internal microbiome phyla illus-
-trated potential trends by host trophic level/diet in
-abundance of major groups such as decreasing Proteo-
-bacteria and increasing Firmicutes at higher trophic
-levels (Fig. 7). Profiles of carnivorous plants were distinct
-from animal carnivores. Shifts in major classes with four
-bacterial phyla are illustrated in Fig. 7b.
-Eco-evolutionary patterns in immune complexity were
-examined to test a mechanistic hypothesis explaining
-trends in host microbiome diversity. Hosts with adaptive
-immune systems had significantly greater microbiome
-richness and phylogenetic diversity than hosts with only
-innate immunity (Wilcoxon, P < 0.001; Fig. 8a). Com-
-plexity of host immune systems at a broad level was cor-
-related with
-microbiome
-diversity
-(Fig. 8b). While
-strongly correlated with host phylogeny, the complexity
-of adaptive immune systems across hosts based on a re-
-view by Flajnik [68] was developed into a matrix and
-score for each host class (Additional file 1: Table S3). In-
-clusion of the scale of adaptive immune system com-
-plexity in the path model for internal microbiomes
-indicated a significant direct association with microbial
-phylogenetic diversity (Fig. 9).
-The role and maintenance of core members of host
-microbiomes
-remains
-a
-research
-frontier,
-and
-we
-hypothesize a trade-off between immune complexity
-and abundance of core microbes defined specifically
-at the strain level (Table 1). A preliminary analysis
-based on a permissive definition of core bacteria (80%
-prevalence
-among
-samples)
-is
-presented
-in
-Add-
-itional file 1: Table S3.
-The dataset we assembled provides a broad overview
-of factors driving host microbiome structure, function,
-and diversity (Figs. 4, 5, and 6). It also provides a re-
-source for comparative microbial ecology. As an ex-
-ample of its utility, we scrutinized the dataset for global
-trends in the distribution of Wolbachia, a genus of com-
-mon Gram-negative bacteria known to be reproductive
-Fig. 2 Trends in published host-microbiome studies through time. Data based on a custom keyword statements within NCBI PubMed
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 5 of 20
-parasites and serving as mosquito disease vector control
-agents; our data confirm these bacteria being mainly
-present in insects (Table 3) and find them most abun-
-dant in cool environments of the globe (Fig. 10). At a
-global scale, we thus describe novel patterns and lay the
-groundwork for future mechanistic studies on host-
-microbiome interactions.
-Discussion
-The assembly and composition of host-associated micro-
-biomes are attendant with forces of ecology, evolution,
-host physiology, and immune function. Here, we exam-
-ine microbiomes from 654 host species and begin where
-our current understanding trails off. That is, at the
-broadest scale, microbiomes can be differentiated first by
-free-living or host-association according to the Earth
-Microbiome Project Ontology ([4]; Additional file 1: Fig-
-ure S1), likely driven by both biotic and abiotic pres-
-sures.
-Salinity
-has
-a
-large
-effect
-on
-free-living
-microbiomes [4], and here, we analyze microbiomes on
-external host surfaces of marine organisms separately
-from those of terrestrial and aquatic hosts. Many other
-factors influence or interact with host microbiomes, and
-here, we examine whether these factors differ depending
-on whether the microbiome is from external host sur-
-faces such as leaves, gill, or skin, or is internal to the
-host, including communities in the digestive and repro-
-ductive
-systems.
-Host
-immune
-complexity,
-though
-strongly correlated with host phylogeny, appears to in-
-fluence both internal and external microbiomes in terms
-of diversity and community structure (Figs. 8 and 9). In-
-deed, internal microbiome phylogenetic diversity had a
-weak direct path from host phylogeny, but a strong
-Fig. 3 Phylogenetic tree of selected eukaryotic hosts at the class level. Numbers adjacent to black circles indicate the number of species included
-in our dataset from that class. Groups’ missing microbiome data are evident; however, only studies focusing on the V4 region of the rRNA gene
-were included. Tree was retrieved from TimeTree (http://www.timetree.org), which aggregates taxonomic and phylogenetic information from
-published literature. Interact with this tree at IToL: https://itol.embl.de/tree/1306494203341921544122745
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 6 of 20
-Table 2 Summary statistics and metadata fields for the full dataset, partitioned for analyses by internal or external microbiomes of
-terrestrial and freshwater host organisms
-Metadata field
-Description
-Full dataset
-Internal
-External
-Marine_
-external
-Samples
-sample runs included in this study
-15,790
-741
-1193
-266
-sOTU
-exact sequence variants (sub-operational taxonomic units)
-175,709
-17,544a
-28,410a
-5.077a
-Publications (by doi)
-digital object identifier accession number of published studies
-51
-23
-13
-6
-Host Kingdom
-https://www.itis.gov or http://www.eol.org
-2
-2
-2
-2
-Host Phyllum
-https://www.itis.gov or http://www.eol.org
-8
-3
-2
-4
-Host Class
-https://www.itis.gov or http://www.eol.org
-16
-7
-5
-8
-Host Order
-https://www.itis.gov or http://www.eol.org
-80
-26
-23
-27
-Host Family
-https://www.itis.gov or http://www.eol.org
-177
-65
-52
-45
-Host Genus
-https://www.itis.gov or http://www.eol.org
-427
-171
-106
-58
-Host species name
-full scientific name of host organism
-654
-204
-239
-78
-Host taxid
-taxa id number for the host species from NCBI Taxonomy
-Browser
-640
-197
-236
-78
-Collection timestamp
-date of sampling in DD/MM/YYYY format
-1069
-143
-173
-108
-Countries
-country from which samples were collected
-46
-26
-18
-20
-Latitude range (deg)
-latitude in decimal degrees
--43.53 to
-60.17
--37.94 to 60.17
--39.84 to
-52.28
--43.14 to
-51.73
-Longitude range
-(deg)
-longitude in decimal degrees
--157.79 to
-174.83
--121.79 to 152.31
--122.83 to
-138.94
--157.79 to
-174.83
-Elevation range (m)
-GPS coordinates used to estimate elevation if not stated in
-study
--490 to
-3955
--3 to 3955
-17 to 3837
--490 to 25
-microbial_habitat_
-type
-internal, external, and whole organism
-3
-internal and whole
-organism
-external
-external
-internal_habitat_type
-digestive-associated, oral, nasal, lung, reproductive, leaf
-internal, root internal, and n/a
-8
-1
-n/a
-n/a
-digestive_habitat_
-type
-foregut, fecal, cloacal, intestine, stomach, other and n/a
-7
-5
-n/a
-n/a
-external_habitat_type
-leaf surface, root surface, animal surface, gill, and n/a
-5
-n/a
-4
-3
-surrounding_habitat
-freshwater, marine, terrestrial
-3
-freshwater,
-terrestrial
-freshwater,
-terrestrial
-marine
-lifestage
-adult, juvenile/pupae, larvae, and infant
-4
-4
-3
-2
-sampling_month
-month when the samples were collected
-12
-12
-12
-12
-trophic_diet
-scaled 0=primary producers, 1=herbivore, 2=omnivore, 3=
-carnivore, 4=detritivore/scavenger
-5
-5
-n/a
-n/a
-preservation_method
-sample storage by direct freeze, ethanol, RNA-later, or other
-4
-4
-3
-2
-extraction_method
-name of DNA extraction kit
-15
-5
-6
-2
-biogeo_realm
-https://en.wikipedia.org/wiki/Biogeographic_realm
-7
-6
-5
-4
-Worldclim2
-bioclimatic variables
-http://worldclim.org/version2; Fick et al 2017
-n/a
-8
-8
-n/a
-Marine geophysical
-variables
-http://marspec.weebly.com/about.html; Sbrocco et al 2013
-n/a
-n/a
-n/a
-11
-Immune Complexity
-(binary)
-inferred from host class information
-n/a
-2
-2
-n/a
-Immune Complexity
-(ordinal)
-scale based on Flajnik et al 2018;
-n/a
-1-9
-1-9
-n/a
-asOTUs after rarefaction at 1000 reads per sample
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 7 of 20
-indirect path from host phylogeny through immune
-complexity (Fig. 9).
-Our analysis revealed that internal (digestive-associated)
-microbiome diversity was predominantly shaped by host
-factors, while external (surface-associated) microbiome di-
-versity was strongly associated with normalized difference
-vegetation index (NDVI) and some climatic factors such
-as precipitation of the warmest quarter (Bioclim18; Fig. 5).
-Similarly, a recent study of amphibian skin microbiomes
-found higher diversity on hosts in environments with
-colder winters and less stable thermal conditions (i.e.,
-temperate regions [5];). Thus, increasing climatic variabil-
-ity appears to promote coexistence and diversity of exter-
-nal microbiomes, perhaps through ecological succession
-Fig. 4 Taxonomic and function composition of host microbial communities across host classes and microbial habitats. a Internal microbiomes of
-terrestrial and freshwater organisms, b external microbiomes of terrestrial and freshwater organisms, and c external microbiomes of marine
-organisms. Each color represents a unique bacterial phylum. A legend for microbial taxa including bacterial phyla and Archaea is provided
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 8 of 20
-or dormancy mechanisms [5]. Nottingham et al. [69]
-found that both plant diversity and soil microbiome diver-
-sity follow temperature (and elevation) gradients at a re-
-gional scale with more species under warmer conditions.
-At a global scale, the external plant microbiome richness
-was also negatively correlated with elevation (Pearson’s
-correlation, N = 85, r = −0.324, P = 0.002), but mean an-
-nual temperature was not significantly correlated with
-these plant microbiomes (r = −0.174, P = 0.111). Path ana-
-lysis of our external microbiome dataset containing 33
-plant host species did not show a significant effect of
-temperature on microbiome richness, but rather greater
-diversity with lower NDVI (Fig. 5). While host factors did
-not play a significant role in external microbiomes at the
-global scale, they can be important divers of host micro-
-biomes locally (e.g., [70]).
-Internal microbiome diversity was most strongly driven
-by host factors including host phylogeny and, to a weaker
-extent, diet or trophic level (Figs. 4, 5, and 6). Similarly, a
-study focused on non-human primates found that host
-phylogeny had a larger impact than dietary niche on gut
-microbiomes [33]. This finding is also supported by stud-
-ies in other taxa including larval amphibians and aquatic
-invertebrates [71]. Previous studies found a more promin-
-ent role of host diet in shaping the gut microbiome [72,
-73], particularly within clades such as lizards [74], fish [32,
-67, 75], birds [76, 77], or mammals [78]. Captivity may
-produce bottom-up effects on microbiomes by altering
-environmental conditions and diets from field conditions
-[41]. Our data mirror macroecological patterns (e.g.,
-Paine’s keystone predation [79];) and suggest that bottom-
-up processes of nutrient conditions shaped by host diet
-Fig. 5 Path analyses showing direct and indirect effects of the best abiotic and biotic predictors of number of sOTUs (left) and phylogenetic
-diversity (right). Models explaining internal (a), and external microbiome diversity (b) are shown. Numbers are standardized path coefficients (*P <
-0.05). Blue arrows depict positive associations whereas red arrows depict negative effects. Gray arrows depict non-significant paths. The thickness
-of the arrows represents the relative strength of each relationship. Bioclimatic variables include the following: Isothermality (Bio3), Mean
-Temperature of Driest Quarter (Bio9), Precipitation of Driest Month (Bio14), and Precipitation of Warmest Quarter (Bio18)
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 9 of 20
-Fig. 6 Principal coordinates analysis of Unifrac distances. a Internal microbiomes, colored by host class, and size-scaled by microbial phylogenetic
-diversity. Host class explained 13.9% of the variation in community structure (Additional file 1: Table S2). b External microbiomes, color scale
-white-red corresponding to low-high Mean Diurnal Temperature Range (Bio2; Mean of monthly (max temp–min temp)). Bio2 explained 59.6% of
-the variation in external microbiome community structure (Additional file 1: Table S2)
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 10 of 20
-have weaker effects on microbiome diversity and structure
-than do the top-down processes of host physiology and
-immune function. Just as abiotic factors can influence or
-reverse top-down effects of predators on ecosystem func-
-tion [80], the relative strength of host immune function
-may be similarly disrupted (e.g., antibiotics, immunocom-
-promise) and have strong influences on the host micro-
-biome ([15, 17, 31]; Table 1).
-Host immune systems are thought to function in redu-
-cing microbes, commonly maligned as germs. We found,
-perhaps counterintuitively, that a greater diversity of
-bacteria are hosted by organisms with more complex
-adaptive immune systems (Figs. 8 and 9). Indeed, we
-would add to Mcfall-Ngai’s [1] prescient framework
-quoted above and suggest that core bacteria that are
-more abundant in organisms with exclusively innate im-
-munity may trade off this stability with more complex
-immune function during the evolution of adaptive im-
-munity [68]. Indeed, top-down effects of immune func-
-tion may be analogous to predation effects and promote
-maintenance of diversity by decreasing competition and
-allowing coexistence [79]. Understanding these patterns
-may encourage forward thinking responses to current
-environmental impacts affecting microbiome evolution
-and host health ([81, 82]; Table 1).
-Conclusions
-Several reviews have highlighted the need for standard-
-ized data collection methods and greater taxonomic
-breadth and sampling of wild hosts, considered the least
-investigated compared with domestic and model host
-species [67, 81, 83]. Wild hosts may provide the greatest
-insight on host evolutionary biology and ecology, since
-captivity can have dramatic impacts on the microbiome
-[41, 42]. Understanding how host-associated micro-
-biomes are naturally assembled and influenced by abiotic
-and host conditions provides insight on potential reser-
-voirs of microbiota and can inform metacommunity
-models that predict community structure and transmis-
-sion of microbes or dispersal and feedback between
-hosts and habitats [44, 84]. While there remain wide
-geographical (Fig. 1) and taxonomic gaps (Fig. 3) in
-host-microbiome studies, our large sample set enabled
-the description of global-scale patterns in both internal
-(gut and reproductive tract) as well as external surface
-(leaves, skin, gill) microbiomes. Using a standardized
-Fig. 7 Bacterial abundance across trophic diets. a Phylogenetic tree of major bacterial phyla and their abundance by trophic diet for internal
-microbiota. The size of the circle depicts the proportion of a given bacterial group within the community by the trophic diet. b Abundance of
-major bacterial classes of selected bacterial phyla across trophic diet for internal microbiota
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 11 of 20
-Fig. 8 Immune system complexity associations with diversity of host microbiomes. a Mean richness and phylogenetic diversity (external and
-internal microbiomes) for host genera with adaptive immune systems is significantly greater than host genera with only innate immunity. *P <
-0.001, Wilcoxon tests. b Mean internal sOTU richness correlates with adaptive immune system complexity based on the Flajnik [68] comparative
-immunology scale (see Additional file 1: Table S3)
-Fig. 9 Path model of internal microbiomes depicting direct and indirect effects of immune complexity in the context of the best biotic and
-abiotic predictors of microbial phylogenetic diversity. Numbers are standardized path coefficients. Blue arrows depict positive associations
-whereas red arrows depict negative effects at P < 0.05. Gray arrows depict non-significant paths. The thickness of the arrows represents the
-relative strength of each relationship
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 12 of 20
-approach, we found compelling evidence that internal
-vs. external microbiomes differ in the predominant fac-
-tors associated with diversity and composition. Our ana-
-lysis also revealed several correlations that at first
-glance were counterintuitive, such as microbiome di-
-versity increasing with host immune system complex-
-ity, that suggest previously unrecognized top-down
-regulating effects. The analysis of Wolbachia occur-
-rence and diversity across hosts and environments ex-
-emplifies the data mining potential of the metadata
-set assembled for this study. We anticipate that the
-identified patterns will be instrumental in deriving
-testable hypotheses and therefore have great potential
-to stimulate exciting experimental tests to elucidate
-the underlying mechanisms.
-Methods
-Sequence acquisition
-To investigate global patterns of microbiome diversity
-and structure across host systems, we performed stan-
-dardized bioinformatics analysis on combined datasets
-and procured environmental and host-associated meta-
-data. We focused on studies with targeted 16S rRNA
-gene sequence data obtained from an Illumina platform.
-Table 3 Taxonomic classes with positive detection of Wolbachia-specific sOTUs
-Taxonomic class
-Average reads per samplea
-Number of unique Wolbachia sOTUs
-within class (total = 33)b
-Percentage of Wolbachia sOTUs
-found in Insectac
-Amphibia
-0.131
-12
-41.7
-Demospongiae
-0.007
-1
-100.0
-Insecta
-33.305
-23
-100.0
-Magnoliopsida
-0.024
-1
-0.0
-Mammalia
-0.002
-4
-75.0
-Phaeophyceae
-0.003
-1
-100.0
-aInsecta had a substantially higher number of average Wolbachia reads than any other class. Most other Wolbachia-positive samples were rare and found in
-organisms where insects are a substantial portion of the diet (e.g., amphibia, bats, carnivorous plants), and as some of the host samples were derived from the
-gut, this is to be expected. Interestingly, Demospongiae were positive for Wolbachia, which may indicate that there were marine arthropods living within the
-sponges that were Wolbachia-positive
-bInsecta showed the highest number of unique Wolbachia sOTUs present within each class. Amphibia was high in the number of unique sOTUs, and many of
-these amphibian samples were taken from the gut
-cCalculating the relative percentage of sOTUs found within each class that are also found within class Insecta indicated that the majority of sOTUs attributed to
-other host samples can be found in Insecta (likely as part of the diet of the host), and the remaining sOTUs are likely insects that are not present as directly
-collected samples in the dataset that were also prey items to their hosts. A heatmap showing mean abundance of each Wolbachia sOTU is presented in
-Additional file 1: Figure S8
-Fig. 10 Wolbachia in insects are globally diverse and decrease in abundance with temperature range. Maximum temperature of the warmest
-month (Bioclim5) and mean diurnal temperature range (Bioclim2) negatively predict relative Wolbachia abundance in samples derived from
-insects. Blue lines indicate 95% confidence limits. Details can be found in Additional file 1: Figure S8. This is one example of how this global
-microbiome dataset can be used to better understand and analyze host-microbe interactions
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 13 of 20
-A literature search was conducted to identify relevant
-studies with data accessible from public databases. The
-majority of sample sequences were downloaded from the
-Sequence Read Archive (SRA) of the National Center for
-Biotechnology Information (NCBI), the European Nu-
-cleotide Archive (ENA), MG-RAST, and Qiita repositor-
-ies.
-The combined dataset is made
-available here
-(Additional file 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12), and
-accession numbers and DOIs for all published studies
-are indicated in the mapping (metadata) files described
-in Additional file 1.
-Datasets were selected that followed the Earth Micro-
-biome Project (EMP) protocols and standards (http://
-www.earthmicrobiome.org/protocols-and-standards/).
-Studies were first screened to ensure certain criteria
-were met, including (1) collected from a “wild setting,”
-where hosts were not exposed to any experimental treat-
-ments; (2) ethanol preserved or frozen until DNA ex-
-traction; (3) targeted the V4 region of the 16S rRNA
-bacterial gene region, using primers 515f and 806r [85];
-and (4) sequencing on Illumina MiSeq or Illumina HiSeq
-platforms. Once a study passed our inclusion filters, we
-downloaded fastq files and obtained metadata for each
-study. The compiled dataset is comprised of 15,790 sam-
-ples from 51 studies including all host-associated data
-from the Earth Microbiome Project [4] and includes 16
-host classes (Fig. 3) from plants to corals to vertebrates
-(including 4 human populations; Additional file 1: Figure
-S4, [9, 50–58, 85–121]).
-Sequence preparation
-Sequence data were quality filtered using Quantitative
-Insights into Microbial Ecology (QIIME) defaults and
-classified
-into
-sub-Operational
-Taxonomic
-Units
-(sOTUS, or unique sequence variants) using the De-
-blur
-workflow
-[27].
-Within
-Deblur,
-reads
-were
-trimmed to 90 bp to correspond with the shortest
-read length in the combined dataset. Taxonomy was
-assigned using the RDP Classifier with GreenGenes
-13-8 as reference through a custom bash script [122,
-123]. Then, sOTUs with fewer than 90 reads, taxo-
-nomically assigned as “mitochondria” and “chloro-
-plast,” or not identifiable at the Kingdom level were
-removed. A phylogenetic tree was built with fasttree2
-[124]. Samples were rarefied at 1000 sequences per
-sample to retain most samples, normalize read counts
-across samples, and reduce computational demands.
-Furthermore, we standardized sampling across loca-
-tions and host species by randomly selecting up to 10
-samples from a given host species at a given country
-(see Table 2 for overall sample sizes and number of
-unique sOTUs). Datasets before and after processing
-as described above can be found in the Additional
-files.
-General analysis framework and datasets
-We employed multiple statistical approaches, including
-general linearized models, permutational multivariate
-analysis of variance, and path models, to explore the
-main drivers of host-associated microbial diversity, com-
-munity structure (i.e., beta diversity), and PICRUSt-
-predicted functionality. Tests also targeted hypotheses
-surrounding how immune function may shape diversity
-and composition of host microbiomes and how the dis-
-tribution of Wolbachia varies across bioclimates.
-For our analyses, the data were divided into 3 main sub-
-sets: (i) an internal microbiome dataset comprised of 741
-samples derived from internal host habitats or whole-body
-samples, (ii) an external microbiome dataset comprised of
-1193 samples derived from external host surfaces, and (iii)
-a marine dataset comprised of 266 external surface sam-
-ples from marine organisms. Table 2 provides detailed in-
-formation on sample types included in each dataset. The
-geographic distribution of these samples is depicted in
-Fig. 1. Additional data files for each subset are provided as
-indicated in Additional file 1.
-Sample metadata and predictor variables
-For each sample, we tabulated a comprehensive set of
-abiotic and biotic predictor variables for testing targeted
-hypotheses and inclusion in model-based analyses of our
-datasets. Associated metadata included in the mapping
-file was gathered by downloading the metadata for each
-study, taken directly from the paper corresponding to
-the study, or obtained from publicly available databases.
-Table 2 provides a description of each metadata field.
-Elevation data was extracted from Google Earth using
-latitude/longitude coordinates. Current bioclimatic vari-
-ables representing temperature and precipitation (1 km
-resolution) were extracted for each unique geographic
-location from the WorldClim2 database. These 19 biocli-
-matic variables were extrapolated from a global network
-of stations collecting data from 1970 to 2000 [125].
-Eighteen marine and geophysical variables were ex-
-tracted from the MARSPEC database at the same 1 km
-resolution [126] for the marine dataset models. The vari-
-ables of interest are defined in Additional file 1: Table
-S1 and below. Because of expected high correlation be-
-tween many Worldclim bioclimatic variables, we filtered
-these predictors to a least correlated subset. From the 19
-bioclim variables, we selected the 8 least correlated ones
-(caret package in R [127]) based on a threshold of r <
-0.7. These least correlated variables included Mean Diur-
-nal Temperature Range (Bio2), Isothermality (Bio3),
-Max Temperature of Warmest Month (Bio5), Mean
-Temperature of Driest Quarter (Bio9), Precipitation of
-Driest Month (Bio14), Precipitation Seasonality (Bio15),
-Precipitation of Warmest Quarter (Bio18), and Precipita-
-tion of Coldest Quarter (Bio19) and were included in
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 14 of 20
-model selection procedures described below. The same
-procedure was performed for the 18 marine biophysical
-predictors resulting in the following least correlated sub-
-set: bathymetry, east/west aspect (biogeo1), north/south
-aspect (biogeo2), plane curviture (biogeo3), distance to
-shore (biogeo5), bathymetric slope (biogeo6), concavity
-(biogeo7), sea surface salinity of the saltiest month (bio-
-geo10), annual variance of sea surface salinity (bio-
-geo12), sea surface temperature of warmest month
-(biogeo15), and annual range of sea surface temperature
-(biogeo16).
-Biotic predictors included host identity (host class or
-host phylogeny), host trophic diet (for internal dataset),
-external surface type, and immune system complexity.
-Either host class or a numeric nMDS proxy of host phyl-
-ogeny was used to represent host identity. Host class in-
-formation was obtained from the Encyclopedia of Life
-database (https://eol.org/). The host phylogeny proxy
-was created via the following steps. First, using timetree.
-org, we recovered a time-calibrated phylogenetic tree of
-host species represented in our study [128]. Second, pa-
-tristic pairwise distances, i.e., branch lengths separating
-taxa, were then calculated with the Ape and Adephylo
-packages in R [129, 130]. Third, we performed non-
-metric multidimensional scaling (nMDS), constrained to
-one dimension, on the patristic distance matrix in SPSS
-v24 (IBM Corp, Armonk, NY, USA) to create a univari-
-ate host phylogeny variable for use in model-based ana-
-lyses. The nMDS proxy phylogeny variable was chosen
-because
-it
-captured
-the
-phylogenetic
-relationships
-among hosts and is a numeric variable available for path
-analyses. Host trophic diet levels was estimated based on
-the diet category, including primary producers (level 0),
-herbivores (1), omnivores (2), carnivores (3), and scaven-
-gers/detritivores (4). External surface type information
-was obtained from data available with sequence archives
-and the published papers. Immune system complexity
-was estimated in two ways: (i) as a binary categorical
-variable indicating whether the host possessed an adap-
-tive or innate only immune system, and (ii) as an ordinal
-scale derived from immune system characteristics from
-Flajnik [68] (Additional file 1: Table S3).
-Analysis of alpha diversity
-Model selection procedures implementing generalized
-linear models (GLMs) and comprehensive path models
-were used to analyze alpha diversity for each of our
-datasets. We performed GLM model selection proce-
-dures to identify which of our main biotic and abiotic
-variables best predicted richness, measured as number
-of sOTUs and Faith’s Phylogenetic Diversity for each of
-our three main datasets. More specifically, for internal,
-external, and marine microbiomes, we screened a total
-of 25 explanatory variables, including host phylogeny/
-identity, trophic diet (internal only), external habitat
-types (marine only), absolute latitude, elevation, nor-
-malized index vegetation index (NDVI; external only), 8
-least cross-correlated bioclimatic variables (internal and
-external only), and 11 least cross-correlated ocean bio-
-physical variables (marine only; see above for least cor-
-related sets). Competing models were ranked based on
-the Akaike Information Criterion (AIC), and we re-
-ported the most parsimonious model for each of our
-three datasets for each response variable. Multicolli-
-nearity was evaluated in each of the final models using
-the variance inflation factor (VIF) calculated with car
-package [131] in R.
-We applied path analyses with maximum Wishart like-
-lihood (500 iterations) to test for the relative strength of
-direct and indirect associations among abiotic/biotic pre-
-dictors and microbiome diversity of our internal and ex-
-ternal microbiome datasets. Path models were not built
-for the marine dataset due to low predictive power of in-
-cluded variables in the GLM model selection. We built
-models including the most parsimonious set of explana-
-tory variables predicting microbiome diversity according
-to our GLM model selection procedures (see above).
-Our four path models explaining number of OTUs and
-Faith’s Phylogenetic Diversity for both internal and ex-
-ternal microbiomes included all ecologically meaningful
-associations among predictor variables. We performed a
-fifth path model for Faith’s Phylogenetic Diversity of in-
-ternal microbiomes, including direct and indirect effects
-of immune system complexity in the analysis. We re-
-ported whole model fit for our path models using the
-root-mean square error of approximation (RMSEA).
-When goodness of fit threshold for was not met
-(RMSEA ≤0.1), we sequentially removed the weakest
-paths until minimum RMSEA threshold was met for
-each model. Analyses were performed using RAMONA
-platform in SYSTAT 13.2 [132].
-Analysis of beta diversity
-We performed permutational multivariate analysis of
-variance (PERMANOVA) to analyze microbial beta di-
-versity and identify abiotic and biotic parameters influ-
-encing
-internal,
-external,
-and
-marine
-microbiomes.
-Weighted and unweighted Unifrac distances were calcu-
-lated in QIIME, and PERMANOVA models were imple-
-mented in R with the adonis2() function in the vegan
-package [133]. Independent models were run for the in-
-ternal, external, and marine datasets. Predictor variables
-included in beta diversity models were hypothesis-driven
-and included all variables from the best alpha diversity
-model for the given dataset as well as selected biotic fac-
-tors. We visualized overarching patterns in microbial
-beta diversity through principal coordinates analysis
-using ggplot2 in R.
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 15 of 20
-Additionally, we visualized the microbial abundance
-of major bacterial phyla across host trophic diets. A
-phylogenetic tree, OTU table, and taxonomy table
-generated in QIIME were consolidated in R script
-using the phyloseq and ape packages [129, 134]. The
-function “dotTree” from the R package phytools [135]
-was used to generate the phylogenetic tree at the
-phylum level. Microbial abundance of each phylum
-and the most abundant classes was calculated for each
-trophic diet level.
-Functional analysis with PICRUSt
-Phylogenetic Investigation of Communities by Reconstruc-
-tion of Unobserved States (PICRUSt) predicts metage-
-nomic function using marker gene (such as 16S rRNA)
-surveys [21]. GreenGenes 13-5 OTU IDs are required for
-PICRUSt analyses; therefore, we clustered our internal
-microbiome dataset sOTUs to Greengenes OTU IDs at
-97% similarity in QIIME. A custom R script was used to
-combine these GG IDs with abundance information to cre-
-ate a PICRUSt-formatted OTU table. We then performed
-the following steps: normalization by copy number, meta-
-genome prediction, and consolidation of predictions into
-KEGG pathways. Results were filtered to retain data with
-an NSTI score of 0.06 or lower; 247 internal samples were
-represented in the final analysis. Nearest Sequenced Taxon
-Index (NSTI) is a confidence measure for PICRUSt predic-
-tions. Beta diversity calculations (Bray-Curtis and Jaccard
-dissimilarity) on PICRUSt functional predictions were per-
-formed in QIIME and analyzed in R using the adonis2
-function from vegan. The PICRUSt package is available at
-http://picrust.github.io/picrust/.
-Analyses on immune system complexity
-We assessed the effect of immune system complexity on
-microbial diversity by (a) comparing sOTU richness and
-phylogenetic diversity between samples from hosts with
-adaptive vs. innate only immune systems for both the in-
-ternal and external dataset—pairwise comparisons were
-implemented with Wilcoxon tests in R; (b) performing a
-correlation test between microbial richness and immune
-complexity using Kendall Tau correlation statistics in R;
-and (c) running our comprehensive path model includ-
-ing the immune complexity scale variable derived from
-Flajnik [68].
-Supplementary information
-Supplementary information accompanies this paper at https://doi.org/10.
-1186/s13059-019-1908-8.
-Additional file 1. Supplementary tables and figures [136–158].
-Additional file 2. Full metadata file (15,790 samples), unfiltered.
-Additional file 3. Filtered metadata file for internal microbiomes (741
-samples).
-Additional file 4. Filtered metadata file for external microbiomes (1193
-samples).
-Additional file 5. Filtered metadata file for marine external microbiomes
-(266 samples).
-Additional file 6. Deblur sOTU table (biom file) for the full dataset, not
-rarefied.
-Additional file 7. Deblur sOTU table (biom file) for the internal
-microbiome (741 samples), rarefied to 1000 reads/sample.
-Additional file 8. Deblur sOTU table (biom file) for the external
-microbiomes (1193 samples), rarefied to 1000 reads/sample.
-Additional file 9. Deblur sOTU table (biom file) for the marine external
-microbiomes (266 samples), rarefied to 1000 reads/sample.
-Additional file 10. RepSet fasta file for the full dataset.
-Additional file 11. Fasta file to match OTU number with deblur
-sequence ID.
-Additional file 12. Phylogenetic tree file used for analyses on data
-subsets.
-Additional file 13. Review history.
-Acknowledgements
-This meta-analysis emerged from a graduate seminar at UMass Boston. We
-thank all the students that participated in the course.
-Review history
-The review history is available as Additional file 13.
-Peer review information
-Andrew Cosgrove was the primary editor on this article and managed its
-editorial process and peer review in collaboration with the rest of the
-editorial team.
-Authors’ contributions
-DCW initiated and led the project and coordinated and assisted with the
-data analysis. MCB trained the students in microbiome analysis, helped
-coordinate the project, and assisted with the statistical analyses. DCW, MB,
-JK, and MV helped to conceptualize the bioclimatic analysis of the
-microbiome and PICRUSt datasets. The following authors were primarily
-responsible for various analyses: BL alpha-diversity analyses; GB path analyses;
-HD curated the mapping files, beta-diversity analyses; HB created the tax-
-onomy plots; CL PICRUSt analyses; RH core analyses; DB GIS maps; GB, ATP,
-and JK Wolbachia analyses; PJK and RW host taxonomy plots; MV, KM, PJK,
-and NS data acquisition; and EK and KS microbial taxonomy plots. All authors
-contributed to writing the manuscript, and read and approved the final
-manuscript.
-Authors’ information
-Twitter handle: @ATPsciencegirl (Amanda G. Tokash-Peters).
-Funding
-MCB was supported by a David H Smith Conservation Fellowship. JK was
-supported by Simons Foundation (429440, WTW). KS was supported by NSF
-DBI #1759940. ATP was supported by the National Science Foundation grant
-DGE 1249946, the Integrative Graduate Education and Research Traineeship
-(IGERT): Coasts and Communities – Natural and Human Systems in
-Urbanizing Environments, and the University of Massachusetts Sanofi-
-Genzyme Doctoral Fellowship.
-Availability of data and materials
-The datasets supporting the conclusions of this article are included within
-the article and its Additional files (Additional file 2 through
-Additional file 12). Additional file 1 provides descriptions of the data files
-(metadata, biom, fasta, and tree files). Links to DOI numbers and data
-repositories for each of the 51 datasets are indicated in Additional file 2. The
-data were described in the Earth Microbiome Project [4], the Global
-Amphibian Project [5], and additional recent studies referenced above.
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 16 of 20
-Ethics approval and consent to participate
-Not applicable.
-Consent for publication
-Not applicable.
-Competing interests
-The authors declare that they have no competing interests.
-Author details
-1Department of Biology, University of Massachusetts Boston, Boston, MA
-02125, USA. 2Smithsonian Tropical Research Institute, Roosevelt Ave. Tupper
-Building – 401, 0843-03092 Panamá, Panama. 3Department of Biological
-Sciences, The University of Alabama, Tuscaloosa, AL 35487, USA. 4School for
-the Environment, University of Massachusetts, Boston, MA 02125, USA.
-5Animal Health Department, New England Aquarium, Boston, MA 02110,
-USA. 6Center of Excellence in Biodiversity and Natural Resource
-Management, University of Rwanda, RN1, Butare, Rwanda. 7Zoological
-Institute, Braunschweig University of Technology, Mendelssohnstr. 4, 38106
-Braunschweig, Germany.
-Received: 21 January 2019 Accepted: 2 December 2019
-References
-1.
-McFall-Ngai M. Care for the community. Nature. 2007;445:153.
-2.
-Fierer N, Jackson RB. The diversity and biogeography of soil bacterial
-communities. Proc Natl Acad Sci U S A. 2006;103:626–31.
-3.
-Lozupone CA, Knight R. Global patterns in bacterial diversity. Proc Natl Acad
-Sci U S A. 2007;104:11436–40.
-4.
-Thompson L, Sanders J, McDonald D, Amir A, Ladau J, Locey K, et al. A
-communal catalogue reveals Earth’s multiscale microbial diversity. Nature.
-2017;551:457.
-5.
-Kueneman JG, Bletz MC, Mckenzie VJ, Becker CG, Joseph MB, Abarca JG,
-et al. Community richness of amphibian skin bacteria correlates with
-bioclimate at the global scale. Nat Ecol Evol. 2019;3:381–9.
-6.
-Ley RE, Lozupone CA, Hamady M, Knight R, Gordon JI. Worlds within
-worlds: evolution of the vertebrate gut microbiota. Nat Rev Microbiol. 2008;
-6:776–88.
-7.
-Bahram M, Hildebrand F, Forslund SK, Anderson JL, Soudzilovskaia NA,
-Bodegom PM, et al. Structure and function of the global topsoil
-microbiome. Nature. 2018;560:233–7.
-8.
-Frey-Klett P, Burlinson P, Deveau A, Barret M, Tarkka M, Sarniguet A.
-Bacterial-fungal interactions: hyphens between agricultural, clinical,
-environmental, and food microbiologists. Microbiol Mol Biol Rev. 2011;75:
-583–609.
-9.
-Kueneman JG, Woodhams DC, Van Treuren W, Archer HM, Knight R, McKenzie
-VJ. Inhibitory bacteria reduce fungi on early life stages of endangered
-Colorado boreal toads (Anaxyrus boreas). ISME J. 2016;10:934–44.
-10.
-Kearns PJ, Fischer S, Fernández-beaskoetxea S, Gabor CR, Zoological N, Si P.
-Fight fungi with fungi: antifungal properties of the amphibian mycobiome.
-Front Microbiol. 2017;8:1–12.
-11.
-García-Bayona L, Comstock LE. Bacterial antagonism in host-associated
-microbial communities. Science. 2018;361:eaat2456.
-12.
-Bosch TCG, Guillemin K, McFall-Ngai M. Evolutionary “experiments” in
-symbiosis: The study of model animals provides insights into the
-mechanisms underlying the diversity of host–microbe interactions.
-BioEssays. 2019;41:e1800256.
-13.
-Blaser M, Bork P, Fraser C, Knight R, Wang J. The microbiome explored:
-recent insights and future challenges. Nat Rev Microbiol. 2013;11:213.
-14.
-McFall-Ngai M, Hadefield M, Bosch TCG, Carey HV, Domazet-Lošo T, Douglas
-AE, et al. Animals in a bacterial world, a new imperative for the life sciences.
-Proc Natl Acad Sci U S A. 2013;110:3229–36.
-15.
-Zaneveld JR, McMinds R, Thurber RV. Stress and stability: applying the Anna
-Karenina principle to animal microbiomes. Nat Microbiol. 2017;2:17121.
-16.
-Petersen C, Round JL. Defining dysbiosis and its influence on host immunity
-and disease. Cell Microbiol. 2014;16:1024–33.
-17.
-Song SJ, Woodhams DC, Martino C, Allaband C, Mu A. Engineering the
-microbiome for animal health and conservation. Exp Biol Med. 2019;
-244:494-504.
-18.
-Nelson TM, Apprill A, Mann J, Rogers TL, Brown MV. The marine mammal
-microbiome: current knowledge and future directions. Microbiol Aust. 2015;
-36:8–13.
-19.
-Blaser MJ. The theory of disappearing microbiota and the epidemics of
-chronic diseases. Nat Rev Immunol. 2017;17:461–3.
-20.
-Wellington EMH, Berry A, Krsek M. Resolving functional diversity in relation
-to microbial community structure in soil: exploiting genomics and stable
-isotope probing. Curr Opin Microbiol. 2003;6:295–301.
-21.
-Langille MG, Zaneveld J, Caporaso JG, McDonald D, Knights D, Reyes JA,
-et al. Predictive functional profiling of microbial communities using 16S
-rRNA marker gene sequences. Nat Biotechnol. 2013;31:814–21.
-22.
-Legrand TPRA, Catalano SR, Wos-Oxley ML, Stephens F, Landos M, Bansemer
-MS, et al. The inner workings of the outer surface: skin and gill microbiota
-as indicators of changing gut health in yellowtail kingfish. Front Microbiol.
-2018;8:2664.
-23.
-Glasl B, Herndl GJ, Frade PR. The microbiome of coral surface mucus has a
-key role in mediating holobiont health and survival upon disturbance. ISME
-J. 2016;10:2280.
-24.
-Stroup DF, Berlin JA, Morton SC, Olkin I, Williamson GD, Rennie D, et al.
-Meta-analysis of observational studies in epidemiology: a proposal for
-reporting. JAMA. 2000;283:2008–12.
-25.
-Dubilier N, McFall-Ngai M, Zhao L. Microbiology: create a global
-microbiome effort. Nat News. 2015;526:631.
-26.
-Alivisatos AP, Blaser MJ, Brodie EL, Chun M, Dangl JL, Donohue TJ, et al. A
-unified initiative to harness Earth’s microbiomes. Science. 2015;350:507–8.
-27.
-Amir A, McDonald D, Navas-Molina JA, Kopylova E, Morton JT, Zech Xu Z,
-et al. Deblur rapidly resolves single-nucleotide community sequence
-patterns. mSystems. 2017;2:e00191-16.
-28.
-Turnbaugh PJ, Ley RE, Hamady M, Fraser-Liggett CM, Knight R, Gordon JI.
-The human microbiome project. Nature. 2007;449:804.
-29.
-Koren O, Knights D, Gonzalez A, Waldron L, Segata N, Knight R, et al. A
-guide to enterotypes across the human body: meta-analysis of microbial
-community structures in human microbiome datasets. PLoS Comput Biol.
-2013;9:e1002863.
-30.
-Lozupone C, Stombaugh J, Gonzalez A, Ackermann G, Wendel D, Vázquez-
-Baeza Y, et al. Meta-analyses of studies of the human microbiota. Genome
-Res. 2013;23:1704-1714.
-31.
-Kriss M, Hazleton KZ, Nusbacher NM, Martin CG, Lozupone CA. Low diversity
-gut microbiota dysbiosis: drivers, functional implications and recovery. Curr
-Opin Microbiol. 2018;44:34–40.
-32.
-Sullam KE, Essinger SD, Lozupone CA, O’Connor MP, Rosen GL, Knight ROB,
-et al. Environmental and ecological factors that shape the gut bacterial
-communities of fish: a meta-analysis. Mol Ecol. 2012;21:3363–78.
-33.
-Amato KR, Sanders JG, Song SJ, Nute M, Metcalf JL, Thompson LR, et al.
-Evolutionary trends in host physiology outweigh dietary niche in structuring
-primate gut microbiomes. ISME J. 2018;13:576–87.
-34.
-Waite DW, Taylor MW. Characterizing the avian gut microbiota: membership,
-driving influences, and potential function. Front Microbiol. 2014;5:223.
-35.
-Wegener Parfrey L, Walters WA, Knight R. Microbial eukaryotes in the
-human microbiome: ecology, evolution, and future directions. Front
-Microbiol. 2011;2:153.
-36.
-Nash AK, Auchtung TA, Wong MC, Smith DP, Gesell JR, Ross MC, et al. The
-gut mycobiome of the Human Microbiome Project healthy cohort.
-Microbiome. 2017;5:153.
-37.
-Wolf YI, Kazlauskas D, Iranzo J, Lucía-Sanz A, Kuhn JH, Krupovic M, et al.
-Origins and evolution of the global RNA virome. MBio. 2018;9:e02329–18.
-38.
-Hug LA, Baker BJ, Anantharaman K, Brown CT, Probst AJ, Castelle CJ, et al. A
-new view of the tree of life. Nat Microbiol. 2016;1:16048.
-39.
-Lagier J-C, Dubourg G, Million M, Cadoret F, Bilen M, Fenollar F, et al.
-Culturing the human microbiota and culturomics. Nat Rev Microbiol. 2018;
-16:540–50.
-40.
-Huys GRB, Raes J. Go with the flow or solitary confinement: a look inside
-the single-cell toolbox for isolation of rare and uncultured microbes. Curr
-Opin Microbiol. 2018;44:1–8.
-41.
-McKenzie VJ, Song SJ, Delsuc F, Prest TL, Oliverio AM, Korpita TM, et al. The
-effects of captivity on the mammalian gut microbiome. Integr Comp Biol.
-2017;57:690–704.
-42.
-Hird SM. Evolutionary biology needs wild microbiomes. Front Microbiol.
-2017;8:1–10.
-43.
-Shade A, Dunn RR, Blowes SA, Keil P, Bohannan BJM, Herrmann M, et al.
-Macroecology to unite all life, large and small. Trends Ecol Evol. 2018;33:731–44.
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 17 of 20
-44.
-Miller ET, Svanbäck R, Bohannan BJM. Microbiomes as metacommunities:
-understanding host-associated microbes through metacommunity ecology.
-Trends Ecol Evol. 2018;33:926–35.
-45.
-Loudon AH, Venkataraman A, Van Treuren W, Woodhams DC, Parfrey LW,
-McKenzie VJ, et al. Vertebrate hosts as islands: dynamics of selection,
-immigration, loss, persistence, and potential function of bacteria on
-salamander skin. Front Microbiol. 2016;7:333.
-46.
-Prest TL, Kimball AK, Kueneman JG, McKenzie VJ. Host-associated
-bacterial community succession during amphibian development. Mol
-Ecol. 2018;27:1992–2006.
-47.
-Bello MGD, Knight R, Gilbert JA, Blaser MJ. Preserving microbial diversity.
-Science. 2018;362:33–4.
-48.
-Klassen JL. Defining microbiome function. Nat Microbiol. 2018;3:864.
-49.
-Project THM. Structure, function and diversity of the healthy human
-microbiome. Nature. 2012;486:207–14.
-50.
-Kohl KD, Weiss RB, Cox J, Dale C, Dearing MD. Gut microbes of mammalian
-herbivores facilitate intake of plant toxins. Ecol Lett. 2014;17:1238–46.
-51.
-Muhlebach MS, Zorn BT, Esther CR, Hatch JE, Murray CP, Turkovic L, et al.
-Initial acquisition and succession of the cystic fibrosis lung microbiome is
-associated with disease progression in infants and preschool children. PLoS
-Pathog. 2018;14:e1006798.
-52.
-Kohl KD, Miller AW, Marvin JE, Mackie R, Dearing MD. Herbivorous rodents
-(Neotoma spp.) harbour abundant and active foregut microbiota. Environ
-Microbiol. 2014;16:2869-2878.
-53.
-Stone BWG, Jackson CR. Biogeographic patterns between bacterial
-phyllosphere communities of the Southern Magnolia (Magnolia grandiflora)
-in a small forest. Microb Ecol. 2016;71:954–61.
-54.
-Wang W, Cao J, Yang F, Wang X, Zheng S, Sharshov K, et al. High-throughput
-sequencing reveals the core gut microbiome of Bar-headed goose (Anser
-indicus) in different wintering areas in Tibet. Microb Open. 2016;5:287–95.
-55.
-Sabino-Pinto J, Bletz MC, Islam MM, Shimizu N, Bhuju S, Geffers R, et al.
-Composition of the cutaneous bacterial community in Japanese
-amphibians: effects of captivity, host species, and body region. Microb Ecol.
-2016;72:460-469.
-56.
-Amato KR, Martinez-Mota R, Righini N, Raguet-Schofield M, Corcione FP,
-Marini E, et al. Phylogenetic and ecological factors impact the gut
-microbiota of two Neotropical primate species. Oecologia. 2016;180:717–33.
-57.
-Bletz MC, Vences M, Sabino-Pinto J, Taguchi Y, Shimizu N, Nishikawa K, et al.
-Cutaneous microbiota of the Japanese giant salamander (Andrias japonicus),
-a representative of an ancient amphibian clade. Hydrobiologia. 2017;795:
-153–167.
-58.
-Sankaranarayanan K, Ozga AT, Warinner C, Tito RY, Obregon-Tito AJ, Xu J,
-et al. Gut microbiome diversity among Cheyenne and Arapaho individuals
-from western Oklahoma. Curr Biol. 2015;25:3161–9.
-59.
-Hoffmann AA, Montgomery BL, Popovici J, Iturbe-Ormaetxe I, Johnson PH,
-Muzzi F, et al. Successful establishment of Wolbachia in Aedes populations
-to suppress dengue transmission. Nature. 2011;476:454.
-60.
-McMeniman CJ, Lane RV, Cass BN, Fong AWC, Sidhu M, Wang Y-F, et al.
-Stable introduction of a life-shortening Wolbachia infection into the
-mosquito Aedes aegypti. Science. 2009;323:141–4.
-61.
-Knight R, Vrbanac A, Taylor BC, Aksenov A, Callewaert C, Debelius J, et al.
-Best practices for analysing microbiomes. Nat Rev Microbiol. 2018:410–22.
-62.
-Hammer TJ, Dickerson JC, Fierer N. Evidence-based recommendations on
-storing and handling specimens for analyses of insect microbiota. PeerJ.
-2015;3:e1190.
-63.
-Sender R, Fuchs S, Milo R. Revised estimates for the number of human and
-bacteria cells in the body. PLoS Biol. 2016;14:1–14.
-64.
-Yatsunenko T, Rey FE, Manary MJ, Trehan I, Dominguez-bello MG, Contreras
-M, et al. Human gut microbiome viewed across age and geography. Nature.
-2012;486.
-65.
-Joe JTX, Chiou PP, Kuo C-Y, Lin JHJ, Wu J-L, Lu M-W. The microbiota profile
-and transcriptome analysis of immune response during metamorphosis
-stages in orange spotted grouper (Epinephelus coioides). Fish Shellfish
-Immunol. 2019;90:141–149.
-66.
-Yan Q, Li J, Yu Y, Wang J, He Z, Van Nostrand JD, et al. Environmental
-filtering decreases with fish development for the assembly of gut
-microbiota. Environ Microbiol. 2016;18:4739–54.
-67.
-Egerton S, Culloty S, Whooley J, Stanton C, Ross RP. The gut microbiota of
-marine fish. Front. Microbiol. 2018;9:873.
-68.
-Flajnik MF. A cold-blooded view of adaptive immunity. Nat Rev Immunol.
-2018;7:438–53.
-69.
-Nottingham AT, Fierer N, Turner BL, Whitaker J, Ostle NJ, McNamara NP, et al.
-Microbes follow Humboldt: temperature drives plant and soil microbial diversity
-patterns from the Amazon to the Andes. Bull Ecol Soc Am. 2019;100:1–4.
-70.
-Chiarello M, Auguet J-C, Bettarel Y, Bouvier C, Claverie T, Graham NAJ, et al.
-Skin microbiome of coral reef fish is highly variable and driven by host
-phylogeny and diet. Microbiome. 2018;6:147.
-71.
-Lyra ML, Bletz MC, Haddad CFB, Vences M. The intestinal microbiota of
-tadpoles differs from those of syntopic aquatic invertebrates. Microb Ecol.
-2018;76:121–4.
-72.
-Colston TJ. Gut microbiome transmission in lizards. Mol Ecol. 2017;26:972–4.
-73.
-Steffan SA, Chikaraishi Y, Currie CR, Horn H, Gaines-Day HR, Pauli JN, et al.
-Microbes are trophic analogs of animals. Proc Natl Acad Sci U S A. 2015;112:
-15119–24.
-74.
-Kohl KD, Brun A, Magallanes M, Brinkerhoff J, Laspiur A, Acosta JC,
-et al. Gut microbial ecology of lizards: insights into diversity in the wild,
-effects of captivity, variation across gut regions and transmission. Mol
-Ecol. 2017;26:1175–89.
-75.
-Liu H, Guo X, Gooneratne R, Lai R, Zeng C, Zhan F, et al. The gut
-microbiome and degradation enzyme activity of wild freshwater fishes
-influenced by their trophic levels. Sci Rep. 2016;6:24340.
-76.
-Grond K, Sandercock BK, Jumpponen A, Zeglin LH. The avian gut
-microbiota: community, physiology and function in wild birds. J Avian Biol.
-2018;49:e01788.
-77.
-Michel AJ, Ward LM, Goffredi SK, Dawson KS, Baldassarre DT, Brenner A,
-et al. The gut of the finch: uniqueness of the gut microbiome of the
-Galápagos vampire finch. Microbiome. 2018;6:167.
-78.
-Ley RE, Hamady M, Lozupone C, Turnbaugh PJ, Ramey RR, Bircher JS, et al.
-Evolution of mammals and their gut microbes. Science. 2008;320:1647–51.
-79.
-Terborgh JW. Toward a trophic theory of species diversity. Proc Natl Acad
-Sci U S A. 2015;112:11415–22.
-80.
-Koltz AM, Classen AT, Wright JP. Warming reverses top-down effects of
-predators on belowground ecosystem function in Arctic tundra. Proc Natl
-Acad Sci U S A. 2018;115:E7541–9.
-81.
-Colston TJ, Jackson CR. Microbiome evolution along divergent branches of the
-vertebrate tree of life: what’s known and unknown. Mol Ecol. 2016;25:3776–800.
-82.
-Davenport ER, Sanders JG, Song SJ, Amato KR, Clark AG, Knight R. The
-human microbiome in evolution. BMC Biol. 2017;15:127.
-83.
-Pascoe EL, Hauffe HC, Marchesi JR, Perkins SE. Network analysis of gut
-microbiota literature: an overview of the research landscape in non-human
-animal studies. ISME J. 2017;11:2644–51.
-84.
-Adair KL, Douglas AE. Making a microbiome: the many determinants of
-host-associated microbial community composition. Curr Opin Microbiol.
-2017;35:23–9.
-85.
-Caporaso JG, Lauber CL, Walters WA, Berg-lyons D, Lozupone CA,
-Turnbaugh PJ, et al. Global patterns of 16S rRNA diversity at a depth
-of millions of sequences per sample. Proc Natl Acad Sci U S A. 2011;
-108:4516–22.
-86.
-Amato KR, Metcalf JL, Song SJ, Hale VL, Clayton J, Ackermann G, et al. Using
-the gut microbiota as a novel tool for examining colobine primate GI
-health. Glob Ecol Conserv. 2016;7:225–37.
-87.
-Hale VL, Tan CL, Knight R, Amato KR. Effect of preservation method on
-spider monkey (Ateles geoffroyi) fecal microbiota over 8 weeks. J Microbiol
-Methods. 2015;113:16–26.
-88.
-Smith CCR, Snowberg LK, Caporaso JG, Knight R, Bolnick DI. Dietary input of
-microbes and host genetic variation shape among-population differences in
-stickleback gut microbiota. ISME J. 2015;9:2515.
-89.
-Wagner MR, Lundberg DS, Tijana G, Tringe SG, Dangl JL, Mitchell-Olds T.
-Host genotype and age shape the leaf and root microbiomes of a wild
-perennial plant. Nat Commun. 2016;7:12151.
-90.
-Bates KA, Clare FC, O’Hanlon S, Bosch J, Brookes L, Hopkins K, et al.
-Amphibian chytridiomycosis outbreak dynamics are linked with host skin
-bacterial community structure. Nat Commun. 2018;9:693.
-91.
-Lewis ZT, Sidamonidze K, Tsaturyan V, Tsereteli D, Khachidze N, Pepoyan A,
-et al. The fecal microbial community of breast-fed infants from Armenia and
-Georgia. Sci Rep. 2017;7:40932.
-92.
-Hakim JA, Koo H, Kumar R, Lefkowitz EJ, Morrow CD, Powell ML, et al. The
-gut microbiome of the sea urchin, Lytechinus variegatus, from its natural
-habitat demonstrates selective attributes of microbial taxa and predictive
-metabolic profiles. FEMS Microbiol Ecol. 2016;92:146.
-93.
-Moitinho-Silva L, Nielsen S, Amir A, Gonzalez A, Ackermann GL, Cerrano C,
-et al. The sponge microbiome project. Gigascience. 2017;6:gix077.
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 18 of 20
-94.
-Sanders JG, Łukasik P, Frederickson ME, Russell JA, Koga R, Knight R, et al.
-Dramatic differences in gut bacterial densities correlate with diet and
-habitat in rainforest ants. Integr Comp Biol. 2017;57:705–22.
-95.
-Hammer TJ, Fierer N, Hardwick B, Simojoki A, Slade E, Taponen J, et al.
-Treating cattle with antibiotics affects greenhouse gas emissions, and
-microbiota in dung and dung beetles. Proc R Soc B Biol Sci. 2016;283:
-20160150.
-96.
-Raulo A, Ruokolainen L, Lane A, Amato K, Knight R, Leigh S, et al. Social behaviour
-and gut microbiota in red-bellied lemurs (Eulemur rubriventer): in search of the role
-of immunity in the evolution of sociality. J Anim Ecol. 2018;87:388–99.
-97.
-Marzinelli EM, Campbell AH, Zozaya Valdes E, Vergés A, Nielsen S, Wernberg
-T, et al. Continental-scale variation in seaweed host-associated bacterial
-communities is a function of host condition, not geography. Environ
-Microbiol. 2015;17:4078–88.
-98.
-Delsuc F, Metcalf JL, Wegener Parfrey L, Song SJ, González A, Knight R.
-Convergence of gut microbiomes in myrmecophagous mammals. Mol Ecol.
-2014;23:1301–17.
-99.
-Yuan ML, Dean SH, Longo AV, Rothermel BB, Tuberville TD, Zamudio KR.
-Kinship, inbreeding and fine-scale spatial structure influence gut microbiota
-in a hindgut-fermenting tortoise. Mol Ecol. 2015;24:2521–36.
-100. Toju H, Vannette RL, Gauthier ML, Dhami MK, Fukami T. Priority effects can
-persist across floral generations in nectar microbial metacommunities.
-Oikos. 2018;127:345–52.
-101. Van Treuren W, Ponnusamy L, Brinkerhoff RJ, Gonzalez A, Parobek CM,
-Juliano JJ, et al. Variation in the microbiota of Ixodes ticks with regard to
-geography, species, and sex. Appl Environ Microbiol. 2015;81:6200–9.
-102. Caporaso JG, Lauber CL, Costello EK, Berg-Lyons D, Gonzalez A, Stombaugh J,
-et al. Moving pictures of the human microbiome. Genome Biol. 2011;12:R50.
-103. Koehler AV, Haydon SR, Jex AR, Gasser RB. Cryptosporidium and Giardia taxa
-in faecal samples from animals in catchments supplying the city of
-Melbourne with drinking water (2011 to 2015). Parasit Vectors. 2016;9:315.
-104. Nolan MJ, Jex AR, Koehler AV, Haydon SR, Stevens MA, Gasser RB.
-Molecular-based investigation of Cryptosporidium and Giardia from animals
-in water catchments in southeastern Australia. Water Res. 2013;47:1726–40.
-105. Zeng Y, Zeng D, Ni X, Zhu H, Jian P, Zhou Y, et al. Microbial community
-compositions in the gastrointestinal tract of Chinese Mongolian sheep
-using Illumina MiSeq sequencing revealed high microbial diversity. AMB
-Express. 2017;7:75.
-106. Vences M, Lyra MML, Kueneman JG, Bletz MC, Archer HM, Canitz J, et al. Gut
-bacterial communites across tadpole ecomorphs in two diverse tropical
-anuran faunas. Sci Nat. 2016;103:25.
-107. Piombino P, Genovese A, Esposito S, Moio L, Cutolo PP, Chambery A, et al.
-Saliva from obese individuals suppresses the release of aroma compounds
-from wine. PLoS One. 2014;9:e85611.
-108. Apprill A, Robbins J, Eren AM, Pack AA, Reveillaud J, Mattila D, et al.
-Humpback whale populations share a core skin bacterial community:
-towards a health index for marine mammals? PLoS One. 2014;9:e90785.
-109. Price JT, Paladino FV, Lamont MM, Witherington BE, Bates ST, Soule T.
-Characterization of the juvenile green turtle (Chelonia mydas) microbiome
-throughout an ontogenetic shift from pelagic to neritic habitats. PLoS One.
-2017;12:e0177642.
-110. Whitaker MRL, Salzman S, Sanders J, Kaltenpoth M, Pierce NE. Microbial
-communities of lycaenid butterflies do not correlate with larval diet. Front
-Microbiol. 2016;7:1920.
-111. Novakova E, Woodhams DC, Rodríguez-Ruano SM, Brucker RM, Leff JW,
-Maharaj A, et al. Mosquito microbiome dynamics, a background for
-prevalence and seasonality of West Nile virus. Front Microbiol. 2017;8:526.
-112. Jiang H-Y, Ma J-E, Li J, Zhang X-J, Li L-M, He N, et al. Diets alter the gut
-microbiome of crocodile lizards. Front Microbiol. 2017;8:2073.
-113. Parris DJ, Brooker RM, Morgan MA, Dixson DL, Stewart FJ. Whole gut
-microbiome composition of damselfish and cardinalfish before and after
-reef settlement. PeerJ. 2016;4:e2412.
-114. Pfister CA, Gilbert JA, Gibbons SM. The role of macrobiota in structuring
-microbial communities along rocky shores. PeerJ. 2014;2:e631.
-115. Sanchez E, Bletz MC, Dunsch L, Bhuju S, Geffers R, Jarek M, et al.
-Cutaneous bacterial communities of a poisonous salamander: a
-perspective from life stages, body parts and environmental conditions.
-Microb Ecol. 2016;73:455–65.
-116. Kueneman JG, Parfrey LW, Woodhams DC, Archer HM, Knight R, McKenzie
-VJ. The amphibian skin-associated microbiome across species, space and life
-history stages. Mol Ecol. 2014;23:1238–50.
-117. Sickel W, Grafe TU, Meuche I, Steffan-Dewenter I, Keller A. Bacterial diversity
-and community structure in two Bornean Nepenthes species with
-differences in nitrogen acquisition strategies. Microb Ecol. 2016;71:938–53.
-118. Loudon AH, Woodhams DC, Parfrey LW, Archer HM, Knight R, McKenzie V,
-et al. Microbial community dynamics and effect of environmental microbial
-reservoirs on red-backed salamanders (Plethodon cinereus). ISME J. 2014;8:
-830–40.
-119. Kohl KD, Varner J, Wilkening JL, Dearing MD. Gut microbial communities of
-American pikas (Ochotona princeps): evidence for phylosymbiosis and
-adaptations to novel diets. J Anim Ecol. 2018;87:323–30.
-120. Menke S, Meier M, Melzheimer J, Mfune JKE, Heinrich S, Thalwitzer S, et al.
-Oligotyping reveals differences between gut microbiomes of free-ranging
-sympatric Namibian carnivores (Acinonyx jubatus, Canis mesomelas) on a
-bacterial species-like level. Front Microbiol. 2014;5:526.
-121. Hammer TJ, Janzen DH, Hallwachs W, Jaffe SP, Fierer N. Caterpillars lack a
-resident gut microbiome. Proc Natl Acad Sci U S A. 2017;114:9641–6.
-122. Wang Q, Garrity GM, Tiedje JM, Cole JR. Naive Bayesian classifier for rapid
-assignment of rRNA sequences into the new bacterial taxonomy. Appl
-Environ Microbiol. 2007;73:5261–7.
-123. Mcdonald D, Price MN, Goodrich J, Nawrocki E, DeSantis TZ, Probst A,
-et al. An improved Greengenes taxonomy with explicit ranks for
-ecological and evolutionary analyses of bacteria and archaea. ISME J.
-2012;6:610–8.
-124. Price MN, Dehal PS, Arkin AP. FastTree 2 - approximately maximum-
-likelihood trees for large alignments. PLoS One. 2010;5:e9490.
-125. Fick SE, Hijmans RJ. WorldClim 2: new 1-km spatial resolution climate
-surfaces for global land areas. Int J Climatol. 2017;37:4302–15.
-126. Sbrocco EJ, Barber PH. MARSPEC: ocean climate layers for marine spatial
-ecology: ecological archives E094-086. Ecology. 2013;94:979.
-127. Kuhn M. Caret: classification and regression training. Astrophys Source Code
-Libr. 2015.
-128. Hedges SB, Dudley J, Kumar S. TimeTree: a public knowledge-base of
-divergence times among organisms. Bioinformatics. 2006;22:2971–2.
-129. Paradis E, Schliep K. Ape 5.0: an environment for modern phylogenetics and
-evolutionary analyses in R. Bioinformatics. 2019;35:526–8.
-130. Jombart T, Dray S. Adephylo: exploratory analyses for the phylogenetic
-comparative method. Bioinformatics. 2008;26:1907–1909.
-131. Fox J, Weisberg S. An {R} companion to applied regression. 2nd ed. SAGE
-Publications, Inc., Thousand Oaks; 2011.
-132. SYSTAT. Systat Software, San Jose; 2002.
-133. Oksanen J, Blanchet FG, Friendly M, Kindt R, Legendre P, McGlinn D, et al.
-Vegan: community ecology package. R package verion 2; 2017. p. 4–2.
-134. McMurdie PJ, Holmes S. Phyloseq: an R package for reproducible
-interactive analysis and graphics of microbiome census data. PLoS One.
-2013;8:e61217.
-135. Revell LJ. Phytools: an R package for phylogenetic comparative biology (and
-other things). Methods Ecol Evol. 2012;3:217–23.
-136. Zug R, Hammerstein P. Still a host of hosts for Wolbachia: analysis of recent
-data suggests that 40% of terrestrial arthropod species are infected. PLoS
-One. 2012;7:e38544.
-137. Sazama EJ, Ouellette SP, Wesner JS. Bacterial endosymbionts are common
-among, but not necessarily within, insect species. Environ Entomol. 2019;48:
-127–33.
-138. Sazama EJ, Bosch MJ, Shouldis CS, Ouellette SP, Wesner JS. Incidence of
-Wolbachia in aquatic insects. Ecol Evol. 2017;7:1165–9.
-139. De Oliveira CD, Gonçalves D da S, Baton LA, PHF S, Carvalho FD, Moreira LA.
-Broader prevalence of Wolbachia in insects including potential human
-disease vectors. Bull Entomol Res. 2015;105:305–15.
-140. Weinert LA, Araujo-Jnr EV, Ahmed MZ, Welch JJ. The incidence of bacterial
-endosymbionts in terrestrial arthropods. Proc R Soc B. 2015;282:20150249.
-141. Zug R, Hammerstein P. Bad guys turned nice? A critical assessment of
-Wolbachia mutualisms in arthropod hosts. Biol Rev. 2015;90:89–111.
-142. Terradas G, Allen SL, Chenoweth SF, McGraw EA. Family level variation in
-Wolbachia-mediated dengue virus blocking in Aedes aegypti. Parasit Vectors.
-2017;10:622.
-143. Zhang Y, Yang K, Zhu Y, Hong X. Symbiont-conferred reproduction and fitness
-benefits can favour their host occurrence. Ecol Evol. 2018;8:1626–33.
-144. Carrington LB, Tran BCN, Le NTH, Luong TTH, Nguyen TT, Nguyen PT, et al.
-Field-and clinically derived estimates of Wolbachia-mediated blocking of
-dengue virus transmission potential in Aedes aegypti mosquitoes. Proc Natl
-Acad Sci U S A. 2018;115:361–6.
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 19 of 20
-145. O’Neill SL, Ryan PA, Turley AP, Wilson G, Retzki K, Iturbe-Ormaetxe I, et al. Scaled
-deployment of Wolbachia to protect the community from dengue and other Aedes
-transmitted arboviruses. Gates Open Res. 2018;2:36.
-146. Hughes GL, Vega-Rodriguez J, Xue P, Rasgon JL. Wolbachia strain wAlbB
-enhances infection by the rodent malaria parasite Plasmodium berghei in
-Anopheles gambiae mosquitoes. Appl Environ Microbiol. 2012;78:1491–5.
-147. Rancès E, Yixin HY, Woolfit M, McGraw EA, O’Neill SL. The relative
-importance of innate immune priming in Wolbachia-mediated dengue
-interference. PLoS Pathog. 2012;8:e1002548.
-148. Bian G, Joshi D, Dong Y, Lu P, Zhou G, Pan X, et al. Wolbachia invades
-Anopheles stephensi populations and induces refractoriness to Plasmodium
-infection. Science. 2013;340:748–51.
-149. Zélé F, Nicot A, Berthomieu A, Weill M, Duron O, Rivero A. Wolbachia
-increases susceptibility to Plasmodium infection in a natural system. Proc R
-Soc B. 2014;281:20132837.
-150. Dodson BL, Andrews ES, Turell MJ, Rasgon JL. Wolbachia effects on Rift
-Valley fever virus infection in Culex tarsalis mosquitoes. PLoS Negl Trop Dis.
-2017;11:e0006050.
-151. Diouf M, Miambi E, Mora P, Frechault S, Robert A, Rouland-Lefèvre C, et al.
-Variations in the relative abundance of Wolbachia in the gut of Nasutitermes
-arborum across life stages and castes. FEMS Microbiol Lett. 2018;365:46.
-152. Walker T, Johnson PH, Moreira LA, Iturbe-Ormaetxe I, Frentiu FD,
-McMeniman CJ, et al. The wMel Wolbachia strain blocks dengue and
-invades caged Aedes aegypti populations. Nature. 2011;476:450.
-153. Moreira LA, Iturbe-Ormaetxe I, Jeffery JA, Lu G, Pyke AT, Hedges LM, et al. A
-Wolbachia symbiont in Aedes aegypti limits infection with dengue,
-Chikungunya, and Plasmodium. Cell. 2009;139:1268–78.
-154. Hurst GDD, Johnson AP, JHG v S, Fuyama Y. Male-killing Wolbachia in
-Drosophila: a temperature-sensitive trait with a threshold bacterial density.
-Genetics. 2000;156:699–709.
-155. Reynolds KT, Thomson LJ, Hoffmann AA. The effects of host age, host
-nuclear background and temperature on phenotypic effects of the
-virulent Wolbachia strain popcorn in Drosophila melanogaster. Genetics.
-2003;164:1027–34.
-156. Arnold PA, Levin SC, Stevanovic AL, Johnson KN. Drosophila melanogaster
-infected with Wolbachia strain wMelCS prefer cooler temperatures. Ecol
-Entomol. 2019;44:287–90.
-157. Pascar J, Chandler CH. A bioinformatics approach to identifying Wolbachia
-infections in arthropods. PeerJ. 2018;6:e5486.
-158. Jeffries CL, Tantely LM, Raharimalala FN, Hurn E, Boyer S, Walker T. Diverse
-novel resident Wolbachia strains in Culicine mosquitoes from Madagascar.
-Sci Rep. 2018;8:17456.
-Publisher’s Note
-Springer Nature remains neutral with regard to jurisdictional claims in
-published maps and institutional affiliations.
-Woodhams et al. Genome Biology           (2020) 21:23 
-Page 20 of 20
+Genome Biol  Genome Biol  Genome Biology   1474-7596  1474-760X  BioMed Central  London    6996194  32014020  1908  10.1186/s13059-019-1908-8  Research    Host-associated microbiomes are predicted by immune system complexity and climate   http://orcid.org/0000-0003-4559-1046  Woodhams  Douglas C.   dwoodhams@gmail.com   1  2   Bletz  Molly C.   molly.bletz@gmail.com   1   Becker  C. Guilherme   cgbecker1@ua.edu   3   Bender  Hayden A.   hayden.a.bender@gmail.com   1   Buitrago-Rosas  Daniel   Daniel.Buitrago001@umb.edu   1  2   Diebboll  Hannah   Hannah.Diebboll001@umb.edu   1   Huynh  Roger   Roger.Huynh@umb.edu   1   Kearns  Patrick J.   patrick.kearns001@umb.edu   1   Kueneman  Jordan   jordan.kue@gmail.com   2   Kurosawa  Emmi   Emmi.Kurosawa001@umb.edu   1   LaBumbard  Brandon C.   brandon.LaBumbard@gmail.com   1   Lyons  Casandra   Casandra.Lyons001@umb.edu   1   McNally  Kerry   kmcnally@neaq.org   4  5   Schliep  Klaus   klaus.schliep@gmail.com   1   Shankar  Nachiket   nachiket.shankar001@umb.edu   1   Tokash-Peters  Amanda G.   Amanda.Peters001@umb.edu   1  6   Vences  Miguel   m.vences@tu-braunschweig.de   7   Whetstone  Ross   Ross.Whetstone001@umb.edu   1   1  0000 0004 0386 3207  grid.266685.9  Department of Biology,  University of Massachusetts Boston,  Boston, MA 02125 USA   2  0000 0001 2296 9689  grid.438006.9  Smithsonian Tropical Research Institute,  Roosevelt Ave. Tupper Building – 401, 0843-03092 Panamá, Panama   3  0000 0001 0727 7545  grid.411015.0  Department of Biological Sciences,  The University of Alabama,  Tuscaloosa, AL 35487 USA   4  grid.266684.8  School for the Environment,  University of Massachusetts,  Boston, MA 02125 USA   5  0000 0000 9051 5200  grid.422573.5  Animal Health Department,  New England Aquarium,  Boston, MA 02110 USA   6  0000 0004 0620 2260  grid.10818.30  Center of Excellence in Biodiversity and Natural Resource Management,  University of Rwanda,  RN1, Butare, Rwanda   7  0000 0001 1090 0254  grid.6738.a  Zoological Institute,  Braunschweig University of Technology,  Mendelssohnstr. 4, 38106 Braunschweig, Germany    3  2  2020   3  2  2020   2020   21  23  21  1  2019   2  12  2019    © The Author(s). 2020, corrected publication 2020  Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International License (  http://creativecommons.org/licenses/by/4.0/ ), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The Creative Commons Public Domain Dedication waiver (  http://creativecommons.org/publicdomain/zero/1.0/ ) applies to the data made available in this article, unless otherwise stated.     Background  Host-associated microbiomes, the microorganisms occurring inside and on host surfaces, influence evolutionary, immunological, and ecological processes. Interactions between host and microbiome affect metabolism and contribute to host adaptation to changing environments. Meta-analyses of host-associated bacterial communities have the potential to elucidate global-scale patterns of microbial community structure and function. It is possible that host surface-associated (external) microbiomes respond more strongly to variations in environmental factors, whereas internal microbiomes are more tightly linked to host factors.
+
+  Results  Here, we use the dataset from the Earth Microbiome Project and accumulate data from 50 additional studies totaling 654 host species and over 15,000 samples to examine global-scale patterns of bacterial diversity and function. We analyze microbiomes from non-captive hosts sampled from natural habitats and find patterns with bioclimate and geophysical factors, as well as land use, host phylogeny, and trophic level/diet. Specifically, external microbiomes are best explained by variations in mean daily temperature range and precipitation seasonality. In contrast, internal microbiomes are best explained by host factors such as phylogeny/immune complexity and trophic level/diet, plus climate.
+
+  Conclusions  Internal microbiomes are predominantly associated with top-down effects, while climatic factors are stronger determinants of microbiomes on host external surfaces. Host immunity may act on microbiome diversity through top-down regulation analogous to predators in non-microbial ecosystems. Noting gaps in geographic and host sampling, this combined dataset represents a global baseline available for interrogation by future microbial ecology studies.
+
+   Keywords  Biodiversity  Gut microbiome  Microbial ecology  Skin microbiome  Symbiosis  Wolbachia    http://dx.doi.org/10.13039/100000893  Simons Foundation    429440  Kueneman  Jordan      http://dx.doi.org/10.13039/100000153  Division of Biological Infrastructure    1759940  Schliep  Klaus      http://dx.doi.org/10.13039/100000082  Division of Graduate Education    1249946  Tokash-Peters  Amanda G.      issue-copyright-statement  © The Author(s) 2020      Background  “A memory-based immune system may have evolved in vertebrates because of the need to recognize and manage complex communities of beneficial microbes.”—McFall-Ngai 2007 [ 1 ]. 
+
+ While global patterns of diversity and biogeography have been extensively studied in animals and plants, they are much less understood in microbes. In soil microbiomes, pH has been found to be a strong driver of ecosystem type [ 2 ], while in another study, environmental microbiomes were primarily driven by salinity [  3 ]. The recent Earth Microbiome Project found that host microbiomes were distinct from environmental microbiomes, and for hosts, ecosystem type was an important driver. Microbiomes of plants and animals differed strongly, and host surfaces were different from digestive-associated microbiomes [  4 ]. A large study examining skin surface microbiomes across 205 amphibian species found strong correlations with bioclimatic factors [  5 ], while digestive microbiomes of mammals were influenced by diet and gut morphology, and indeed distinct from environmental microbiomes [  6 ]. A substantial role of biotic interactions in shaping microbial communities was also obvious from a strong bacterial-fungal antagonism revealed by global patterns in topsoil and ocean microbiomes [  7 ], a pattern also revealed on hosts [  8 –  11 ]. 
+
+ These studies are foundational for understanding large-scale microbial ecology patterns. Here, we use data of host-associated bacterial communities from the Earth Microbiome Project and 50 additional studies that meet our criteria for inclusion to produce a large dataset for analysis through a standardized pipeline (Fig. 1 a). We examine 654 non-captive host species including plants, and invertebrate and vertebrate animals and perform separate analyses for digestive-associated (internal) and surface-associated (external) microbiomes from marine or terrestrial/aquatic habitats. With an increasing diversity of hosts examined for symbiosis with microbes, mechanisms driving these host-microbe interactions will become clear [  12 ]. We hypothesized that external host-associated microbiomes would most strongly correlate with global bioclimate or other abiotic factors, while internal microbiomes would be more strongly associated with host factors such as phylogeny, and trophic level or diet.  Fig. 1  Method schematic and geographic distribution of samples analyzed. a Method schematic for data attainment and compilation, data processing, and data splitting into three distinct subsets for subsequent analyses.  b Map of the coverage of samples included in this study. Three types of host microbiome samples are represented: internal (squares), external (triangles), and marine external (circles). Sampling points are color-scaled by sub-Operational Taxonomic Unit (sOTU) richness. Areas with small territory size (such as Central America and Hawaiian Archipelago) and many sampling points with different types of samples (Madagascar) are shown zoomed-in in separate boxes. Map created with QGIS (Quantum GIS Development Team 2013) using a base global map from Natural Earth (  naturalearthdata.com ) with all geographic coordinates standardized to decimal degrees 
+
+    
+
+ Diverse microbial communities can assemble and coevolve with hosts and contribute important or even essential functions for host development, physiology, and health [ 13 ,  14 ]. Detrimental alterations in the host’s microbiome, or "dysbiosis", can lead to disease; thus, baseline descriptions of functional microbiomes are essential [  15 ,  16 ]. In the future, personalized medicine may utilize the microbiome for biomarkers for conditions of disease or health [  17 ], and disease progression may be more readily predicted and described by changes in microbiota than by clinical symptoms or the presence of certain pathogenic agents [  18 ,  19 ]. Functional characterization may be more meaningful than identity in microbial community profiles due to functional redundancy among microbes [  20 ,  21 ]. However, characterizing core (prevalent among individuals) microbial communities may also be utilized to develop screening tools for host health or to understand eco-evolutionary dynamics [  22 ,  23 ]. Here, we hypothesized that internal microbiomes may represent an extension of host phenotype; rather than functioning to reduce microbial diversity, complexity in host immune systems may be correlated with microbiome diversity across taxa. Furthermore, host microbiomes may be more strongly differentiated by predicted community function than by community composition given a multitude of species with overlapping functional capacities. 
+
+ Meta-analysis of microbiomes through the growing body of next-generation sequencing data represents a new tool for ecologists and is a systematic approach to combining the results of multiple studies and synthesizing relevant data to gain new insights [ 4 ,  24 ]. This technique allows the synthesis of regional- and local-scale data to elucidate global-scale patterns of microbial community structure, function, and interaction, with indications for public health and extending to environmental policy [  25 ]. Meta-analysis has been increasingly recognized as an important scientific approach, with many prominent researchers proposing standards for, and encouraging, its continued widespread use [  25 –  27 ]. Human microbiomes have been the target of several meta-analyses, revealing insights that indicate microbial involvement in health as well as disease [  28 ], and determining core microbiota associated with body sites [  29 ]. Some meta-analyses have synthesized data in order to investigate disease, physiologic, and developmental states with large effect sizes [  30 ,  31 ]. Meta-analyses of non-human host taxa have found a potential link of convergent microbial symbioses between fish and mammals with salinity and trophic level being important drivers of fish gut microbiomes [  32 ]. While diet also impacts mammal gut microbiomes [  6 ], a study of 18 wild non-human primates indicated that the influence of host physiology and phylogeny was much stronger than diet [  33 ]. Host selection also was found to be more important than diet or captivity status in avian guts [  34 ]. Some key questions for microbiome meta-analyses are featured in Table  1 , and while host-microbiome datasets are accumulating with time (Fig.  2 ), knowledge gaps are identified including gaps in regions sampled (Fig.  1 b) and host groups with unstudied microbiomes (Fig.  3 ). Importantly, the eukaryotic and viral components of the microbiome remain a research frontier. The bacterial microbiome dataset and metadata accumulated here is a public resource and may provide future eco-evolutionary, veterinary, or medical insights. As an example, we investigate the bioclimatic correlates of the abundance of an arthropod symbiont that is increasingly important for disease vector control (  Wolbachia [  59 ,  60 ]) across the global dataset we assembled.  Table 1  Outstanding questions in host-microbiome research. Host-microbiome research is an emerging field. Knowledge gaps include the eukaryotic and viral components of the microbiome [ 35 –  37 ], novel bacterial clades and uncultured microbes [  38 –  40 ], and large gaps in the geography and host taxa sampled for microbiome studies. Most studies to date have focused on human or other mammalian gut microbiomes, agricultural plants, and fish studies focused on aquaculture, leaving other vertebrate and invertebrate hosts underrepresented. Wild samples are needed to overcome alterations due to captivity [  41 ,  42 ]. Recent efforts to place microbiomes within a macroecology context described patterns across scales [  43 ], or metacommunity or community ecology contexts to learn about microbial migration [  44 ,  45 ], community assembly and succession [  46 ], and functions for host health [  12 ,  47 –  49 ] 
+
+  Frontiers in host-microbiome research    1) Are there dormant and active microbiome subsets of the host microbiome, and how do these subsets change with environmental conditions [ 50 ]? How does microbial antagonism and interaction protect hosts or facilitate host invasion [  11 ]? 
+
+
+
+ 2) What are the effects of environmental change on colonization, dysbiosis, or adaptive microbiomes? Do abiotic conditions have stronger effects on ectotherms compared with endothermic hosts? Are microbial therapies effective [ 17 ,  51 –  53 ]? 
+
+
+
+ 3) What is the significance of core (stable through time and prevalent among individuals) vs peripheral (transitory or rare) microbiomes or gene functions including metabolic pathways in host populations, and is there a trade-off or shift in core microbiome with host immunity, anatomy, life stage, or environmental conditions? Are core microbiomes likely to be of use in personalized medicine or disease diagnostics? Are core microbiomes, particularly of non-human hosts, lost with industrialization [ 31 ,  54 ,  55 ]? 
+
+
+
+ 4) Metabolomics and functional analyses are a research frontier; do they require a renewed focus on culture-based research and genome sequencing [ 56 –  58 ]? 
+
+
+
+ 
+
+  Fig. 2  Trends in published host-microbiome studies through time. Data based on a custom keyword statements within NCBI PubMed
+
+     Fig. 3  Phylogenetic tree of selected eukaryotic hosts at the class level. Numbers adjacent to black circles indicate the number of species included in our dataset from that class. Groups’ missing microbiome data are evident; however, only studies focusing on the V4 region of the rRNA gene were included. Tree was retrieved from TimeTree ( http://www.timetree.org ), which aggregates taxonomic and phylogenetic information from published literature. Interact with this tree at IToL: https://itol.embl.de/tree/1306494203341921544122745 
+
+    
+
+  Results  After combining microbiome datasets targeting the V4 region of 16S rRNA gene obtained from Illumina platforms and using a standard analysis pipeline (Fig. 1 a) [  61 ] to identify sub-Operational Taxonomic Units (sOTUS), or unique sequence variants [  27 ], we were able to compare data from 654 host species distributed globally. Samples ranged from 46 countries in 7 biomes and from hosts including marine sponges 490 m below the sea surface to bar-headed geese at 3955 m elevation in the Himalayas. While representing a global sampling of hosts, visual inspection of the map of global distribution of samples suggests that hosts from much of Africa and Asia are underrepresented (Fig.  1 b), and many eukaryotic clades have not been sampled, thus providing ample opportunities for future research (Fig.  3 ). We subset the 15,790 samples into 3 non-overlapping groups for separate analyses: internal (  N = 741 samples), external (  N = 1193), and marine external microbiomes (  N = 266; Table  2 , Fig.  1 a). Given what has already been described by the Earth Microbiome Project, separate analyses are warranted based on host ecosystem type (marine as distinct from terrestrial/aquatic) and host internal or external body site [  3 ].  Table 2  Summary statistics and metadata fields for the full dataset, partitioned for analyses by internal or external microbiomes of terrestrial and freshwater host organisms
+
+  Metadata field  Description  Full dataset  Internal  External  Marine_external 
+
+  Samples  sample runs included in this study  15,790  741  1193  266 
+
+ sOTU  exact sequence variants (sub-operational taxonomic units)
+
+ 175,709  17,544 a   28,410 a   5.077 a  
+
+ Publications (by doi)  digital object identifier accession number of published studies
+
+ 51  23  13  6 
+
+ Host Kingdom  https://www.itis.gov or  http://www.eol.org   2  2  2  2 
+
+ Host Phyllum  https://www.itis.gov or  http://www.eol.org   8  3  2  4 
+
+ Host Class  https://www.itis.gov or  http://www.eol.org   16  7  5  8 
+
+ Host Order  https://www.itis.gov or  http://www.eol.org   80  26  23  27 
+
+ Host Family  https://www.itis.gov or  http://www.eol.org   177  65  52  45 
+
+ Host Genus  https://www.itis.gov or  http://www.eol.org   427  171  106  58 
+
+ Host species name  full scientific name of host organism  654  204  239  78 
+
+ Host taxid  taxa id number for the host species from NCBI Taxonomy Browser
+
+ 640  197  236  78 
+
+ Collection timestamp  date of sampling in DD/MM/YYYY format  1069  143  173  108 
+
+ Countries  country from which samples were collected  46  26  18  20 
+
+ Latitude range (deg)  latitude in decimal degrees  -43.53 to 60.17  -37.94 to 60.17  -39.84 to 52.28  -43.14 to 51.73 
+
+ Longitude range (deg)  longitude in decimal degrees  -157.79 to 174.83  -121.79 to 152.31  -122.83 to 138.94  -157.79 to 174.83 
+
+ Elevation range (m)  GPS coordinates used to estimate elevation if not stated in study
+
+ -490 to 3955  -3 to 3955  17 to 3837  -490 to 25 
+
+ microbial_habitat_type  internal, external, and whole organism  3  internal and whole organism  external  external 
+
+ internal_habitat_type  digestive-associated, oral, nasal, lung, reproductive, leaf internal, root internal, and n/a
+
+ 8  1  n/a  n/a 
+
+ digestive_habitat_type  foregut, fecal, cloacal, intestine, stomach, other and n/a
+
+ 7  5  n/a  n/a 
+
+ external_habitat_type  leaf surface, root surface, animal surface, gill, and n/a
+
+ 5  n/a  4  3 
+
+ surrounding_habitat  freshwater, marine, terrestrial  3  freshwater,terrestrial  freshwater,terrestrial  marine 
+
+ lifestage  adult, juvenile/pupae, larvae, and infant  4  4  3  2 
+
+ sampling_month  month when the samples were collected  12  12  12  12 
+
+ trophic_diet  scaled 0=primary producers, 1=herbivore, 2=omnivore, 3=carnivore, 4=detritivore/scavenger
+
+ 5  5  n/a  n/a 
+
+ preservation_method  sample storage by direct freeze, ethanol, RNA-later, or other
+
+ 4  4  3  2 
+
+ extraction_method  name of DNA extraction kit  15  5  6  2 
+
+ biogeo_realm  https://en.wikipedia.org/wiki/Biogeographic_realm 
+
+ 7  6  5  4 
+
+ Worldclim2 bioclimatic variables  http://worldclim.org/version2; Fick et al 2017   n/a  8  8  n/a 
+
+ Marine geophysical variables  http://marspec.weebly.com/about.html; Sbrocco et al 2013 
+
+ n/a  n/a  n/a  11 
+
+ Immune Complexity (binary)  inferred from host class information  n/a  2  2  n/a 
+
+ Immune Complexity (ordinal)  scale based on Flajnik et al 2018;  n/a  1-9  1-9  n/a 
+
+ 
+
+ a sOTUs after rarefaction at 1000 reads per sample 
+
+  
+
+ For marine organisms, our analysis was limited to available external samples. For terrestrial/aquatic organisms, we divided analyses between internal and external samples. Internal microbiomes were primarily associated with the digestive system or whole organism samples in the case of insects. While the microbial communities in insects can differ with surface or organ sampled, for the sake of our analysis, we classified whole organism tissues as internal (Fig. 1 a). This is consistent with descriptions of gut microbiomes driving the community structure of whole-organism samples [  62 ], and the lower quantity of bacterial cells on human skin vs. large intestine, for example [  63 ]. External microbiomes were sampled from host surfaces including the skin, gill, or leaves, and analyzed separately. 
+
+ We assembled an extensive collection of metadata for each sampled host, including host taxonomy, life stage, trophic level, and body site sampled, as well as environmental factors for each sampling location such as macroclimate metrics of temperature and precipitation, land cover, and elevation. We then visualized the dominant microbial taxa from each host class separately by host habitat and body region (internal, external; Fig. 4 , Additional file  1 : Figure S3), and performed analyses of alpha and beta diversity metrics. Results of all analyses can be reproduced with the data included in Additional files  2 ,  3 ,  4 ,  5 ,  6 ,  7 ,  8 ,  9 ,  10 ,  11 , and  12 (see the “  Methods ” section and Additional file  1 for a description of the data files provided), or re-analyzed in the future as bioinformatics techniques continue to improve.  Fig. 4  Taxonomic and function composition of host microbial communities across host classes and microbial habitats. a Internal microbiomes of terrestrial and freshwater organisms,  b external microbiomes of terrestrial and freshwater organisms, and  c external microbiomes of marine organisms. Each color represents a unique bacterial phylum. A legend for microbial taxa including bacterial phyla and Archaea is provided 
+
+    
+
+ To analyze alpha diversity, including richness (number of sOTUs) and phylogenetic diversity of sOTUs, we carried out model selection (Additional file 1 : Table S1), resulting in a reduced set of variables for inclusion in downstream path analyses: a temperature metric and a precipitation metric, normalized difference vegetation index (NDVI), and host phylogeny and trophic diet. Path analysis was used to test for the magnitude and significance of hypothesized causal connections and to determine direct vs. indirect influences on alpha diversity. Separate path models were run to examine how variables interacted to impact microbiome phylogenetic diversity or richness and were performed separately for internal and external microbiomes (Fig.  5 ). Latitude was excluded from path analyses because of multicollinearity with climatic variables (analyzed separately in Additional file  1 : Figure S2).  Fig. 5  Path analyses showing direct and indirect effects of the best abiotic and biotic predictors of number of sOTUs (left) and phylogenetic diversity (right). Models explaining internal ( a ), and external microbiome diversity (  b ) are shown. Numbers are standardized path coefficients (*  P < 0.05). Blue arrows depict positive associations whereas red arrows depict negative effects. Gray arrows depict non-significant paths. The thickness of the arrows represents the relative strength of each relationship. Bioclimatic variables include the following: Isothermality (Bio3), Mean Temperature of Driest Quarter (Bio9), Precipitation of Driest Month (Bio14), and Precipitation of Warmest Quarter (Bio18) 
+
+    
+
+ Patterns of beta-diversity were analyzed by permutational analysis of variance (PERMANOVA) to determine variables of greatest importance in structuring the microbial communities (Additional file 1 : Table S2). Internal microbiomes were most significantly structured by host class (explaining 14% of the variation), as well as trophic diet, several bioclimatic factors, latitude, elevation, and NDVI (Additional file  1 : Table S2). A principal coordinates analysis illustrates clustering of internal microbiome by host class and depicts the higher microbial diversity found in samples of mammals, amphibians, birds, and non-avian reptiles (crocodile and iguana) as compared to insects and carnivorous plants (Fig.  6 a; Additional file  1 : Tables S2, S3). External microbiomes were structured most strongly by bioclimatic factors (bioclim2 and bioclim15 explaining 60% and 7% of variation, respectively), as well as external habitat type (5%) as compared to host class (not significant; Additional file  1 : Table S2). Bioclim2 is a measure of mean diurnal temperature range and most significantly structured the external microbiome (Fig.  6 b, Additional file  1 : Figure S3). Because our dataset was heavily filtered to standardize sampling among host species and locales, we verified that we retained power to detect previously described patterns. For example, four human populations included in the dataset recapitulated previously described patterns including greater gut microbiome diversity in developing countries ([  64 ]; Additional file  1 : Figure S4).  Fig. 6  Principal coordinates analysis of Unifrac distances. a Internal microbiomes, colored by host class, and size-scaled by microbial phylogenetic diversity. Host class explained 13.9% of the variation in community structure (Additional file  1 : Table S2).  b External microbiomes, color scale white-red corresponding to low-high Mean Diurnal Temperature Range (Bio2; Mean of monthly (max temp–min temp)). Bio2 explained 59.6% of the variation in external microbiome community structure (Additional file  1 : Table S2) 
+
+    
+
+ Because host class had the strongest association with the internal microbiome structure, we examined this relationship in greater detail, hypothesizing that predicted function may provide further discrimination. We used PICRUSt (Phylogenetic Investigation of Communities by Reconstruction of Unobserved States) to examine functional properties of the internal microbiome [ 21 ]. We characterized the accuracy of this tool by comparing the weighted Nearest Sequenced Taxon Index (weighted NSTI) score across host classes and filtering samples above the cutoff score of 0.06 (Additional file  1 : Figure S5). The major functional categories across host taxa included membrane transport, amino acid metabolism, and carbohydrate metabolism (Additional file  1 : Figure S6). Functional capacities of the internal microbiomes were structured by similar variables as the microbial communities including host class (explaining 13% of variation) as well as trophic diet, bioclimate variables, latitude, elevation, and NDVI (each explaining less than 5% of variation; Additional file  1 : Table S2). Trophic diet was a significant factor of ecological interest, though explaining little variation. Some host taxa including Amphibia and Teleostei demonstrate developmental shifts in both trophic level and microbiome [  46 ,  65 –  67 ]. A phylogenetic tree of internal microbiome phyla illustrated potential trends by host trophic level/diet in abundance of major groups such as decreasing  Proteobacteria and increasing  Firmicutes at higher trophic levels (Fig.  7 ). Profiles of carnivorous plants were distinct from animal carnivores. Shifts in major classes with four bacterial phyla are illustrated in Fig.  7 b.  Fig. 7  Bacterial abundance across trophic diets. a Phylogenetic tree of major bacterial phyla and their abundance by trophic diet for internal microbiota. The size of the circle depicts the proportion of a given bacterial group within the community by the trophic diet.  b Abundance of major bacterial classes of selected bacterial phyla across trophic diet for internal microbiota 
+
+    
+
+ Eco-evolutionary patterns in immune complexity were examined to test a mechanistic hypothesis explaining trends in host microbiome diversity. Hosts with adaptive immune systems had significantly greater microbiome richness and phylogenetic diversity than hosts with only innate immunity (Wilcoxon, P < 0.001; Fig.  8 a). Complexity of host immune systems at a broad level was correlated with microbiome diversity (Fig.  8 b). While strongly correlated with host phylogeny, the complexity of adaptive immune systems across hosts based on a review by Flajnik [  68 ] was developed into a matrix and score for each host class (Additional file  1 : Table S3). Inclusion of the scale of adaptive immune system complexity in the path model for internal microbiomes indicated a significant direct association with microbial phylogenetic diversity (Fig.  9 ).  Fig. 8  Immune system complexity associations with diversity of host microbiomes. a Mean richness and phylogenetic diversity (external and internal microbiomes) for host genera with adaptive immune systems is significantly greater than host genera with only innate immunity. *  P < 0.001, Wilcoxon tests.  b Mean internal sOTU richness correlates with adaptive immune system complexity based on the Flajnik [  68 ] comparative immunology scale (see Additional file  1 : Table S3) 
+
+     Fig. 9  Path model of internal microbiomes depicting direct and indirect effects of immune complexity in the context of the best biotic and abiotic predictors of microbial phylogenetic diversity. Numbers are standardized path coefficients. Blue arrows depict positive associations whereas red arrows depict negative effects at P < 0.05. Gray arrows depict non-significant paths. The thickness of the arrows represents the relative strength of each relationship 
+
+    
+
+ The role and maintenance of core members of host microbiomes remains a research frontier, and we hypothesize a trade-off between immune complexity and abundance of core microbes defined specifically at the strain level (Table 1 ). A preliminary analysis based on a permissive definition of core bacteria (80% prevalence among samples) is presented in Additional file  1 : Table S3. 
+
+ The dataset we assembled provides a broad overview of factors driving host microbiome structure, function, and diversity (Figs. 4 ,  5 , and  6 ). It also provides a resource for comparative microbial ecology. As an example of its utility, we scrutinized the dataset for global trends in the distribution of  Wolbachia , a genus of common Gram-negative bacteria known to be reproductive parasites and serving as mosquito disease vector control agents; our data confirm these bacteria being mainly present in insects (Table  3 ) and find them most abundant in cool environments of the globe (Fig.  10 ). At a global scale, we thus describe novel patterns and lay the groundwork for future mechanistic studies on host-microbiome interactions.  Table 3  Taxonomic classes with positive detection of Wolbachia -specific sOTUs 
+
+  Taxonomic class  Average reads per sample a   Number of unique Wolbachia sOTUs within class (total = 33)  b 
+
+ Percentage of Wolbachia sOTUs found in Insecta  c 
+
+
+
+  Amphibia  0.131  12  41.7   Demospongiae  0.007  1  100.0   Insecta  33.305  23  100.0   Magnoliopsida  0.024  1  0.0   Mammalia  0.002  4  75.0   Phaeophyceae  0.003  1  100.0   
+
+ a Insecta had a substantially higher number of average  Wolbachia reads than any other class. Most other  Wolbachia- positive samples were rare and found in organisms where insects are a substantial portion of the diet (e.g., amphibia, bats, carnivorous plants), and as some of the host samples were derived from the gut, this is to be expected. Interestingly, Demospongiae were positive for  Wolbachia , which may indicate that there were marine arthropods living within the sponges that were  Wolbachia -positive 
+
+ b Insecta showed the highest number of unique  Wolbachia sOTUs present within each class. Amphibia was high in the number of unique sOTUs, and many of these amphibian samples were taken from the gut 
+
+ c Calculating the relative percentage of sOTUs found within each class that are also found within class Insecta indicated that the majority of sOTUs attributed to other host samples can be found in Insecta (likely as part of the diet of the host), and the remaining sOTUs are likely insects that are not present as directly collected samples in the dataset that were also prey items to their hosts. A heatmap showing mean abundance of each  Wolbachia sOTU is presented in Additional file  1 : Figure S8 
+
+   Fig. 10  Wolbachia in insects are globally diverse and decrease in abundance with temperature range. Maximum temperature of the warmest month (Bioclim5) and mean diurnal temperature range (Bioclim2) negatively predict relative  Wolbachia abundance in samples derived from insects. Blue lines indicate 95% confidence limits. Details can be found in Additional file  1 : Figure S8. This is one example of how this global microbiome dataset can be used to better understand and analyze host-microbe interactions 
+
+    
+
+  Discussion  The assembly and composition of host-associated microbiomes are attendant with forces of ecology, evolution, host physiology, and immune function. Here, we examine microbiomes from 654 host species and begin where our current understanding trails off. That is, at the broadest scale, microbiomes can be differentiated first by free-living or host-association according to the Earth Microbiome Project Ontology ([ 4 ]; Additional file  1 : Figure S1), likely driven by both biotic and abiotic pressures. Salinity has a large effect on free-living microbiomes [  4 ], and here, we analyze microbiomes on external host surfaces of marine organisms separately from those of terrestrial and aquatic hosts. Many other factors influence or interact with host microbiomes, and here, we examine whether these factors differ depending on whether the microbiome is from external host surfaces such as leaves, gill, or skin, or is internal to the host, including communities in the digestive and reproductive systems. Host immune complexity, though strongly correlated with host phylogeny, appears to influence both internal and external microbiomes in terms of diversity and community structure (Figs.  8 and  9 ). Indeed, internal microbiome phylogenetic diversity had a weak direct path from host phylogeny, but a strong indirect path from host phylogeny through immune complexity (Fig.  9 ). 
+
+ Our analysis revealed that internal (digestive-associated) microbiome diversity was predominantly shaped by host factors, while external (surface-associated) microbiome diversity was strongly associated with normalized difference vegetation index (NDVI) and some climatic factors such as precipitation of the warmest quarter (Bioclim18; Fig. 5 ). Similarly, a recent study of amphibian skin microbiomes found higher diversity on hosts in environments with colder winters and less stable thermal conditions (i.e., temperate regions [  5 ];). Thus, increasing climatic variability appears to promote coexistence and diversity of external microbiomes, perhaps through ecological succession or dormancy mechanisms [  5 ]. Nottingham et al. [  69 ] found that both plant diversity and soil microbiome diversity follow temperature (and elevation) gradients at a regional scale with more species under warmer conditions. At a global scale, the external plant microbiome richness was also negatively correlated with elevation (Pearson’s correlation,  N = 85,  r = − 0.324,  P = 0.002), but mean annual temperature was not significantly correlated with these plant microbiomes (  r = − 0.174,  P = 0.111). Path analysis of our external microbiome dataset containing 33 plant host species did not show a significant effect of temperature on microbiome richness, but rather greater diversity with lower NDVI (Fig.  5 ). While host factors did not play a significant role in external microbiomes at the global scale, they can be important divers of host microbiomes locally (e.g., [  70 ]). 
+
+ Internal microbiome diversity was most strongly driven by host factors including host phylogeny and, to a weaker extent, diet or trophic level (Figs. 4 ,  5 , and  6 ). Similarly, a study focused on non-human primates found that host phylogeny had a larger impact than dietary niche on gut microbiomes [  33 ]. This finding is also supported by studies in other taxa including larval amphibians and aquatic invertebrates [  71 ]. Previous studies found a more prominent role of host diet in shaping the gut microbiome [  72 ,  73 ], particularly within clades such as lizards [  74 ], fish [  32 ,  67 ,  75 ], birds [  76 ,  77 ], or mammals [  78 ]. Captivity may produce bottom-up effects on microbiomes by altering environmental conditions and diets from field conditions [  41 ]. Our data mirror macroecological patterns (e.g., Paine’s keystone predation [  79 ];) and suggest that bottom-up processes of nutrient conditions shaped by host diet have weaker effects on microbiome diversity and structure than do the top-down processes of host physiology and immune function. Just as abiotic factors can influence or reverse top-down effects of predators on ecosystem function [  80 ], the relative strength of host immune function may be similarly disrupted (e.g., antibiotics, immunocompromise) and have strong influences on the host microbiome ([  15 ,  17 ,  31 ]; Table  1 ). 
+
+ Host immune systems are thought to function in reducing microbes, commonly maligned as germs. We found, perhaps counterintuitively, that a greater diversity of bacteria are hosted by organisms with more complex adaptive immune systems (Figs. 8 and  9 ). Indeed, we would add to Mcfall-Ngai’s [  1 ] prescient framework quoted above and suggest that core bacteria that are more abundant in organisms with exclusively innate immunity may trade off this stability with more complex immune function during the evolution of adaptive immunity [  68 ]. Indeed, top-down effects of immune function may be analogous to predation effects and promote maintenance of diversity by decreasing competition and allowing coexistence [  79 ]. Understanding these patterns may encourage forward thinking responses to current environmental impacts affecting microbiome evolution and host health ([  81 ,  82 ]; Table  1 ). 
+
+  Conclusions  Several reviews have highlighted the need for standardized data collection methods and greater taxonomic breadth and sampling of wild hosts, considered the least investigated compared with domestic and model host species [ 67 ,  81 ,  83 ]. Wild hosts may provide the greatest insight on host evolutionary biology and ecology, since captivity can have dramatic impacts on the microbiome [  41 ,  42 ]. Understanding how host-associated microbiomes are naturally assembled and influenced by abiotic and host conditions provides insight on potential reservoirs of microbiota and can inform metacommunity models that predict community structure and transmission of microbes or dispersal and feedback between hosts and habitats [  44 ,  84 ]. While there remain wide geographical (Fig.  1 ) and taxonomic gaps (Fig.  3 ) in host-microbiome studies, our large sample set enabled the description of global-scale patterns in both internal (gut and reproductive tract) as well as external surface (leaves, skin, gill) microbiomes. Using a standardized approach, we found compelling evidence that internal vs. external microbiomes differ in the predominant factors associated with diversity and composition. Our analysis also revealed several correlations that at first glance were counterintuitive, such as microbiome diversity increasing with host immune system complexity, that suggest previously unrecognized top-down regulating effects. The analysis of  Wolbachia occurrence and diversity across hosts and environments exemplifies the data mining potential of the metadata set assembled for this study. We anticipate that the identified patterns will be instrumental in deriving testable hypotheses and therefore have great potential to stimulate exciting experimental tests to elucidate the underlying mechanisms. 
+
+  Methods  Sequence acquisition  To investigate global patterns of microbiome diversity and structure across host systems, we performed standardized bioinformatics analysis on combined datasets and procured environmental and host-associated metadata. We focused on studies with targeted 16S rRNA gene sequence data obtained from an Illumina platform. A literature search was conducted to identify relevant studies with data accessible from public databases. The majority of sample sequences were downloaded from the Sequence Read Archive (SRA) of the National Center for Biotechnology Information (NCBI), the European Nucleotide Archive (ENA), MG-RAST, and Qiita repositories. The combined dataset is made available here (Additional file 2 ,  3 ,  4 ,  5 ,  6 ,  7 ,  8 ,  9 ,  10 ,  11 , and  12 ), and accession numbers and DOIs for all published studies are indicated in the mapping (metadata) files described in Additional file  1 . 
+
+ Datasets were selected that followed the Earth Microbiome Project (EMP) protocols and standards ( http://www.earthmicrobiome.org/protocols-and-standards/ ). Studies were first screened to ensure certain criteria were met, including (1) collected from a “wild setting,” where hosts were not exposed to any experimental treatments; (2) ethanol preserved or frozen until DNA extraction; (3) targeted the V4 region of the 16S rRNA bacterial gene region, using primers 515f and 806r [  85 ]; and (4) sequencing on Illumina MiSeq or Illumina HiSeq platforms. Once a study passed our inclusion filters, we downloaded fastq files and obtained metadata for each study. The compiled dataset is comprised of 15,790 samples from 51 studies including all host-associated data from the Earth Microbiome Project [  4 ] and includes 16 host classes (Fig.  3 ) from plants to corals to vertebrates (including 4 human populations; Additional file  1 : Figure S4, [  9 ,  50 –  58 ,  85 –  121 ]). 
+
+  Sequence preparation  Sequence data were quality filtered using Quantitative Insights into Microbial Ecology (QIIME) defaults and classified into sub-Operational Taxonomic Units (sOTUS, or unique sequence variants) using the Deblur workflow [ 27 ]. Within Deblur, reads were trimmed to 90 bp to correspond with the shortest read length in the combined dataset. Taxonomy was assigned using the RDP Classifier with GreenGenes 13-8 as reference through a custom bash script [  122 ,  123 ]. Then, sOTUs with fewer than 90 reads, taxonomically assigned as “mitochondria” and “chloroplast,” or not identifiable at the Kingdom level were removed. A phylogenetic tree was built with fasttree2 [  124 ]. Samples were rarefied at 1000 sequences per sample to retain most samples, normalize read counts across samples, and reduce computational demands. Furthermore, we standardized sampling across locations and host species by randomly selecting up to 10 samples from a given host species at a given country (see Table  2 for overall sample sizes and number of unique sOTUs). Datasets before and after processing as described above can be found in the Additional files. 
+
+  General analysis framework and datasets  We employed multiple statistical approaches, including general linearized models, permutational multivariate analysis of variance, and path models, to explore the main drivers of host-associated microbial diversity, community structure (i.e., beta diversity), and PICRUSt-predicted functionality. Tests also targeted hypotheses surrounding how immune function may shape diversity and composition of host microbiomes and how the distribution of Wolbachia varies across bioclimates. 
+
+ For our analyses, the data were divided into 3 main subsets: (i) an internal microbiome dataset comprised of 741 samples derived from internal host habitats or whole-body samples, (ii) an  external microbiome dataset comprised of 1193 samples derived from external host surfaces, and (iii) a  marine dataset comprised of 266 external surface samples from marine organisms. Table  2 provides detailed information on sample types included in each dataset. The geographic distribution of these samples is depicted in Fig.  1 . Additional data files for each subset are provided as indicated in Additional file  1 . 
+
+  Sample metadata and predictor variables  For each sample, we tabulated a comprehensive set of abiotic and biotic predictor variables for testing targeted hypotheses and inclusion in model-based analyses of our datasets. Associated metadata included in the mapping file was gathered by downloading the metadata for each study, taken directly from the paper corresponding to the study, or obtained from publicly available databases. Table 2 provides a description of each metadata field. 
+
+ Elevation data was extracted from Google Earth using latitude/longitude coordinates. Current bioclimatic variables representing temperature and precipitation (1 km resolution) were extracted for each unique geographic location from the WorldClim2 database. These 19 bioclimatic variables were extrapolated from a global network of stations collecting data from 1970 to 2000 [ 125 ]. Eighteen marine and geophysical variables were extracted from the MARSPEC database at the same 1 km resolution [  126 ] for the marine dataset models. The variables of interest are defined in Additional file  1 : Table S1 and below. Because of expected high correlation between many Worldclim bioclimatic variables, we filtered these predictors to a least correlated subset. From the 19 bioclim variables, we selected the 8 least correlated ones (caret package in R [  127 ]) based on a threshold of  r < 0.7. These least correlated variables included Mean Diurnal Temperature Range (Bio2), Isothermality (Bio3), Max Temperature of Warmest Month (Bio5), Mean Temperature of Driest Quarter (Bio9), Precipitation of Driest Month (Bio14), Precipitation Seasonality (Bio15), Precipitation of Warmest Quarter (Bio18), and Precipitation of Coldest Quarter (Bio19) and were included in model selection procedures described below. The same procedure was performed for the 18 marine biophysical predictors resulting in the following least correlated subset: bathymetry, east/west aspect (biogeo1), north/south aspect (biogeo2), plane curviture (biogeo3), distance to shore (biogeo5), bathymetric slope (biogeo6), concavity (biogeo7), sea surface salinity of the saltiest month (biogeo10), annual variance of sea surface salinity (biogeo12), sea surface temperature of warmest month (biogeo15), and annual range of sea surface temperature (biogeo16). 
+
+ Biotic predictors included host identity (host class or host phylogeny), host trophic diet (for internal dataset), external surface type, and immune system complexity. Either host class or a numeric nMDS proxy of host phylogeny was used to represent host identity. Host class information was obtained from the Encyclopedia of Life database ( https://eol.org/ ). The host phylogeny proxy was created via the following steps. First, using  timetree.org , we recovered a time-calibrated phylogenetic tree of host species represented in our study [  128 ]. Second, patristic pairwise distances, i.e., branch lengths separating taxa, were then calculated with the Ape and Adephylo packages in R [  129 ,  130 ]. Third, we performed non-metric multidimensional scaling (nMDS), constrained to one dimension, on the patristic distance matrix in SPSS v24 (IBM Corp, Armonk, NY, USA) to create a univariate host phylogeny variable for use in model-based analyses. The nMDS proxy phylogeny variable was chosen because it captured the phylogenetic relationships among hosts and is a numeric variable available for path analyses. Host trophic diet levels was estimated based on the diet category, including primary producers (level 0), herbivores (1), omnivores (2), carnivores (3), and scavengers/detritivores (4). External surface type information was obtained from data available with sequence archives and the published papers. Immune system complexity was estimated in two ways: (i) as a binary categorical variable indicating whether the host possessed an adaptive or innate only immune system, and (ii) as an ordinal scale derived from immune system characteristics from Flajnik [  68 ] (Additional file  1 : Table S3). 
+
+  Analysis of alpha diversity  Model selection procedures implementing generalized linear models (GLMs) and comprehensive path models were used to analyze alpha diversity for each of our datasets. We performed GLM model selection procedures to identify which of our main biotic and abiotic variables best predicted richness, measured as number of sOTUs and Faith’s Phylogenetic Diversity for each of our three main datasets. More specifically, for internal, external, and marine microbiomes, we screened a total of 25 explanatory variables, including host phylogeny/identity, trophic diet (internal only), external habitat types (marine only), absolute latitude, elevation, normalized index vegetation index (NDVI; external only), 8 least cross-correlated bioclimatic variables (internal and external only), and 11 least cross-correlated ocean biophysical variables (marine only; see above for least correlated sets). Competing models were ranked based on the Akaike Information Criterion (AIC), and we reported the most parsimonious model for each of our three datasets for each response variable. Multicollinearity was evaluated in each of the final models using the variance inflation factor (VIF) calculated with car package [ 131 ] in R. 
+
+ We applied path analyses with maximum Wishart likelihood (500 iterations) to test for the relative strength of direct and indirect associations among abiotic/biotic predictors and microbiome diversity of our internal and external microbiome datasets. Path models were not built for the marine dataset due to low predictive power of included variables in the GLM model selection. We built models including the most parsimonious set of explanatory variables predicting microbiome diversity according to our GLM model selection procedures (see above). Our four path models explaining number of OTUs and Faith’s Phylogenetic Diversity for both internal and external microbiomes included all ecologically meaningful associations among predictor variables. We performed a fifth path model for Faith’s Phylogenetic Diversity of internal microbiomes, including direct and indirect effects of immune system complexity in the analysis. We reported whole model fit for our path models using the root-mean square error of approximation (RMSEA). When goodness of fit threshold for was not met (RMSEA ≤ 0.1), we sequentially removed the weakest paths until minimum RMSEA threshold was met for each model. Analyses were performed using RAMONA platform in SYSTAT 13.2 [ 132 ]. 
+
+  Analysis of beta diversity  We performed permutational multivariate analysis of variance (PERMANOVA) to analyze microbial beta diversity and identify abiotic and biotic parameters influencing internal, external, and marine microbiomes. Weighted and unweighted Unifrac distances were calculated in QIIME, and PERMANOVA models were implemented in R with the adonis2() function in the vegan package [ 133 ]. Independent models were run for the internal, external, and marine datasets. Predictor variables included in beta diversity models were hypothesis-driven and included all variables from the best alpha diversity model for the given dataset as well as selected biotic factors. We visualized overarching patterns in microbial beta diversity through principal coordinates analysis using ggplot2 in R. 
+
+ Additionally, we visualized the microbial abundance of major bacterial phyla across host trophic diets. A phylogenetic tree, OTU table, and taxonomy table generated in QIIME were consolidated in R script using the phyloseq and ape packages [ 129 ,  134 ]. The function “dotTree” from the R package phytools [  135 ] was used to generate the phylogenetic tree at the phylum level. Microbial abundance of each phylum and the most abundant classes was calculated for each trophic diet level. 
+
+  Functional analysis with PICRUSt  Phylogenetic Investigation of Communities by Reconstruction of Unobserved States (PICRUSt) predicts metagenomic function using marker gene (such as 16S rRNA) surveys [ 21 ]. GreenGenes 13-5 OTU IDs are required for PICRUSt analyses; therefore, we clustered our internal microbiome dataset sOTUs to Greengenes OTU IDs at 97% similarity in QIIME. A custom R script was used to combine these GG IDs with abundance information to create a PICRUSt-formatted OTU table. We then performed the following steps: normalization by copy number, metagenome prediction, and consolidation of predictions into KEGG pathways. Results were filtered to retain data with an NSTI score of 0.06 or lower; 247 internal samples were represented in the final analysis. Nearest Sequenced Taxon Index (NSTI) is a confidence measure for PICRUSt predictions. Beta diversity calculations (Bray-Curtis and Jaccard dissimilarity) on PICRUSt functional predictions were performed in QIIME and analyzed in R using the adonis2 function from vegan. The PICRUSt package is available at  http://picrust.github.io/picrust/ . 
+
+  Analyses on immune system complexity  We assessed the effect of immune system complexity on microbial diversity by (a) comparing sOTU richness and phylogenetic diversity between samples from hosts with adaptive vs. innate only immune systems for both the internal and external dataset—pairwise comparisons were implemented with Wilcoxon tests in R; (b) performing a correlation test between microbial richness and immune complexity using Kendall Tau correlation statistics in R; and (c) running our comprehensive path model including the immune complexity scale variable derived from Flajnik [ 68 ]. 
+
+   Supplementary information  Additional file 1. Supplementary tables and figures [  136 –  158 ]. 
+
+    Additional file 2. Full metadata file (15,790 samples), unfiltered. 
+
+    Additional file 3. Filtered metadata file for internal microbiomes (741 samples). 
+
+    Additional file 4. Filtered metadata file for external microbiomes (1193 samples). 
+
+    Additional file 5. Filtered metadata file for marine external microbiomes (266 samples). 
+
+    Additional file 6. Deblur sOTU table (biom file) for the full dataset, not rarefied. 
+
+    Additional file 7. Deblur sOTU table (biom file) for the internal microbiome (741 samples), rarefied to 1000 reads/sample. 
+
+    Additional file 8. Deblur sOTU table (biom file) for the external microbiomes (1193 samples), rarefied to 1000 reads/sample. 
+
+    Additional file 9. Deblur sOTU table (biom file) for the marine external microbiomes (266 samples), rarefied to 1000 reads/sample. 
+
+    Additional file 10. RepSet fasta file for the full dataset. 
+
+    Additional file 11. Fasta file to match OTU number with deblur sequence ID. 
+
+    Additional file 12. Phylogenetic tree file used for analyses on data subsets. 
+
+    Additional file 13. Review history.     
+
+    The original version of this article was revised: "Figure 8 was mistakenly duplicated as Figure 7".
+
+  Publisher’s Note   Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+
+  Douglas C. Woodhams and Molly C. Bletz are co-first authors.
+
+   Supplementary information  Supplementary information accompanies this paper at 10.1186/s13059-019-1908-8. 
+
+  Acknowledgements  This meta-analysis emerged from a graduate seminar at UMass Boston. We thank all the students that participated in the course.
+
+ Review history  The review history is available as Additional file 13 . 
+
+  Peer review information  Andrew Cosgrove was the primary editor on this article and managed its editorial process and peer review in collaboration with the rest of the editorial team.
+
+   Authors’ contributions  DCW initiated and led the project and coordinated and assisted with the data analysis. MCB trained the students in microbiome analysis, helped coordinate the project, and assisted with the statistical analyses. DCW, MB, JK, and MV helped to conceptualize the bioclimatic analysis of the microbiome and PICRUSt datasets. The following authors were primarily responsible for various analyses: BL alpha-diversity analyses; GB path analyses; HD curated the mapping files, beta-diversity analyses; HB created the taxonomy plots; CL PICRUSt analyses; RH core analyses; DB GIS maps; GB, ATP, and JK Wolbachia analyses; PJK and RW host taxonomy plots; MV, KM, PJK, and NS data acquisition; and EK and KS microbial taxonomy plots. All authors contributed to writing the manuscript, and read and approved the final manuscript. 
+
+ Authors’ information  Twitter handle: @ATPsciencegirl (Amanda G. Tokash-Peters).
+
+   Funding  MCB was supported by a David H Smith Conservation Fellowship. JK was supported by Simons Foundation (429440, WTW). KS was supported by NSF DBI #1759940. ATP was supported by the National Science Foundation grant DGE 1249946, the Integrative Graduate Education and Research Traineeship (IGERT): Coasts and Communities – Natural and Human Systems in Urbanizing Environments, and the University of Massachusetts Sanofi-Genzyme Doctoral Fellowship.
+
+  Availability of data and materials  The datasets supporting the conclusions of this article are included within the article and its Additional files (Additional file 2 through Additional file  12 ). Additional file  1 provides descriptions of the data files (metadata, biom, fasta, and tree files). Links to DOI numbers and data repositories for each of the 51 datasets are indicated in Additional file  2 . The data were described in the Earth Microbiome Project [  4 ], the Global Amphibian Project [  5 ], and additional recent studies referenced above. 
+
+  Ethics approval and consent to participate  Not applicable.   Consent for publication  Not applicable.   Competing interests  The authors declare that they have no competing interests.
+
+  References  1.  McFall-Ngai  M    Care for the community  Nature.  2007  445  153  10.1038/445153a  17215830    2.  Fierer  N   Jackson  RB    The diversity and biogeography of soil bacterial communities  Proc Natl Acad Sci U S A  2006  103  626  631  10.1073/pnas.0507535103  16407148    3.  Lozupone  CA   Knight  R    Global patterns in bacterial diversity  Proc Natl Acad Sci U S A  2007  104  11436  11440  10.1073/pnas.0611525104  17592124    4.  Thompson  L   Sanders  J   McDonald  D   Amir  A   Ladau  J   Locey  K      A communal catalogue reveals Earth’s multiscale microbial diversity  Nature.  2017  551  457  10.1038/nature24621  29088705    5.  Kueneman  JG   Bletz  MC   Mckenzie  VJ   Becker  CG   Joseph  MB   Abarca  JG      Community richness of amphibian skin bacteria correlates with bioclimate at the global scale  Nat Ecol Evol  2019  3  381  389  10.1038/s41559-019-0798-1  30778181    6.  Ley  RE   Lozupone  CA   Hamady  M   Knight  R   Gordon  JI    Worlds within worlds: evolution of the vertebrate gut microbiota  Nat Rev Microbiol.  2008  6  776  788  10.1038/nrmicro1978  18794915    7.  Bahram  M   Hildebrand  F   Forslund  SK   Anderson  JL   Soudzilovskaia  NA   Bodegom  PM      Structure and function of the global topsoil microbiome  Nature.  2018  560  233  237  10.1038/s41586-018-0386-6  30069051    8.  Frey-Klett  P   Burlinson  P   Deveau  A   Barret  M   Tarkka  M   Sarniguet  A    Bacterial-fungal interactions: hyphens between agricultural, clinical, environmental, and food microbiologists  Microbiol Mol Biol Rev  2011  75  583  609  10.1128/MMBR.00020-11  22126995    9.  Kueneman  JG   Woodhams  DC   Van Treuren  W   Archer  HM   Knight  R   McKenzie  VJ    Inhibitory bacteria reduce fungi on early life stages of endangered Colorado boreal toads ( Anaxyrus boreas )   ISME J.  2016  10  934  944  10.1038/ismej.2015.168  26565725    10.  Kearns  PJ   Fischer  S   Fernández-beaskoetxea  S   Gabor  CR   Zoological  N   Si  P    Fight fungi with fungi: antifungal properties of the amphibian mycobiome  Front Microbiol  2017  8  1  12  10.3389/fmicb.2017.02494  28197127    11.  García-Bayona  L   Comstock  LE    Bacterial antagonism in host-associated microbial communities  Science  2018  361  eaat2456  10.1126/science.aat2456  30237322    12.  Bosch TCG, Guillemin K, McFall-Ngai M. Evolutionary “experiments” in symbiosis: The study of model animals provides insights into the mechanisms underlying the diversity of host–microbe interactions. BioEssays. 2019;41:e1800256.   13.  Blaser  M   Bork  P   Fraser  C   Knight  R   Wang  J    The microbiome explored: recent insights and future challenges  Nat Rev Microbiol.  2013  11  213  10.1038/nrmicro2973  23377500    14.  McFall-Ngai  M   Hadefield  M   Bosch  TCG   Carey  HV   Domazet-Lošo  T   Douglas  AE      Animals in a bacterial world, a new imperative for the life sciences  Proc Natl Acad Sci U S A  2013  110  3229  3236  10.1073/pnas.1218525110  23391737    15.  Zaneveld  JR   McMinds  R   Thurber  RV    Stress and stability: applying the Anna Karenina principle to animal microbiomes  Nat Microbiol  2017  2  17121  10.1038/nmicrobiol.2017.121  28836573    16.  Petersen  C   Round  JL    Defining dysbiosis and its influence on host immunity and disease  Cell Microbiol  2014  16  1024  1033  10.1111/cmi.12308  24798552    17.  Song SJ, Woodhams DC, Martino C, Allaband C, Mu A. Engineering the microbiome for animal health and conservation. Exp Biol Med. 2019;244:494-504.   18.  Nelson  TM   Apprill  A   Mann  J   Rogers  TL   Brown  MV    The marine mammal microbiome: current knowledge and future directions  Microbiol Aust  2015  36  8  13  10.1071/MA15004    19.  Blaser  MJ    The theory of disappearing microbiota and the epidemics of chronic diseases  Nat Rev Immunol.  2017  17  461  463  10.1038/nri.2017.77  28749457    20.  Wellington  EMH   Berry  A   Krsek  M    Resolving functional diversity in relation to microbial community structure in soil: exploiting genomics and stable isotope probing  Curr Opin Microbiol  2003  6  295  301  10.1016/S1369-5274(03)00066-3  12831907    21.  Langille  MG   Zaneveld  J   Caporaso  JG   McDonald  D   Knights  D   Reyes  JA      Predictive functional profiling of microbial communities using 16S rRNA marker gene sequences  Nat Biotechnol  2013  31  814  821  10.1038/nbt.2676  23975157    22.  Legrand  TPRA   Catalano  SR   Wos-Oxley  ML   Stephens  F   Landos  M   Bansemer  MS      The inner workings of the outer surface: skin and gill microbiota as indicators of changing gut health in yellowtail kingfish  Front Microbiol  2018  8  2664  10.3389/fmicb.2017.02664  29379473    23.  Glasl  B   Herndl  GJ   Frade  PR    The microbiome of coral surface mucus has a key role in mediating holobiont health and survival upon disturbance  ISME J.  2016  10  2280  10.1038/ismej.2016.9  26953605    24.  Stroup  DF   Berlin  JA   Morton  SC   Olkin  I   Williamson  GD   Rennie  D      Meta-analysis of observational studies in epidemiology: a proposal for reporting  JAMA.  2000  283  2008  2012  10.1001/jama.283.15.2008  10789670    25.  Dubilier  N   McFall-Ngai  M   Zhao  L    Microbiology: create a global microbiome effort  Nat News  2015  526  631  10.1038/526631a    26.  Alivisatos  AP   Blaser  MJ   Brodie  EL   Chun  M   Dangl  JL   Donohue  TJ      A unified initiative to harness Earth’s microbiomes  Science.  2015  350  507  508  10.1126/science.aac8480  26511287    27.  Amir A, McDonald D, Navas-Molina JA, Kopylova E, Morton JT, Zech Xu Z, et al. Deblur rapidly resolves single-nucleotide community sequence patterns. mSystems. 2017;2:e00191-16.   28.  Turnbaugh  PJ   Ley  RE   Hamady  M   Fraser-Liggett  CM   Knight  R   Gordon  JI    The human microbiome project  Nature.  2007  449  804  10.1038/nature06244  17943116    29.  Koren  O   Knights  D   Gonzalez  A   Waldron  L   Segata  N   Knight  R      A guide to enterotypes across the human body: meta-analysis of microbial community structures in human microbiome datasets  PLoS Comput Biol  2013  9  e1002863  10.1371/journal.pcbi.1002863  23326225    30.  Lozupone C, Stombaugh J, Gonzalez A, Ackermann G, Wendel D, Vázquez-Baeza Y, et al. Meta-analyses of studies of the human microbiota. Genome Res. 2013;23:1704-1714.   31.  Kriss  M   Hazleton  KZ   Nusbacher  NM   Martin  CG   Lozupone  CA    Low diversity gut microbiota dysbiosis: drivers, functional implications and recovery  Curr Opin Microbiol  2018  44  34  40  10.1016/j.mib.2018.07.003  30036705    32.  Sullam  KE   Essinger  SD   Lozupone  CA   O’Connor  MP   Rosen  GL   Knight  ROB      Environmental and ecological factors that shape the gut bacterial communities of fish: a meta-analysis  Mol Ecol  2012  21  3363  3378  10.1111/j.1365-294X.2012.05552.x  22486918    33.  Amato  KR   Sanders  JG   Song  SJ   Nute  M   Metcalf  JL   Thompson  LR      Evolutionary trends in host physiology outweigh dietary niche in structuring primate gut microbiomes  ISME J  2018  13  576  587  10.1038/s41396-018-0175-0  29995839    34.  Waite  DW   Taylor  MW    Characterizing the avian gut microbiota: membership, driving influences, and potential function  Front Microbiol  2014  5  223  10.3389/fmicb.2014.00223  24904538    35.  Wegener Parfrey  L   Walters  WA   Knight  R    Microbial eukaryotes in the human microbiome: ecology, evolution, and future directions  Front Microbiol  2011  2  153  21808637    36.  Nash  AK   Auchtung  TA   Wong  MC   Smith  DP   Gesell  JR   Ross  MC      The gut mycobiome of the Human Microbiome Project healthy cohort  Microbiome.  2017  5  153  10.1186/s40168-017-0373-4  29178920    37.  Wolf  YI   Kazlauskas  D   Iranzo  J   Lucía-Sanz  A   Kuhn  JH   Krupovic  M      Origins and evolution of the global RNA virome  MBio.  2018  9  e02329  e02318  10.1128/mBio.02329-18  30482837    38.  Hug  LA   Baker  BJ   Anantharaman  K   Brown  CT   Probst  AJ   Castelle  CJ      A new view of the tree of life  Nat Microbiol  2016  1  16048  10.1038/nmicrobiol.2016.48  27572647    39.  Lagier  J-C   Dubourg  G   Million  M   Cadoret  F   Bilen  M   Fenollar  F      Culturing the human microbiota and culturomics  Nat Rev Microbiol  2018  16  540  550  10.1038/s41579-018-0041-0  29937540    40.  Huys  GRB   Raes  J    Go with the flow or solitary confinement: a look inside the single-cell toolbox for isolation of rare and uncultured microbes  Curr Opin Microbiol  2018  44  1  8  10.1016/j.mib.2018.05.002  29908491    41.  McKenzie  VJ   Song  SJ   Delsuc  F   Prest  TL   Oliverio  AM   Korpita  TM      The effects of captivity on the mammalian gut microbiome  Integr Comp Biol  2017  57  690  704  10.1093/icb/icx090  28985326    42.  Hird  SM    Evolutionary biology needs wild microbiomes  Front Microbiol  2017  8  1  10  10.3389/fmicb.2017.00725  28197127    43.  Shade  A   Dunn  RR   Blowes  SA   Keil  P   Bohannan  BJM   Herrmann  M      Macroecology to unite all life, large and small  Trends Ecol Evol  2018  33  731  744  10.1016/j.tree.2018.08.005  30209011    44.  Miller  ET   Svanbäck  R   Bohannan  BJM    Microbiomes as metacommunities: understanding host-associated microbes through metacommunity ecology  Trends Ecol Evol  2018  33  926  935  10.1016/j.tree.2018.09.002  30266244    45.  Loudon  AH   Venkataraman  A   Van Treuren  W   Woodhams  DC   Parfrey  LW   McKenzie  VJ      Vertebrate hosts as islands: dynamics of selection, immigration, loss, persistence, and potential function of bacteria on salamander skin  Front Microbiol  2016  7  333  10.3389/fmicb.2016.00333  27014249    46.  Prest  TL   Kimball  AK   Kueneman  JG   McKenzie  VJ    Host-associated bacterial community succession during amphibian development  Mol Ecol  2018  27  1992  2006  10.1111/mec.14507  29411448    47.  Bello  MGD   Knight  R   Gilbert  JA   Blaser  MJ    Preserving microbial diversity  Science.  2018  362  33  34  10.1126/science.aau8816  30287652    48.  Klassen  JL    Defining microbiome function  Nat Microbiol  2018  3  864  10.1038/s41564-018-0189-4  30046174    49.  Project  THM    Structure, function and diversity of the healthy human microbiome  Nature.  2012  486  207  214  10.1038/nature11234  22699609    50.  Kohl  KD   Weiss  RB   Cox  J   Dale  C   Dearing  MD    Gut microbes of mammalian herbivores facilitate intake of plant toxins  Ecol Lett  2014  17  1238  1246  10.1111/ele.12329  25040855    51.  Muhlebach  MS   Zorn  BT   Esther  CR   Hatch  JE   Murray  CP   Turkovic  L      Initial acquisition and succession of the cystic fibrosis lung microbiome is associated with disease progression in infants and preschool children  PLoS Pathog  2018  14  e1006798  10.1371/journal.ppat.1006798  29346420    52.  Kohl KD, Miller AW, Marvin JE, Mackie R, Dearing MD. Herbivorous rodents ( Neotoma spp. ) harbour abundant and active foregut microbiota. Environ Microbiol. 2014;16:2869-2878.    53.  Stone  BWG   Jackson  CR    Biogeographic patterns between bacterial phyllosphere communities of the Southern Magnolia ( Magnolia grandiflora ) in a small forest   Microb Ecol  2016  71  954  961  10.1007/s00248-016-0738-4  26883131    54.  Wang  W   Cao  J   Yang  F   Wang  X   Zheng  S   Sharshov  K      High-throughput sequencing reveals the core gut microbiome of Bar-headed goose ( Anser indicus ) in different wintering areas in Tibet   Microb Open  2016  5  287  295  10.1002/mbo3.327    55.  Sabino-Pinto J, Bletz MC, Islam MM, Shimizu N, Bhuju S, Geffers R, et al. Composition of the cutaneous bacterial community in Japanese amphibians: effects of captivity, host species, and body region. Microb Ecol. 2016;72:460-469.   56.  Amato  KR   Martinez-Mota  R   Righini  N   Raguet-Schofield  M   Corcione  FP   Marini  E      Phylogenetic and ecological factors impact the gut microbiota of two Neotropical primate species  Oecologia.  2016  180  717  733  10.1007/s00442-015-3507-z  26597549    57.  Bletz MC, Vences M, Sabino-Pinto J, Taguchi Y, Shimizu N, Nishikawa K, et al. Cutaneous microbiota of the Japanese giant salamander ( Andrias japonicus ), a representative of an ancient amphibian clade. Hydrobiologia. 2017;795:153–167.    58.  Sankaranarayanan  K   Ozga  AT   Warinner  C   Tito  RY   Obregon-Tito  AJ   Xu  J      Gut microbiome diversity among Cheyenne and Arapaho individuals from western Oklahoma  Curr Biol  2015  25  3161  3169  10.1016/j.cub.2015.10.060  26671671    59.  Hoffmann  AA   Montgomery  BL   Popovici  J   Iturbe-Ormaetxe  I   Johnson  PH   Muzzi  F      Successful establishment of Wolbachia in  Aedes populations to suppress dengue transmission   Nature.  2011  476  454  10.1038/nature10356  21866160    60.  McMeniman  CJ   Lane  RV   Cass  BN   Fong  AWC   Sidhu  M   Wang  Y-F      Stable introduction of a life-shortening Wolbachia infection into the mosquito  Aedes aegypti   Science.  2009  323  141  144  10.1126/science.1165326  19119237    61.  Knight R, Vrbanac A, Taylor BC, Aksenov A, Callewaert C, Debelius J, et al. Best practices for analysing microbiomes. Nat Rev Microbiol. 2018:410–22.   62.  Hammer  TJ   Dickerson  JC   Fierer  N    Evidence-based recommendations on storing and handling specimens for analyses of insect microbiota  PeerJ.  2015  3  e1190  10.7717/peerj.1190  26311208    63.  Sender  R   Fuchs  S   Milo  R    Revised estimates for the number of human and bacteria cells in the body  PLoS Biol  2016  14  1  14  10.1371/journal.pbio.1002533    64.  Yatsunenko T, Rey FE, Manary MJ, Trehan I, Dominguez-bello MG, Contreras M, et al. Human gut microbiome viewed across age and geography. Nature. 2012;486.   65.  Joe JTX, Chiou PP, Kuo C-Y, Lin JHJ, Wu J-L, Lu M-W. The microbiota profile and transcriptome analysis of immune response during metamorphosis stages in orange spotted grouper ( Epinephelus coioides ). Fish Shellfish Immunol. 2019;90:141–149.    66.  Yan  Q   Li  J   Yu  Y   Wang  J   He  Z   Van Nostrand  JD      Environmental filtering decreases with fish development for the assembly of gut microbiota  Environ Microbiol  2016  18  4739  4754  10.1111/1462-2920.13365  27130138    67.  Egerton S, Culloty S, Whooley J, Stanton C, Ross RP. The gut microbiota of marine fish. Front. Microbiol. 2018;9:873.   68.  Flajnik  MF    A cold-blooded view of adaptive immunity  Nat Rev Immunol  2018  7  438  453  10.1038/s41577-018-0003-9    69.  Nottingham  AT   Fierer  N   Turner  BL   Whitaker  J   Ostle  NJ   McNamara  NP      Microbes follow Humboldt: temperature drives plant and soil microbial diversity patterns from the Amazon to the Andes  Bull Ecol Soc Am  2019  100  1  4  10.1002/bes2.1452    70.  Chiarello  M   Auguet  J-C   Bettarel  Y   Bouvier  C   Claverie  T   Graham  NAJ      Skin microbiome of coral reef fish is highly variable and driven by host phylogeny and diet  Microbiome.  2018  6  147  10.1186/s40168-018-0530-4  30143055    71.  Lyra  ML   Bletz  MC   Haddad  CFB   Vences  M    The intestinal microbiota of tadpoles differs from those of syntopic aquatic invertebrates  Microb Ecol  2018  76  121  124  10.1007/s00248-017-1109-5  29159493    72.  Colston  TJ    Gut microbiome transmission in lizards  Mol Ecol  2017  26  972  974  10.1111/mec.13987  28239927    73.  Steffan  SA   Chikaraishi  Y   Currie  CR   Horn  H   Gaines-Day  HR   Pauli  JN      Microbes are trophic analogs of animals  Proc Natl Acad Sci U S A  2015  112  15119  15124  10.1073/pnas.1508782112  26598691    74.  Kohl  KD   Brun  A   Magallanes  M   Brinkerhoff  J   Laspiur  A   Acosta  JC      Gut microbial ecology of lizards: insights into diversity in the wild, effects of captivity, variation across gut regions and transmission  Mol Ecol  2017  26  1175  1189  10.1111/mec.13921  27862531    75.  Liu  H   Guo  X   Gooneratne  R   Lai  R   Zeng  C   Zhan  F      The gut microbiome and degradation enzyme activity of wild freshwater fishes influenced by their trophic levels  Sci Rep  2016  6  24340  10.1038/srep24340  27072196    76.  Grond  K   Sandercock  BK   Jumpponen  A   Zeglin  LH    The avian gut microbiota: community, physiology and function in wild birds  J Avian Biol  2018  49  e01788  10.1111/jav.01788    77.  Michel  AJ   Ward  LM   Goffredi  SK   Dawson  KS   Baldassarre  DT   Brenner  A      The gut of the finch: uniqueness of the gut microbiome of the Galápagos vampire finch  Microbiome.  2018  6  167  10.1186/s40168-018-0555-8  30231937    78.  Ley  RE   Hamady  M   Lozupone  C   Turnbaugh  PJ   Ramey  RR   Bircher  JS      Evolution of mammals and their gut microbes  Science.  2008  320  1647  1651  10.1126/science.1155725  18497261    79.  Terborgh  JW    Toward a trophic theory of species diversity  Proc Natl Acad Sci U S A  2015  112  11415  11422  10.1073/pnas.1501070112  26374788    80.  Koltz  AM   Classen  AT   Wright  JP    Warming reverses top-down effects of predators on belowground ecosystem function in Arctic tundra  Proc Natl Acad Sci U S A  2018  115  E7541  E7549  10.1073/pnas.1808754115  30038011    81.  Colston  TJ   Jackson  CR    Microbiome evolution along divergent branches of the vertebrate tree of life: what’s known and unknown  Mol Ecol  2016  25  3776  3800  10.1111/mec.13730  27297628    82.  Davenport  ER   Sanders  JG   Song  SJ   Amato  KR   Clark  AG   Knight  R    The human microbiome in evolution  BMC Biol  2017  15  127  10.1186/s12915-017-0454-7  29282061    83.  Pascoe  EL   Hauffe  HC   Marchesi  JR   Perkins  SE    Network analysis of gut microbiota literature: an overview of the research landscape in non-human animal studies  ISME J.  2017  11  2644  2651  10.1038/ismej.2017.133  28800135    84.  Adair  KL   Douglas  AE    Making a microbiome: the many determinants of host-associated microbial community composition  Curr Opin Microbiol  2017  35  23  29  10.1016/j.mib.2016.11.002  27907842    85.  Caporaso  JG   Lauber  CL   Walters  WA   Berg-lyons  D   Lozupone  CA   Turnbaugh  PJ      Global patterns of 16S rRNA diversity at a depth of millions of sequences per sample  Proc Natl Acad Sci U S A  2011  108  4516  4522  10.1073/pnas.1000080107  20534432    86.  Amato  KR   Metcalf  JL   Song  SJ   Hale  VL   Clayton  J   Ackermann  G      Using the gut microbiota as a novel tool for examining colobine primate GI health  Glob Ecol Conserv  2016  7  225  237  10.1016/j.gecco.2016.06.004    87.  Hale  VL   Tan  CL   Knight  R   Amato  KR    Effect of preservation method on spider monkey ( Ateles geoffroyi ) fecal microbiota over 8 weeks   J Microbiol Methods  2015  113  16  26  10.1016/j.mimet.2015.03.021  25819008    88.  Smith  CCR   Snowberg  LK   Caporaso  JG   Knight  R   Bolnick  DI    Dietary input of microbes and host genetic variation shape among-population differences in stickleback gut microbiota  ISME J.  2015  9  2515  10.1038/ismej.2015.64  25909977    89.  Wagner  MR   Lundberg  DS   Tijana  G   Tringe  SG   Dangl  JL   Mitchell-Olds  T    Host genotype and age shape the leaf and root microbiomes of a wild perennial plant  Nat Commun  2016  7  12151  10.1038/ncomms12151  27402057    90.  Bates  KA   Clare  FC   O’Hanlon  S   Bosch  J   Brookes  L   Hopkins  K      Amphibian chytridiomycosis outbreak dynamics are linked with host skin bacterial community structure  Nat Commun  2018  9  693  10.1038/s41467-018-02967-w  29449565    91.  Lewis  ZT   Sidamonidze  K   Tsaturyan  V   Tsereteli  D   Khachidze  N   Pepoyan  A      The fecal microbial community of breast-fed infants from Armenia and Georgia  Sci Rep  2017  7  40932  10.1038/srep40932  28150690    92.  Hakim  JA   Koo  H   Kumar  R   Lefkowitz  EJ   Morrow  CD   Powell  ML      The gut microbiome of the sea urchin, Lytechinus variegatus , from its natural habitat demonstrates selective attributes of microbial taxa and predictive metabolic profiles   FEMS Microbiol Ecol  2016  92  146  10.1093/femsec/fiw146    93.  Moitinho-Silva  L   Nielsen  S   Amir  A   Gonzalez  A   Ackermann  GL   Cerrano  C      The sponge microbiome project  Gigascience  2017  6  gix077  10.1093/gigascience/gix077  5632291    94.  Sanders  JG   Łukasik  P   Frederickson  ME   Russell  JA   Koga  R   Knight  R      Dramatic differences in gut bacterial densities correlate with diet and habitat in rainforest ants  Integr Comp Biol  2017  57  705  722  10.1093/icb/icx088  28985400    95.  Hammer  TJ   Fierer  N   Hardwick  B   Simojoki  A   Slade  E   Taponen  J      Treating cattle with antibiotics affects greenhouse gas emissions, and microbiota in dung and dung beetles  Proc R Soc B Biol Sci  2016  283  20160150  10.1098/rspb.2016.0150    96.  Raulo  A   Ruokolainen  L   Lane  A   Amato  K   Knight  R   Leigh  S      Social behaviour and gut microbiota in red-bellied lemurs ( Eulemur rubriventer ): in search of the role of immunity in the evolution of sociality   J Anim Ecol  2018  87  388  399  10.1111/1365-2656.12781  29205327    97.  Marzinelli  EM   Campbell  AH   Zozaya Valdes  E   Vergés  A   Nielsen  S   Wernberg  T      Continental-scale variation in seaweed host-associated bacterial communities is a function of host condition, not geography  Environ Microbiol  2015  17  4078  4088  10.1111/1462-2920.12972  26148974    98.  Delsuc  F   Metcalf  JL   Wegener Parfrey  L   Song  SJ   González  A   Knight  R    Convergence of gut microbiomes in myrmecophagous mammals  Mol Ecol  2014  23  1301  1317  10.1111/mec.12501  24118574    99.  Yuan  ML   Dean  SH   Longo  AV   Rothermel  BB   Tuberville  TD   Zamudio  KR    Kinship, inbreeding and fine-scale spatial structure influence gut microbiota in a hindgut-fermenting tortoise  Mol Ecol  2015  24  2521  2536  10.1111/mec.13169  25809385    100.  Toju  H   Vannette  RL   Gauthier  ML   Dhami  MK   Fukami  T    Priority effects can persist across floral generations in nectar microbial metacommunities  Oikos.  2018  127  345  352  10.1111/oik.04243    101.  Van Treuren  W   Ponnusamy  L   Brinkerhoff  RJ   Gonzalez  A   Parobek  CM   Juliano  JJ      Variation in the microbiota of Ixodes ticks with regard to geography, species, and sex   Appl Environ Microbiol  2015  81  6200  6209  10.1128/AEM.01562-15  26150449    102.  Caporaso  JG   Lauber  CL   Costello  EK   Berg-Lyons  D   Gonzalez  A   Stombaugh  J      Moving pictures of the human microbiome  Genome Biol  2011  12  R50  10.1186/gb-2011-12-5-r50  21624126    103.  Koehler  AV   Haydon  SR   Jex  AR   Gasser  RB    Cryptosporidium and  Giardia taxa in faecal samples from animals in catchments supplying the city of Melbourne with drinking water (2011 to 2015)   Parasit Vectors  2016  9  315  10.1186/s13071-016-1607-1  27251294    104.  Nolan  MJ   Jex  AR   Koehler  AV   Haydon  SR   Stevens  MA   Gasser  RB    Molecular-based investigation of Cryptosporidium and  Giardia from animals in water catchments in southeastern Australia   Water Res  2013  47  1726  1740  10.1016/j.watres.2012.12.027  23357792    105.  Zeng  Y   Zeng  D   Ni  X   Zhu  H   Jian  P   Zhou  Y      Microbial community compositions in the gastrointestinal tract of Chinese Mongolian sheep using Illumina MiSeq sequencing revealed high microbial diversity  AMB Express  2017  7  75  10.1186/s13568-017-0378-1  28378284    106.  Vences  M   Lyra  MML   Kueneman  JG   Bletz  MC   Archer  HM   Canitz  J      Gut bacterial communites across tadpole ecomorphs in two diverse tropical anuran faunas  Sci Nat  2016  103  25  10.1007/s00114-016-1348-1    107.  Piombino  P   Genovese  A   Esposito  S   Moio  L   Cutolo  PP   Chambery  A      Saliva from obese individuals suppresses the release of aroma compounds from wine  PLoS One  2014  9  e85611  10.1371/journal.pone.0085611  24465618    108.  Apprill  A   Robbins  J   Eren  AM   Pack  AA   Reveillaud  J   Mattila  D      Humpback whale populations share a core skin bacterial community: towards a health index for marine mammals?  PLoS One  2014  9  e90785  10.1371/journal.pone.0090785  24671052    109.  Price  JT   Paladino  FV   Lamont  MM   Witherington  BE   Bates  ST   Soule  T    Characterization of the juvenile green turtle ( Chelonia mydas ) microbiome throughout an ontogenetic shift from pelagic to neritic habitats   PLoS One  2017  12  e0177642  10.1371/journal.pone.0177642  28493980    110.  Whitaker  MRL   Salzman  S   Sanders  J   Kaltenpoth  M   Pierce  NE    Microbial communities of lycaenid butterflies do not correlate with larval diet  Front Microbiol  2016  7  1920  10.3389/fmicb.2016.01920  27965647    111.  Novakova  E   Woodhams  DC   Rodríguez-Ruano  SM   Brucker  RM   Leff  JW   Maharaj  A      Mosquito microbiome dynamics, a background for prevalence and seasonality of West Nile virus  Front Microbiol  2017  8  526  10.3389/fmicb.2017.00526  28421042    112.  Jiang  H-Y   Ma  J-E   Li  J   Zhang  X-J   Li  L-M   He  N      Diets alter the gut microbiome of crocodile lizards  Front Microbiol  2017  8  2073  10.3389/fmicb.2017.02073  29118742    113.  Parris  DJ   Brooker  RM   Morgan  MA   Dixson  DL   Stewart  FJ    Whole gut microbiome composition of damselfish and cardinalfish before and after reef settlement  PeerJ.  2016  4  e2412  10.7717/peerj.2412  27635360    114.  Pfister  CA   Gilbert  JA   Gibbons  SM    The role of macrobiota in structuring microbial communities along rocky shores  PeerJ.  2014  2  e631  10.7717/peerj.631  25337459    115.  Sanchez  E   Bletz  MC   Dunsch  L   Bhuju  S   Geffers  R   Jarek  M      Cutaneous bacterial communities of a poisonous salamander: a perspective from life stages, body parts and environmental conditions  Microb Ecol  2016  73  455  465  10.1007/s00248-016-0863-0  27677894    116.  Kueneman  JG   Parfrey  LW   Woodhams  DC   Archer  HM   Knight  R   McKenzie  VJ    The amphibian skin-associated microbiome across species, space and life history stages  Mol Ecol  2014  23  1238  1250  10.1111/mec.12510  24171949    117.  Sickel  W   Grafe  TU   Meuche  I   Steffan-Dewenter  I   Keller  A    Bacterial diversity and community structure in two Bornean Nepenthes species with differences in nitrogen acquisition strategies   Microb Ecol  2016  71  938  953  10.1007/s00248-015-0723-3  26790863    118.  Loudon  AH   Woodhams  DC   Parfrey  LW   Archer  HM   Knight  R   McKenzie  V      Microbial community dynamics and effect of environmental microbial reservoirs on red-backed salamanders ( Plethodon cinereus )   ISME J.  2014  8  830  840  10.1038/ismej.2013.200  24335825    119.  Kohl  KD   Varner  J   Wilkening  JL   Dearing  MD    Gut microbial communities of American pikas ( Ochotona princeps ): evidence for phylosymbiosis and adaptations to novel diets   J Anim Ecol  2018  87  323  330  10.1111/1365-2656.12692  28502120    120.  Menke  S   Meier  M   Melzheimer  J   Mfune  JKE   Heinrich  S   Thalwitzer  S      Oligotyping reveals differences between gut microbiomes of free-ranging sympatric Namibian carnivores ( Acinonyx jubatus ,  Canis mesomelas ) on a bacterial species-like level   Front Microbiol  2014  5  526  10.3389/fmicb.2014.00526  25352837    121.  Hammer  TJ   Janzen  DH   Hallwachs  W   Jaffe  SP   Fierer  N    Caterpillars lack a resident gut microbiome  Proc Natl Acad Sci U S A  2017  114  9641  9646  10.1073/pnas.1707186114  28830993    122.  Wang  Q   Garrity  GM   Tiedje  JM   Cole  JR    Naive Bayesian classifier for rapid assignment of rRNA sequences into the new bacterial taxonomy  Appl Environ Microbiol  2007  73  5261  5267  10.1128/AEM.00062-07  17586664    123.  Mcdonald  D   Price  MN   Goodrich  J   Nawrocki  E   DeSantis  TZ   Probst  A      An improved Greengenes taxonomy with explicit ranks for ecological and evolutionary analyses of bacteria and archaea  ISME J.  2012  6  610  618  10.1038/ismej.2011.139  22134646    124.  Price  MN   Dehal  PS   Arkin  AP    FastTree 2 - approximately maximum-likelihood trees for large alignments  PLoS One  2010  5  e9490  10.1371/journal.pone.0009490  20224823    125.  Fick  SE   Hijmans  RJ    WorldClim 2: new 1-km spatial resolution climate surfaces for global land areas  Int J Climatol  2017  37  4302  4315  10.1002/joc.5086    126.  Sbrocco  EJ   Barber  PH    MARSPEC: ocean climate layers for marine spatial ecology: ecological archives E094-086  Ecology.  2013  94  979  10.1890/12-1358.1    127.  Kuhn M. Caret: classification and regression training. Astrophys Source Code Libr. 2015.   128.  Hedges  SB   Dudley  J   Kumar  S    TimeTree: a public knowledge-base of divergence times among organisms  Bioinformatics.  2006  22  2971  2972  10.1093/bioinformatics/btl505  17021158    129.  Paradis  E   Schliep  K    Ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R  Bioinformatics.  2019  35  526  528  10.1093/bioinformatics/bty633  30016406    130.  Jombart T, Dray S. Adephylo: exploratory analyses for the phylogenetic comparative method. Bioinformatics. 2008;26:1907–1909.   131.  Fox J, Weisberg S. An {R} companion to applied regression. 2nd ed. SAGE Publications, Inc., Thousand Oaks; 2011.   132.  SYSTAT. Systat Software, San Jose; 2002.   133.  Oksanen  J   Blanchet  FG   Friendly  M   Kindt  R   Legendre  P   McGlinn  D      Vegan: community ecology package. R package verion 2  2017  4  2    134.  McMurdie  PJ   Holmes  S    Phyloseq: an R package for reproducible interactive analysis and graphics of microbiome census data  PLoS One  2013  8  e61217  10.1371/journal.pone.0061217  23630581    135.  Revell  LJ    Phytools: an R package for phylogenetic comparative biology (and other things)  Methods Ecol Evol  2012  3  217  223  10.1111/j.2041-210X.2011.00169.x    136.  Zug  R   Hammerstein  P    Still a host of hosts for Wolbachia : analysis of recent data suggests that 40% of terrestrial arthropod species are infected   PLoS One  2012  7  e38544  10.1371/journal.pone.0038544  22685581    137.  Sazama  EJ   Ouellette  SP   Wesner  JS    Bacterial endosymbionts are common among, but not necessarily within, insect species  Environ Entomol  2019  48  127  133  10.1093/ee/nvy188  30629155    138.  Sazama  EJ   Bosch  MJ   Shouldis  CS   Ouellette  SP   Wesner  JS    Incidence of Wolbachia in aquatic insects   Ecol Evol.  2017  7  1165  1169  10.1002/ece3.2742  28303186    139.  De Oliveira  CD   Gonçalves D da  S   Baton  LA   PHF  S   Carvalho  FD   Moreira  LA    Broader prevalence of Wolbachia in insects including potential human disease vectors   Bull Entomol Res  2015  105  305  315  10.1017/S0007485315000085  25772521    140.  Weinert  LA   Araujo-Jnr  EV   Ahmed  MZ   Welch  JJ    The incidence of bacterial endosymbionts in terrestrial arthropods  Proc R Soc B  2015  282  20150249  10.1098/rspb.2015.0249  25904667    141.  Zug  R   Hammerstein  P    Bad guys turned nice? A critical assessment of Wolbachia mutualisms in arthropod hosts   Biol Rev  2015  90  89  111  10.1111/brv.12098  24618033    142.  Terradas  G   Allen  SL   Chenoweth  SF   McGraw  EA    Family level variation in Wolbachia -mediated dengue virus blocking in  Aedes aegypti   Parasit Vectors  2017  10  622  10.1186/s13071-017-2589-3  29282144    143.  Zhang  Y   Yang  K   Zhu  Y   Hong  X    Symbiont-conferred reproduction and fitness benefits can favour their host occurrence  Ecol Evol  2018  8  1626  1633  10.1002/ece3.3784  29435238    144.  Carrington  LB   Tran  BCN   Le  NTH   Luong  TTH   Nguyen  TT   Nguyen  PT      Field-and clinically derived estimates of Wolbachia -mediated blocking of dengue virus transmission potential in  Aedes aegypti mosquitoes   Proc Natl Acad Sci U S A  2018  115  361  366  10.1073/pnas.1715788115  29279375    145.  O’Neill  SL   Ryan  PA   Turley  AP   Wilson  G   Retzki  K   Iturbe-Ormaetxe  I      Scaled deployment of Wolbachia to protect the community from dengue and other  Aedes transmitted arboviruses   Gates Open Res  2018  2  36  10.12688/gatesopenres.12844.3  30596205    146.  Hughes  GL   Vega-Rodriguez  J   Xue  P   Rasgon  JL    Wolbachia strain wAlbB enhances infection by the rodent malaria parasite  Plasmodium berghei in  Anopheles gambiae mosquitoes   Appl Environ Microbiol  2012  78  1491  1495  10.1128/AEM.06751-11  22210220    147.  Rancès  E   Yixin  HY   Woolfit  M   McGraw  EA   O’Neill  SL    The relative importance of innate immune priming in Wolbachia -mediated dengue interference   PLoS Pathog  2012  8  e1002548  10.1371/journal.ppat.1002548  22383881    148.  Bian  G   Joshi  D   Dong  Y   Lu  P   Zhou  G   Pan  X      Wolbachia invades  Anopheles stephensi populations and induces refractoriness to  Plasmodium infection   Science.  2013  340  748  751  10.1126/science.1236192  23661760    149.  Zélé  F   Nicot  A   Berthomieu  A   Weill  M   Duron  O   Rivero  A    Wolbachia increases susceptibility to  Plasmodium infection in a natural system   Proc R Soc B  2014  281  20132837  10.1098/rspb.2013.2837  24500167    150.  Dodson  BL   Andrews  ES   Turell  MJ   Rasgon  JL    Wolbachia effects on Rift Valley fever virus infection in  Culex tarsalis mosquitoes   PLoS Negl Trop Dis  2017  11  e0006050  10.1371/journal.pntd.0006050  29084217    151.  Diouf  M   Miambi  E   Mora  P   Frechault  S   Robert  A   Rouland-Lefèvre  C      Variations in the relative abundance of Wolbachia in the gut of  Nasutitermes arborum across life stages and castes   FEMS Microbiol Lett  2018  365  46  10.1093/femsle/fny046    152.  Walker  T   Johnson  PH   Moreira  LA   Iturbe-Ormaetxe  I   Frentiu  FD   McMeniman  CJ      The wMel Wolbachia strain blocks dengue and invades caged  Aedes aegypti populations   Nature.  2011  476  450  10.1038/nature10355  21866159    153.  Moreira  LA   Iturbe-Ormaetxe  I   Jeffery  JA   Lu  G   Pyke  AT   Hedges  LM      A Wolbachia symbiont in  Aedes aegypti limits infection with dengue, Chikungunya, and Plasmodium   Cell.  2009  139  1268  1278  10.1016/j.cell.2009.11.042  20064373    154.  Hurst  GDD   Johnson  AP   JHG  v S   Fuyama  Y    Male-killing Wolbachia in  Drosophila : a temperature-sensitive trait with a threshold bacterial density   Genetics.  2000  156  699  709  11014817    155.  Reynolds  KT   Thomson  LJ   Hoffmann  AA    The effects of host age, host nuclear background and temperature on phenotypic effects of the virulent Wolbachia strain popcorn in  Drosophila melanogaster   Genetics.  2003  164  1027  1034  12871912    156.  Arnold  PA   Levin  SC   Stevanovic  AL   Johnson  KN    Drosophila melanogaster infected with  Wolbachia strain wMelCS prefer cooler temperatures   Ecol Entomol  2019  44  287  290  10.1111/een.12696    157.  Pascar  J   Chandler  CH    A bioinformatics approach to identifying Wolbachia infections in arthropods   PeerJ.  2018  6  e5486  10.7717/peerj.5486  30202647    158.  Jeffries CL, Tantely LM, Raharimalala FN, Hurn E, Boyer S, Walker T. Diverse novel resident Wolbachia strains in Culicine mosquitoes from Madagascar. Sci Rep. 2018;8:17456.     
+

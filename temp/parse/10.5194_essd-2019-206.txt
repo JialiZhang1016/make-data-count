@@ -1,2006 +1,237 @@
-Earth Syst. Sci. Data, 12, 699–717, 2020
-https://doi.org/10.5194/essd-12-699-2020
-© Author(s) 2020. This work is distributed under
-the Creative Commons Attribution 4.0 License.
-Greenhouse gas observations from the Northeast
-Corridor tower network
-Anna Karion1, William Callahan2, Michael Stock2, Steve Prinzivalli2, Kristal R. Verhulst3, Jooil Kim4,
-Peter K. Salameh4, Israel Lopez-Coto5, and James Whetstone1
-1Special Programs Ofﬁce, National Institute of Standards and Technology, Gaithersburg, MD, USA
-2Earth Networks, Inc., Germantown, MD, USA
-3NASA Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA
-4Scripps Institution of Oceanography, University of California San Diego, La Jolla, CA, USA
-5Engineering Laboratory, National Institute of Standards and Technology, Gaithersburg, MD, USA
-Correspondence: Anna Karion (anna.karion@nist.gov)
-Received: 23 October 2019 – Discussion started: 28 November 2019
-Revised: 10 February 2020 – Accepted: 21 February 2020 – Published: 25 March 2020
-Abstract. We present the organization, structure, instrumentation, and measurements of the Northeast Corridor
-greenhouse gas observation network. This network of tower-based in situ carbon dioxide and methane obser-
-vation stations was established in 2015 with the goal of quantifying emissions of these gases in urban areas
-in the northeastern United States. A speciﬁc focus of the network is the cities of Baltimore, MD, and Wash-
-ington, DC, USA, with a high density of observation stations in these two urban areas. Additional observation
-stations are scattered throughout the northeastern US, established to complement other existing urban and re-
-gional networks and to investigate emissions throughout this complex region with a high population density and
-multiple metropolitan areas. Data described in this paper are archived at the National Institute of Standards and
-Technology and can be found at https://doi.org/10.18434/M32126 (Karion et al., 2019).
-1
-Introduction
-As the population of cities grows globally due to trends
-toward urbanization, so does their relative contribution to
-global anthropogenic greenhouse gas (GHG) budgets (Eden-
-hofer et al., 2014; O’Neill et al., 2010). City govern-
-ments are making commitments to reduce their emissions
-of GHGs through various sustainability and efﬁciency mea-
-sures and coordination with organizations like the C40 Cli-
-mate Leadership Group (http://www.c40.org, last access:
-23 March 2020), the Global Covenant of Mayors for Cli-
-mate and Energy (https://www.globalcovenantofmayors.org,
-last access: 23 March 2020), and others. These organizations
-require individual cities to conform to certain standardized
-mechanisms and practices for reporting their carbon emis-
-sions. City governments rely on inventories compiled using
-data on fuel use, energy usage, etc., to estimate their total
-emissions and changes over time and to determine the ef-
-ﬁcacy of various emissions mitigation policies. Analysis of
-atmospheric measurements provides additional useful infor-
-mation to such efforts, by conﬁrming inventory estimates
-(Sargent et al., 2018; Lauvaux et al., 2016), detecting trends
-(Mitchell et al., 2018), or estimating emissions that are not
-well quantiﬁed using inventory methods, such as methane
-emissions (McKain et al., 2015; Ren et al., 2018; Lamb et al.,
-2016; Yadav et al., 2019). Several urban top-down measure-
-ment efforts are underway in various cities that include net-
-works of observations, often in situ CO2 and CH4 measure-
-ments from rooftops or towers (Verhulst et al., 2017; Xueref-
-Remy et al., 2018; Bares et al., 2019) or using other long-path
-and remote sensing methods (Waxman et al., 2019; Hedelius
-et al., 2018; Wong et al., 2016; Pillai et al., 2016).
-The
-National
-Institute
-of
-Standards
-and
-Technol-
-ogy (NIST) has partnered with other federal, private,
-and academic institutions to establish three urban test
-beds in the United States: the Indianapolis Flux Ex-
-periment
-(INFLUX,
-http://inﬂux.psu.edu,
-last
-access:
-Published by Copernicus Publications.
-700
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-23
-March
-2020),
-the
-Los
-Angeles
-Megacities
-Car-
-bon
-Project
-(http://megacities.jpl.nasa.gov,
-last
-access:
-23 March 2020), and the Northeast Corridor (NEC, http:
-//www.nist.gov/topics/northeast-corridor-urban-test-bed,
-last access: 23 March 2020). The goals of the urban test
-beds are to develop and reﬁne techniques for estimating
-greenhouse gas emissions from cities and to understand the
-uncertainty of emissions estimates at various spatial and
-temporal scales (e.g., whole city annual emissions vs. 1 km
-weekly emissions). Recent results from the longest-running
-test bed, INFLUX, show that whole city emissions can
-be estimated using three different methods to within 7 %
-(Turnbull et al., 2019).
-The Northeast Corridor (NEC) was established in 2015 as
-the third NIST urban test bed. The goals for this project are
-to demonstrate that top-down atmospheric emissions estima-
-tion methods can be used in a domain that is complicated by
-many upwind and nearby emissions sources in the form of
-surrounding urban areas. The objective is to isolate the an-
-thropogenic GHG emissions from urban areas along the US
-East Coast from many confounding sources upwind (cities,
-oil and gas development, coal mines, and power plants) and
-from the large biological CO2 signal from the highly pro-
-ductive forests nearby and within the cities. The presence of
-highly vegetated areas such as urban parks, local agriculture,
-and managed lawns is expected to dominate the CO2 signal
-in summertime, as has been found in Boston, MA (Sargent et
-al., 2018). The NEC project has a current focus on the urban
-areas of Washington, DC, and Baltimore, MD, USA, with
-existing plans to expand northward to cover the entire urban-
-ized corridor of the northeastern US, including the cities of
-Philadelphia and New York City, and eventually linking up
-with existing measurement stations in Boston, MA (McKain
-et al., 2015; Sargent et al., 2018).
-The
-NEC
-project
-includes
-multiple
-measurement
-and analysis components. The backbone of the NEC
-project is a network of in situ CO2 and CH4 obser-
-vation
-stations
-with
-continuous
-high-accuracy
-mea-
-surements
-of
-these
-two
-greenhouse
-gases.
-In
-addi-
-tion, periodic ﬂight campaigns of multiple weeks each
-year
-are
-conducted
-by
-the
-University
-of
-Maryland
-(FLAGG-MD,
-http://www.atmos.umd.edu/~ﬂaggmd,
-last
-access:
-23
-March
-2020)
-and
-Purdue
-Univer-
-sity
-(https://www.science.purdue.edu/shepson/research/
-ALARGreenhouseGas/,
-last
-access:
-23
-March
-2020),
-focusing on wintertime observations of CO2, CH4, CO,
-O3, SO2, and NO2 from instrumented aircraft (Ren et al.,
-2018; Salmon et al., 2018; Lopez-Coto et al., 2020a). The
-use of low-cost CO2 sensors is also being investigated
-in Washington, DC, with work focusing on calibration
-and determination of long-term stability of inexpensive
-nondispersive infrared (NDIR) sensors with potential for
-use in CO2 data assimilation techniques (Martin et al.,
-2017). The NEC project also includes an extensive modeling
-component. First, high-resolution meteorological modeling
-(using the Weather Research and Forecast (WRF) model)
-is being conducted (Lopez-Coto et al., 2020b), with output
-coupled to Lagrangian dispersion models such as STILT
-(Lin et al., 2003; Nehrkorn et al., 2010) and HYSPLIT (Stein
-et al., 2015). These transport and dispersion models are
-used to interpret observations from both aircraft and tower
-stations and in atmospheric inverse analyses to estimate
-ﬂuxes of CO2 and CH4 from the cities of Washington, DC,
-and Baltimore, MD (Lopez-Coto et al., 2020a; Huang et al.,
-2019). A high-resolution fossil fuel CO2 inventory, Hestia,
-is also being developed for this project (Gurney et al., 2012,
-2019).
-Here we focus on the high-accuracy tower observation net-
-work and associated data collection and processing methods.
-Section 2 describes the tower network design and character-
-izes the different site locations; Sect. 3 describes the mea-
-surement methods, instrumentation, and calibration; Sect. 4
-presents the uncertainty derivation for the measurements;
-and, ﬁnally, Sect. 5 presents some of the observations from
-the current record.
-2
-Network design and site characterization
-The NEC project includes 29 observation stations, all man-
-aged and operated by Earth Networks, Inc.1 (http://www.
-earthnetworks.com/why-us/networks/greenhouse-gas,
-last
-access: 23 March 2020). A total of 10 stations were existing
-Earth Networks (EN) measurement sites in the northeastern
-US that became part of the NEC project in 2015. A total of 19
-stations were established (or will be established) speciﬁcally
-for the NEC project, with site locations identiﬁed by NIST.
-A total of 16 of these station locations were chosen to be
-used for emissions estimation in a domain around Baltimore
-and Washington, DC (red boundary, Fig. 1), using inverse
-modeling techniques (Lopez-Coto et al., 2017; Mueller et
-al., 2018). Three others are in Mashpee, MA, Philadelphia,
-PA, and Waterford Works, NJ. As of publication, 14 of
-these 19 have been established, with delays occurring due to
-difﬁculty ﬁnding suitable tower locations to agree to house
-the systems. The hardware and software operating at all the
-sites is identical with few exceptions as noted in the text.
-The initial design of the core urban Baltimore–Washington
-network was focused on optimizing tower site locations with
-the goal of reducing uncertainty in estimating anthropogenic
-CO2 emissions from Washington, DC, and Baltimore using
-an atmospheric inversion model (Lopez-Coto et al., 2017).
-A total of 12 communications towers were identiﬁed as part
-1Certain commercial equipment, instruments, or materials are
-identiﬁed in this paper in order to specify the experimental proce-
-dure adequately. Such identiﬁcation is not intended to imply recom-
-mendation or endorsement by the National Institute of Standards
-and Technology nor is it intended to imply that the materials or
-equipment identiﬁed are necessarily the best available for the pur-
-pose.
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-701
-Figure 1. Locations of Northeast Corridor (NEC) established tower-based observations, corresponding to Table 1. The red rectangle indicates
-the modeling analysis domain. Light grey shading indicates census-designated urban areas, yellow lines are interstate highways, and black
-boundaries are state lines, with a thinner black line showing the City of Baltimore. Green triangles indicate regional sites, red triangles indicate
-urban sites, and blue triangles are more rural or background sites surrounding the Washington–Baltimore domain. (a) Regional map. (b) Inset
-focusing on Washington, DC, and Baltimore, MD. All map data layers were obtained from either Natural Earth (http://naturalearthdata.com,
-last access: 23 March 2020) or U.S. Government sources (http://www.census.gov, last access: 23 March 2020) and are in the public domain.
-of that study as ideal locations for measurements. Actual
-measurement sites were sometimes established at locations
-near the ideal study location, usually due to logistical dif-
-ﬁculties obtaining leases at the ideal tower sites. A second
-design study determined ideal locations for background sta-
-tions, i.e., observation station locations that would aid in the
-determination of background CO2 entering the analysis do-
-main (Mueller et al., 2018). Four stations were identiﬁed as
-part of that study; an existing EN site in Bucktown, MD,
-serves as a ﬁfth background station southeast of the analysis
-domain (Fig. 1). Although inlet heights were desired to be
-100 m above ground level (a.g.l.), often shorter towers were
-used due to the lack of availability of tall towers in ideal lo-
-cations; the shortest tower in this network has the uppermost
-inlet at 38 m a.g.l. (HRD). Table 1 indicates details and loca-
-tions of each site.
-The stations in Table 1 are all situated in areas with dif-
-ferent land use. Even among the Washington, DC, and Bal-
-timore area urban stations, the degree of urban intensity
-varies, from densely urbanized areas (such as northeastern
-Baltimore, NEB) to dense and moderately developed sub-
-urbs (such as Capitol Heights, CPH, and Derwood, DER,
-both suburbs of Washington, DC, located in Maryland). Fig-
-ure 2 indicates the intensity of development from the US Ge-
-ological Survey (USGS) 2016 National Land Cover Database
-(Yang et al., 2018) surrounding each urban station in the
-Washington, DC, and Baltimore network.
-Similar variability in land cover for the regional stations
-exists, as indicated in Fig. 3. The sites established to charac-
-terize background conditions for the urban network in Wash-
-ington, DC, and Baltimore (SFD, TMD, BUC) are in areas
-with little development: SFD and TMD are both in forested
-regions, while BUC is near the Chesapeake Bay and large
-wetland areas. The other regional sites span a range of land
-cover types from urban (MNY in New York City and RIC
-Figure 2. Fraction of developed land cover (from the 2016 National
-Land Cover Database (NLCD); Yang et al., 2018) within 5 km of
-each observation station in the urban regions of Washington, DC,
-and Baltimore, MD.
-in Richmond, VA), to mostly rural and forested (DNH in
-Durham, NH).
-3
-Carbon dioxide, methane, and carbon monoxide
-measurements, instrumentation, and calibration
-3.1
-Instrumentation
-The instrumentation contained in the Earth Networks (EN)
-system module has been described elsewhere (Welp et al.,
-2013; Verhulst et al., 2017); we will summarize the system
-here but refer the reader to those publications for further de-
-tails, including additional equipment and part numbers. Fig-
-ure 4 indicates the plumbing diagram of the typical tower
-setup. Three inlet lines reach from the sampling location on
-the tower into the equipment housed in a full-size rack inside
-a shed at the base of the tower. Typically, two inlet lines sam-
-ple from the topmost level and one line samples from a lower
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-702
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-Table 1. Northeast Corridor site list. Sites lacking location information are still in the planning phase, with no assigned site code or exact
-location.
-Site Code
-EN site ID
-Location
-Latitude
-Longitude
-Elev. (m)
-Intake heights (m)
-Measurements
-Est. (mm/yyyy)
-Northeast Corridor regional sites (12)
-DNC
-GHG12
-Danbury, NC
-36.3769
-−80.3689
-703
-100, 50
-CO2, CH4
-01/2015∗
-MNC
-GHG15
-Middlesex, NC
-35.8313
-−78.1453
-74
-213, 50
-CO2, CH4
-01/2015∗
-RIC
-GHG18
-Richmond, VA
-37.5088
-−77.5761
-104
-95, 50
-CO2, CH4
-01/2015∗
-SNJ
-GHG19
-Stockholm, NJ
-41.1436
-−74.5387
-406
-53, 42
-CO2, CH4
-01/2015∗
-HCT
-GHG21
-Hamden, CT
-41.4337
-−72.9452
-204
-100, 50
-CO2, CH4
-01/2015∗
-LEW
-GHG25
-Lewisburg, PA
-40.9446
-−76.8789
-166
-95, 50
-CO2, CH4
-01/2015∗
-DNH
-GHG35
-Durham, NH
-43.7089
-−72.1541
-559
-100, 50
-CO2, CH4
-01/2015∗
-UNY
-GHG38
-Utica, NY
-42.8790
-−74.7852
-483
-45, 35
-CO2, CH4
-01/2015∗
-MNY
-GHG47
-Mineola, NY
-40.7495
-−73.6384
-34
-90, 50
-CO2, CH4
-01/2015∗
-MSH
-GHG54
-Mashpee, MA
-41.6567
-−70.4975
-32
-46, 25
-CO2, CH4, CO
-12/2015
-WNJ
-GHG69
-Waterford Works, NJ
-39.7288
-−74.8441
-33
-241, 201, 151, 98, 43
-CO2, CH4
-Planned 2020
-Philadelphia, PA
-CO2, CH4
-Washington, DC, and Baltimore urban sites (12)
-HAL
-GHG48
-Halethorpe, MD
-39.2552
-−76.6753
-70
-58, 29
-CO2, CH4
-10/2015
-ARL
-GHG55
-Arlington, VA
-38.8917
-−77.1317
-111
-92, 50
-CO2, CH4
-01/2016
-NDC
-GHG56
-Northwestern DC
-38.9499
-−77.0796
-128
-91, 45
-CO2, CH4
-12/2015
-NWB
-GHG58
-NW Baltimore, MD
-39.3445
-−76.6851
-135
-55, 27
-CO2, CH4
-09/2016
-NEB
-GHG59
-NE Baltimore, MD
-39.3154
-−76.5830
-44
-67, 50
-CO2, CH4
-09/2016
-JES
-GHG60
-Jessup, MD
-39.1723
-−76.7765
-67
-91, 49
-CO2, CH4
-05/2016
-DER
-GHG63
-Derwood, MD
-39.1347
-−77.1419
-125
-54, 30
-CO2, CH4
-05/2018
-CPH
-GHG66
-Capitol Heights, MD
-38.8707
-−76.8537
-50
-44, 25
-CO2, CH4
-02/2018
-HRD
-GHG67
-Herndon, VA
-38.9663
-−77.3935
-120
-38, 27
-CO2, CH4
-10/2017
-BWD
-GHG64
-Brentwood, MD
-38.9343
-−76.9556
-17
-51, 33
-CO2, CH4
-08/2018
-BRK
-GHG68
-Burke, VA
-38.7742
-−77.2631
-111
-40, 24
-CO2, CH4
-Planned 2020
-Southeastern DC
-CO2, CH4
-Washington, DC, and Baltimore background sites (5)
-BUC
-GHG01
-Bucktown, MD
-38.4597
-−76.0430
-3
-75 ,46
-CO2, CH4
-01/2015∗
-TMD
-GHG61
-Thurmont, MD
-39.5768
-−77.4881
-561
-113, 49
-CO2, CH4
-05/2017
-SFD
-GHG65
-Stafford, VA
-38.4459
-−77.5300
-77
-152, 100, 50
-CO2, CH4
-07/2017
-BVA
-GHG62
-Bluemont, VA
-39.1379
-−77.8326
-486
-111, 50
-CO2, CH4
-02/2020
-Delta, PA
-CO2, CH4
-∗If a station was established prior to the beginning of the project, its establishment date is listed as 01/2015, the start date of the project. Data prior to this date are not part of the
-NIST data release.
-Figure 3. Average fraction of land cover type within 5 km of regional tower sites in the Northeast Corridor network, in order of decreasingly
-developed land. Several NLCD classiﬁcations have been grouped for clarity (e.g., “developed” includes open spaces and low-, medium-, and
-high-intensity developed land). SFD, TMD, and BUC are sites established to help characterize background conditions for the Washington,
-DC, and Baltimore urban network.
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-703
-level on the tower. Stafford, VA (SFD), is one exception with
-inlets at three different levels (50, 100, and 152 m), and a
-planned tower in New Jersey (Waterford Works) will have
-ﬁve inlet height levels, as indicated in Table 1. At some sites
-there was no space to house the equipment in existing struc-
-tures, thus small single- or double-rack sized enclosures were
-purchased and installed. Air is pulled through a ﬁlter into
-the inlet lines (0.953 cm, i.e., 0.375 in., OD Synﬂex 1300)
-that are continuously ﬂushed at ∼10 L min−1 by aquarium
-pumps (Alita AL-6SA). The three air lines are connected to
-a rotary multi-port valve (MPV; eight-port, VICI, Valco In-
-struments Co. Inc.) housed within a sample control box (cali-
-bration box). Two or three calibration standards are also con-
-nected to the MPV with 0.156 cm (0.0625 in.) OD stainless
-steel tubing. The control system for the MPV directs the air
-stream to the analyzer cycling every 20 min through each of
-the three inlet lines so that each inlet is sampled at least once
-an hour and every 22 h through each standard (Sect. 3.2).
-The common port of the MPV is connected to a pressure
-controller that reduces the pressure to 80 kPa (800 mb), after
-which the sample (either ambient air or air from a standard
-gas cylinder) enters a 183 cm long Naﬁon dryer (Permapure,
-Inc., model MD-050-72S-1), where it is dried to a water va-
-por mole fraction of ∼0.1 % prior to ﬂowing through the
-cavity ring-down spectroscopic (CRDS) analyzer (Picarro,
-Inc., Model 2301). The lower-than-ambient inlet pressure of
-80 kPa is prescribed in order to lower the ﬂow rate of the ana-
-lyzer to ∼70 standard cm3 min−1. At Mashpee, MA (MSH),
-a CRDS Picarro Model 2401 analyzer is operational, and this
-is the only site currently also measuring carbon monoxide
-(CO) in addition to CO2 and CH4. The CRDS analyzers re-
-port measurements of dry air mole fraction of each gas in
-air, also known as the mole fraction, i.e., moles of the trace
-gas per mole of dry air. Throughout, we refer to these mea-
-surements in units of µmolmol−1 for CO2 and nmol mol−1
-for CH4 and CO, following the SI recommendations (Bureau
-International des Poids et Mesures, 2019). Software (GCW-
-erks, Inc.) installed on a separate mini-PC at each site con-
-trols the run cycle and the MPV selection valve. The data are
-collected on this computer and sent to the central EN data
-server, also running GCWerks. All data are processed on the
-central EN data server but additional post-processing and un-
-certainty assignment to hourly observations is performed at
-NIST. As recommended by the World Meteorological Orga-
-nization (WMO), the software has the capability of repro-
-cessing all the data from the original raw ﬁles and thus can
-accommodate any changes to the assigned values of the stan-
-dards (due to a reference-scale update, for example) at any
-time (WMO, 2018).
-3.2
-Calibration cylinders
-When the Earth Networks GHG monitoring system was es-
-tablished in 2011, each site hosted two calibration cylin-
-ders (standards) with ambient level dry air mole fractions
-as part of the original system design. This continues to be
-the case at most NEC sites. At the NEC sites, these stan-
-dards have values close to 400 µmolmol−1 dry air CO2,
-1890 nmol mol−1 dry air CH4, and 115 nmol mol−1 dry air
-CO (at MSH only) and are sampled by the analyzer period-
-ically, in a sequence identical to that described for the Los
-Angeles Megacity network by Verhulst et al. (2017). The
-standards are purchased from the WMO Central Calibration
-Laboratory (CCL), the National Oceanographic and Atmo-
-spheric Administration’s Earth System Research Laboratory
-(NOAA/ESRL) Global Monitoring Division in Boulder, CO,
-USA, where they have been calibrated on the WMO scales
-(X2007 for CO2, X2004A for CH4, and X2014A for CO,
-Zhao et al., 1997; Dlugokencky et al., 2005; Novelli et al.,
-2003). One of these two cylinders serves as a standard for
-calibration and drift-correction, while the second serves as
-a target tank or check standard. The target tank is used for
-data quality checks and uncertainty calculations (Sect. 4).
-The residual of the target tank (the rms difference between its
-value assignment when treated as an unknown and its refer-
-ence value from NOAA) is a critical indicator of data quality
-and is monitored in order to alert the operators of any gen-
-eral problems in the system such as leaks, mistakes in the
-assignment of MPV ports, or drift in calibration tank value.
-In the ﬁeld, all gas standards are sampled for 20 min every
-22 h. In data processing, the ﬁrst 10 min of any tank run are
-ﬁltered out to allow for the system equilibration, including
-ﬂushing of the regulator and tubing. In some cases, when the
-standard runs were found not to equilibrate as quickly as de-
-sired, 15 min of data were ﬁltered until the problem could
-be ﬁxed (typically either contamination or inadequate reg-
-ulator ﬂushing). The ﬁrst 10 min of the ambient air sample
-following a standard run are also ﬁltered for equilibration,
-and the ﬁrst 1 min of each 20 min ambient air run is ﬁltered
-if it follows another ambient air run (i.e., an inlet switch). The
-longer ﬂush time is desired for the standard runs because of
-the need to ﬂush stagnant air remaining in the regulators and
-tubing when sampling from the cylinder, while the ambient
-air lines are continuously ﬂushed.
-At a few NEC sites (currently BWD and MSH, with more
-planned), a third gas cylinder is installed at the site to serve
-as a permanent high-concentration standard (referred to as
-the high standard), to improve calibration and reduce un-
-certainties. This standard typically contains air with a mole
-fraction of CO2 close to 500 µmolmol−1, CH4 at approx-
-imately 2300 to 2500 nmol mol−1 and at MSH, CO, near
-320 nmol mol−1. At MSH, this cylinder has been provided
-directly by NOAA/ESRL, while at BWD this cylinder was
-purchased as natural whole air from Scott-Marrin, Inc. (now
-Praxair). The Scott-Marrin air is stripped of its original trace
-gases (CO2, CH4, CO, hydrocarbons, etc.) with CO2, CH4,
-and CO added back in to prescribed values. Several such
-standards have been purchased with the intent of placing
-them at urban stations to serve as high standards after cal-
-ibrating them onto the WMO scales. We note that because
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-704
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-Figure 4. Plumbing diagram for the Earth Networks sampling system implemented at the NEC tower stations. Figure replicated from Fig. S1
-in Verhulst et al. (2017), adapted from Welp et al. (2013).
-they are being used together with NOAA/ESRL standards in
-the ﬁeld, it is essential that these standards also be assigned
-values on the same scales. This calibration is transferred in
-the NIST laboratory using ﬁve standards calibrated and pur-
-chased from NOAA/ESRL. The CO2 in the Scott-Marrin
-cylinders is isotopically different (in terms of the 12C/13C
-ratio in CO2) from the ambient air tanks that are ﬁlled by
-NOAA/ESRL at Niwot Ridge, CO. However, the calibration
-is transferred from the NOAA standards to the Scott-Marrin
-gases using the same model (Picarro 2301) analyzer used in
-the ﬁeld (i.e., measuring only 12CO2) in the NIST labora-
-tory, effectively canceling out the error that would be caused
-by this isotopic mismatch (Chen et al., 2010; Santoni et al.,
-2014). Thus, the CO2 values assigned by NIST to these stan-
-dards are effectively the total dry air mole fraction of CO2
-the cylinders would contain if they were isotopically similar
-to the NOAA cylinders.
-Additional sites in the network also beneﬁt from the im-
-proved two-point calibration method in cases where mea-
-surements of a high standard were performed prior to ana-
-lyzer deployment (NWB, NEB, JES, TMD, CPH, and HRD).
-Prior to system installation at these sites, tests were con-
-ducted at the EN laboratory in which the designated analyzer
-was set up measuring the calibration standard, target stan-
-dard, and a high-value standard at ∼490 µmolmol−1 CO2
-and ∼2560 nmol mol−1 CH4 daily for several days (enough
-for 3–5 measurements of 20 min each). This single high-
-standard cylinder was also calibrated by and purchased from
-NOAA/ESRL, with assigned values on the WMO scales.
-These laboratory tests allow the determination of the sec-
-ondary correction to the instrument response or sensitivity,
-as described in Sect. 3.4.
-The high-standard gas measurements are used to perform
-a secondary correction (referred to as a two-point calibration)
-(Sect. 3.4) to the original one-point calibration described by
-Verhulst et al. (2017) and in Sect. 3.3., reducing the uncer-
-tainty of the measurements. We note that while, in principle,
-a secondary correction is desirable, and the uncertainty is in-
-deed reduced by its implementation (see Sect. 4.2), it remains
-quite small relative to the signals of interest in an urban net-
-work. Deployment of high standards at all sites has not yet
-occurred due to both costs and logistical and operational con-
-straints; for example, at many sites the space available for
-the equipment is limited and prohibits the installation of a
-permanent third tank. Thus, we plan to implement a round-
-robin procedure circulating additional standards at various
-values through the network to evaluate the calibrations and
-implement the secondary correction throughout the network.
-Although the current state of having two different calibration
-methods coexisting in the network is not ideal, we aim to im-
-plement the secondary correction throughout the network as
-soon as possible.
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-705
-3.3
-Drift correction and single-point calibration
-Here we describe the calibration and drift correction applied
-to all the mole fraction data. This single-point calibration
-uses only a single reference value, that of the calibration
-standard, to correct the raw mole fractions for each gas. The
-equations are identical (with a few nomenclature differences)
-to those found in Verhulst et al. (2017). In the following anal-
-ysis, X′ denotes a raw dry mole fraction measurement (i.e.,
-a reported value from the CRDS analyzer after internal wa-
-ter vapor correction), while X denotes a mole fraction after
-some correction has been applied (drift and/or calibration,
-as described in the equations below). A subscript cal indi-
-cates the main calibration standard (usually a single ambient
-level standard tank calibrated by NOAA/ESRL), subscript
-std indicates any other standard tank, tgt indicates a standard
-tank that is being used as a target, and the subscript air in-
-dicates the sample measurement. Note that within the GCW-
-erks software, the meanings of the abbreviations cal and std
-are reversed from what is deﬁned here; we choose to use
-the nomenclature by Verhulst et al. (2017) here for consis-
-tency with the literature. We note that we have changed some
-nomenclature slightly from Verhulst et al. (2017) for addi-
-tional clarity and conciseness. We refer to the drift-corrected
-mole fraction as XDC, which is noted as Xcorr by Verhulst
-et al. (2017); we refer to the mole fraction after a secondary
-correction is applied as XSC. We also refer to the assigned
-mole fraction of a standard by the calibration laboratory as
-C rather than Xassign. We deﬁne the sensitivity S to be the
-response of the analyzer or the ratio of the measured to the
-true value. In the case of the calibration tank, this is the ratio
-of the raw measured value, X′
-cal, to the assigned value of the
-standard by the calibration laboratory on the WMO scale for
-the given species, Ccal:
-S = X′
-cal
-Ccal
-.
-(1)
-When only a single calibration standard is present (which is
-the case at most sites in the NEC network), this sensitivity is
-assumed to be constant across mole fractions but varying in
-time. The sensitivity for the calibration tank is thus interpo-
-lated in time and applied as a correction for the dry air mole
-fractions of CO2 and CH4 reported by the CRDS analyzer
-(X′
-air):
-XDC,air = X′
-air
-S ,
-(2)
-where XDC,air is the drift-corrected air data. An alternative
-drift-correction is to use an additive offset, which is also in-
-terpolated in time, rather than a sensitivity for drift correc-
-tion:
-XDC,air = X′
-air +
- Ccal −X′
-cal
-
-.
-(3)
-Measurements from MSH that include a high-value cylinder
-suggest that the single-tank drift correction performs (very
-slightly) better using the ratio correction (Eq. 2) than the dif-
-ference method (Eq. 3) for CO2 and CH4, while the opposite
-is true for CO (Fig. 5), thus the difference method is used
-only for CO in our network.
-The calibration standard mole fractions are interpolated in
-time between subsequent runs in order to apply the above
-corrections to the air data, thus removing drift in the instru-
-ment’s response. This drift-corrected fraction is reported in
-the hourly data ﬁles for sites and time periods where no range
-of concentrations is available in the standard tanks.
-3.4
-Multiple-point calibration
-At some sites and for some time periods, a higher-mole-
-fraction standard is available, and a second-order correction
-can be made to the instrument sensitivity, accounting for the
-sensitivity being a function of mole fraction. Usually in the
-ﬁeld, this correction employs only one additional standard,
-the higher-mole-fraction standard so that it is a two-point cal-
-ibration; here we describe the general procedure for applying
-a correction using multiple standards at a range of concen-
-trations. This is applied as a second-order correction to the
-drift-corrected air data. In general, if a range of standard con-
-centrations is available, the correction in GCWerks is applied
-as described below. First, a drift-corrected sensitivity (SDC)
-is calculated for each standard when it is measured, which is
-the ratio of the drift-corrected mole fraction of that standard
-(XDC,std, based on Eq. 2 for CO2 and CH4 or Eq. 3 for CO)
-to its assigned value:
-SDC,std = XDC,std
-Cstd
-.
-(4)
-For the calibration standard, this value is necessarily equal
-to 1, but measurements of standard tanks with different as-
-signed values indicate that the instrument sensitivity is de-
-pendent on the composition of the sample gas (in this case,
-the mole fraction of the standard tank). In laboratory calibra-
-tions, we ﬁnd that the drift-corrected sensitivity deﬁned in
-Eq. (4) is a linear function of the mole fraction ratio to the
-calibration gas (X′/X′
-cal), thus we use a linear ﬁt to the range
-of standards to determine the slope m and intercept b:
-SDC = m
- X′
-X′
-cal
-
-+ b.
-(5)
-In this ﬁt, we force m + b = 1 by ﬁtting a slope m and then
-setting b = 1 −m in order to maintain the proper relation-
-ship for the calibration tank itself, when SDC,cal = 1. Apply-
-ing this ﬁt to the air data, the ﬁnal air mole fraction XSC,air is
-determined from
-XSC,air =
-XDC,air
-SDC
-
-.
-(6)
-In the NEC tower network, there are no sites with multi-
-ple standard tanks at various concentrations. At several sites,
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-706
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-Figure 5. Time series of standard tank run residuals (i.e., XDC −C) for CO2 (a, b), CH4 (c, d), and CO (e, f). XDC is calculated using
-a single calibration tank (not shown) and the ratio method (Eq. 2) on the left (a, c, e) and the difference method (Eq. 3) on the right (b,
-d, f). Assigned tank values are shown in the legend; one tank was not calibrated for CO so only the residuals of the high-concentration
-tank at 315 nmol mol−1 are shown. The residual magnitude is smaller for CO2 and CH4 using the ratio method, but the standard deviations
-(variability) are similar using both methods. For CO, both the magnitude of the residual and the standard deviation are smaller using the
-difference equation; the ratio equation does not properly account for the drift in the analyzer at the start of the time series (May–June). Data
-shown are from MSH; a measurement gap exists in July.
-there are measurements of a single high-concentration stan-
-dard (hstd) in addition to the calibration and target standards.
-The high-standard measurements are either performed in the
-laboratory before the instrument is deployed to the ﬁeld,
-or in the ﬁeld if the third standard is permanently installed
-(Sect. 3.2). The above secondary correction is applied us-
-ing only two tanks to perform the ﬁt and obtain the drift-
-corrected sensitivity. In this special case, the ﬁt has zero de-
-grees of freedom with no residuals. The correction parame-
-ters (slope and intercept) are determined based on measure-
-ments over time or single measurements in the laboratory
-prior to a speciﬁc analyzer deployment. The correction is ap-
-plied to the data from the site for a time period that is speci-
-ﬁed, i.e., it is not automatically applied based on daily mea-
-surements of the high standard. It is determined by the sci-
-ence team and applied for the time period that is appropriate.
-This is necessary to avoid applying the wrong correction if an
-analyzer is replaced or if there are changes made to the ana-
-lyzer that might affect its calibration response. At eight sites
-where a high standard has been measured at any point (MSH,
-BWD, NWB, NEB, JES, TMD, CPH, and HRD), slopes and
-intercepts have been determined and the correction has been
-applied to the data. At stations with no high-standard mea-
-surements, we rely on the single-tank drift-correction de-
-scribed in Sect. 3.3.
-Laboratory tests with multiple standards with the same
-model instrument used in the network (Picarro 2301) were
-performed to assess the relative improvement of a ﬁt to two
-standards over a ﬁt to a single standard. Figure 6a illustrates
-the ﬁt of the drift-corrected sensitivity (SDC) to two standards
-(red line) vs. all ﬁve standards (blue line) for CO2, along with
-corresponding residuals in Fig. 6b. As was shown by Verhulst
-et al. (2017) for multiple analyzers, the ﬁt to a single standard
-has a linearly varying residual that is typically 0.1 to 0.2 at
-100 µmolmol−1 above the calibration standard value (green
-circles, Fig. 6b). The average slope of the one-point residual
-from multiple tests is used by Verhulst et al. (2017) to esti-
-mate the uncertainty of the single-point calibrations (called
-the extrapolation uncertainty, Uextrap), described in Sect. 4.1.
-Performing the additional correction using a high standard
-shows improvement in the residuals of the ﬁt (Fig. 6b), while
-using all ﬁve standards only improves the residuals incre-
-mentally. The two-point correction (red) in this ﬁgure was
-applied using the 406 µmolmol−1 tank as the calibration and
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-707
-Figure 6. Example of a laboratory calibration of a CRDS analyzer with ﬁve standards of different assigned CO2 mole fractions. (a) Secondary
-correction of drift-corrected sensitivity using either two (red) or all ﬁve (blue) standards. Green line at 1 indicates the assumed sensitivity
-when only a single standard is used. (b) Residual of each type of ﬁt; error bars represent 1σ reproducibility stated by NOAA/ESRL. The
-simple single-tank drift correction results in the green circles as residuals; these residuals were used in the Verhulst et al. (2017) analysis
-to estimate the extrapolation uncertainty of the single-point correction. Red x symbols are the residuals of a ﬁt to two standards, and blue
-asterisks are the residuals of the ﬁt to all ﬁve standards.
-the 496 µmol mol−1 tank as the high standard; thus, the mea-
-surement at ∼711 µmolmol−1 is an extrapolation of the two-
-point ﬁt. The residuals at values between the calibration and
-high standard are very small, equal to or below the uncer-
-tainty (reproducibility) of the scale reported by NOAA; this
-was conﬁrmed for other analyzers and other species.
-The improvement in calibration from the secondary cor-
-rection is quite small compared to the signals and gradients
-of interest in our network. For example, when considering
-the enhancement between the rural site TMD and a polluted
-urban site, HRD, the calibration method makes a median dif-
-ference of 0.4 % for CO2 and 0.3 % for CH4 (over all hours
-over 1 calendar year). We intend to implement this calibra-
-tion throughout the network through deployment of addi-
-tional standards and periodic traveling calibrations when per-
-manent installation is not practical for logistical reasons.
-3.5
-Data quality and processing
-Automated data ﬁltering is performed within the GCWerks
-software with parameters set identically to those extensively
-described by Verhulst et al. (2017) for the Los Angeles
-Megacities network. For example, individual measurements
-that are outside limits for cavity temperature, cavity pres-
-sure, and during transitions between sample streams are ﬁl-
-tered. The data are automatically downloaded from each
-site’s Linux PC to the central EN Linux server, where they
-are processed automatically every hour. We note that all mole
-fraction assignments can be recalculated by the GCWerks
-software from the archived raw ﬁles if required due to a
-change in ﬁltering or ﬂagging, or in assignment of a stan-
-dard tank, for example, in the case of a scale change by the
-CCL. The data ﬁles exported from GCWerks contain 1, 5,
-and 20 min averaged air data, as well as separate ﬁles with
-1, 5, and 20 min averages of all standard runs. Individual or
-groups of 1 min data points are ﬂagged manually by EN or
-NIST researchers in the GCWerks if there is cause (e.g., a
-site visit that disrupted the sample stream or a leak in the
-line). Some additional quality checking is performed at this
-stage, speciﬁcally checking for systematic differences be-
-tween measurements from two different inlets at the same
-height and checking for inconsistencies in the difference be-
-tween measurements at different heights. For example, if the
-lower inlet is systematically reading lower CO2 than the up-
-per inlet, especially at night, it would indicate that the in-
-let lines may be switched (mislabeled) or there is a leak oc-
-curring. These indications would be then veriﬁed by a ﬁeld
-technician, and the data are either reprocessed or ﬂagged ac-
-cordingly. Filtered and ﬂagged points are excluded from the
-subsequent averaging exported by GCWerks. The 1 min air
-data ﬁles and 20 min standard data ﬁles are post-processed at
-NIST to calculate hourly averages from each air inlet level
-and to assign uncertainties to each hourly average (Sect. 4).
-Data from the two top-level inlets, when they are at the same
-height, are combined for inclusion into the hourly average.
-Thus, because of the 20 min cycling through the three in-
-lets (Sect. 3.1), hourly averages at the upper inlet include ap-
-proximately 40 min of measurements, and for the lower inlet
-only 20 min (fewer if a calibration occurs). Publicly released
-hourly data from this second-level processing are contained
-in separate ﬁles for each species and each level for each site.
-The ﬁles contain the hourly average mole fraction (i.e., mole
-fraction) along with its uncertainty, standard deviation, and
-number of 1 min air measurements included in that particu-
-lar hourly average. These last two quantities are provided so
-users can determine the standard error of the hourly means in
-terms of the observed atmospheric variability within the hour.
-Observations at higher frequency and standard tank data are
-available by request.
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-708
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-3.6
-Comparison with measurements of NOAA whole air
-samples
-Ongoing whole air sampling in ﬂasks at several of the NEC
-sites by NOAA Earth System Research Laboratory’s Global
-Monitoring Division (NOAA/GMD) provides a check on the
-quality of the in situ measurements. The ﬂasks are analyzed
-for CO2, CH4, and CO, among a suite of additional trace
-gases and isotopes that are not discussed here. The ﬂask-
-sampling equipment draws air from one of the inlet lines
-at the top of the tower that is also shared by the continu-
-ous in situ measurement equipment (as indicated by the ﬂask
-port in Fig. 4). The ﬂask measurements are otherwise in-
-dependent from the continuous in situ measurements. Flask
-samples at LEW and MSH are collected over a period of
-10–30 s (Sweeney et al., 2015; Andrews et al., 2014), while
-ﬂask samples integrated over 1 h are collected at TMD, NEB,
-NWB, and BWD (Turnbull et al., 2012) speciﬁcally as part of
-the Northeast Corridor project. All ﬂask samples are taken in
-midafternoon local time (usually 19:00 UTC). Comparisons
-at all the sites with available data indicate good agreement
-with little or no bias in the mean over the time period of the
-comparison, with the exception of CO at MSH, which shows
-a consistent bias with a median of 8 nmol mol−1, which is
-larger than the 1σ uncertainty assigned to either measure-
-ment (described in Sect. 4) and the standard deviation of
-the offsets themselves (Table 2). Target tank residuals for
-CO in this period range from 1 to 7 nmol mol−1, depend-
-ing on the cylinders installed, indicating that at least some
-of this difference is caused by the calibration standard as-
-signed value (possibly due to cylinder drift in time between
-the NOAA calibration and deployment to the site). Simi-
-lar differences between NOAA ﬂasks and in situ CO mea-
-surements were reported in Indianapolis (Richardson et al.,
-2017). This result requires further investigation, by send-
-ing the cylinders for recalibration and/or deploying different
-standards to the station. A signiﬁcant bias in the CH4 off-
-set at NWB is also apparent, at a mean of −5.5 nmol mol−1
-but a median of −1.7 nmol mol−1, the result of a single out-
-lier at −30 nmol mol−1 but with only 17 samples compared.
-BWD did not have any samples at the time of writing, thus
-we compare only LEW, MSH, TMD, NEB, and NWB.
-Table 2 also reports the mean uncertainty, intended as a
-metric for comparison of the standard deviation of the off-
-sets. For each ﬂask sample, this uncertainty is the quadra-
-ture sum of the continuous data uncertainty (described in
-Sect. 4) at that hour, the standard deviation of the 1 min av-
-erages in the continuous data during that hour, and the un-
-certainty expected in the ﬂask measurement, estimated here
-as 0.04 µmolmol−1 for CO2, 1.12 nmol mol−1 for CH4, and
-0.59 nmol mol−1 for CO. The values for the ﬂask uncertainty
-are from Table 1 in Sweeney et al. (2015), which reports the
-average offset between measurements of surface network and
-12-pack ﬂasks (such as those used for the NEC) ﬁlled with
-identical air after a short-term storage test. For CO2, ﬂask
-offsets can be larger than indicated by those dry-air labora-
-tory tests (Sweeney et al., 2015; Andrews et al., 2014; Karion
-et al., 2013), but we use 0.04 µmolmol−1 regardless because
-the average uncertainty in Table 2 is dominated by the atmo-
-spheric variability term and increasing the CO2 uncertainty
-in the ﬂasks to 0.1 µmolmol−1 (for example) does not change
-the values signiﬁcantly.
-Standard deviations of the offsets (Table 2) show that there
-is quite a bit of scatter in the results, especially at the more
-urban sites that exhibit a lot of variability in the continuous
-data. For comparison, Turnbull et al. (2015) report agree-
-ment for CO2 between the same ﬂask system and continu-
-ous in situ measurements in Indianapolis as 0.04 µmolmol−1
-(mean) with a standard deviation of 0.38 µmolmol−1, some-
-what smaller than what was observed at our sites. The stan-
-dard deviation of offsets is usually lower than the average
-uncertainty, however, with the exception of CO2 at MSH and
-LEW, the two sites for which the ﬂask samples are not inte-
-grated over an hour. It is likely that the large variability seen
-over an hour is the reason for the large scatter in the offsets.
-Because the continuous in situ measurements do not cover
-the entire hour of sampling (at the top level, the hourly av-
-erage is typically the mean of only 40 min), the variability
-may not be captured in the mean uncertainty reported here
-and has a larger impact on the comparison than it would if
-the continuous hourly average was based on the full hour of
-observations. For example, a large plume or spike in concen-
-tration during a given hour might occur while the continuous
-system is sampling from the lower inlet and thus would not
-be included in the hourly average from the continuous sys-
-tem, while it would be included in the full 1 h ﬂask sample.
-4
-Uncertainty
-The data set includes an uncertainty estimate on each hourly
-average data point, consistent with recommendations from
-the WMO (WMO, 2018). This uncertainty is our estimate
-of the uncertainty of the measurement itself and does not in-
-clude atmospheric variability or assess the representativeness
-of the measurement of a true hourly mean.
-4.1
-Uncertainty of hourly mole fraction data
-Verhulst et al. (2017) outlined a method for calculating an
-uncertainty in mole fraction measurements when using the
-single-tank calibration correction (drift correction). Here we
-present a brief overview but refer the reader to that paper for
-further details. All uncertainties are standard uncertainties,
-i.e., 1σ or k = 1. In the analysis below, we assume indepen-
-dent uncorrelated error components, given no evidence to the
-contrary and no physical reason to believe that they should be
-correlated; therefore, we sum the various components of the
-uncertainty in quadrature.
-The uncertainty in the ﬁnal mole fractions (Uair) is ex-
-pressed as the quadrature sum of several uncertainty com-
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-709
-Table 2. Offsets (in situ – ﬂask) between continuous in situ and NOAA/GMD ﬂask measurements. CO2 offsets are reported in µmolmol−1, CH4 and CO are reported in nmol mol−1.
-Continuous in situ CO is only measured at MSH. The average uncertainty column for each gas indicates the 1σ uncertainty (summed in quadrature over ﬂask uncertainty, in situ
-uncertainty, and atmospheric variability over the hour) averaged over the ﬂask samples. See text for discussion.
-Site
-Number of
-CO2
-CO2
-CO2 standard
-CO2
-CH4
-CH4
-CH4 standard
-CH4
-CO mean
-CO median
-CO standard
-CO mean
-ﬂask samples
-mean offset
-median offset
-deviation of offsets
-mean unc.
-mean offset
-median offset
-of offsets
-mean unc.
-offset
-offset
-deviation of offsets
-unc.
-MSH
-163
-0.02
-−0.02
-0.65
-0.43
-−0.2
-−0.2
-2.3
-2.1
-−9.0
-−8.2
-5.9
-6.0
-LEW
-315
-0.01
-−0.07
-0.88
-0.68
-1.1
-0.4
-8.4
-7.8
-–
-–
-–
-–
-TMD
-80
-0.17
-0.15
-0.51
-0.69
-0.0
-0.5
-5.5
-5.2
-–
-–
-–
-–
-NEB
-32
-−0.09
-0.08
-0.75
-1.02
-−0.5
-0.6
-6.8
-13.4
-–
-–
-–
-–
-NWB
-17
-−0.014
-0.02
-0.73
-0.99
-−5.5
-−1.7
-9.8
-8.3
-–
-–
-–
-–
-ponents:
-(Uair)2 =
- Uextrap
-2 +
- UH2O
-2 + (UM)2,
-(7)
-where UH2O is the uncertainty due to the water vapor correc-
-tion, UM is a measurement uncertainty, and Uextrap is the un-
-certainty of the calibration ﬁt when assigning values relative
-to a single standard tank (more detail on this can be found
-later in this section and in the following section). UM en-
-compasses errors due to drifting standard tank measurements
-(Ub), short-term precision (Up), and error in the calibration
-standard’s mole fraction assignment by the calibration labo-
-ratory (Uscale):
-(UM)2 =
- Up
-2 + (Ub)2 + (Uscale)2.
-(8)
-Here we note that Up for CO2 and CH4 is assigned as de-
-scribed by Verhulst et al. (2017), as the standard deviation
-of the individual measurements during each 1 min average
-during a calibration, but for CO it is assigned as the stan-
-dard error (standard deviation divided by the square root of
-the number of samples in the mean), based on Allan vari-
-ance tests (not shown) indicating that the precision of the CO
-measurement increases with the number of points used in the
-average. If no calibrations have been performed over an en-
-tire calendar year, Up is set to the 10th percentile of the stan-
-dard deviation of air measurements and Ub is set to a default
-value of 0.1 µmolmol−1, 0.5 nmol mol−1, and 4 nmol mol−1
-for CO2, CH4, and CO, respectively. This default value for
-Ub is based on an upper limit of values that are observed in
-the network; typically, Ub is much smaller than these values
-(Verhulst et al., 2017). In the current data set, this has only
-occurred once: there were no calibrations run at MNC over
-the entire 2015 calendar year, but we have no knowledge of
-abnormal operations or changes during this period, with an-
-alyzer sensitivity being similar before and after this period.
-Because these uncertainty components are also tested
-through the use of a target tank, or check standard, the uncer-
-tainty UM is assigned as the root mean square of the target
-tank errors when those exceed the sum of the uncertainties
-above.
-UM = UTGT =
-v
-u
-u
-t
-P XDC,TGT −CTGT
-2
-N
-(9)
-This residual is calculated by GCWerks, and the root-mean-
-square residual is interpolated in time as a moving 10 d aver-
-age. If a target tank has not been run through the system for
-10 d or longer, UTGT is set to a default value that is currently
-set to 0.2 µmolmol−1, 1 nmol mol−1, and 6 nmol mol−1 for
-CO2, CH4, and CO, respectively, based on typical maximum
-values for this uncertainty calculated from many sites over
-several years. The target tank in the ﬁeld generally has a
-concentration value very similar to the calibration tank, thus
-this residual is a good estimate of the uncertainty caused by
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-710
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-the precision, baseline changes, and tank value assignment.
-However, it is not a good indicator of uncertainty at mole
-fractions different from that of the calibration tank. There-
-fore, we assign an added uncertainty component, Uextrap, in-
-dicating the uncertainty that increases as the measurement
-value moves farther from the value of the calibration tank in
-the case of a single calibration standard. This was found to
-be a linear relationship for a series of similar model analyz-
-ers that were tested in a laboratory, and the uncertainty was
-described as follows:
-Uextrap = |ε|
-XDC,air −Ccal
-.
-(10)
-See Verhulst et al. (2017) for details on determining the unit-
-less slope of the uncertainty, epsilon (ε), which is currently
-assigned as 0.0025, 0.0031, and 0.0164 for CO2, CH4, and
-CO, respectively, for all data that are only drift corrected (i.e.,
-not using a high standard).
-4.2
-Uncertainty for observations with additional
-standards available
-When a high-standard tank is available and the secondary
-correction described in Sect. 3.4 is applied, the uncertainty
-analysis remains similar, but the uncertainty Uextrap from
-Eqs. (7) and (10) is replaced by an uncertainty in the two-
-point ﬁt, Uﬁt. To estimate this uncertainty for CO2 and CH4,
-we use the reported uncertainty of the assigned value of the
-high-standard and calibration-standard tanks, Uscale, (typi-
-cally 0.03 µmolmol−1 CO2 and 0.5 nmol mol−1 CH4 at 1σ)
-along with an estimate of the precision of the analyzer, Up,
-to estimate an uncertainty in the drift-corrected sensitivity
-of the high standard, USDC,hstd, using standard propagation
-of errors (black error bar, Fig. 7a). We note that in the case
-where the value assigned to the high standard is through a
-propagation of the WMO scale at NIST, the assigned value
-has additional uncertainty; i.e., Uscale includes both the un-
-certainty that NOAA assigned to the cylinders used for the
-assignment and the uncertainty from the laboratory ﬁt at
-NIST. This second uncertainty is equal to the standard de-
-viation of the residuals of the ﬁt and is added in quadrature
-to the NOAA uncertainty.
-We note that the analysis described below assumes un-
-correlated independent errors. We express the slope of drift-
-corrected sensitivity (m) and the overall drift-corrected sensi-
-tivity (SDC) as functions only of the drift-corrected sensitivity
-of the high standard, SDC,hstd:
-m =
-SDC,hstd −1
-X′
-hstd/X′
-cal −1
-(11)
-SDC = m
- X′
-X′cal
-−1
-
-+ 1.
-(12)
-This second equation uses b = 1−m. Here we do not include
-uncertainty in the x coordinate, i.e., X′/X′
-cal. Uncertainty in
-the slope is as follows:
-Um =
-
-
-USDC,hstd
-(X′hstd/X′cal) −1
-.
-(13)
-We propagate the uncertainty in the drift-corrected sensitivity
-of the high standard, USDC,hstd, to the overall drift-corrected
-sensitivity of all the air values using Eq. (14) and then to the
-two-point corrected air data by propagating through to obtain
-Eq. (15).
-USDC = Um
- X′/X′cal −1
-
-=
-
- 
-USDC,hstd
- X′
-hstd/X′cal
-
-−1
-!
- X′/X′cal −1
-
-
-(14)
-UXSC,air = Uﬁt =
-
-USDC
-SDC
-XSC,air
-(15)
-To evaluate the use of standard propagation of errors, we
-also use a bootstrap to estimate the uncertainty using the lab-
-oratory calibration shown in Fig. 6 by randomly selecting
-two tanks of the ﬁve tanks from the test to calculate 1000
-versions of the correction (blue shading shows the standard
-deviation of the result, Fig. 7). For this test, the calculated
-1σ uncertainty (red shading) was similar to the 1σ bootstrap
-uncertainty (slightly larger for CO2 and slightly smaller for
-CH4, not shown). This comparison indicates that the esti-
-mated uncertainty using the equations above compares rea-
-sonably well with the uncertainty we would derive from a
-bootstrap analysis, which gives us conﬁdence in our method-
-ology.
-The uncertainty in SDC leads to the estimate of the ﬁt un-
-certainty, Uﬁt, shown in Fig. 7b. To implement this uncer-
-tainty across all times and towers, we calculate it assum-
-ing a ﬁxed nominal value of the high calibration standard of
-490.50 µmolmol−1 CO2 and 2560.61 nmol mol−1 CH4. This
-is based on the value of the high standard that was in resi-
-dence in the Earth Networks laboratory when several of the
-CRDS analyzers were tested and assigned two-point calibra-
-tion corrections. We use the site-speciﬁc (instrument-speciﬁc
-and period-speciﬁc) slope and intercept that are applied to the
-data (which are static over the time period they are applied)
-and the value of the calibration tank to calculate the remain-
-der of the values required for the uncertainty analysis.
-Only one site so far, MSH, measures continuous CO, and
-the history of standard tanks there indicates signiﬁcant uncer-
-tainty in tank value assignments with large target tank resid-
-uals and corresponding UTGT relative to errors in slope. We
-have chosen not to implement the two-point calibration at
-this site for CO because the range of slopes of SDC includes
-one, i.e., the correction is so small that the uncertainty dwarfs
-the correction.
-Mean absolute residuals of the two-point ﬁt for nine lab-
-oratory calibrations analyzed (seven tested at NOAA/ESRL
-and described by Verhulst et al., 2017, Table S2, and two ad-
-ditional units at NIST) average to 0.03 µmolmol−1 for CO2
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-711
-Figure 7. Uncertainty (1σ) in ﬁt for two-point calibrations. (a) Two-point ﬁt to drift-corrected sensitivity (SDC) (red line) with uncertainty
-(red shading) calculated using the uncertainty in the high standard (black circle with error bar). Blue shading shows uncertainty calculated
-using a bootstrap conducted by randomly selecting sets of two standards from the laboratory test (black circles) to calculate the slope. There
-is no uncertainty at 1 because the drift-corrected sensitivity is deﬁned as equal to one at the value of the calibration standard. (b) Uncertainty
-in ﬁnal CO2 as a function of raw CO2; red and blue shading have the same meaning as in (a).
-between the calibration and high-standard data, and larger
-for the test that included an even higher-concentration tank,
-shown in Fig. 7 at ∼711 µmolmol−1 for CO2. The ﬁt uncer-
-tainty encompasses (at 1σ) this residual as well (Fig. 7b). The
-residuals at lower values can be explained by the uncertainty
-in the measurement (precision) and uncertainty in value as-
-signment of the tanks. For CO, only eight tests were avail-
-able, with a mean residual inside the range of the calibrations
-of 1.1 nmol mol−1, higher than the reported reproducibility
-from NOAA of 0.4 nmol mol−1 (all values are noted here at
-1σ although they are given by NOAA at 2σ). This larger
-residual is likely caused by the lower precision of the analyz-
-ers for CO but also could be caused by larger uncertainty in
-the tank assignments, possibly due to drift in the mole frac-
-tion of the tanks themselves. We intend to conduct additional
-tests outside the two-point calibration range with additional
-analyzers and tanks to evaluate and possibly update this un-
-certainty component, Uﬁt, as needed, and especially focus on
-CO if and when additional CO measurements are added to
-our network.
-5
-Network observations
-Here we show some observations and time series of CO2
-and CH4 from the NEC in situ tower network, focusing on
-data coverage, vertical gradients, and observed differences
-between urban and rural or outer suburban sites.
-5.1
-Data coverage and network expansion
-The NEC network is continuously growing, with sites com-
-ing online at different times. Figure 8 shows the availability
-of hourly observations as the various sites have come online.
-5.2
-Vertical gradients
-Observations in global trace gas measurement networks (e.g.,
-AGAGE, GGRN) are speciﬁcally sited far from local sources
-or strong sinks to ensure that air reaching the site is represen-
-tative of the large spatial scales of interest to a global study.
-This allows the observations to be more easily interpreted by
-a coarser global model (e.g., Peters et al., 2007). In urban
-networks, it is desirable to measure trace gas concentrations
-closer to sources so that ﬁner spatial gradients can be used
-to inform emissions estimates at urban scales. However, a
-balance must be struck between the necessity to observe and
-distinguish sources that are in close proximity to each other
-and the ability of a transport and dispersion model to simu-
-late the observations. In some instances, novel ways to sim-
-ulate observations at low heights above ground level and in
-very dense networks have been used to resolve this problem
-(Berchet et al., 2017). In the NEC urban network in Washing-
-ton, DC, and Baltimore, the tower sites were selected to be
-between 50 and 100 m above the ground given the desire to
-place a tower in a speciﬁc location (as identiﬁed in an initial
-network design study by Lopez-Coto et al., 2017). Inlets at
-two (or three, at SFD) heights on the tower give some insight
-as to the proximity of each tower to sources whose emis-
-sions are not always vertically well mixed by the time they
-reach the inlets, depending on atmospheric stability condi-
-tions. Here we report average vertical gradients, determined
-using the observations at different levels, for the urban and
-background sites in our network. These gradients were calcu-
-lated using hourly average data from each level, but because
-the instruments are only sampling from one level at any given
-time and cycling between them, there is an assumption of
-measurements averaged in a given hour being representative
-of the entire hour. Because different towers have different in-
-let heights and different vertical spacing between the lower
-and upper inlet, here we compare three urban sites (ARL,
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-712
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-Figure 8. Data (CO2 and CH4, and CO for MSH only) availability from the various NIST-EN tower sites in the Northeast Corridor network
-included in this data release. Gaps represent data outages due to various failures (analyzer, communications, etc.).
-NDC, and JES) with inlets at similar heights, ∼90 m and
-∼50 m a.g.l. We deﬁne the gradient as the mole fraction of
-CO2 or CH4 at the topmost inlet minus that of the lowermost
-inlet divided by the distance between them so that a negative
-gradient indicates a higher concentration at the lower inlet
-(the most common case).
-Analysis of the diurnal cycle of the vertical gradient at
-urban sites in the Washington–Baltimore area (Fig. 9) indi-
-cates different characteristics in summer vs. winter. These
-differences are most likely caused by different meteorology
-and possible seasonal differences in timing of ﬂuxes, espe-
-cially for sites inﬂuenced by the urban biosphere. Greater
-turbulent mixing in summertime boundary layers and dif-
-ferent timing in the boundary layer growth and collapse
-mostly dominate the seasonal differences. This analysis
-shows that at these three sites the wintertime average gra-
-dient in midafternoon hours (deﬁned based on these ﬁgures
-as 11:00–16:00 LST) is approximately −0.016 µmolmol−1
-m−1 for CO2 (−0.105 nmol mol−1 m−1 for CH4), which
-translates to a −0.8 µmolmol−1 (−5.2 nmol mol−1 for CH4)
-difference between levels spaced 50 m apart; this is not an in-
-signiﬁcant gradient. At other urban sites with shorter towers,
-they can be even larger. These observations can help evaluate
-vertical mixing in transport and dispersion models that might
-be used to estimate emissions, or to identify times when
-modeled and observed vertical gradients agree. Large verti-
-cal gradients overnight into the early morning at all sites and
-seasons are indicative of local sources (likely mostly anthro-
-pogenic but also including respiration from the biosphere)
-inﬂuencing the observations at these times when there is sta-
-ble stratiﬁcation in the boundary layer and concentrations are
-higher near the surface. The larger CO2 gradients overnight
-in summer compared to winter periods suggest a strong res-
-piration signal at these urban sites, with a large degree of
-variability between sites indicated by large spread. Nighttime
-CH4 gradients are slightly larger in winter than summer, pos-
-sibly reﬂecting greater wintertime anthropogenic CH4 emis-
-sions, or possibly due to seasonality in mixing layer heights.
-The diurnal cycle of the vertical gradients from the
-sites identiﬁed as background stations for the Washington–
-Baltimore urban network shows large variability in summer-
-time gradients between the three stations (Fig. 10). Stafford,
-VA (SFD), shows that the surrounding biosphere causes rela-
-tively large gradients in nighttime and early morning hours at
-this low-density suburban site. These are apparent at Buck-
-town, MD (BUC), as well but less so at Thurmont, MD
-(TMD), a forested site in western Maryland. The large differ-
-ence between summertime early morning vertical CO2 gradi-
-ents at SFD and TMD, despite the similar surrounding land
-use (mostly deciduous forest, Fig. 3), might be caused by
-the elevation difference, as SFD is close to sea level while
-TMD is on a ridge at 561 m elevation. BUC observations
-show larger CH4 gradients in summer, due to surrounding
-wetlands and agriculture (Fig. 3). Wintertime gradients are
-near zero at all hours at all three of these sites, indicating that
-they are far from local anthropogenic sources of either gas.
-We note that the top inlet height at BUC is lower, at 75 m,
-than at SFD or TMD (100 and 111 m), while the lower inlet
-is similar for all three (∼50 m). For SFD (inlets at 152, 100,
-and 50 m), we use the 100 and 50 m inlets to deﬁne the gra-
-dient to be more consistent with the inlet heights of the other
-towers (Table 1).
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-713
-Figure 9. Diurnal cycle of vertical gradients in CO2 (a) and CH4 (b) for urban towers in the Washington–Baltimore area, averaged over
-2015–2017 in winter (blue) and summer (orange), with shading indicating 1σ standard deviation among sites. Some of the spread can be
-caused by sampling in different years at the different sites. Sites included are HAL, ARL, NDC, NEB, NWB, and JES. HRD was excluded
-due to lack of data in this period.
-Figure 10. Diurnal cycle of vertical gradients in CO2 (a) and CH4 (b) at the three background towers for the Washington–Baltimore region
-in summer (orange shades) and winter (blue shades).
-5.3
-Urban and rural differences in seasonal cycles
-Here we continue to describe the network in terms of dif-
-ferences between rural (background) and urban stations, de-
-termining typical enhancements from urban inﬂuences. The
-seasonal cycles of CO2 and CH4 indicate enhancements in
-the urban sites in our network relative to the more rural sta-
-tions throughout the year (Fig. 11). Summertime CH4 at ur-
-ban sites is not as enhanced compared to the rural sites as
-it is in winter, possibly due to wetland sources inﬂuencing
-the background station at BUC or lower CH4 emissions from
-natural gas in urban areas. Similarly, for CO2, some of the
-rural stations surrounded by active vegetation (Fig. 3) are
-likely to show stronger inﬂuence from biospheric uptake than
-urban sites, especially in the summer months (Fig. 10). We
-speciﬁcally caution against using any of the in situ data from
-the NEC rural stations directly as a background for analy-
-sis of the urban enhancement without examining these is-
-sues. Sargent et al. (2018) indicate that for an analysis of
-CO2 enhancements in the Boston urban area, CO2 observa-
-tions from upwind stations alone did not represent the correct
-background. Even when the air that reaches an urban tower
-originates near an upwind rural site, back trajectories (from
-a Lagrangian Particle Dispersion Model such as STILT, for
-example) indicate that much of the air may originate from a
-higher altitude than the upwind station. Thus, the measure-
-ment at an upwind station is not necessarily representative of
-the proper background or incoming concentration, given the
-large concentration gradients between measurements within
-the planetary boundary layer and in the free troposphere near
-background stations with local ﬂuxes. Mueller et al. (2018)
-conducted an analysis of the issues concerning background
-determination for this urban network, mostly concerning the
-large emissions of both CO2 and CH4 upwind of the region
-that is difﬁcult to capture at upwind stations. We will exam-
-ine the proper background for investigating urban enhance-
-ments in the Washington, DC, and Baltimore, MD, area fur-
-ther in future work.
-6
-Data availability
-This data set of hourly averaged observations from the
-Northeast Corridor tower-based network is available on
-the NIST data portal at https://data.nist.gov (last access:
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-714
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-Figure 11. Seasonal cycles from urban and rural sites in the Washington, DC, and Baltimore region with at least 1 year of observations.
-Midafternoon (13:00–18:00 LST) daily averages are detrended using a linear ﬁt to the annual trend at Mauna Loa (for CO2) and the global
-average (for CH4) (data from NOAA/ESRL) and then averaged monthly. Rural sites include TMD, SFD, and BUC; urban sites are ARL,
-NDC, JES, HAL, NEB, and NWB. Shading indicates 1 standard deviation of the averages from all the sites.
-23 March 2020) under the https://doi.org/10.18434/M32126
-(Karion et al., 2019). Initially, the repository will contain data
-from 23 sites (Table 1) for years spanning 2015–2018; not all
-years are available for all sites. Files are version-dated, and
-the current plan is to provide annual updates for 2019 and
-beyond.
-7
-Conclusions
-Here we present a data set of hourly average observations
-of CO2, CH4, and CO (where applicable) from a network
-of towers in the northeastern United States. Measurements
-are funded by NIST and conducted in a collaboration with
-Earth Networks, Inc., with quality control, assurance, and
-uncertainty determination conducted by a science team that
-includes NIST, Earth Networks, and collaborators from the
-Los Angeles Megacities Carbon Project from NASA/JPL and
-the Scripps Institution of Oceanography. We present 4 calen-
-dar years of data (2015 through 2018), with different stations
-coming online through the years, and most Washington, DC,
-and Baltimore, MD, urban stations becoming established af-
-ter late 2015. We have also presented our methodology for
-calibrating the measurements to WMO scales for each gas
-and determining uncertainties for these measurements, as
-recommended by the WMO (WMO, 2018). We show that
-analysis of observations at two different inlet heights can be
-useful for determining the presence of emissions close to the
-towers, which may be necessary for evaluating the efﬁcacy
-and choice of transport model used to analyze the data. We
-also note that the tower stations that were established to char-
-acterize incoming or background air are not necessarily ap-
-propriate for use directly as background for the urban sta-
-tions, as they are often affected by local ﬂuxes that do not
-inﬂuence the urban stations. A more careful treatment of in-
-coming background air is necessary for any given analysis.
-Author contributions. WC, MS, SP, and PS collected data; AK,
-KRV, JK, and PS performed quality control and data processing and
-devised the uncertainty analysis. AK implemented the uncertainty
-analysis and wrote the manuscript, with contributions from SP, JK,
-ILC, and JW.
-Competing interests. The authors declare that they have no con-
-ﬂict of interest.
-Acknowledgements. We acknowledge the Earth Networks engi-
-neering and technical team, including Uran Veseshta, Clayton Fain,
-Bryan Biggs, Seth Baldelli, Joe Considine, and Charlie Draper. We
-also thank Tamae Wong, Kimberly Mueller, Sharon Gourdji, Sub-
-homoy Ghosh, and Antonio Possolo (NIST) for helpful discussions.
-Financial support. This work was funded by the NIST Green-
-house Gas Measurements Program.
-Review statement. This
-paper
-was
-edited
-by
-Alexander
-Kokhanovsky and reviewed by three anonymous referees.
-References
-Andrews, A. E., Koﬂer, J. D., Trudeau, M. E., Williams, J. C., Neff,
-D. H., Masarie, K. A., Chao, D. Y., Kitzis, D. R., Novelli, P. C.,
-Zhao, C. L., Dlugokencky, E. J., Lang, P. M., Crotwell, M. J.,
-Fischer, M. L., Parker, M. J., Lee, J. T., Baumann, D. D., Desai,
-A. R., Stanier, C. O., De Wekker, S. F. J., Wolfe, D. E., Munger,
-J. W., and Tans, P. P.: CO2, CO, and CH4 measurements from tall
-towers in the NOAA Earth System Research Laboratory’s Global
-Greenhouse Gas Reference Network: instrumentation, uncer-
-tainty analysis, and recommendations for future high-accuracy
-greenhouse gas monitoring efforts, Atmos. Meas. Tech., 7, 647–
-687, https://doi.org/10.5194/amt-7-647-2014, 2014.
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-715
-Bares, R., Mitchell, L., Fasoli, B., Bowling, D. R., Catharine,
-D., Garcia, M., Eng, B., Ehleringer, J., and Lin, J. C.:
-The Utah urban carbon dioxide (UUCON) and Uintah Basin
-greenhouse gas networks: instrumentation, data, and mea-
-surement uncertainty, Earth Syst. Sci. Data, 11, 1291–1308,
-https://doi.org/10.5194/essd-11-1291-2019, 2019.
-Berchet, A., Zink, K., Muller, C., Oettl, D., Brunner, J.,
-Emmenegger, L., and Brunner, D.: A cost-effective method
-for simulating city-wide air ﬂow and pollutant dispersion
-at building resolving scale, Atmos. Environ., 158, 181–196,
-https://doi.org/10.1016/j.atmosenv.2017.03.030, 2017.
-Bureau International des Poids et Mesures: The International Sys-
-tem of Units (SI), 9th Edn., edited by: BIPM, BI PM, Pavillon de
-breteuil, 92312 Sevres Cedex, France, 2019.
-Chen, H., Winderlich, J., Gerbig, C., Hoefer, A., Rella, C. W.,
-Crosson, E. R., Van Pelt, A. D., Steinbach, J., Kolle, O., Beck,
-V., Daube, B. C., Gottlieb, E. W., Chow, V. Y., Santoni, G. W.,
-and Wofsy, S. C.: High-accuracy continuous airborne measure-
-ments of greenhouse gases (CO2 and CH4) using the cavity ring-
-down spectroscopy (CRDS) technique, Atmos. Meas. Tech., 3,
-375–386, https://doi.org/10.5194/amt-3-375-2010, 2010.
-Dlugokencky, E. J., Myers, R. C., Lang, P. M., Masarie, K.
-A., Crotwell, A. M., Thoning, K. W., Hall, B. D., Elkins,
-J.
-W.,
-and
-Steele,
-L.
-P.:
-Conversion
-of
-NOAA
-atmo-
-spheric dry air CH4 mole fractions to a gravimetrically pre-
-pared standard scale, J. Geophys. Res.-Atmos., 110, D18306,
-https://doi.org/10.1029/2005JD006035, 2005.
-Edenhofer, O., Pichs-Madruga, R., Sokona, Y., Kadner, S., Minx,
-J. C., Brunner, S., Agrawala, S., Baiocchi, G., Bashmakov, I. A.,
-Blanco, G., Broome, J., Bruckner, T., M. Bustamante, Clarke, L.,
-Grand, M. C., Creutzig, F., Cruz-Núñez, X., Dhakal, S., Dubash,
-N. K., Eickemeier, P., Farahani, E., Fischedick, M., Fleurbaey,
-M., Gerlagh, R., Gómez-Echeverri, L., Gupta, S., Harnisch, J.,
-Jiang, K., Jotzo, F., Kartha, S., Klasen, S., Kolstad, C., Krey, V.,
-Kunreuther, H., Lucon, O., Masera, O., Mulugetta, Y., Norgaard,
-R. B., Patt, A., Ravindranath, N. H., Riahi, K., Roy, J., Sagar, A.,
-Schaeffer, R., Schlömer, S., Seto, K. C., Seyboth, K., Sims, R.,
-Smith, P., Somanathan, E., Stavins, R., Stechow, C. v., Sterner,
-T., Sugiyama, T., Suh, S., Ürge-Vorsatz, D., Urama, K., Venables,
-A., Victor, D. G., Weber, E., Zhou, D., Zou, J., and Zwickel, T.:
-Technical Summary, in: Climate Change 2014: Mitigation of Cli-
-mate Change: Contribution of Working Group III Contribution
-to the IPCC Fifth Assessment Report, edited by: Intergovern-
-mental Panel on Climate Change, Cambridge University Press,
-Cambridge, 2014.
-Gurney, K. R., Razlivanov, I., Song, Y., Zhou, Y. Y., Benes, B., and
-Abdul-Massih, M.: Quantiﬁcation of Fossil Fuel CO2 Emissions
-on the Building/Street Scale for a Large US City, Environ. Sci.
-Technol., 46, 12194–12202, https://doi.org/10.1021/es3011282,
-2012.
-Gurney, K. R., Liang, J., O’Keeffe, D., Patarasuk, R., Hutchins, M.,
-Huang, J., Rao, P., and Song, Y.: Comparison of Global Down-
-scaled Versus Bottom-Up Fossil Fuel CO2 Emissions at the Ur-
-ban Scale in Four U.S. Urban Areas, J. Geophys. Res.-Atmos.,
-124, 2823–2840, https://doi.org/10.1029/2018jd028859, 2019.
-Hedelius, J. K., Liu, J., Oda, T., Maksyutov, S., Roehl, C. M., Iraci,
-L. T., Podolske, J. R., Hillyard, P. W., Liang, J., Gurney, K. R.,
-Wunch, D., and Wennberg, P. O.: Southern California megac-
-ity CO2, CH4, and CO ﬂux estimates using ground- and space-
-based remote sensing and a Lagrangian model, Atmos. Chem.
-Phys., 18, 16271–16291, https://doi.org/10.5194/acp-18-16271-
-2018, 2018.
-Huang, Y., Kort, E. A., Gourdji, S., Karion, A., Mueller, K.,
-and Ware, J.: Seasonally Resolved Excess Urban Methane
-Emissions from the Baltimore/Washington, DC Metropoli-
-tan
-Region,
-Environ.
-Sci.
-Technol.,
-53,
-11285–11293,
-https://doi.org/10.1021/acs.est.9b02782, 2019.
-Karion, A., Sweeney, C., Wolter, S., Newberger, T., Chen, H., An-
-drews, A., Koﬂer, J., Neff, D., and Tans, P.: Long-term green-
-house gas measurements from aircraft, Atmos. Meas. Tech., 6,
-511–526, https://doi.org/10.5194/amt-6-511-2013, 2013.
-Karion, A., Whetstone, J. R., and Callahan, W.: Observations of
-CO2, CH4, and CO mole fractions from the NIST Northeast Cor-
-ridor urban testbed, https://doi.org/10.18434/M32126, 2019.
-Lamb, B. K., Cambaliza, M. O. L., Davis, K. J., Edburg, S. L.,
-Ferrara, T. W., Floerchinger, C., Heimburger, A. M. E., Hern-
-don, S., Lauvaux, T., Lavoie, T., Lyon, D. R., Miles, N., Prasad,
-K. R., Richardson, S., Roscioli, J. R., Salmon, O. E., Shep-
-son, P. B., Stirm, B. H., and Whetstone, J.: Direct and In-
-direct Measurements and Modeling of Methane Emissions in
-Indianapolis, Indiana, Environ. Sci. Technol., 50, 8910–8530,
-https://doi.org/10.1021/acs.est.6b01198, 2016.
-Lauvaux, T., Miles, N. L., Deng, A. J., Richardson, S. J., Cambal-
-iza, M. O., Davis, K. J., Gaudet, B., Gurney, K. R., Huang, J.
-H., O’Keefe, D., Song, Y., Karion, A., Oda, T., Patarasuk, R.,
-Razlivanov, I., Sarmiento, D., Shepson, P., Sweeney, C., Turn-
-bull, J., and Wu, K.: High-resolution atmospheric inversion of ur-
-ban CO2 emissions during the dormant season of the Indianapo-
-lis Flux Experiment (INFLUX), J. Geophys. Res.-Atmos., 121,
-5213–5236, https://doi.org/10.1002/2015jd024473, 2016.
-Lin, J. C., Gerbig, C., Wofsy, S. C., Andrews, A. E., Daube,
-B. C., Davis, K. J., and Grainger, C. A.: A near-ﬁeld tool
-for simulating the upstream inﬂuence of atmospheric ob-
-servations: The Stochastic Time-Inverted Lagrangian Trans-
-port (STILT) model, J. Geophys. Res.-Atmos., 108, 4493,
-https://doi.org/10.1029/2002JD003161, 2003.
-Lopez-Coto, I., Ghosh, S., Prasad, K., and Whetstone, J.:
-Tower-based greenhouse gas measurement network design –
-The National Institute of Standards and Technology North
-East Corridor Testbed, Adv. Atmos. Sci., 34, 1095–1105,
-https://doi.org/10.1007/s00376-017-6094-6, 2017.
-Lopez-Coto, I., Ren, X., Salmon, O. E., Karion, A., Shepson,
-P. B., Dickerson, R. R., Stein, A., Prasad, K. R., and Whet-
-stone, J.: Wintertime CO2, CH4 and CO emissions estimation
-for the Washington DC/Baltimore metropolitan area using an
-inverse modeling technique, Environ. Sci. Technol., 54, 2606–
-2614, https://doi.org/10.1021/acs.est.9b06619, 2020a.
-Lopez-Coto, I., Hicks, M., Karion, A., Sakai, R. K., Demoz, B.,
-Prasad, K., and Whetstone, J.: Assessment of WRF PBL schemes
-in an urban region and comparison of the impact of the urban heat
-island, J. Appl. Meteorol. Clim., in review, 2020b.
-Martin, C. R., Zeng, N., Karion, A., Dickerson, R. R., Ren,
-X., Turpie, B. N., and Weber, K. J.: Evaluation and envi-
-ronmental correction of ambient CO2 measurements from a
-low-cost NDIR sensor, Atmos. Meas. Tech., 10, 2383–2395,
-https://doi.org/10.5194/amt-10-2383-2017, 2017.
-McKain, K., Down, A., Raciti, S. M., Budney, J., Hutyra, L. R.,
-Floerchinger, C., Herndon, S. C., Nehrkorn, T., Zahniser, M. S.,
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
-716
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-Jackson, R. B., Phillips, N., and Wofsy, S. C.: Methane emis-
-sions from natural gas infrastructure and use in the urban region
-of Boston, Massachusetts, P. Natl. Acad. Sci. USA, 112, 1941–
-1946, https://doi.org/10.1073/pnas.1416261112, 2015.
-Mitchell, L. E., Lin, J. C., Bowling, D. R., Pataki, D. E., Strong,
-C., Schauer, A. J., Bares, R., Bush, S. E., Stephens, B. B.,
-Mendoza, D., Mallia, D., Holland, L., Gurney, K. R., and
-Ehleringer, J. R.: Long-term urban carbon dioxide observations
-reveal spatial and temporal dynamics related to urban charac-
-teristics and growth, P. Natl. Acad. Sci. USA, 115, 2912–2917,
-https://doi.org/10.1073/pnas.1702393115, 2018.
-Mueller, K., Yadav, V., Lopez-Coto, I., Karion, A., Gour-
-dji, S., Martin, C., and Whetstone, J.: Siting Background
-Towers to Characterize Incoming Air for Urban Green-
-house Gas Estimation: A Case Study in the Washington,
-DC/Baltimore Area, J. Geophys. Res.-Atmos., 123, 2910–2926,
-https://doi.org/10.1002/2017JD027364, 2018.
-Nehrkorn, T., Eluszkiewicz, J., Wofsy, S. C., Lin, J. C., Ger-
-big, C., Longo, M., and Freitas, S.: Coupled weather re-
-search and forecasting-stochastic time-inverted lagrangian trans-
-port (WRF-STILT) model, Meteorol. Atmos. Phys., 107, 51–64,
-https://doi.org/10.1007/s00703-010-0068-x, 2010.
-Novelli, P. C., Masarie, K. A., Lang, P. M., Hall, B. D., Myers, R. C.,
-and Elkins, J. W.: Reanalysis of tropospheric CO trends: Effects
-of the 1997–1998 wildﬁres, J. Geophys. Res.-Atmos., 108, 4464,
-https://doi.org/10.1029/2002JD003031, 2003.
-O’Neill, B. C., Dalton, M., Fuchs, R., Jiang, L., Pachauri, S.,
-and Zigova, K.: Global demographic trends and future car-
-bon emissions, P. Natl. Acad. Sci. USA, 107, 17521–17526,
-https://doi.org/10.1073/pnas.1004581107, 2010.
-Peters, W., Jacobson, A. R., Sweeney, C., Andrews, A. E., Con-
-way, T. J., Masarie, K., Miller, J. B., Bruhwiler, L. M. P., Petron,
-G., Hirsch, A. I., Worthy, D. E. J., van der Werf, G. R., Ran-
-derson, J. T., Wennberg, P. O., Krol, M. C., and Tans, P. P.: An
-atmospheric perspective on North American carbon dioxide ex-
-change: CarbonTracker, P. Natl. Acad. Sci. USA, 104, 18925–
-18930, https://doi.org/10.1073/pnas.0708986104, 2007.
-Pillai, D., Buchwitz, M., Gerbig, C., Koch, T., Reuter, M., Bovens-
-mann, H., Marshall, J., and Burrows, J. P.: Tracking city CO2
-emissions from space using a high-resolution inverse mod-
-elling approach: a case study for Berlin, Germany, Atmos.
-Chem. Phys., 16, 9591–9610, https://doi.org/10.5194/acp-16-
-9591-2016, 2016.
-Ren, X. R., Salmon, O. E., Hansford, J. R., Ahn, D., Hall, D.,
-Benish, S. E., Stratton, P. R., He, H., Sahu, S., Grimes, C., He-
-imburger, A. M. F., Martin, C. R., Cohen, M. D., Stunder, B.,
-Salawitch, R. J., Ehrman, S. H., Shepson, P. B., and Dicker-
-son, R. R.: Methane Emissions From the Baltimore-Washington
-Area Based on Airborne Observation: Comparison to Emis-
-sions Inventories, J. Geophys. Res.-Atmos., 123, 8869–8882,
-https://doi.org/10.1029/2018jd028851, 2018.
-Richardson, S. J., Miles, N. L., Davis, K. J., Lauvaux, T.,
-Martins, D. K., Turnbull, J. C., McKain, K., Sweeney, C.,
-and Cambaliza, M. O. L.: Tower measurement network of
-in-situ CO2, CH4, and CO in support of the Indianapolis
-FLUX (INFLUX) Experiment, Elementa-Sci. Anthrop., 5, p. 59,
-https://doi.org/10.1525/elementa.140, 2017.
-Salmon, O. E., Shepson, P. B., Ren, X., He, H., Hall, D.
-L., Dickerson, R. R., Stirm, B. H., Brown, S. S., Fibiger,
-D. L., McDufﬁe, E. E., Campos, T. L., Gurney, K. R.,
-and Thornton, J. A.: Top-Down Estimates of NOx and CO
-Emissions From Washington, DC-Baltimore During the WIN-
-TER Campaign, J. Geophys. Res.-Atmos., 123, 7705–7724,
-https://doi.org/10.1029/2018jd028539, 2018.
-Santoni, G. W., Daube, B. C., Kort, E. A., Jiménez, R., Park, S.,
-Pittman, J. V., Gottlieb, E., Xiang, B., Zahniser, M. S., Nelson,
-D. D., McManus, J. B., Peischl, J., Ryerson, T. B., Holloway, J.
-S., Andrews, A. E., Sweeney, C., Hall, B., Hintsa, E. J., Moore,
-F. L., Elkins, J. W., Hurst, D. F., Stephens, B. B., Bent, J., and
-Wofsy, S. C.: Evaluation of the airborne quantum cascade laser
-spectrometer (QCLS) measurements of the carbon and green-
-house gas suite – CO2, CH4, N2O, and CO – during the Cal-
-Nex and HIPPO campaigns, Atmos. Meas. Tech., 7, 1509–1526,
-https://doi.org/10.5194/amt-7-1509-2014, 2014.
-Sargent, M., Barrera, Y., Nehrkorn, T., Hutyra, L. R., Gately, C. K.,
-Jones, T., McKain, K., Sweeney, C., Hegarty, J., Hardiman, B.,
-Wang, J. A., and Wofsy, S. C.: Anthropogenic and biogenic CO2
-ﬂuxes in the Boston urban region, P. Natl. Acad. Sci. USA, 115,
-7491–7496, https://doi.org/10.1073/pnas.1803715115, 2018.
-Stein, A. F., Draxler, R. R., Rolph, G. D., Stunder, B. J. B., Cohen,
-M. D., and Ngan, F.: NOAA’s Hysplit Atmospheric Transport
-and Dispersion Modeling System, B. Am. Meteorol. Soc., 96,
-2059–2077, https://doi.org/10.1175/Bams-D-14-00110.1, 2015.
-Sweeney, C., Karion, A., Wolter, S., Newberger, T., Guenther, D.,
-Higgs, J. A., Andrews, A. E., Lang, P. M., Neff, D., and Dlugo-
-kencky, E.: Seasonal climatology of CO2 across North America
-from aircraft measurements in the NOAA/ESRL Global Green-
-house Gas Reference Network, J. Geophys. Res.-Atmos., 120,
-5155–5190, 2015.
-Turnbull, J., Guenther, D., Karion, A., Sweeney, C., Anderson, E.,
-Andrews, A., Koﬂer, J., Miles, N., Newberger, T., Richardson,
-S., and Tans, P.: An integrated ﬂask sample collection system
-for greenhouse gas measurements, Atmos. Meas. Tech., 5, 2321–
-2327, https://doi.org/10.5194/amt-5-2321-2012, 2012.
-Turnbull, J. C., Karion, A., Davis, K. J., Lauvaux, T., Miles, N.
-L., Richardson, S. J., Sweeney, C., McKain, K., Lehman, S. J.,
-Gurney, K. R., Patarasuk, R., Liang, J., Shepson, P. B., Heim-
-burger, A., Harvey, R., and Whetstone, J.: Synthesis of Urban
-CO2 Emission Estimates from Multiple Methods from the In-
-dianapolis Flux Project (INFLUX), Environ. Sci. Technol., 53,
-287–295, https://doi.org/10.1021/acs.est.8b05552, 2019.
-Verhulst, K. R., Karion, A., Kim, J., Salameh, P. K., Keeling, R. F.,
-Newman, S., Miller, J., Sloop, C., Pongetti, T., Rao, P., Wong, C.,
-Hopkins, F. M., Yadav, V., Weiss, R. F., Duren, R. M., and Miller,
-C. E.: Carbon dioxide and methane measurements from the Los
-Angeles Megacity Carbon Project – Part 1: calibration, urban en-
-hancements, and uncertainty estimates, Atmos. Chem. Phys., 17,
-8313-8341, https://doi.org/10.5194/acp-17-8313-2017, 2017.
-Waxman, E. M., Cossel, K. C., Giorgetta, F., Truong, G.-W.,
-Swann, W. C., Coddington, I., and Newbury, N. R.: Estimat-
-ing vehicle carbon dioxide emissions from Boulder, Colorado,
-using horizontal path-integrated column measurements, Atmos.
-Chem. Phys., 19, 4177–4192, https://doi.org/10.5194/acp-19-
-4177-2019, 2019.
-Welp, L. R., Keeling, R. F., Weiss, R. F., Paplawsky, W., and Heck-
-man, S.: Design and performance of a Naﬁon dryer for contin-
-uous operation at CO2 and CH4 air monitoring sites, Atmos.
-Earth Syst. Sci. Data, 12, 699–717, 2020
-www.earth-syst-sci-data.net/12/699/2020/
-A. Karion et al.: Greenhouse gas observations from the Northeast Corridor tower network
-717
-Meas. Tech., 6, 1217–1226, https://doi.org/10.5194/amt-6-1217-
-2013, 2013.
-WMO: 19th WMO/IAEA Meeting on Carbon Dioxide, Other
-Greenhouse
-Gases
-and
-Related
-Measurement
-Techniques
-(GGMT-2017), WMO/GAW Report No. 242, 2018.
-Wong, C. K., Pongetti, T. J., Oda, T., Rao, P., Gurney, K. R., New-
-man, S., Duren, R. M., Miller, C. E., Yung, Y. L., and Sander, S.
-P.: Monthly trends of methane emissions in Los Angeles from
-2011 to 2015 inferred by CLARS-FTS observations, Atmos.
-Chem. Phys., 16, 13121–13130, https://doi.org/10.5194/acp-16-
-13121-2016, 2016.
-Xueref-Remy, I., Dieudonné, E., Vuillemin, C., Lopez, M., Lac,
-C., Schmidt, M., Delmotte, M., Chevallier, F., Ravetta, F., Per-
-russel, O., Ciais, P., Bréon, F.-M., Broquet, G., Ramonet, M.,
-Spain, T. G., and Ampe, C.: Diurnal, synoptic and seasonal
-variability of atmospheric CO2 in the Paris megacity area, At-
-mos. Chem. Phys., 18, 3335–3362, https://doi.org/10.5194/acp-
-18-3335-2018, 2018.
-Yadav, V., Duren, R., Mueller, K., Verhulst, K. R., Nehrkorn,
-T., Kim, J., Weiss, R. F., Keeling, R., Sander, S., Fis-
-cher, M. L., Newman, S., Falk, M., Kuwayama, T., Hop-
-kins, F., Raﬁq, T., Whetstone, J., and Miller, C.: Spatio-
-temporally Resolved Methane Fluxes From the Los An-
-geles Megacity, J. Geophys. Res.-Atmos., 124, 5131–5148,
-https://doi.org/10.1029/2018jd030062, 2019.
-Yang, L., Jin, S., Danielson, P., Homer, C., Gass, L., Bender,
-S. M., Case, A., Costello, C., Dewitz, J., Fry, J., Funk, M.,
-Granneman, B., Liknes, G. C., Rigge, M., and Xian, G.: A
-new generation of the United States National Land Cover
-Database: Requirements, research priorities, design, and im-
-plementation strategies, ISPRS J. Photogramm., 146, 108–123,
-https://doi.org/10.1016/j.isprsjprs.2018.09.006, 2018.
-Zhao,
-C.
-L.,
-Tans,
-P.
-P.,
-and
-Thoning,
-K.
-W.:
-A
-high
-precision manometric system for absolute calibrations of
-CO2 in dry air, J. Geophys. Res.-Atmos., 102, 5885–5894,
-https://doi.org/10.1029/96JD03764, 1997.
-www.earth-syst-sci-data.net/12/699/2020/
-Earth Syst. Sci. Data, 12, 699–717, 2020
+Greenhouse gas observations from the Northeast Corridor tower network         Anna  Karion   anna.karion@nist.gov  Special Programs Office, National Institute of Standards and Technology, Gaithersburg, MD, USA  Special Programs Office  National Institute of Standards and Technology  Gaithersburg  MD  USA     William  Callahan   Earth Networks, Inc., Germantown, MD, USA  Earth Networks, Inc  Germantown  MD  USA     Michael  Stock   Earth Networks, Inc., Germantown, MD, USA  Earth Networks, Inc  Germantown  MD  USA     Steve  Prinzivalli   Earth Networks, Inc., Germantown, MD, USA  Earth Networks, Inc  Germantown  MD  USA     Kristal  R  Verhulst   NASA Jet Propulsion Laboratory, California Institute of Technology, Pasadena, CA, USA  NASA Jet Propulsion Laboratory  California Institute of Technology  Pasadena  CA  USA     Jooil  Kim   Scripps Institution of Oceanography, University of California San Diego, La Jolla, CA, USA  Scripps Institution of Oceanography  University of California San Diego  La Jolla  CA  USA     Peter  K  Salameh   Scripps Institution of Oceanography, University of California San Diego, La Jolla, CA, USA  Scripps Institution of Oceanography  University of California San Diego  La Jolla  CA  USA     Israel  Lopez-Coto   Engineering Laboratory, National Institute of Standards and Technology, Gaithersburg, MD, USA  Engineering Laboratory  National Institute of Standards and Technology  Gaithersburg  MD  USA     James  Whetstone   Special Programs Office, National Institute of Standards and Technology, Gaithersburg, MD, USA  Special Programs Office  National Institute of Standards and Technology  Gaithersburg  MD  USA     Los Angeles  Los Angeles     Purdue University  Purdue University    Greenhouse gas observations from the Northeast Corridor tower network       5A7C86C3C48EAD3E5D4486D8C9A53362  10.5194/essd-2019-206     GROBID - A machine learning software for extracting information from scholarly documents       We present the organization, structure, instrumentation, and measurements of the Northeast Corridor greenhouse gas observation network.  This network of tower-based in-situ carbon dioxide and methane observations was established in 2015 with the goal of quantifying emissions of these gases in urban areas in the north-eastern United States.  A specific focus of the network is the cities of Baltimore, Maryland, and Washington, D.C., USA, with a high density of observation stations in these two urban areas.  Additional observation stations are scattered throughout the US northeast, established to complement other existing urban and regional networks and to investigate emissions throughout this complex region with a high population density and multiple metropolitan areas. 
+
+
+
+    Introduction As the population of cities grows globally due to trends toward urbanization, so does their relative contribution to global anthropogenic greenhouse gas (GHG) budgets (Edenhofer O., 2014;  O'Neill et al., 2010) .   City governments are making commitments to reduce their emissions of GHGs through various sustainability and efficiency measures and coordination with organizations like the C40 Climate Leadership Group (www.c40.org), the Global Covenant of Mayors for Climate and Energy (www.globalcovenantofmayors.org), and others.  These organizations require individual cities to conform to certain standardized mechanisms and practices for reporting their carbon emissions.  City governments rely on inventories compiled using data on fuel use, energy usage, etc. to estimate their total emissions and changes over time, and to determine the efficacy of various emissions mitigation policies.  Atmospheric measurements provide additional useful information to such efforts, by confirming inventory estimates (Sargent et al., 2018;  Lauvaux et al., 2016) , detecting trends  (Mitchell et al., 2018) , or estimating emissions that are not well quantified using inventory methods, such as methane emissions  (McKain et al., 2015;  Ren et al., 2018;  Lamb et al., 2016;  Yadav et al., 2019) .   Several urban top-down measurement efforts are underway in various meteorological modelling (using the Weather Research and Forecast (WRF) model) is being conducted (Lopez-Coto et al., 2019a) , with output coupled to Lagrangian dispersion models such as STILT  (Lin et al., 2003;  Nehrkorn et al., 2010) and HYSPLIT  (Stein et al., 2015) .   These transport and dispersion models are used to interpret observations from both aircraft and tower stations and in atmospheric inverse analyses to estimate fluxes of CO2 and CH4 from the cities of Washington, D.C. and Baltimore, Maryland (Lopez-Coto et al., in prep; Ghosh et al., in prep.) .   A high-resolution fossil-fuel CO2 inventory, Hestia, is also being developed for this project (Gurney et al., 2012;  Gurney et al., 2019) .  
+
+ Here we focus on the high-accuracy tower observation network and associated data collection and processing methods.  Section 2 describes the tower network design and characterizes the different site locations; Section 3 describes the measurement methods, instrumentation, and calibration; Section 4 the uncertainty derivation for the measurements; and finally, Section 5 presents some of the observations from the current record. 
+
+
+
+ Network design and site characterization The NEC project includes 29 observation stations, all managed and operated by Earth Networks, Inc 1 .  
+
+ (www.earthnetworks.com/why-us/networks/greenhouse-gas).  Ten stations were existing Earth Networks (EN) measurement sites in the northeast U.S. that became part of the NEC project in 2015.  Nineteen stations were established (or will be established) specifically for the NEC project, with site locations identified by NIST.  Sixteen of these station locations were chosen to be used for emissions estimation in a domain around Baltimore and Washington, D.C. (red boundary, Fig. 1 ) using inverse modelling techniques  (Lopez-Coto et al., 2017;  Mueller et al., 2018) .   Three others are in Mashpee, MA, Philadelphia, PA, and Waterford Works, NJ.  As of publication, 13 of these 19 have been established, with delays occurring due to difficulty finding suitable tower locations to agree to house the systems.  The hardware and software operating all the sites is identical with few exceptions as noted in the text.  The initial design of the core urban Baltimore/Washington network was focused on optimizing tower site locations with the goal of reducing uncertainty in estimating anthropogenic CO2 emissions from Washington, D.C., and Baltimore using an atmospheric inversion model (Lopez-Coto et al., 2017) .   Twelve communications towers were identified as part of that study as ideal locations for measurements.  Actual measurement sites were sometimes established at locations near the ideal study location usually due to logistical difficulties obtaining leases at the ideal tower sites.  A second design study determined ideal locations for background stations, i.e. observation station locations that would aid in the determination of background CO2 entering the analysis domain (Mueller et al., 2018) .   Four stations were identified as part of that study; an existing EN site in Bucktown, MD, serves as a fifth background station southeast of the analysis domain (Fig. 1 ).   Table 1 indicates details and locations of each site.   urban stations, the degree of urban intensity varies, from densely urbanized areas (such as northeast Baltimore, NEB) to dense and moderately developed suburbs (such as Capitol Heights (CPH), and Derwood (DER), both suburbs of Washington, D.C. located in Maryland).  Fig. 2 indicates the intensity of development from the USGS 2011 National Land Cover Database  (Homer et al., 2015) surrounding each urban station in the Washington DC/Baltimore network.   Similar variability in land cover for the regional stations exists, as indicated in Fig. 3 3 Carbon dioxide, methane, and carbon monoxide measurements, instrumentation, and calibration  
+
+
+
+ Instrumentation The instrumentation contained in the EN GHG system module has been described elsewhere (Welp et al., 2013;  Verhulst et al., 2017) ; we will summarize the system here but refer the reader to those publications for further details, including additional equipment and part numbers.   Figure 4 indicates the plumbing diagram of the typical tower setup.   Three inlet lines reach from the sampling location on the tower into the equipment housed in a full-size rack inside a shed at the base of the tower.  Typically, two inlet lines pull air from the topmost level and one at a lower level on the tower.  Stafford, Virginia (SFD) is the exception with inlets at three different levels (50 m, 100 m, and 152 m).  At some sites there was no space to house the equipment in existing structures, so small single-or double-rack sized enclosures were purchased and installed.  Air is pulled through a filter into the inlet lines (0.953 cm (3/8") OD Synflex 1300) that are continuously flushed at ~10 L min -1 by aquarium pumps (Alita AL-6SA).  The three air lines are connected to a rotary multi-port valve (MPV; 8-port, VICI, Valco Instruments Co. Inc.) housed within a sample control box (calibration box).  Two or three calibration standards are also connected to the MPV with 0.156 cm (1/16") stainless steel tubing.  The control system for the MPV directs the air stream to the analyser cycling every 20 minutes through each of the three inlet lines, and every 22 hours through each standard (Section 3.2).  The common port of the MPV is connected to a pressure controller that reduces the pressure to 80 kPa (800 mb), after which the sample (either ambient air or air from a standard gas cylinder) enters a 183 cm long Nafion dryer (Permapure, Inc., model MD-050-72S-1) where it is dried to a water vapor mole fraction of ~0.1 % prior to flowing through the cavity ringdown spectroscopic (CRDS) analyser (Picarro, Inc., Model 2301) .   The lower-than-ambient inlet pressure of 80 kPa is prescribed in order to lower the flow rate of the analyser to ~70 standard cm 3 min -1 .  At Mashpee, Massachusetts (MSH), a CRDS Model 2401 analyser is operational, and this is the only site currently also measuring carbon monoxide (CO) in addition to CO2 and CH4.  The CRDS analysers report measurements of dry air mole fraction of each gas in air, also known as the mole fraction, i.e., moles of the trace gas per mole of dry air.  Throughout, we refer to these measurements in units of µmol mol -1 for CO2 and nmol mol -1 for CH4 and CO, following the SI recommendations (Bureau International des Poids et Mesures, 2019).  Software (GCWerks, Inc.) installed on a separate mini-PC computer at each site controls the run cycle and the MPV selection valve.  The data is collected on this computer and sent to the central EN data server, also running GCWerks.  All data is processed on the central EN data server but additional post-processing and uncertainty assignment to hourly observations is performed at NIST.  As recommended by the WMO, the software has the capability of re-processing all the data from the original raw files, thus can accommodate any changes to the assigned values of the standards (due to a reference scale update, for example) at any time (WMO, 2018) .  
+
+
+
+ Calibration cylinders When the Earth Networks GHG monitoring system was established in 2011, each site hosted two calibration cylinders (standards) with ambient level dry air mole fractions as part of the original system design.  This continues to be the case at most NEC sites.  At the NEC sites, these standards have values close to 400 µmol mol -1 dry air CO2, 1890 nmol mol -1 dry air CH4 and 115 nmol mol -1 dry air CO (at MSH only) and are sampled by the analyser periodically, in a sequence identical to that described for the Los Angeles Megacity network in Verhulst et al. (2017) .   The standards are purchased from the World Meteorological Association (WMO) Central Calibration Laboratory (CCL), the National Oceanographic and Atmospheric Administration's Earth System Research Laboratory (NOAA/ESRL) Global Monitoring Division in Boulder, Colorado, USA, where they have been calibrated on the WMO scales (X2007 for CO2, X2004A for CH4, and X2014A for CO (Zhao et al., 1997;  Dlugokencky et al., 2005;  Novelli et al., 2003) ).   One of these two cylinders serves as a standard for calibration and driftcorrection while the second serves as a target tank or check standard.  The target tank is used for data-quality checks and uncertainty calculations (Section 4).  The residual of the target tank (the RMS difference between its value assignment when treated as an unknown and its reference value from NOAA) is a critical indicator of data quality and is monitored in order to alert the operators of any general problems in the system such as leaks, mistakes in the assignment of MPV ports, or drift in calibration tank value.  In the field, all gas standards are sampled for 20 minutes every 22 hours.  In data processing, the first 10 minutes of any tank run are filtered out to allow for the system equilibration.  In some cases when the standard runs were found not to equilibrate as quickly as desired, 15 minutes of data were filtered, until the problem could be fixed (typically either contamination or inadequate regulator flushing). 
+
+ At a few NEC sites (currently BWD and MSH, with more planned), a third gas cylinder is installed at the site to serve as a permanent high-concentration standard (referred to as the high standard), to improve calibration and reduce uncertainties.  This standard typically contains air with a mole fraction of CO2 close to 500 µmol mol -1 , CH4 at approximately 2300 nmol mol -1 to 2500 nmol mol -1 , and at MSH, CO near 320 nmol mol -1 .  At MSH, this cylinder has been provided directly by NOAA/ESRL, while at BWD this cylinder was purchased as natural whole air from Scott-Marrin, Inc (now Praxair).  The Scott-Marrin air is stripped of its original trace gases (CO2, CH4, CO, hydrocarbons, etc.) with CO2, CH4, and CO added back in to prescribed values.  Several such standards have been purchased with the intent to place them at urban stations to serve as high standards after calibrating them onto the WMO scales.  We note that because they are being used together with NOAA/ESRL standards in the field, it is essential that these standards also be assigned values on the same scales.  This calibration is transferred in the NIST laboratory using five standards calibrated and purchased from NOAA/ESRL.  The CO2 in the Scott-Marrin cylinders is isotopically different (in terms of the 12/13 C ratio in CO2) from the ambient air tanks that are filled by NOAA/ESRL at Niwot Ridge, Colorado.  However, the calibration is transferred from the NOAA standards to the Scott-Marrin gases using the same model (Picarro 2301) analyser used in the field (i.e.  measuring only 12 CO2) in the NIST laboratory, effectively cancelling out the error that would be caused by this isotopic mismatch (Chen et al., 2010;  Santoni et al., 2014) .   Thus, the CO2 values assigned by NIST to these standards are effectively the total dry air mole fraction of CO2 the cylinders would contain if they were isotopically similar to the NOAA cylinders. 
+
+ Additional sites in the network also benefit from the improved calibration method in cases where measurements of a high standard were performed prior to analyser deployment (NWB, NEB, JES, TMD, CPH, and HRD).  Prior to system installation at these sites, tests were conducted at the EN laboratory in which the designated analyser was set up measuring the calibration standard, target standard, and a high-value standard at ~490 µmol mol -1 CO2, ~2560 nmol mol -1 CH4 daily for several days (enough for 3-5 measurements of 20 minutes each).  This single high standard cylinder was also calibrated by and purchased from NOAA/ESRL, with assigned values on the WMO scales.  These laboratory tests allow the determination of the secondary correction to the instrument response, or sensitivity, as described in Section 3.4. 
+
+ The high standard gas measurements are used to perform a secondary correction (Section 3.4) to the original one-point calibration described in Verhulst et al. (2017) and in Section 3.3., reducing the uncertainty of the measurements.   We note that while in principle a secondary correction is desirable, and the uncertainty is indeed reduced by its implementation (see Section 4.2), it remains quite small relative to the signals of interest in an urban network.  Deployment of high standards at all sites has not yet occurred due to both costs and logistical and operational constraints; for example, at many sites the space available for the equipment is limited and prohibits the installation of a permanent third tank.  Thus, we plan to implement a round-robin procedure circulating additional standards at various values through the network to evaluate the calibrations and implement the secondary correction throughout the network.  Although the current state of having two different calibration methods coexisting in the network is not ideal, we aim to implement the secondary correction throughout the network as soon as possible. 
+
+
+
+ Drift correction and single-point calibration Here we describe the calibration and drift correction applied to all the mole fraction data.  The equations are identical (with a few nomenclature differences) to those found in Verhulst et al. (2017) .   In the following analysis, X¢ denotes a raw dry mole fraction measurement (i.e. a reported value from the CRDS analyser after internal water vapor correction), while X denotes a mole fraction after some correction has been applied (drift and/or calibration, as described in the equations below).  A subscript cal indicates the main calibration standard (usually a single ambient level standard tank calibrated by NOAA/ESRL), subscript std indicates any other standard tank, tgt indicates a standard tank that is being used as a target, and the subscript air indicates the sample measurement.  Note that within the GCWerks software, the meanings of the abbreviations cal and std are reversed from what is defined here; we choose to use the nomenclature in Verhulst et al. (2017) here for consistency in the literature.  
+
+ We note that we have changed some nomenclature slightly from Verhulst et al. (2017) for additional clarity and conciseness.  
+
+ We refer to the drift-corrected mole fraction as XDC, which is noted as Xcorr in Verhulst et al. (2017) ; we refer to the mole fraction after a secondary correction is applied as XSC.   We also refer to the assigned mole fraction of a standard by the calibration laboratory as C rather than Xassign.  We define the sensitivity S to be the response of the analyser, or the ratio of the measured to the true value.  In the case of the calibration tank, this is the ratio of the raw measured value, X¢cal, to the assigned value of the standard by the calibration laboratory on the WMO scale for the given species, Ccal : 
+
+ 𝑆 = # $%& ' ( $%&  .   (1)   When only a single calibration standard is present (which is the case at most sites in the NEC network), this sensitivity is assumed to be constant across mole fractions, but time-varying.  The sensitivity for the calibration tank is thus interpolated in time and applied as a correction for the dry air mole fractions of CO2 and CH4 reported by the CRDS analyser (X¢air): 
+
+ 𝑋 *(,,-. = # %/0  where XDC,air is the drift-corrected air data.  An alternative drift-correction is to use an additive offset, which is also interpolated in time, rather than a sensitivity for drift correction: 
+
+ *(,,-.  = ,-.   2 + ( 6,7 - 6,7 2 ).   (3)   Measurements from MSH that include a high value cylinder suggest that the single tank drift correction performs (very slightly) better using the ratio correction (Eq.  2) than the difference method (Eq. 3) for CO2 and CH4, while the opposite is true for CO (Fig. 5 ), so the difference method is used only for CO in our network.  
+
+ The calibration standard mole fractions are interpolated in time between subsequent runs in order to apply the above corrections to the air data, thus removing drift in the instrument's response.  This drift-corrected fraction is reported in the hourly data files for sites and time periods where no range of concentrations is available in the standard tanks. 
+
+
+
+ Multiple-point calibration 260 At some sites and for some time periods, a higher-mole-fraction standard is available, and a second-order correction can be made to the instrument sensitivity, accounting for the sensitivity being a function of mole fraction.  This is applied as a secondorder correction to the drift-corrected air data.  In general, if a range of standard concentrations is available, the correction in GCWerks is applied as described below.  First, a drift-corrected sensitivity (SDC) is calculated for each standard when it is measured, which is the ratio of the drift-corrected mole fraction of that standard (XDC,std, based on Eq. ( 2 ) for CO2 and CH4 or Eq.   (3) for CO) to its assigned value: *(,;<= = # >? , @AB ( @AB . 
+
+ (4)   For the calibration standard, this value is necessarily equal to 1, but measurements of standard tanks with different assigned values indicate that the instrument sensitivity is dependent on the composition of the sample gas (in this case, the mole fraction of the standard tank).  In laboratory calibrations, we find that the drift-corrected sensitivity defined in Eq. ( 4 ) is a linear function of the mole fraction ratio to the calibration gas (X¢/X¢cal), so we use a linear fit to the range of standards to determine the slope m and intercept b:  
+
+ 𝑆 *( = 𝑚 D # ' # $%& ' E + 𝑏. (5)   In this fit, we force m + b = 1 by fitting a slope m and then setting b=1-m in order to maintain the proper relationship for the calibration tank itself, when SDC,cal = 1.  Applying this fit to the air data, the final air mole fraction XSC,air is determined from: 
+
+ 𝑋 1(,,-. = G # >?,%/0 1 >? H. (6)   In the NEC tower network, there are no sites with multiple standard tanks at various concentrations.  At several sites, there are measurements of a single high-concentration standard (hstd) in addition to the calibration and target standards.  The high standard measurements are either performed in the laboratory before the instrument is deployed to the field, or in the field if the third standard is permanently installed (Section 3.2).  The above secondary correction is applied using only two tanks to perform the fit and obtain the drift-corrected sensitivity.  In this special case, the fit has zero degrees of freedom with no residuals.  The correction parameters (slope and intercept) are determined based on measurements over time or single measurements in the laboratory prior to a specific analyser deployment.  The correction is applied to the data from the site for a time period that is specified, i.e. it is not automatically applied based on daily measurements of the high standard.  It is determined by the science team and applied for the time period that is appropriate.  This is necessary to avoid applying the wrong correction if an analyser is replaced or if there are changes made to the analyser that might affect its calibration response. 
+
+ At eight sites where a high standard has been measured at any point (MSH, BWD, NWB, NEB, JES, TMD, CPH, and HRD), slopes and intercepts have been determined and the correction has been applied to the data.  At stations with no high standard measurements we rely on the single tank drift-correction described in Section 3.3.  The improvement in calibration from the secondary correction is quite small compared to the signals and gradients of interest in our network.  For example, when considering the enhancement between the rural site TMD and a polluted urban site, HRD, the calibration method makes a median difference of 0.4% for CO2 and 0.3% for CH4 (over all hours over one calendar year).  We intend to implement this calibration throughout the network through deployment of additional standards and periodic traveling calibrations when permanent installation is not practical for logistical reasons. 
+
+
+
+ Data quality and processing Automated data filtering is performed within the GCWerks software with parameters set identically to those extensively described in Verhulst et al. (2017) for the Los Angeles Megacities network.   For example, individual measurements that are outside limits for cavity temperature, cavity pressure, and during transitions between sample streams are filtered.  The data is automatically downloaded from each site's Linux PC to the central EN Linux server, where it is processed automatically every hour.  We note that all mole fraction assignments can be re-calculated by the GCWerks software from the archived raw files if required due to a change in filtering or flagging, or in assignment of a standard tank, for example, in the case of a scale change by the CCL.  The data files exported from GCWerks contain 1-minute, 5-minute, and 20-minute averaged air data, as well as separate files with 1 min, 5 min and 20 min averages of all standard runs.  Individual or groups of 1-minute data points are flagged manually by EN or NIST researchers in the GCWerks if there is cause (e.g. a site visit that disrupted the sample stream, or a leak in the line, etc.).  Filtered and flagged points are excluded from the subsequent averaging exported by GCWerks.  The 1-minute air data files and 20-minute standards data files are post-processed at NIST to calculate hourly averages from each air inlet level, and to assign uncertainties to each hourly average (Section 4).  Data from the two top-level inlets, when at the same height, are combined for inclusion into the hourly average.  Thus, because of the 20-minute cycling through the three inlets (Section 3.1), hourly averages at the upper inlet include approximately 40 minutes of measurements, and for the lower inlet only 20 minutes (fewer if a calibration occurs).  Publicly released hourly data from this second-level processing is contained in separate files for each species and each level for each site.  The files contain the hourly average mole fraction (i.e. 
+
+ mole fraction) along with its uncertainty, standard deviation, and number of 1-minute air measurements included in that particular hourly average.  These last two quantities are provided so users can determine the standard error of the hourly means, in terms of the observed atmospheric variability within the hour.  Observations at higher frequency and standard tank data are available by request. 
+
+
+
+ Comparison with measurements of NOAA whole air samples Ongoing whole air sampling in flasks at several of the NEC sites by NOAA Earth System Research Laboratory's Global 
+
+ Monitoring Division (NOAA/GMD) provides a check on the quality of the in-situ measurements.  The flasks are measured for CO2, CH4, and CO, among a suite of additional trace gases and isotopes which are not discussed here.  The flask sampling equipment draws air from one of the inlet lines at the top of the tower that is also shared by the in-situ continuous measurement equipment (as indicated by the flask port in Fig. 4 ).   The flask measurements are otherwise independent from the continuous in-situ measurements.  Flask samples at LEW and MSH are collected over a period of 10-30 seconds (Sweeney et al., 2015;  Andrews et al., 2014) , while flask samples integrated over one hour are collected at TMD, NEB, NWB, and BWD  (Turnbull et al., 2012) specifically as part of the Northeast Corridor project.   All flask samples are taken in mid-afternoon local time (usually 19 UTC).  Comparisons at all the sites with available data indicate good agreement with little or no bias in the mean over the time period of the comparison, with the exception of CO at MSH, which shows a consistent bias with a median of 8 nmol mol -1 , which is larger than the 1-sigma uncertainty assigned to either measurement (described in Section 4) and the standard deviation of the offsets themselves (Table 2 ).   Target tank residuals for CO in this period range from 1 to 7 nmol mol - 1 , depending on the cylinders installed, indicating that some of this difference at least is caused by the calibration standard assigned value (possibly due to cylinder drift in time between the NOAA calibration and deployment to the site).  Similar differences between NOAA flasks and in-situ CO measurements were reported in Indianapolis (Richardson et al., 2017) .   This result requires further investigation, by sending the cylinders for recalibration and/or deploying different standards to the station.  A significant bias in the CH4 offset at NWB is also apparent, at a mean of -5.5 nmol mol -1 but a median of -1.7 nmol mol -1 , the result of a single outlier at -30 nmol mol -1 , but with only 17 samples compared.  BWD did not have any samples at the time of this writing so we compare only LEW, MSH, TMD, NEB, and NWB. 
+
+ Table 2 also reports the mean uncertainty, intended as a metric for comparison of the standard deviation of the offsets.  For each flask sample, this uncertainty is the quadrature sum of the continuous data uncertainty (described in Section 4) at that hour, the standard deviation of the 1-minute averages in the continuous data during that hour, and the uncertainty expected in the flask measurement, estimated here as 0.04 µmol mol -1 for CO2, 1.12 nmol mol -1 for CH4, and 0.59 nmol mol -1 for CO. 
+
+ The values for the flask uncertainty are from Table 1 in  Sweeney et al. (2015) , which reports the average offset between measurements of surface network and 12-pack flasks (such as those used for the NEC) filled with identical air after a shortterm storage test.   For CO2, flask offsets can be larger than indicated by those dry-air laboratory tests (Sweeney et al., 2015;  Andrews et al., 2014;  Karion et al., 2013) , but we use 0.04 µmol mol -1 regardless, because the average uncertainty in Table  2 is dominated by the atmospheric variability term and increasing the CO2 uncertainty in the flasks to 0.1 µmol mol -1 (for example) does not change the values significantly.  
+
+ Standard deviations of the offsets (Table 2 ) show that there is quite a bit of scatter in the results, especially at the more urban sites that exhibit a lot of variability in the continuous data.   For comparison, Turnbull et al. (2015) report agreement for CO2 between the same flask system and continuous in-situ measurements in Indianapolis as 0.04 µmol mol -1 (mean) with a standard deviation of 0.38 µmol mol -1 , somewhat smaller than observed at our sites.   The standard deviation of offsets is usually lower than the average uncertainty, however, with the exception of CO2 at MSH and LEW, the two sites for which the flask samples are not integrated over an hour.  It is likely that the large variability seen over an hour is the reason for the large scatter in the offsets.  Because the in-situ continuous measurements do not cover the entire hour of sampling (at the top level, the hourly average is typically the mean of only 40 minutes), the variability may not be captured in the mean uncertainty reported here, and has a larger impact on the comparison than it would if the continuous hourly average was based on the full hour of observations.  For example, a large plume or spike in concentration during a given hour might occur while the continuous system is sampling from the lower inlet, and thus would not be included in the hourly average from the continuous system, while it would be included in the full one-hour flask sample. 
+
+
+
+ Uncertainty The data set includes an uncertainty estimate on each hourly average data point, consistent with recommendations from the WMO (WMO, 2018) .   This uncertainty is our estimate of the uncertainty of the measurement itself and does not include atmospheric variability or assess the representativeness of the measurement of a true hourly mean. 
+
+
+
+ Uncertainty of hourly mole fraction data Verhulst et al. ( 2017 ) outlined a method for calculating an uncertainty on mole fraction measurements when using the single tank calibration correction (drift correction).   Here we present a brief overview but refer the reader to that paper for further details.  All uncertainties are standard uncertainties, i.e. 1-sigma or k=1.  In the analysis below, we assume independent uncorrelated error components, given no evidence to the contrary and no physical reason to believe that they should be correlated; therefore we sum the various components of the uncertainty in quadrature. 
+
+ The uncertainty on the final mole fractions (Uair) is expressed as the quadrature sum of several uncertainty components: 
+
+ (𝑈 ,-. ) J = K𝑈 LM<.,N O J + (𝑈 PJQ ) J + (𝑈 R ) J (7)  where UH2O is the uncertainty due to the water vapor correction, UM is a measurement uncertainty, and Uextrap is the uncertainty of the calibration fit when assigning values relative to a single standard tank (more detail on this can be found later in this section and in the following section).  UM encompasses errors due to drifting standard tank measurements (Ub), short-term precision (Up), and error in the calibration standard's mole fraction assignment by the calibration laboratory (Uscale): 
+
+ (𝑈 R ) J = K𝑈 N O J + (𝑈 S ) J + (𝑈 ;6,7L ) J . (8)   Here we note that Up for CO2 and CH4 is assigned as described in Verhulst et al. (2017) , as the standard deviation of the individual measurements during each 1-minute average during a calibration, but for CO it is assigned as the standard error (standard deviation divided by the square root of the number of samples in the mean), based on Allan variance tests (not shown)  
+
+ indicating that the precision of the CO measurement increases with the number of points used in the average.  If no calibrations have been performed over an entire calendar year, Up is set to the 10 th percentile of the standard deviation of air measurements, and Ub is set to a default value of 0.1 µmol mol -1 , 0.5 nmol mol -1 , and 4 nmol mol -1 for CO2, CH4, and CO respectively.  This default value for Ub is based on an upper limit of values that are observed in the network; typically, Ub is much smaller than these values (Verhulst et al., 2017) .   In the current data set, this has only occurred once: there were no calibrations run at MNC over the entire 2015 calendar year, but we have no knowledge of abnormal operations or changes during this period, with analyser sensitivity being similar before and after this period. 
+
+ Because these uncertainty components are also tested through the use of a target tank, or check standard, the uncertainty UM is assigned as the root-mean-squared of the target tank errors when those exceed the sum of the uncertainties above: 
+
+ 𝑈 R = 𝑈 TUT = V ∑GK# >?,XYX Z( XYX O [ H \ . ( 9   )  This residual is calculated by GCWerks, and the root mean square residual is interpolated in time as a moving 10-day average. 
+
+ If a target tank has not been run through the system for 10 days or longer, UTGT is set to a default value that is currently set to 0.2 µmol mol -1 , 1 nmol mol -1 , and 6 nmol mol -1 for CO2, CH4, and CO, respectively, based on typical maximum values for this uncertainty calculated from many sites over several years.  The target tank in the field generally has a concentration value very similar to the calibration tank, so this residual is a good estimate of the uncertainty caused by the precision, baseline changes, and tank value assignment.  However, it is not a good indicator of uncertainty at mole fractions different from that of the calibration tank.  Therefore, we assign an added uncertainty component, Uextrap, indicating the uncertainty that increases as the measurement value moves farther from the value of the calibration tank in the case of a single calibration standard.  This was found to be a linear relationship for a series of similar model analysers that were tested in a laboratory, and the uncertainty was described as: 
+
+ See Verhulst et al. (2017) for details on determining the unitless slope of the uncertainty, epsilon (e), which is currently assigned as 0.0025, 0.0031, and 0.0164 for CO2, CH4, and CO, respectively, for all data that is only drift corrected (i.e.   not using a high standard). 
+
+
+
+ Uncertainty for observations with additional standards available When a high standard tank is available and the secondary correction described in Section 3.4 is applied, the uncertainty analysis remains similar, but the uncertainty Uextrap from Eq. ( 7 ) and Eq. (  10 ) is replaced by an uncertainty in the two-point fit, Ufit.   To estimate this uncertainty for CO2 and CH4, we use the reported uncertainty of the assigned value of the high standard and calibration standard tanks, Uscale, (typically 0.03 µmol mol -1 CO2 and 0.5 nmol mol -1 CH4 at 1-sigma) along with an estimate of the precision of the analyser, Up, to estimate an uncertainty on the drift-corrected sensitivity of the high standard, USDC,hstd, using standard propagation of errors (black error bar, Fig. 7 (a)).   We note that in the case where the value assigned to the high standard is through a propagation of the WMO scale at NIST, the assigned value has additional uncertainty; i.e.  Uscale includes both the uncertainty that NOAA assigned to the cylinders used for the assignment and the uncertainty from the laboratory fit at NIST.  This second uncertainty is equal to the standard deviation of the residuals of the fit and it is added in quadrature to the NOAA uncertainty. 
+
+ We note that the analysis described below assumes uncorrelated independent errors.  We express the slope of drift corrected sensitivity (m) and the overall drift-corrected sensitivity (SDC) as functions only of the drift-corrected sensitivity of the high standard, SDC,hstd: 
+
+ 𝑚 = 1 >?,a@AB Zb # ' a@AB # ' $%& c Zb (11) 𝑆 *( = 𝑚 G #2 #2 $%& -1H + 1. ( 12   )  This second equation uses b=1-m.  Here we do not include uncertainty in the x-coordinate, i.e.  X'/X'cal.  Uncertainty in the slope is thus: We propagate the uncertainty in the drift-corrected sensitivity of the high standard, USDC,hstd, to the overall drift corrected sensitivity of all the air values using Eq. ( 14 ), and then to the two-point corrected air data by propagating through to obtain Eq. (  15 ).  
+
+ 𝑈 e = fg  To evaluate the use of standard propagation of errors, we also use a bootstrap to estimate the uncertainty using the laboratory calibration shown in Fig. 6 by calculating the correction using 1000 randomly selected pairs of tanks from the test (blue shading, Fig.  7 ).   For this test, the calculated 1-sigma uncertainty (red shading) was similar to the 1-sigma bootstrap uncertainty (slightly larger for CO2 and slightly smaller for CH4 (not shown)).  This comparison indicates that the estimated uncertainty using the equations above compares reasonably well with the uncertainty we would derive from a bootstrap analysis, which 
+
+ gives us confidence in our methodology.  
+
+ Vertical gradients Observations in global trace gas measurement networks (e.g.  AGAGE, GGRN) are specifically sited far from local sources or strong sinks, to ensure that air reaching the site is representative of the large spatial scales of interest to a global study.  This allows the observations to be more easily interpreted by a coarser global model (e.g.  Peters et al. (2007) ).   In urban networks, it is desirable to measure trace gas concentrations closer to sources so that finer spatial gradients can be used to inform emissions estimates at urban scales.  However, a balance must be struck between the necessity to observe and distinguish sources that are in close proximity to each other and the ability of a transport and dispersion model to simulate the observations. 
+
+ In some instances, novel ways to simulate observations at low heights above ground level and in very dense networks have been used to resolve this problem (Berchet et al., 2017) .   In the NEC urban network in Washington DC and Baltimore, the tower sites were selected to be between 50 m and 100 m above the ground given the desire to place a tower in a specific location (as identified in an initial network design study by Lopez-Coto et al. (2017) ).   Inlets at two (or three, at SFD) heights on the tower give some insight as to the proximity of each tower to sources whose emissions are not always vertically wellmixed by the time they reach the inlets, depending on atmospheric stability conditions.  Here we report average vertical gradients, determined using the observations at different levels, for the urban sites in our network.  These gradients were calculated using hourly average data from each level, but because the instruments are only sampling from one level at any https://doi.org/10.5194/essd-2019-206 
+
+ Open given time and cycling between them, there is an assumption of measurements averaged in a given hour to be representative of the entire hour.  Because different towers have different inlet heights and different vertical spacing between the lower and upper inlet, to compare between sites we use gradients (i.e.  difference in mole fraction per meter), not absolute differences. 
+
+ Access Earth System Science Data Discussions Preprint.  We define the gradient as the mole fraction of CO2 or CH4 at the topmost inlet minus that of the lowermost inlet divided by the distance between them, so that a negative gradient indicates a higher concentration at the lower inlet (the most common case).  The only except is for SFD (inlets at 152, 100, and 50 m), where we use the 100 m and 50 m inlets to define the gradient, to be more consistent with the typical inlet heights of the other rural towers (Table 1 ).   Analysis of the diurnal cycle of the vertical gradient at urban sites in the Washington / Baltimore area (Fig. 9 ) indicates different characteristics in summer vs. winter.   These differences are most likely caused by different meteorology and possible seasonal differences in timing of fluxes, especially for sites influenced by the urban biosphere.  Greater turbulent mixing in summertime boundary layers and different timing in the boundary layer growth and collapse mostly dominate the seasonal differences.  This analysis shows that the overall wintertime average gradient in mid-afternoon hours (defined based on these figures as 11-16 
+
+ LST) is approximately 0.028 µmol mol -1 m -1 for CO2 (0.2 nmol mol -1 m -1 for CH4), which translates to a 1.4 µmol mol -1 (10.3 nmol mol -1 for CH4) difference between levels spaced 50 m apart; this is not an insignificant gradient.  These observations can help evaluate vertical mixing in transport and dispersion models that might be used to estimate emissions, or to identify times when modelled and observed vertical gradients agree.  Large vertical gradients overnight into the early morning at all sites and seasons are indicative of local sources (likely mostly anthropogenic but also including respiration from the biosphere) 
+
+ influencing the observations at these times when there is stable stratification in the boundary layer and concentrations are higher near the surface.  The larger CO2 gradients overnight in summer compared to winter periods suggest a strong respiration signal at these urban sites, with a large degree of variability between sites indicated by large spread.  Night-time CH4 gradients are larger in winter than summer, possibly reflecting greater wintertime anthropogenic CH4 emissions, or possibly due to seasonality in mixing layer heights.  The diurnal cycle of the vertical gradients from the sites identified as background stations for the Washington/Baltimore urban network shows large variability in summertime gradients between the three stations (Fig. 10 ).   Stafford, VA (SFD) shows that the surrounding biosphere causes relatively large gradients in night-time and early morning hours at this low-density surburban site.  These are apparent at Bucktown, MD (BUC) as well, but much less so at Thurmont, MD (TMD), a forested site in western 
+
+ Maryland.  The large difference between summertime early morning vertical CO2 gradients at SFD and TMD, despite the similar surrounding land use (mostly deciduous forest, Fig. 3 ), might be caused by the elevation difference, as SFD is close to sea level while TMD is on a ridge at 561 m elevation.   BUC observations show larger CH4 gradients in summer, due to surrounding wetlands and agriculture (Fig. 3 ).   Wintertime gradients are near zero at all hours at all three of these sites, indicating that they are far from local anthropogenic sources of either gas. 
+
+
+
+ Urban and rural differences in seasonal cycles Here we continue to describe the network in terms of differences between rural (background) and urban stations, determining typical enhancements from urban influences.  The seasonal cycles of CO2 and CH4 indicate enhancements in the urban sites in our network relative to the more rural stations throughout the year (Fig. 11 ).   Summertime CH4 at urban sites is not as enhanced compared to the rural sites as it is in winter, possibly due to wetland sources influencing the background station at BUC or lower CH4 emissions from natural gas in urban areas.  Similarly, for CO2, some of the rural stations surrounded by active vegetation (Fig. 3 ) are likely to show stronger influence from biospheric uptake than urban sites in the summer months especially (Fig.  10 ).   We specifically caution against using any of the in-situ data from the NEC rural stations directly as a background for analysis of the urban enhancement without examining these issues.  Sargent et al. (2018) indicate that for an analysis of CO2 enhancements in the Boston urban area, CO2 observations from upwind stations alone did not represent the We also have presented our methodology for calibrating the measurements to WMO scales for each gas and determining uncertainties for these measurements, as recommended by the WMO (WMO, 2018).   We show that analysis of observations at two different inlet heights can be useful for determining the presence of emissions close to the towers, which may be necessary for evaluating the efficacy and choice of transport model used to analyse the data.  We also note that the tower stations that were established to characterise incoming or background air are not necessarily appropriate for use directly as background for the urban stations, as they often are affected by local fluxes that do not influence the urban stations.  A more careful treatment of incoming background air is necessary for any given analysis. 
+
+
+
+ Data availability This data set of hourly-averaged observations from the Northeast Corridor tower-based network is available on the NIST data portal at data.nist.gov  under the DOI 10.18434/M32126 (Karion et al., 2019) .   Initially, the repository will contain data from 23 sites (Table 1 ) for years spanning 2015-2018; not all years are available for all sites.   Files are version-dated, and the current plan is to provide annual updates for 2019 and beyond. 
+
+
+
+ Figure 1 . 1  Figure 1.  Locations of Northeast Corridor (NEC) established tower-based observations, corresponding to Table 1.  The red rectangle indicates the modelling analysis domain.  Light grey shading indicates census-designated urban areas; yellow lines are interstate highways; black boundaries are state lines, with a thinner black line showing the City of Baltimore.  Green triangles indicate regional sites, red triangles indicate urban sites, while blue triangles are more rural or background sites surrounding the Washington/Baltimore domain.  (a) Regional map.  (b) Inset focusing on Washington, D.C., and Baltimore, Maryland.  All map data layers obtained from either Natural Earth (naturalearthdata.com) or U.S. Government sources (www.census.gov)  and are in the public domain. 
+
+
+
+     Figure 2 . 2  Figure 2. Fraction of developed land cover (from the 2011 National Land Cover Database (NLCD) (Homer et al., 2015)) within 5 km of each observation station in the urban regions of Washington, D.C. and Baltimore, MD. 
+
+
+
+     Figure 3 . 3  Figure 3. Average fraction of land cover type within 5 km of regional tower sites in the Northeast Corridor network, in order of decreasing developed land.  Several NLCD classifications have been grouped for clarity (e.g.  Developed includes Open Space, Low, Medium, and High Intensity Developed land).  SFD, TMD, and BUC are sites established to help characterize background conditions for the Washington D.C. and Baltimore urban network. 
+
+
+
+       . The sites established to characterize background conditions for the urban network in Washington, D.C. and Baltimore (SFD, TMD, BUC) are in areas with little development: SFD and TMD are both in forested regions, while BUC is near the Chesapeake Bay and large wetland areas.  The other regional sites span a range of land cover types from urban (MNY in New York City and RIC in Richmond, VA), to mostly rural and forested (DNH in Durham, NH). 
+
+
+
+   Figure 4 . 4  Figure 4. Plumbing diagram for the Earth Networks sampling system implemented at the NEC tower stations.  Figure replicated from Fig. S1 in Verhulst et al. (2017), adapted from Welp et al. (2013). 
+
+
+
+       Figure 5.  Time series of standard tank run residuals (i.e.  XDC -C) for CO2 (a,b), CH4 (c,d) and CO (e,f).  XDC is calculated using a single calibration tank (not shown) and the ratio method (Eq.  2) on the left (a,c,e) and the difference method (Eq. 3) on the right (b,d,f).  Assigned tank values are shown in the legend; one tank was not calibrated for CO so only the residuals of the high concentration tank at 315 nmol mol -1 are shown.  The residual magnitude is smaller for CO2 and CH4 using the ratio method, but the standard deviations (variability) are similar using both methods.  For CO, both the magnitude of the residual and also the standard deviation are smaller using the difference equation; the ratio equation does not properly account for the drift in the analyser at the start of the time series (May-June).  Data shown are from MSH; a measurement gap exists in July. 
+
+
+
+     https://doi.org/10.5194/essd-2019-206  started: 28 November 2019 c Author(s) 2019.  CC BY 4.0 License. 
+
+
+
+   Figure 6 . 6  Figure 6.  Example of a laboratory calibration of a CRDS analyser with five standards of different assigned CO2 mole fractions.  (a) Secondary correction of drift-corrected sensitivity using either two (red) or all five (blue) standards.  Green line at 1 indicates the assumed sensitivity when only a single standard is used.  (b) Residual of each type of fit; error bars represent 1-sigma reproducibility stated by NOAA/ESRL.  The simple single-tank drift correction results in the green circles as residuals; these residuals were used in the Verhulst et al. (2017) analysis to estimate the extrapolation uncertainty of the single-point correction.  Red x symbols are the residuals of a fit to two standards, and blue asterisks the residuals of the fit to all five standards. 
+
+
+
+       started: 28 November 2019 c Author(s) 2019.  CC BY 4.0 License.  LM<.,N = ||` *(,,-.  - 6,7 ` 
+
+
+
+   Figure 7 . 7  Figure 7. Uncertainty (1-sigma) in fit for two-point calibrations.  (a) two-point fit to drift-corrected sensitivity (SDC) (red line) with uncertainty (red shading) calculated using the uncertainty in the high standard (black circle with error bar).  Blue shading shows uncertainty calculated using a bootstrap conducted by randomly selecting sets of two standards from the laboratory test (black circles) to calculate the slope.  There is no uncertainty at 1 because the drift-corrected sensitivity is defined as equal to one at the value of the calibration standard.  (b) Uncertainty in final CO2 as a function of raw CO2; red and blue shading as in (a). 
+
+
+
+     Figure 8 . 8  Figure 8. Data (CO2 and CH4, and CO for MSH only) availability from the various NIST-EN tower sites in the Northeast Corridor network included in this data release.  Gaps represent data outages due to various failures (analyser, communications, etc.). 
+
+
+
+       Discussion started: 28 November 2019 c Author(s) 2019.  CC BY 4.0 License. 
+
+
+
+   Figure 9 . 9  Figure 9.  Diurnal cycle of vertical gradients in CO2 (a) and CH4 (b) for urban towers in the Washington/Baltimore area, averaged over 2015-2017 in winter (blue) and summer (orange), with shading indicating 1-sigma standard deviation among sites.  Some of the spread can be caused by sampling in different years at the different sites.  Sites included are: HAL, ARL, NDC, NEB, NWB, and JES.  HRD was excluded due to lack of data in this period. 
+
+
+
+     Figure 10 . 10  Figure 10.  Diurnal cycle of vertical gradients in CO2 (a) and CH4 (b) at the three background towers for the Washington / Baltimore region, in summer (orange shades) and winter (blue shades). 
+
+
+
+       correct background.  Even when the air that reaches an urban tower originates near an upwind rural site, back trajectories (from a Lagrangian Particle Dispersion Model such as STILT, for example) indicate that much of the air may originate from a higher altitude than the upwind station.  Thus the measurement at an upwind station is not necessarily representative of the proper background, or incoming, concentration, given the large concentration gradients between measurements within the planetary boundary layer and in the free troposphere near background stations with local fluxes. Mueller et al. (2018) conducted an analysis of the issues concerning background determination for this urban network, mostly concerning the large emissions of both CO2 and CH4 upwind of the region that is difficult to capture by upwind stations.   We will examine the proper background for investigating urban enhancements in the Washington DC and Baltimore, MD area further in future work. 
+
+
+
+   Figure 11 . 11  Figure 11.  Seasonal cycles from urban and rural sites in the Washington DC /Baltimore region with at least one year of observations.  Mid-afternoon (13-18 LST) daily averages are detrended using a linear fit to the annual trend at Mauna Loa (for CO2) and the global average (for CH4) (data from NOAA/ESRL) and then averaged monthly.  Rural sites include TMD, SFD, and BUC; urban sites are ARL, NDC, JES, HAL, NEB, and NWB.  Shading indicates one standard deviation of the averages from all the sites. 
+
+
+
+     Table 1 . Northeast Corridor Site List. *If a station was established prior to the beginning of the project, its established date is listed as 1/2015, the start date of the project. Data prior to this date is not part of the NIST data release. Site Code EN Site ID Location Latitude Longitude Elev. (m) 1    Intake  Measure-  Est.   Heights  ments  (mm/yyyy)   (m)      
+
+  Table 2 . Offsets (in-situ -flask) between continuous in-situ and NOAA/GMD flask measurements. CO2 offsets are reported in µmol mol -1 , CH4 and CO in nmol mol -1 . Continuous in-situ CO is only measured at MSH. The average uncertainty column for each gas indicates the 1-sigma uncertainty (summed in quadrature over flask uncertainty, in-situ uncertainty, and atmospheric variability over the hour) averaged over the flask samples. See text for discussion. 2    Site  Number of flask samples  CO2 mean offset  CO2 median offset  CO2 standard deviation of offsets  CO2 mean unc.  CH4 mean offset  CH4 median offset  CH4 standard deviation of offsets  CH4 mean unc.  CO mean offset  CO median offset  CO standard deviation of offsets  CO mean unc.   MSH  163  0.02  -0.02  0.65  0.43  -0.2  -0.2  2.3  2.1  -9.0  -8.2  5.9  6.0   LEW  315  0.01  -0.07  0.88  0.68  1.1  0.4  8.4  7.8  --  --  --  --   TMD  80  0.17  0.15  0.51  0.69  0.0  0.5  5.5  5.2  --  --  --  --   NEB  32  -0.09  0.08  0.75  1.02  -0.5  0.6  6.8  13.4  --  --  --  --   NWB  17  -0.01  0.02  0.73  0.99  -5.5  -1.7  9.8  8.3  --  --  --  --  
+
+  Certain commercial equipment, instruments, or materials are identified in this paper in order to specify the experimental procedure adequately.  Such identification is not intended to imply recommendation or endorsement by the National Institute of Standards and Technology, nor is it intended to imply that the materials or equipment identified are necessarily the best available for the purpose. 
+
+  Acknowledgements We acknowledge the Earth Networks engineering and technical team, including Uran Veseshta, Clayton Fain, Bryan Biggs, Seth Baldelli, Joe Considine, and Charlie Draper.  We also thank Tamae Wong, Kimberly Mueller, Sharon Gourdji, Subhomoy Ghosh, and Antonio Possolo (NIST) for helpful discussions. 
+
+
+
+
+
+ Data Discussions Preprint.  Discussion started: 28 November 2019 c Author(s) 2019.  CC BY 4.0 License.  Data Discussions Preprint.  Discussion started: 28 November 2019 c Author(s) 2019.  CC BY 4.0 License. 
+
+
+
+
+
+ The uncertainty in SDC leads to the estimate of the fit uncertainty, Ufit, shown in Fig. 7 (b).   To implement this uncertainty across all times and towers, we calculate it assuming a fixed nominal value of the high calibration standard of 490.50 µmol mol -1 CO2 and 2560.61 nmol mol -1 CH4.  This is based on the value of the high standard that was in residence in the Earth Networks laboratory when several of the CRDS analysers were tested and assigned two-point calibration corrections.  We use the sitespecific (instrument-specific and period-specific) slope and intercept that are applied to the data (which are static over the time period they are applied), and the value of the calibration tank, to calculate the remainder of the values required for the uncertainty analysis. 
+
+ Only one site so far, MSH, measures continuous CO, and the history of standard tanks there indicates significant uncertainty in tank value assignments with high target tank residuals and corresponding UTGT relative to errors in slope.  We have chosen not to implement the two-point calibration at this site for CO, because the range of slopes of SDC includes one, i.e. the correction is so small that the uncertainty dwarfs the correction. 
+
+ Mean absolute residuals of the two-point fit for nine laboratory calibrations analysed (7 tested at NOAA/ESRL and described in Verhulst et al. (2017) Table  S2 and two additional units at NIST) average to 0.03 µmol mol -1 for CO2 between the calibration and high standard, and larger for the test that included an even higher-concentration tank, shown in Fig.  7 at ~711 µmol mol -1 for CO2.   The fit uncertainty encompasses (at 1-sigma) this residual as well (Fig. 7(b) ).   The residuals at lower values can be explained by the uncertainty in the measurement (precision) and uncertainty in value assignment of the tanks.  For CO, only eight tests were available, with a mean residual inside the range of the calibrations of 1.1 nmol mol -1 , higher than the reported reproducibility from NOAA of 0.4 nmol mol -1 (all values are noted here at 1-sigma although they are given by NOAA at 2sigma).  This larger residual is likely caused by the lower precision of the analysers for CO but also could be caused by larger uncertainty in the tank assignments, possibly due to drift in the mole fraction of the tanks themselves.  We intend to conduct additional tests outside the two-point calibration range with additional analysers and tanks to evaluate and possibly update this uncertainty component, Ufit, as needed, and especially focus on CO if/when additional CO measurements are added to our network. 
+
+
+
+ Network observations Here we show some observations and time series of CO2 and CH4 from the NEC in-situ tower network, focusing on data coverage, vertical gradients, and observed differences between urban and rural or outer suburban sites. 
+
+
+
+ Data coverage and network expansion The NEC network is continuously growing, with sites coming online at different times.  Figure 8 shows the availability of hourly observations as the various sites have come online.  
+
+
+
+
+
+ CO2, CO, and CH4 measurements from tall towers in the NOAA Earth System Research Laboratory's Global Greenhouse Gas Reference Network: instrumentation, uncertainty analysis, and recommendations for future high-accuracy greenhouse gas monitoring efforts  A  E  Andrews    J  D  Kofler    M  E  Trudeau    J  C  Williams    D  H  Neff    K  A  Masarie    D  Y  Chao    D  R  Kitzis    P  C  Novelli    C  L  Zhao    E  J  Dlugokencky    P  M  Lang    M  J  Crotwell    M  L  Fischer    M  J  Parker    J  T  Lee    D  D  Baumann    A  R  Desai    C  O  Stanier    S  F J  De Wekker    D  E  Wolfe    J  W  Munger    P  P  Tans    10.5194/amt-7-647-2014   Atmos. Meas. Tech  7    2014    Andrews, A. E., Kofler, J. D., Trudeau, M. E., Williams, J. C., Neff, D. H., Masarie, K. A., Chao, D. Y., Kitzis, D. R., Novelli, P. C., Zhao, C. L., Dlugokencky, E. J., Lang, P. M., Crotwell, M. J., Fischer, M. L., Parker, M. J., Lee, J. T., Baumann, D. D., Desai, A. R., Stanier, C. O., De Wekker, S. F. J., Wolfe, D. E., Munger, J. W., and Tans, P. P.: CO2, CO, and CH4 measurements from tall towers in the NOAA Earth System Research Laboratory's Global Greenhouse Gas Reference Network: instrumentation, uncertainty analysis, and recommendations for future high-accuracy greenhouse gas monitoring efforts, Atmos. Meas. Tech., 7, 647-687, 10.5194/amt-7-647- 2014, 2014.   The Utah urban carbon dioxide (UUCON) and Uintah Basin greenhouse gas networks: instrumentation, data, and measurement uncertainty  R  Bares    L  Mitchell    B  Fasoli    D  R  Bowling    D  Catharine    M  Garcia    B  Eng    J  Ehleringer    J  C  Lin    10.5194/essd-11-1291-2019   Earth Syst. Sci. Data  11    2019    Bares, R., Mitchell, L., Fasoli, B., Bowling, D. R., Catharine, D., Garcia, M., Eng, B., Ehleringer, J., and Lin, J. C.: The Utah urban carbon dioxide (UUCON) and Uintah Basin greenhouse gas networks: instrumentation, data, and measurement uncertainty, Earth Syst. Sci. Data, 11, 1291-1308, 10.5194/essd-11-1291-2019, 2019.   A cost-effective method for simulating city-wide air flow and pollutant dispersion at building resolving scale  A  Berchet    K  Zink    C  Muller    D  Oettl    J  Brunner    L  Emmenegger    D  Brunner    10.1016/j.atmosenv.2017.03.030   Bureau International des Poids et Mesures: The International System of Units (SI)  Pavillon de breteuil, F-92312 Sevres Cedex, France    BIPM, BIPM  2017. 2019  158      Berchet, A., Zink, K., Muller, C., Oettl, D., Brunner, J., Emmenegger, L., and Brunner, D.: A cost-effective method for simulating city-wide air flow and pollutant dispersion at building resolving scale, Atmos. Environ., 158, 181-196, 10.1016/j.atmosenv.2017.03.030, 2017. Bureau International des Poids et Mesures: The International System of Units (SI), 9 ed., edited by: BIPM, BIPM, Pavillon de breteuil, F- 92312 Sevres Cedex, France, 2019.   High-accuracy continuous airborne measurements of greenhouse gases (CO2 and CH4) using the cavity ring-down spectroscopy (CRDS) technique  H  Chen    J  Winderlich    C  Gerbig    A  Hoefer    C  W  Rella    E  R  Crosson    A  D  Van Pelt    J  Steinbach    O  Kolle    V  Beck    B  C  Daube    E  W  Gottlieb    V  Y  Chow    G  W  Santoni    S  C  Wofsy    10.5194/amt-3-375-2010   Atmos. Meas. Tech  3    2010    Chen, H., Winderlich, J., Gerbig, C., Hoefer, A., Rella, C. W., Crosson, E. R., Van Pelt, A. D., Steinbach, J., Kolle, O., Beck, V., Daube, B. C., Gottlieb, E. W., Chow, V. Y., Santoni, G. W., and Wofsy, S. C.: High-accuracy continuous airborne measurements of greenhouse gases (CO2 and CH4) using the cavity ring-down spectroscopy (CRDS) technique, Atmos. Meas. Tech., 3, 375-386, 10.5194/amt-3- 375-2010, 2010.   Conversion of NOAA atmospheric dry air CH4 mole fractions to a gravimetrically prepared standard scale  E  J  Dlugokencky    R  C  Myers    P  M  Lang    K  A  Masarie    A  M  Crotwell    K  W  Thoning    B  D  Hall    J  W  Elkins    L  P  Steele    10.1029/2005JD006035   Journal of Geophysical Research: Atmospheres  110  2005    Dlugokencky, E. J., Myers, R. C., Lang, P. M., Masarie, K. A., Crotwell, A. M., Thoning, K. W., Hall, B. D., Elkins, J. W., and Steele, L. P.: Conversion of NOAA atmospheric dry air CH4 mole fractions to a gravimetrically prepared standard scale, Journal of Geophysical Research: Atmospheres, 110, doi:10.1029/2005JD006035, 2005.   CC BY 4.0 License. Summary  O  Edenhofer    R  P    -M    Y  Sokona    S  Kadner    J  C  Minx    S  Brunner    S  Agrawala    G  Baiocchi    I  A  Bashmakov    G  Blanco    J  Broome    T  Bruckner    M  Bustamante    L  Clarke    M  Conte Grand    F  Creutzig    X  Cruz-Núñez    S  Dhakal    N  K  Dubash    P  Eickemeier    E  Farahani    M  Fischedick    M  Fleurbaey    R  Gerlagh    L  Gómez-Echeverri    S  Gupta    J  Harnisch    K  Jiang    F  Jotzo    S  Kartha    S  Klasen    C  Kolstad    V  Krey    H  Kunreuther    O  Lucon    O  Masera    Y  Mulugetta    R  B  Norgaard    A  Patt    N  H  Ravindranath    K  Riahi    J  Roy    A  Sagar    R  Schaeffer    S  Schlömer    K  C  Seto    K  Seyboth    R  Sims    P  Smith    E  Som-Anathan    R  Stavins    C  Stechow    T  Sterner    T  Sugiyama    S  Suh    D  Ürge-Vorsatz    K  Urama    A  Venables    D  G  Victor    E  Weber    D  Zhou    J  Zou    T  Zwickel    10.5194/essd-2019-206     Climate Change 2014: Mitigation of Climate Change: Contribution of Working Group III Contribution to the IPCC Fifth Assessment Report, edited by: Intergovernmental Panel on Climate Change  Cambridge    Cambridge University Press  28 November 2019 c. 2019. 2014    Technical  Earth System Science Data Discussions Preprint  Edenhofer O., R. P.-M., Y. Sokona, S. Kadner, J.C. Minx, S. Brunner, S. Agrawala, G. Baiocchi, I.A. Bashmakov, G. Blanco, J. Broome, T. Bruckner, M. Bustamante, L. Clarke, M. Conte Grand, F. Creutzig, X. Cruz-Núñez, S. Dhakal, N.K. Dubash, P. Eickemeier, E. Farahani, M. Fischedick, M. Fleurbaey, R. Gerlagh, L. Gómez-Echeverri, S. Gupta, J. Harnisch, K. Jiang, F. Jotzo, S. Kartha, S. Klasen, C. Kolstad, V. Krey, H. Kunreuther, O. Lucon, O. Masera, Y. Mulugetta, R. B. Norgaard, A. Patt, N. H. Ravindranath, K. Riahi, J. Roy, A. Sagar, R. Schaeffer, S. Schlömer, K. C. Seto, K. Seyboth, R. Sims, P. Smith, E. Som-anathan, R. Stavins, C. von Stechow, T. Sterner, T. Sugiyama, S. Suh, D. Ürge-Vorsatz, K. Urama, A. Venables, D. G. Victor, E. Weber, D. Zhou, J. Zou, and T. Zwickel: Technical https://doi.org/10.5194/essd-2019-206 Open Access Earth System Science Data Discussions Preprint. Discussion started: 28 November 2019 c Author(s) 2019. CC BY 4.0 License. Summary, in: Climate Change 2014: Mitigation of Climate Change: Contribution of Working Group III Contribution to the IPCC Fifth Assessment Report, edited by: Intergovernmental Panel on Climate Change, Cambridge University Press, Cambridge, 2014.   Quantification of Fossil Fuel CO2 Emissions on the Building/Street Scale for a Large US City  K  R  Gurney    I  Razlivanov    Y  Song    Y  Y  Zhou    B  Benes    M  Abdul-Massih    10.1021/es3011282   Environmental Science & Technology  46    2012    Gurney, K. R., Razlivanov, I., Song, Y., Zhou, Y. Y., Benes, B., and Abdul-Massih, M.: Quantification of Fossil Fuel CO2 Emissions on the Building/Street Scale for a Large US City, Environmental Science & Technology, 46, 12194-12202, 10.1021/es3011282, 2012.   Comparison of Global Downscaled Versus Bottom-Up Fossil Fuel CO2 Emissions at the Urban Scale in Four U.S. Urban Areas  K  R  Gurney    J  Liang    D  O'keeffe    R  Patarasuk    M  Hutchins    J  Huang    P  Rao    Y  Song    10.1029/2018jd028859   Journal of Geophysical Research: Atmospheres  124    2019    Gurney, K. R., Liang, J., O'Keeffe, D., Patarasuk, R., Hutchins, M., Huang, J., Rao, P., and Song, Y.: Comparison of Global Downscaled Versus Bottom-Up Fossil Fuel CO2 Emissions at the Urban Scale in Four U.S. Urban Areas, Journal of Geophysical Research: Atmospheres, 124, 2823-2840, 10.1029/2018jd028859, 2019.   Southern California megacity CO2, CH4, and CO flux estimates using ground-and space-based remote sensing and a Lagrangian model  J  K  Hedelius    J  J  Liu    T  Oda    S  Maksyutov    C  M  Roehl    L  T  Iraci    J  R  Podolske    P  W  Hillyard    J  M  Liang    K  R  Gurney    D  Wunch    P  O  Wennberg    10.5194/acp-18-16271-2018   Atmospheric Chemistry and Physics  18    2018    Hedelius, J. K., Liu, J. J., Oda, T., Maksyutov, S., Roehl, C. M., Iraci, L. T., Podolske, J. R., Hillyard, P. W., Liang, J. M., Gurney, K. R., Wunch, D., and Wennberg, P. O.: Southern California megacity CO2, CH4, and CO flux estimates using ground-and space-based remote sensing and a Lagrangian model, Atmospheric Chemistry and Physics, 18, 16271-16291, 10.5194/acp-18-16271-2018, 2018.   Completion of the 2011 National Land Cover Database for the Conterminous United States -Representing a Decade of Land Cover Change Information  C  Homer    J  Dewitz    L  M  Yang    S  Jin    P  Danielson    G  Xian    J  Coulston    N  Herold    J  Wickham    K  Megown    10.14358/pers.81.5.345   Photogrammetric Engineering and Remote Sensing  81    2015    Homer, C., Dewitz, J., Yang, L. M., Jin, S., Danielson, P., Xian, G., Coulston, J., Herold, N., Wickham, J., and Megown, K.: Completion of the 2011 National Land Cover Database for the Conterminous United States -Representing a Decade of Land Cover Change Information, Photogrammetric Engineering and Remote Sensing, 81, 345-354, 10.14358/pers.81.5.345, 2015.   Long-term greenhouse gas measurements from aircraft  A  Karion    C  Sweeney    S  Wolter    T  Newberger    H  Chen    A  Andrews    J  Kofler    D  Neff    P  Tans    10.5194/amt-6-511-2013   Atmos. Meas. Tech  6    2013    Karion, A., Sweeney, C., Wolter, S., Newberger, T., Chen, H., Andrews, A., Kofler, J., Neff, D., and Tans, P.: Long-term greenhouse gas measurements from aircraft, Atmos. Meas. Tech., 6, 511-526, 10.5194/amt-6-511-2013, 2013.   A  Karion    J  R  Whetstone    W  Callahan    10.18434/M32126    Observations of CO2, CH4, and CO mole fractions from the NIST Northeast Corridor urban testbed  2019    Karion, A., Whetstone, J. R., and Callahan, W.: Observations of CO2, CH4, and CO mole fractions from the NIST Northeast Corridor urban testbed, https://doi.org/10.18434/M32126, 2019.   Direct and Indirect Measurements and Modeling of Methane Emissions in Indianapolis  B  K  Lamb    M  O L  Cambaliza    K  J  Davis    S  L  Edburg    T  W  Ferrara    C  Floerchinger    A  M E  Heimburger    S  Herndon    T  Lauvaux    T  Lavoie    D  R  Lyon    N  Miles    K  R  Prasad    S  Richardson    J  R  Roscioli    O  E  Salmon    P  B  Shepson    B  H  Stirm    J  Whetstone    10.1021/acs.est.6b01198   Indiana, Environmental Science & Technology  50    2016    Lamb, B. K., Cambaliza, M. O. L., Davis, K. J., Edburg, S. L., Ferrara, T. W., Floerchinger, C., Heimburger, A. M. E., Herndon, S., Lauvaux, T., Lavoie, T., Lyon, D. R., Miles, N., Prasad, K. R., Richardson, S., Roscioli, J. R., Salmon, O. E., Shepson, P. B., Stirm, B. H., and Whetstone, J.: Direct and Indirect Measurements and Modeling of Methane Emissions in Indianapolis, Indiana, Environmental Science & Technology, 50, 8910-U8530, 10.1021/acs.est.6b01198, 2016.   High-resolution atmospheric inversion of urban CO2 emissions during the dormant season of the Indianapolis Flux Experiment (INFLUX)  T  Lauvaux    N  L  Miles    A  J  Deng    S  J  Richardson    M  O  Cambaliza    K  J  Davis    B  Gaudet    K  R  Gurney    J  H  Huang    D  O'keefe    Y  Song    A  Karion    T  Oda    R  Patarasuk    I  Razlivanov    D  Sarmiento    P  Shepson    C  Sweeney    J  Turnbull    K  Wu    10.1002/2015jd024473   J. Geophys. Res.-Atmos  121    2016    Lauvaux, T., Miles, N. L., Deng, A. J., Richardson, S. J., Cambaliza, M. O., Davis, K. J., Gaudet, B., Gurney, K. R., Huang, J. H., O'Keefe, D., Song, Y., Karion, A., Oda, T., Patarasuk, R., Razlivanov, I., Sarmiento, D., Shepson, P., Sweeney, C., Turnbull, J., and Wu, K.: High-resolution atmospheric inversion of urban CO2 emissions during the dormant season of the Indianapolis Flux Experiment (INFLUX), J. Geophys. Res.-Atmos., 121, 5213-5236, 10.1002/2015jd024473, 2016.   A near-field tool for simulating the upstream influence of atmospheric observations: The Stochastic Time-Inverted Lagrangian Transport (STILT) model  J  C  Lin    C  Gerbig    S  C  Wofsy    A  E  Andrews    B  C  Daube    K  J  Davis    C  A  Grainger    10.1029/2002JD003161   Journal of Geophysical Research: Atmospheres  108  2003    Lin, J. C., Gerbig, C., Wofsy, S. C., Andrews, A. E., Daube, B. C., Davis, K. J., and Grainger, C. A.: A near-field tool for simulating the upstream influence of atmospheric observations: The Stochastic Time-Inverted Lagrangian Transport (STILT) model, Journal of Geophysical Research: Atmospheres, 108, n/a-n/a, 10.1029/2002JD003161, 2003.   Tower-based greenhouse gas measurement network design-The National Institute of Standards and Technology North East Corridor Testbed  I  Lopez-Coto    S  Ghosh    K  Prasad    J  Whetstone    10.1007/s00376-017-6094-6   Advances in Atmospheric Sciences  34    2017    Lopez-Coto, I., Ghosh, S., Prasad, K., and Whetstone, J.: Tower-based greenhouse gas measurement network design-The National Institute of Standards and Technology North East Corridor Testbed, Advances in Atmospheric Sciences, 34, 1095-1105, 10.1007/s00376-017- 6094-6, 2017.   Assessment of WRF PBL schemes in an urban region and comparison of the impact of the urban heat island  I  Lopez-Coto    M  Hicks    A  Karion    R  K  Sakai    B  Demoz    K  Prasad    J  Whetstone    2019    submitted  Lopez-Coto, I., Hicks, M., Karion, A., Sakai, R. K., Demoz, B., Prasad, K., and Whetstone, J.: Assessment of WRF PBL schemes in an urban region and comparison of the impact of the urban heat island, submitted, 2019a.   Wintertime CO2, CH4, and CO emissions estimation for the Washington DC / Baltimore metro area using an inverse modeling technique  I  Lopez-Coto    X  Ren    O  E  Salmon    A  Karion    P  Shepson    R  R  Dickerson    A  Stein    K  Prasad    J  Whetstone    2019b    in preparation  Lopez-Coto, I., Ren, X., Salmon, O. E., Karion, A., Shepson, P., Dickerson, R. R., Stein, A., Prasad, K., and Whetstone, J.: Wintertime CO2, CH4, and CO emissions estimation for the Washington DC / Baltimore metro area using an inverse modeling technique, in preparation., 2019b.   Evaluation and environmental correction of ambient CO 2 measurements from a low-cost NDIR sensor  C  R  Martin    N  Zeng    A  Karion    R  R  Dickerson    X  Ren    B  N  Turpie    K  J  Weber     Atmospheric Measurement Techniques  10  2383  2017    Martin, C. R., Zeng, N., Karion, A., Dickerson, R. R., Ren, X., Turpie, B. N., and Weber, K. J.: Evaluation and environmental correction of ambient CO 2 measurements from a low-cost NDIR sensor, Atmospheric Measurement Techniques, 10, 2383, 2017.   Methane emissions from natural gas infrastructure and use in the urban region of Boston, Massachusetts  K  Mckain    A  Down    S  M  Raciti    J  Budney    L  R  Hutyra    C  Floerchinger    S  C  Herndon    T  Nehrkorn    M  S  Zahniser    R  B  Jackson    N  Phillips    S  C  Wofsy    10.1073/pnas.1416261112   Proc. Natl. Acad. Sci. U. S. A  112    2015    McKain, K., Down, A., Raciti, S. M., Budney, J., Hutyra, L. R., Floerchinger, C., Herndon, S. C., Nehrkorn, T., Zahniser, M. S., Jackson, R. B., Phillips, N., and Wofsy, S. C.: Methane emissions from natural gas infrastructure and use in the urban region of Boston, Massachusetts, Proc. Natl. Acad. Sci. U. S. A., 112, 1941-1946, 10.1073/pnas.1416261112, 2015.   Long-term urban carbon dioxide observations reveal spatial and temporal dynamics related to urban characteristics and growth  L  E  Mitchell    J  C  Lin    D  R  Bowling    D  E  Pataki    C  Strong    A  J  Schauer    R  Bares    S  E  Bush    B  B  Stephens    D  Mendoza    D  Mallia    L  Holland    K  R  Gurney    J  R  Ehleringer    10.1073/pnas.1702393115   Proceedings of the National Academy of Sciences  115    2018    Mitchell, L. E., Lin, J. C., Bowling, D. R., Pataki, D. E., Strong, C., Schauer, A. J., Bares, R., Bush, S. E., Stephens, B. B., Mendoza, D., Mallia, D., Holland, L., Gurney, K. R., and Ehleringer, J. R.: Long-term urban carbon dioxide observations reveal spatial and temporal dynamics related to urban characteristics and growth, Proceedings of the National Academy of Sciences, 115, 2912-2917, 10.1073/pnas.1702393115, 2018.   Siting Background Towers to Characterize Incoming Air for Urban Greenhouse Gas Estimation: A Case Study in the Washington, DC/Baltimore Area  K  Mueller    V  Yadav    I  Lopez-Coto    A  Karion    S  Gourdji    C  Martin    J  Whetstone    10.1002/2017JD027364   Journal of Geophysical Research: Atmospheres  123    2018    Mueller, K., Yadav, V., Lopez-Coto, I., Karion, A., Gourdji, S., Martin, C., and Whetstone, J.: Siting Background Towers to Characterize Incoming Air for Urban Greenhouse Gas Estimation: A Case Study in the Washington, DC/Baltimore Area, Journal of Geophysical Research: Atmospheres, 123, 2910-2926, doi:10.1002/2017JD027364, 2018.   Coupled weather research and forecastingstochastic time-inverted lagrangian transport (WRF-STILT) model  T  Nehrkorn    J  Eluszkiewicz    S  C  Wofsy    J  C  Lin    C  Gerbig    M  Longo    S  Freitas    10.1007/s00703-010-0068-x   Meteorol. Atmos. Phys  107    2010    Nehrkorn, T., Eluszkiewicz, J., Wofsy, S. C., Lin, J. C., Gerbig, C., Longo, M., and Freitas, S.: Coupled weather research and forecasting- stochastic time-inverted lagrangian transport (WRF-STILT) model, Meteorol. Atmos. Phys., 107, 51-64, 10.1007/s00703-010-0068-x, 2010.   Reanalysis of tropospheric CO trends: Effects of the 1997-1998 wildfires  P  C  Novelli    K  A  Masarie    P  M  Lang    B  D  Hall    R  C  Myers    J  W  Elkins    10.1029/2002JD003031     Journal of Geophysical Research: Atmospheres  108  2003    Novelli, P. C., Masarie, K. A., Lang, P. M., Hall, B. D., Myers, R. C., and Elkins, J. W.: Reanalysis of tropospheric CO trends: Effects of the 1997-1998 wildfires, Journal of Geophysical Research: Atmospheres, 108, doi:10.1029/2002JD003031, 2003. https://doi.org/10.5194/essd-2019-206   Global demographic trends and future carbon emissions  B  C  O'neill    M  Dalton    R  Fuchs    L  Jiang    S  Pachauri    K  Zigova    10.1073/pnas.1004581107   Proceedings of the National Academy of Sciences  107    2010    O'Neill, B. C., Dalton, M., Fuchs, R., Jiang, L., Pachauri, S., and Zigova, K.: Global demographic trends and future carbon emissions, Proceedings of the National Academy of Sciences, 107, 17521-17526, 10.1073/pnas.1004581107, 2010.   An atmospheric perspective on North American carbon dioxide exchange: CarbonTracker  W  Peters    A  R  Jacobson    C  Sweeney    A  E  Andrews    T  J  Conway    K  Masarie    J  B  Miller    L  M P  Bruhwiler    G  Petron    A  I  Hirsch    D  E J  Worthy    G  R  Van Der Werf    J  T  Randerson    P  O  Wennberg    M  C  Krol    P  P  Tans    10.1073/pnas.0708986104   Proc. Natl. Acad. Sci. U. S. A  104    2007    Peters, W., Jacobson, A. R., Sweeney, C., Andrews, A. E., Conway, T. J., Masarie, K., Miller, J. B., Bruhwiler, L. M. P., Petron, G., Hirsch, A. I., Worthy, D. E. J., van der Werf, G. R., Randerson, J. T., Wennberg, P. O., Krol, M. C., and Tans, P. P.: An atmospheric perspective on North American carbon dioxide exchange: CarbonTracker, Proc. Natl. Acad. Sci. U. S. A., 104, 18925-18930, 10.1073/pnas.0708986104, 2007.   Tracking city CO2 emissions from space using a high-resolution inverse modelling approach: a case study for Berlin, Germany  D  Pillai    M  Buchwitz    C  Gerbig    T  Koch    M  Reuter    H  Bovensmann    J  Marshall    J  P  Burrows    10.5194/acp-16-9591-2016   Atmospheric Chemistry and Physics  16    2016    Pillai, D., Buchwitz, M., Gerbig, C., Koch, T., Reuter, M., Bovensmann, H., Marshall, J., and Burrows, J. P.: Tracking city CO2 emissions from space using a high-resolution inverse modelling approach: a case study for Berlin, Germany, Atmospheric Chemistry and Physics, 16, 9591-9610, 10.5194/acp-16-9591-2016, 2016.   Methane Emissions From the Baltimore-Washington Area Based on Airborne Observation: Comparison to Emissions Inventories  X  R  Ren    O  E  Salmon    J  R  Hansford    D  Ahn    D  Hall    S  E  Benish    P  R  Stratton    H  He    S  Sahu    C  Grimes    A  M F  Heimburger    C  R  Martin    M  D  Cohen    B  Stunder    R  J  Salawitch    S  H  Ehrman    P  B  Shepson    R  R  Dickerson    10.1029/2018jd028851   J. Geophys. Res.-Atmos  123    2018    Ren, X. R., Salmon, O. E., Hansford, J. R., Ahn, D., Hall, D., Benish, S. E., Stratton, P. R., He, H., Sahu, S., Grimes, C., Heimburger, A. M. F., Martin, C. R., Cohen, M. D., Stunder, B., Salawitch, R. J., Ehrman, S. H., Shepson, P. B., and Dickerson, R. R.: Methane Emissions From the Baltimore-Washington Area Based on Airborne Observation: Comparison to Emissions Inventories, J. Geophys. Res.-Atmos., 123, 8869-8882, 10.1029/2018jd028851, 2018.   Tower measurement network of in-situ CO2, CH4, and CO in support of the Indianapolis FLUX (INFLUX) Experiment  S  J  Richardson    N  L  Miles    K  J  Davis    T  Lauvaux    D  K  Martins    J  C  Turnbull    K  Mckain    C  Sweeney    M  O L  Cambaliza    10.1525/elementa.140   Elementa-Sci. Anthrop  5  14  2017    Richardson, S. J., Miles, N. L., Davis, K. J., Lauvaux, T., Martins, D. K., Turnbull, J. C., McKain, K., Sweeney, C., and Cambaliza, M. O. L.: Tower measurement network of in-situ CO2, CH4, and CO in support of the Indianapolis FLUX (INFLUX) Experiment, Elementa- Sci. Anthrop., 5, 14, 10.1525/elementa.140, 2017.   Top-Down Estimates of NOx and CO Emissions From Washington, DC-Baltimore During the WINTER Campaign  O  E  Salmon    P  B  Shepson    X  Ren    H  He    D  L  Hall    R  R  Dickerson    B  H  Stirm    S  S  Brown    D  L  Fibiger    E  E  Mcduffie    T  L  Campos    K  R  Gurney    J  A  Thornton    10.1029/2018jd028539   J. Geophys. Res.-Atmos  123    2018    Salmon, O. E., Shepson, P. B., Ren, X., He, H., Hall, D. L., Dickerson, R. R., Stirm, B. H., Brown, S. S., Fibiger, D. L., McDuffie, E. E., Campos, T. L., Gurney, K. R., and Thornton, J. A.: Top-Down Estimates of NOx and CO Emissions From Washington, DC-Baltimore During the WINTER Campaign, J. Geophys. Res.-Atmos., 123, 7705-7724, 10.1029/2018jd028539, 2018.   Evaluation of the airborne quantum cascade laser spectrometer (QCLS) measurements of the carbon and greenhouse gas suite -CO2, CH4, N2O, and CO -during the CalNex and HIPPO campaigns  G  W  Santoni    B  C  Daube    E  A  Kort    R  Jimenez    S  Park    J  V  Pittman    E  Gottlieb    B  Xiang    M  S  Zahniser    D  D  Nelson    J  B  Mcmanus    J  Peischl    T  B  Ryerson    J  S  Holloway    A  E  Andrews    C  Sweeney    B  Hall    E  J  Hintsa    F  L  Moore    J  W  Elkins    D  F  Hurst    B  B  Stephens    J  Bent    S  C  Wofsy    10.5194/amt-7-1509-2014   Atmos. Meas. Tech  7    2014    Santoni, G. W., Daube, B. C., Kort, E. A., Jimenez, R., Park, S., Pittman, J. V., Gottlieb, E., Xiang, B., Zahniser, M. S., Nelson, D. D., McManus, J. B., Peischl, J., Ryerson, T. B., Holloway, J. S., Andrews, A. E., Sweeney, C., Hall, B., Hintsa, E. J., Moore, F. L., Elkins, J. W., Hurst, D. F., Stephens, B. B., Bent, J., and Wofsy, S. C.: Evaluation of the airborne quantum cascade laser spectrometer (QCLS) measurements of the carbon and greenhouse gas suite -CO2, CH4, N2O, and CO -during the CalNex and HIPPO campaigns, Atmos. Meas. Tech., 7, 1509-1526, 10.5194/amt-7-1509-2014, 2014.   Anthropogenic and biogenic CO<sub>2</sub> fluxes in the Boston urban region  M  Sargent    Y  Barrera    T  Nehrkorn    L  R  Hutyra    C  K  Gately    T  Jones    K  Mckain    C  Sweeney    J  Hegarty    B  Hardiman    J  A  Wang    S  C  Wofsy    10.1073/pnas.1803715115   Proceedings of the National Academy of Sciences  115    2018    Sargent, M., Barrera, Y., Nehrkorn, T., Hutyra, L. R., Gately, C. K., Jones, T., McKain, K., Sweeney, C., Hegarty, J., Hardiman, B., Wang, J. A., and Wofsy, S. C.: Anthropogenic and biogenic CO<sub>2</sub> fluxes in the Boston urban region, Proceedings of the National Academy of Sciences, 115, 7491-7496, 10.1073/pnas.1803715115, 2018.   NOAA's Hysplit Atmospheric Transport and Dispersion Modeling System  A  F  Stein    R  R  Draxler    G  D  Rolph    B  J B  Stunder    M  D  Cohen    F  Ngan    10.1175/Bams-D-14-00110.1   Bull. Amer. Meteorol. Soc  96    2015    Stein, A. F., Draxler, R. R., Rolph, G. D., Stunder, B. J. B., Cohen, M. D., and Ngan, F.: NOAA's Hysplit Atmospheric Transport and Dispersion Modeling System, Bull. Amer. Meteorol. Soc., 96, 2059-2077, 10.1175/Bams-D-14-00110.1, 2015.   Seasonal climatology of CO2 across North America from aircraft measurements in the NOAA/ESRL Global Greenhouse Gas Reference Network  C  Sweeney    A  Karion    S  Wolter    T  Newberger    D  Guenther    J  A  Higgs    A  E  Andrews    P  M  Lang    D  Neff    E  Dlugokencky     Journal of Geophysical Research: Atmospheres  120    2015    Sweeney, C., Karion, A., Wolter, S., Newberger, T., Guenther, D., Higgs, J. A., Andrews, A. E., Lang, P. M., Neff, D., and Dlugokencky, E.: Seasonal climatology of CO2 across North America from aircraft measurements in the NOAA/ESRL Global Greenhouse Gas Reference Network, Journal of Geophysical Research: Atmospheres, 120, 5155-5190, 2015.   An integrated flask sample collection system for greenhouse gas measurements  J  Turnbull    D  Guenther    A  Karion    C  Sweeney    E  Anderson    A  Andrews    J  Kofler    N  Miles    T  Newberger    S  Richardson    P  Tans    10.5194/amt-5-2321-2012   Atmos. Meas. Tech  5    2012    Turnbull, J., Guenther, D., Karion, A., Sweeney, C., Anderson, E., Andrews, A., Kofler, J., Miles, N., Newberger, T., Richardson, S., and Tans, P.: An integrated flask sample collection system for greenhouse gas measurements, Atmos. Meas. Tech., 5, 2321-2327, 10.5194/amt-5-2321-2012, 2012.   Synthesis of Urban CO2 Emission Estimates from Multiple Methods from the Indianapolis Flux Project (INFLUX)  J  C  Turnbull    A  Karion    K  J  Davis    T  Lauvaux    N  L  Miles    S  J  Richardson    C  Sweeney    K  Mckain    S  J  Lehman    K  R  Gurney    R  Patarasuk    J  Liang    P  B  Shepson    A  Heimburger    R  Harvey    J  Whetstone    10.1021/acs.est.8b05552   Environmental Science & Technology  53    2019    Turnbull, J. C., Karion, A., Davis, K. J., Lauvaux, T., Miles, N. L., Richardson, S. J., Sweeney, C., McKain, K., Lehman, S. J., Gurney, K. R., Patarasuk, R., Liang, J., Shepson, P. B., Heimburger, A., Harvey, R., and Whetstone, J.: Synthesis of Urban CO2 Emission Estimates from Multiple Methods from the Indianapolis Flux Project (INFLUX), Environmental Science & Technology, 53, 287-295, 10.1021/acs.est.8b05552, 2019.   Carbon dioxide and methane measurements from the Los Angeles Megacity Carbon Project -Part 1: calibration, urban enhancements, and uncertainty estimates  K  R  Verhulst    A  Karion    J  Kim    P  K  Salameh    R  F  Keeling    S  Newman    J  Miller    C  Sloop    T  Pongetti    P  Rao    C  Wong    F  M  Hopkins    V  Yadav    R  F  Weiss    R  M  Duren    C  E  Miller    10.5194/acp-17-8313-2017   Atmos. Chem. Phys  17    2017    Verhulst, K. R., Karion, A., Kim, J., Salameh, P. K., Keeling, R. F., Newman, S., Miller, J., Sloop, C., Pongetti, T., Rao, P., Wong, C., Hopkins, F. M., Yadav, V., Weiss, R. F., Duren, R. M., and Miller, C. E.: Carbon dioxide and methane measurements from the Los Angeles Megacity Carbon Project -Part 1: calibration, urban enhancements, and uncertainty estimates, Atmos. Chem. Phys., 17, 8313- 8341, 10.5194/acp-17-8313-2017, 2017.   Estimating vehicle carbon dioxide emissions from Boulder, Colorado, using horizontal path-integrated column measurements  E  M  Waxman    K  C  Cossel    F  Giorgetta    G  W  Truong    W  C  Swann    I  Coddington    N  R  Newbury    10.5194/acp-19-4177-2019   Atmospheric Chemistry and Physics  19    2019    Waxman, E. M., Cossel, K. C., Giorgetta, F., Truong, G. W., Swann, W. C., Coddington, I., and Newbury, N. R.: Estimating vehicle carbon dioxide emissions from Boulder, Colorado, using horizontal path-integrated column measurements, Atmospheric Chemistry and Physics, 19, 4177-4192, 10.5194/acp-19-4177-2019, 2019.   Design and performance of a Nafion dryer for continuous operation at CO2 and CH4 air monitoring sites  L  R  Welp    R  F  Keeling    R  F  Weiss    W  Paplawsky    S  Heckman    10.5194/amt-6-1217-2013   Atmos. Meas. Tech  6    2013    Welp, L. R., Keeling, R. F., Weiss, R. F., Paplawsky, W., and Heckman, S.: Design and performance of a Nafion dryer for continuous operation at CO2 and CH4 air monitoring sites, Atmos. Meas. Tech., 6, 1217-1226, 10.5194/amt-6-1217-2013, 2013.   No. 242   WMO: 19th WMO/IAEA Meeting on Carbon Dioxide, Other Greenhouse Gases and Related Measurement Techniques (GGMT-2017  2018    Report  WMO: 19th WMO/IAEA Meeting on Carbon Dioxide, Other Greenhouse Gases and Related Measurement Techniques (GGMT-2017), WMO / GAW Report No. 242, 2018.   Monthly trends of methane emissions in Los Angeles from 2011 to 2015 inferred by CLARS-FTS observations  C  K  Wong    T  J  Pongetti    T  Oda    P  Rao    K  R  Gurney    S  Newman    R  M  Duren    C  E  Miller    Y  L  Yung    S  P  Sander    10.5194/acp-16-13121-2016   Atmospheric Chemistry and Physics  16    2016    Wong, C. K., Pongetti, T. J., Oda, T., Rao, P., Gurney, K. R., Newman, S., Duren, R. M., Miller, C. E., Yung, Y. L., and Sander, S. P.: Monthly trends of methane emissions in Los Angeles from 2011 to 2015 inferred by CLARS-FTS observations, Atmospheric Chemistry and Physics, 16, 13121-13130, 10.5194/acp-16-13121-2016, 2016.   Diurnal, synoptic and seasonal variability of atmospheric CO2 in the Paris megacity area  I  Xueref-Remy    E  Dieudonne    C  Vuillemin    M  Lopez    C  Lac    M  Schmidt    M  Delmotte    F  Chevallier    F  Ravetta    O  Perrussel    P  Ciais    F  M  Breon    G  Broquet    M  Ramonet    T  G  Spain    C  Ampe    10.5194/acp-18-3335-2018     Atmospheric Chemistry and Physics  18    2018. 28 November 2019    Science Data Discussions Preprint  c Author(s) 2019. CC BY 4.0 License  Xueref-Remy, I., Dieudonne, E., Vuillemin, C., Lopez, M., Lac, C., Schmidt, M., Delmotte, M., Chevallier, F., Ravetta, F., Perrussel, O., Ciais, P., Breon, F. M., Broquet, G., Ramonet, M., Spain, T. G., and Ampe, C.: Diurnal, synoptic and seasonal variability of atmospheric CO2 in the Paris megacity area, Atmospheric Chemistry and Physics, 18, 3335-3362, 10.5194/acp-18-3335-2018, 2018. https://doi.org/10.5194/essd-2019-206 Open Access Earth System Science Data Discussions Preprint. Discussion started: 28 November 2019 c Author(s) 2019. CC BY 4.0 License.   Spatio-temporally Resolved Methane Fluxes From the Los Angeles Megacity  V  Yadav    R  Duren    K  Mueller    K  R  Verhulst    T  Nehrkorn    J  Kim    R  F  Weiss    R  Keeling    S  Sander    M  L  Fischer    S  Newman    M  Falk    T  Kuwayama    F  Hopkins    T  Rafiq    J  Whetstone    C  Miller    10.1029/2018jd030062  2019. 770   Journal of Geophysical Research: Atmospheres  124      Yadav, V., Duren, R., Mueller, K., Verhulst, K. R., Nehrkorn, T., Kim, J., Weiss, R. F., Keeling, R., Sander, S., Fischer, M. L., Newman, S., Falk, M., Kuwayama, T., Hopkins, F., Rafiq, T., Whetstone, J., and Miller, C.: Spatio-temporally Resolved Methane Fluxes From the Los Angeles Megacity, Journal of Geophysical Research: Atmospheres, 124, 5131-5148, 10.1029/2018jd030062, 2019. 770   A high precision manometric system for absolute calibrations of CO2 in dry air  C  L  Zhao    P  P  Tans    K  W  Thoning    10.1029/96JD03764     Journal of Geophysical Research: Atmospheres  102    1997    Zhao, C. L., Tans, P. P., and Thoning, K. W.: A high precision manometric system for absolute calibrations of CO2 in dry air, Journal of Geophysical Research: Atmospheres, 102, 5885-5894, doi:10.1029/96JD03764, 1997. https://doi.org/10.5194/essd-2019-206 Open Access Earth System Science   
+
+     

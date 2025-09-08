@@ -1,1377 +1,174 @@
-https://doi.org/10.1007/s12559-020-09751-3
-Social Group Optimization–Assisted Kapur’s Entropy
-and Morphological Segmentation for Automated Detection
-of COVID-19 Infection from Computed Tomography Images
-Nilanjan Dey1 · V. Rajinikanth2 · Simon James Fong3,4 · M. Shamim Kaiser5 · Mufti Mahmud6
-Received: 1 May 2020 / Accepted: 29 June 2020
-© The Author(s) 2020
-Abstract
-The coronavirus disease (COVID-19) caused by a novel coronavirus, SARS-CoV-2, has been declared a global pandemic.
-Due to its infection rate and severity, it has emerged as one of the major global threats of the current generation. To
-support the current combat against the disease, this research aims to propose a machine learning–based pipeline to detect
-COVID-19 infection using lung computed tomography scan images (CTI). This implemented pipeline consists of a number
-of sub-procedures ranging from segmenting the COVID-19 infection to classifying the segmented regions. The initial
-part of the pipeline implements the segmentation of the COVID-19–affected CTI using social group optimization–based
-Kapur’s entropy thresholding, followed by k-means clustering and morphology-based segmentation. The next part of the
-pipeline implements feature extraction, selection, and fusion to classify the infection. Principle component analysis–based
-serial fusion technique is used in fusing the features and the fused feature vector is then employed to train, test, and
-validate four different classifiers namely Random Forest, K-Nearest Neighbors (KNN), Support Vector Machine with Radial
-Basis Function, and Decision Tree. Experimental results using benchmark datasets show a high accuracy (> 91%) for the
-morphology-based segmentation task; for the classification task, the KNN offers the highest accuracy among the compared
-classifiers (> 87%). However, this should be noted that this method still awaits clinical validation, and therefore should not
-be used to clinically diagnose ongoing COVID-19 infection.
-Keywords COVID-19 infection · CT scan image · Fused feature vector · KNN classifier · Segmentation and detection
-accuracy
-Introduction
-Lung infection caused by coronavirus disease (COVID-19)
-has emerged as one of the major diseases and has affected
-over 8.2 million of the population globally1, irrespective of
-their race, gender, and age. The infection and the morbidity
-rates caused by this novel coronavirus are increasing rapidly
-[1, 2]. Due to its severity and progression rate, the recent
-report of the World Health Organization (WHO) declared
-1https://www.worldometers.info/coronavirus/, as of June 17, 2020
- Nilanjan Dey
-neelanjan.dey@gmail.com
- Mufti Mahmud
-Mufti.Mahmud@ntu.ac.uk; muftimahmud@gmail.com
-Extended author information available on the last page of the article.
-it as pandemic [3]. Even though an extensive number
-of precautionary schemes have been implemented, the
-occurrence rate of COVID-19 infection is rising rapidly due
-to various circumstances.
-The origin of COVID-19 is due to a virus called
-severe acute respiratory syndrome-coronavirus-2 (SARS-
-CoV-2) and this syndrome initially started in Wuhan,
-China, in December 2019 [4]. The outbreak of COVID-19
-has appeared as a worldwide problem and a considerable
-amount of research works are already in progress to
-determine solutions to manage the disease infection rate and
-spread. Furthermore, the recently proposed research works
-on (i) COVID-19 infection detection [5–8], (ii) handling
-of the infection [9, 10], and (iii) COVID-19 progression
-and prediction [11–13] have helped get more information
-regarding the disease.
-The former research and the medical findings discovered
-that COVID-19 initiates disease in the human respiratory
-tract and builds severe acute pneumonia. The existing
-/ Published online: 15 August 2020
-Cognitive Computation (2020) 12:1011–1023
-research also confirmed that the premature indications of
-COVID-19 are subclinical and it necessitates a committed
-medical practice to notice and authenticate the illness. The
-frequent medical-grade analysis engages in a collection
-of samples from infected persons and sample supported
-examination and confirmation of COVID-19 using reverse
-transcription-polymerase chain reaction (RT-PCR) test
-and image-guided assessment employing lung computed
-tomography scan images (CTI), and the chest X-ray [14–
-17]. When the patient is admitted with COVID-19 infection,
-the doctor will initiate the treatment process to cure the
-patient using the prearranged treatment practice which will
-decrease the impact of pneumonia.
-Usually, experts recommend a chain of investigative tests
-to identify the cause, position, and harshness of pneumonia.
-The preliminary examinations, such as blood tests and
-pleural-fluid assessment, are performed clinically to detect
-the severity of the infection [18–20]. The image-assisted
-methods are also frequently implemented to sketch the
-disease in the lung, which can be additionally examined
-by an expert physician or a computerized arrangement
-to recognize the severity of the pneumonia. Compared
-with chest X-ray, CTI is frequently considered due to its
-advantage and the 3-D view. The research work published
-on COVID-19 also confirmed the benefit of CT in detecting
-the disease in the respiratory tract and pneumonia [21–23].
-Recently, more COVID-19 detection methods have been
-proposed for the progression stage identification of COVID-
-19 using the RT-PCR and imaging methods. Most of
-these existing works combined RT-PCR with the imaging
-procedure to confirm and treat the disease. The recent work
-of Rajinikanth et al. [8] developed a computer-supported
-method to assess the COVID-19 lesion using lung CTI. This
-work implemented few operator-assisted steps to achieve
-superior outcomes during the COVID-19 evaluation.
-ML approaches are well-known for their capabilities in
-recognizing patterns in data. In recent years, ML has been
-applied to a variety of tasks including biological data mining
-[24, 25], medical image analysis [26], financial forecasting
-[27], trust management [28], anomaly detection [29, 30],
-disease detection [31, 32], natural language processing [33],
-and strategic game playing [34].
-The presented work aims to:
-–
-Propose a ML-driven pipeline to extract and detect the
-COVID-19 infection from lung CTI with an improved
-accuracy.
-–
-Develop a procedural sequence for an automated extrac-
-tion of the COVID-19 infection from a benchmark lung
-CTI dataset.
-–
-Put forward an appropriate sequence of techniques,
-tri-level thresholding using social group optimiza-
-tion (SGO)-based Kapur’s entropy (KE) or SGO-
-KE, K-Means Clustering (KMC)-based separation,
-morphology-based segmentation to accurately extract
-COVID-19 infection from lung CTI.
-A comparison of the extracted COVID-19 infection
-information from the CTI using the proposed pipeline with
-the ground truth (GT) images confirms the segmentation
-accuracy of the proposed method. The proposed pipeline
-achieves mean segmentation and classification accuracy of
-more than 91% and 87% respectively using 78 images from
-a benchmark dataset.
-This research is arranged as follows; Section “Motivation”
-presents the motivation, Section “Methodology” represents
-the methodological details of the proposed scheme.
-Section “Results and Discussion” outlines the attained
-results and discussions. Section “Conclusion” depicts the
-conclusion of the present research work.
-Motivation
-The proposed research work is motivated by the former
-image examination works existing in literature [35–38].
-During the mass disease screening operation, the existing
-medical data amount will gradually increase and reduce the
-data burden; it is essential to employ an image segregation
-system to categorize the existing medical data into two or
-multi-class, and to assign the priority during the treatment
-implementation. The recent works in the literature confirm
-that the feature-fusion–based methods will improve the
-classification accuracy without employing the complex
-methodologies [39–41]. Classification task implemented
-using the features of the original image and the region-
-of-interest (ROI) offered superior result on some image
-classification problems and this procedure is recommended
-when the similarity between the normal and the disease
-class images is more [24, 26, 31, 42, 43]. Hence, for the
-identical images, it is necessary to employ a segmentation
-technique to extract the ROI from the disease class image
-with better accuracy [26]. Finally, the fused features of
-the actual image and the ROI are fused to attain enhanced
-classification accuracy.
-Methodology
-This section of the work presents the methodological details
-of the proposed scheme. Like the former approaches, this
-work also implemented two different phases to improve the
-detection accuracy.
-1012
-Cogn Comput (2020) 12:1011–1023
-Proposed Pipeline
-This work consists of the following two stages as depicted
-in Fig. 1. These are:
-–
-Implementation of an image segmentation method to
-extract the COVID-19 infection,
-–
-Execution of a ML scheme to classify the considered
-lung CTI database into normal/COVID-19 class.
-The details of these two stages are given below:
-Stage 1: Figure 2 depicts the image processing system
-proposed to extract the pneumonia infection in the lung due
-to COVID-19. Initially, the required 2D slices of the lung
-CTI are collected from an open-source database [44]. All the
-collected images are resized into 256 × 256 × 1 pixels and
-the normalized images are then considered for evaluation.
-In this work, SGO-KE–based tri-level threshold is initially
-applied to enhance the lung section (see “Social Group
-Optimization and Kapur’s Function” for details). Then,
-KMC is employed to segregate the thresholded image into
-background, artifact, and the lung segment. The unwanted
-lung sections are then removed using a morphological
-segmentation procedure and the extracted binary image of
-the lung is then compared with its related GT provided in
-the database. Finally, the essential performance measures
-are computed and based on which the performance of the
-proposed COVID-19 system is validated.
-Stage 2: Figure 3 presents the proposed ML scheme to
-separate the considered lung CTI into normal/COVID-19
-class. This system is constructed using two different images,
-such as (i) the original test image (normal/COVID-19 class)
-and (ii) the binary form of the COVID-19 section. The
-Feature 
-Fusion
-Feature 
-extraction
-Classifier
-COVID-19
-positive
-COVID-19
-negative
-Feature extractor
-Lung CT Image
-Feature selection
-Morphological segmentation
-COVID-19 detection
-SGO-KE thresholding
-Lung CT Image
-Stage 1
-Stage 2
-K-means clustering
-Fig. 1 The number of image processing stages implemented in the
-proposed work
-various procedures existing in the proposed ML scheme are
-depicted in Fig. 3.
-Segmentation of COVID-19 Infection
-This procedure is implemented only for the CTI associated
-with the COVID-19 pneumonia infection. The complete
-details on various stages involved in this process are
-depicted in Fig. 1. The series of procedures implemented in
-this figure are used to extract the COVID-19 infection from
-the chosen test image with better accuracy. The pseudo-code
-of the implemented procedure is depicted in Algorithm 1.
-Image Thresholding Initially, the enhancement of the
-infected pneumonia section is achieved by implementing
-a tri-level threshold based on SGO and the KE. In this
-operation, the role of the SGO is to randomly adjust
-the threshold value of the chosen image until KE is
-maximized. The threshold which offered the maximized KE
-is considered as the finest threshold. The related information
-on the SGO-KE implemented in this work can be found in
-[45]. The SGO parameters discussed in Dey et al. [46] are
-1013
-Cogn Comput (2020) 12:1011–1023
-2D CT Scan slice
-(256X256X1)
-Social group
-optimization
-Morphological 
-segmentation
-Kapur’s entropy 
-thresholding
-K-mean 
-clustering
-Ground truth
-Ground Truth
-Images
-Performance analysis
-and validation 
-Fig. 2 Image segmentation framework to extract COVID-19 infection
-from 2D lung CT scan image
-considered in the proposed work to threshold the considered
-CTI.
-Social Group Optimization and Kapur’s Function SGO is a
-heuristic technique proposed by Satapathy and Naik [47]
-by mimicking the knowledge sharing concepts in humans.
-This algorithm employs two phases, such as (i) enhancing
-phase to coordinate the arrangement of people (agents) in a
-group, and the (ii) knowledge gaining phase: which allows
-the agents to notice the finest solution based on the task. In
-this paper, an agent is considered a social population who is
-generated based on the features/parameters.
-The mathematical description of the SGO is defined
-as: let XI denote the original knowledge of agents of a
-group with dimension I = 1, 2, ..., N. If the number of
-variables to be optimized is represented as D, then the initial
-knowledge can be expressed as XI = (xI1, xI2,... xID). For
-a chosen problem, the objective function can be defined as
-FJ , with J = 1, 2, ..., N.
-The updated function in SGO is;
-XnewI,J = XoldI,J ζ + R(gbestJ −XoldI,J )
-(1)
-where Xnewi,j is the original knowledge, Xoldi,j is the
-updated knowledge, ζ denotes self-introspection parameter
-(assigned as 0.2), R is the random number [0,1], and gbestj
-is the global best knowledge.
-In this work, the SGO is employed to find the optimal
-threshold by maximizing the KE value and this operation is
-defined below:
-Entropy in an image is the measure of its irregularity and
-for a considered image, Kapur’s thresholding can be used
-to identify the optimal threshold by maximizing its entropy
-value.
-Let T h = [t1, t2, ..., tn−1] denote the threshold vector
-of the chosen image of a fixed dimension and assume this
-image has L gray levels (0 to L −1) with a total pixel value
-of Z. Iff () represents the frequency of j-th intensity level,
-then the pixel distribution of the image will be:
-Z = f (0) + f (1) + ... + f (L −1).
-(2)
-If the probability of j-th intensity level is given by:
-Pj = f (j)/Z.
-(3)
-Then, during the threshold selection, the pixels of image
-are separated into T h + 1 groups according to the assigned
-threshold value. After disconnection of the images as per the
-selected threshold, the entropy of each cluster is separately
-computed and combined to get the final entropy as follows:
-The KE to be maximized is given by Eq. 14:
-KEmax = FKE(T h) =
-n
-
-i=1
-GC
-i .
-(4)
-For a tri-level thresholding problem, the expression will be
-given by Eq. 5:
-f (t1, t2, t3) =
-3
-
-i=1
-GC
-i .
-(5)
-where Gi is the entropy given by:
-GC
-1 =
-t1
-
-j=1
-P C
-j
-wC
-0
-ln
-
-P C
-j
-wC
-0
-
-,
-(6)
-GC
-2 =
-t2
-
-j=t1
-P C
-j
-wC
-1
-ln
-
-P C
-j
-wC
-1
-
-,
-(7)
-GC
-3 =
-t3
-
-j=t2
-P C
-j
-wC
-2
-ln
-
-P C
-j
-wC
-2
-
-,
-(8)
-where,
-P C
-j is the probability distribution for intensity, C is the
-image class (C = 1 for the grayscale image), and wC
-i−1 is
-the probability occurrence.
-During the tri-level thresholding, a chosen approach is
-employed to find the FKE(T h) by randomly varying the
-thresholds (T h = {t1, t2, t3} ). In this research, the SGO is
-employed to adjust the thresholds to find the FKE(T h).
-Segmentation Based on KMC and Morphological Process
-The COVID-19 infection from the enhanced CTI is then
-separated using the KMC technique and this approach helps
-segregate the image into various regions [48]. In this work,
-the enhanced image is separated into three sections, such
-as the background, normal image section, and the COVID-
-infection. The essential information on KMC and the
-morphology-based segmentation can be found in [49]. The
-extracted COVID-19 is associated with the artifacts; hence,
-morphological enhancement and segmentation discussed
-in [49, 50] are implemented to extract the pneumonia
-infection, with better accuracy.
-1014
-Cogn Comput (2020) 12:1011–1023
-Fig. 3 Proposed ML scheme to
-detect COVID-19 infection
-CWT
-DWT
-EWT
-Dominant feature selection based on statistical test
-Lung CT Image 
-Feature Vector 1
-(FV1)
-GLCM
-Hu Moments
-Extracted COVID-19 Section
-Fused Feature Vector
-(FFV)
-Classifier
-Feature Chosen
-Feature Chosen
-COVID-19
-positive
-COVID-19
-negative
-Feature Vector 2
-(FV2)
-KMC helps split u-observations into K-groups. For a
-given set of observations with dimension “d,” KMC will try
-to split them into K-groups; Q(Q1, Q2, ..., QK) for (K ≤
-u) to shrink the within-cluster sum of squares as depicted
-by Eq. 9:
-arg min
-Q
-K
-
-i=1
-||Oi −μi||2 = arg min
-Q
-K
-
-i=1
-|Qi|V ar(Qi)
-(9)
-where O is the number of observations, Q is the number
-of splits, and μj is the mean of points in Qi.
-Performance Computation The outcome of the morpholog-
-ical segmentation is in the form of binary and this binary
-image is then compared against the binary form of the GT
-and then the essential performance measures, such as accu-
-racy, precision, sensitivity, specificity, and F1-score, are
-computed. A similar procedure is implemented on all the
-78 images existing in the benchmark COVID-19 database
-and the mean values of these measures are then consid-
-ered to confirm the segmentation accuracy of the proposed
-technique. The essential information on these measures is
-clearly presented in [51, 52].
-Implementation of Machine Learning Scheme
-The ML procedure implemented in this research is briefed
-in this section. This scheme implements a series of
-procedures on the original CTI (normal/COVID-19 class)
-and the segmented binary form of the COVID-19 infection
-as depicted in Fig. 2. The main objective of this ML
-scheme is to segregate the considered CTI database into
-normal/COVID-19 class images. The process is shown in
-algorithm 2.
-Initial Processing This initial processing of the considered
-image dataset is individually executed for the test image and
-the segmented COVID-19 infection. The initial processing
-involves extracting the image features using a chosen
-methodology and formation of a one-dimensional FV using
-the chosen dominant features.
-Feature Vector 1 (FV1): The accuracy of disease detection
-using the ML technique depends mainly on the considered
-1015
-Cogn Comput (2020) 12:1011–1023
-image information. In the literature, a number of image
-feature extraction procedures are discussed to examine a
-class of medical images [35–37, 39–42]. In this work, the
-well-known image feature extraction methods, such as
-Complex-Wavelet-Transform
-(CWT)
-and
-Discrete-
-Wavelet-Transform (DWT) as well as Empirical-Wavelet-
-Transform (EWT) are considered in 2-D domain to extract
-the features of the normal/COVID-19 class grayscale
-images. The information on the CWT, DWT, and EWT are
-clearly discussed in the earlier works [52]. After extracting
-the essential features using these methods, a statistical eval-
-uation and Student’s t test–based validation is implemented
-to select the dominant features to create the essential FVs,
-such as FVCWT (34 features), FVDWT (32 features), and
-FVEWT (3 features) which are considered to get the prin-
-ciple FV1 set (FV1=69 features) by sorting and arranging
-these features based on its p value and t value. The feature
-selection process and FV1 creation are implemented as
-discussed in [52].
-–
-CWT: This function was derived from the Fourier
-transform and is represented using complex-valued
-scaling function and complex-valued wavelet as defined
-below;
-ψC(t) = ψR(t) + ψI(t)
-(10)
-where ψC(t), ψR(t), and ψI(t) represent the complex,
-real, and image parts respectively.
-–
-DWT: This approach evaluates the non-stationary
-information. When a wavelet has the function ψ(t) ∈
-W 2(r), then its DWT (denoted by DWT (a, b)) can be
-written as:
-DWT (a, b) =
-1
-√
-2a
- ∞
-−∞
-x(t)ψ∗
-t −b2a
-2a
-
-dt
-(11)
-where ψ(t) is the principle wavelet, the symbol
-∗denotes the complex conjugate, a and b (a, b ∈
-R) are scaling parameters of dilation and transition
-respectively.
-–
-EWT: The Fourier spectrum of EWT of range 0 to π
-is segmented into M regions. Each limit is denoted as
-ωm (where m = 1, 2, ..., M) in which the starting limit
-is ω0 = 0 and final limit is ωM = π. The translation
-phase Tm centered around ωm has a width of 2m where
-m = λωm for 0 < λ < 1. Other information on EWT
-can be found in [53].
-Feature Vector 2 (FV2): The essential information from the
-binary form of COVID-19 infection image is extracted using
-the feature extraction procedure discussed in Bhandary et al.
-[35] and this work helped get the essential binary features
-using the Haralick and Hu technique. This method helps
-get 27 numbers of features (FHaralick = 18 features and
-FHu = 9 features) and the combination of these features
-helped get the 1D FV2 (FV2 = 27 features).
-–
-Haralick features: Haralick features are computed using
-a Gray Level Co-occurrence Matrix (GLCM). GLCM
-is a matrix, in which the total rows and columns depend
-on the gray levels (G) of the image. In this, the matrix
-component P (i, j|x, y) is the virtual frequency
-alienated by a pixel space (x, y). If μx and μy
-represent the mean and σx and σy represent the standard
-deviation of Px and Py, then:
-μx =
-G−1
-
-i=0
-iPx(i),
-μy =
-G−1
-
-j=0
-jPy(j),
-σx =
-G−1
-
-i=0
-(Px(i) −μx(i))
-σy =
-G−1
-
-j=0
-(Py(j) −μy(j)).
-(12)
-where Px(i) and Py(j) matrix components during
-the i-th and j-th entries, respectively.
-These parameters can be used to extract the
-essential texture and shape features from the considered
-grayscale image.
-–
-Hu moments: For a two-dimensional (2D) image, the
-2D (i + j)-th order moments can be defined as;
-Mij =
- ∞
-−∞
- ∞
-−∞
-xiyjf (x, y)dxdy
-(13)
-for i, j = 0, 1, 2,... If the image function f (x, y) is
-a piecewise continuous value, then the moments of all
-order exist and the moment sequence Mij is uniquely
-determined. Other information on Hu moments can be
-found in [35].
-Fused Feature Vector (FFV:) In this work, the original test
-image helped get the FV1 and the binary form of the
-COVID-19 helps get the FV2. To implement a classifier, it
-is essential to have a single feature vector with a pre-defined
-dimension.
-In this work, the FFV based on the principle component
-analysis (PCA) is implemented to attain a 1D FFV (69 +
-27 = 96 features) by combining the FV1 and FV2, and this
-feature set is then considered to train, test, and validate the
-classifier system implemented in this study. The complete
-information on the feature fusion based on the serial fusion
-can be found in [35, 54].
-1016
-Cogn Comput (2020) 12:1011–1023
-Classiﬁcation Classification is one of the essential parts
-in a verity of ML and deep learning (DL) techniques
-implemented to examine a class of medical datasets. The
-role of the classifier is to segregate the considered medical
-database into two-class and multi-class information using
-the chosen classifier system. In the proposed work, the
-classifiers, such as Random-Forest (RF), Support Vector
-Machine-Radial Basis Function (SVM-RBF), K-Nearest
-Neighbors (KNN), and Decision Tree (DT), are considered.
-The essential information on the implemented classifier
-units can be found in [35, 36, 45, 52]. A fivefold cross-
-validation is implemented and the best result among the trial
-is chosen as the final classification result.
-Validation From the literature, it can be noted that the
-performance of the ML and DL-based data analysis is nor-
-mally confirmed by computing the essential performance
-measures [35, 36]. In this work, the common performance
-measures, such as accuracy (4), precision (15), sensitivity
-(16), specificity (17), F1-score (18), and negative predictive
-value (NPV) (19) computed.
-The mathematical expression for these values is as
-follows:
-Accuracy =
-(TP + TN)
-(TP + TN + FP + FN)
-(14)
-Precision =
-TP
-(TP + FP )
-(15)
-Sensitivity =
-TP
-(TP + FN)
-(16)
-Specificity =
-TN
-(TN + FP )
-(17)
-F1-Score =
-2TP
-(2TP + FN + FP )
-(18)
-NPV =
-TN
-(TN + FN)
-(19)
-where TP = true positive, TN= true negative, FP = false
-positive, and FN=false negative.
-COVID-19 Dataset
-The clinical-level diagnosis of the COVID-19 pneumonia
-infection is normally assessed using the imaging procedure.
-In this research, the lung CTI are considered for the
-examination and these images are resized into 256×256×1
-pixels to reduce the computation complexity. This work
-considered 400 grayscale lung CTI (200 normal and 200
-COVID-19 class images) for the assessment. This research
-initially considered the benchmark COVID-19 database of
-[44] for the assessment. This dataset consists of 100 2D
-lung CTI along with its GT; and in this research, only 78
-images are considered for the assessment and the remaining
-22 images are discarded due to its poor resolution and the
-associated artifacts. The remaining COVID-19 CTI (122
-images) are collected from the Radiopaedia database [55]
-from cases 3 [56], 8 [57], 23 [58], 10 [59], 27 [60] 52 [61],
-55 [62], and 56 [63].
-The normal class images of the 2D lung CTI have
-been collected from The Lung Image Database Consortium-
-Image Database Resource Initiative (LIDC-IDRI) [64–66]
-and The Reference Image Database to Evaluate therapy
-Response-The Cancer Imaging Archive (RIDER-TCIA)
-[66, 67] database and the sample images of the collected
-dataset are depicted in Figs. 4 and 5. Figure 4 presents
-the test image and the related GT of the benchmark
-CTI. Figure 5 depicts the images of the COVID-19
-[55] and normal lung [64, 67] CTI considered for the
-assessment.
-Results and Discussion
-The experimental results obtained in the proposed work
-are presented and discussed in this section. This developed
-system is executed using a workstation with the configu-
-ration: Intel i5 2.GHz processor with 8GB RAM and 2GB
-VRAM equipped with the MATLAB (www.mathworks.
-com). Experimental results of this study confirm that this
-scheme requires a mean time of 173 ± 11 s to process
-the considered CTI dataset and the processing time can be
-improved by using a workstation with higher computational
-capability. The advantage of this scheme is it is a fully auto-
-mated practice and will not require the operator assistance
-during the execution. The proposed research initially exe-
-cutes the COVID-19 infection segmentation task using the
-benchmark dataset of [44]. The results attained using a cho-
-sen trial image are depicted in Fig. 6. Figure 6a depicts the
-sample image of dimension 256 × 256 × 1 and Fig. 6b and
-c depict the actual and the binary forms of the GT image.
-The result attained with the SGO-KE-based tri-level thresh-
-old is depicted in Fig. 6d. Later, the KMC is employed
-to segregate Fig. 6d into three different sections and the
-separated images are shown in Fig. 6e–g. Finally, a morpho-
-logical segmentation technique is implemented to segment
-1017
-Cogn Comput (2020) 12:1011–1023
-COVID-19
-Ground Truth
-Fig. 4 Sample test images of COVID-19 and the GT collected from [24]
-COVID-19 class
-Nomal class
-Fig. 5 Sample test images of COVID-19 and normal group
-Fig. 6 Results attained with the
-benchmark COVID-19 database.
-a Sample test image. b FT
-image. c Binary GT. d SGO-KE
-thresholded image. e
-Background. f Artifact. g Lung
-section. h Segmented
-COVID-19 infection
-(a)
-(b)
-(c)
-(d)
-(e)
-(f)
-(g)
-(h)
-1018
-Cogn Comput (2020) 12:1011–1023
-Accuracy
-Precision Sensitivity Specificity F1-Score
-NPV
-0
-20
-40
-60
-80
-100
-Average Performance (%)
-91.08   2.56 89.53   3.81
-84.36   2.43
-94.51   5.40
-85.14   2.46
-92.24   3.27
-+
-Fig. 7 Mean performance measure attained with the proposed
-COVID-19 segmentation procedure
-the COVID-19 infection from Fig. 6g and the attained result
-is presented in Fig. 6h. After extracting the COVID-19
-infection from the test image, the performance of the pro-
-posed segmentation method is confirmed by implementing
-a comparative examination between the binary GT exist-
-ing in Fig. 6c with Fig. 6h and the essential performance
-values are then computed based on the pixel information
-of the background (0) and the COVID-19 section (1). For
-this image, the values attained are TP
-= 5865 pixels,
-FP = 306, TN = 52572, and FN = 1949, and these values
-offered accuracy = 96.28%, precision = 95.04%, sensitivity
-= 75.06%, specificity = 99.42%, F1-score = 83.88%, and
-NPV = 96.43%.
-A similar procedure is implemented for other images of
-this dataset and means performance measure attained for the
-whole benchmark database (78 images) is depicted in Fig. 7.
-From this figure, it is evident that the segmentation accuracy
-attained for this dataset is higher than 91%, and in the future
-RF
-KNN
-SVM-RBF
-DT
-0
-10
-20
-30
-40
-50
-60
-70
-80
-90
-100
-Accuracy (%)
-Feature set FV1
-Feature set FFV
-Fig. 8 Detection accuracy attained in the proposed system with
-various classifiers
-the performance of the proposed segmentation method can
-be validated against other thresholding and segmentation
-procedures existing in the medical imaging literature.
-The methodology depicted in Fig. 3 is then implemented
-by considering the entire database of the CTI prepared in
-this research work. This dataset consists of 400 grayscale
-images with dimension 256 × 256 × 1 pixels and the
-normal/COVID-19 class images have a similar dimension
-to confirm the performance of the proposed technique.
-Initially, the proposed ML scheme is implemented by
-considering only the grayscale image features (FV1) with
-a dimension 1 × 69 and the performance of the considered
-classifier units, such as RF, KNN, SVM-RBF, and DT,
-is computed. During this procedure, 70% of the database
-(140 + 140 = 280 images) are considered for training and
-30% (60 + 60 = 120 images) are considered for testing.
-After checking its function, each classifier is separately
-validated by using the entire database and the attained
-Table 1 Disease detection performance attained with the proposed ML scheme
-Features
-Classifier
-TP
-FN
-TN
-FP
-Acc. (%)
-Prec. (%)
-Sens. (%)
-Spec. (%)
-F1-Sc. (%)
-NPV (%)
-FV1 (1×69)
-RF
-163
-37
-172
-28
-83.75
-85.34
-81.50
-86.00
-83.37
-82.30
-KNN
-159
-41
-177
-23
-84.00
-87.36
-79.50
-88.50
-83.24
-81.19
-SVM-RBF
-161
-39
-179
-21
-85.00
-88.46
-80.50
-89.50
-84.29
-82.11
-DT
-160
-40
-168
-32
-82.00
-83.33
-80.00
-84.00
-81.63
-80.77
-FFV (1×96)
-RF
-169
-31
-178
-22
-86.75
-88.48
-84.50
-89.00
-86.45
-85.17
-KNN
-178
-22
-173
-27
-87.75
-86.83
-89.00
-86.50
-87.90
-88.72
-SVM-RBF
-172
-28
-177
-23
-87.25
-88.20
-86.00
-88.50
-87.09
-86.34
-DT
-174
-26
-172
-28
-86.50
-86.14
-87.00
-86.00
-86.57
-86.89
-TP, true positive; FN, false negative; TN, true negative; FP, false positive; Acc., accuracy; Prec., precision; Sens., sensitivity; Spec., specificity;
-F1-Sc., F1-score; NPV, negative predictive value, italicized values indicate the best performance.
-1019
-Cogn Comput (2020) 12:1011–1023
-results are recorded. Here, a fivefold cross-validation is
-implemented for each classifier and the best result attained
-is considered as the final result. The obtained results are
-depicted in Table 1 (the first three rows). The results reveal
-that the classification accuracy attained with SVM-RBF
-is superior (85%) compared with the RF, KNN, and DT.
-Also, the RF technique helped get the better values of the
-sensitivity and NPV compared with other classifiers.
-To improve the detection accuracy, the feature vector size
-is increased by considering the FFV (1 × 96 features) and
-a similar procedure is repeated. The obtained results (as
-in Table 1, bottom three rows) with the FFV confirm that
-the increment of features improves the detection accuracy
-considerably and the KNN classifier offers an improved
-accuracy (higher than 87%) compared with the RF, SVM-
-RBF, and DT. The precision and the F1-score offered
-by the RF are superior compared with the alternatives.
-The experimental results attained with the proposed ML
-scheme revealed that this methodology helps achieve better
-classification accuracy on the considered lung CTI dataset.
-The accuracy attained with the chosen classifiers for FV1
-and FFV is depicted in Fig. 8. The future scope of the
-proposed method includes (i) implementing the proposed
-ML scheme to test the clinically obtained CTI of COVID-
-19 patients; (ii) enhancing the performance of implemented
-ML technique by considering the other feature extraction
-and classification procedures existing in the literature;
-and (iii) implementing and validating the performance
-of the proposed ML with other ML techniques existing
-in the literature; and (iv) implementing an appropriate
-DL architecture to attain better detection accuracy on the
-benchmark as well as the clinical grade COVID-19 infected
-lung CTI.
-Conclusion
-The aim of this work has been to develop an automated
-detection pipeline to recognize the COVID-19 infection
-from lung CTI. This work proposes an ML-based system
-to achieve this task. The proposed system executed a
-sequence of procedures ranging from image pre-processing
-to the classification to develop a better COVID-19 detection
-tool. The initial part of the work implements an image
-segmentation procedure with SGO-KE thresholding, KMC-
-based separation, morphology-based COVID-19 infection
-extraction, and a relative study between the extracted
-COVID-19 sections with the GT. The segmentation assisted
-to achieve an overall accuracy higher than 91% on a
-benchmark CTI dataset. Later, an ML scheme with essential
-procedures such as feature extraction, feature selection,
-feature fusion, and classification is implemented on the
-considered data, and the proposed scheme with the KNN
-classifier achieved an accuracy higher than 87%.
-Acknowledgments The authors of this paper would like to thank Med-
-icalsegmentation.com and Radiopaedia.org for sharing the clinical-
-grade COVID-19 images.
-Author Contributions This work was carried out in close collaboration
-between all co-authors. ND, VR, MSK, and MM first defined the
-research theme and contributed an early design of the system. ND and
-VR further implemented and refined the system development. ND,
-VR, SJF, MSK, and MM wrote the paper. All authors have contributed
-to, seen, and approved the final manuscript.
-Compliance with Ethical Standards
-Conﬂict of Interest All authors declare that they have no conflict of
-interest.
-Ethical Approval All procedures reported in this study were in
-accordance with the ethical standards of the institutional and/or
-national research committee and with the 1964 Helsinki declaration
-and its later amendments or comparable ethical standards.
-Informed Consent This study used secondary data; therefore, the
-informed consent does not apply.
-Open Access This article is licensed under a Creative Commons
-Attribution 4.0 International License, which permits use, sharing,
-adaptation, distribution and reproduction in any medium or format, as
-long as you give appropriate credit to the original author(s) and the
-source, provide a link to the Creative Commons licence, and indicate
-if changes were made. The images or other third party material in
-this article are included in the article’s Creative Commons licence,
-unless indicated otherwise in a credit line to the material. If material
-is not included in the article’s Creative Commons licence and your
-intended use is not permitted by statutory regulation or exceeds
-the permitted use, you will need to obtain permission directly from
-the copyright holder. To view a copy of this licence, visit http://
-creativecommonshorg/licenses/by/4.0/.
-References
-1. WHO. WHO, editor. Coronavirus. WHO; 2020. Last accessed:
-10th
-April
-2020.
-Available
-from:
-https://www.who.int/
-emergencies/diseases/novel-coronavirus-2019.
-2. (ALA) ALA. ALA, editor. Coronavirus update- Worldometer.
-ALA; 2020. Available from: https://www.worldometers.info/
-coronavirus/.
-3. WHO.
-WHO,
-editor.
-WHO/Europe
-|
-Coronavirus
-disease
-(COVID-19) outbreak - WHO announces COVID-19 outbreak a
-pandemic. WHO; 1948. Last access date: 22-04-2020. Available
-from: https://bit.ly/3bvuX8S.
-4. Li Q et al. Early transmission dynamics in Wuhan, China,
-of
-novel
-coronavirus–infected
-pneumonia.
-Engl
-J
-Med.
-2020;382(13):1199–1207.
-5. Bai HX, et al. Performance of radiologists in differentiating
-COVID-19 from viral pneumonia on chest CT. Radiology. 2020;
-p. 200823. [epub ahead of print.]
-1020
-Cogn Comput (2020) 12:1011–1023
-6. Chua F, Armstrong-James D, Desai SR, Barnett J, Kouranos
-V, Kon OM, et al. The role of CT in case ascertainment and man-
-agement of COVID-19 pneumonia in the UK: insights from high-
-incidence regions. The Lancet Respiratory Medicine. 2020;0(0).
-EPub ahead of print. https://doi.org/10.1016/S2213-2600(20)301
-32-6.
-7. Santosh KC. AI-driven tools for coronavirus outbreak: need
-of active learning and cross-population train/test models on
-multitudinal/multimodal data. Journal of Medical Systems.
-2020;44:93.
-8. Rajinikanth V, et al. Harmony-Search and Otsu based system for
-coronavirus disease (COVID-19) detection using lung CT scan
-images. CoRR. 2020; Available from: 2004.03431.
-9. Liu K,
-Xu P,
-Lv WF,
-Qiu XH,
-Yao JL,
-Gu JF, et al.
-CT manifestations of coronavirus disease-2019: a retrospective
-analysis of 73 cases by disease severity. Eur J Radiol.
-2020;126:108941.
-10. Yang R, Li X, Liu H, Zhen Y, Zhang X, Xiong Q, et al. Chest CT
-severity score: an imaging tool for assessing severe COVID-19.
-Radiol Cardioth Imaging. 2020;2(2):e200047.
-11. Fong SJ. Finding an accurate early forecasting model from small
-dataset: a case of 2019-nCoV novel coronavirus outbreak. Int J
-Interact Multimed Artif Intell. 2020;6(1):132–140.
-12. Fong SJ,
-Li G,
-Dey N,
-Crespo RG,
-Herrera-Viedma E.
-Composite Monte Carlo decision making under high uncertainty
-of novel coronavirus epidemic using hybridized deep learning and
-fuzzy rule induction. Applied Soft Computing. 2020; p. 106282.
-13. Verity R, Okell LC, Dorigatti I, Winskill P, Whittaker C, Imai
-N, et al. Estimates of the severity of coronavirus disease 2019: a
-model-based analysis. The Lancet Infectious Diseases. 2020; 0(0).
-Publisher: Elsevier.
-14. Fang Y, et al. Sensitivity of chest CT for COVID-19: comparison
-to RT-PCR. Radiology. 2020;0(0):200432.
-15. Zhou Z, Guo D, Li C, Fang Z, Chen L, Yang R, et al. Coro-
-navirus disease 2019: initial chest CT findings. European Radiol-
-ogy. 2020; EPub ahead of print. https://doi.org/10.1007/s00330-
-020-06816-7.
-16. Yoon SH, Lee KH, Kim JY, Lee YK, Ko H, Kim KH, et al.
-Chest radiographic and CT findings of the 2019 novel coronavirus
-disease (COVID-19): analysis of nine patients treated in Korea.
-Korean J Radiol. 2020;21(4):494–500.
-17. Li K,
-Fang Y,
-Li W,
-Pan C,
-Qin P,
-Zhong Y, et al. CT
-Image visual quantitative evaluation and clinical classification
-of coronavirus disease (COVID-19). European Radiology. 2020;
-EPub ahead of print https://doi.org/10.1007/s00330-020-06817-6.
-18. Chung M,
-Bernheim A,
-Mei X,
-Zhang N,
-Huang M,
-Zeng X, et al. CT imaging features of 2019 novel coronavirus
-(2019-nCoV). Radiology. 2020;295(1):202–207.
-19. RSNA. healthcare-in-europe com, editor. CT outperforms lab
-diagnosis for coronavirus infection. healthcare-in-europe.com;
-2020. Last accessed date: 22-04-2020. Available from: https://bit.
-ly/3aoTQBD.
-20. Borges do Nascimento IJ,
-Cacic N,
-Abdulazeem HM,
-von
-Groote TC, Jayarajah U, Weerasekara I, et al. Novel coronavirus
-infection (COVID-19) in humans: a scoping review and meta-
-analysis. Journal of Clinical Medicine. 2020;9(4):941. Number: 4
-Publisher: Multidisciplinary Digital Publishing Institute.
-21. Bernheim A, Mei X, Huang M, Yang Y, Fayad ZA, Zhang N,
-et al. Chest CT findings in coronavirus disease-19 (COVID-19):
-relationship to duration of infection. Radiology. 2020; p. 200463.
-22. Wang Y, Dong C, Hu Y, Li C, Ren Q, Zhang X, et al. Temporal
-changes of CT findings in 90 patients with COVID-19 pneumonia:
-a longitudinal study. Radiology. 2020; p. 200843.
-23. Shan F, Gao Y, Wang J, Shi W, Shi N, Han M, et al. Lung
-infection quantification of COVID-19 in CT images with deep
-learning. CVPR. 2020.
-24. Mahmud M, Kaiser MS, Hussain A, Vassanelli S. Applications
-of deep learning and reinforcement learning to biological
-data. IEEE Trans Neural Netw Learn Syst. 2018;29(6):2063–
-2079.
-25. Mahmud M, Kaiser MS, Hussain A. Deep learning in mining
-biological data. [cs, q-bio, stat]. 2020; p. 1–36. Available from:
-arXiv: http://arxiv.org/abs/2003.001082003.00108.
-26. Ali HM, Kaiser MS, Mahmud M. Application of convolutional
-neural network in segmenting brain regions from MRI data. Brain
-Informatics. Lecture Notes in Computer Science. In: Liang P, Goel
-V, and Shan C, editors. Cham: Springer International Publishing;
-2019. p. 136–146.
-27. Orojo O,
-Tepper J,
-McGinnity TM,
-Mahmud M. A multi-
-recurrent network for crude oil price prediction. In: 2019 IEEE
-Symposium Series on Computational Intelligence (SSCI); 2019.
-p. 2940–2945.
-28. Arifeen MM et al. Hidden Markov model based trust management
-model for underwater wireless sensor networks. In: Proceedings
-Of The International Conference On Computing Advancements;
-2020. p. 1–5. https://doi.org/10.1145/3377049.3377054.
-29. Yahaya SW, Lotfi A, Mahmud M. A consensus novelty detection
-ensemble approach for anomaly detection in activities of daily
-living. Appl Soft Comput. 2019;105613:83.
-30. Yahaya SW,
-Lotfi A,
-Mahmud M,
-Machado P,
-Kubota N.
-Gesture recognition intermediary robot for abnormality detection
-in human activities. In: 2019 IEEE Symposium Series on
-Computational Intelligence (SSCI); 2019. p. 1415–1421.
-31. Noor MBT, Zenia NZ, Kaiser MS, Mahmud M, Al Mamun
-S. Detecting neurodegenerative disease from MRI: a brief review
-on a deep learning perspective. Brain Informatics. Lecture Notes
-in Computer Science. In: Liang P, Goel V, and Shan C, editors.
-Cham: Springer International Publishing; 2019. p. 115–125.
-32. Miah Y,
-Prima CNE,
-Seema SJ,
-Mahmud M,
-Kaiser
-MS. Performance comparison of machine learning techniques
-in identifying dementia from open access clinical datasets.
-In: Proceedings of ICACIN 2020. Springer; 2020. p. 69–
-78.
-33. Rabby G,
-Azad S,
-Mahmud M,
-Zamli KZ,
-Rah-
-man
-MM.
-A
-flexible
-keyphrase
-extraction
-technique
-for
-academic literature. Procedia Comput Sci. 2018;135:553–63.
-https://doi.org/10.1016/j.procs.2018.08.208.
-34. Silver D, et al. Mastering the game of Go with deep neural
-networks and tree search. Nature. 2016;529(7587):484.
-35. Bhandary A,
-Prabhu GA,
-Rajinikanth V,
-Thanaraj KP,
-Satapathy SC, Robbins DE, et al. Deep-learning framework to
-detect lung abnormality – a study with chest X-ray and lung CT
-scan images. Pattern Recogn Lett. 2020;129:271–278.
-36. Pugalenthi R,
-Rajakumar MP,
-Ramya J,
-Rajinikanth
-V. Evaluation and classification of the brain tumor MRI
-using machine learning technique. J Control Eng Appl Inf.
-2019;21(4):12–21.
-37. Celik Y, Talo M, Yildirim O, Karabatak M, Acharya UR.
-Automated invasive ductal carcinoma detection based using deep
-transfer learning with whole-slide images. Pattern Recogn Lett.
-2020;133:232–239.
-38. Sharif M,
-Amin J,
-Raza M,
-Anjum MA,
-Afzal H,
-Shad SA. Brain tumor detection based on extreme learning.
-Neural Computing and Applications. 2020; EPub ahead of print
-https://doi.org/10.1007/s00521-019-04679-8.
-39. Amin J,
-Sharif M,
-Raza M,
-Mussarat Y. Detection of brain
-tumor based on features fusion and machine learning. Journal of
-Ambient Intelligence and Humanized Computing. 2018.
-40. Amin J,
-Sharif M,
-Gul N,
-Yasmin M,
-Shad SA.
-Brain tumor classification based on DWT fusion of MRI
-sequences using convolutional neural network. Pattern Recogn
-Lett. 2020;129:115–122.
-1021
-Cogn Comput (2020) 12:1011–1023
-41. Sharif M, Amin J, Nisar MW, Anjum MA, Nazeer M, Shad
-SA. A unified patch based method for brain tumor detection using
-features fusion. Cogn Syst Res. 2020;59:273–286.
-42. Das A, Acharya RU, Panda SS, Sabut SK. Deep learning based
-liver cancer detection using watershed transform and Gaussian
-mixture model techniques. Cogn Syst Res. 2019;54:165–175.
-43. Wu YH, Gao SH, Mei J, Xu J, Fan DP, Zhao CW, et al. JCS:
-an explainable COVID-19 diagnosis system by joint classification
-and segmentation. [cs, eess]. 2020;p. 1–11. . Available from:
-arXiv:2004.07054.
-44. Artificial Intelligence AS. MedSeg, editor. CT Dataset for
-COVID-19. MedSeg; 2020. Last access date 22-04-2020. Avail-
-able from: http://medicalsegmentation.com/covid19/.
-45. Dey N, Rajinikanth V, Shi F, Tavares JMRS, Moraru L, Karthik
-KA, et al. Social-group-optimization based tumor evaluation tool
-for clinical brain MRI of FLAIR/diffusion-weighted modality.
-Biocybern Biomed Eng. 2019;39(3):843–856.
-46. Dey N,
-Rajinikanth V,
-Ashour AS,
-Tavares JMRS. Social
-group optimization supported segmentation and evaluation of skin
-melanoma images. Symmetry. 2018;10(2):51.
-47. Satapathy S,
-Naik A. Social group optimization (SGO): a
-new population evolutionary optimization technique. Compl Intell
-Syst. 2016;2(3):173–203.
-48. Kowsalya N, Kalyani A, Chalcedony CJ, Sivakumar R, Janani
-M, Rajinikanth V. An approach to extract optic-disc from retinal
-image using K-means clustering. In: 2018 Fourth International
-Conference on Biosignals, Images and Instrumentation (ICBSII);
-2018. p. 206–212.
-49. Tian Z,
-Dey N,
-Ashour AS,
-McCauley P,
-Shi F.
-Morphological segmenting and neighborhood pixel-based locality
-preserving projection on brain fMRI dataset for semantic feature
-extraction: an affective computing study. Neural Comput Appl.
-2018;30(12):3733–3748.
-50. Wang Y,
-Shi F,
-Cao L,
-Dey N,
-Wu Q,
-Ashour AS, et al.
-Morphological segmentation analysis and texture-based support
-vector machines classification on mice liver fibrosis microscopic
-images. Curr Bioinform. 2019;14(4):282–294.
-51. Chaki J, Dey N. Texture feature extraction techniques for image
-recognition, Voice In Settings. SpringerBriefs in Computational
-Intelligence. Springer Singapore; 2020.
-52. Acharya UR, Fernandes SL, WeiKoh JE, Ciaccio EJ, Fabell
-MKM,
-Tanik UJ, et al. Automated detection of Alzheimer’s
-disease using brain MRI images– a study with various feature
-extraction techniques. J Med Syst. 2019;43(9):302.
-53. Maheshwari S, Pachori RB, Acharya UR. Automated diagnosis
-of glaucoma using empirical wavelet transform and correntropy
-features extracted from fundus images. IEEE J Biomed Health Inf.
-2017;21(3):803–813.
-54. Kala S, Ezhilarasi M. Comparative analysis of serial and parallel
-fusion on texture features for improved breast cancer diagnosis.
-Curr Med Imaging Rev. 2018;14(6):957–968.
-55. Moore CM, et al. Radiopaedia, editor. COVID-19 | Radiology
-Reference Article | Radiopaedia.org. Radiopaedia; 2020. Last
-access date: 22-04-2020. Available from: https://radiopaedia.org/
-articles/covid-19-3.
-56. Bahman R. Radiopaedia, editor. Cases by R. Bahman: Radiopae-
-dia.org rID: 74560. Radiopaedia; 2020. Last access date:
-22-04-2020.
-Available
-from:
-https://radiopaedia.org/cases/
-covid-19-pneumonia-3.
-57. Hosseinabadi F. Radiopaedia, editor. Case courtesy of Dr Fateme
-Hosseinabadi: Radiopaedia.org rID: 74868. Radiopaedia; 2020.
-Last access date: 22-04-2020. Available from: https://radiopaedia.
-org/cases/covid-19-pneumonia-8.
-58. Smith D. Radiopaedia, editor. Case courtesy of Dr Derek Smith:
-Radiopaedia.org rID: 75249. Radiopaedia; 2020. Last access
-date: 22-04-2020. Available from: https://radiopaedia.org/cases/
-covid-19-pneumonia-23.
-59. Bahman R. Radiopaedia, editor. Cases by R. Bahman: Radiopae-
-dia.org rID: 74879. Radiopaedia; 2020. Last access date:
-22-04-2020.
-Available
-from:
-https://radiopaedia.org/cases/
-covid-19-pneumonia-10.
-60. Cetinoglu K. Radiopaedia, editor. Case courtesy of Dr Kenan
-Cetinoglu: Radiopaedia.org rID: 75281. Radiopaedia; 2020. Last
-access date: 22-04-2020. Available from: https://radiopaedia.org/
-cases/covid-19-pneumonia-27.
-61. Feger J. Radiopaedia, editor. Case courtesy of Dr Joachim Feger:
-Radiopaedia.org rID: 75541. Radiopaedia; 2020. Last access
-date: 22-04-2020. Available from: https://radiopaedia.org/cases/
-covid-19-pneumonia-52.
-62. TaghiNiknejad M. Radiopaedia, editor. Case 55, courtesy of
-Dr Mohammad TaghiNiknejad: Radiopaedia.org rID: 75606.
-Radiopaedia; 2018. Last access date: 22-04-2020. Available from:
-https://radiopaedia.org/cases/covid-19-pneumonia-55.
-63. TaghiNiknejad
-M.
-Radiopaedia,
-editor.
-Case
-courtesy
-of
-Dr Mohammad TaghiNiknejad: Radiopaedia.org rID: 75607.
-Radiopaedia; 2020. Last access date: 22-04-2020. Available from:
-https://radiopaedia.org/cases/covid-19-pneumonia-56.
-64. Clark K, Vendt B, Smith K, Freymann J, Kirby J, Koppel P, et al.
-The Cancer Imaging Archive (TCIA): maintaining and operating a
-public information repository. J Digit Imaging. 2013;26(6):1045–
-1057.
-65. Armato SG et al. The Lung Image Database Consortium (LIDC)
-and Image Database Resource Initiative (IDRI): a completed
-reference database of lung nodules on CT scans: The LIDC/IDRI
-thoracic CT database of lung nodules. Med Phys. 2011;38(2):915–
-931.
-66. Zhao B, et al. Evaluating variability in tumor measurements from
-same-day repeat CT scans of patients with non-small cell lung
-cancer. Radiology. 2009;252(1):263–272.
-67. Zhao B, Schwartz LH, Kris MG. Archive TCI, editor. Data From
-RIDER Lung CT. The Cancer Imaging Archive; 2015. Last access
-date: 17-06-2020. Available from: https://doi.org/10.7937/K9/
-TCIA.2015.U1X8A5NR.
-Publisher’s Note Springer Nature remains neutral with regard to
-jurisdictional claims in published maps and institutional affiliations.
-1022
-Cogn Comput (2020) 12:1011–1023
-Aﬃliations
-Nilanjan Dey1 · V. Rajinikanth2 · Simon James Fong3,4 · M. Shamim Kaiser5 · Mufti Mahmud6
-V. Rajinikanth
-v.rajinikanth@ieee.org
-Simon James Fong
-fong simon@yahoo.com
-M. Shamim Kaiser
-mskaiser@juniv.edu
-1
-Department of Information Technology, Techno India College
-of Technology, Kolkata 700156, West Bengal, India
-2
-Department of Electronics and Instrumentation Engineering,
-St. Joseph’s College of Engineering, Chennai 600119, India
-3
-Department of Computer and Information Science, University
-of Macau, Taipa, China
-4
-DACC Laboratory, Zhuhai Institutes of Advanced Technology
-of the Chinese Academy of Sciences, Zhuhai, China
-5
-Institute of Information Technology, Jahangirnagar University,
-Savar, 1342 Dhaka, Bangladesh
-6
-Department of Computing & Technology, Nottingham Trent
-University, Clifton Lane, Nottingham, NG11 8NS, UK
-1023
-Cogn Comput (2020) 12:1011–1023
+pmc   Cognit Comput  Cognit Comput  Cognitive Computation   1866-9956  1866-9964  Springer US  New York    7429098  32837591  9751  10.1007/s12559-020-09751-3  Article    Social Group Optimization–Assisted Kapur’s Entropy and Morphological Segmentation for Automated Detection of COVID-19 Infection from Computed Tomography Images   Dey  Nilanjan   neelanjan.dey@gmail.com   1   Rajinikanth  V.   v.rajinikanth@ieee.org   2   Fong  Simon James   fong_simon@yahoo.com   3  4   Kaiser  M. Shamim   mskaiser@juniv.edu   5   http://orcid.org/0000-0002-2037-8348  Mahmud  Mufti   Mufti.Mahmud@ntu.ac.uk  muftimahmud@gmail.com   6   1  grid.440742.1  0000 0004 1799 6713  Department of Information Technology,  Techno India College of Technology,  Kolkata, 700156 West Bengal India   2  grid.252262.3  0000 0001 0613 6919  Department of Electronics and Instrumentation Engineering,  St. Joseph’s College of Engineering,  Chennai, 600119 India   3 Department of Computer and Information Science, University of Macau, Taipa, China   4 DACC Laboratory, Zhuhai Institutes of Advanced Technology of the Chinese Academy of Sciences, Zhuhai, China   5  grid.411808.4  0000 0001 0664 5967  Institute of Information Technology,  Jahangirnagar University,  Savar, 1342 Dhaka Bangladesh   6  grid.12361.37  0000 0001 0727 0669  Department of Computing & Technology,  Nottingham Trent University,  Clifton Lane, Nottingham NG11 8NS UK    15  8  2020   15  8  2020   2020   12  5  1011  1023  1  5  2020   29  6  2020    © The Author(s) 2020  https://creativecommons.org/licenses/by/4.0/  Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article's Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit  http://creativecommons.org/licenses/by/4.0/ .     The coronavirus disease (COVID-19) caused by a novel coronavirus, SARS-CoV-2, has been declared a global pandemic. Due to its infection rate and severity, it has emerged as one of the major global threats of the current generation. To support the current combat against the disease, this research aims to propose a machine learning–based pipeline to detect COVID-19 infection using lung computed tomography scan images (CTI). This implemented pipeline consists of a number of sub-procedures ranging from segmenting the COVID-19 infection to classifying the segmented regions. The initial part of the pipeline implements the segmentation of the COVID-19–affected CTI using social group optimization–based Kapur’s entropy thresholding, followed by k-means clustering and morphology-based segmentation. The next part of the pipeline implements feature extraction, selection, and fusion to classify the infection. Principle component analysis–based serial fusion technique is used in fusing the features and the fused feature vector is then employed to train, test, and validate four different classifiers namely Random Forest, K-Nearest Neighbors (KNN), Support Vector Machine with Radial Basis Function, and Decision Tree. Experimental results using benchmark datasets show a high accuracy (> 91%) for the morphology-based segmentation task; for the classification task, the KNN offers the highest accuracy among the compared classifiers (> 87%). However, this should be noted that this method still awaits clinical validation, and therefore should not be used to clinically diagnose ongoing COVID-19 infection.
+
+  Keywords  COVID-19 infection  CT scan image  Fused feature vector  KNN classifier  Segmentation and detection accuracy   issue-copyright-statement  © Springer Science+Business Media, LLC, part of Springer Nature 2020      Introduction  Lung infection caused by coronavirus disease (COVID-19) has emerged as one of the major diseases and has affected over 8.2 million of the population globally 1 , irrespective of their race, gender, and age. The infection and the morbidity rates caused by this novel coronavirus are increasing rapidly [  1 ,  2 ]. Due to its severity and progression rate, the recent report of the World Health Organization (WHO) declared it as pandemic [  3 ]. Even though an extensive number of precautionary schemes have been implemented, the occurrence rate of COVID-19 infection is rising rapidly due to various circumstances. 
+
+ The origin of COVID-19 is due to a virus called severe acute respiratory syndrome-coronavirus-2 (SARS-CoV-2) and this syndrome initially started in Wuhan, China, in December 2019 [ 4 ]. The outbreak of COVID-19 has appeared as a worldwide problem and a considerable amount of research works are already in progress to determine solutions to manage the disease infection rate and spread. Furthermore, the recently proposed research works on (i) COVID-19 infection detection [  5 –  8 ], (ii) handling of the infection [  9 ,  10 ], and (iii) COVID-19 progression and prediction [  11 –  13 ] have helped get more information regarding the disease. 
+
+ The former research and the medical findings discovered that COVID-19 initiates disease in the human respiratory tract and builds severe acute pneumonia. The existing research also confirmed that the premature indications of COVID-19 are subclinical and it necessitates a committed medical practice to notice and authenticate the illness. The frequent medical-grade analysis engages in a collection of samples from infected persons and sample supported examination and confirmation of COVID-19 using reverse transcription-polymerase chain reaction (RT-PCR) test and image-guided assessment employing lung computed tomography scan images (CTI), and the chest X-ray [ 14 –  17 ]. When the patient is admitted with COVID-19 infection, the doctor will initiate the treatment process to cure the patient using the prearranged treatment practice which will decrease the impact of pneumonia. 
+
+ Usually, experts recommend a chain of investigative tests to identify the cause, position, and harshness of pneumonia. The preliminary examinations, such as blood tests and pleural-fluid assessment, are performed clinically to detect the severity of the infection [ 18 –  20 ]. The image-assisted methods are also frequently implemented to sketch the disease in the lung, which can be additionally examined by an expert physician or a computerized arrangement to recognize the severity of the pneumonia. Compared with chest X-ray, CTI is frequently considered due to its advantage and the 3-D view. The research work published on COVID-19 also confirmed the benefit of CT in detecting the disease in the respiratory tract and pneumonia [  21 –  23 ]. 
+
+ Recently, more COVID-19 detection methods have been proposed for the progression stage identification of COVID-19 using the RT-PCR and imaging methods. Most of these existing works combined RT-PCR with the imaging procedure to confirm and treat the disease. The recent work of Rajinikanth et al. [ 8 ] developed a computer-supported method to assess the COVID-19 lesion using lung CTI. This work implemented few operator-assisted steps to achieve superior outcomes during the COVID-19 evaluation. 
+
+ ML approaches are well-known for their capabilities in recognizing patterns in data. In recent years, ML has been applied to a variety of tasks including biological data mining [ 24 ,  25 ], medical image analysis [  26 ], financial forecasting [  27 ], trust management [  28 ], anomaly detection [  29 ,  30 ], disease detection [  31 ,  32 ], natural language processing [  33 ], and strategic game playing [  34 ]. 
+
+ The presented work aims to: Propose a ML-driven pipeline to extract and detect the COVID-19 infection from lung CTI with an improved accuracy.
+
+  Develop a procedural sequence for an automated extraction of the COVID-19 infection from a benchmark lung CTI dataset.
+
+  Put forward an appropriate sequence of techniques, tri-level thresholding using social group optimization (SGO)-based Kapur’s entropy (KE) or SGO-KE, K-Means Clustering (KMC)-based separation, morphology-based segmentation to accurately extract COVID-19 infection from lung CTI.
+
+  
+
+ A comparison of the extracted COVID-19 infection information from the CTI using the proposed pipeline with the ground truth (GT) images confirms the segmentation accuracy of the proposed method. The proposed pipeline achieves mean segmentation and classification accuracy of more than 91% and 87% respectively using 78 images from a benchmark dataset.
+
+ This research is arranged as follows; Section “ Motivation ” presents the motivation, Section “  Methodology ” represents the methodological details of the proposed scheme. Section “  Results and Discussion ” outlines the attained results and discussions. Section “  Conclusion ” depicts the conclusion of the present research work. 
+
+  Motivation  The proposed research work is motivated by the former image examination works existing in literature [ 35 –  38 ]. During the mass disease screening operation, the existing medical data amount will gradually increase and reduce the data burden; it is essential to employ an image segregation system to categorize the existing medical data into two or multi-class, and to assign the priority during the treatment implementation. The recent works in the literature confirm that the feature-fusion–based methods will improve the classification accuracy without employing the complex methodologies [  39 –  41 ]. Classification task implemented using the features of the original image and the region-of-interest (ROI) offered superior result on some image classification problems and this procedure is recommended when the similarity between the normal and the disease class images is more [  24 ,  26 ,  31 ,  42 ,  43 ]. Hence, for the identical images, it is necessary to employ a segmentation technique to extract the ROI from the disease class image with better accuracy [  26 ]. Finally, the fused features of the actual image and the ROI are fused to attain enhanced classification accuracy. 
+
+  Methodology  This section of the work presents the methodological details of the proposed scheme. Like the former approaches, this work also implemented two different phases to improve the detection accuracy.
+
+ Proposed Pipeline  This work consists of the following two stages as depicted in Fig. 1 . These are:  Implementation of an image segmentation method to extract the COVID-19 infection,
+
+  Execution of a ML scheme to classify the considered lung CTI database into normal/COVID-19 class.
+
+   Fig. 1  The number of image processing stages implemented in the proposed work
+
+    
+
+ The details of these two stages are given below:  Stage 1:  Figure 2 depicts the image processing system proposed to extract the pneumonia infection in the lung due to COVID-19. Initially, the required 2D slices of the lung CTI are collected from an open-source database [  44 ]. All the collected images are resized into 256 × 256 × 1 pixels and the normalized images are then considered for evaluation. In this work, SGO-KE–based tri-level threshold is initially applied to enhance the lung section (see “  Social Group Optimization and Kapur’s Function ” for details). Then, KMC is employed to segregate the thresholded image into background, artifact, and the lung segment. The unwanted lung sections are then removed using a morphological segmentation procedure and the extracted binary image of the lung is then compared with its related GT provided in the database. Finally, the essential performance measures are computed and based on which the performance of the proposed COVID-19 system is validated.  Fig. 2  Image segmentation framework to extract COVID-19 infection from 2D lung CT scan image
+
+    
+
+  Stage 2:  Figure 3 presents the proposed ML scheme to separate the considered lung CTI into normal/COVID-19 class. This system is constructed using two different images, such as (i) the original test image (normal/COVID-19 class) and (ii) the binary form of the COVID-19 section. The various procedures existing in the proposed ML scheme are depicted in Fig.  3 .  Fig. 3  Proposed ML scheme to detect COVID-19 infection     
+
+  Segmentation of COVID-19 Infection  This procedure is implemented only for the CTI associated with the COVID-19 pneumonia infection. The complete details on various stages involved in this process are depicted in Fig. 1 . The series of procedures implemented in this figure are used to extract the COVID-19 infection from the chosen test image with better accuracy. The pseudo-code of the implemented procedure is depicted in Algorithm 1.    
+
+ Image Thresholding  Initially, the enhancement of the infected pneumonia section is achieved by implementing a tri-level threshold based on SGO and the KE. In this operation, the role of the SGO is to randomly adjust the threshold value of the chosen image until KE is maximized. The threshold which offered the maximized KE is considered as the finest threshold. The related information on the SGO-KE implemented in this work can be found in [ 45 ]. The SGO parameters discussed in Dey et al. [  46 ] are considered in the proposed work to threshold the considered CTI. 
+
+  Social Group Optimization and Kapur’s Function  SGO is a heuristic technique proposed by Satapathy and Naik [ 47 ] by mimicking the knowledge sharing concepts in humans. This algorithm employs two phases, such as (i) enhancing phase to coordinate the arrangement of people (agents) in a group, and the (ii) knowledge gaining phase: which allows the agents to notice the finest solution based on the task. In this paper, an agent is considered a social population who is generated based on the features/parameters. 
+
+ The mathematical description of the SGO is defined as: let X  I  denote the original knowledge of agents of a group with dimension  I = 1, 2, ... ,  N . If the number of variables to be optimized is represented as  D , then the initial knowledge can be expressed as  X  I  = (  x  I 1  ,  x  I 2  ,...  x  I  D  ). For a chosen problem, the objective function can be defined as  F  J  , with  J = 1, 2, ... ,  N . 
+
+ The updated function in SGO is; 1  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ X_{new_{I,J}}=X_{old_{I,J}} \zeta + R (g_{best_{J}}-X_{old_{I,J}} ) $$\end{document}  X   n  e  w   I  ,  J      =  X   o  l  d   I  ,  J      ζ  +  R  (  g   b  e  s  t   J      −  X   o  l  d   I  ,  J      )      where  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$X_{new_{i,j}}$\end{document}  X   n  e  w   i  ,  j          is the original knowledge,  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$X_{old_{i,j}}$\end{document}  X   o  l  d   i  ,  j          is the updated knowledge,  ζ denotes self-introspection parameter (assigned as 0.2),  R is the random number [0,1], and  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$g_{best_{j}}$\end{document}  g   b  e  s  t   j          is the global best knowledge. 
+
+ In this work, the SGO is employed to find the optimal threshold by maximizing the KE value and this operation is defined below:
+
+ Entropy in an image is the measure of its irregularity and for a considered image, Kapur’s thresholding can be used to identify the optimal threshold by maximizing its entropy value.
+
+ Let T  h = [  t  1 ,  t  2 , ... ,  t  n − 1  ] denote the threshold vector of the chosen image of a fixed dimension and assume this image has  L gray levels (0 to  L − 1) with a total pixel value of  Z . If  f () represents the frequency of  j -th intensity level, then the pixel distribution of the image will be:  2  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ Z=f(0)+f(1)+...+f(L-1). $$\end{document}  Z  =  f  (  0  )  +  f  (  1  )  +  ...  +  f  (  L  −  1  )  .      If the probability of  j -th intensity level is given by:  3  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ P_{j}=f(j)/Z. $$\end{document}  P   j    =  f  (  j  )  /  Z  .      Then, during the threshold selection, the pixels of image are separated into  T  h + 1 groups according to the assigned threshold value. After disconnection of the images as per the selected threshold, the entropy of each cluster is separately computed and combined to get the final entropy as follows: 
+
+ The KE to be maximized is given by Eq. 14 :  4  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ KE_{max}=F_{KE}(Th)=\sum\limits_{i=1}^{n}{G_{i}^{C}}. $$\end{document}  K  E   m  a  x    =  F   K  E    (  T  h  )  =  ∑   i  =  1   n    G   i   C    .      For a tri-level thresholding problem, the expression will be given by Eq.  5 :  5  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ f(t_{1},t_{2},t_{3})=\sum\limits_{i=1}^{3}{G_{i}^{C}}. $$\end{document}  f  (  t   1    ,  t   2    ,  t   3    )  =  ∑   i  =  1   3    G   i   C    .      
+
+ where G  i  is the entropy given by:  6  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \begin{array}{@{}rcl@{}} {G_{1}^{C}}&=&\sum\limits_{j=1}^{t_{1}}\frac{{P_{j}^{C}}}{{w_{0}^{C}}}\ln\left( \frac{{P_{j}^{C}}}{{w_{0}^{C}}}\right), \end{array} $$\end{document}  G   1   C    =  ∑   j  =  1   t   1      P   j   C     w   0   C      ln  P   j   C     w   0   C        ,       7  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \begin{array}{@{}rcl@{}} {G_{2}^{C}}&=&\sum\limits_{j=t_{1}}^{t_{2}}\frac{{P_{j}^{C}}}{{w_{1}^{C}}}\ln\left( \frac{{P_{j}^{C}}}{{w_{1}^{C}}}\right), \end{array} $$\end{document}  G   2   C    =  ∑   j  =  t   1     t   2      P   j   C     w   1   C      ln  P   j   C     w   1   C        ,       8  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \begin{array}{@{}rcl@{}} {G_{3}^{C}}&=&\sum\limits_{j=t_{2}}^{t_{3}}\frac{{P_{j}^{C}}}{{w_{2}^{C}}}\ln\left( \frac{{P_{j}^{C}}}{{w_{2}^{C}}}\right), \end{array} $$\end{document}  G   3   C    =  ∑   j  =  t   2     t   3      P   j   C     w   2   C      ln  P   j   C     w   2   C        ,      where, 
+
+ \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}${P_{j}^{C}}$\end{document}  P   j   C        is the probability distribution for intensity,  C is the image class (  C = 1 for the grayscale image), and  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$w_{i-1}^{C}$\end{document}  w   i  −  1   C        is the probability occurrence. 
+
+ During the tri-level thresholding, a chosen approach is employed to find the F  K  E  (  T  h ) by randomly varying the thresholds (  T  h = {  t  1 ,  t  2 ,  t  3 } ). In this research, the SGO is employed to adjust the thresholds to find the  F  K  E  (  T  h ). 
+
+  Segmentation Based on KMC and Morphological Process  The COVID-19 infection from the enhanced CTI is then separated using the KMC technique and this approach helps segregate the image into various regions [ 48 ]. In this work, the enhanced image is separated into three sections, such as the background, normal image section, and the COVID-infection. The essential information on KMC and the morphology-based segmentation can be found in [  49 ]. The extracted COVID-19 is associated with the artifacts; hence, morphological enhancement and segmentation discussed in [  49 ,  50 ] are implemented to extract the pneumonia infection, with better accuracy. 
+
+ KMC helps split u -observations into K-groups. For a given set of observations with dimension “  d ,” KMC will try to split them into  K -groups;  Q (  Q  1 ,  Q  2 , ... ,  Q  K  ) for (  K ≤  u ) to shrink the within-cluster sum of squares as depicted by Eq.  9 :  9  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \arg \min_{Q}\sum\limits_{i=1}^{K}||O_{i}-\mu_{i}||^{2}=\arg \min_{Q}\sum\limits_{i=1}^{K}|Q_{i}|Var(Q_{i}) $$\end{document}  arg  min   Q    ∑   i  =  1   K    |  |  O   i    −  μ   i    |  |   2    =  arg  min   Q    ∑   i  =  1   K    |  Q   i    |  V  a  r  (  Q   i    )      
+
+ where O is the number of observations,  Q is the number of splits, and  μ  j  is the mean of points in  Q  i  . 
+
+  Performance Computation  The outcome of the morphological segmentation is in the form of binary and this binary image is then compared against the binary form of the GT and then the essential performance measures, such as accuracy, precision, sensitivity, specificity, and F1-score, are computed. A similar procedure is implemented on all the 78 images existing in the benchmark COVID-19 database and the mean values of these measures are then considered to confirm the segmentation accuracy of the proposed technique. The essential information on these measures is clearly presented in [ 51 ,  52 ]. 
+
+   Implementation of Machine Learning Scheme  The ML procedure implemented in this research is briefed in this section. This scheme implements a series of procedures on the original CTI (normal/COVID-19 class) and the segmented binary form of the COVID-19 infection as depicted in Fig. 2 . The main objective of this ML scheme is to segregate the considered CTI database into normal/COVID-19 class images. The process is shown in algorithm 2.   
+
+ Initial Processing  This initial processing of the considered image dataset is individually executed for the test image and the segmented COVID-19 infection. The initial processing involves extracting the image features using a chosen methodology and formation of a one-dimensional FV using the chosen dominant features.
+
+  Feature Vector 1 (FV1):  The accuracy of disease detection using the ML technique depends mainly on the considered image information. In the literature, a number of image feature extraction procedures are discussed to examine a class of medical images [ 35 –  37 ,  39 –  42 ]. In this work, the well-known image feature extraction methods, such as Complex-Wavelet-Transform (CWT) and Discrete-Wavelet-Transform (DWT) as well as Empirical-Wavelet-Transform (EWT) are considered in 2-D domain to extract the features of the normal/COVID-19 class grayscale images. The information on the CWT, DWT, and EWT are clearly discussed in the earlier works [  52 ]. After extracting the essential features using these methods, a statistical evaluation and Student’s  t test–based validation is implemented to select the dominant features to create the essential FVs, such as  F  V  C  W  T  (34 features),  F  V  D  W  T  (32 features), and  F  V  E  W  T  (3 features) which are considered to get the principle FV1 set (FV1 = 69 features) by sorting and arranging these features based on its  p value and  t value. The feature selection process and FV1 creation are implemented as discussed in [  52 ].  CWT: This function was derived from the Fourier transform and is represented using complex-valued scaling function and complex-valued wavelet as defined below; 10  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \psi_{C}(t)=\psi_{R}(t)+\psi_{I}(t) $$\end{document}  ψ   C    (  t  )  =  ψ   R    (  t  )  +  ψ   I    (  t  )      where  ψ  C  (  t ),  ψ  R  (  t ), and  ψ  I  (  t ) represent the complex, real, and image parts respectively. 
+
+  DWT: This approach evaluates the non-stationary information. When a wavelet has the function ψ (  t ) ∈  W  2 (  r ), then its DWT (denoted by  D  W  T (  a ,  b )) can be written as:  11  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ DWT(a,b)=\frac{1}{\sqrt{2^{a}}} {\int}_{-\infty}^{\infty}x(t)\psi^{*}\left( \frac{t-b2^{a}}{2^{a}}\right) dt $$\end{document}  D  W  T  (  a  ,  b  )  =  1   2   a        ∫   −  ∞   ∞    x  (  t  )  ψ   ∗    t  −  b  2   a     2   a        d  t      
+
+ where ψ (  t ) is the principle wavelet, the symbol ∗ denotes the complex conjugate,  a and  b (  a ,  b ∈  R ) are scaling parameters of dilation and transition respectively. 
+
+  EWT: The Fourier spectrum of EWT of range 0 to π is segmented into  M regions. Each limit is denoted as  ω  m  (where  m = 1, 2, ... ,  M ) in which the starting limit is  ω  0 = 0 and final limit is  ω  M  =  π . The translation phase  T  m  centered around  ω  m  has a width of 2Φ  m  where Φ  m  =  λ  ω  m  for 0 <  λ < 1. Other information on EWT can be found in [  53 ]. 
+
+  
+
+  Feature Vector 2 (FV2):  The essential information from the binary form of COVID-19 infection image is extracted using the feature extraction procedure discussed in Bhandary et al. [ 35 ] and this work helped get the essential binary features using the Haralick and Hu technique. This method helps get 27 numbers of features (  F  H  a  r  a  l  i  c  k  = 18 features and  F  H  u  = 9 features) and the combination of these features helped get the 1D FV2 (FV2 = 27 features).  Haralick features : Haralick features are computed using a Gray Level Co-occurrence Matrix (GLCM). GLCM is a matrix, in which the total rows and columns depend on the gray levels (  G ) of the image. In this, the matrix component  P (  i ,  j |Δ  x ,Δ  y ) is the virtual frequency alienated by a pixel space (Δ  x ,Δ  y ). If  μ  x  and  μ  y  represent the mean and  σ  x  and  σ  y  represent the standard deviation of  P  x  and  P  y  , then:  12  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \begin{array}{@{}rcl@{}} \mu_{x}&=&{\sum}_{i=0}^{G-1}iP_{x}(i),\\ \mu_{y}&=&{\sum}_{j=0}^{G-1}jP_{y}(j),\\ \sigma_{x}&=&{\sum}_{i=0}^{G-1}(P_{x}(i)-\mu_{x}(i))\\ \sigma_{y}&=&{\sum}_{j=0}^{G-1}(P_{y}(j)-\mu_{y}(j)). \end{array} $$\end{document}  μ   x     =   ∑   i  =  0   G  −  1    i  P   x    (  i  )  ,    μ   y     =   ∑   j  =  0   G  −  1    j  P   y    (  j  )  ,    σ   x     =   ∑   i  =  0   G  −  1    (  P   x    (  i  )  −  μ   x    (  i  )  )    σ   y     =   ∑   j  =  0   G  −  1    (  P   y    (  j  )  −  μ   y    (  j  )  )  .         
+
+ where P  x  (  i ) and  P  y  (  j ) matrix components during the  i -th and  j -th entries, respectively. 
+
+ These parameters can be used to extract the essential texture and shape features from the considered grayscale image.
+
+  Hu moments : For a two-dimensional (2D) image, the 2D (  i +  j )-th order moments can be defined as;  13  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ M_{ij}={\int}_{-\infty}^{\infty}{\int}_{-\infty}^{\infty}x^{i}y^{j}f(x,y)dxdy $$\end{document}  M   i  j    =  ∫   −  ∞   ∞    ∫   −  ∞   ∞    x   i    y   j    f  (  x  ,  y  )  d  x  d  y      
+
+ for i ,  j = 0, 1, 2,... If the image function  f (  x ,  y ) is a piecewise continuous value, then the moments of all order exist and the moment sequence  M  i  j  is uniquely determined. Other information on Hu moments can be found in [  35 ]. 
+
+  
+
+  Fused Feature Vector (FFV:)  In this work, the original test image helped get the FV1 and the binary form of the COVID-19 helps get the FV2. To implement a classifier, it is essential to have a single feature vector with a pre-defined dimension.
+
+ In this work, the FFV based on the principle component analysis (PCA) is implemented to attain a 1D FFV (69 + 27 = 96 features) by combining the FV1 and FV2, and this feature set is then considered to train, test, and validate the classifier system implemented in this study. The complete information on the feature fusion based on the serial fusion can be found in [ 35 ,  54 ]. 
+
+  Classification  Classification is one of the essential parts in a verity of ML and deep learning (DL) techniques implemented to examine a class of medical datasets. The role of the classifier is to segregate the considered medical database into two-class and multi-class information using the chosen classifier system. In the proposed work, the classifiers, such as Random-Forest (RF), Support Vector Machine-Radial Basis Function (SVM-RBF), K-Nearest Neighbors (KNN), and Decision Tree (DT), are considered. The essential information on the implemented classifier units can be found in [ 35 ,  36 ,  45 ,  52 ]. A fivefold cross-validation is implemented and the best result among the trial is chosen as the final classification result. 
+
+  Validation  From the literature, it can be noted that the performance of the ML and DL-based data analysis is normally confirmed by computing the essential performance measures [ 35 ,  36 ]. In this work, the common performance measures, such as accuracy (  4 ), precision (  15 ), sensitivity (  16 ), specificity (  17 ), F1-score (  18 ), and negative predictive value (NPV) (  19 ) computed. 
+
+ The mathematical expression for these values is as follows: 14  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \text{Accuracy}=\frac{(T_{P}+T_{N})}{(T_{P}+T_{N}+F_{P}+F_{N} )} $$\end{document}  Accuracy  =  (  T   P    +  T   N    )   (  T   P    +  T   N    +  F   P    +  F   N    )         15  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \text{Precision}=\frac{T_{P}}{(T_{P}+F_{P} )} $$\end{document}  Precision  =  T   P     (  T   P    +  F   P    )         16  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \text{Sensitivity}=\frac{T_{P}}{(T_{P}+F_{N})} $$\end{document}  Sensitivity  =  T   P     (  T   P    +  F   N    )         17  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \text{Specificity}=\frac{T_{N}}{(T_{N}+F_{P})} $$\end{document}  Specificity  =  T   N     (  T   N    +  F   P    )         18  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \text{F1-Score}=\frac{2T_{P}}{(2T_{P}+F_{N}+F_{P})} $$\end{document}  F1-Score  =  2  T   P     (  2  T   P    +  F   N    +  F   P    )         19  \documentclass[12pt]{minimal} \usepackage{amsmath} \usepackage{wasysym} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{amsbsy} \usepackage{mathrsfs} \usepackage{upgreek} \setlength{\oddsidemargin}{-69pt} \begin{document}$$ \text{NPV}=\frac{T_{N}}{(T_{N}+F_{N})} $$\end{document}  NPV  =  T   N     (  T   N    +  F   N    )        where  T  P  = true positive,  T  N  = true negative,  F  P  = false positive, and  F  N  =false negative. 
+
+    COVID-19 Dataset  The clinical-level diagnosis of the COVID-19 pneumonia infection is normally assessed using the imaging procedure. In this research, the lung CTI are considered for the examination and these images are resized into 256 × 256 × 1 pixels to reduce the computation complexity. This work considered 400 grayscale lung CTI (200 normal and 200 COVID-19 class images) for the assessment. This research initially considered the benchmark COVID-19 database of [ 44 ] for the assessment. This dataset consists of 100 2D lung CTI along with its GT; and in this research, only 78 images are considered for the assessment and the remaining 22 images are discarded due to its poor resolution and the associated artifacts. The remaining COVID-19 CTI (122 images) are collected from the Radiopaedia database [  55 ] from cases 3 [  56 ], 8 [  57 ], 23 [  58 ], 10 [  59 ], 27 [  60 ] 52 [  61 ], 55 [  62 ], and 56 [  63 ]. 
+
+ The normal class images of the 2D lung CTI have been collected from The Lung Image Database Consortium-Image Database Resource Initiative (LIDC-IDRI) [ 64 –  66 ] and The Reference Image Database to Evaluate therapy Response-The Cancer Imaging Archive (RIDER-TCIA) [  66 ,  67 ] database and the sample images of the collected dataset are depicted in Figs.  4 and  5 . Figure  4 presents the test image and the related GT of the benchmark CTI. Figure  5 depicts the images of the COVID-19 [  55 ] and normal lung [  64 ,  67 ] CTI considered for the assessment.  Fig. 4  Sample test images of COVID-19 and the GT collected from [ 24 ] 
+
+     Fig. 5  Sample test images of COVID-19 and normal group     
+
+   Results and Discussion  The experimental results obtained in the proposed work are presented and discussed in this section. This developed system is executed using a workstation with the configuration: Intel i5 2.GHz processor with 8GB RAM and 2GB VRAM equipped with the MATLAB ( www.mathworks.com ). Experimental results of this study confirm that this scheme requires a mean time of 173 ± 11 s to process the considered CTI dataset and the processing time can be improved by using a workstation with higher computational capability. The advantage of this scheme is it is a fully automated practice and will not require the operator assistance during the execution. The proposed research initially executes the COVID-19 infection segmentation task using the benchmark dataset of [  44 ]. The results attained using a chosen trial image are depicted in Fig.  6 . Figure  6 a depicts the sample image of dimension 256 × 256 × 1 and Fig.  6 b and c depict the actual and the binary forms of the GT image. The result attained with the SGO-KE-based tri-level threshold is depicted in Fig.  6 d. Later, the KMC is employed to segregate Fig.  6 d into three different sections and the separated images are shown in Fig.  6e–g . Finally, a morphological segmentation technique is implemented to segment the COVID-19 infection from Fig.  6g and the attained result is presented in Fig.  6h . After extracting the COVID-19 infection from the test image, the performance of the proposed segmentation method is confirmed by implementing a comparative examination between the binary GT existing in Fig.  6 c with Fig.  6h and the essential performance values are then computed based on the pixel information of the background (0) and the COVID-19 section (1). For this image, the values attained are  T  P  = 5865 pixels,  F  P  = 306,  T  N  = 52572, and  F  N  = 1949, and these values offered accuracy = 96.28%, precision = 95.04%, sensitivity = 75.06%, specificity = 99.42%, F1-score = 83.88%, and NPV = 96.43%.  Fig. 6  Results attained with the benchmark COVID-19 database. a Sample test image.  b FT image.  c Binary GT.  d SGO-KE thresholded image.  e Background.  f Artifact.  g Lung section.  h Segmented COVID-19 infection 
+
+    
+
+ A similar procedure is implemented for other images of this dataset and means performance measure attained for the whole benchmark database (78 images) is depicted in Fig. 7 . From this figure, it is evident that the segmentation accuracy attained for this dataset is higher than 91%, and in the future the performance of the proposed segmentation method can be validated against other thresholding and segmentation procedures existing in the medical imaging literature.  Fig. 7  Mean performance measure attained with the proposed COVID-19 segmentation procedure
+
+    
+
+ The methodology depicted in Fig. 3 is then implemented by considering the entire database of the CTI prepared in this research work. This dataset consists of 400 grayscale images with dimension 256 × 256 × 1 pixels and the normal/COVID-19 class images have a similar dimension to confirm the performance of the proposed technique. Initially, the proposed ML scheme is implemented by considering only the grayscale image features (FV1) with a dimension 1 × 69 and the performance of the considered classifier units, such as RF, KNN, SVM-RBF, and DT, is computed. During this procedure, 70% of the database (140 + 140 = 280 images) are considered for training and 30% (60 + 60 = 120 images) are considered for testing. After checking its function, each classifier is separately validated by using the entire database and the attained results are recorded. Here, a fivefold cross-validation is implemented for each classifier and the best result attained is considered as the final result. The obtained results are depicted in Table  1 (the first three rows). The results reveal that the classification accuracy attained with SVM-RBF is superior (85%) compared with the RF, KNN, and DT. Also, the RF technique helped get the better values of the sensitivity and NPV compared with other classifiers.  Table 1  Disease detection performance attained with the proposed ML scheme
+
+  Features  Classifier  TP  FN  TN  FP  Acc. (%)  Prec. (%)  Sens. (%)  Spec. (%)  F1-Sc. (%)  NPV (%) 
+
+  FV1 (1×69)  RF  163  37  172  28  83.75  85.34  81.50   86.00  83.37  82.30  
+
+   KNN  159  41  177  23  84.00  87.36  79.50  88.50  83.24  81.19 
+
+   SVM-RBF  161  39  179  21  85.00   88.46   80.50  89.50   84.29   82.11 
+
+   DT  160  40  168  32  82.00  83.33  80.00  84.00  81.63  80.77 
+
+ FFV (1×96)  RF  169  31  178  22  86.75  88.48   84.50  89.00   86.45  85.17 
+
+   KNN  178  22  173  27  87.75   86.83  89.00   86.50  87.90   88.72  
+
+   SVM-RBF  172  28  177  23  87.25  88.20  86.00  88.50  87.09  86.34 
+
+   DT  174  26  172  28  86.50  86.14  87.00  86.00  86.57  86.89 
+
+ 
+
+ TP , true positive;  FN , false negative;  TN , true negative;  FP , false positive;  Acc. , accuracy;  Prec. , precision;  Sens. , sensitivity;  Spec. , specificity;  F1-Sc. , F1-score;  NPV , negative predictive value, italicized values indicate the best performance. 
+
+  
+
+ To improve the detection accuracy, the feature vector size is increased by considering the FFV (1 × 96 features) and a similar procedure is repeated. The obtained results (as in Table 1 , bottom three rows) with the FFV confirm that the increment of features improves the detection accuracy considerably and the KNN classifier offers an improved accuracy (higher than 87%) compared with the RF, SVM-RBF, and DT. The precision and the F1-score offered by the RF are superior compared with the alternatives. The experimental results attained with the proposed ML scheme revealed that this methodology helps achieve better classification accuracy on the considered lung CTI dataset. The accuracy attained with the chosen classifiers for FV1 and FFV is depicted in Fig.  8 . The future scope of the proposed method includes (i) implementing the proposed ML scheme to test the clinically obtained CTI of COVID-19 patients; (ii) enhancing the performance of implemented ML technique by considering the other feature extraction and classification procedures existing in the literature; and (iii) implementing and validating the performance of the proposed ML with other ML techniques existing in the literature; and (iv) implementing an appropriate DL architecture to attain better detection accuracy on the benchmark as well as the clinical grade COVID-19 infected lung CTI.  Fig. 8  Detection accuracy attained in the proposed system with various classifiers
+
+    
+
+  Conclusion  The aim of this work has been to develop an automated detection pipeline to recognize the COVID-19 infection from lung CTI. This work proposes an ML-based system to achieve this task. The proposed system executed a sequence of procedures ranging from image pre-processing to the classification to develop a better COVID-19 detection tool. The initial part of the work implements an image segmentation procedure with SGO-KE thresholding, KMC-based separation, morphology-based COVID-19 infection extraction, and a relative study between the extracted COVID-19 sections with the GT. The segmentation assisted to achieve an overall accuracy higher than 91% on a benchmark CTI dataset. Later, an ML scheme with essential procedures such as feature extraction, feature selection, feature fusion, and classification is implemented on the considered data, and the proposed scheme with the KNN classifier achieved an accuracy higher than 87%.
+
+   1  https://www.worldometers.info/coronavirus/ , as of June 17, 2020 
+
+  Publisher’s Note   Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+
+   The authors of this paper would like to thank Medicalsegmentation.com and Radiopaedia.org for sharing the clinical-grade COVID-19 images.
+
+  Author Contributions  This work was carried out in close collaboration between all co-authors. ND, VR, MSK, and MM first defined the research theme and contributed an early design of the system. ND and VR further implemented and refined the system development. ND, VR, SJF, MSK, and MM wrote the paper. All authors have contributed to, seen, and approved the final manuscript.
+
+  Compliance with Ethical Standards  Conflict of Interest   All authors declare that they have no conflict of interest.
+
+  Ethical Approval  All procedures reported in this study were in accordance with the ethical standards of the institutional and/or national research committee and with the 1964 Helsinki declaration and its later amendments or comparable ethical standards.
+
+  Informed Consent  This study used secondary data; therefore, the informed consent does not apply.
+
+   References  1.  WHO. WHO, editor. Coronavirus. WHO; 2020. Last accessed: 10th April 2020. Available from: https://www.who.int/emergencies/diseases/novel-coronavirus-2019 .    2.  (ALA) ALA. ALA, editor. Coronavirus update- Worldometer. ALA; 2020. Available from: https://www.worldometers.info/coronavirus/ .    3.  WHO. WHO, editor. WHO/Europe | Coronavirus disease (COVID-19) outbreak - WHO announces COVID-19 outbreak a pandemic. WHO; 1948. Last access date: 22-04-2020. Available from: https://bit.ly/3bvuX8S .    4.  Li  Q      Early transmission dynamics in Wuhan, China, of novel coronavirus–infected pneumonia  Engl J Med  2020  382  13  1199  1207  10.1056/NEJMoa2001316    5.  Bai HX, et al. Performance of radiologists in differentiating COVID-19 from viral pneumonia on chest CT. Radiology. 2020; p. 200823. [epub ahead of print.]   6.  Chua F, Armstrong-James D, Desai SR, Barnett J, Kouranos V, Kon OM, et al. The role of CT in case ascertainment and management of COVID-19 pneumonia in the UK: insights from high-incidence regions. The Lancet Respiratory Medicine. 2020;0(0). EPub ahead of print. 10.1016/S2213-2600(20)30132-6.   7.  Santosh KC. AI-driven tools for coronavirus outbreak: need of active learning and cross-population train/test models on multitudinal/multimodal data. Journal of Medical Systems. 2020;44:93.   8.  Rajinikanth V, et al. Harmony-Search and Otsu based system for coronavirus disease (COVID-19) detection using lung CT scan images. CoRR. 2020; Available from: https://arxiv.org/abs/2004.03431 .    9.  Liu  K   Xu  P   Lv  WF   Qiu  XH   Yao  JL   Gu  JF      CT manifestations of coronavirus disease-2019: a retrospective analysis of 73 cases by disease severity  Eur J Radiol  2020  126  108941  10.1016/j.ejrad.2020.108941  32193037    10.  Yang R, Li X, Liu H, Zhen Y, Zhang X, Xiong Q, et al. Chest CT severity score: an imaging tool for assessing severe COVID-19. Radiol Cardioth Imaging. 2020;2(2):e200047.   11.  Fong  SJ    Finding an accurate early forecasting model from small dataset: a case of 2019-nCoV novel coronavirus outbreak  Int J Interact Multimed Artif Intell  2020  6  1  132  140    12.  Fong SJ, Li G, Dey N, Crespo RG, Herrera-Viedma E. Composite Monte Carlo decision making under high uncertainty of novel coronavirus epidemic using hybridized deep learning and fuzzy rule induction. Applied Soft Computing. 2020; p. 106282.   13.  Verity R, Okell LC, Dorigatti I, Winskill P, Whittaker C, Imai N, et al. Estimates of the severity of coronavirus disease 2019: a model-based analysis. The Lancet Infectious Diseases. 2020; 0(0). Publisher: Elsevier.   14.  Fang Y, et al. Sensitivity of chest CT for COVID-19: comparison to RT-PCR. Radiology. 2020;0(0):200432.   15.  Zhou Z, Guo D, Li C, Fang Z, Chen L, Yang R, et al. Coronavirus disease 2019: initial chest CT findings. European Radiology. 2020; EPub ahead of print. 10.1007/s00330-020-06816-7.   16.  Yoon  SH   Lee  KH   Kim  JY   Lee  YK   Ko  H   Kim  KH      Chest radiographic and CT findings of the 2019 novel coronavirus disease (COVID-19): analysis of nine patients treated in Korea  Korean J Radiol  2020  21  4  494  500  10.3348/kjr.2020.0132  32100485    17.  Li K, Fang Y, Li W, Pan C, Qin P, Zhong Y, et al. CT Image visual quantitative evaluation and clinical classification of coronavirus disease (COVID-19). European Radiology. 2020; EPub ahead of print 10.1007/s00330-020-06817-6.   18.  Chung  M   Bernheim  A   Mei  X   Zhang  N   Huang  M   Zeng  X      CT imaging features of 2019 novel coronavirus (2019-nCoV)  Radiology  2020  295  1  202  207  10.1148/radiol.2020200230  32017661    19.  RSNA. healthcare-in-europe com, editor. CT outperforms lab diagnosis for coronavirus infection. healthcare-in-europe.com; 2020. Last accessed date: 22-04-2020. Available from: https://bit.ly/3aoTQBD .    20.  Borges do Nascimento IJ, Cacic N, Abdulazeem HM, von Groote TC, Jayarajah U, Weerasekara I, et al. Novel coronavirus infection (COVID-19) in humans: a scoping review and meta-analysis. Journal of Clinical Medicine. 2020;9(4):941. Number: 4 Publisher: Multidisciplinary Digital Publishing Institute.   21.  Bernheim A, Mei X, Huang M, Yang Y, Fayad ZA, Zhang N, et al. Chest CT findings in coronavirus disease-19 (COVID-19): relationship to duration of infection. Radiology. 2020; p. 200463.   22.  Wang Y, Dong C, Hu Y, Li C, Ren Q, Zhang X, et al. Temporal changes of CT findings in 90 patients with COVID-19 pneumonia: a longitudinal study. Radiology. 2020; p. 200843.   23.  Shan F, Gao Y, Wang J, Shi W, Shi N, Han M, et al. Lung infection quantification of COVID-19 in CT images with deep learning. CVPR. 2020.   24.  Mahmud  M   Kaiser  MS   Hussain  A   Vassanelli  S    Applications of deep learning and reinforcement learning to biological data  IEEE Trans Neural Netw Learn Syst  2018  29  6  2063  2079  10.1109/TNNLS.2018.2790388  29771663    25.  Mahmud M, Kaiser MS, Hussain A. Deep learning in mining biological data. [cs, q-bio, stat]. 2020; p. 1–36. Available from: arXiv: 2003.00108 2003.00108.    26.  Ali HM, Kaiser MS, Mahmud M. Application of convolutional neural network in segmenting brain regions from MRI data. Brain Informatics. Lecture Notes in Computer Science. In: Liang P, Goel V, and Shan C, editors. Cham: Springer International Publishing; 2019. p. 136–146.   27.  Orojo O, Tepper J, McGinnity TM, Mahmud M. A multi-recurrent network for crude oil price prediction. In: 2019 IEEE Symposium Series on Computational Intelligence (SSCI); 2019. p. 2940–2945.   28.  Arifeen MM, et al. Hidden Markov model based trust management model for underwater wireless sensor networks. Proceedings Of The International Conference On Computing Advancements; 2020. p. 1–5. 10.1145/3377049.3377054.   29.  Yahaya  SW   Lotfi  A   Mahmud  M    A consensus novelty detection ensemble approach for anomaly detection in activities of daily living  Appl Soft Comput  2019  105613  83    30.  Yahaya SW, Lotfi A, Mahmud M, Machado P, Kubota N. Gesture recognition intermediary robot for abnormality detection in human activities. In: 2019 IEEE Symposium Series on Computational Intelligence (SSCI); 2019. p. 1415–1421.   31.  Noor MBT, Zenia NZ, Kaiser MS, Mahmud M, Al Mamun S. Detecting neurodegenerative disease from MRI: a brief review on a deep learning perspective. Brain Informatics. Lecture Notes in Computer Science. In: Liang P, Goel V, and Shan C, editors. Cham: Springer International Publishing; 2019. p. 115–125.   32.  Miah Y, Prima CNE, Seema SJ, Mahmud M, Kaiser MS. Performance comparison of machine learning techniques in identifying dementia from open access clinical datasets. In: Proceedings of ICACIN 2020. Springer; 2020. p. 69– 78.   33.  Rabby  G   Azad  S   Mahmud  M   Zamli  KZ   Rahman  MM    A flexible keyphrase extraction technique for academic literature  Procedia Comput Sci  2018  135  553  63  10.1016/j.procs.2018.08.208    34.  Silver  D      Mastering the game of Go with deep neural networks and tree search  Nature  2016  529  7587  484  10.1038/nature16961  26819042    35.  Bhandary  A   Prabhu  GA   Rajinikanth  V   Thanaraj  KP   Satapathy  SC   Robbins  DE      Deep-learning framework to detect lung abnormality – a study with chest X-ray and lung CT scan images  Pattern Recogn Lett  2020  129  271  278  10.1016/j.patrec.2019.11.013    36.  Pugalenthi R, Rajakumar MP, Ramya J, Rajinikanth V. Evaluation and classification of the brain tumor MRI using machine learning technique. J Control Eng Appl Inf. 2019;21(4):12–21.   37.  Celik Y, Talo M, Yildirim O, Karabatak M, Acharya UR. Automated invasive ductal carcinoma detection based using deep transfer learning with whole-slide images. Pattern Recogn Lett. 2020;133:232–239.   38.  Sharif M, Amin J, Raza M, Anjum MA, Afzal H, Shad SA. Brain tumor detection based on extreme learning. Neural Computing and Applications. 2020; EPub ahead of print 10.1007/s00521-019-04679-8.   39.  Amin J, Sharif M, Raza M, Mussarat Y. Detection of brain tumor based on features fusion and machine learning. Journal of Ambient Intelligence and Humanized Computing. 2018.   40.  Amin J, Sharif M, Gul N, Yasmin M, Shad SA. Brain tumor classification based on DWT fusion of MRI sequences using convolutional neural network. Pattern Recogn Lett. 2020;129:115–122.   41.  Sharif  M   Amin  J   Nisar  MW   Anjum  MA   Nazeer  M   Shad  SA    A unified patch based method for brain tumor detection using features fusion  Cogn Syst Res  2020  59  273  286  10.1016/j.cogsys.2019.10.001    42.  Das  A   Acharya  RU   Panda  SS   Sabut  SK    Deep learning based liver cancer detection using watershed transform and Gaussian mixture model techniques  Cogn Syst Res  2019  54  165  175  10.1016/j.cogsys.2018.12.009    43.  Wu YH, Gao SH, Mei J, Xu J, Fan DP, Zhao CW, et al. JCS: an explainable COVID-19 diagnosis system by joint classification and segmentation. [cs, eess]. 2020;p. 1–11. . Available from: arXiv: 2004.07054 .    44.  Artificial Intelligence AS. MedSeg, editor. CT Dataset for COVID-19. MedSeg; 2020. Last access date 22-04-2020. Available from: http://medicalsegmentation.com/covid19/ .    45.  Dey N, Rajinikanth V, Shi F, Tavares JMRS, Moraru L, Karthik KA, et al. Social-group-optimization based tumor evaluation tool for clinical brain MRI of FLAIR/diffusion-weighted modality. Biocybern Biomed Eng. 2019;39(3):843–856.   46.  Dey  N   Rajinikanth  V   Ashour  AS   Tavares  JMRS    Social group optimization supported segmentation and evaluation of skin melanoma images  Symmetry  2018  10  2  51  10.3390/sym10020051    47.  Satapathy  S   Naik  A    Social group optimization (SGO): a new population evolutionary optimization technique  Compl Intell Syst  2016  2  3  173  203  10.1007/s40747-016-0022-8    48.  Kowsalya N, Kalyani A, Chalcedony CJ, Sivakumar R, Janani M, Rajinikanth V. An approach to extract optic-disc from retinal image using K-means clustering. In: 2018 Fourth International Conference on Biosignals, Images and Instrumentation (ICBSII); 2018. p. 206–212.   49.  Tian  Z   Dey  N   Ashour  AS   McCauley  P   Shi  F    Morphological segmenting and neighborhood pixel-based locality preserving projection on brain fMRI dataset for semantic feature extraction: an affective computing study  Neural Comput Appl  2018  30  12  3733  3748  10.1007/s00521-017-2955-2    50.  Wang  Y   Shi  F   Cao  L   Dey  N   Wu  Q   Ashour  AS      Morphological segmentation analysis and texture-based support vector machines classification on mice liver fibrosis microscopic images  Curr Bioinform  2019  14  4  282  294  10.2174/1574893614666190304125221    51.  Chaki J, Dey N. Texture feature extraction techniques for image recognition, Voice In Settings. SpringerBriefs in Computational Intelligence. Springer Singapore; 2020.   52.  Acharya  UR   Fernandes  SL   WeiKoh  JE   Ciaccio  EJ   Fabell  MKM   Tanik  UJ      Automated detection of Alzheimer’s disease using brain MRI images– a study with various feature extraction techniques  J Med Syst  2019  43  9  302  10.1007/s10916-019-1428-9  31396722    53.  Maheshwari  S   Pachori  RB   Acharya  UR    Automated diagnosis of glaucoma using empirical wavelet transform and correntropy features extracted from fundus images  IEEE J Biomed Health Inf  2017  21  3  803  813  10.1109/JBHI.2016.2544961    54.  Kala  S   Ezhilarasi  M    Comparative analysis of serial and parallel fusion on texture features for improved breast cancer diagnosis  Curr Med Imaging Rev  2018  14  6  957  968  10.2174/1573405613666170926164625    55.  Moore CM, et al. Radiopaedia, editor. COVID-19 | Radiology Reference Article | Radiopaedia.org. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/articles/covid-19-3 .    56.  Bahman R. Radiopaedia, editor. Cases by R. Bahman: Radiopaedia.org rID: 74560. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-3 .    57.  Hosseinabadi F. Radiopaedia, editor. Case courtesy of Dr Fateme Hosseinabadi: Radiopaedia.org rID: 74868. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-8 .    58.  Smith D. Radiopaedia, editor. Case courtesy of Dr Derek Smith: Radiopaedia.org rID: 75249. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-23 .    59.  Bahman R. Radiopaedia, editor. Cases by R. Bahman: Radiopaedia.org rID: 74879. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-10 .    60.  Cetinoglu K. Radiopaedia, editor. Case courtesy of Dr Kenan Cetinoglu: Radiopaedia.org rID: 75281. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-27 .    61.  Feger J. Radiopaedia, editor. Case courtesy of Dr Joachim Feger: Radiopaedia.org rID: 75541. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-52 .    62.  TaghiNiknejad M. Radiopaedia, editor. Case 55, courtesy of Dr Mohammad TaghiNiknejad: Radiopaedia.org rID: 75606. Radiopaedia; 2018. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-55 .    63.  TaghiNiknejad M. Radiopaedia, editor. Case courtesy of Dr Mohammad TaghiNiknejad: Radiopaedia.org rID: 75607. Radiopaedia; 2020. Last access date: 22-04-2020. Available from: https://radiopaedia.org/cases/covid-19-pneumonia-56 .    64.  Clark  K   Vendt  B   Smith  K   Freymann  J   Kirby  J   Koppel  P      The Cancer Imaging Archive (TCIA): maintaining and operating a public information repository  J Digit Imaging  2013  26  6  1045  1057  10.1007/s10278-013-9622-7  23884657    65.  Armato  SG      The Lung Image Database Consortium (LIDC) and Image Database Resource Initiative (IDRI): a completed reference database of lung nodules on CT scans: The LIDC/IDRI thoracic CT database of lung nodules  Med Phys  2011  38  2  915  931  10.1118/1.3528204  21452728    66.  Zhao  B      Evaluating variability in tumor measurements from same-day repeat CT scans of patients with non-small cell lung cancer  Radiology  2009  252  1  263  272  10.1148/radiol.2522081593  19561260    67.  Zhao B, Schwartz LH, Kris MG. Archive TCI, editor. Data From RIDER_Lung CT. The Cancer Imaging Archive; 2015. Last access date: 17-06-2020. Available from: 10.7937/K9/TCIA.2015.U1X8A5NR.    
+

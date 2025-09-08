@@ -1,1630 +1,287 @@
-Geosci. Model Dev., 12, 4221–4244, 2019
-https://doi.org/10.5194/gmd-12-4221-2019
-© Author(s) 2019. This work is distributed under
-the Creative Commons Attribution 4.0 License.
-SKRIPS v1.0: a regional coupled ocean–atmosphere modeling
-framework (MITgcm–WRF) using ESMF/NUOPC, description
-and preliminary results for the Red Sea
-Rui Sun1, Aneesh C. Subramanian1, Arthur J. Miller1, Matthew R. Mazloff1, Ibrahim Hoteit2, and
-Bruce D. Cornuelle1
-1Scripps Institution of Oceanography, La Jolla, California, USA
-2Physical Sciences and Engineering Division, King Abdullah University of Science and Technology
-(KAUST), Thuwal, Saudi Arabia
-Correspondence: Rui Sun (rus043@ucsd.edu) and Aneesh Subramanian (aneeshcs@colorado.edu)
-Received: 9 October 2018 – Discussion started: 29 November 2018
-Revised: 1 September 2019 – Accepted: 4 September 2019 – Published: 8 October 2019
-Abstract. A new regional coupled ocean–atmosphere model
-is developed and its implementation is presented in this
-paper. The coupled model is based on two open-source
-community model components: the MITgcm ocean model
-and the Weather Research and Forecasting (WRF) atmo-
-sphere model. The coupling between these components is
-performed using ESMF (Earth System Modeling Frame-
-work) and implemented according to National United Oper-
-ational Prediction Capability (NUOPC) protocols. The cou-
-pled model is named the Scripps–KAUST Regional Inte-
-grated Prediction System (SKRIPS). SKRIPS is demon-
-strated with a real-world example by simulating a 30 d pe-
-riod including a series of extreme heat events occurring on
-the eastern shore of the Red Sea region in June 2012. The
-results obtained by using the coupled model, along with
-those in forced stand-alone oceanic or atmospheric simu-
-lations, are compared with observational data and reanaly-
-sis products. We show that the coupled model is capable
-of performing coupled ocean–atmosphere simulations, al-
-though all conﬁgurations of coupled and uncoupled mod-
-els have good skill in modeling the heat events. In addition,
-a scalability test is performed to investigate the paralleliza-
-tion of the coupled model. The results indicate that the cou-
-pled model code scales well and the ESMF/NUOPC cou-
-pler accounts for less than 5 % of the total computational
-resources in the Red Sea test case. The coupled model and
-documentation are available at https://library.ucsd.edu/dc/
-collection/bb1847661c (last access: 26 September 2019), and
-the source code is maintained at https://github.com/iurnus/
-scripps_kaust_model (last access: 26 September 2019).
-1
-Introduction
-Accurate and efﬁcient forecasting of oceanic and atmo-
-spheric circulation is essential for a wide variety of high-
-impact societal needs, including extreme weather and climate
-events (Kharin and Zwiers, 2000; Chen et al., 2007), envi-
-ronmental protection and coastal management (Warner et al.,
-2010), management of ﬁsheries (Roessig et al., 2004), marine
-conservation (Harley et al., 2006), water resources (Fowler
-and Ekström, 2009), and renewable energy (Barbariol et al.,
-2013). Effective forecasting relies on high model ﬁdelity
-and accurate initialization of the models with the observed
-state of the coupled ocean–atmosphere system. Although
-global coupled models are now being implemented with in-
-creased resolution, higher-resolution regional coupled mod-
-els, if properly driven by the boundary conditions, can pro-
-vide an affordable way to study air–sea feedback for frontal-
-scale processes.
-A number of regional coupled ocean–atmosphere models
-have been developed for various goals in the past decades. An
-early example of building a regional coupled model for real-
-istic simulations focused on accurate weather forecasting in
-the Baltic Sea (Gustafsson et al., 1998; Hagedorn et al., 2000;
-Doscher et al., 2002) and showed that the coupled model im-
-Published by Copernicus Publications on behalf of the European Geosciences Union.
-4222
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-proved the SST (sea surface temperature) and atmospheric
-circulation forecast. Enhanced numerical stability in the cou-
-pled simulation was also observed. These early attempts were
-followed by other practitioners in ocean-basin-scale climate
-simulations (e.g., Huang et al., 2004; Aldrian et al., 2005; Xie
-et al., 2007; Seo et al., 2007; Somot et al., 2008; Fang et al.,
-2010; Boé et al., 2011; Zou and Zhou, 2012; Gualdi et al.,
-2013; Van Pham et al., 2014; Chen and Curcic, 2016; Seo,
-2017). For example, Huang et al. (2004) implemented a re-
-gional coupled model to study three major important patterns
-contributing to the variability and predictability of the At-
-lantic climate. The study suggested that these patterns orig-
-inate from air–sea coupling within the Atlantic Ocean or by
-the oceanic response to atmospheric intrinsic variability. Seo
-et al. (2007) studied the nature of ocean–atmosphere feed-
-backs in the presence of oceanic mesoscale eddy ﬁelds in
-the eastern Paciﬁc Ocean sector. The evolving SST fronts
-were shown to drive an unambiguous response of the at-
-mospheric boundary layer in the coupled model and lead
-to model anomalies of wind stress curl, wind stress diver-
-gence, surface heat ﬂux, and precipitation that resemble ob-
-servations. This study helped substantiate the importance of
-ocean–atmosphere feedbacks involving oceanic mesoscale
-variability features.
-In addition to basin-scale climate simulations, regional
-coupled models are also used to study weather extremes.
-For example, the COAMPS (Coupled Ocean/Atmosphere
-Mesoscale Prediction System) was applied to investigate ide-
-alized tropical cyclone events (Hodur, 1997). This work was
-then followed by other realistic extreme weather studies.
-Another example is the investigation of extreme bora wind
-events in the Adriatic Sea using different regional coupled
-models (Loglisci et al., 2004; Pullen et al., 2006; Ricchi
-et al., 2016). The coupled simulation results demonstrated
-improvements in describing the air–sea interaction processes
-by taking into account oceanic surface heat ﬂuxes and wind-
-driven ocean surface wave effects (Loglisci et al., 2004; Ric-
-chi et al., 2016). It was also found in model simulations that
-SST after bora wind events had a stabilizing effect on the
-atmosphere, reducing the atmospheric boundary layer mix-
-ing and yielding stronger near-surface wind (Pullen et al.,
-2006). Regional coupled models were also used for studying
-the forecasts of hurricanes, including hurricane path, hurri-
-cane intensity, SST variation, and wind speed (Bender and
-Ginis, 2000; Chen et al., 2007; Warner et al., 2010).
-Regional coupled modeling systems also play important
-roles in studying the effect of surface variables (e.g., surface
-evaporation, precipitation, surface roughness) in the coupling
-processes of oceans or lakes. One example is the study con-
-ducted by Powers and Stoelinga (2000), who developed a
-coupled model and investigated the passage of atmospheric
-fronts over the Lake Erie region. Sensitivity analysis was
-performed to demonstrate that parameterization of lake sur-
-face roughness in the atmosphere model can improve the cal-
-culation of wind stress and heat ﬂux. Another example is
-the investigation of Caspian Sea levels by Turuncoglu et al.
-(2013), who compared a regional coupled model with uncou-
-pled models and demonstrated the improvement of the cou-
-pled model in capturing the response of Caspian Sea levels
-to climate variability.
-In the past 10 years, many regional coupled models have
-been developed using modern model toolkits (Zou and Zhou,
-2012; Turuncoglu et al., 2013; Turuncoglu, 2019) and in-
-clude waves (Warner et al., 2010; Chen and Curcic, 2016),
-sediment transport (Warner et al., 2010), sea ice (Van Pham
-et al., 2014), and chemistry packages (He et al., 2015). How-
-ever, this work was motivated by the need for a coupled re-
-gional ocean–atmosphere model implemented using an ef-
-ﬁcient coupling framework and with compatible state esti-
-mation capabilities in both ocean and atmosphere. The goal
-of this work is to (1) introduce the design of the newly de-
-veloped regional coupled ocean–atmosphere modeling sys-
-tem, (2) describe the implementation of the modern cou-
-pling framework, (3) validate the coupled model using a real-
-world example, and (4) demonstrate and discuss the par-
-allelization of the coupled model. In the coupled system,
-the oceanic model component is the MIT general circula-
-tion model (MITgcm) (Marshall et al., 1997) and the atmo-
-spheric model component is the Weather Research and Fore-
-casting (WRF) model (Skamarock et al., 2019). To couple
-the model components in the present work, the Earth System
-Modeling Framework (ESMF) (Hill et al., 2004) is used be-
-cause of its advantages in conservative re-gridding capabil-
-ity, calendar management, logging and error handling, and
-parallel communications. The National United Operational
-Prediction Capability (NUOPC) layer in ESMF (Sitz et al.,
-2017) is also used between model components and ESMF.
-Using the NUOPC layer can simplify the implementation
-of component synchronization, execution, and other com-
-mon tasks in the coupling. The innovations in our work are
-(1) we use ESMF/NUOPC, which is a community-supported
-computationally efﬁcient coupling software for earth system
-models, and (2) we use MITgcm together with WRF, both
-of which work with the Data Assimilation Research Testbed
-(DART) (Anderson and Collins, 2007; Hoteit et al., 2013).
-The resulting coupled model is being developed for coupled
-data assimilation and subseasonal to seasonal (S2S) fore-
-casting. By coupling WRF and MITgcm for the ﬁrst time
-with ESMF, we can provide an alternative regional coupled
-model resource to a wider community of users. These atmo-
-spheric and oceanic model components have an active and
-well-supported user base.
-After implementing the new coupled model, we demon-
-strate it on a series of heat events that occurred on the eastern
-shore of the Red Sea region in June 2012. The simulated sur-
-face variables of the Red Sea (e.g., sea surface temperature,
-2 m temperature, and surface heat ﬂuxes) are examined and
-validated against available observational data and reanalysis
-products. To demonstrate that the coupled model can perform
-coupled ocean–atmosphere simulations, the results are com-
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4223
-pared with those obtained using stand-alone oceanic or atmo-
-spheric models. This paper focuses on the technical aspects
-of SKRIPS and is not a full investigation of the importance
-of coupling for these extreme events. In addition, a scalabil-
-ity test of the coupled model is performed to investigate its
-parallel capability.
-The rest of this paper is organized as follows. The descrip-
-tion of the individual modeling components and the design
-of the coupled modeling system are detailed in Sect. 2. Sec-
-tion 3 introduces the design of the validation experiment and
-the validation data. Section 4 discusses the preliminary re-
-sults in the validation test. Section 5 details the paralleliza-
-tion test of the coupled model. The last section concludes the
-paper and presents an outlook for future work.
-2
-Model description
-The newly developed regional coupled modeling system
-is introduced in this section. The general design of the
-coupled model, descriptions of individual components, and
-ESMF/NUOPC coupling framework are presented below.
-2.1
-General design
-The schematic description of the coupled model is shown in
-Fig. 1. The coupled model is comprised of ﬁve components:
-the oceanic component MITgcm, the atmospheric compo-
-nent WRF, the MITgcm–ESMF and WRF–ESMF interfaces,
-and the ESMF coupler. They are to be detailed in the follow-
-ing sections.
-The coupler component runs in both directions: (1) from
-WRF to MITgcm and (2) from MITgcm to WRF. From
-WRF to MITgcm, the coupler collects the atmospheric sur-
-face variables (i.e., radiative ﬂux, turbulent heat ﬂux, wind
-velocity, precipitation, evaporation) from WRF and updates
-the surface forcing (i.e., net surface heat ﬂux, wind stress,
-freshwater ﬂux) to drive MITgcm. From MITgcm to WRF,
-the coupler collects oceanic surface variables (i.e., SST and
-ocean surface velocity) from MITgcm and updates them in
-WRF as the bottom boundary condition. Re-gridding the data
-from either model component is performed by the coupler, in
-which various coupling intervals and schemes can be speci-
-ﬁed by ESMF (Hill et al., 2004).
-2.2
-The oceanic component (MITgcm)
-MITgcm (Marshall et al., 1997) is a 3-D ﬁnite-volume gen-
-eral circulation model used by a broad community of re-
-searchers for a wide range of applications at various spatial
-and temporal scales. The model code and documentation,
-which are under continuous development, are available on
-the MITgcm web page (http://mitgcm.org/, last access date:
-26 September 2019). The “Checkpoint 66h” (June 2017) ver-
-sion of MITgcm is used in the present work.
-Figure 1. The schematic description of the coupled ocean–
-atmosphere model. The yellow block is the ESMF/NUOPC coupler;
-the red blocks are the implemented MITgcm–ESMF and WRF–
-ESMF interfaces; the white blocks are the oceanic and atmospheric
-components. From WRF to MITgcm, the coupler collects the at-
-mospheric surface variables (i.e., radiative ﬂux, turbulent heat ﬂux,
-wind velocity, precipitation, evaporation) and updates the surface
-forcing (i.e., net surface heat ﬂux, wind stress, freshwater ﬂux) to
-drive MITgcm. From MITgcm to WRF, the coupler collects oceanic
-surface variables (i.e., SST and ocean surface velocity) and updates
-them in WRF as the bottom boundary condition.
-The MITgcm is designed to run on high-performance
-computing (HPC) platforms and can run in nonhydrostatic
-and hydrostatic modes. It integrates the primitive (Navier–
-Stokes) equations, under the Boussinesq approximation, us-
-ing the ﬁnite volume method on a staggered Arakawa C grid.
-The MITgcm uses modern physical parameterizations for
-subgrid-scale horizontal and vertical mixing and tracer prop-
-erties. The code conﬁguration includes build-time C prepro-
-cessor (CPP) options and runtime switches, which allow for
-great computational modularity in MITgcm to study a variety
-of oceanic phenomena (Evangelinos and Hill, 2007).
-To implement the MITgcm–ESMF interface, we separate
-the MITgcm main program into three subroutines that han-
-dle initialization, running, and ﬁnalization, shown in Fig. 2a.
-These subroutines are used by the ESMF/NUOPC coupler
-that controls the oceanic component in the coupled run.
-The surface boundary ﬁelds are exchanged online1 via the
-MITgcm–ESMF interface during the simulation. The MIT-
-gcm oceanic surface variables are the export boundary ﬁelds;
-the atmospheric surface variables are the import boundary
-1In this article, “online” means the manipulations are performed
-via subroutine calls during the execution of the simulations; “of-
-ﬂine” means the manipulations are performed when the simulations
-are not executing.
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4224
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-ﬁelds (see Fig. 2b). These boundary ﬁelds are registered in
-the coupler following NUOPC protocols with timestamps2
-for the coupling. In addition, MITgcm grid information is
-provided to the coupler in the initialization subroutine for on-
-line re-gridding of the exchanged boundary ﬁelds. To carry
-out the coupled simulation on HPC clusters, the MITgcm–
-ESMF interface runs in parallel via Message Passing In-
-terface (MPI) communications. The implementation of the
-present MITgcm–ESMF interface is based on the baseline
-MITgcm–ESMF interface (Hill, 2005) but updated for com-
-patibility with the modern version of ESMF/NUOPC. We
-also modify the baseline interface to receive atmospheric sur-
-face variables and send oceanic surface variables.
-2.3
-The atmospheric component (WRF)
-The Weather Research and Forecasting (WRF) model (Ska-
-marock et al., 2019) is developed by the NCAR/MMM
-(Mesoscale and Microscale Meteorology division, National
-Center for Atmospheric Research). It is a 3-D ﬁnite-
-difference atmospheric model with a variety of physical pa-
-rameterizations of subgrid-scale processes for predicting a
-broad spectrum of applications. WRF is used extensively for
-operational forecasts as well as realistic and idealized dy-
-namical studies. The WRF code and documentation are un-
-der continuous development on GitHub (https://github.com/
-wrf-model/WRF, last access: 26 September 2019).
-In the present work, the Advanced Research WRF
-dynamic version (WRF-ARW, version 3.9.1.1, https://
-github.com/NCAR/WRFV3/releases/tag/V3.9.1.1, last ac-
-cess: 26 September 2019) is used. It solves the compressible
-Euler nonhydrostatic equations and also includes a runtime
-hydrostatic option. The WRF-ARW uses a terrain-following
-hydrostatic pressure coordinate system in the vertical direc-
-tion and utilizes the Arakawa C grid. WRF incorporates var-
-ious physical processes including microphysics, cumulus pa-
-rameterization, planetary boundary layer, surface layer, land
-surface, and longwave and shortwave radiation, with several
-options available for each process.
-Similar to the implementations in MITgcm, WRF is also
-separated into initialization, run, and ﬁnalization subrou-
-tines to enable the WRF–ESMF interface to control the at-
-mosphere model during the coupled simulation, shown in
-Fig. 2a. The implementation of the present WRF–ESMF in-
-terface is based on the prototype interface (Henderson and
-Michalakes, 2005). In the present work, the prototype WRF–
-ESMF interface is updated to modern versions of WRF-
-ARW and ESMF, based on the NUOPC layer. This prototype
-interface is also expanded to interact with the ESMF/NUOPC
-coupler to receive the oceanic surface variables and send the
-atmospheric surface variables. The surface boundary condi-
-tion ﬁelds are registered in the coupler following the NUOPC
-2In ESMF, “timestamp” is a sequence of numbers, usually based
-on the time, to identify ESMF ﬁelds. Only the ESMF ﬁelds having
-the correct timestamp will be transferred in the coupling.
-protocols with timestamps. The WRF grid information is also
-provided for online re-gridding by ESMF. To carry out the
-coupled simulation on HPC clusters, the WRF–ESMF inter-
-face also runs in parallel via MPI communications.
-2.4
-ESMF/NUOPC coupler
-The coupler is implemented using ESMF version 7.0.0. The
-ESMF is selected because of its high performance and ﬂex-
-ibility for building and coupling weather, climate, and re-
-lated Earth science applications (Collins et al., 2005; Tu-
-runcoglu et al., 2013; Chen and Curcic, 2016; Turuncoglu
-and Sannino, 2017). It has a superstructure for representing
-the model and coupler components and an infrastructure of
-commonly used utilities, including conservative grid remap-
-ping, time management, error handling, and data communi-
-cations.
-The general code structure of the coupler is shown in
-Fig. 2. To build the ESMF/NUOPC driver, a main program is
-implemented to control an ESMF parent component, which
-controls the child components. In the present work, three
-child components are implemented: (1) the oceanic com-
-ponent, (2) the atmospheric component, and (3) the ESMF
-coupler. The coupler is used here because it performs the
-two-way interpolation and data transfer (Hill et al., 2004).
-In ESMF, the model components can be run in parallel as a
-group of persistent execution threads (PETs), which are sin-
-gle processing units (e.g., CPU or GPU cores) deﬁned by
-ESMF. In the present work, the PETs are created according
-to the grid decomposition, and each PET is associated with
-an MPI process.
-The ESMF allows the PETs to run in sequential mode,
-concurrent mode, or mixed mode (for more than three com-
-ponents). We implemented both sequential and concurrent
-modes in SKRIPS, shown in Fig. 2b and c. In sequential
-mode, a set of ESMF gridded and coupler components are
-run in sequence on the same set of PETs. At each coupling
-time step, the oceanic component is executed when the at-
-mospheric component is completed and vice versa. On the
-other hand, in concurrent mode, the gridded components are
-created and run on mutually exclusive sets of PETs. If one
-component ﬁnishes earlier than the other, its PETs are idle
-and have to wait for the other component, shown in Fig. 2c.
-However, the PETs can be optimally distributed by the users
-to best achieve load balance. In this work, all simulations are
-run in sequential mode.
-In ESMF, the gridded components are used to represent
-models, and coupler components are used to connect these
-models. The interfaces and data structures in ESMF have
-few constraints, providing the ﬂexibility to be adapted to
-many modeling systems. However, the ﬂexibility of the grid-
-ded components can limit the interoperability across differ-
-ent modeling systems. To address this issue, the NUOPC
-layer is developed to provide the coupling conventions and
-the generic representation of the model components (e.g.,
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4225
-Figure 2. The general code structure and run sequence of the coupled ocean–atmosphere model. In panel (a), the black block is the applica-
-tion driver; the red block is the parent gridded component called by the application driver; the green (brown) blocks are the child gridded
-(coupler) components called by the parent gridded component. Panels (b) and (c) show the sequential and concurrent mode implemented in
-SKRIPS, respectively. PETs (persistent execution threads) are single processing units (e.g., CPU or GPU cores) deﬁned by ESMF. Abbrevi-
-ations OCN, ATM, and CON denote oceanic component, atmospheric component, and connector component, respectively. The blocks under
-PETs are the CPU cores in the simulation; the small blocks under OCN or ATM are the small subdomains in each core; the block under CON
-is the coupler. The red arrows indicate that the model components are sending data to the connector and the yellow arrows indicate that the
-model components are reading data from the connector. The horizontal arrows indicate the time axis of each component and the ticks on the
-time axis indicate the coupling time steps.
-drivers, models, connectors, mediators). The NUOPC layer
-in the present coupled model is implemented according to
-consortium documentation (Hill et al., 2004; Theurich et al.,
-2016), and the oceanic and atmospheric components each
-have
-1. prescribed variables for NUOPC to link the component;
-2. the entry point for registration of the component;
-3. an InitializePhaseMap which describes a sequence of
-standard initialization phases, including documenting
-the ﬁelds that a component can provide, checking and
-mapping the ﬁelds to each other, and initializing the
-ﬁelds that will be used;
-4. a RunPhaseMap that checks the incoming clock of the
-driver, examines the timestamps of incoming ﬁelds, and
-runs the component;
-5. timestamps on exported ﬁelds consistent with the inter-
-nal clock of the component;
-6. the ﬁnalization method to clean up all allocations.
-The subroutines that handle initialization, running, and ﬁ-
-nalization in MITgcm and WRF are included in the Initial-
-izePhaseMap, RunPhaseMap, and ﬁnalization method in the
-NUOPC layer, respectively.
-3
-Experiment design and observational datasets
-We simulate a series of heat events in the Red Sea region,
-with a focus on validating and assessing the technical as-
-pects of the coupled model. There is a desire for improved
-and extended forecasts in this region, and future work will
-investigate whether a coupled framework can advance this
-goal. The extreme heat events are chosen as a test case due to
-their societal importance. While these events and the analy-
-sis here may not maximize the value of coupled forecasting,
-these real-world events are adequate to demonstrate the per-
-formance and physical realism of the coupled model code
-implementation. The simulation of the Red Sea extends from
-00:00 UTC 1 June to 00:00 UTC 1 July 2012. We select this
-month because of the record-high surface air temperature ob-
-served in the Mecca region, located 70 km inland from the
-eastern shore of the Red Sea (Abdou, 2014).
-The computational domain and bathymetry are shown in
-Fig. 3. The model domain is centered at 20◦N, 40◦E, and
-the bathymetry is from the 2 min Gridded Global Relief
-Data (ETOPO2) (National Geophysical Data Center, 2006).
-WRF is implemented using a horizontal grid of 256 × 256
-points and grid spacing of 0.08◦. The cylindrical equidis-
-tant map (latitude–longitude) projection is used. There are
-40 terrain-following vertical levels, more closely spaced in
-the atmospheric boundary layer. The time step for atmo-
-sphere simulation is 30 s, which is to avoid violating the
-CFL (Courant–Friedrichs–Lewy) condition. The Morrison 2-
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4226
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-moment scheme (Morrison et al., 2009) is used to resolve
-the microphysics. The updated version of the Kain–Fritsch
-convection scheme (Kain, 2004) is used with the modiﬁca-
-tions to include the updraft formulation, downdraft formula-
-tion, and closure assumption. The Yonsei University (YSU)
-scheme (Hong et al., 2006) is used for the planetary bound-
-ary layer (PBL), and the Rapid Radiation Transfer Model for
-General Circulation Models (RRTMG; Iacono et al., 2008) is
-used for longwave and shortwave radiation transfer through
-the atmosphere. The Rapid Update Cycle (RUC) land surface
-model is used for the land surface processes (Benjamin et al.,
-2004). The MITgcm uses the same horizontal grid spacing as
-WRF, with 40 vertical z levels that are more closely spaced
-near the surface. The time step of the ocean model is 120 s.
-The horizontal subgrid mixing is parameterized using non-
-linear Smagorinsky viscosities, and the K-proﬁle parameter-
-ization (KPP) (Large et al., 1994) is used for vertical mixing
-processes.
-During coupled execution, the ocean model sends SST and
-ocean surface velocity to the coupler, and they are used di-
-rectly as the boundary conditions in the atmosphere model.
-The atmosphere model sends the surface ﬁelds to the coupler,
-including (1) surface radiative ﬂux (i.e., longwave and short-
-wave radiation), (2) surface turbulent heat ﬂux (i.e., latent
-and sensible heat), (3) 10 m wind speed, (4) precipitation,
-and (5) evaporation. The ocean model uses the atmospheric
-surface variables to compute the surface forcing, including
-(1) total net surface heat ﬂux, (2) surface wind stress, and
-(3) freshwater ﬂux. The total net surface heat ﬂux is com-
-puted by adding latent heat ﬂux, sensible heat ﬂux, shortwave
-radiation ﬂux, and longwave radiation ﬂux. The surface wind
-stress is computed by using the 10 m wind speed (Large and
-Yeager, 2004). The freshwater ﬂux is the difference between
-precipitation and evaporation. The latent and sensible heat
-ﬂuxes are computed by using the COARE 3.0 bulk algorithm
-in WRF (Fairall et al., 2003). In the coupled code, different
-bulk formulae in WRF or MITgcm can also be used.
-According to the validation tests in the literature (Warner
-et al., 2010; Turuncoglu et al., 2013; Ricchi et al., 2016), the
-following sets of simulations using different conﬁgurations
-are performed.
-1. Run CPL (coupled run): a two-way coupled MITgcm–
-WRF simulation. The coupling interval is 20 min to
-capture the diurnal cycle (Seo et al., 2014). This run
-tests the implementation of the two-way coupled ocean–
-atmosphere model.
-2. Run ATM.STA: a stand-alone WRF simulation with
-its initial SST kept constant throughout the simula-
-tion. This run allows for assessment of the WRF model
-behavior with realistic, but persistent, SST. This case
-serves as a benchmark to highlight the difference be-
-tween coupled and uncoupled runs and also to demon-
-strate the impact of evolving SST.
-3. Run ATM.DYN: a stand-alone WRF simulation with
-a varying, prescribed SST based on HYCOM/NCODA
-reanalysis data. This allows for assessing the WRF
-model behavior with updated SST and is used to vali-
-date the coupled model. It is noted that in practice an ac-
-curately evolving SST would not be available for fore-
-casting.
-4. Run OCN.DYN: a stand-alone MITgcm simulation
-forced by the ERA5 reanalysis data. The bulk formula
-in MITgcm is used to derive the turbulent heat ﬂuxes.
-This run assesses the MITgcm model behavior with
-prescribed lower-resolution atmospheric surface forcing
-and is also used to validate the coupled model.
-The ocean model uses the HYCOM/NCODA 1/12◦
-global reanalysis data as initial and boundary conditions for
-ocean temperature, salinity, and horizontal velocities (https:
-//www.hycom.org/dataserver/gofs-3pt1/reanalysis, last ac-
-cess: 26 September 2019). The boundary conditions for the
-ocean are updated on a 3-hourly basis and linearly interpo-
-lated between two simulation time steps. A sponge layer is
-applied at the lateral boundaries, with a thickness of 3 grid
-cells. The inner and outer boundary relaxation timescales
-of the sponge layer are 10 and 0.5 d, respectively. In CPL,
-ATM.STA, and ATM.DYN, we use the same initial condi-
-tion and lateral boundary condition for the atmosphere. The
-atmosphere is initialized using the ECMWF ERA5 reanal-
-ysis data, which have a grid resolution of approximately
-30 km (Hersbach, 2016). The same data also provide the
-boundary conditions for air temperature, wind speed, and
-air humidity every 3 h. The atmosphere boundary conditions
-are also linearly interpolated between two simulation time
-steps. The lateral boundary values are speciﬁed in WRF in
-the “speciﬁed” zone, and the “relaxation” zone is used to
-nudge the solution from the domain toward the boundary
-condition value. Here we use the default width of one point
-for the speciﬁc zone and four points for the relaxation zone.
-The top of the atmosphere is at the 50 hPa pressure level.
-In ATM.STA, the SST from HYCOM/NCODA at the ini-
-tial time is used as a constant SST. The time-varying SST in
-ATM.DYN is also generated using HYCOM/NCODA data.
-We select HYCOM/NCODA data because the ocean model
-initial condition and boundary conditions are generated us-
-ing it. For OCN.DYN we select ERA5 data for the atmo-
-spheric state because it also provides the atmospheric ini-
-tial and boundary conditions in CPL. The initial conditions,
-boundary conditions, and forcing terms of all simulations are
-summarized in Table 1.
-The validation of the coupled model focuses on tempera-
-ture, heat ﬂux, and surface wind. Our aim is to validate the
-coupled model and show that the heat and momentum ﬂuxes
-simulated by the coupled model are comparable to the obser-
-vations or the reanalysis data. The simulated 2 m air temper-
-ature (T 2) ﬁelds are validated using ERA5. In addition, the
-simulated T 2 for three major cities near the eastern shore of
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4227
-Figure 3. The WRF topography and MITgcm bathymetry in the simulations. Three major cities near the eastern shore of the Red Sea are
-highlighted. The Hijaz Mountains and Ethiopian Highlands are also highlighted.
-Table 1. The initial conditions, boundary conditions, and forcing terms used in the simulations.
-Initial and
-Ocean surface
-Atmospheric forcings
-boundary conditions
-conditions
-CPL
-ERA5 (atmosphere)
-from MITgcm
-from WRF
-HYCOM/NCODA (ocean)
-ATM.STA
-ERA5
-HYCOM/NCODA
-not used
-initial condition kept constant
-ATM.DYN
-ERA5
-HYCOM/NCODA
-not used
-updated every 3 h
-OCN.DYN
-HYCOM/NCODA
-not used
-ERA5
-the Red Sea are validated using ERA5 and ground observa-
-tions from the NOAA National Climate Data Center (NCDC
-climate data online at https://www.ncdc.noaa.gov/cdo-web/,
-last access: 26 September 2019). The simulated SST data are
-validated against the OSTIA (Operational Sea Surface Tem-
-perature and Sea Ice Analysis) system in GHRSST (Group
-for High Resolution Sea Surface Temperature) (Donlon et al.,
-2012; Martin et al., 2012). In addition, the simulated SST
-ﬁelds are validated against HYCOM/NCODA data. Since the
-simulations are initialized using HYCOM/NCODA data, this
-aims to show the increase in the differences. Surface heat
-ﬂuxes (e.g., turbulent heat ﬂux and radiative ﬂux), which
-drive the oceanic component in the coupled model, are val-
-idated using MERRA-2 (Modern-Era Retrospective analy-
-sis for Research and Applications, version 2) data (Gelaro
-et al., 2017). We use the MERRA-2 dataset because (1) it
-is an independent reanalysis dataset compared to the initial
-and boundary conditions used in the simulations and (2) it
-also provides 0.625◦×0.5◦(long × lat) resolution reanalysis
-ﬁelds of turbulent heat ﬂuxes (THFs). The 10 m wind speed is
-also compared with MERRA-2 data to validate the momen-
-tum ﬂux in the coupled code. The validation of the freshwater
-ﬂux is shown in the Appendix because (1) the evaporation is
-proportional to the latent heat in the model and (2) the pre-
-cipitation is zero in the cities near the coast in Fig. 3. The
-validation data are summarized in Table 2.
-When comparing T 2 with NCDC ground observations,
-the simulation results and ERA5 data are interpolated to the
-NCDC stations. When interpolating to NCDC stations near
-the coast, only the data saved on land points are used.3 The
-maximum and minimum T 2 every 24 h from the simula-
-tions and ERA5 are compared to the observed daily maxi-
-mum and minimum T 2. On the other hand, when compar-
-ing the simulation results with the analysis or reanalysis data
-(HYCOM, GHRSST, ERA5, and MERRA-2), we interpolate
-these data onto the model grid to achieve a uniform spatial
-scale (Maksyutov et al., 2008; Torma et al., 2011).
-3In ATM.STA, ATM.DYN, and CPL, we set land–sea mask
-equal to 1 as land points because the land–sea mask is either 0 (sea)
-or 1 (land) in WRF. In ERA5, we set the land–sea mask > 0.9 as
-land points because the land–sea mask is a fractional value between
-0 (sea) and 1 (land).
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4228
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Table 2. The observational data and reanalysis data used to validate
-the simulation results.
-Variable
-Validation data
-Sea surface temperature (SST)
-GHRSST and HYCOM/NCODA
-2 m air temperature (T 2)
-ERA5 and NCDC climate data
-Turbulent heat ﬂuxes
-MERRA-2
-Radiative ﬂuxes
-MERRA-2
-10 m wind speed
-MERRA-2
-4
-Results and discussions
-The Red Sea is an elongated basin covering the area be-
-tween 12–30◦N and 32–43◦E. The basin is 2250 km long,
-extending from the Suez and Aqaba gulfs in the north to
-the strait of Bab-el-Mandeb in the south, which connects the
-Red Sea and the Indian Ocean. In this section, the simula-
-tion results obtained by using different model conﬁgurations
-are presented to show that SKRIPS is capable of performing
-coupled ocean–atmosphere simulations. The T 2 from CPL,
-ATM.STA, and ATM.DYN are compared with the valida-
-tion data to evaluate the atmospheric component of SKRIPS;
-the SST obtained from CPL and OCN.DYN are compared
-to validate the atmospheric component of SKRIPS; the sur-
-face heat ﬂuxes and 10 m wind are used to assess the coupled
-system.
-4.1
-2 m air temperature
-We begin our analysis by examining the simulated T 2 from
-the model experiments, aiming to validate the atmospheric
-component of SKRIPS. Since the record-high temperature is
-observed in the Mecca region on 2 June, the simulation re-
-sults on 2 June (36 or 48 h after the initialization) are shown
-in Fig. 4. The ERA5 data, and the difference between CPL
-and ERA5 are also shown in Fig. 4. It can be seen in Fig. 4i
-that CPL captures the T 2 patterns in the Red Sea region on
-2 June compared with ERA5 in Fig. 4ii. Since the ERA5 T 2
-data are in good agreement with the NCDC ground observa-
-tion data in the Red Sea region (detailed comparisons of all
-stations are not shown), we use ERA5 data to validate the
-simulation results. The difference between CPL and ERA5
-is shown in Fig. 4iii. The ATM.STA and ATM.DYN results
-are close to the CPL results and thus are not shown, but their
-differences with respect to ERA5 are shown in Fig. 4iv and
-v, respectively. Fig. 4vi to x shows the nighttime results after
-48 h. It can be seen in Fig. 4 that all simulations reproduce the
-T 2 patterns over the Red Sea region reasonably well com-
-pared with ERA5. The mean T 2 biases and root mean square
-errors (RMSEs) over the sea are shown in Table 3. The bi-
-ases of the T 2 are comparable with those reported in other
-benchmark WRF simulations (Xu et al., 2009; Zhang et al.,
-2013a; Imran et al., 2018).
-The simulation results on 10 and 24 June are shown in
-Fig. 5 to validate the coupled model over longer periods of
-time. It can be seen in Fig. 5 that the T 2 patterns in CPL
-are generally consistent with ERA5. The differences between
-the simulations (CPL, ATM.STA, and ATM.DYN) and ERA5
-show that the T 2 data on land are consistent for all three
-simulations. However, the T 2 data over the sea in CPL have
-smaller mean biases and RMSEs compared to ATM.STA,
-also shown in Table 3. Although the difference in T 2 is very
-small compared with the mean T 2 (31.92 ◦C), the improve-
-ment of the coupled run on the 24 June (1.02 ◦C) is compara-
-ble to the standard deviation of T 2 (1.64 ◦C). The T 2 over the
-water in CPL is closer to ERA5 because MITgcm in the cou-
-pled model provides a dynamic SST which inﬂuences T 2.
-On the other hand, when comparing CPL with ATM.DYN,
-the mean difference is smaller (10: +0.04 ◦C; 24: −0.62 ◦C).
-This shows that CPL is comparable to ATM.DYN, which is
-driven by an updated warming SST.
-The mean biases and RMSEs of T 2 over the Red Sea
-during the 30 d simulation are shown in Fig. 6 to demon-
-strate the evolution of simulation errors. It can be seen that
-ATM.STA can still capture the T 2 patterns in the ﬁrst week
-but it underpredicts T 2 by about 2 ◦C after 20 d because
-it has no SST evolution. On the other hand, CPL has a
-smaller bias (−0.60 ◦C) and RMSE (1.28 ◦C) compared with
-those in ATM.STA (bias: −1.19 ◦C; RMSE: 1.71 ◦C) dur-
-ing the 30 d simulation as the SST evolution is considered.
-The ATM.DYN case also has a smaller error compared to
-ATM.STA and its error is comparable with that in CPL (bias:
-−0.72 ◦C; RMSE: 1.31 ◦C), indicating that the skill of the
-coupled model is comparable to the stand-alone atmosphere
-model driven by 3-hourly reanalysis SST. The differences
-in the mean biases and RMSEs between model outputs and
-ERA5 data are also plotted in Fig. 6. It can be seen that CPL
-has smaller error than ATM.STA throughout the simulation.
-The bias and RMSE between CPL and ATM.DYN are within
-about 0.5 ◦C. This shows the capability of the coupled model
-to perform realistic regional coupled ocean–atmosphere sim-
-ulations.
-To validate the diurnal T 2 variation in the coupled model
-in Fig. 4, the time series of T 2 in three major cities as sim-
-ulated in CPL and ATM.STA are plotted in Fig. 7, starting
-from 1 June. The ERA5 data and the daily observed high and
-low temperature data from NOAA NCDC are also plotted
-for validation. Both coupled and uncoupled simulations gen-
-erally captured the four major heat events (i.e., 2, 10, 17, and
-24 June) and the T 2 variations during the 30 d simulation.
-For the daily high T 2, the RMSE in all simulations are close
-(CPL: 2.09 ◦C; ATM.STA: 2.16 ◦C; ATM.DYN: 2.06 ◦C),
-and the error does not increase in the 30 d simulation. For
-the daily low T 2, before 20 June (lead time < 19 d), all
-simulations have consistent RMSEs compared with ground
-observation (CPL: 4.23 ◦C; ATM.STA: 4.39 ◦C; ATM.DYN:
-4.01 ◦C). In Jeddah and Yanbu, CPL has better captured the
-daily low T 2 after 20 June (Jeddah: 3.95 ◦C; Yanbu: 3.77 ◦C)
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4229
-Figure 4. The 2 m air temperature as obtained from the CPL, the ERA5 data, and their difference (CPL−ERA5). The differences be-
-tween ATM.STA and ATM.DYN with ERA5 (i.e., ATM.STA−ERA5, ATM.DYN−ERA5) are also presented. The simulation initial time is
-00:00 UTC 1 June 2012 for both snapshots. Two snapshots are selected: (1) 12:00 UTC 2 June 2012 (36 h from initial time) and (2) 00:00 UTC
-3 June 2012 (48 h from initial time). The results on 2 June are presented because the record-high temperature is observed in the Mecca region.
-Figure 5. The T 2 obtained in CPL, the T 2 in ERA5, and their difference (CPL−ERA5). The difference between ATM.STA and ATM.DYN
-with ERA5 data (i.e., ATM.STA−ERA5, ATM.DYN−ERA5) are also presented. The simulation initial time is 00:00 UTC 1 June 2012 for
-both snapshots. Two snapshots are selected: (1) 12:00 UTC 10 June 2012 (9.5 d from initial time) and (2) 12:00 UTC 24 June 2012 (23.5 d
-from initial time).
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4230
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Table 3. The biases and RMSEs of T 2 simulated in all simulations in comparison with ERA5 data.
-After 36 h
-After 48 h
-After 9.5 d
-After 23.5 d
-Run CPL
-bias: −1.36; RMSE: 1.91
-bias: −0.82; RMSE: 1.19
-bias: −1.24; RMSE: 1.96
-bias: −0.81; RMSE: 1.80
-Run ATM.STA
-bias: −1.48; RMSE: 2.01
-bias: −0.92; RMSE: 1.27
-bias: −1.56; RMSE: 2.27
-bias: −1.83; RMSE: 2.59
-Run ATM.DYN
-bias: −1.36; RMSE: 1.90
-bias: −0.84; RMSE: 1.28
-bias: −1.20; RMSE: 1.93
-bias: −1.43; RMSE: 2.14
-Figure 6. The bias and RMSE between the T 2 obtained by the simulations (i.e., ATM.STA, ATM.CPL, and CPL) in comparison with
-ERA5 data. Only the errors over the Red Sea are considered. The differences between the simulation errors from CPL and stand-alone WRF
-simulations are presented below the mean bias and the RMSE. The initial time is 00:00 UTC 1 June 2012 for all simulations.
-than ATM.STA (Jeddah: 4.98 ◦C; Yanbu: 4.29 ◦C) by about
-1 and 0.5 ◦C, respectively. However, the T 2 difference for
-Mecca, which is located 70 km from the sea, is negligible
-(0.05 ◦C) between all simulations throughout the simulation.
-4.2
-Sea surface temperature
-The simulated SST patterns obtained in the simulations are
-presented to demonstrate that the coupled model can cap-
-ture the ocean surface state. The snapshots of SST ob-
-tained from CPL are shown in Fig. 8i and vi. To validate
-the coupled model, the SST ﬁelds obtained in OCN.DYN
-are shown in Fig. 8ii and vii, and the GHRSST data are
-shown in Fig. 8iii and viii. The SST obtained in the model
-at 00:00 UTC (about 03:00 LT (local time) in the Red Sea
-region) is presented because the GHRSST is produced with
-nighttime SST data (Roberts-Jones et al., 2012). It can be
-seen that both CPL and OCN.DYN are able to reproduce the
-SST patterns reasonably well in comparison with GHRSST
-for both snapshots. Though CPL uses higher-resolution sur-
-face forcing ﬁelds, the SST patterns obtained in both simula-
-tions are very similar after 2 d. On 24 June , the SST patterns
-are less similar, but both simulation results are still compara-
-ble with GHRSST (RMSE < 1 ◦C). Both simulations under-
-estimate the SST in the northern Red Sea and overestimate
-the SST in the central and southern Red Sea on 24 June.
-To quantitatively compare the errors in SST, the time histo-
-ries of the SST in the simulations (i.e., OCN.DYN and CPL)
-and validation data (i.e., GHRSST and HYCOM/NCODA)
-are shown in Fig. 9. The mean biases and RMSEs be-
-tween model outputs and validation data are also plotted. In
-Fig. 9a the snapshots of the simulated SST are compared
-with available HYCOM/NCODA data every 3 h. In Fig. 9b
-the snapshots of SST outputs every 24 h at 00:00 UTC (about
-03:00 LT local time in the Red Sea region) are compared with
-GHRSST. Compared with Fig. 9b, the diurnal SST oscil-
-lation can be observed in Fig. 9a because the SST is plot-
-ted every 3 h. Generally, OCN.DYN and CPL have a similar
-range of error compared to both validation datasets in the
-30 d simulations. The simulation results are compared with
-HYCOM/NCODA data to show the increase in RMSE in
-Fig. 9a. Compared with HYCOM/NCODA, the mean differ-
-ences between CPL and OCN.DYN are small (CPL: 0.10 ◦C;
-OCN.DYN: 0.03 ◦C). The RMSE increases in the ﬁrst week
-but does not grow after that. On the other hand, when com-
-paring with GHRSST, the initial SST patterns in both runs
-are cooler by about 0.8 ◦C. This is because the models are
-initialized by HYCOM/NCODA, which has temperature in
-the topmost model level cooler than the estimated foundation
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4231
-Figure 7. Temporal variation in the 2 m air temperature at three major cities near the eastern shore of Red Sea (Jeddah, Mecca, Yanbu) as
-resulting from CPL, ATM.STA, and ATM.DYN. The temperature data are compared with the time series in ERA5 and daily high and low
-temperature in the NOAA national data center dataset. Note that some gaps exist in the NCDC ground observation dataset. Four representative
-heat events are highlighted in this ﬁgure.
-Figure 8. The SST in CPL, OCN.DYN, and GHRSST. The corresponding differences between the simulations and GHRSST are also plotted.
-Two snapshots of the model outputs are selected: (1) 00:00 UTC 2 June 2012 and (2) 00:00 UTC 24 June 2012. The simulation initial time is
-00:00 UTC 1 June 2012 for both snapshots.
-SST reported by GHRSST. After the ﬁrst 10 d, the difference
-between GHRSST data and HYCOM/NCODA decreases,
-and likewise the difference between the simulation results
-and GHRSST also decreases. It should be noted that the SST
-simulated by CPL has smaller error (bias: −0.57 ◦C; RMSE:
-0.69 ◦C) compared with OCN.DYN (bias: −0.66 ◦C; RMSE:
-0.76 ◦C) by about 0.1 ◦C when validated using GHRSST.
-This indicates the coupled model can adequately simulate the
-SST evolution compared with the uncoupled model forced by
-ERA5 reanalysis data.
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4232
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Figure 9. The bias and RMSE between the SST from the simulations (i.e., OCN.DYN and CPL) in comparison with the validation data.
-Panel (a) shows the 3-hourly SST obtained in the simulations compared with 3-hourly HYCOM/NCODA data. Panel (b) shows the daily
-SST at 00:00 UTC (about 03:00 local time in the Red Sea region) obtained in the simulations compared with GHRSST. Both simulations are
-initialized at 00:00 UTC 1 June 2012.
-4.3
-Surface heat ﬂuxes
-The atmospheric surface heat ﬂux drives the oceanic compo-
-nent in the coupled model, hence we validate the heat ﬂuxes
-in the coupled model as compared to the stand-alone sim-
-ulations. Both the turbulent heat ﬂuxes and the net down-
-ward heat ﬂuxes are compared to MERRA-2 and their differ-
-ences are plotted. To validate the coupled ocean–atmosphere
-model, we only compare the heat ﬂuxes over the sea.
-The turbulent heat ﬂuxes (THF; sum of latent and sen-
-sible heat ﬂuxes) and their differences with the validation
-data are shown in Fig. 10 (the snapshots are shown in the
-Appendix). It can be seen that all simulations have simi-
-lar mean THF over the Red Sea compared with MERRA-2
-(CPL: 119.4 W m−2; ATM.STA: 103.4 W m−2; ATM.DYN:
-117.5 W m−2; MERRA-2: 115.6 W m−2). For the ﬁrst 2
-weeks, the mean THFs obtained in all simulations are over-
-lapping in Fig. 10. This is because all simulations are
-initialized in the same way, and the SST in all simula-
-tions are similar in the ﬁrst 2 weeks. After the second
-week, CPL has smaller error (bias: −1.8 W m−2; RMSE:
-69.9 W m−2) compared with ATM.STA (bias: −25.7 W m−2;
-RMSE: 76.4 W m−2). This is because the SST is updated in
-CPL and is warmer compared with ATM.STA. When forced
-by a warmer SST, the evaporation increases (also see the Ap-
-pendix) and thus the latent heat ﬂuxes increase. On the other
-hand, the THFs in CPL are comparable with ATM.DYN dur-
-ing the 30 d run (bias: 1.9 W m−2), showing that SKRIPS can
-capture the THFs over the Red Sea in the coupled simulation.
-The net downward heat ﬂuxes (sum of THF and radia-
-tive ﬂux) are shown in Fig. 11 (the snapshots are shown in
-the Appendix). Again, for the ﬁrst 2 weeks, the heat ﬂuxes
-obtained in ATM.STA, ATM.DYN, and CPL are overlap-
-ping. This is because all simulations are initialized in the
-same way, and the SSTs in all simulations are similar in
-the ﬁrst 2 weeks. After the second week, CPL has slightly
-smaller error (bias: 11.2 W m−2; RMSE: 84.4 W m−2) com-
-pared with the ATM.STA simulation (bias: 36.5 W m−2;
-RMSE: 94.3 W m−2). It should be noted that the mean bias
-and RMSE of the net downward heat ﬂuxes can be as high as
-a few hundred watts per square meter or 40 % compared with
-MERRA-2. This is because WRF overestimated the short-
-wave radiation in the daytime (the snapshots are shown in
-the Appendix). However, the coupled model still captures the
-mean and standard deviation of the heat ﬂux compared with
-MERRA-2 data (CPL mean: 110.6 W m−2, standard devia-
-tion: 350.7 W m−2; MERRA-2 mean 104.7 W m−2, standard
-deviation 342.3 W m−2). The overestimation of shortwave
-radiation by the RRTMG scheme is also reported in other
-validation tests in the literature under all-sky conditions due
-to the uncertainty in cloud or aerosol (Zempila et al., 2016;
-Imran et al., 2018). Although the surface heat ﬂux is over-
-estimated in the daytime, the SST over the Red Sea is not
-overestimated (shown in Sect. 4.2).
-4.4
-10 m wind speed
-To evaluate the simulation of the surface momentum by
-the coupled model, the 10 m wind speed patterns obtained
-from ATM.STA, ATM.DYN, and CPL are compared to the
-MERRA-2 reanalysis.
-The simulated 10 m wind velocity ﬁelds are shown in
-Fig. 12. The RMSE of the wind speed between CPL and
-MERRA-2 data is 2.23 m s−1 when using the selected WRF
-physics schemes presented in Sect. 3. On 2 June, high wind
-speeds are observed in the northern and central Red Sea, and
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4233
-Figure 10. The turbulent heat ﬂuxes out of the sea obtained in CPL, ATM.STA, and ATM.DYN in comparison with MERRA-2. Panel
-(a) shows the mean THF; (b) shows the mean bias; (c) shows the RMSE. Only the hourly heat ﬂuxes over the sea are shown.
-Figure 11. The total surface heat ﬂuxes into the sea obtained in CPL, ATM.STA, and ATM.DYN in comparison with MERRA-2. Panel
-(a) shows the mean surface heat ﬂux; (b) shows the mean bias; (c) shows the RMSE. Only the heat ﬂuxes over the sea are shown.
-both CPL and ATM.STA capture the features of the wind
-speed patterns. On 24 June, high wind speeds are observed
-in the central Red Sea and are also captured by both CPL and
-ATM.STA. The mean 10 m wind speed over the Red Sea in
-ATM.STA, ATM.DYN, and CPL during the 30 d simulation
-are shown in Fig. 13. The mean error of CPL (mean bias:
-−0.23 m s−1; RMSE: 2.38 m s−1) is slightly smaller than the
-ATM.STA (mean bias: −0.34 m s−1; RMSE: 2.43 m s−1) by
-about 0.1 m s−1. Although CPL, ATM.STA, and ATM.DYN
-have different SST ﬁelds as the atmospheric boundary con-
-dition, the 10 m wind speed ﬁelds obtained in the simula-
-tions are all consistent with MERRA-2 data. The compari-
-son shows SKRIPS is capable of simulating the surface wind
-speed over the Red Sea in the coupled simulation.
-5
-Scalability test
-Parallel efﬁciency is crucial for coupled ocean–atmosphere
-models when simulating large and complex problems. In this
-section, the parallel efﬁciency in the coupled simulations is
-investigated. This aims to demonstrate that (1) the imple-
-mented ESMF/NUOPC driver and model interfaces can sim-
-ulate parallel cases effectively and (2) the ESMF/NUOPC
-coupler does not add a signiﬁcant computational overhead.
-The parallel speed-up of the model is investigated to eval-
-uate its performance for a constant size problem simulated
-using different numbers of CPU cores (i.e., strong scaling).
-Additionally, the CPU time spent on oceanic and atmo-
-spheric components of the coupled model is detailed. The test
-cases are run in sequential mode. The parallel efﬁciency tests
-are performed on the Shaheen-II cluster at KAUST (https:
-//www.hpc.kaust.edu.sa/, last access: 26 September 2019).
-The Shaheen-II cluster is a Cray XC40 system composed
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4234
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Figure 12. The magnitude and direction of the 10 m wind obtained in the CPL, the MERRA-2 data, and their difference (CPL−MERRA-
-2). The differences between ATM.STA and ATM.DYN with MERRA-2 (i.e., ATM.STA−MERRA-2, ATM.DYN−MERRA-2) are also
-presented. Two snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012.
-Figure 13. The magnitude of the 10 m wind obtained in CPL, ATM.STA, and ATM.DYN in comparison with MERRA-2. Panel (a) shows
-the mean 10 m wind; (b) shows the mean bias; (c) shows the RMSE. Only the hourly surface wind ﬁelds over the sea are shown to validate
-the coupled model.
-of 6174 dual-socket compute nodes based on 16-core In-
-tel Haswell processors running at 2.3 GHz. Each node has
-128 GB DDR4 memory running at 2300 MHz. Overall the
-system has a total of 197 568 CPU cores (6174 nodes ×2 ×
-16 CPU cores) and has a theoretical peak speed of 7.2
-petaﬂops (1015 ﬂoating point operations per second).
-The
-parallel
-efﬁciency
-of
-the
-scalability
-test
-is
-Np0tp0/Npntpn, where Np0 and Npn are the numbers of
-CPU cores employed in the baseline case and the test case,
-respectively; tp0 and tpn are the CPU times spent on the
-baseline case and the test case, respectively. The speed-up is
-deﬁned as tp0/tpn, which is the relative improvement of the
-CPU time when solving the problem. The scalability tests
-are performed by running 24 h simulations for ATM.STA,
-OCN.DYN, and CPL cases. There are 2.6 million atmo-
-sphere cells (256 lat ×256 long ×40 vertical levels) and 0.4
-million ocean cells (256 lat ×256 long ×40 vertical levels,
-but about 84 % of the domain is land and masked out).
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4235
-Figure 14. The parallel efﬁciency test of the coupled model in the Red Sea region, employing up to 512 CPU cores. The simulation using
-32 CPU cores is regarded as the baseline case when computing the speed-up. Tests are performed on the Shaheen-II cluster at KAUST.
-We started using Np0 = 32 because each compute node
-has 32 CPU cores. The results obtained in the scalability
-test of the coupled model are shown in Fig. 14. It can be
-seen that the parallel efﬁciency of the coupled code is close
-to 100 % when employing less than 128 cores and is still
-as high as 70 % when using 256 cores. When using 256
-cores, there are a maximum of 20 480 cells (16 lat ×16
-long ×80 vertical levels) in each core. The decrease in par-
-allel efﬁciency results from the increase of communication
-time, load imbalance, and I/O (read and write) operation
-per CPU core (Christidis, 2015). From results reported in
-the literature, the parallel efﬁciency of the coupled model
-is comparable to other ocean-alone or atmosphere-alone
-models with similar numbers of grid points per CPU
-core (Marshall et al., 1997; Zhang et al., 2013b).
-The CPU time spent on different components of the cou-
-pled run is shown in Table. 4. The time spent on the ESMF
-coupler is obtained by subtracting the time spent on oceanic
-and atmospheric components from the total time of the cou-
-pled run. The most time-consuming process is the atmo-
-sphere model integration, which accounts for 85 % to 95 %
-of the total. The ocean model integration is the second-most
-time-consuming process, which is 5 % to 11 % of the total
-computational cost. If an ocean-only region was simulated,
-the costs of the ocean and atmosphere models would be more
-equal compared with the Red Sea case. It should be noted
-that the test cases are run in sequential mode, and the cost
-breakdown among the components can be used to address
-load balancing in the concurrent mode. The coupling pro-
-cess takes less than 3 % of the total cost in the coupled runs
-using different numbers of CPU cores in this test. Although
-the proportion of the coupling process in the total cost in-
-creases when using more CPU cores, the total time spent on
-the coupling process is similar. The CPU time spent on two
-uncoupled runs (i.e., ATM.STA, OCN.DYN) is also shown
-in Table 4. Compared with the uncoupled simulations, the
-ESMF–MITgcm and ESMF–WRF interfaces do not increase
-the CPU time in the coupled simulation. In summary, the
-scalability test results suggest that the ESMF/NUOPC cou-
-pler does not add signiﬁcant computational overhead when
-using SKRIPS in the coupled regional modeling studies.
-6
-Conclusion and Outlook
-This paper describes the development of the Scripps–
-KAUST Regional Integrated Prediction System (SKRIPS).
-To build the coupled model, we implement the coupler us-
-ing ESMF with its NUOPC wrapper layer. The ocean model
-MITgcm and the atmosphere model WRF are split into ini-
-tialize, run, and ﬁnalize sections, with each of them called by
-the coupler as subroutines in the main function.
-The coupled model is validated by using a realistic appli-
-cation to simulate the heat events during June 2012 in the
-Red Sea region. Results from the coupled and stand-alone
-simulations are compared to a wide variety of available ob-
-servational and reanalysis data. We focus on the compari-
-son of the surface atmospheric and oceanic variables because
-they are used to drive the oceanic and atmospheric compo-
-nents in the coupled model. From the comparison, results
-obtained from various conﬁgurations of coupled and stand-
-alone model simulations all realistically capture the surface
-atmospheric and oceanic variables in the Red Sea region over
-a 30 d simulation period. The coupled system gives equal or
-better results compared with stand-alone model components.
-The 2 m air temperature in three major cities obtained in CPL
-and ATM.DYN are comparable and better than ATM.STA.
-Other surface atmospheric ﬁelds (e.g., 2 m air temperature,
-surface heat ﬂuxes, 10 m wind speed) in CPL are also com-
-parable with ATM.DYN and better than ATM.STA over the
-simulation period. The SST obtained in CPL is also better
-than that in OCN.DYN by about 0.1 ◦C when compared with
-GHRSST.
-The parallel efﬁciency of the coupled model is examined
-by simulating the Red Sea region using increasing numbers
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4236
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Table 4. Comparison of CPU time spent on coupled and stand-alone runs. The CPU time presented in the table is normalized by the time
-spent on the coupled run using 512 CPU cores. The CPU time spent on two stand-alone simulations are presented to show the difference
-between coupled and stand-alone simulations.
-Np = 32
-64
-128
-256
-512
-CPL run
-7.27
-4.04
-2.02
-1.39
-1.00
-WRF in CPL run
-6.88(95 %)
-3.82(94 %)
-1.89(93 %)
-1.25(90 %)
-0.85(85 %)
-MITgcm in CPL run
-0.37(5 %)
-0.19(5 %)
-0.12(6 %)
-0.11(8 %)
-0.11(11 %)
-Coupler in CPL run
-0.02(0 %)
-0.03(1 %)
-0.02(1 %)
-0.03(2 %)
-0.03(3 %)
-OCN.DYN run
-0.38
-0.19
-0.13
-0.09
-0.08
-of CPU cores. The parallel efﬁciency of the coupled model is
-consistent with that of the stand-alone ocean and atmosphere
-models using the same number of cores. The CPU time asso-
-ciated with different components of the coupled simulations
-shows that the ESMF/NUOPC driver does not add a signiﬁ-
-cant computational overhead. Hence the coupled model can
-be implemented for coupled regional modeling studies on
-HPC clusters with comparable performance as that attained
-by uncoupled stand-alone models.
-The results presented here motivate further studies eval-
-uating and improving this new regional coupled ocean–
-atmosphere model for investigating dynamical processes and
-forecasting applications. This regional coupled forecasting
-system can be improved by developing coupled data assim-
-ilation capabilities for initializing the forecasts. In addition,
-the model physics and model uncertainty representation in
-the coupled system can be enhanced using advanced tech-
-niques, such as stochastic physics parameterizations. Future
-work will involve exploring these and other aspects for a re-
-gional coupled modeling system suited for forecasting and
-process understanding.
-Code and data availability. The
-coupled
-model,
-docu-
-mentation,
-and
-the
-cases
-used
-in
-this
-work
-are
-avail-
-able
-at
-https://doi.org/10.6075/J0K35S05
-(Sun
-et
-al.,
-2019),
-and
-the
-source
-code
-is
-maintained
-on
-GitHub
-https://github.com/iurnus/scripps_kaust_model
-(last
-access:
-26 September 2019). ECMWF ERA5 data are used as the atmo-
-spheric initial and boundary conditions. The ocean model uses the
-assimilated HYCOM/NCODA 1/12◦global analysis data as initial
-and boundary conditions. To validate the simulated SST data, we
-use the OSTIA (Operational Sea Surface Temperature and Sea Ice
-Analysis) system in GHRSST (Group for High Resolution Sea
-Surface Temperature). The simulated 2 m air temperature (T 2)
-is validated against the ECMWF ERA5 data. The observed daily
-maximum and minimum temperatures from NOAA National
-Climate Data Center is used to validate the T 2 in three major
-cities. Surface heat ﬂuxes (e.g., latent heat ﬂuxes, sensible heat
-ﬂuxes, and longwave and shortwave radiation) are compared with
-MERRA-2 (Modern-Era Retrospective analysis for Research and
-Applications, version 2).
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4237
-Appendix A: Snapshots of heat ﬂuxes
-To examine the modeling of turbulent heat ﬂuxes and radia-
-tive ﬂuxes, the snapshots of these heat ﬂuxes obtained from
-ATM.STA, ATM.DYN, and CPL are presented and validated
-using the MERRA-2 data.
-The snapshots of the THFs at 12:00 UTC 2 and 24 June
-are presented in Fig. A1. It can be seen that all simula-
-tions reproduce the THFs reasonably well in comparison
-with MERRA-2. On 2 June, all simulations exhibit simi-
-lar THF patterns. This is because all simulations have the
-same initial conditions, and the SST ﬁelds in all simulations
-are similar within 2 d. On the other hand, for the heat event
-on 24 June, CPL and ATM.DYN exhibit more latent heat
-ﬂuxes coming out of the ocean (170 and 153 W m−2) than
-those in ATM.STA (138 W m−2). The mean biases in CPL,
-ATM.DYN, and ATM.STA are 23.1, 5.1, and −9.5 W m−2,
-respectively. Although CPL has larger bias at the snapshot,
-the averaged bias and RMSE in CPL are smaller (shown in
-Fig. 10). Compared with the latent heat ﬂuxes, the sensible
-heat ﬂuxes in the Red Sea region are much smaller in all sim-
-ulations (about 20 W m−2). It should be noted that MERRA-
-2 has unrealistically large sensible heat ﬂuxes in the coastal
-regions because the land points contaminate the values in the
-coastal region (Kara et al., 2008; Gelaro et al., 2017), and
-thus the heat ﬂuxes in the coastal regions are not shown.
-The net downward shortwave and longwave radiation
-ﬂuxes are shown in Fig. A2. Again, all simulations re-
-produce the shortwave and longwave radiation ﬂuxes rea-
-sonably well. For the shortwave heat ﬂuxes, all simula-
-tions show similar patterns on both 2 and 24 June. The
-total downward heat ﬂuxes, which is the sum of the re-
-sults in Figs. A1 and A2, are shown in Fig. A3. It can
-be seen that the present simulations overestimate the to-
-tal downward heat ﬂuxes on 2 June (CPL: 580 W m−2;
-ATM.STA: 590 W m−2; ATM.DYN: 582 W m−2) compared
-with MERRA-2 (525 W m−2), especially in the southern Red
-Sea because of overestimating the shortwave radiation. To
-improve the modeling of shortwave radiation, a better under-
-standing of the cloud and aerosol in the Red Sea region is re-
-quired (Zempila et al., 2016; Imran et al., 2018). Again, the
-heat ﬂuxes in the coastal regions are not shown because of
-the inconsistency of land–sea mask. Overall, the comparison
-shows the coupled model is capable of capturing the surface
-heat ﬂuxes into the ocean.
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4238
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Figure A1. The turbulent heat ﬂuxes out of the sea obtained in CPL, MERRA-2 data, and their difference (CPL−MERRA-2). The differences
-between ATM.STA and ATM.DYN with MERRA-2 (i.e., ATM.STA−MERRA-2, ATM.DYN−MERRA-2) are also presented. Two snapshots
-are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012. The simulation initial time is 00:00 UTC 1 June 2012 for both
-snapshots. Only the heat ﬂuxes over the sea are shown to validate the coupled model.
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4239
-Figure A2. The net downward shortwave and longwave radiation obtained in CPL, MERRA-2 data, and their difference (CPL−MERRA-
-2). The differences between ATM.STA and ATM.DYN with MERRA-2 (i.e., ATM.STA−MERRA-2, ATM.DYN−MERRA-2) are also
-presented. Two snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012. The simulation initial time is 00:00 UTC
-1 June 2012 for both snapshots. Only the heat ﬂuxes over the sea are shown to validate the coupled model.
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4240
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Figure A3. Comparison of the total downward heat ﬂuxes obtained in CPL, MERRA-2 data, and their difference (CPL−MERRA-2). The
-differences between ATM.STA and ATM.DYN with ERA5 (i.e., ATM.STA−MERRA-2, ATM.DYN−MERRA-2) are also presented. Two
-snapshots are selected: (1) 1200 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012. The simulation initial time is 00:00 UTC 1 June 2012
-for both snapshots. Only the heat ﬂuxes over the sea are shown to validate the coupled model.
-Appendix B: Evaporation
-To examine the simulation of surface freshwater ﬂux in
-the coupled model, the surface evaporation ﬁelds obtained
-from ATM.STA, ATM.DYN, and CPL are compared with the
-MERRA-2 data.
-The surface evaporation ﬁelds from CPL are shown in
-Fig. B1. The MERRA-2 data and the difference between
-CPL and MERRA-2 are also shown to validate the coupled
-model. The ATM.STA and ATM.DYN simulation results are
-not shown, but their differences with CPL are also shown in
-Fig. B1. It can be seen in Fig. B1iii and viii that CPL repro-
-duces the overall evaporation patterns in the Red Sea. CPL is
-able to capture the relatively high evaporation in the northern
-Red Sea and the relatively low evaporation in the southern
-Red Sea in both snapshots, shown in Fig. B1i and vi. After
-36 h, the simulation results are close with each other (e.g.,
-the RMSE between CPL and ATM.STA simulation is smaller
-than 10 cm yr−1). However, after 24 d, CPL agrees better
-with MERRA-2 (bias: 6 cm yr−1; RMSE: 59 cm yr−1) than
-ATM.STA (bias: −25 cm yr−1; RMSE: 68 cm yr−1). In addi-
-tion, the CPL results are consistent with those in ATM.DYN.
-This shows the coupled ocean–atmosphere simulation can re-
-produce the realistic evaporation patterns over the Red Sea.
-Since there is no precipitation in three major cities (Mecca,
-Jeddah, Yanbu) near the eastern shore of the Red Sea during
-the month according to NCDC climate data, the precipitation
-results are not shown.
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4241
-Figure B1. The surface evaporation patterns obtained in CPL, the MERRA-2 data, and their difference (CPL−MERRA-2). The differences
-between uncoupled atmosphere simulations with MERRA-2 (i.e., ATM.STA−MERRA-2, ATM.DYN−MERRA-2) are also presented. Two
-snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012. Only the evaporation over the sea is shown to validate
-the coupled ocean–Atmosphere model.
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4242
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-Author contributions. RS worked on the coding tasks for coupling
-WRF with MITgcm using ESMF, wrote the code documentation,
-and performed the simulations for the numerical experiments. RS
-and ACS worked on the technical details for debugging the model
-and drafted the initial article. All authors designed the computa-
-tional framework and the numerical experiments. All authors dis-
-cussed the results and contributed to the writing of the ﬁnal article.
-Competing interests. The authors declare that they have no conﬂict
-of interest.
-Acknowledgements. We appreciate the computational resources
-provided by COMPAS (Center for Observations, Modeling and Pre-
-diction at Scripps) and KAUST used for this project. We are im-
-mensely grateful to Caroline Papadopoulos for helping with in-
-stalling software, testing the coupled code, and using the HPC clus-
-ters. We appreciate Ufuk Utku Turuncoglu for sharing part of their
-ESMF/NUOPC code on GitHub which helps our code development.
-We wish to thank Ganesh Gopalakrishnan for setting up the stand-
-alone MITgcm simulation (OCN.DYN) and providing the external
-forcings. We thank Stephanie Dutkiewicz, Jean-Michel Campin,
-Chris Hill, and Dimitris Menemenlis for providing their ESMF–
-MITgcm interface. We wish to thank Peng Zhan for discussing the
-simulations of the Red Sea. We also thank the reviewers for their
-insightful review suggestions.
-Financial support. This research has been supported by the King
-Abdullah University of Science and Technology, Global Collabora-
-tive Research, (grant no. OSR-2016-RPP-3268.02).
-Review statement. This paper was edited by Olivier Marti and re-
-viewed by two anonymous referees.
-References
-Abdou, A. E. A.: Temperature trend on Makkah, Saudi Arabia, At-
-mospheric and Climate Sciences, 4, 457–481, 2014.
-Aldrian, E., Sein, D., Jacob, D., Gates, L. D., and Podzun, R.: Mod-
-elling Indonesian rainfall with a coupled regional model, Clim.
-Dynam., 25, 1–17, 2005.
-Anderson, J. L. and Collins, N.: Scalable implementations of en-
-semble ﬁlter algorithms for data assimilation, J. Atmos. Ocean.
-Tech., 24, 1452–1463, 2007.
-Barbariol, F., Benetazzo, A., Carniel, S., and Sclavo, M.: Improving
-the assessment of wave energy resources by means of coupled
-wave-ocean numerical modeling, Renewable Energ., 60, 462–
-471, 2013.
-Bender, M. A. and Ginis, I.: Real-case simulations of hurricane–
-ocean interaction using a high-resolution coupled model: effects
-on hurricane intensity, Mon. Weather Rev., 128, 917–946, 2000.
-Benjamin, S. G., Grell, G. A., Brown, J. M., Smirnova, T. G., and
-Bleck, R.: Mesoscale weather prediction with the RUC hybrid
-isentropic–terrain-following coordinate model, Mon. Weather
-Rev., 132, 473–494, 2004.
-Boé, J., Hall, A., Colas, F., McWilliams, J. C., Qu, X., Kurian, J.,
-and Kapnick, S. B.: What shapes mesoscale wind anomalies in
-coastal upwelling zones?, Clim. Dynam., 36, 2037–2049, 2011.
-Chen, S. S. and Curcic, M.: Ocean surface waves in Hurricane Ike
-(2008) and Superstorm Sandy (2012): Coupled model predic-
-tions and observations, Ocean Model., 103, 161–176, 2016.
-Chen, S. S., Price, J. F., Zhao, W., Donelan, M. A., and Walsh, E. J.:
-The CBLAST-Hurricane program and the next-generation fully
-coupled atmosphere–wave–ocean models for hurricane research
-and prediction, B. Am. Meteorol. Soc., 88, 311–318, 2007.
-Christidis, Z.: Performance and Scaling of WRF on Three Different
-Parallel Supercomputers, in: International Conference on High
-Performance Computing, Springer, 514–528, 2015.
-Collins, N., Theurich, G., Deluca, C., Suarez, M., Trayanov, A.,
-Balaji, V., Li, P., Yang, W., Hill, C., and Da Silva, A.: Design
-and implementation of components in the Earth System Model-
-ing Framework, Int. J. High P., 19, 341–350, 2005.
-Donlon, C. J., Martin, M., Stark, J., Roberts-Jones, J., Fiedler, E.,
-and Wimmer, W.: The operational sea surface temperature and
-sea ice analysis (OSTIA) system, Remote Sens. Environ., 116,
-140–158, 2012.
-Doscher, R., Willén, U., Jones, C., Rutgersson, A., Meier, H. M.,
-Hansson, U., and Graham, L. P.: The development of the regional
-coupled ocean-atmosphere model RCAO, Boreal Environ. Res.,
-7, 183–192, 2002.
-Evangelinos, C. and Hill, C. N.: A schema based paradigm for
-facile description and control of a multi-component parallel, cou-
-pled atmosphere-ocean model, in: Proceedings of the 2007 Sym-
-posium on Component and Framework Technology in High-
-Performance and Scientiﬁc Computing, ACM, 83–92, 2007.
-Fairall, C., Bradley, E. F., Hare, J., Grachev, A., and Edson, J.: Bulk
-parameterization of air–sea ﬂuxes: Updates and veriﬁcation for
-the COARE algorithm, J. Climate, 16, 571–591, 2003.
-Fang, Y., Zhang, Y., Tang, J., and Ren, X.: A regional air-sea cou-
-pled model and its application over East Asia in the summer of
-2000, Adv. Atmos. Sci., 27, 583–593, 2010.
-Fowler, H. and Ekström, M.: Multi-model ensemble estimates of
-climate change impacts on UK seasonal precipitation extremes,
-Int. J. Climatol., 29, 385–416, 2009.
-Gelaro, R., McCarty, W., Suárez, M. J., Todling, R., Molod, A.,
-Takacs, L., Randles, C. A., Darmenov, A., Bosilovich, M. G., Re-
-ichle, R., Wargan, K., Coy, L., Cullather, R., Draper, C., Akella,
-S., Buchard, V., Conaty, A., da Silva, A. M., Gu, W., Kim, G.,
-Koster, R., Lucchesi, R., Merkova, D., Nielsen, J. E., Partyka,
-G., Pawson, S., Putman, W., Rienecker, M., Schubert, S. D.,
-Sienkiewicz, M., and Zhao, B.: The modern-era retrospective
-analysis for research and applications, version 2 (MERRA-2), J.
-Climate, 30, 5419–5454, 2017.
-Gualdi, S., Somot, S., Li, L., Artale, V., Adani, M., Bellucci, A.,
-Braun, A., Calmanti, S., Carillo, A., Dell’Aquila, A., Déqué, M.,
-Dubois, C., Elizalde, A., Harzallah, A., Jacob, D., L’Hévéder,
-B., May, W., Oddo, P., Ruti, P., Sanna, A., Sannino, G., Scocci-
-marro, E., Sevault, F., and Navarra, A.: The CIRCE simulations:
-regional climate change projections with realistic representation
-of the Mediterranean Sea, B. Am. Meteorol. Soc., 94, 65–81,
-2013.
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-4243
-Gustafsson, N., Nyberg, L., and Omstedt, A.: Coupling of a high-
-resolution atmospheric model and an ocean model for the Baltic
-Sea, Mon. Weather Rev., 126, 2822–2846, 1998.
-Hagedorn, R., Lehmann, A., and Jacob, D.: A coupled high resolu-
-tion atmosphere-ocean model for the BALTEX region, Meteorol.
-Z., 9, 7–20, 2000.
-Harley, C. D., Randall Hughes, A., Hultgren, K. M., Miner, B. G.,
-Sorte, C. J., Thornber, C. S., Rodriguez, L. F., Tomanek, L., and
-Williams, S. L.: The impacts of climate change in coastal marine
-systems, Ecol. Lett., 9, 228–241, 2006.
-He, J., He, R., and Zhang, Y.: Impacts of air–sea interactions on
-regional air quality predictions using WRF/Chem v3.6.1 coupled
-with ROMS v3.7: southeastern US example, Geosci. Model Dev.
-Discuss., 8, 9965–10009, https://doi.org/10.5194/gmdd-8-9965-
-2015, 2015.
-Henderson, T. and Michalakes, J.: WRF ESMF Development, in:
-4th ESMF Community Meeting, Cambridge, USA, 21 July 2005.
-Hersbach, H.: The ERA5 Atmospheric Reanalysis., in: AGU Fall
-Meeting Abstracts, San Francisco, USA, 12–16 December 2016.
-Hill, C., DeLuca, C., Balaji, Suarez, M., and Silva, A.: The archi-
-tecture of the Earth system modeling framework, Comput. Sci.
-Eng., 6, 18–28, 2004.
-Hill, C. N.: Adoption and ﬁeld tests of M.I.T General Circulation
-Model (MITgcm) with ESMF, in: 4th Annual ESMF Community
-Meeting, Cambridge, USA, 20–21 July 2005.
-Hodur,
-R.
-M.:
-The
-Naval
-Research
-Laboratory’s
-coupled
-ocean/atmosphere mesoscale prediction system (COAMPS),
-Mon. Weather Rev., 125, 1414–1430, 1997.
-Hong, S.-Y., Noh, Y., and Dudhia, J.: A new vertical diffusion pack-
-age with an explicit treatment of entrainment processes, Mon.
-Weather Rev., 134, 2318–2341, 2006.
-Hoteit, I., Hoar, T., Gopalakrishnan, G., Collins, N., Anderson, J.,
-Cornuelle, B., Köhl, A., and Heimbach, P.: A MITgcm/DART
-ensemble analysis and prediction system with application to the
-Gulf of Mexico, Dynam. Atmos. Oceans, 63, 1–23, 2013.
-Huang, B., Schopf, P. S., and Shukla, J.: Intrinsic ocean–atmosphere
-variability of the tropical Atlantic Ocean, J. Climate, 17, 2058–
-2077, 2004.
-Iacono, M. J., Delamere, J. S., Mlawer, E. J., Shephard, M. W.,
-Clough, S. A., and Collins, W. D.: Radiative forcing by
-long-lived greenhouse gases: calculations with the AER radia-
-tive transfer models, J. Geophys. Res.-Atmos., 113, D13103,
-https://doi.org/10.1029/2008JD009944, 2008.
-Imran, H., Kala, J., Ng, A., and Muthukumaran, S.: An evaluation of
-the performance of a WRF multi-physics ensemble for heatwave
-events over the city of Melbourne in southeast Australia, Clim.
-Dynam., 50, 2553–2586, 2018.
-Kain, J. S.: The Kain–Fritsch convective parameterization: an up-
-date, J. Appl. Meteorol., 43, 170–181, 2004.
-Kara, A. B., Wallcraft, A. J., Barron, C. N., Hurlburt, H. E., and
-Bourassa, M.: Accuracy of 10 m winds from satellites and NWP
-products near land-sea boundaries, J. Geophys. Res.-Oceans,
-113, C10020, https://doi.org/10.1029/2007JC004516, 2008.
-Kharin, V. V. and Zwiers, F. W.: Changes in the extremes in
-an ensemble of transient climate simulations with a coupled
-atmosphere–ocean GCM, J. Climate, 13, 3760–3788, 2000.
-Large, W. G. and Yeager, S. G.: Diurnal to decadal global forcing for
-ocean and sea-ice models: the data sets and ﬂux climatologies,
-Tech. rep., NCAR Technical Note: NCAR/TN-460+STR. CGD
-Division of the National Center for Atmospheric Research, 2004.
-Large, W. G., McWilliams, J. C., and Doney, S. C.: Oceanic vertical
-mixing: A review and a model with a nonlocal boundary layer
-parameterization, Rev. Geophys., 32, 363–403, 1994.
-Loglisci, N., Qian, M., Rachev, N., Cassardo, C., Longhetto,
-A., Purini, R., Trivero, P., Ferrarese, S., and Giraud, C.: De-
-velopment of an atmosphere-ocean coupled model and its
-application over the Adriatic Sea during a severe weather
-event of Bora wind, J. Geophys. Res.-Atmos., 109, D01102,
-https://doi.org/10.1029/2003JD003956, 2004.
-Maksyutov, S., Patra, P. K., Onishi, R., Saeki, T., and Nakazawa,
-T.: NIES/FRCGC global atmospheric tracer transport model: De-
-scription, validation, and surface sources and sinks inversion,
-Earth Simulator, 9, 3–18, 2008.
-Marshall, J., Adcroft, A., Hill, C., Perelman, L., and Heisey, C.: A
-ﬁnite-volume, incompressible Navier Stokes model for studies of
-the ocean on parallel computers, J. Geophys. Res.-Oceans, 102,
-5753–5766, 1997.
-Martin, M. Dash, P., Ignatov, A., Banzon, V., Beggs, H., Bras-
-nett, B., Cayula, J.-F., Cummings, J., Donlon, C., Gentemann,
-C., Grumbine, R., Ishizaki, S., Maturi, E., Reynolds, R. W., and
-Roberts-Jones, J.: Group for High Resolution Sea Surface Tem-
-perature (GHRSST) analysis ﬁelds inter-comparisons. Part 1: A
-GHRSST multi-product ensemble (GMPE), Deep-Sea Res. Pt.
-II, 77, 21–30, 2012.
-Morrison, H., Thompson, G., and Tatarskii, V.: Impact of cloud mi-
-crophysics on the development of trailing stratiform precipitation
-in a simulated squall line: Comparison of one-and two-moment
-schemes, Mon. Weather Rev., 137, 991–1007, 2009.
-National Geophysical Data Center: 2-minute Gridded Global Relief
-Data (ETOPO2) v2, National Geophysical Data Center, NOAA,
-https://doi.org/10.7289/V5J1012Q, 2006.
-Powers, J. G. and Stoelinga, M. T.: A coupled air–sea mesoscale
-model: Experiments in atmospheric sensitivity to marine rough-
-ness, Mon. Weather Rev., 128, 208–228, 2000.
-Pullen, J., Doyle, J. D., and Signell, R. P.: Two-way air–sea cou-
-pling: A study of the Adriatic, Mon. Weather Rev., 134, 1465–
-1483, 2006.
-Ricchi, A., Miglietta, M. M., Falco, P. P., Benetazzo, A., Bonaldo,
-D., Bergamasco, A., Sclavo, M., and Carniel, S.: On the use of a
-coupled ocean–atmosphere–wave model during an extreme cold
-air outbreak over the Adriatic Sea, Atmos. Res., 172, 48–65,
-2016.
-Roberts-Jones, J., Fiedler, E. K., and Martin, M. J.: Daily, global,
-high-resolution SST and sea ice reanalysis for 1985–2007 using
-the OSTIA system, J. Climate, 25, 6215–6232, 2012.
-Roessig, J. M., Woodley, C. M., Cech, J. J., and Hansen, L. J.: Ef-
-fects of global climate change on marine and estuarine ﬁshes and
-ﬁsheries, Rev. Fish Biol. Fisher., 14, 251–275, 2004.
-Seo, H.: Distinct inﬂuence of air–sea interactions mediated by
-mesoscale sea surface temperature and surface current in the Ara-
-bian Sea, J. Climate, 30, 8061–8080, 2017.
-Seo, H., Miller, A. J., and Roads, J. O.: The Scripps Coupled
-Ocean–Atmosphere Regional (SCOAR) model, with applica-
-tions in the eastern Paciﬁc sector, J. Climate, 20, 381–402, 2007.
-Seo, H., Subramanian, A. C., Miller, A. J., and Cavanaugh, N. R.:
-Coupled impacts of the diurnal cycle of sea surface temperature
-www.geosci-model-dev.net/12/4221/2019/
-Geosci. Model Dev., 12, 4221–4244, 2019
-4244
-R. Sun et al.: SKRIPS v1.0: a regional coupled ocean–atmosphere modeling framework
-on the Madden–Julian oscillation, J. Climate, 27, 8422–8443,
-2014.
-Sitz, L. E., Di Sante, F., Farneti, R., Fuentes-Franco, R.,
-Coppola, E., Mariotti, L., Reale, M., Sannino, G., Bar-
-reiro, M., Nogherotto, R., Giuliani, G., Grafﬁno, G., Soli-
-doro, C., Cossarini, G., and Giorgi, F.: Description and
-evaluation of the Earth System Regional Climate Model
-(RegCM-ES),
-J.
-Adv.
-Model.
-Earth
-Sy.,
-9,
-1863–1886,
-https://doi.org/10.1002/2017MS000933, 2017.
-Skamarock, W. C., Klemp, J. B., Dudhia, J., Gill, D. O., Liu, Z.,
-Berner, J., Wang, W., Powers, J. G., Duda, M. G., Barker, D. M.,
-and Huang, X.-Y.: A description of the Advanced Research
-WRF Version 4, Tech. rep., NCAR Technical Note: NCAR/TN-
-556+STR, 145 pp., https://doi.org/10.5065/1dfh-6p97, 2019.
-Somot, S., Sevault, F., Déqué, M., and Crépon, M.: 21st century
-climate change scenario for the Mediterranean using a cou-
-pled atmosphere–ocean regional climate model, Global Planet.
-Change, 63, 112–126, 2008.
-Sun, R., Subramanian, A. C., Cornuelle, B. D., Hoteit, I., Ma-
-zloff, M. R., and Miller, A. J.: Scripps-KAUST model, Ver-
-sion 1.0. In Scripps-KAUST Regional Integrated Prediction
-System (SKRIPS), UC San Diego Library Digital Collections,
-https://doi.org/10.6075/J0K35S05, 2019.
-Theurich, G., DeLuca, C., Campbell, T., Liu, F., Saint, K., Verten-
-stein, M., Chen, J., Oehmke, R., Doyle, J., Whitcomb, T., Wall-
-craft, A., Iredell, M., Black, T., Da Silva, A. M., Clune, T., Fer-
-raro, R., Li, P., Kelley, M., Aleinov, I., Balaji, V., Zadeh, N., Ja-
-cob, R., Kirtman, B., Giraldo, F., McCarren, D., Sandgathe, S.,
-Peckham, S., and Dunlap, R.: The earth system prediction suite:
-toward a coordinated US modeling capability, B. Am. Meteorol.
-Soc., 97, 1229–1247, 2016.
-Torma, C., Coppola, E., Giorgi, F., Bartholy, J., and Pongrácz, R.:
-Validation of a high-resolution version of the regional climate
-model RegCM3 over the Carpathian basin, J. Hydrometeorol.,
-12, 84–100, 2011.
-Turuncoglu, U. U., Giuliani, G., Elguindi, N., and Giorgi, F.: Mod-
-elling the Caspian Sea and its catchment area using a coupled
-regional atmosphere-ocean model (RegCM4-ROMS): model de-
-sign and preliminary results, Geosci. Model Dev., 6, 283–299,
-https://doi.org/10.5194/gmd-6-283-2013, 2013.
-Turuncoglu, U. U.: Toward modular in situ visualization in Earth
-system models: the regional modeling system RegESM 1.1,
-Geosci. Model Dev., 12, 233–259, https://doi.org/10.5194/gmd-
-12-233-2019, 2019.
-Turuncoglu, U. U. and Sannino, G.: Validation of newly designed
-regional earth system model (RegESM) for Mediterranean Basin,
-Clim. Dynam., 48, 2919–2947, 2017.
-Van Pham, T., Brauch, J., Dieterich, C., Frueh, B., and Ahrens,
-B.:
-New
-coupled
-atmosphere-ocean-ice
-system
-COSMO-
-CLM/NEMO: assessing air temperature sensitivity over the
-North and Baltic Seas, Oceanologia, 56, 167–189, 2014.
-Warner, J. C., Armstrong, B., He, R., and Zambon, J. B.: Devel-
-opment of a coupled ocean–atmosphere–wave–sediment trans-
-port (COAWST) modeling system, Ocean Model., 35, 230–244,
-2010.
-Xie, S.-P., Miyama, T., Wang, Y., Xu, H., De Szoeke, S. P., Small,
-R. J. O., Richards, K. J., Mochizuki, T., and Awaji, T.: A regional
-ocean–atmosphere model for eastern Paciﬁc climate: toward re-
-ducing tropical biases, J. Climate, 20, 1504–1522, 2007.
-Xu, J., Rugg, S., Byerle, L., and Liu, Z.: Weather forecasts by the
-WRF-ARW model with the GSI data assimilation system in the
-complex terrain areas of southwest Asia, Weather Forecast., 24,
-987–1008, 2009.
-Zempila, M.-M., Giannaros, T. M., Bais, A., Melas, D., and
-Kazantzidis, A.: Evaluation of WRF shortwave radiation param-
-eterizations in predicting Global Horizontal Irradiance in Greece,
-Renewable Energ., 86, 831–840, 2016.
-Zhang, H., Pu, Z., and Zhang, X.: Examination of errors in near-
-surface temperature and wind from WRF numerical simulations
-in regions of complex terrain, Weather Forecast., 28, 893–914,
-2013a.
-Zhang, X., Huang, X.-Y., and Pan, N.: Development of the upgraded
-tangent linear and adjoint of the Weather Research and Fore-
-casting (WRF) Model, J. Atmos. Ocean. Tech., 30, 1180–1188,
-2013b.
-Zou, L. and Zhou, T.: Development and evaluation of a regional
-ocean-atmosphere coupled model with focus on the western
-North Paciﬁc summer monsoon simulation: Impacts of differ-
-ent atmospheric components, Sci. China Earth Sci., 55, 802–815,
-2012.
-Geosci. Model Dev., 12, 4221–4244, 2019
-www.geosci-model-dev.net/12/4221/2019/
+a regional coupled ocean-atmosphere modeling framework (MITgcm-WRF) using ESMF/NUOPC, description and preliminary results for the Red Sea        8 October 2019   Rui  Sun   Scripps Institution of Oceanography, La Jolla, California, USA  Scripps Institution of Oceanography  La Jolla  California  USA     Aneesh  C  Subramanian   aneeshcs@colorado.edu  Scripps Institution of Oceanography, La Jolla, California, USA  Scripps Institution of Oceanography  La Jolla  California  USA     Arthur  J  Miller   Scripps Institution of Oceanography, La Jolla, California, USA  Scripps Institution of Oceanography  La Jolla  California  USA     Matthew  R  Mazloff   Scripps Institution of Oceanography, La Jolla, California, USA  Scripps Institution of Oceanography  La Jolla  California  USA     Ibrahim  Hoteit   Physical Sciences and Engineering Division, King Abdullah University of Science and Technology (KAUST), Thuwal, Saudi Arabia  Physical Sciences and Engineering Division  King Abdullah University of Science and Technology (KAUST)  Thuwal  Saudi Arabia     Bruce  D  Cornuelle   Scripps Institution of Oceanography, La Jolla, California, USA  Scripps Institution of Oceanography  La Jolla  California  USA     a regional coupled ocean-atmosphere modeling framework (MITgcm-WRF) using ESMF/NUOPC, description and preliminary results for the Red Sea   8 October 2019    EA3B7383C545877EC63BC43B9B5BEE5B  10.5194/gmd-12-4221-2019  Received: 9 October 2018 -Discussion started: 29 November 2018 Revised: 1 September 2019 -Accepted: 4 September 2019 -     GROBID - A machine learning software for extracting information from scholarly documents       A new regional coupled ocean-atmosphere model is developed and its implementation is presented in this paper.  The coupled model is based on two open-source community model components: the MITgcm ocean model and the Weather Research and Forecasting (WRF) atmosphere model.  The coupling between these components is performed using ESMF (Earth System Modeling Framework) and implemented according to National United Operational Prediction Capability (NUOPC) protocols.  The coupled model is named the Scripps-KAUST Regional Integrated Prediction System (SKRIPS).  SKRIPS is demonstrated with a real-world example by simulating a 30 d period including a series of extreme heat events occurring on the eastern shore of the Red Sea region in June 2012.  The results obtained by using the coupled model, along with those in forced stand-alone oceanic or atmospheric simulations, are compared with observational data and reanalysis products.  We show that the coupled model is capable of performing coupled ocean-atmosphere simulations, although all configurations of coupled and uncoupled models have good skill in modeling the heat events.  In addition, a scalability test is performed to investigate the parallelization of the coupled model.  The results indicate that the coupled model code scales well and the ESMF/NUOPC coupler accounts for less than 5 % of the total computational resources in the Red Sea test case.  The coupled model and documentation are available at https://library. 
+
+
+
+    Introduction Accurate and efficient forecasting of oceanic and atmospheric circulation is essential for a wide variety of highimpact societal needs, including extreme weather and climate events (Kharin and Zwiers, 2000;  Chen et al., 2007) , environmental protection and coastal management  (Warner et al., 2010) , management of fisheries  (Roessig et al., 2004) , marine conservation  (Harley et al., 2006) , water resources  (Fowler and Ekström, 2009) , and renewable energy  (Barbariol et al., 2013) .   Effective forecasting relies on high model fidelity and accurate initialization of the models with the observed state of the coupled ocean-atmosphere system.  Although global coupled models are now being implemented with increased resolution, higher-resolution regional coupled models, if properly driven by the boundary conditions, can provide an affordable way to study air-sea feedback for frontalscale processes. 
+
+ A number of regional coupled ocean-atmosphere models have been developed for various goals in the past decades.  An early example of building a regional coupled model for realistic simulations focused on accurate weather forecasting in the Baltic Sea (Gustafsson et al., 1998;  Hagedorn et al., 2000;  Doscher et al., 2002) and showed that the coupled model im-Published by Copernicus Publications on behalf of the European Geosciences Union.  
+
+ proved the SST (sea surface temperature) and atmospheric circulation forecast.  Enhanced numerical stability in the coupled simulation was also observed.  These early attempts were followed by other practitioners in ocean-basin-scale climate simulations (e.g., Huang et al., 2004;  Aldrian et al., 2005;  Xie et al., 2007;  Seo et al., 2007;  Somot et al., 2008;  Fang et al., 2010;  Boé et al., 2011;  Zou and Zhou, 2012;  Gualdi et al., 2013;  Van Pham et al., 2014;  Chen and Curcic, 2016;  Seo, 2017) .   For example, Huang et al. (2004) implemented a regional coupled model to study three major important patterns contributing to the variability and predictability of the Atlantic climate.   The study suggested that these patterns originate from air-sea coupling within the Atlantic Ocean or by the oceanic response to atmospheric intrinsic variability.  Seo et al. (2007) studied the nature of ocean-atmosphere feedbacks in the presence of oceanic mesoscale eddy fields in the eastern Pacific Ocean sector.   The evolving SST fronts were shown to drive an unambiguous response of the atmospheric boundary layer in the coupled model and lead to model anomalies of wind stress curl, wind stress divergence, surface heat flux, and precipitation that resemble observations.  This study helped substantiate the importance of ocean-atmosphere feedbacks involving oceanic mesoscale variability features. 
+
+ In addition to basin-scale climate simulations, regional coupled models are also used to study weather extremes.  For example, the COAMPS (Coupled Ocean/Atmosphere Mesoscale Prediction System) was applied to investigate idealized tropical cyclone events (Hodur, 1997) .   This work was then followed by other realistic extreme weather studies.  Another example is the investigation of extreme bora wind events in the Adriatic Sea using different regional coupled models (Loglisci et al., 2004;  Pullen et al., 2006;  Ricchi et al., 2016) .   The coupled simulation results demonstrated improvements in describing the air-sea interaction processes by taking into account oceanic surface heat fluxes and winddriven ocean surface wave effects (Loglisci et al., 2004;  Ricchi et al., 2016) .   It was also found in model simulations that SST after bora wind events had a stabilizing effect on the atmosphere, reducing the atmospheric boundary layer mixing and yielding stronger near-surface wind (Pullen et al., 2006) .   Regional coupled models were also used for studying the forecasts of hurricanes, including hurricane path, hurricane intensity, SST variation, and wind speed (Bender and Ginis, 2000;  Chen et al., 2007;  Warner et al., 2010) .  
+
+ Regional coupled modeling systems also play important roles in studying the effect of surface variables (e.g., surface evaporation, precipitation, surface roughness) in the coupling processes of oceans or lakes.  One example is the study conducted by Powers and Stoelinga (2000) , who developed a coupled model and investigated the passage of atmospheric fronts over the Lake Erie region.   Sensitivity analysis was performed to demonstrate that parameterization of lake surface roughness in the atmosphere model can improve the calculation of wind stress and heat flux.  Another example is the investigation of Caspian Sea levels by Turuncoglu et al. (2013) , who compared a regional coupled model with uncoupled models and demonstrated the improvement of the coupled model in capturing the response of Caspian Sea levels to climate variability.  
+
+ In the past 10 years, many regional coupled models have been developed using modern model toolkits (Zou and Zhou, 2012;  Turuncoglu et al., 2013;  Turuncoglu, 2019) and include waves  (Warner et al., 2010;  Chen and Curcic, 2016) , sediment transport  (Warner et al., 2010) , sea ice  (Van Pham et al., 2014) , and chemistry packages  (He et al., 2015) .   However, this work was motivated by the need for a coupled regional ocean-atmosphere model implemented using an efficient coupling framework and with compatible state estimation capabilities in both ocean and atmosphere.  The goal of this work is to (1) introduce the design of the newly developed regional coupled ocean-atmosphere modeling system, (2) describe the implementation of the modern coupling framework, (3) validate the coupled model using a realworld example, and (4) demonstrate and discuss the parallelization of the coupled model.  In the coupled system, the oceanic model component is the MIT general circulation model (MITgcm) (Marshall et al., 1997) and the atmospheric model component is the Weather Research and Forecasting (WRF) model  (Skamarock et al., 2019) .   To couple the model components in the present work, the Earth System Modeling Framework (ESMF) (Hill et al., 2004) is used because of its advantages in conservative re-gridding capability, calendar management, logging and error handling, and parallel communications.   The National United Operational Prediction Capability (NUOPC) layer in ESMF (Sitz et al., 2017) is also used between model components and ESMF.   Using the NUOPC layer can simplify the implementation of component synchronization, execution, and other common tasks in the coupling.  The innovations in our work are (1) we use ESMF/NUOPC, which is a community-supported computationally efficient coupling software for earth system models, and (2) we use MITgcm together with WRF, both of which work with the Data Assimilation Research Testbed (DART) (Anderson and Collins, 2007;  Hoteit et al., 2013) .   The resulting coupled model is being developed for coupled data assimilation and subseasonal to seasonal (S2S) forecasting.  By coupling WRF and MITgcm for the first time with ESMF, we can provide an alternative regional coupled model resource to a wider community of users.  These atmospheric and oceanic model components have an active and well-supported user base. 
+
+ After implementing the new coupled model, we demonstrate it on a series of heat events that occurred on the eastern shore of the Red Sea region in June 2012.  The simulated surface variables of the Red Sea (e.g., sea surface temperature, 2 m temperature, and surface heat fluxes) are examined and validated against available observational data and reanalysis products.  To demonstrate that the coupled model can perform coupled ocean-atmosphere simulations, the results are com-pared with those obtained using stand-alone oceanic or atmospheric models.  This paper focuses on the technical aspects of SKRIPS and is not a full investigation of the importance of coupling for these extreme events.  In addition, a scalability test of the coupled model is performed to investigate its parallel capability. 
+
+ The rest of this paper is organized as follows.  The description of the individual modeling components and the design of the coupled modeling system are detailed in Sect. 2. Section 3 introduces the design of the validation experiment and the validation data.  Section 4 discusses the preliminary results in the validation test.  Section 5 details the parallelization test of the coupled model.  The last section concludes the paper and presents an outlook for future work. 
+
+
+
+ Model description The newly developed regional coupled modeling system is introduced in this section.  The general design of the coupled model, descriptions of individual components, and ESMF/NUOPC coupling framework are presented below. 
+
+
+
+ General design The schematic description of the coupled model is shown in Fig. 1 .   The coupled model is comprised of five components: the oceanic component MITgcm, the atmospheric component WRF, the MITgcm-ESMF and WRF-ESMF interfaces, and the ESMF coupler.  They are to be detailed in the following sections. 
+
+ The coupler component runs in both directions: (1) from WRF to MITgcm and (2) from MITgcm to WRF.  From WRF to MITgcm, the coupler collects the atmospheric surface variables (i.e., radiative flux, turbulent heat flux, wind velocity, precipitation, evaporation) from WRF and updates the surface forcing (i.e., net surface heat flux, wind stress, freshwater flux) to drive MITgcm.  From MITgcm to WRF, the coupler collects oceanic surface variables (i.e., SST and ocean surface velocity) from MITgcm and updates them in WRF as the bottom boundary condition.  Re-gridding the data from either model component is performed by the coupler, in which various coupling intervals and schemes can be specified by ESMF (Hill et al., 2004) .  
+
+
+
+ The oceanic component (MITgcm) MITgcm (Marshall et al., 1997 ) is a 3-D finite-volume general circulation model used by a broad community of researchers for a wide range of applications at various spatial and temporal scales.   The model code and documentation, which are under continuous development, are available on the MITgcm web page (http://mitgcm.org/,  last access date: 26 September 2019).  The "Checkpoint 66h" (June 2017) version of MITgcm is used in the present work.  The MITgcm is designed to run on high-performance computing (HPC) platforms and can run in nonhydrostatic and hydrostatic modes.  It integrates the primitive (Navier-Stokes) equations, under the Boussinesq approximation, using the finite volume method on a staggered Arakawa C grid.  The MITgcm uses modern physical parameterizations for subgrid-scale horizontal and vertical mixing and tracer properties.  The code configuration includes build-time C preprocessor (CPP) options and runtime switches, which allow for great computational modularity in MITgcm to study a variety of oceanic phenomena (Evangelinos and Hill, 2007) .  
+
+ To implement the MITgcm-ESMF interface, we separate the MITgcm main program into three subroutines that handle initialization, running, and finalization, shown in Fig. 2a .   These subroutines are used by the ESMF/NUOPC coupler that controls the oceanic component in the coupled run.  The surface boundary fields are exchanged online 1 via the MITgcm-ESMF interface during the simulation.  The MITgcm oceanic surface variables are the export boundary fields; the atmospheric surface variables are the import boundary 4224 R. Sun et al.: SKRIPS v1 .0: a regional coupled ocean-atmosphere modeling framework fields (see Fig.  2b ).   These boundary fields are registered in the coupler following NUOPC protocols with timestamps 2 for the coupling.   In addition, MITgcm grid information is provided to the coupler in the initialization subroutine for online re-gridding of the exchanged boundary fields.  To carry out the coupled simulation on HPC clusters, the MITgcm-ESMF interface runs in parallel via Message Passing Interface (MPI) communications.  The implementation of the present MITgcm-ESMF interface is based on the baseline MITgcm-ESMF interface (Hill, 2005) but updated for compatibility with the modern version of ESMF/NUOPC.   We also modify the baseline interface to receive atmospheric surface variables and send oceanic surface variables. 
+
+
+
+ The atmospheric component (WRF) The Weather Research and Forecasting (WRF) model (Skamarock et al., 2019) is developed by the NCAR/MMM (Mesoscale and Microscale Meteorology division, National Center for Atmospheric Research).   It is a 3-D finitedifference atmospheric model with a variety of physical parameterizations of subgrid-scale processes for predicting a broad spectrum of applications.  WRF is used extensively for operational forecasts as well as realistic and idealized dynamical studies.  The WRF code and documentation are under continuous development on GitHub (https://github.com/  wrf-model/WRF, last access: 26 September 2019). 
+
+ In the present work, the Advanced Research WRF dynamic version (WRF-ARW, version 3.9.1.1,  https:// github.com/NCAR/WRFV3/releases/tag/V3.9.1.1,  last access: 26 September 2019) is used.  It solves the compressible Euler nonhydrostatic equations and also includes a runtime hydrostatic option.  The WRF-ARW uses a terrain-following hydrostatic pressure coordinate system in the vertical direction and utilizes the Arakawa C grid.  WRF incorporates various physical processes including microphysics, cumulus parameterization, planetary boundary layer, surface layer, land surface, and longwave and shortwave radiation, with several options available for each process. 
+
+ Similar to the implementations in MITgcm, WRF is also separated into initialization, run, and finalization subroutines to enable the WRF-ESMF interface to control the atmosphere model during the coupled simulation, shown in Fig. 2a .   The implementation of the present WRF-ESMF interface is based on the prototype interface (Henderson and Michalakes, 2005) .   In the present work, the prototype WRF-ESMF interface is updated to modern versions of WRF-ARW and ESMF, based on the NUOPC layer.  This prototype interface is also expanded to interact with the ESMF/NUOPC coupler to receive the oceanic surface variables and send the atmospheric surface variables.  The surface boundary condition fields are registered in the coupler following the NUOPC protocols with timestamps.  The WRF grid information is also provided for online re-gridding by ESMF.  To carry out the coupled simulation on HPC clusters, the WRF-ESMF interface also runs in parallel via MPI communications. 
+
+
+
+ ESMF/NUOPC coupler The coupler is implemented using ESMF version 7.0.0.  The ESMF is selected because of its high performance and flexibility for building and coupling weather, climate, and related Earth science applications (Collins et al., 2005;  Turuncoglu et al., 2013;  Chen and Curcic, 2016;  Turuncoglu and Sannino, 2017) .   It has a superstructure for representing the model and coupler components and an infrastructure of commonly used utilities, including conservative grid remapping, time management, error handling, and data communications. 
+
+ The general code structure of the coupler is shown in Fig. 2 . To build the ESMF/NUOPC driver, a main program is implemented to control an ESMF parent component, which controls the child components.   In the present work, three child components are implemented: (1) the oceanic component, (2) the atmospheric component, and (3) the ESMF coupler.  The coupler is used here because it performs the two-way interpolation and data transfer (Hill et al., 2004) .  
+
+ In ESMF, the model components can be run in parallel as a group of persistent execution threads (PETs), which are single processing units (e.g., CPU or GPU cores) defined by ESMF.  In the present work, the PETs are created according to the grid decomposition, and each PET is associated with an MPI process. 
+
+ The ESMF allows the PETs to run in sequential mode, concurrent mode, or mixed mode (for more than three components).  We implemented both sequential and concurrent modes in SKRIPS, shown in Fig. 2b and  c .   In sequential mode, a set of ESMF gridded and coupler components are run in sequence on the same set of PETs.  At each coupling time step, the oceanic component is executed when the atmospheric component is completed and vice versa.  On the other hand, in concurrent mode, the gridded components are created and run on mutually exclusive sets of PETs.  If one component finishes earlier than the other, its PETs are idle and have to wait for the other component, shown in Fig. 2c .   However, the PETs can be optimally distributed by the users to best achieve load balance.  In this work, all simulations are run in sequential mode. 
+
+ In ESMF, the gridded components are used to represent models, and coupler components are used to connect these models.  The interfaces and data structures in ESMF have few constraints, providing the flexibility to be adapted to many modeling systems.  However, the flexibility of the gridded components can limit the interoperability across different modeling systems.  To address this issue, the NUOPC layer is developed to provide the coupling conventions and the generic representation of the model components (e.g., drivers, models, connectors, mediators).  The NUOPC layer in the present coupled model is implemented according to consortium documentation (Hill et al., 2004;  Theurich et al., 2016) , and the oceanic and atmospheric components each have 1.   prescribed variables for NUOPC to link the component; 2. the entry point for registration of the component; 3. an InitializePhaseMap which describes a sequence of standard initialization phases, including documenting the fields that a component can provide, checking and mapping the fields to each other, and initializing the fields that will be used; 
+
+ 4. a RunPhaseMap that checks the incoming clock of the driver, examines the timestamps of incoming fields, and runs the component; 
+
+ 5. timestamps on exported fields consistent with the internal clock of the component; 
+
+ 6. the finalization method to clean up all allocations. 
+
+ The subroutines that handle initialization, running, and finalization in MITgcm and WRF are included in the Initial-izePhaseMap, RunPhaseMap, and finalization method in the NUOPC layer, respectively. 
+
+
+
+ Experiment design and observational datasets We simulate a series of heat events in the Red Sea region, with a focus on validating and assessing the technical aspects of the coupled model.  There is a desire for improved and extended forecasts in this region, and future work will investigate whether a coupled framework can advance this goal.  The extreme heat events are chosen as a test case due to their societal importance.  While these events and the analysis here may not maximize the value of coupled forecasting, these real-world events are adequate to demonstrate the performance and physical realism of the coupled model code implementation.  The simulation of the Red Sea extends from 00:00 UTC 1 June to 00:00 UTC 1 July 2012.  We select this month because of the record-high surface air temperature observed in the Mecca region, located 70 km inland from the eastern shore of the Red Sea (Abdou, 2014) .   The computational domain and bathymetry are shown in Fig. 3 .   The model domain is centered at 20 • N, 40 • E, and the bathymetry is from the 2 min Gridded Global Relief Data (ETOPO2) (National Geophysical Data Center, 2006) .   WRF is implemented using a horizontal grid of 256 × 256 points and grid spacing of 0.08 • .  The cylindrical equidistant map (latitude-longitude) projection is used.  There are 40 terrain-following vertical levels, more closely spaced in the atmospheric boundary layer.  The time step for atmosphere simulation is 30 s, which is to avoid violating the CFL (Courant-Friedrichs-Lewy) condition.  The Morrison 2-moment scheme (Morrison et al., 2009) is used to resolve the microphysics.   The updated version of the Kain-Fritsch convection scheme (Kain, 2004) is used with the modifications to include the updraft formulation, downdraft formulation, and closure assumption.   The Yonsei University (YSU) scheme (Hong et al., 2006) is used for the planetary boundary layer (PBL), and the Rapid Radiation Transfer Model for General Circulation Models (RRTMG;  Iacono et al., 2008) is used for longwave and shortwave radiation transfer through the atmosphere.   The Rapid Update Cycle (RUC) land surface model is used for the land surface processes (Benjamin et al., 2004) .   The MITgcm uses the same horizontal grid spacing as WRF, with 40 vertical z levels that are more closely spaced near the surface.  The time step of the ocean model is 120 s.  The horizontal subgrid mixing is parameterized using nonlinear Smagorinsky viscosities, and the K-profile parameterization (KPP) (Large et al., 1994) is used for vertical mixing processes.  
+
+ During coupled execution, the ocean model sends SST and ocean surface velocity to the coupler, and they are used directly as the boundary conditions in the atmosphere model.  The atmosphere model sends the surface fields to the coupler, including (1) surface radiative flux (i.e., longwave and shortwave radiation), (2) surface turbulent heat flux (i.e., latent and sensible heat), (3) 10 m wind speed, (4) precipitation, and (5) evaporation.  The ocean model uses the atmospheric surface variables to compute the surface forcing, including (1) total net surface heat flux, (2) surface wind stress, and (3) freshwater flux.  The total net surface heat flux is computed by adding latent heat flux, sensible heat flux, shortwave radiation flux, and longwave radiation flux.  The surface wind stress is computed by using the 10 m wind speed (Large and Yeager, 2004) .   The freshwater flux is the difference between precipitation and evaporation.  The latent and sensible heat fluxes are computed by using the COARE 3.0 bulk algorithm in WRF (Fairall et al., 2003) .   In the coupled code, different bulk formulae in WRF or MITgcm can also be used. 
+
+ According to the validation tests in the literature (Warner et al., 2010;  Turuncoglu et al., 2013;  Ricchi et al., 2016) , the following sets of simulations using different configurations are performed.  
+
+ 1. Run CPL (coupled run): a two-way coupled MITgcm-WRF simulation.  The coupling interval is 20 min to capture the diurnal cycle (Seo et al., 2014) .   This run tests the implementation of the two-way coupled oceanatmosphere model. 
+
+ 2. Run ATM.STA: a stand-alone WRF simulation with its initial SST kept constant throughout the simulation.  This run allows for assessment of the WRF model behavior with realistic, but persistent, SST.  This case serves as a benchmark to highlight the difference between coupled and uncoupled runs and also to demonstrate the impact of evolving SST. 
+
+ 3. Run ATM.DYN: a stand-alone WRF simulation with a varying, prescribed SST based on HYCOM/NCODA reanalysis data.  This allows for assessing the WRF model behavior with updated SST and is used to validate the coupled model.  It is noted that in practice an accurately evolving SST would not be available for forecasting. 
+
+ 4. Run OCN.DYN: a stand-alone MITgcm simulation forced by the ERA5 reanalysis data.  The bulk formula in MITgcm is used to derive the turbulent heat fluxes.  This run assesses the MITgcm model behavior with prescribed lower-resolution atmospheric surface forcing and is also used to validate the coupled model. 
+
+ The ocean model uses the HYCOM/NCODA 1/12 • global reanalysis data as initial and boundary conditions for ocean temperature, salinity, and horizontal velocities (https: //www.hycom.org/dataserver/gofs-3pt1/reanalysis,  last access: 26 September 2019).  The boundary conditions for the ocean are updated on a 3-hourly basis and linearly interpolated between two simulation time steps.  A sponge layer is applied at the lateral boundaries, with a thickness of 3 grid cells.  The inner and outer boundary relaxation timescales of the sponge layer are 10 and 0.5 d, respectively.  In CPL, ATM.STA, and ATM.DYN, we use the same initial condition and lateral boundary condition for the atmosphere.  The atmosphere is initialized using the ECMWF ERA5 reanalysis data, which have a grid resolution of approximately 30 km (Hersbach, 2016) .   The same data also provide the boundary conditions for air temperature, wind speed, and air humidity every 3 h.  The atmosphere boundary conditions are also linearly interpolated between two simulation time steps.  The lateral boundary values are specified in WRF in the "specified" zone, and the "relaxation" zone is used to nudge the solution from the domain toward the boundary condition value.  Here we use the default width of one point for the specific zone and four points for the relaxation zone.  The top of the atmosphere is at the 50 hPa pressure level.  In ATM.STA, the SST from HYCOM/NCODA at the initial time is used as a constant SST.  The time-varying SST in ATM.DYN is also generated using HYCOM/NCODA data.  We select HYCOM/NCODA data because the ocean model initial condition and boundary conditions are generated using it.  For OCN.DYN we select ERA5 data for the atmospheric state because it also provides the atmospheric initial and boundary conditions in CPL.  The initial conditions, boundary conditions, and forcing terms of all simulations are summarized in Table 1 .  
+
+ The validation of the coupled model focuses on temperature, heat flux, and surface wind.  Our aim is to validate the coupled model and show that the heat and momentum fluxes simulated by the coupled model are comparable to the observations or the reanalysis data.  The simulated 2 m air temperature (T 2) fields are validated using ERA5.  In addition, the simulated T 2 for three major cities near the eastern shore of (Donlon et al., 2012;  Martin et al., 2012) .   In addition, the simulated SST fields are validated against HYCOM/NCODA data.  Since the simulations are initialized using HYCOM/NCODA data, this aims to show the increase in the differences.  Surface heat fluxes (e.g., turbulent heat flux and radiative flux), which drive the oceanic component in the coupled model, are validated using MERRA-2 (Modern-Era Retrospective analysis for Research and Applications, version 2) data (Gelaro et al., 2017) .   We use the MERRA-2 dataset because (1) it is an independent reanalysis dataset compared to the initial and boundary conditions used in the simulations and (2) it also provides 0.625 • × 0.5 • (long × lat) resolution reanalysis fields of turbulent heat fluxes (THFs).  The 10 m wind speed is also compared with MERRA-2 data to validate the momentum flux in the coupled code.  The validation of the freshwater flux is shown in the Appendix because (1) the evaporation is proportional to the latent heat in the model and (2) the precipitation is zero in the cities near the coast in Fig. 3 .   The validation data are summarized in Table 2 .  
+
+ When comparing T 2 with NCDC ground observations, the simulation results and ERA5 data are interpolated to the NCDC stations.  When interpolating to NCDC stations near the coast, only the data saved on land points are used. 3   The maximum and minimum T 2 every 24 h from the simulations and ERA5 are compared to the observed daily maximum and minimum T 2. On the other hand, when comparing the simulation results with the analysis or reanalysis data (HYCOM, GHRSST, ERA5, and MERRA-2), we interpolate these data onto the model grid to achieve a uniform spatial scale (Maksyutov et al., 2008;  Torma et al., 2011) .   3 . The biases of the T 2 are comparable with those reported in other benchmark WRF simulations  (Xu et al., 2009;  Zhang et al., 2013a;  Imran et al., 2018) .  
+
+ The simulation results on 10 and 24 June are shown in Fig. 5 to validate the coupled model over longer periods of time.   It can be seen in Fig. 5 that the T 2 patterns in CPL are generally consistent with ERA5.   The differences between the simulations (CPL, ATM.STA, and ATM.DYN) and ERA5 show that the T 2 data on land are consistent for all three simulations.  However, the T 2 data over the sea in CPL have smaller mean biases and RMSEs compared to ATM.STA, also shown in Table 3 .   Although the difference in T 2 is very small compared with the mean T 2 (31.92 • C), the improvement of the coupled run on the 24 June (1.02  • C) is comparable to the standard deviation of T 2 (1.64 • C).  The T 2 over the water in CPL is closer to ERA5 because MITgcm in the coupled model provides a dynamic SST which influences T 2. On the other hand, when comparing CPL with ATM.DYN, the mean difference is smaller (10: +0.04 • C; 24: -0.62 • C).  This shows that CPL is comparable to ATM.DYN, which is driven by an updated warming SST. 
+
+ The mean biases and RMSEs of T 2 over the Red Sea during the 30 d simulation are shown in Fig. 6 to demonstrate the evolution of simulation errors.   It can be seen that ATM.STA can still capture the T 2 patterns in the first week but it underpredicts T 2 by about 2 • C after 20 d because it has no SST evolution.  On the other hand, CPL has a smaller bias (-0.60 • C) and RMSE (1.28 • C) compared with those in ATM.STA (bias: -1.19 • C; RMSE: 1.71 • C) during the 30 d simulation as the SST evolution is considered.  The ATM.DYN case also has a smaller error compared to ATM.STA and its error is comparable with that in CPL (bias: -0.72 • C; RMSE: 1.31 • C), indicating that the skill of the coupled model is comparable to the stand-alone atmosphere model driven by 3-hourly reanalysis SST.  The differences in the mean biases and RMSEs between model outputs and ERA5 data are also plotted in Fig. 6 .   It can be seen that CPL has smaller error than ATM.STA throughout the simulation.  The bias and RMSE between CPL and ATM.DYN are within about 0.5 • C.  This shows the capability of the coupled model to perform realistic regional coupled ocean-atmosphere simulations. 
+
+ To validate the diurnal T 2 variation in the coupled model in Fig. 4 , the time series of T 2 in three major cities as simulated in CPL and ATM.STA are plotted in Fig.  7 , starting from 1 June.   The ERA5 data and the daily observed high and low temperature data from NOAA NCDC are also plotted for validation.  Both coupled and uncoupled simulations generally captured the four major heat events (i.e., 2, 10, 17, and 24 June) and the T 2 variations during the 30 d simulation.  For the daily high T 2, the RMSE in all simulations are close (CPL: 2.09 than ATM.STA (Jeddah: 4.98 • C; Yanbu: 4.29 • C) by about 1 and 0.5 • C, respectively.  However, the T 2 difference for Mecca, which is located 70 km from the sea, is negligible (0.05 • C) between all simulations throughout the simulation. 
+
+
+
+ Sea surface temperature The simulated SST patterns obtained in the simulations are presented to demonstrate that the coupled model can capture the ocean surface state.  The snapshots of SST obtained from CPL are shown in Fig. 8i and vi.   To validate the coupled model, the SST fields obtained in OCN.DYN are shown in Fig. 8ii and vii, and the GHRSST data are shown in Fig.  8iii and viii.   The SST obtained in the model at 00:00 UTC (about 03:00 LT (local time) in the Red Sea region) is presented because the GHRSST is produced with nighttime SST data (Roberts-Jones et al., 2012) .   It can be seen that both CPL and OCN.DYN are able to reproduce the SST patterns reasonably well in comparison with GHRSST for both snapshots.  Though CPL uses higher-resolution surface forcing fields, the SST patterns obtained in both simulations are very similar after 2 d.  On 24 June , the SST patterns are less similar, but both simulation results are still comparable with GHRSST (RMSE < 1 • C).  Both simulations under-estimate the SST in the northern Red Sea and overestimate the SST in the central and southern Red Sea on 24 June. 
+
+ To quantitatively compare the errors in SST, the time histories of the SST in the simulations (i.e., OCN.DYN and CPL) and validation data (i.e., GHRSST and HYCOM/NCODA) are shown in Fig. 9 .   The mean biases and RMSEs between model outputs and validation data are also plotted.  In Fig. 9a the snapshots of the simulated SST are compared with available HYCOM/NCODA data every 3 h.   In Fig. 9b the snapshots of SST outputs every 24 h at 00:00 UTC (about 03:00 LT local time in the Red Sea region) are compared with GHRSST.   Compared with Fig. 9b , the diurnal SST oscillation can be observed in Fig.  9a because the SST is plotted every 3 h.   Generally, OCN.DYN and CPL have a similar range of error compared to both validation datasets in the 30 d simulations.  The simulation results are compared with HYCOM/NCODA data to show the increase in RMSE in Fig. 9a .   Compared with HYCOM/NCODA, the mean differences between CPL and OCN.DYN are small (CPL: 0.10 • C; OCN.DYN: 0.03 • C).  The RMSE increases in the first week but does not grow after that.  On the other hand, when comparing with GHRSST, the initial SST patterns in both runs are cooler by about 0.8 • C.  This is because the models are initialized by HYCOM/NCODA, which has temperature in the topmost model level cooler than the estimated foundation 
+
+
+
+ Surface heat fluxes The atmospheric surface heat flux drives the oceanic component in the coupled model, hence we validate the heat fluxes in the coupled model as compared to the stand-alone simulations.  Both the turbulent heat fluxes and the net downward heat fluxes are compared to MERRA-2 and their differences are plotted.  To validate the coupled ocean-atmosphere model, we only compare the heat fluxes over the sea. 
+
+ The turbulent heat fluxes (THF; sum of latent and sensible heat fluxes) and their differences with the validation data are shown in Fig. 10 (the snapshots are shown in the Appendix).   It can be seen that all simulations have similar mean THF over the Red Sea compared with MERRA-2 (CPL: 119.4 W m -2 ; ATM.STA: 103.4 W m -2 ; ATM.DYN: 117.5 W m -2 ; MERRA-2: 115.6 W m -2 ).  For the first 2 weeks, the mean THFs obtained in all simulations are overlapping in Fig. 10 .   This is because all simulations are initialized in the same way, and the SST in all simulations are similar in the first 2 weeks.  After the second week, CPL has smaller error (bias: -1.8 W m -2 ; RMSE: 69.9 W m -2 ) compared with ATM.STA (bias: -25.7 W m -2 ; RMSE: 76.4 W m -2 ).  This is because the SST is updated in CPL and is warmer compared with ATM.STA.  When forced by a warmer SST, the evaporation increases (also see the Appendix) and thus the latent heat fluxes increase.  On the other hand, the THFs in CPL are comparable with ATM.DYN during the 30 d run (bias: 1.9 W m -2 ), showing that SKRIPS can capture the THFs over the Red Sea in the coupled simulation. 
+
+ The net downward heat fluxes (sum of THF and radiative flux) are shown in Fig. 11 (the snapshots are shown in the Appendix).   Again, for the first 2 weeks, the heat fluxes obtained in ATM.STA, ATM.DYN, and CPL are overlap-ping.  This is because all simulations are initialized in the same way, and the SSTs in all simulations are similar in the first 2 weeks.  After the second week, CPL has slightly smaller error (bias: 11.2 W m -2 ; RMSE: 84.4 W m -2 ) compared with the ATM.STA simulation (bias: 36.5 W m -2 ; RMSE: 94.3 W m -2 ).  It should be noted that the mean bias and RMSE of the net downward heat fluxes can be as high as a few hundred watts per square meter or 40 % compared with MERRA-2.  This is because WRF overestimated the shortwave radiation in the daytime (the snapshots are shown in the Appendix).  However, the coupled model still captures the mean and standard deviation of the heat flux compared with MERRA-2 data (CPL mean: 110.6 W m -2 , standard deviation: 350.7 W m -2 ; MERRA-2 mean 104.7 W m -2 , standard deviation 342.3 W m -2 ).  The overestimation of shortwave radiation by the RRTMG scheme is also reported in other validation tests in the literature under all-sky conditions due to the uncertainty in cloud or aerosol (Zempila et al., 2016;  Imran et al., 2018) .   Although the surface heat flux is overestimated in the daytime, the SST over the Red Sea is not overestimated (shown in Sect.  4.2). 
+
+
+
+ 10 m wind speed To evaluate the simulation of the surface momentum by the coupled model, the 10 m wind speed patterns obtained from ATM.STA, ATM.DYN, and CPL are compared to the MERRA-2 reanalysis. 
+
+ The simulated 10 m wind velocity fields are shown in Fig. 12 .   The RMSE of the wind speed between CPL and MERRA-2 data is 2.23 m s -1 when using the selected WRF physics schemes presented in Sect.  3. On 2 June, high wind speeds are observed in the northern and central Red Sea, and 
+
+
+
+ Scalability test Parallel efficiency is crucial for coupled ocean-atmosphere models when simulating large and complex problems.  In this section, the parallel efficiency in the coupled simulations is investigated.  This aims to demonstrate that (1) the implemented ESMF/NUOPC driver and model interfaces can simulate parallel cases effectively and (2) the ESMF/NUOPC coupler does not add a significant computational overhead.  The parallel speed-up of the model is investigated to evaluate its performance for a constant size problem simulated using different numbers of CPU cores (i.e., strong scaling).  Additionally, the CPU time spent on oceanic and atmospheric components of the coupled model is detailed.  The test cases are run in sequential mode.  The parallel efficiency tests are performed on the Shaheen-II cluster at KAUST (https: //www.hpc.kaust.edu.sa/, last access: 26 September 2019).  The Shaheen-II cluster is a Cray XC40 system composed The parallel efficiency of the scalability test is N p0 t p0 /N pn t pn , where N p0 and N pn are the numbers of CPU cores employed in the baseline case and the test case, respectively; t p0 and t pn are the CPU times spent on the baseline case and the test case, respectively.  The speed-up is defined as t p0 /t pn , which is the relative improvement of the CPU time when solving the problem.  The scalability tests are performed by running 24 h simulations for ATM.STA, OCN.DYN, and CPL cases.  There are 2.6 million atmosphere cells (256 lat ×256 long ×40 vertical levels) and 0.4 million ocean cells (256 lat ×256 long ×40 vertical levels, but about 84 % of the domain is land and masked out).  We started using N p0 = 32 because each compute node has 32 CPU cores.  The results obtained in the scalability test of the coupled model are shown in Fig. 14 .   It can be seen that the parallel efficiency of the coupled code is close to 100 % when employing less than 128 cores and is still as high as 70 % when using 256 cores.  When using 256 cores, there are a maximum of 20 480 cells (16 lat ×16 long ×80 vertical levels) in each core.  The decrease in parallel efficiency results from the increase of communication time, load imbalance, and I/O (read and write) operation per CPU core (Christidis, 2015) .   From results reported in the literature, the parallel efficiency of the coupled model is comparable to other ocean-alone or atmosphere-alone models with similar numbers of grid points per CPU core (Marshall et al., 1997;  Zhang et al., 2013b) .  
+
+ The CPU time spent on different components of the coupled run is shown in Table .  4. The time spent on the ESMF coupler is obtained by subtracting the time spent on oceanic and atmospheric components from the total time of the coupled run.  The most time-consuming process is the atmosphere model integration, which accounts for 85 % to 95 % of the total.  The ocean model integration is the second-most time-consuming process, which is 5 % to 11 % of the total computational cost.  If an ocean-only region was simulated, the costs of the ocean and atmosphere models would be more equal compared with the Red Sea case.  It should be noted that the test cases are run in sequential mode, and the cost breakdown among the components can be used to address load balancing in the concurrent mode.  The coupling process takes less than 3 % of the total cost in the coupled runs using different numbers of CPU cores in this test.  Although the proportion of the coupling process in the total cost increases when using more CPU cores, the total time spent on the coupling process is similar.  The CPU time spent on two uncoupled runs (i.e., ATM.STA, OCN.DYN) is also shown in Table 4 . Compared with the uncoupled simulations, the ESMF-MITgcm and ESMF-WRF interfaces do not increase the CPU time in the coupled simulation.   In summary, the scalability test results suggest that the ESMF/NUOPC coupler does not add significant computational overhead when using SKRIPS in the coupled regional modeling studies. 
+
+
+
+ Conclusion and Outlook This paper describes the development of the Scripps-KAUST Regional Integrated Prediction System (SKRIPS). 
+
+ To build the coupled model, we implement the coupler using ESMF with its NUOPC wrapper layer.  The ocean model MITgcm and the atmosphere model WRF are split into initialize, run, and finalize sections, with each of them called by the coupler as subroutines in the main function. 
+
+ The coupled model is validated by using a realistic application to simulate the heat events during June 2012 in the Red Sea region.  Results from the coupled and stand-alone simulations are compared to a wide variety of available observational and reanalysis data.  We focus on the comparison of the surface atmospheric and oceanic variables because they are used to drive the oceanic and atmospheric components in the coupled model.  From the comparison, results obtained from various configurations of coupled and standalone model simulations all realistically capture the surface atmospheric and oceanic variables in the Red Sea region over a 30 d simulation period.  The coupled system gives equal or better results compared with stand-alone model components.  The 2 m air temperature in three major cities obtained in CPL and ATM.DYN are comparable and better than ATM.STA.  Other surface atmospheric fields (e.g., 2 m air temperature, surface heat fluxes, 10 m wind speed) in CPL are also comparable with ATM.DYN and better than ATM.STA over the simulation period.  The SST obtained in CPL is also better than that in OCN.DYN by about 0.1 • C when compared with GHRSST. 
+
+ The parallel efficiency of the coupled model is examined by simulating the Red Sea region using increasing numbers 
+
+
+
+ Appendix A: Snapshots of heat fluxes To examine the modeling of turbulent heat fluxes and radiative fluxes, the snapshots of these heat fluxes obtained from ATM.STA, ATM.DYN, and CPL are presented and validated using the MERRA-2 data. 
+
+ The snapshots of the THFs at 12:00 UTC 2 and 24 June are presented in Fig. A1 .   It can be seen that all simulations reproduce the THFs reasonably well in comparison with MERRA-2.  On 2 June, all simulations exhibit similar THF patterns.  This is because all simulations have the same initial conditions, the SST fields in all simulations are similar within 2 d.  On the other hand, for the heat event on 24 June, CPL and ATM.DYN exhibit more latent heat fluxes coming out of the ocean (170 and 153 W m -2 ) than those in ATM.STA (138 W m -2 ).  The mean biases in CPL, ATM.DYN, and ATM.STA are 23.1, 5.1, and -9.5 W m -2 , respectively.  Although CPL has larger bias at the snapshot, the averaged bias and RMSE in CPL are smaller (shown in Fig. 10 ).   Compared with the latent heat fluxes, the sensible heat fluxes in the Red Sea region are much smaller in all simulations (about 20 W m -2 ).  It should be noted that MERRA-2 has unrealistically large sensible heat fluxes in the coastal regions because the land points contaminate the values in the coastal region (Kara et al., 2008;  Gelaro et al., 2017) , and thus the heat fluxes in the coastal regions are not shown.  
+
+ The net downward shortwave and longwave radiation fluxes are shown in Fig. A2 .   Again, all simulations reproduce the shortwave and longwave radiation fluxes reasonably well.  For the shortwave heat fluxes, all simulations show similar patterns on both 2 and 24 June.  The total downward heat fluxes, which is the sum of the results in Figs.  A1 and  A2 , are shown in Fig.  A3 .   It can be seen that the present simulations overestimate the total downward heat fluxes on 2 June (CPL: 580 W m -2 ; ATM.STA: 590 W m -2 ; ATM.DYN: 582 W m -2 ) compared with MERRA-2 (525 W m -2 ), especially in the southern Red Sea because of overestimating the shortwave radiation.  To improve the modeling of shortwave radiation, a better understanding of the cloud and aerosol in the Red Sea region is required (Zempila et al., 2016;  Imran et al., 2018) .   Again, the heat fluxes in the coastal regions are not shown because of the inconsistency of land-sea mask.  Overall, the comparison shows the coupled model is capable of capturing the surface heat fluxes into the ocean. 
+
+
+
+ Appendix B: Evaporation To examine the simulation of surface freshwater flux in the coupled model, the surface evaporation fields obtained from ATM.STA, ATM.DYN, and CPL are compared with the MERRA-2 data. 
+
+ The surface evaporation fields from CPL are shown in Fig. B1 .   The MERRA-2 data and the difference between CPL and MERRA-2 are also shown to validate the coupled model.  The ATM.STA and ATM.DYN simulation results are not shown, but their differences with CPL are also shown in Fig. B1 .   It can be seen in Fig. B1iii and viii that CPL reproduces the overall evaporation patterns in the Red Sea.   CPL is able to capture the relatively high evaporation in the northern Red Sea and the relatively low evaporation in the southern Red Sea in both snapshots, shown in Fig. B1i and vi.   After 36 h, the simulation results are close with each other (e.g., the RMSE between CPL and ATM.STA simulation is smaller than 10 cm yr -1 ).  However, after 24 d, CPL agrees better with MERRA-2 (bias: 6 cm yr -1 ; RMSE: 59 cm yr -1 ) than ATM.STA (bias: -25 cm yr -1 ; RMSE: 68 cm yr -1 ).  In addition, the CPL results are consistent with those in ATM.DYN.  This shows the coupled ocean-atmosphere simulation can reproduce the realistic evaporation patterns over the Red Sea.  Since there is no precipitation in three major cities (Mecca, Jeddah, Yanbu) near the eastern shore of the Red Sea during the month according to NCDC climate data, the precipitation results are not shown. 
+
+
+
+ Figure 1 . 1  Figure 1.  The schematic description of the coupled oceanatmosphere model.  The yellow block is the ESMF/NUOPC coupler; the red blocks are the implemented MITgcm-ESMF and WRF-ESMF interfaces; the white blocks are the oceanic and atmospheric components.  From WRF to MITgcm, the coupler collects the atmospheric surface variables (i.e., radiative flux, turbulent heat flux, wind velocity, precipitation, evaporation) and updates the surface forcing (i.e., net surface heat flux, wind stress, freshwater flux) to drive MITgcm.  From MITgcm to WRF, the coupler collects oceanic surface variables (i.e., SST and ocean surface velocity) and updates them in WRF as the bottom boundary condition. 
+
+
+
+     Figure 2 . 2  Figure 2. The general code structure and run sequence of the coupled ocean-atmosphere model.  In panel (a), the black block is the application driver; the red block is the parent gridded component called by the application driver; the green (brown) blocks are the child gridded (coupler) components called by the parent gridded component.  Panels (b) and (c) show the sequential and concurrent mode implemented in SKRIPS, respectively.  PETs (persistent execution threads) are single processing units (e.g., CPU or GPU cores) defined by ESMF.  Abbreviations OCN, ATM, and CON denote oceanic component, atmospheric component, and connector component, respectively.  The blocks under PETs are the CPU cores in the simulation; the small blocks under OCN or ATM are the small subdomains in each core; the block under CON is the coupler.  The red arrows indicate that the model components are sending data to the connector and the yellow arrows indicate that the model components are reading data from the connector.  The horizontal arrows indicate the time axis of each component and the ticks on the time axis indicate the coupling time steps. 
+
+
+
+     Figure 3 . 3  Figure 3.  The WRF topography and MITgcm bathymetry in the simulations.  Three major cities near the eastern shore of the Red Sea are highlighted.  The Hijaz Mountains and Ethiopian Highlands are also highlighted. 
+
+
+
+       We begin our analysis by examining the simulated T 2 from the model experiments, aiming to validate the atmospheric component of SKRIPS.  Since the record-high temperature is observed in the Mecca region on 2 June, the simulation results on 2 June (36 or 48 h after the initialization) are shown in Fig.4.  The ERA5 data, and the difference between CPL and ERA5 are also shown in Fig.4.  It can be seen in Fig.4ithat CPL captures the T 2 patterns in the Red Sea region on 2 June compared with ERA5 in Fig.4ii.  Since the ERA5 T 2 data are in good agreement with the NCDC ground observation data in the Red Sea region (detailed comparisons of all stations are not shown), we use ERA5 data to validate the simulation results.  The difference between CPL and ERA5 is shown in Fig.4iii.  The ATM.STA and ATM.DYN results are close to the CPL results and thus are not shown, but their differences with respect to ERA5 are shown in Fig.4iv and v, respectively.  Fig.4vito x shows the nighttime results after 48 h.  It can be seen in Fig.4that all simulations reproduce the T 2 patterns over the Red Sea region reasonably well compared with ERA5.  The mean T 2 biases and root mean square errors (RMSEs) over the sea are shown in Table 
+
+
+
+   Figure 4 . 4  Figure 4.  The 2 m air temperature as obtained from the CPL, the ERA5 data, and their difference (CPL-ERA5).  The differences between ATM.STA and ATM.DYN with ERA5 (i.e., ATM.STA-ERA5, ATM.DYN-ERA5) are also presented.  The simulation initial time is 00:00 UTC 1 June 2012 for both snapshots.  Two snapshots are selected: (1) 12:00 UTC 2 June 2012 (36 h from initial time) and (2) 00:00 UTC 3 June 2012 (48 h from initial time).  The results on 2 June are presented because the record-high temperature is observed in the Mecca region. 
+
+
+
+     Figure 5 . 5  Figure 5.  The T 2 obtained in CPL, the T 2 in ERA5, and their difference (CPL-ERA5).  The difference between ATM.STA and ATM.DYN with ERA5 data (i.e., ATM.STA-ERA5, ATM.DYN-ERA5) are also presented.  The simulation initial time is 00:00 UTC 1 June 2012 for both snapshots.  Two snapshots are selected: (1) 12:00 UTC 10 June 2012 (9.5 d from initial time) and (2) 12:00 UTC 24 June 2012 (23.5 d from initial time). 
+
+
+
+     4230R.   Sun et al.: SKRIPS v1.0: a regional coupled ocean-atmosphere modeling framework 
+
+
+
+   Figure 6 . 6  Figure 6.  The bias and RMSE between the T 2 obtained by the simulations (i.e., ATM.STA, ATM.CPL, and CPL) in comparison with ERA5 data.  Only the errors over the Red Sea are considered.  The differences between the simulation errors from CPL and stand-alone WRF simulations are presented below the mean bias and the RMSE.  The initial time is 00:00 UTC 1 June 2012 for all simulations. 
+
+
+
+     Figure 7 . 7  Figure 7. Temporal variation in the 2 m air temperature at three major cities near the eastern shore of Red Sea (Jeddah, Mecca, Yanbu) as resulting from CPL, ATM.STA, and ATM.DYN.  The temperature data are compared with the time series in ERA5 and daily high and low temperature in the NOAA national data center dataset.  Note that some gaps exist in the NCDC ground observation dataset.  Four representative heat events are highlighted in this figure. 
+
+
+
+     Figure 8 . 8  Figure 8.  The SST in CPL, OCN.DYN, and GHRSST.  The corresponding differences between the simulations and GHRSST are also plotted.  Two snapshots of the model outputs are selected: (1) 00:00 UTC 2 June 2012 and (2) 00:00 UTC 24 June 2012.  The simulation initial time is 00:00 UTC 1 June 2012 for both snapshots. 
+
+
+
+     Figure 9 . 9  Figure 9.  The bias and RMSE between the SST from the simulations (i.e., OCN.DYN and CPL) in comparison with the validation data.  Panel (a) shows the 3-hourly SST obtained in the simulations compared with 3-hourly HYCOM/NCODA data.  Panel (b) shows the daily SST at 00:00 UTC (about 03:00 local time in the Red Sea region) obtained in the simulations compared with GHRSST.  Both simulations are initialized at 00:00 UTC 1 June 2012. 
+
+
+
+     Figure 10 . 10  Figure 10.  The turbulent heat fluxes out of the sea obtained in CPL, ATM.STA, and ATM.DYN in comparison with MERRA-2.  Panel (a) shows the mean THF; (b) shows the mean bias; (c) shows the RMSE.  Only the hourly heat fluxes over the sea are shown. 
+
+
+
+     Figure 11 . 11  Figure 11.  The total surface heat fluxes into the sea obtained in CPL, ATM.STA, and ATM.DYN in comparison with MERRA-2.  Panel (a) shows the mean surface heat flux; (b) shows the mean bias; (c) shows the RMSE.  Only the heat fluxes over the sea are shown. 
+
+
+
+     Figure 12 . 12  Figure 12.  The magnitude and direction of the 10 m wind obtained in the CPL, the MERRA-2 data, and their difference (CPL-MERRA-2).  The differences between ATM.STA and ATM.DYN with MERRA-2 (i.e., ATM.STA-MERRA-2, ATM.DYN-MERRA-2) are also presented.  Two snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012. 
+
+
+
+     Figure 13 . 13  Figure 13.  The magnitude of the 10 m wind obtained in CPL, ATM.STA, and ATM.DYN in comparison with MERRA-2.  Panel (a) shows the mean 10 m wind; (b) shows the mean bias; (c) shows the RMSE.  Only the hourly surface wind fields over the sea are shown to validate the coupled model. 
+
+
+
+     Figure 14 . 14  Figure 14.  The parallel efficiency test of the coupled model in the Red Sea region, employing up to 512 CPU cores.  The simulation using 32 CPU cores is regarded as the baseline case when computing the speed-up.  Tests are performed on the Shaheen-II cluster at KAUST. 
+
+
+
+     Figure A1 . A1  Figure A1.  The turbulent heat fluxes out of the sea obtained in CPL, MERRA-2 data, and their difference (CPL-MERRA-2).  The differences between ATM.STA and ATM.DYN with MERRA-2 (i.e., ATM.STA-MERRA-2, ATM.DYN-MERRA-2) are also presented.  Two snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June The simulation initial time is 00:00 UTC 1 June 2012 for both snapshots.  Only the heat fluxes over the sea are shown to validate the coupled model. 
+
+
+
+     Figure A3 . A3  Figure A3.  Comparison of the total downward heat fluxes obtained in CPL, MERRA-2 data, and their difference (CPL-MERRA-2).  The differences between ATM.STA and ATM.DYN with ERA5 (i.e., ATM.STA-MERRA-2, ATM.DYN-MERRA-2) are also presented.  Two snapshots are selected: (1) 1200 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012.  The simulation initial time is 00:00 UTC 1 June 2012 for both snapshots.  Only the heat fluxes over the sea are shown to validate the coupled model. 
+
+
+
+     Figure B1 . B1  Figure B1.  The surface evaporation patterns obtained in CPL, the MERRA-2 data, and their difference (CPL-MERRA-2).  The differences between uncoupled atmosphere simulations with MERRA-2 (i.e., ATM.STA-MERRA-2, ATM.DYN-MERRA-2) are also presented.  Two snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012.  Only the evaporation over the sea is shown to validate the coupled ocean-Atmosphere model. 
+
+
+
+              Table 1 . 1  The initial conditions, boundary conditions, and forcing terms used in the simulations. 
+
+
+
+    Initial and boundary conditions  Ocean surface conditions  Atmospheric forcings   CPL  ERA5 (atmosphere) HYCOM/NCODA (ocean)  from MITgcm  from WRF   ATM.STA  ERA5  HYCOM/NCODA initial condition kept constant  not used   ATM.DYN ERA5  HYCOM/NCODA updated every 3 h  not used   OCN.DYN HYCOM/NCODA  not used  ERA5  
+
+ the Red Sea are validated using ERA5 and ground observations from the NOAA National Climate Data Center (NCDC climate data online at https://www.ncdc.noaa.gov/cdo-web/,  last access: 26 September 2019).  The simulated SST data are validated against the OSTIA (Operational Sea Surface Temperature and Sea Ice Analysis) system in GHRSST (Group for High Resolution Sea Surface Temperature) 
+
+   Table 2 . 2  The observational data and reanalysis data used to validate the simulation results.The Red Sea is an elongated basin covering the area between 12-30 • N and 32-43 • E. The basin is 2250 km long, extending from the Suez and Aqaba gulfs in the north to the strait of Bab-el-Mandeb in the south, which connects the Red Sea and the Indian Ocean.  In this section, the simulation results obtained by using different model configurations are presented to show that SKRIPS is capable of performing coupled ocean-atmosphere simulations.  The T 2 from CPL, ATM.STA, and ATM.DYN are compared with the validation data to evaluate the atmospheric component of SKRIPS; 
+
+
+
+  Variable  Validation data   Sea surface temperature (SST) GHRSST and HYCOM/NCODA   2 m air temperature (T 2)  ERA5 and NCDC climate data   Turbulent heat fluxes  MERRA-2   Radiative fluxes  MERRA-2   10 m wind speed  MERRA-2   4 Results and discussions    
+
+ the SST obtained from CPL and OCN.DYN are compared to validate the atmospheric component of SKRIPS; the surface heat fluxes and 10 m wind are used to assess the coupled system. 
+
+     • C; ATM.STA: 2.16 • C; ATM.DYN: 2.06 • C), and the error does not increase in the 30 d simulation.  For the daily low T 2, before 20 June (lead time < 19 d), all simulations have consistent RMSEs compared with ground observation (CPL: 4.23 • C; ATM.STA: 4.39 • C; ATM.DYN: 4.01 • C).  In Jeddah and Yanbu, CPL has better captured the daily low T 2 after 20 June (Jeddah: 3.95 • C; Yanbu: 3.77 • C) 
+
+
+
+     Table 3 . 3  The biases and RMSEs of T 2 simulated in all simulations in comparison with ERA5 data.  RMSE: 2.59 Run ATM.DYN bias: -1.36; RMSE: 1.90 bias: -0.84; RMSE: 1.28 bias: -1.20; RMSE: 1.93 bias: -1.43; RMSE: 2.14 
+
+
+
+  After 36 h  After 48 h  After 9.5 d  After 23.5 d   Run CPL        
+
+ bias: -1.36; RMSE: 1.91 bias: -0.82; RMSE: 1.19 bias: -1.24; RMSE: 1.96 bias: -0.81; RMSE: 1.80 Run ATM.STA bias: -1.48; RMSE: 2.01 bias: -0.92; RMSE: 1.27 bias: -1.56; RMSE: 2.27 bias: -1.83; 
+
+   Geosci.Model Dev., 12, 4221-4244, 2019 www.geosci-model-dev.net/12/4221/2019/ 
+
+  In this article, "online" means the manipulations are performed via subroutine calls during the execution of the simulations; "offline" means the manipulations are performed when the simulations are not executing.www.geosci-model-dev.net/12/4221/2019/  Geosci.  Model Dev., 12, 4221-4244 
+
+  , 2019    In ESMF, "timestamp" is a sequence of numbers, usually based on the time, to identify ESMF fields.  Only the ESMF fields having the correct timestamp will be transferred in the coupling. 
+
+  www.geosci-model-dev.net/12/4221/2019/  Geosci.  Model Dev., 12, 4221-4244, 2019 
+
+  In ATM.STA, ATM.DYN, and CPL, we set land-sea mask equal to 1 as land points because the land-sea mask is either 0 (sea) or 1 (land) in WRF.  In ERA5, we set the land-sea mask > 0.9 as land points because the land-sea mask is a fractional value between 0 (sea) and 1 (land).www.geosci-model-dev.net/12/4221/2019/  Geosci.  Model Dev., 12, 
+
+  2019    Figure A2.  The net downward shortwave and longwave radiation obtained in CPL, MERRA-2 data, and their difference (CPL-MERRA-2).  The differences between ATM.STA and ATM.DYN with MERRA-2 (i.e., ATM.STA-MERRA-2, ATM.DYN-MERRA-2) are also presented.  Two snapshots are selected: (1) 12:00 UTC 2 June 2012 and (2) 12:00 UTC 24 June 2012.  The simulation initial time is 00:00 UTC 1 June 2012 for both snapshots.  Only the heat fluxes over the sea are shown to validate the coupled model.www.geosci-model-dev.net/12/4221/2019/  Geosci.  Model Dev., 12, 4221-4244, 2019 
+
+  Acknowledgements.  We appreciate the computational resources provided by COMPAS (Center for Observations, Modeling and Prediction at Scripps) and KAUST used for this project.  We are immensely grateful to Caroline Papadopoulos for helping with installing software, testing the coupled code, and using the HPC clusters.  We appreciate Ufuk Utku Turuncoglu for sharing part of their ESMF/NUOPC code on GitHub which helps our code development.  We wish to thank Ganesh Gopalakrishnan for setting up the standalone MITgcm simulation (OCN.DYN) and providing the external forcings.  We thank Stephanie Dutkiewicz, Jean-Michel Campin, Chris Hill, and Dimitris Menemenlis for providing their ESMF-MITgcm interface.  We wish to thank Peng Zhan for discussing the simulations of the Red Sea.  We also thank the reviewers for their insightful review suggestions. 
+
+ Financial support.  This research has been supported by the King Abdullah University of Science and Technology, Global Collaborative Research, (grant no.  OSR-2016-RPP-3268.02). 
+
+ Review statement.  This paper was edited by Olivier Marti and reviewed by two anonymous referees. 
+
+
+
+
+
+ R. Sun et al.: SKRIPS v1 .0: a regional coupled ocean-atmosphere modeling framework of CPU cores.   The parallel efficiency of the coupled model is consistent with that of the stand-alone ocean and atmosphere models using the same number of cores.  The CPU time associated with different components of the coupled simulations shows that the ESMF/NUOPC driver does not add a significant computational overhead.  Hence the coupled model can be implemented for coupled regional modeling studies on HPC clusters with comparable performance as that attained by uncoupled stand-alone models. 
+
+ The results presented here motivate further studies evaluating and improving this new regional coupled oceanatmosphere model for investigating dynamical processes and forecasting applications.  This regional coupled forecasting system can be improved by developing coupled data assimilation capabilities for initializing the forecasts.  In addition, the model physics and model uncertainty representation in the coupled system can be enhanced using advanced techniques, such as stochastic physics parameterizations.  Future work will involve exploring these and other aspects for a regional coupled modeling system suited for forecasting and process understanding. 
+
+ Code and data availability.  The coupled model, documentation, and the cases used in this work are available at https://doi.org/10.6075/J0K35S05  (Sun et al., 2019) , and the source code is maintained on GitHub https://github.com/iurnus/scripps_kaust_model   (last access: 26 September 2019).  ECMWF ERA5 data are used as the atmospheric initial and boundary conditions.  The ocean model uses the assimilated HYCOM/NCODA 1/12 • global analysis data as initial and boundary conditions.  To validate the simulated SST data, we use the OSTIA (Operational Sea Surface Temperature and Sea Ice Analysis) system in GHRSST (Group for High Resolution Sea Surface Temperature).  The simulated 2 m air temperature (T 2) is validated against the ECMWF ERA5 data.  The observed daily maximum and minimum temperatures from NOAA National Climate Data Center is used to validate the T 2 in three major cities.  Surface heat fluxes (e.g., latent heat fluxes, sensible heat fluxes, and longwave and shortwave radiation) are compared with MERRA-2 (Modern-Era Retrospective analysis for Research and Applications, version 2). 
+
+ Author contributions.  RS worked on the coding tasks for coupling WRF with MITgcm using ESMF, wrote the code documentation, and performed the simulations for the numerical experiments.  RS and ACS worked on the technical details for debugging the model and drafted the initial article.  All authors designed the computational framework and the numerical experiments.  All authors discussed the results and contributed to the writing of the final article. 
+
+ Competing interests.  The authors declare that they have no conflict of interest. 
+
+
+
+
+
+ Temperature trend on Makkah, Saudi Arabia  A  E A  Abdou     Atmospheric and Climate Sciences  4    2014    Abdou, A. E. A.: Temperature trend on Makkah, Saudi Arabia, At- mospheric and Climate Sciences, 4, 457-481, 2014.   Modelling Indonesian rainfall with a coupled regional model  E  Aldrian    D  Sein    D  Jacob    L  D  Gates    R  Podzun     Clim. Dynam  25    2005    Aldrian, E., Sein, D., Jacob, D., Gates, L. D., and Podzun, R.: Mod- elling Indonesian rainfall with a coupled regional model, Clim. Dynam., 25, 1-17, 2005.   Scalable implementations of ensemble filter algorithms for data assimilation  J  L  Anderson    N  Collins     J. Atmos. Ocean. Tech  24    2007    Anderson, J. L. and Collins, N.: Scalable implementations of en- semble filter algorithms for data assimilation, J. Atmos. Ocean. Tech., 24, 1452-1463, 2007.   Improving the assessment of wave energy resources by means of coupled wave-ocean numerical modeling  F  Barbariol    A  Benetazzo    S  Carniel    M  Sclavo     Renewable Energ  60    2013    Barbariol, F., Benetazzo, A., Carniel, S., and Sclavo, M.: Improving the assessment of wave energy resources by means of coupled wave-ocean numerical modeling, Renewable Energ., 60, 462- 471, 2013.   Real-case simulations of hurricaneocean interaction using a high-resolution coupled model: effects on hurricane intensity  M  A  Bender    I  Ginis     Mon. Weather Rev  128    2000    Bender, M. A. and Ginis, I.: Real-case simulations of hurricane- ocean interaction using a high-resolution coupled model: effects on hurricane intensity, Mon. Weather Rev., 128, 917-946, 2000.   Mesoscale weather prediction with the RUC hybrid isentropic-terrain-following coordinate model  S  G  Benjamin    G  A  Grell    J  M  Brown    T  G  Smirnova    R  Bleck     Mon. Weather Rev  132    2004    Benjamin, S. G., Grell, G. A., Brown, J. M., Smirnova, T. G., and Bleck, R.: Mesoscale weather prediction with the RUC hybrid isentropic-terrain-following coordinate model, Mon. Weather Rev., 132, 473-494, 2004.   What shapes mesoscale wind anomalies in coastal upwelling zones?  J  Boé    A  Hall    F  Colas    J  C  Mcwilliams    X  Qu    J  Kurian    S  B  Kapnick     Clim. Dynam  36    2011    Boé, J., Hall, A., Colas, F., McWilliams, J. C., Qu, X., Kurian, J., and Kapnick, S. B.: What shapes mesoscale wind anomalies in coastal upwelling zones?, Clim. Dynam., 36, 2037-2049, 2011.   Ocean surface waves in Hurricane Ike (2008) and Superstorm Sandy (2012): Coupled model predictions and observations  S  S  Chen    M  Curcic     Ocean Model  103    2016    Chen, S. S. and Curcic, M.: Ocean surface waves in Hurricane Ike (2008) and Superstorm Sandy (2012): Coupled model predic- tions and observations, Ocean Model., 103, 161-176, 2016.   The CBLAST-Hurricane program and the next-generation fully coupled atmosphere-wave-ocean models for hurricane research and prediction  S  S  Chen    J  F  Price    W  Zhao    M  A  Donelan    E  J  Walsh     B. Am. Meteorol. Soc  88    2007    Chen, S. S., Price, J. F., Zhao, W., Donelan, M. A., and Walsh, E. J.: The CBLAST-Hurricane program and the next-generation fully coupled atmosphere-wave-ocean models for hurricane research and prediction, B. Am. Meteorol. Soc., 88, 311-318, 2007.   Performance and Scaling of WRF on Three Different Parallel Supercomputers  Z  Christidis     International Conference on High Performance Computing  Springer  2015      Christidis, Z.: Performance and Scaling of WRF on Three Different Parallel Supercomputers, in: International Conference on High Performance Computing, Springer, 514-528, 2015.   Design and implementation of components in the Earth System Modeling Framework  N  Collins    G  Theurich    C  Deluca    M  Suarez    A  Trayanov    V  Balaji    P  Li    W  Yang    C  Hill    A  Da Silva     Int. J. High P  19    2005    Collins, N., Theurich, G., Deluca, C., Suarez, M., Trayanov, A., Balaji, V., Li, P., Yang, W., Hill, C., and Da Silva, A.: Design and implementation of components in the Earth System Model- ing Framework, Int. J. High P., 19, 341-350, 2005.   The operational sea surface temperature and sea ice analysis (OSTIA) system  C  J  Donlon    M  Martin    J  Stark    J  Roberts-Jones    E  Fiedler    W  Wimmer     Remote Sens. Environ  116    2012    Donlon, C. J., Martin, M., Stark, J., Roberts-Jones, J., Fiedler, E., and Wimmer, W.: The operational sea surface temperature and sea ice analysis (OSTIA) system, Remote Sens. Environ., 116, 140-158, 2012.   The development of the regional coupled ocean-atmosphere model RCAO  R  Doscher    U  Willén    C  Jones    A  Rutgersson    H  M  Meier    U  Hansson    L  P  Graham     Boreal Environ. Res  7    2002    Doscher, R., Willén, U., Jones, C., Rutgersson, A., Meier, H. M., Hansson, U., and Graham, L. P.: The development of the regional coupled ocean-atmosphere model RCAO, Boreal Environ. Res., 7, 183-192, 2002.   A schema based paradigm for facile description and control of a multi-component parallel, coupled atmosphere-ocean model  C  Evangelinos    C  N  Hill     Proceedings of the 2007 Symposium on Component and Framework Technology in High-Performance and Scientific Computing  the 2007 Symposium on Component and Framework Technology in High-Performance and Scientific Computing  ACM  2007      Evangelinos, C. and Hill, C. N.: A schema based paradigm for facile description and control of a multi-component parallel, cou- pled atmosphere-ocean model, in: Proceedings of the 2007 Sym- posium on Component and Framework Technology in High- Performance and Scientific Computing, ACM, 83-92, 2007.   Bulk parameterization of air-sea fluxes: Updates and verification for the COARE algorithm  C  Fairall    E  F  Bradley    J  Hare    A  Grachev    J  Edson     J. Climate  16    2003    Fairall, C., Bradley, E. F., Hare, J., Grachev, A., and Edson, J.: Bulk parameterization of air-sea fluxes: Updates and verification for the COARE algorithm, J. Climate, 16, 571-591, 2003.   A regional air-sea coupled model and its application over East Asia in the summer of 2000  Y  Fang    Y  Zhang    J  Tang    X  Ren     Adv. Atmos. Sci  27    2010    Fang, Y., Zhang, Y., Tang, J., and Ren, X.: A regional air-sea cou- pled model and its application over East Asia in the summer of 2000, Adv. Atmos. Sci., 27, 583-593, 2010.   Multi-model ensemble estimates of climate change impacts on UK seasonal precipitation extremes  H  Fowler    M  Ekström     Int. J. Climatol  29    2009    Fowler, H. and Ekström, M.: Multi-model ensemble estimates of climate change impacts on UK seasonal precipitation extremes, Int. J. Climatol., 29, 385-416, 2009.   The modern-era retrospective analysis for research and applications, version 2 (MERRA-2)  R  Gelaro    W  Mccarty    M  J  Suárez    R  Todling    A  Molod    L  Takacs    C  A  Randles    A  Darmenov    M  G  Bosilovich    R  Reichle    K  Wargan    L  Coy    R  Cullather    C  Draper    S  Akella    V  Buchard    A  Conaty    A  M  Da Silva    W  Gu    G  Kim    R  Koster    R  Lucchesi    D  Merkova    J  E  Nielsen    G  Partyka    S  Pawson    W  Putman    M  Rienecker    S  D  Schubert    M  Sienkiewicz    B  Zhao     J. Climate  30    2017    Gelaro, R., McCarty, W., Suárez, M. J., Todling, R., Molod, A., Takacs, L., Randles, C. A., Darmenov, A., Bosilovich, M. G., Re- ichle, R., Wargan, K., Coy, L., Cullather, R., Draper, C., Akella, S., Buchard, V., Conaty, A., da Silva, A. M., Gu, W., Kim, G., Koster, R., Lucchesi, R., Merkova, D., Nielsen, J. E., Partyka, G., Pawson, S., Putman, W., Rienecker, M., Schubert, S. D., Sienkiewicz, M., and Zhao, B.: The modern-era retrospective analysis for research and applications, version 2 (MERRA-2), J. Climate, 30, 5419-5454, 2017.   The CIRCE simulations: regional climate change projections with realistic representation of the Mediterranean Sea  S  Gualdi    S  Somot    L  Li    V  Artale    M  Adani    A  Bellucci    A  Braun    S  Calmanti    A  Carillo    A  Dell'aquila    M  Déqué    C  Dubois    A  Elizalde    A  Harzallah    D  Jacob    B  L'hévéder    W  May    P  Oddo    P  Ruti    A  Sanna    G  Sannino    E  Scoccimarro    F  Sevault    A  Navarra     B. Am. Meteorol. Soc  94    2013    Gualdi, S., Somot, S., Li, L., Artale, V., Adani, M., Bellucci, A., Braun, A., Calmanti, S., Carillo, A., Dell'Aquila, A., Déqué, M., Dubois, C., Elizalde, A., Harzallah, A., Jacob, D., L'Hévéder, B., May, W., Oddo, P., Ruti, P., Sanna, A., Sannino, G., Scocci- marro, E., Sevault, F., and Navarra, A.: The CIRCE simulations: regional climate change projections with realistic representation of the Mediterranean Sea, B. Am. Meteorol. Soc., 94, 65-81, 2013.   Coupling of a highresolution atmospheric model and an ocean model for the Baltic Sea  N  Gustafsson    L  Nyberg    A  Omstedt     Mon. Weather Rev  126    1998    Gustafsson, N., Nyberg, L., and Omstedt, A.: Coupling of a high- resolution atmospheric model and an ocean model for the Baltic Sea, Mon. Weather Rev., 126, 2822-2846, 1998.   A coupled high resolution atmosphere-ocean model for the BALTEX region  R  Hagedorn    A  Lehmann    D  Jacob     Meteorol. Z  9    2000    Hagedorn, R., Lehmann, A., and Jacob, D.: A coupled high resolu- tion atmosphere-ocean model for the BALTEX region, Meteorol. Z., 9, 7-20, 2000.   The impacts of climate change in coastal marine systems  C  D  Harley    A  Randall Hughes    K  M  Hultgren    B  G  Miner    C  J  Sorte    C  S  Thornber    L  F  Rodriguez    L  Tomanek    S  L  Williams     Ecol. Lett  9    2006    Harley, C. D., Randall Hughes, A., Hultgren, K. M., Miner, B. G., Sorte, C. J., Thornber, C. S., Rodriguez, L. F., Tomanek, L., and Williams, S. L.: The impacts of climate change in coastal marine systems, Ecol. Lett., 9, 228-241, 2006.   Impacts of air-sea interactions on regional air quality predictions using WRF/Chem v3.6.1 coupled with ROMS v3.7: southeastern US example  J  He    R  He    Y  Zhang    10.5194/gmdd-8-9965-2015,2015     Geosci. Model Dev. Discuss  8      He, J., He, R., and Zhang, Y.: Impacts of air-sea interactions on regional air quality predictions using WRF/Chem v3.6.1 coupled with ROMS v3.7: southeastern US example, Geosci. Model Dev. Discuss., 8, 9965-10009, https://doi.org/10.5194/gmdd-8-9965- 2015, 2015.   WRF ESMF Development  T  Henderson    J  Michalakes    10.5194/gmdd-8-9965-2015   4th ESMF Community Meeting  Cambridge, USA    21 July 2005    Henderson, T. and Michalakes, J.: WRF ESMF Development, in: 4th ESMF Community Meeting, Cambridge, USA, 21 July 2005.   The ERA5 Atmospheric Reanalysis  H  Hersbach     AGU Fall Meeting Abstracts  San Francisco, USA    December 2016      Hersbach, H.: The ERA5 Atmospheric Reanalysis., in: AGU Fall Meeting Abstracts, San Francisco, USA, 12-16 December 2016.   The architecture of the Earth system modeling framework  C  Hill    C  Deluca    Balaji    M  Suarez    A  Silva     Comput. Sci. Eng  6    2004    Hill, C., DeLuca, C., Balaji, Suarez, M., and Silva, A.: The archi- tecture of the Earth system modeling framework, Comput. Sci. Eng., 6, 18-28, 2004.   Adoption and field tests of M.I.T General Circulation Model (MITgcm) with ESMF  C  N  Hill     4th Annual ESMF Community Meeting  Cambridge, USA    20-21 July 2005    Hill, C. N.: Adoption and field tests of M.I.T General Circulation Model (MITgcm) with ESMF, in: 4th Annual ESMF Community Meeting, Cambridge, USA, 20-21 July 2005.   The Naval Research Laboratory's coupled ocean/atmosphere mesoscale prediction system (COAMPS)  R  M  Hodur     Mon. Weather Rev  125    1997    Hodur, R. M.: The Naval Research Laboratory's coupled ocean/atmosphere mesoscale prediction system (COAMPS), Mon. Weather Rev., 125, 1414-1430, 1997.   A new vertical diffusion package with an explicit treatment of entrainment processes  S.-Y  Hong    Y  Noh    J  Dudhia     Mon. Weather Rev  134    2006    Hong, S.-Y., Noh, Y., and Dudhia, J.: A new vertical diffusion pack- age with an explicit treatment of entrainment processes, Mon. Weather Rev., 134, 2318-2341, 2006.   A MITgcm/DART ensemble analysis and prediction system with application to the Gulf of Mexico  I  Hoteit    T  Hoar    G  Gopalakrishnan    N  Collins    J  Anderson    B  Cornuelle    A  Köhl    P  Heimbach     Dynam. Atmos. Oceans  63    2013    Hoteit, I., Hoar, T., Gopalakrishnan, G., Collins, N., Anderson, J., Cornuelle, B., Köhl, A., and Heimbach, P.: A MITgcm/DART ensemble analysis and prediction system with application to the Gulf of Mexico, Dynam. Atmos. Oceans, 63, 1-23, 2013.   Intrinsic ocean-atmosphere variability of the tropical Atlantic Ocean  B  Huang    P  S  Schopf    J  Shukla     J. Climate  17    2004    Huang, B., Schopf, P. S., and Shukla, J.: Intrinsic ocean-atmosphere variability of the tropical Atlantic Ocean, J. Climate, 17, 2058- 2077, 2004.   Radiative forcing by long-lived greenhouse gases: calculations with the AER radiative transfer models  M  J  Iacono    J  S  Delamere    E  J  Mlawer    M  W  Shephard    S  A  Clough    W  D  Collins    10.1029/2008JD009944     J. Geophys. Res.-Atmos  113  13103  2008    Iacono, M. J., Delamere, J. S., Mlawer, E. J., Shephard, M. W., Clough, S. A., and Collins, W. D.: Radiative forcing by long-lived greenhouse gases: calculations with the AER radia- tive transfer models, J. Geophys. Res.-Atmos., 113, D13103, https://doi.org/10.1029/2008JD009944, 2008.   An evaluation of the performance of a WRF multi-physics ensemble for heatwave events over the city of Melbourne in southeast Australia  H  Imran    J  Kala    A  Ng    S  Muthukumaran    10.1029/2008JD009944   Clim. Dynam  50    2018    Imran, H., Kala, J., Ng, A., and Muthukumaran, S.: An evaluation of the performance of a WRF multi-physics ensemble for heatwave events over the city of Melbourne in southeast Australia, Clim. Dynam., 50, 2553-2586, 2018.   The Kain-Fritsch convective parameterization: an update  J  S  Kain     J. Appl. Meteorol  43    2004    Kain, J. S.: The Kain-Fritsch convective parameterization: an up- date, J. Appl. Meteorol., 43, 170-181, 2004.   Accuracy of 10 m winds from satellites and NWP products near land-sea boundaries  A  B  Kara    A  J  Wallcraft    C  N  Barron    H  E  Hurlburt    M  Bourassa    10.1029/2007JC004516     J. Geophys. Res.-Oceans  113  10020  2008    Kara, A. B., Wallcraft, A. J., Barron, C. N., Hurlburt, H. E., and Bourassa, M.: Accuracy of 10 m winds from satellites and NWP products near land-sea boundaries, J. Geophys. Res.-Oceans, 113, C10020, https://doi.org/10.1029/2007JC004516, 2008.   Changes in the extremes in an ensemble of transient climate simulations with a coupled atmosphere-ocean GCM  V  V  Kharin    F  W  Zwiers    10.1029/2007JC004516   J. Climate  13    2000    Kharin, V. V. and Zwiers, F. W.: Changes in the extremes in an ensemble of transient climate simulations with a coupled atmosphere-ocean GCM, J. Climate, 13, 3760-3788, 2000.   Diurnal to decadal global forcing for ocean and sea-ice models: the data sets and flux climatologies  W  G  Large    S  G  Yeager    NCAR/TN-460+STR  2004   CGD Division of the National Center for Atmospheric Research    NCAR Technical Note  Large, W. G. and Yeager, S. G.: Diurnal to decadal global forcing for ocean and sea-ice models: the data sets and flux climatologies, Tech. rep., NCAR Technical Note: NCAR/TN-460+STR. CGD Division of the National Center for Atmospheric Research, 2004.   Oceanic vertical mixing: A review and a model with a nonlocal boundary layer parameterization  W  G  Large    J  C  Mcwilliams    S  C  Doney     Rev. Geophys  32    1994    Large, W. G., McWilliams, J. C., and Doney, S. C.: Oceanic vertical mixing: A review and a model with a nonlocal boundary layer parameterization, Rev. Geophys., 32, 363-403, 1994.   Development of an atmosphere-ocean coupled model and its application over the Adriatic Sea during a severe weather event of Bora wind  N  Loglisci    M  Qian    N  Rachev    C  Cassardo    A  Longhetto    R  Purini    P  Trivero    S  Ferrarese    Giraud    C    10.1029/2003JD003956,2004     J. Geophys. Res.-Atmos  109  1102    Loglisci, N., Qian, M., Rachev, N., Cassardo, C., Longhetto, A., Purini, R., Trivero, P., Ferrarese, S., and Giraud, C.: De- velopment of an atmosphere-ocean coupled model and its application over the Adriatic Sea during a severe weather event of Bora wind, J. Geophys. Res.-Atmos., 109, D01102, https://doi.org/10.1029/2003JD003956, 2004.   NIES/FRCGC global atmospheric tracer transport model: Description, validation, and surface sources and sinks inversion  S  Maksyutov    P  K  Patra    R  Onishi    T  Saeki    T  Nakazawa    10.1029/2003JD003956   Earth Simulator  9    2008    Maksyutov, S., Patra, P. K., Onishi, R., Saeki, T., and Nakazawa, T.: NIES/FRCGC global atmospheric tracer transport model: De- scription, validation, and surface sources and sinks inversion, Earth Simulator, 9, 3-18, 2008.   A finite-volume, incompressible Navier Stokes model for studies of the ocean on parallel computers  J  Marshall    A  Adcroft    C  Hill    L  Perelman    C  Heisey     J. Geophys. Res.-Oceans  102    1997    Marshall, J., Adcroft, A., Hill, C., Perelman, L., and Heisey, C.: A finite-volume, incompressible Navier Stokes model for studies of the ocean on parallel computers, J. Geophys. Res.-Oceans, 102, 5753-5766, 1997.   Group for High Resolution Sea Surface Temperature (GHRSST) analysis fields inter-comparisons. Part 1: A GHRSST multi-product ensemble (GMPE)  M  Martin    P  Dash    A  Ignatov    V  Banzon    H  Beggs    B  Brasnett    J.-F  Cayula    J  Cummings    C  Donlon    C  Gentemann    R  Grumbine    S  Ishizaki    E  Maturi    R  W  Reynolds    J  Roberts-Jones     Deep-Sea Res. Pt. II  77    2012    Martin, M. Dash, P., Ignatov, A., Banzon, V., Beggs, H., Bras- nett, B., Cayula, J.-F., Cummings, J., Donlon, C., Gentemann, C., Grumbine, R., Ishizaki, S., Maturi, E., Reynolds, R. W., and Roberts-Jones, J.: Group for High Resolution Sea Surface Tem- perature (GHRSST) analysis fields inter-comparisons. Part 1: A GHRSST multi-product ensemble (GMPE), Deep-Sea Res. Pt. II, 77, 21-30, 2012.   Impact of cloud microphysics on the development of trailing stratiform precipitation in a simulated squall line: Comparison of one-and two-moment schemes  H  Morrison    G  Thompson    V  Tatarskii     Mon. Weather Rev  137    2009    Morrison, H., Thompson, G., and Tatarskii, V.: Impact of cloud mi- crophysics on the development of trailing stratiform precipitation in a simulated squall line: Comparison of one-and two-moment schemes, Mon. Weather Rev., 137, 991-1007, 2009.   2-minute Gridded Global Relief Data (ETOPO2) v2  10.7289/V5J1012Q    2006  NOAA   National Geophysical Data Center ; National Geophysical Data Center    National Geophysical Data Center: 2-minute Gridded Global Relief Data (ETOPO2) v2, National Geophysical Data Center, NOAA, https://doi.org/10.7289/V5J1012Q, 2006.   A coupled air-sea mesoscale model: Experiments in atmospheric sensitivity to marine roughness  J  G  Powers    M  T  Stoelinga    10.7289/V5J1012Q   Mon. Weather Rev  128    2000    Powers, J. G. and Stoelinga, M. T.: A coupled air-sea mesoscale model: Experiments in atmospheric sensitivity to marine rough- ness, Mon. Weather Rev., 128, 208-228, 2000.   Two-way air-sea coupling: A study of the Adriatic  J  Pullen    J  D  Doyle    R  P  Signell     Mon. Weather Rev  134    2006    Pullen, J., Doyle, J. D., and Signell, R. P.: Two-way air-sea cou- pling: A study of the Adriatic, Mon. Weather Rev., 134, 1465- 1483, 2006.   On the use of a coupled ocean-atmosphere-wave model during an extreme cold air outbreak over the Adriatic Sea  A  Ricchi    M  M  Miglietta    P  P  Falco    A  Benetazzo    D  Bonaldo    A  Bergamasco    M  Sclavo    S  Carniel     Atmos. Res  172    2016    Ricchi, A., Miglietta, M. M., Falco, P. P., Benetazzo, A., Bonaldo, D., Bergamasco, A., Sclavo, M., and Carniel, S.: On the use of a coupled ocean-atmosphere-wave model during an extreme cold air outbreak over the Adriatic Sea, Atmos. Res., 172, 48-65, 2016.   Daily, global, high-resolution SST and sea ice reanalysis for 1985-2007 using the OSTIA system  J  Roberts-Jones    E  K  Fiedler    M  J  Martin     J. Climate  25    2012    Roberts-Jones, J., Fiedler, E. K., and Martin, M. J.: Daily, global, high-resolution SST and sea ice reanalysis for 1985-2007 using the OSTIA system, J. Climate, 25, 6215-6232, 2012.   Effects of global climate change on marine and estuarine fishes and fisheries  J  M  Roessig    C  M  Woodley    J  J  Cech    L  J  Hansen     Rev. Fish Biol. Fisher  14    2004    Roessig, J. M., Woodley, C. M., Cech, J. J., and Hansen, L. J.: Ef- fects of global climate change on marine and estuarine fishes and fisheries, Rev. Fish Biol. Fisher., 14, 251-275, 2004.   Distinct influence of air-sea interactions mediated by mesoscale sea surface temperature and surface current in the Arabian Sea  H  Seo     J. Climate  30    2017    Seo, H.: Distinct influence of air-sea interactions mediated by mesoscale sea surface temperature and surface current in the Ara- bian Sea, J. Climate, 30, 8061-8080, 2017.   The Scripps Coupled Ocean-Atmosphere Regional (SCOAR) model, with applications in the eastern Pacific sector  H  Seo    A  J  Miller    J  O  Roads     J. Climate  20    2007    Seo, H., Miller, A. J., and Roads, J. O.: The Scripps Coupled Ocean-Atmosphere Regional (SCOAR) model, with applica- tions in the eastern Pacific sector, J. Climate, 20, 381-402, 2007.   Coupled impacts of the diurnal cycle of sea surface temperature R. Sun et al.: SKRIPS v1.0: a regional coupled ocean-atmosphere modeling framework on the Madden-Julian oscillation  H  Seo    A  C  Subramanian    A  J  Miller    N  R  Cavanaugh     J. Climate  27    2014    Seo, H., Subramanian, A. C., Miller, A. J., and Cavanaugh, N. R.: Coupled impacts of the diurnal cycle of sea surface temperature R. Sun et al.: SKRIPS v1.0: a regional coupled ocean-atmosphere modeling framework on the Madden-Julian oscillation, J. Climate, 27, 8422-8443, 2014.   Description and evaluation of the Earth System Regional Climate Model (RegCM-ES)  L  E  Sitz    F  Di Sante    R  Farneti    R  Fuentes-Franco    E  Coppola    L  Mariotti    M  Reale    G  Sannino    M  Barreiro    R  Nogherotto    G  Giuliani    G  Graffino    C  Solidoro    G  Cossarini    Giorgi    F    10.1002/2017MS000933,2017     J. Adv. Model. Earth Sy  9      Sitz, L. E., Di Sante, F., Farneti, R., Fuentes-Franco, R., Coppola, E., Mariotti, L., Reale, M., Sannino, G., Bar- reiro, M., Nogherotto, R., Giuliani, G., Graffino, G., Soli- doro, C., Cossarini, G., and Giorgi, F.: Description and evaluation of the Earth System Regional Climate Model (RegCM-ES), J. Adv. Model. Earth Sy., 9, 1863-1886, https://doi.org/10.1002/2017MS000933, 2017.   A description of the Advanced Research WRF Version 4  W  C  Skamarock    J  B  Klemp    J  Dudhia    D  O  Gill    Z  Liu    J  Berner    W  Wang    J  G  Powers    M  G  Duda    D  M  Barker    X.-Y  Huang    10.1002/2017MS000933  NCAR/TN- 556+STR    2019  145   Tech. rep.    NCAR Technical Note  Skamarock, W. C., Klemp, J. B., Dudhia, J., Gill, D. O., Liu, Z., Berner, J., Wang, W., Powers, J. G., Duda, M. G., Barker, D. M., and Huang, X.-Y.: A description of the Advanced Research WRF Version 4, Tech. rep., NCAR Technical Note: NCAR/TN- 556+STR, 145 pp., https://doi.org/10.5065/1dfh-6p97, 2019.   21st century climate change scenario for the Mediterranean using a coupled atmosphere-ocean regional climate model  S  Somot    F  Sevault    M  Déqué    M  Crépon    10.5065/1dfh-6p97   Global Planet. Change  63    2008    Somot, S., Sevault, F., Déqué, M., and Crépon, M.: 21st century climate change scenario for the Mediterranean using a cou- pled atmosphere-ocean regional climate model, Global Planet. Change, 63, 112-126, 2008.   R  Sun    A  C  Subramanian    B  D  Cornuelle    I  Hoteit    M  R  Mazloff    A  J  Miller    10.6075/J0K35S05     Scripps-KAUST model, Version 1.0. In Scripps-KAUST Regional Integrated Prediction System (SKRIPS)  UC San Diego Library Digital Collections  2019    Sun, R., Subramanian, A. C., Cornuelle, B. D., Hoteit, I., Ma- zloff, M. R., and Miller, A. J.: Scripps-KAUST model, Ver- sion 1.0. In Scripps-KAUST Regional Integrated Prediction System (SKRIPS), UC San Diego Library Digital Collections, https://doi.org/10.6075/J0K35S05, 2019.   The earth system prediction suite: toward a coordinated US modeling capability  G  Theurich    C  Deluca    T  Campbell    F  Liu    K  Saint    M  Vertenstein    J  Chen    R  Oehmke    J  Doyle    T  Whitcomb    A  Wallcraft    M  Iredell    T  Black    A  M  Da Silva    T  Clune    R  Ferraro    P  Li    M  Kelley    I  Aleinov    V  Balaji    N  Zadeh    R  Jacob    B  Kirtman    F  Giraldo    D  Mccarren    S  Sandgathe    S  Peckham    R  Dunlap    10.6075/J0K35S05   B. Am. Meteorol. Soc  97    2016    Theurich, G., DeLuca, C., Campbell, T., Liu, F., Saint, K., Verten- stein, M., Chen, J., Oehmke, R., Doyle, J., Whitcomb, T., Wall- craft, A., Iredell, M., Black, T., Da Silva, A. M., Clune, T., Fer- raro, R., Li, P., Kelley, M., Aleinov, I., Balaji, V., Zadeh, N., Ja- cob, R., Kirtman, B., Giraldo, F., McCarren, D., Sandgathe, S., Peckham, S., and Dunlap, R.: The earth system prediction suite: toward a coordinated US modeling capability, B. Am. Meteorol. Soc., 97, 1229-1247, 2016.   Validation of a high-resolution version of the regional climate model RegCM3 over the Carpathian basin  C  Torma    E  Coppola    F  Giorgi    J  Bartholy    R  Pongrácz     J. Hydrometeorol  12    2011    Torma, C., Coppola, E., Giorgi, F., Bartholy, J., and Pongrácz, R.: Validation of a high-resolution version of the regional climate model RegCM3 over the Carpathian basin, J. Hydrometeorol., 12, 84-100, 2011.   Modelling the Caspian Sea and its catchment area using a coupled regional atmosphere-ocean model (RegCM4-ROMS): model design and preliminary results  U  U  Turuncoglu    G  Giuliani    N  Elguindi    Giorgi    F    10.5194/gmd-6-283-2013,2013     Geosci. Model Dev  6      Turuncoglu, U. U., Giuliani, G., Elguindi, N., and Giorgi, F.: Mod- elling the Caspian Sea and its catchment area using a coupled regional atmosphere-ocean model (RegCM4-ROMS): model de- sign and preliminary results, Geosci. Model Dev., 6, 283-299, https://doi.org/10.5194/gmd-6-283-2013, 2013.   Toward modular in situ visualization in Earth system models: the regional modeling system RegESM 1.1  U  U  Turuncoglu    10.5194/gmd-6-283-2013     Geosci. Model Dev  12      Turuncoglu, U. U.: Toward modular in situ visualization in Earth system models: the regional modeling system RegESM 1.1, Geosci. Model Dev., 12, 233-259, https://doi.org/10.5194/gmd- 12-233-2019, 2019.   Validation of newly designed regional earth system model (RegESM) for Mediterranean Basin  U  U  Turuncoglu    G  Sannino     Clim. Dynam  48    2017    Turuncoglu, U. U. and Sannino, G.: Validation of newly designed regional earth system model (RegESM) for Mediterranean Basin, Clim. Dynam., 48, 2919-2947, 2017.   New coupled atmosphere-ocean-ice system COSMO-CLM/NEMO: assessing air temperature sensitivity over the North and Baltic Seas  T  Van Pham    J  Brauch    C  Dieterich    B  Frueh    B  Ahrens     Oceanologia  56    2014    Van Pham, T., Brauch, J., Dieterich, C., Frueh, B., and Ahrens, B.: New coupled atmosphere-ocean-ice system COSMO- CLM/NEMO: assessing air temperature sensitivity over the North and Baltic Seas, Oceanologia, 56, 167-189, 2014.   Development of a coupled ocean-atmosphere-wave-sediment transport (COAWST) modeling system  J  C  Warner    B  Armstrong    R  He    J  B  Zambon     Ocean Model  35    2010    Warner, J. C., Armstrong, B., He, R., and Zambon, J. B.: Devel- opment of a coupled ocean-atmosphere-wave-sediment trans- port (COAWST) modeling system, Ocean Model., 35, 230-244, 2010.   A regional ocean-atmosphere model for eastern Pacific climate: toward reducing tropical biases  S.-P  Xie    T  Miyama    Y  Wang    H  Xu    S  P  De Szoeke    R  J O  Small    K  J  Richards    T  Mochizuki    T  Awaji     J. Climate  20    2007    Xie, S.-P., Miyama, T., Wang, Y., Xu, H., De Szoeke, S. P., Small, R. J. O., Richards, K. J., Mochizuki, T., and Awaji, T.: A regional ocean-atmosphere model for eastern Pacific climate: toward re- ducing tropical biases, J. Climate, 20, 1504-1522, 2007.   Weather forecasts by the WRF-ARW model with the GSI data assimilation system in the complex terrain areas of southwest Asia  J  Xu    S  Rugg    L  Byerle    Z  Liu     Weather Forecast  24    2009    Xu, J., Rugg, S., Byerle, L., and Liu, Z.: Weather forecasts by the WRF-ARW model with the GSI data assimilation system in the complex terrain areas of southwest Asia, Weather Forecast., 24, 987-1008, 2009.   Evaluation of WRF shortwave radiation parameterizations in predicting Global Horizontal Irradiance in Greece  M.-M  Zempila    T  M  Giannaros    A  Bais    D  Melas    A  Kazantzidis     Renewable Energ  86    2016    Zempila, M.-M., Giannaros, T. M., Bais, A., Melas, D., and Kazantzidis, A.: Evaluation of WRF shortwave radiation param- eterizations in predicting Global Horizontal Irradiance in Greece, Renewable Energ., 86, 831-840, 2016.   Examination of errors in nearsurface temperature and wind from WRF numerical simulations in regions of complex terrain  H  Zhang    Z  Pu    X  Zhang     Weather Forecast  28    2013    Zhang, H., Pu, Z., and Zhang, X.: Examination of errors in near- surface temperature and wind from WRF numerical simulations in regions of complex terrain, Weather Forecast., 28, 893-914, 2013a.   Development of the upgraded tangent linear and adjoint of the Weather Research and Forecasting (WRF) Model  X  Zhang    X.-Y  Huang    N  Pan     J. Atmos. Ocean. Tech  30    2013    Zhang, X., Huang, X.-Y., and Pan, N.: Development of the upgraded tangent linear and adjoint of the Weather Research and Fore- casting (WRF) Model, J. Atmos. Ocean. Tech., 30, 1180-1188, 2013b.   Development and evaluation of a regional ocean-atmosphere coupled model with focus on the western North Pacific summer monsoon simulation: Impacts of different atmospheric components  L  Zou    T  Zhou     Sci. China Earth Sci  55    2012    Zou, L. and Zhou, T.: Development and evaluation of a regional ocean-atmosphere coupled model with focus on the western North Pacific summer monsoon simulation: Impacts of differ- ent atmospheric components, Sci. China Earth Sci., 55, 802-815, 2012.   
+
+     
