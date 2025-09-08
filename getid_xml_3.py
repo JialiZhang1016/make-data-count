@@ -313,7 +313,7 @@ def main(input_dir: str, parquet_dir: str, output_dir: str) -> None:
 
 if __name__=='__main__': 
 
-    input_dir = './temp/parse'
+    input_dir = './temp/parse_xml'
     parquet_dir = './temp/extracted.parquet_xml'
     output_dir = './temp/submission_xml_4.csv'
 

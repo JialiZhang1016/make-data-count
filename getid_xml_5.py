@@ -365,29 +365,31 @@ FN (False Negative): 遗漏的数量
 #针对xml转换后的txt:修改正则与过滤规则，可得到600多一点的正确值，但是误识别达到将近两万条
 #针对pdf转换后的txt:修改正则与过滤规则，可得到650多一点的正确值，但是误识别达到一万五千条
 #注意看一下文件存储的路径是否正确
+
 """
 # 原始：getid_xml_3.py
-(venv) captainzhang@Captains-MBP Make Data Count % python getid_xml_3.py
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_3.py"
 **********
-INFO 2025-09-07 19:10:35  [getid_xml_3.py:308 - main()] all - f1: 0.0777 [655/15487/64]
-INFO 2025-09-07 19:10:35  [getid_xml_3.py:308 - main()] doi - f1: 0.0584 [283/9090/42]
-INFO 2025-09-07 19:10:35  [getid_xml_3.py:308 - main()] acc - f1: 0.1039 [372/6397/22]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] all - f1: 0.0591 [614/19436/105]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] doi - f1: 0.0293 [224/14751/101]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:308 - main()] acc - f1: 0.1426 [390/4685/4]
 **********
-INFO 2025-09-07 19:10:35  [getid_xml_3.py:311 - main()] all - f1: 0.0594 [501/15641/218]
-INFO 2025-09-07 19:10:35  [getid_xml_3.py:311 - main()] doi - f1: 0.0363 [176/9197/149]
-INFO 2025-09-07 19:10:35  [getid_xml_3.py:311 - main()] acc - f1: 0.0907 [325/6444/69]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] all - f1: 0.0472 [490/19560/229]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] doi - f1: 0.0193 [148/14827/177]
+INFO 2025-09-07 22:14:03  [getid_xml_3.py:311 - main()] acc - f1: 0.1251 [342/4733/52]
 
 # 修改：getid_xml_5.py - 针对DOI, 加入post_filter.py的黑名单过滤规则
-# 结果：从9090降低到414
-(venv) captainzhang@Captains-MBP Make Data Count % python getid_xml_5.py
+# 结果：从14751降低到378
+(venv) captainzhang@Captains-MBP Make Data Count % "/Users/captainzhang/Documents/1 Research/Make Data Count/venv/bin/python" "/Users/captainzhang/Documents/1 Research/Make Data Count/getid_xml_5.py"
 **********
-INFO 2025-09-07 19:56:27  [getid_xml_5.py:326 - main()] all - f1: 0.1598 [654/6811/65]
-INFO 2025-09-07 19:56:27  [getid_xml_5.py:326 - main()] doi - f1: 0.5524 [282/414/43]
-INFO 2025-09-07 19:56:27  [getid_xml_5.py:326 - main()] acc - f1: 0.1039 [372/6397/22]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] all - f1: 0.1425 [617/7322/102]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] doi - f1: 0.4816 [223/378/102]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:342 - main()] acc - f1: 0.1019 [394/6944/0]
 **********
-INFO 2025-09-07 19:56:27  [getid_xml_5.py:329 - main()] all - f1: 0.1224 [501/6964/218]
-INFO 2025-09-07 19:56:27  [getid_xml_5.py:329 - main()] doi - f1: 0.3448 [176/520/149]
-INFO 2025-09-07 19:56:27  [getid_xml_5.py:329 - main()] acc - f1: 0.0907 [325/6444/69]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] all - f1: 0.1139 [493/7446/226]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] doi - f1: 0.3175 [147/454/178]
+INFO 2025-09-07 22:16:48  [getid_xml_5.py:345 - main()] acc - f1: 0.0895 [346/6992/48]
+
 
 # 修改：getid_xml_5.py - 针对acc，加入白名单过滤规则
 
