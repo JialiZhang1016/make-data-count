@@ -308,7 +308,6 @@ def main(input_dir: str, parquet_dir: str, output_dir: str) -> None:
     df = tidy_extraction(df)
     df = get_window_df(text_df, df)
     df.write_parquet(parquet_dir)
-    # df.write_parquet('./temp/extracted.parquet_xml')
     df = assume_type(df)
     df.select(['article_id', 'dataset_id', 'type']).with_row_index(name='row_id').write_csv(output_dir)
     if not IS_KAGGLE_SUBMISSION:

@@ -208,31 +208,17 @@ mkdir -p data/PDF temp/train_parse output logs
 **3. 提取数据集ID**
 `python getid.py`  # 从解析后的文本中提取数据集标识符以及context with window=100
 
-**4. 详细F1结果**
-`python F1.py` 结果存储到 `temp/F1_details.csv`
-
-**LLM验证**
+**4. LLM验证**
 
 python llm_validate.py
 
-**后处理过滤**
+**5. 后处理过滤**
 
 python post_filter.py
 
-helper.py
-assum_type function: A vs B
-
 ## 改进方向
 
-1. [X] xml to txt, parse_xml.py
-2. [X] txt result check, check_parse_xml.py
-3. [X] getid.py 目前拆分正文和附录的逻辑是根据PDF文件写的，需要修改成对应的xml文件
-4. [X] 根据 `temp/F1_details_xml.csv`, 补上缺失的dataset_id，筛选 `type_id` 中 `FN`, 写在 getid_xml.py 文件，增大TP，减小FN. getid_xml_3.py
-5. [X] 根据 `temp/F1_details_xml.csv`, 初步删掉有可能是 `paper_id`的DOI，使用 post_filter.py 的逻辑，增加黑名单，减小doi-FP. getid_xml_5.py
-6. [X] 根据 `temp/F1_details_xml.csv`，修改正则表达式，减小acc-FP.
-    Processed 524 PDF files.
-    Processed 400 XML files.
-    Overwrote 400 text files from XML conversions.
-7. [ ] 把目前的内容放到kaggle上面运行一遍
-8. [ ] saperate data and paper
-9. [ ] saperate primary and second
+1. [X] 把目前的内容整合到kaggle的ipynb上面
+2. [X] kaggle 成功提交
+3. [ ] saperate data and paper
+4. [ ] saperate primary and second
